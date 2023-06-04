@@ -3,7 +3,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import Column from "./Column";
 import { useAddReactionMutation } from "../../services/apiSlice";
 import { handleDragDrop } from "./utils";
-
+import HeaderInPanel from "./HeaderInPanel";
 
 interface Item {
   id: number;
@@ -39,7 +39,6 @@ const columnsFromBack: { [key: number]: Column } = {
 const IndexHoursPanel = () => {
   const [columns, setColumns] = useState(columnsFromBack);
 
-
   const getRangeOfDays = (num: number) => {
     let days = [];
 
@@ -49,41 +48,46 @@ const IndexHoursPanel = () => {
 
     return days;
   };
-const days = getRangeOfDays(15);
+  const days = getRangeOfDays(15);
 
-console.log('',days)
+  console.log("", days);
 
   const [addReaction, success] = useAddReactionMutation();
 
-
-const dataToSend = {
-  [1]: {
-    name: "miesiąc",
-    items: days,
-  },
-  [2]: {
-    name: "oczekujące",
-    items: [],
-  },
-  [3]: {
-    name: "zatwierdzone",
-    items: [],
-  },
-};
+  const dataToSend = {
+    [1]: {
+      name: "miesiąc",
+      items: days,
+    },
+    [2]: {
+      name: "oczekujące",
+      items: [],
+    },
+    [3]: {
+      name: "zatwierdzone",
+      items: [],
+    },
+  };
 
   const handleClick = async () => {
     await addReaction(dataToSend);
   };
 
   return (
-    <div style={{ display: "flex" }}>
-      <DragDropContext onDragEnd={result => handleDragDrop(result, columns, setColumns)}>
-        {Object.entries(columns).map(([id, column]) => {
-          return <Column id={id} column={column} key={id} />;
-        })}
-      </DragDropContext>
-      <button onClick={handleClick}> add</button>
-    </div>
+    <>
+      <HeaderInPanel />
+
+      <div style={{ display: "flex" }}>
+        <DragDropContext
+          onDragEnd={result => handleDragDrop(result, columns, setColumns)}
+        >
+          {Object.entries(columns).map(([id, column]) => {
+            return <Column id={id} column={column} key={id} />;
+          })}
+        </DragDropContext>
+        <button onClick={handleClick}> add</button>
+      </div>
+    </>
   );
 };
 
