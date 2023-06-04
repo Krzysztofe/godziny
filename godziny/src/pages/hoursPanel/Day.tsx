@@ -1,35 +1,28 @@
 import { Draggable } from "react-beautiful-dnd";
 
 interface Props {
-  task: any;
+  item: any;
   index: any;
 }
 
-const Task = (props: Props) => {
+const Day = (props: Props) => {
   return (
     <div>
-      <Draggable
-        draggableId={`${props.task.id}`}
-        key={props.task.id}
-        index={props.index}
-      >
-        {(provided, snapshot) => {
+      <Draggable draggableId={props.item.id.toString()} index={props.index}>
+        {provided => {
           return (
             <div
               {...provided.draggableProps}
               {...provided.dragHandleProps}
               ref={provided.innerRef}
-              // isDragging = {snapshot.isDragging}
             >
-             {props.task.title}
-             
+              {props.item.content}
             </div>
           );
         }}
-        {/* {provided.placeholder} */}
       </Draggable>
     </div>
   );
 };
 
-export default Task;
+export default Day;

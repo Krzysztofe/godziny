@@ -1,9 +1,15 @@
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useState } from "react";
+import { DragDropContext } from "react-beautiful-dnd";
+import Column from "./Column";
 
 interface Item {
   id: number;
   content: string;
+}
+
+interface Column {
+  name: string;
+  items: Item[];
 }
 
 const itemsFromBack = [
@@ -12,12 +18,7 @@ const itemsFromBack = [
   { id: 3, content: "trzy" },
 ];
 
-interface Column {
-  name: string;
-  items: Item[];
-}
-
-const columnsFromBack: { [key: string]: Column } = {
+const columnsFromBack: { [key: number]: Column } = {
   [1]: {
     name: "miesiąc",
     items: itemsFromBack,
@@ -32,7 +33,7 @@ const columnsFromBack: { [key: string]: Column } = {
   },
 };
 
-const Hours = () => {
+const IndexHoursPanel = () => {
   const [columns, setColumns] = useState(columnsFromBack);
 
   const handleDragDrop = (result: any) => {
@@ -75,51 +76,11 @@ const Hours = () => {
     <div style={{ display: "flex" }}>
       <DragDropContext onDragEnd={handleDragDrop}>
         {Object.entries(columns).map(([id, column]) => {
-          return (
-            <Droppable droppableId={id.toString()} key={id}>
-              {(provided, snapshot) => {
-                return (
-                  <div
-                    {...provided.droppableProps}
-                    ref={provided.innerRef}
-                    style={{
-                      border: "1px solid black",
-                      width: 100,
-                      height: "50vh",
-                    }}
-                  >
-                    <h4>{column.name} </h4>
-                    {column.items.map((item: any, index: any) => {
-                      return (
-                        <Draggable
-                          key={item.id}
-                          draggableId={item.id.toString()}
-                          index={index}
-                        >
-                          {provided => {
-                            return (
-                              <div
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
-                                ref={provided.innerRef}
-                              >
-                                {item.content}
-                              </div>
-                            );
-                          }}
-                        </Draggable>
-                      );
-                    })}
-                    {provided.placeholder}
-                  </div>
-                );
-              }}
-            </Droppable>
-          );
+          return <Column id={id} column={column} key={id} />;
         })}
       </DragDropContext>
     </div>
   );
 };
 
-export default Hours;
+export default IndexHoursPanel;
