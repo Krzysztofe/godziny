@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { reactionsApiSlice } from "../services/apiSlice";
-
+import hoursPanelSlice from "./storeFeatures/hoursPanelSlice";
 
 export const store = configureStore({
   reducer: {
-  
+    hoursPanel: hoursPanelSlice,
     [reactionsApiSlice.reducerPath]: reactionsApiSlice.reducer,
   },
   middleware: getDefaultMiddleware =>
