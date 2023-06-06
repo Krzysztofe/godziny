@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.js": "/godziny/static/js/main.bd38fa0f.js",
+    "static/js/855.78aa8ade.chunk.js": "/godziny/static/js/855.78aa8ade.chunk.js",
+    "static/js/449.dac8a5a4.chunk.js": "/godziny/static/js/449.dac8a5a4.chunk.js",
+    "static/js/302.b28f3f8e.chunk.js": "/godziny/static/js/302.b28f3f8e.chunk.js",
+    "index.html": "/godziny/index.html",
+    "main.bd38fa0f.js.map": "/godziny/static/js/main.bd38fa0f.js.map",
+    "855.78aa8ade.chunk.js.map": "/godziny/static/js/855.78aa8ade.chunk.js.map",
+    "449.dac8a5a4.chunk.js.map": "/godziny/static/js/449.dac8a5a4.chunk.js.map",
+    "302.b28f3f8e.chunk.js.map": "/godziny/static/js/302.b28f3f8e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.bd38fa0f.js"
+  ]
+}
