@@ -1,12 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-
 interface ModelInitialState {
-  numberOfDays:any
+  numberOfDays: any;
+  data: any;
 }
 
 const initialState: any = {
-  numberOfDays: ''
+  numberOfDays: "",
+  dataFromBack: [],
 };
 
 export const hoursPanelSlice = createSlice({
@@ -16,8 +17,12 @@ export const hoursPanelSlice = createSlice({
     handleChange: (state, action: PayloadAction<any>) => {
       state.numberOfDays = action.payload;
     },
+    getData: (state, action: PayloadAction<any>) => {
+      const tt = action.payload ? Object.values(action.payload) : [];
+      state.dataFromBack = tt.flat();
+    },
   },
 });
 
-export const { handleChange } = hoursPanelSlice.actions;
+export const { handleChange, getData } = hoursPanelSlice.actions;
 export default hoursPanelSlice.reducer;

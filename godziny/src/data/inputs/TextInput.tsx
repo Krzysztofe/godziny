@@ -9,7 +9,7 @@ export interface Props {
 
 const TextInput = (props: Props) => {
   return (
-    <div>
+    <div >
       <label>{props.label}</label>
       <input
         type={props.type}
@@ -17,6 +17,7 @@ const TextInput = (props: Props) => {
         value={props.value}
         onChange={props.handleChange}
         placeholder={props.placeholder}
+        style={{ width: 50 }}
       />
     </div>
   );

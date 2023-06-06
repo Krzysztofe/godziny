@@ -10,7 +10,7 @@ const URL_DATA = "https://godziny-3b30f-default-rtdb.europe-west1.firebasedataba
   tagTypes: ["reactions"],
   endpoints: builder => ({
     reactions: builder.query<any, void>({
-      query: () => "/reactions.json",
+      query: () => "/days.json",
       providesTags: ["reactions"],
     }),
     addReaction: builder.mutation<void, any>({
