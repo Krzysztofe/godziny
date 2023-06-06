@@ -5,7 +5,7 @@ import { handleChange } from "../../redux/storeFeatures/hoursPanelSlice";
 import { RootState } from "../../redux/store";
 import { useAddReactionMutation } from "../../services/apiSlice";
 import { createDaysInColumn } from "./utils";
-import { send } from "./dataHoursPanel";
+import { columnsWithDays } from "./dataHoursPanel";
 
 const HeaderInPanel = () => {
   const dispatch = useDispatch();
@@ -13,28 +13,7 @@ const HeaderInPanel = () => {
 
   const [addReaction, success] = useAddReactionMutation();
 
-  send[0].items = createDaysInColumn(numberOfDays);
-
-
-// const send = [
-//   {
-//     id: "miesiac",
-//     name: "miesiac",
-//     items: createDaysInColumn(numberOfDays),
-//   },
-//   {
-//     id: "oczekujące",
-//     name: "oczekujące",
-//     items: [{}],
-//   },
-//   {
-//     id: "zatwierdzone",
-//     name: "zatwierdzone",
-//     items: [{}],
-//   },
-// ];
-
-
+  columnsWithDays[0].items = createDaysInColumn(numberOfDays);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -42,7 +21,7 @@ const HeaderInPanel = () => {
   };
 
   const handleClick = async () => {
-    await addReaction(send);
+    await addReaction(columnsWithDays);
   };
 
   return (

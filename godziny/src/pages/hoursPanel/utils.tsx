@@ -9,6 +9,17 @@ export const createDaysInColumn = (num: number) => {
   return days;
 };
 
+export const addDaysToEmptyColumns = (arr: any) => {
+  return arr?.map((obj: any) => {
+    if (!obj.hasOwnProperty("items")) {
+      return { ...obj, items: [] };
+    }
+    return obj;
+  });
+};
+
+
+
 export const handleDragDrop = (results: any, columns: any, setColumns: any) => {
   const { source, destination } = results;
 

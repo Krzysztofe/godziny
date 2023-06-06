@@ -1,6 +1,15 @@
+interface DayModel {
+  id: string;
+  content: string;
+}
 
+interface ColumnModel {
+  id: string;
+  name: string;
+  items?: DayModel[] | [];
+}
 
-export const send = [
+export const columnsWithDays: ColumnModel[] = [
   {
     id: "miesiac",
     name: "miesiac",
@@ -9,11 +18,9 @@ export const send = [
   {
     id: "oczekujące",
     name: "oczekujące",
-    items: [{ id: crypto.randomUUID(), content: "" }],
   },
   {
     id: "zatwierdzone",
     name: "zatwierdzone",
-    items: [{ id: crypto.randomUUID(), content: "" }],
   },
 ];

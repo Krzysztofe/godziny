@@ -6,7 +6,7 @@ interface Props {
 }
 
 const Column = (props: Props) => {
-  console.log("", props.column);
+
 
   return (
     <div>
