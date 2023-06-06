@@ -1,4 +1,4 @@
-import TextInput from "../../data/inputs/TextInput";
+import TextInput from "../../components/inputs/TextInput";
 import { useDispatch, useSelector } from "react-redux";
 import { handleChange } from "../../redux/storeFeatures/hoursPanelSlice";
 import { RootState } from "../../redux/store";
