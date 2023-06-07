@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkgodziny=self.webpackChunkgodziny||[]).push([[855],{9855:function(n,g,i){i.r(g);var e=i(1087),d=i(184);g.default=function(){return(0,d.jsxs)("div",{children:["logingggggg",(0,d.jsx)(e.rU,{to:"/godziny",children:" godziny"})]})}}}]);
-//# sourceMappingURL=855.78aa8ade.chunk.js.map
