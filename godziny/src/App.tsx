@@ -6,11 +6,11 @@ const IndexHoursPanel = lazy(() => import("./pages/hoursPanel/IndexHoursPanel"))
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/godziny">
       <Suspense fallback={<LoadingPage />}>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/godziny" element={<IndexHoursPanel />} />
+          <Route path="/miesiac" element={<IndexHoursPanel />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

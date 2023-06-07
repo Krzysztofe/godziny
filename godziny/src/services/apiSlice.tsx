@@ -1,50 +1,51 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-// import { URL_DATA } from "../data/apiKeys";
+
 
 const URL_DATA =
   "https://godziny-3b30f-default-rtdb.europe-west1.firebasedatabase.app";
 
-export const reactionsApiSlice = createApi({
-  reducerPath: "reactionsApi",
+export const columnsApiSlice = createApi({
+  reducerPath: "columnsApi",
   baseQuery: fetchBaseQuery({ baseUrl: URL_DATA }),
-  tagTypes: ["reactions"],
+  tagTypes: ["columns"],
   endpoints: builder => ({
-    reactions: builder.query<any, void>({
-      query: () => "/days.json",
-      providesTags: ["reactions"],
+    
+    columns: builder.query<any, void>({
+      query: () => "/columns.json",
+      providesTags: ["columns"],
     }),
 
-    addReaction: builder.mutation<void, any>({
+    addDays: builder.mutation<void, any>({
       query: reaction => ({
-        url: "/days.json",
+        url: "/columns.json",
         method: "POST",
         body: reaction,
       }),
-      invalidatesTags: ["reactions"],
+      invalidatesTags: ["columns"],
     }),
 
-    updateReaction: builder.mutation<void, any>({
+    updateColumns: builder.mutation<void, any>({
       query: ubdateReaction => ({
-        url: `/days/${ubdateReaction.id}.json`,
+        url: `/columns/${ubdateReaction.id}.json`,
         method: "PUT",
         body: ubdateReaction.columns,
       }),
-      invalidatesTags: ["reactions"],
+      invalidatesTags: ["columns"],
     }),
 
-    deleteReaction: builder.mutation<any, string | undefined>({
+    deleteAllColumns: builder.mutation<any, string | undefined>({
       query: id => ({
-        url: `/days/${id}.json`,
+        url: `/columns/${id}.json`,
         method: "DELETE",
       }),
-      invalidatesTags: ["reactions"],
+      invalidatesTags: ["columns"],
     }),
   }),
 });
 
 export const {
-  useReactionsQuery,
-  useAddReactionMutation,
-  useDeleteReactionMutation,
-  useUpdateReactionMutation,
-} = reactionsApiSlice;
+  useColumnsQuery,
+  useAddDaysMutation,
+  useDeleteAllColumnsMutation,
+  useUpdateColumnsMutation,
+} = columnsApiSlice;

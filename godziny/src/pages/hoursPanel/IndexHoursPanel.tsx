@@ -1,46 +1,37 @@
 import { useEffect, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import {
-  useDeleteReactionMutation,
-  useReactionsQuery,
-  useUpdateReactionMutation,
+  useDeleteAllColumnsMutation,
+  useColumnsQuery,
+  useUpdateColumnsMutation,
 } from "../../services/apiSlice";
 import Column from "./Column";
 import HeaderInPanel from "./HeaderInPanel";
 import { handleDragDrop, addDaysToEmptyColumns } from "./utils";
 
 const IndexHoursPanel = () => {
-  const { data, error } = useReactionsQuery(undefined);
+  const { data, error } = useColumnsQuery(undefined);
+  const [deleteAllColumns, isLoading] = useDeleteAllColumnsMutation();
+  const [updateColumns, success] = useUpdateColumnsMutation();
+
   const columnsFromDatabase = data && Object.values(data).flat();
   const columnsToPrint = addDaysToEmptyColumns(columnsFromDatabase);
-  const [deleteReaction, isLoading] = useDeleteReactionMutation();
   const [columns, setColumns] = useState([]);
+
+  const columnsId = data && Object.keys(data).join();
+  const columnsToUpdate = { id: columnsId, columns: columns };
 
   useEffect(() => {
     setColumns(columnsToPrint);
   }, [data]);
 
-  const [updateReaction, success] = useUpdateReactionMutation();
-
-  const id = data && Object.keys(data).join();
-  const columnsToUpdate = { id: id, columns: columns };
-
-  console.log("", columnsToUpdate);
-
   useEffect(() => {
-    updateReaction(columnsToUpdate);
+    updateColumns(columnsToUpdate);
   }, [columns]);
-
-  const handleDelete = async () => {
-    const id = data && Object.keys(data).join();
-    await deleteReaction(id);
-  };
 
   return (
     <>
       <HeaderInPanel />
-      <button onClick={handleDelete}> usuń wszystko</button>
-      
 
       <div style={{ display: "flex" }}>
         <DragDropContext

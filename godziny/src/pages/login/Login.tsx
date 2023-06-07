@@ -4,7 +4,7 @@ const Login = () => {
     return (
         <div>
             logingggggg
-            <Link to = "/godziny"> godziny</Link>
+            <Link to = "/miesiac"> godziny</Link>
         </div>
     );
 };

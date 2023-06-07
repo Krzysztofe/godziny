@@ -7,7 +7,7 @@ export const createDaysInColumn = (num: number) => {
       content: i.toString(),
       userName: "",
       date:"",
-      hours: null,
+      hours: 0,
       location: "",
     });
   }
@@ -17,8 +17,8 @@ export const createDaysInColumn = (num: number) => {
 
 export const addDaysToEmptyColumns = (arr: any) => {
   return arr?.map((obj: any) => {
-    if (!obj.hasOwnProperty("items")) {
-      return { ...obj, items: [] };
+    if (!obj.hasOwnProperty("days")) {
+      return { ...obj, days: [] };
     }
     return obj;
   });
@@ -43,11 +43,11 @@ export const handleDragDrop = (results: any, columns: any, setColumns: any) => {
       return column.id === destination.droppableId;
     });
 
-    const newSourceDays = [...columns[sourceColumnIdx].items];
+    const newSourceDays = [...columns[sourceColumnIdx].days];
 
     const newDestinationDays =
       source.droppableId !== destination.dropableId
-        ? [...columns[destinationColumnIdx].items]
+        ? [...columns[destinationColumnIdx].days]
         : newSourceDays;
 
     const [deletedDay] = newSourceDays.splice(source.index, 1);
@@ -57,12 +57,12 @@ export const handleDragDrop = (results: any, columns: any, setColumns: any) => {
 
     newCoulmns[sourceColumnIdx] = {
       ...columns[sourceColumnIdx],
-      items: newSourceDays,
+      days: newSourceDays,
     };
 
     newCoulmns[destinationColumnIdx] = {
       ...columns[destinationColumnIdx],
-      items: newDestinationDays,
+      days: newDestinationDays,
     };
 
     setColumns(newCoulmns);
@@ -73,7 +73,7 @@ export const handleDragDrop = (results: any, columns: any, setColumns: any) => {
       return column.id === source.droppableId;
     });
 
-    const days = [...columns[sourceColumnIdx].items];
+    const days = [...columns[sourceColumnIdx].days];
     const [deletedDay] = days.splice(source.index, 1);
     days.splice(destintionIdx, 0, deletedDay);
 
@@ -81,7 +81,7 @@ export const handleDragDrop = (results: any, columns: any, setColumns: any) => {
 
     newColumns[sourceColumnIdx] = {
       ...columns[sourceColumnIdx],
-      items: days,
+      days: days,
     };
 
     setColumns(newColumns);

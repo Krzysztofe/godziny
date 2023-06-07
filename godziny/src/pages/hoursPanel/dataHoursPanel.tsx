@@ -1,26 +1,26 @@
-interface DayModel {
-  id: string;
-  content: string;
-}
+// interface DayModel {
+//   id: string;
+//   content: string;
+// }
 
 interface ColumnModel {
   id: string;
-  name: string;
-  items?: DayModel[] | [];
+  columnName: string;
+  days?: any;
 }
 
 export const columnsWithDays: ColumnModel[] = [
   {
     id: "miesiac",
-    name: "miesiac",
-    items: [],
+    columnName: "Miesiąc",
+    days: [],
   },
   {
     id: "oczekujące",
-    name: "oczekujące",
+    columnName: "Oczekujące",
   },
   {
     id: "zatwierdzone",
-    name: "zatwierdzone",
+    columnName: "Zatwierdzone",
   },
 ];

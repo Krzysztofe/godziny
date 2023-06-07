@@ -10,7 +10,7 @@ const Column = (props: Props) => {
 
   return (
     <div>
-      <h4>{props.column.name} </h4>
+      <h4>{props.column.columnName} </h4>
       <Droppable droppableId={props.column.id}>
         {(provided, snapshot) => {
           return (
@@ -23,8 +23,8 @@ const Column = (props: Props) => {
                 height: "fit-content",
               }}
             >
-              {props.column.items &&
-                props.column?.items?.map((day: any, index: any) => {
+              {props.column.days &&
+                props.column?.days?.map((day: any, index: any) => {
                   return (
                     <Day day={day} index={index} key={crypto.randomUUID()} />
                   );
