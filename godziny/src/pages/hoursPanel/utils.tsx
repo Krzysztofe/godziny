@@ -1,9 +1,15 @@
-
 export const createDaysInColumn = (num: number) => {
   let days = [];
 
   for (let i = 1; i <= num; i++) {
-    days.push({ id: crypto.randomUUID(), content: i.toString() });
+    days.push({
+      id: crypto.randomUUID(),
+      content: i.toString(),
+      userName: "",
+      date:"",
+      hours: null,
+      location: "",
+    });
   }
 
   return days;
@@ -17,8 +23,6 @@ export const addDaysToEmptyColumns = (arr: any) => {
     return obj;
   });
 };
-
-
 
 export const handleDragDrop = (results: any, columns: any, setColumns: any) => {
   const { source, destination } = results;
@@ -40,7 +44,6 @@ export const handleDragDrop = (results: any, columns: any, setColumns: any) => {
     });
 
     const newSourceDays = [...columns[sourceColumnIdx].items];
-
 
     const newDestinationDays =
       source.droppableId !== destination.dropableId

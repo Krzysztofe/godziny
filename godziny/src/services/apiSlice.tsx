@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // import { URL_DATA } from "../data/apiKeys";
 
+const URL_DATA =
+  "https://godziny-3b30f-default-rtdb.europe-west1.firebasedatabase.app";
 
-const URL_DATA = "https://godziny-3b30f-default-rtdb.europe-west1.firebasedatabase.app"
-
- export const reactionsApiSlice = createApi({
+export const reactionsApiSlice = createApi({
   reducerPath: "reactionsApi",
   baseQuery: fetchBaseQuery({ baseUrl: URL_DATA }),
   tagTypes: ["reactions"],
@@ -13,6 +13,7 @@ const URL_DATA = "https://godziny-3b30f-default-rtdb.europe-west1.firebasedataba
       query: () => "/days.json",
       providesTags: ["reactions"],
     }),
+
     addReaction: builder.mutation<void, any>({
       query: reaction => ({
         url: "/days.json",
@@ -24,16 +25,16 @@ const URL_DATA = "https://godziny-3b30f-default-rtdb.europe-west1.firebasedataba
 
     updateReaction: builder.mutation<void, any>({
       query: ubdateReaction => ({
-        url: `/reactions/${ubdateReaction.id}.json`,
+        url: `/days/${ubdateReaction.id}.json`,
         method: "PUT",
-        body: ubdateReaction,
+        body: ubdateReaction.columns,
       }),
       invalidatesTags: ["reactions"],
     }),
 
     deleteReaction: builder.mutation<any, string | undefined>({
       query: id => ({
-        url: `/reactions/${id}.json`,
+        url: `/days/${id}.json`,
         method: "DELETE",
       }),
       invalidatesTags: ["reactions"],

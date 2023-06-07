@@ -3,8 +3,10 @@ import TextInput from "../../components/inputs/TextInput";
 import RadioInput from "../../components/inputs/RadioInput";
 import { FaTrashAlt } from "react-icons/fa";
 import { FcApproval } from "react-icons/fc";
+import { useDeleteReactionMutation } from "../../services/apiSlice";
 
 const DayForm = () => {
+  const [deleteReaction, isLoading] = useDeleteReactionMutation();
   const [userData, setUserData] = useState({
     hours: "",
     userName: "",
@@ -20,10 +22,15 @@ const DayForm = () => {
     return;
   };
 
+  const handleDeleteDay = async() => {
+
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit}>
         {[
+          { type: "date", name: "date", label: "Dzień" },
           { type: "number", name: "hours", label: "Godz" },
           { type: "text", name: "userName", label: "Imię" },
         ].map(({ type, name, label }) => {
@@ -55,7 +62,7 @@ const DayForm = () => {
           <FcApproval />
         </button>
       </form>
-      <button>
+      <button onClick={handleDeleteDay}>
         <FaTrashAlt />
       </button>
     </>

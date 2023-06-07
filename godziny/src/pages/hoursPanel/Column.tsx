@@ -20,7 +20,7 @@ const Column = (props: Props) => {
               style={{
                 border: "1px solid black",
                 width: "30vw",
-                height: "100vh",
+                height: "fit-content",
               }}
             >
               {props.column.items &&
