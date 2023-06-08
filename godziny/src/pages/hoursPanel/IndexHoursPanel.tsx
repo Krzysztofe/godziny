@@ -40,7 +40,7 @@ const IndexHoursPanel = () => {
           {columns &&
             columns.length > 0 &&
             columns.map((column: any, idx:any) => {
-              return <Column column={column} key={column.id}  columnIdx = {idx}/>;
+              return <Column column={column} key={column.id}/>;
             })}
         </DragDropContext>
       </div>

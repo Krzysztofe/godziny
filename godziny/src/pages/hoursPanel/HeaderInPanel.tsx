@@ -36,10 +36,6 @@ const HeaderInPanel = () => {
     };
 
 
-// console.log("", columnsToPrint[0]?.days && columnsToPrint[0].days);
-// console.log("", columnsToPrint[1]?.days && columnsToPrint[1].days);
-// console.log("", columnsToPrint[2]?.days && columnsToPrint[2].days);
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     dispatch(handleChange(value));

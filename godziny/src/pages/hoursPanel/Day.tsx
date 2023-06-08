@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import DayForm from "./DayForm";
+import DayForm from "./dayForm/DayForm";
 import {
   useUpdateColumnsMutation,
   useDeleteAllColumnsMutation,
-  useDeleteDayMutation,
+
   useColumnsQuery,
 } from "../../services/apiSlice";
 import { FaTrashAlt } from "react-icons/fa";
@@ -13,23 +13,18 @@ import { addDaysToEmptyColumns } from "./utils";
 interface Props {
   day: any;
   index: any;
-  columnIdx: any;
-  dayIdx: any;
 }
 
 const Day = (props: Props) => {
   const [updateColumns] = useUpdateColumnsMutation();
 
-  const [deleteDay, isLoading] = useDeleteDayMutation();
 
   const { data, error } = useColumnsQuery(undefined);
   const columnsIdFRomDatabase = data && Object.keys(data).join();
   const columnsFromDatabase = data ? Object.values(data).flat() : [];
   const columnsToPrint = addDaysToEmptyColumns(columnsFromDatabase);
- 
+
   const updatedColumnsx = data ? [...columnsToPrint] : [];
-
-
 
   const handleUpdate = async (id: any) => {
     const updatedColumnsWithFilteredDay = updatedColumnsx.map((column: any) => {
@@ -42,6 +37,7 @@ const Day = (props: Props) => {
       return column;
     });
 
+    console.log("", columnsIdFRomDatabase);
     await updateColumns({
       id: columnsIdFRomDatabase,
       columns: updatedColumnsWithFilteredDay,
@@ -51,7 +47,7 @@ const Day = (props: Props) => {
   return (
     <div style={{ border: "1px solid black" }}>
       <Draggable
-        draggableId={props.day && props.day.id.toString()}
+        draggableId={props.day && props?.day?.id.toString()}
         index={props.index}
       >
         {provided => {
@@ -63,7 +59,7 @@ const Day = (props: Props) => {
             >
               <strong>{props.day.content}</strong>
 
-              <DayForm />
+              <DayForm  dayId = {props.day.id}/>
 
               <button onClick={() => handleUpdate(props.day.id)}>
                 <FaTrashAlt />
