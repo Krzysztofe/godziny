@@ -20,8 +20,6 @@ const DayForm = () => {
     return;
   };
 
-  const handleDeleteDay = async () => {};
-
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -58,9 +56,6 @@ const DayForm = () => {
           <FcApproval />
         </button>
       </form>
-      <button onClick={handleDeleteDay}>
-        <FaTrashAlt />
-      </button>
     </>
   );
 };

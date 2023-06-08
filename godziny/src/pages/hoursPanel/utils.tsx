@@ -29,7 +29,8 @@ export const handleDragDrop = (results: any, columns: any, setColumns: any) => {
 
   if (!destination) return;
   if (
-    source.draggableId === destination.droppableId &&
+    source.draggableId === destination.droppableId
+     &&
     source.index !== destination.index
   )
     return;

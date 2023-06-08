@@ -35,12 +35,17 @@ const HeaderInPanel = () => {
       days: [...columnsToPrint?.[0]?.days, ...addedDays],
     };
 
+
+// console.log("", columnsToPrint[0]?.days && columnsToPrint[0].days);
+// console.log("", columnsToPrint[1]?.days && columnsToPrint[1].days);
+// console.log("", columnsToPrint[2]?.days && columnsToPrint[2].days);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     dispatch(handleChange(value));
   };
 
-  const handleClick = async () => {
+  const handleAddDays = async () => {
     data === null
       ? await addDays(columnsWithDays)
       : await updateColumns({
@@ -53,7 +58,7 @@ const HeaderInPanel = () => {
     await deleteAllColumns(columnsIdFRomDatabase);
   };
 
-  console.log(data);
+// console.log('',data)
 
   return (
     <header>
@@ -65,7 +70,7 @@ const HeaderInPanel = () => {
         placeholder="Dni"
         handleChange={handleInputChange}
       />
-      <button onClick={handleClick}>Dodaj dni</button>
+      <button onClick={handleAddDays}>Dodaj dni</button>
       <button onClick={handleDelete}> usuń wszystko</button>
     </header>
   );

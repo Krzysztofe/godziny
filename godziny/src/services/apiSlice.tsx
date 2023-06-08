@@ -9,7 +9,6 @@ export const columnsApiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: URL_DATA }),
   tagTypes: ["columns"],
   endpoints: builder => ({
-    
     columns: builder.query<any, void>({
       query: () => "/columns.json",
       providesTags: ["columns"],
@@ -40,6 +39,13 @@ export const columnsApiSlice = createApi({
       }),
       invalidatesTags: ["columns"],
     }),
+    deleteDay: builder.mutation<any, any>({
+      query: id => ({
+        url: `/columns/${id}.json`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["columns"],
+    }),
   }),
 });
 
@@ -48,4 +54,5 @@ export const {
   useAddDaysMutation,
   useDeleteAllColumnsMutation,
   useUpdateColumnsMutation,
+  useDeleteDayMutation,
 } = columnsApiSlice;
