@@ -9,11 +9,15 @@ import Column from "./Column";
 import HeaderInPanel from "./HeaderInPanel";
 import { handleDragDrop, addDaysToEmptyColumns } from "./utils";
 import DayForm from "./dayForm/DayForm";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+
 
 const IndexHoursPanel = () => {
   const { data, error } = useColumnsQuery(undefined);
   const [deleteAllColumns, isLoading] = useDeleteAllColumnsMutation();
   const [updateColumns, success] = useUpdateColumnsMutation();
+  const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
 
   const columnsFromDatabase = data && Object.values(data).flat();
   const columnsToPrint = addDaysToEmptyColumns(columnsFromDatabase);
@@ -35,6 +39,7 @@ const IndexHoursPanel = () => {
       <HeaderInPanel />
       <DayForm />
       <div style={{ display: "flex" }}>
+        <p>wszystkie godziny: {numberOfDays}</p>
         <DragDropContext
           onDragEnd={results => handleDragDrop(results, columns, setColumns)}
         >
