@@ -3,11 +3,22 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 interface ModelInitialState {
   numberOfDays: any;
   data: any;
+  requestState: {
+    edit: { isLoading: boolean; isError: boolean };
+    delete: { isLoading: boolean; isError: boolean };
+  };
 }
 
 const initialState: any = {
   numberOfDays: "",
   dataFromBack: [],
+  requestState: {
+    edit: { isLoading: false, isError: false },
+    delete: {
+      isLoading: false,
+      isError: false,
+    },
+  },
 };
 
 export const hoursPanelSlice = createSlice({
@@ -21,8 +32,11 @@ export const hoursPanelSlice = createSlice({
       const tt = action.payload ? Object.values(action.payload) : [];
       state.dataFromBack = tt.flat();
     },
+    handleEidtisLoading: (state, action: PayloadAction<boolean>) => {
+      state.requestState.edit.isLoading = action.payload;
+    },
   },
 });
 
-export const { handleChange, getData } = hoursPanelSlice.actions;
+export const { handleChange, getData, handleEidtisLoading } = hoursPanelSlice.actions;
 export default hoursPanelSlice.reducer;

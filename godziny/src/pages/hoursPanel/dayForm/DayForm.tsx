@@ -1,16 +1,27 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect } from "react";
 import TextInput from "../../../components/inputs/TextInput";
 import RadioInput from "../../../components/inputs/RadioInput";
 import { FaTrashAlt } from "react-icons/fa";
 import { FcApproval } from "react-icons/fc";
 import useDayForm from "./useDayForm";
+import useDataBaseValues from "../useDataBaseValues";
+
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
+
+import { handleEidtisLoading } from "../../../redux/storeFeatures/hoursPanelSlice";
 
 interface FormValues {
   userName: string;
 }
 
 const DayForm = () => {
+  const dispatch = useDispatch();
+  const { requestState } = useSelector((state: RootState) => state.hoursPanel);
+
   const { formik } = useDayForm();
+
+  console.log("", requestState.edit.isLoading);
 
   return (
     <>
@@ -60,6 +71,7 @@ const DayForm = () => {
           )}
         </div>
 
+        <>{requestState.edit.isLoading?"loading":"uu"}</>
         <button type={"submit"}>
           <FcApproval />
         </button>

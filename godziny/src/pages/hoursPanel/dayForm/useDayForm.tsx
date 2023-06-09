@@ -1,12 +1,6 @@
 import { useFormik } from "formik";
-import {
-  useAddDaysMutation,
-  useColumnsQuery,
-  useUpdateColumnsMutation,
-} from "../../../services/apiSlice";
-
-import { addDaysToEmptyColumns } from "../utils";
-import { initialValues, columnsWithAddedDays } from "./dataDayForm";
+import useDataBaseValues from "../useDataBaseValues";
+import { columnsWithAddedDays, initialValues } from "./dataDayForm";
 import { validationSchema } from "./validationDayForm";
 
 interface FormValues {
@@ -17,27 +11,12 @@ interface FormValues {
 }
 
 const useDayForm = () => {
-  const { data, error } = useColumnsQuery(undefined);
-  const [addDays, success] = useAddDaysMutation();
-  const [updateColumns] = useUpdateColumnsMutation();
-
   const formik = useFormik<FormValues>({
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: async values => {
-      const columnsIdFRomDatabase = data && Object.keys(data).join();
-      const columnsFromDatabase = data ? Object.values(data).flat() : [];
-      const columnsToPrint = addDaysToEmptyColumns(columnsFromDatabase);
-      const updatedColumns = data ? [...columnsToPrint] : [];
-
       formik.setFieldValue("id", crypto.randomUUID());
       columnsWithAddedDays[0].days = [values];
-
-      updatedColumns[0] = data &&
-        columnsFromDatabase?.length > 0 && {
-          ...columnsToPrint?.[0],
-          days: [...columnsToPrint?.[0]?.days, ...[values]],
-        };
 
       data === null
         ? await addDays(columnsWithAddedDays)
@@ -45,8 +24,21 @@ const useDayForm = () => {
             id: columnsIdFRomDatabase,
             columns: updatedColumns,
           });
+          
     },
+  
   });
+
+  const {
+    columnsIdFRomDatabase,
+    updatedColumns,
+    data,
+    success,
+    updateColumns,
+    addDays,
+  } = useDataBaseValues(formik.values);
+
+// console.log("", success.isLoading);
 
   return { formik };
 };
