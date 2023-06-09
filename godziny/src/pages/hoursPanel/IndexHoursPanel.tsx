@@ -8,6 +8,7 @@ import {
 import Column from "./Column";
 import HeaderInPanel from "./HeaderInPanel";
 import { handleDragDrop, addDaysToEmptyColumns } from "./utils";
+import DayForm from "./dayForm/DayForm";
 
 const IndexHoursPanel = () => {
   const { data, error } = useColumnsQuery(undefined);
@@ -32,15 +33,15 @@ const IndexHoursPanel = () => {
   return (
     <>
       <HeaderInPanel />
-
+      <DayForm />
       <div style={{ display: "flex" }}>
         <DragDropContext
           onDragEnd={results => handleDragDrop(results, columns, setColumns)}
         >
           {columns &&
             columns.length > 0 &&
-            columns.map((column: any, idx:any) => {
-              return <Column column={column} key={column.id}/>;
+            columns.map((column: any, idx: any) => {
+              return <Column column={column} key={column.id} />;
             })}
         </DragDropContext>
       </div>

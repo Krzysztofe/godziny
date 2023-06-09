@@ -4,11 +4,11 @@ import DayForm from "./dayForm/DayForm";
 import {
   useUpdateColumnsMutation,
   useDeleteAllColumnsMutation,
-
   useColumnsQuery,
 } from "../../services/apiSlice";
 import { FaTrashAlt } from "react-icons/fa";
 import { addDaysToEmptyColumns } from "./utils";
+import DayPrintData from "./DayPrintData";
 
 interface Props {
   day: any;
@@ -17,7 +17,6 @@ interface Props {
 
 const Day = (props: Props) => {
   const [updateColumns] = useUpdateColumnsMutation();
-
 
   const { data, error } = useColumnsQuery(undefined);
   const columnsIdFRomDatabase = data && Object.keys(data).join();
@@ -37,7 +36,6 @@ const Day = (props: Props) => {
       return column;
     });
 
-    console.log("", columnsIdFRomDatabase);
     await updateColumns({
       id: columnsIdFRomDatabase,
       columns: updatedColumnsWithFilteredDay,
@@ -58,9 +56,7 @@ const Day = (props: Props) => {
               ref={provided.innerRef}
             >
               <strong>{props.day.content}</strong>
-
-              <DayForm  dayId = {props.day.id}/>
-
+              <DayPrintData day={props.day} />
               <button onClick={() => handleUpdate(props.day.id)}>
                 <FaTrashAlt />
               </button>

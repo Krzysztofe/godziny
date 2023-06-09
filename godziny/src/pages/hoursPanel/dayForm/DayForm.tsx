@@ -5,40 +5,23 @@ import { FaTrashAlt } from "react-icons/fa";
 import { FcApproval } from "react-icons/fc";
 import useDayForm from "./useDayForm";
 
-interface Props {
-  dayId: any;
+interface FormValues {
+  userName: string;
 }
 
-const DayForm = (props: Props) => {
-  const { formik } = useDayForm(props.dayId);
-
-  const [userData, setUserData] = useState({
-    hours: "",
-    userName: "",
-    location: "",
-  });
-
-  const handleInputChange = () => {
-    return;
-  };
-
-  // console.log("", props.dayId);
-
-  const handleSubmit = (value: string) => (e: FormEvent) => {
-    e.preventDefault();
-    formik.handleSubmit();
-  };
+const DayForm = () => {
+  const { formik } = useDayForm();
 
   return (
     <>
-      <form onSubmit={handleSubmit(props.dayId)}>
+      <form onSubmit={formik.handleSubmit} style={{ marginTop: 20 }}>
         {[
-          { type: "date", value: "date", label: "Dzień" },
-          { type: "number", value: "hours", label: "Godz" },
           { type: "text", value: "userName", label: "Imię" },
+          { type: "date", value: "date", label: "Dzień" },
+          { type: "number", value: "hours", label: "Godz." },
         ].map(({ type, value, label }) => {
           return (
-            <div key={crypto.randomUUID()}>
+            <div key={value}>
               <TextInput
                 type={type}
                 name={value}
@@ -48,7 +31,7 @@ const DayForm = (props: Props) => {
                 handleChange={formik.handleChange}
                 handleBlur={formik.handleBlur}
               />
-              <div className="loginForm__error" style={{ color: "red" }}>
+              <div style={{ color: "red" }}>
                 {formik.touched[value as keyof typeof formik.values] &&
                   formik.errors[value as keyof typeof formik.values] && (
                     <small>
@@ -60,18 +43,24 @@ const DayForm = (props: Props) => {
           );
         })}
 
-        {["Wewnątrz", "Poza"].map(location => {
+        {["Wewnątrz", "Poza"].map(place => {
           return (
             <RadioInput
-              key={location}
-              value={location}
-              name={"location"}
-              handleChange={handleInputChange}
-              checked={userData.location === location}
+              key={place}
+              value={place}
+              name={"place"}
+              handleChange={formik.handleChange}
+              checked={formik.values.place === place}
             />
           );
         })}
-        <button>
+        <div style={{ color: "red" }}>
+          {formik.touched.place && formik.errors.place && (
+            <small>{formik.errors.place}</small>
+          )}
+        </div>
+
+        <button type={"submit"}>
           <FcApproval />
         </button>
       </form>

@@ -1,19 +1,18 @@
-export const createDaysInColumn = (num: number) => {
-  let days = [];
+// export const createDaysInColumn = (num: number) => {
+//   let days = [];
 
-  for (let i = 1; i <= num; i++) {
-    days.push({
-      id: crypto.randomUUID(),
-      content: i.toString(),
-      userName: "",
-      date:"",
-      hours: 0,
-      location: "",
-    });
-  }
+//   for (let i = 1; i <= num; i++) {
+//     days.push({
+//       id: crypto.randomUUID(),
+//       userName: "",
+//       date:"",
+//       hours: 0,
+//       location: "",
+//     });
+//   }
 
-  return days;
-};
+//   return days;
+// };
 
 export const addDaysToEmptyColumns = (arr: any) => {
   return arr?.map((obj: any) => {

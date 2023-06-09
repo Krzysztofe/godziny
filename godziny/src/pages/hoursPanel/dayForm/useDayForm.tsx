@@ -1,54 +1,50 @@
-import React from "react";
 import { useFormik } from "formik";
-import { initialValues } from "./dataDayForm";
-import { validationSchema } from "./validationDayForm";
 import {
-  useUpdateDayMutation,
+  useAddDaysMutation,
   useColumnsQuery,
+  useUpdateColumnsMutation,
 } from "../../../services/apiSlice";
+
 import { addDaysToEmptyColumns } from "../utils";
+import { initialValues, columnsWithAddedDays } from "./dataDayForm";
+import { validationSchema } from "./validationDayForm";
 
 interface FormValues {
   date: string;
-  hours: number;
+  hours: number | string;
   userName: string;
-  //   location: string;
-  //   [key: string]: string | string[];
+  place: string;
 }
 
-const useDayForm = (dayId: any) => {
-  const [updateDay] = useUpdateDayMutation();
+const useDayForm = () => {
   const { data, error } = useColumnsQuery(undefined);
-  const columnsIdFRomDatabase = data && Object.keys(data).join();
-  const columnsFromDatabase = data ? Object.values(data).flat() : [];
-  const columnsToPrint = addDaysToEmptyColumns(columnsFromDatabase);
-  const updatedColumnsx = data ? [...columnsToPrint] : [];
+  const [addDays, success] = useAddDaysMutation();
+  const [updateColumns] = useUpdateColumnsMutation();
 
   const formik = useFormik<FormValues>({
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: async values => {
-      const newValues = { ...values, id: dayId };
+      const columnsIdFRomDatabase = data && Object.keys(data).join();
+      const columnsFromDatabase = data ? Object.values(data).flat() : [];
+      const columnsToPrint = addDaysToEmptyColumns(columnsFromDatabase);
+      const updatedColumns = data ? [...columnsToPrint] : [];
 
-      const updatedColumnsWithFilteredDayFormik = updatedColumnsx.map(
-        (column: any) => {
-          if (column && column.days) {
-            return {
-              ...column,
-              days: column.days.map((day: any) => {
-                return day.id === dayId ? newValues : day;
-              }),
-            };
-          }
-          return column;
-        }
-      );
-      console.log("upday", updatedColumnsWithFilteredDayFormik);
+      formik.setFieldValue("id", crypto.randomUUID());
+      columnsWithAddedDays[0].days = [values];
 
-      await updateDay({
-        id: columnsIdFRomDatabase,
-        columns: updatedColumnsWithFilteredDayFormik,
-      });
+      updatedColumns[0] = data &&
+        columnsFromDatabase?.length > 0 && {
+          ...columnsToPrint?.[0],
+          days: [...columnsToPrint?.[0]?.days, ...[values]],
+        };
+
+      data === null
+        ? await addDays(columnsWithAddedDays)
+        : await updateColumns({
+            id: columnsIdFRomDatabase,
+            columns: updatedColumns,
+          });
     },
   });
 
