@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.js": "/godziny/static/js/main.ce743347.js",
+    "main.js": "/godziny/static/js/main.aed8e5d5.js",
     "static/js/855.8572cf07.chunk.js": "/godziny/static/js/855.8572cf07.chunk.js",
-    "static/js/372.21a66a3f.chunk.js": "/godziny/static/js/372.21a66a3f.chunk.js",
+    "static/js/869.277ae63e.chunk.js": "/godziny/static/js/869.277ae63e.chunk.js",
     "static/js/838.ff105064.chunk.js": "/godziny/static/js/838.ff105064.chunk.js",
     "index.html": "/godziny/index.html",
-    "main.ce743347.js.map": "/godziny/static/js/main.ce743347.js.map",
+    "main.aed8e5d5.js.map": "/godziny/static/js/main.aed8e5d5.js.map",
     "855.8572cf07.chunk.js.map": "/godziny/static/js/855.8572cf07.chunk.js.map",
-    "372.21a66a3f.chunk.js.map": "/godziny/static/js/372.21a66a3f.chunk.js.map",
+    "869.277ae63e.chunk.js.map": "/godziny/static/js/869.277ae63e.chunk.js.map",
     "838.ff105064.chunk.js.map": "/godziny/static/js/838.ff105064.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.ce743347.js"
+    "static/js/main.aed8e5d5.js"
   ]
 }
