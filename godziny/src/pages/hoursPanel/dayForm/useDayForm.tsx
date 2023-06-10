@@ -18,28 +18,31 @@ const useDayForm = () => {
   const formik = useFormik<FormValues>({
     initialValues: initialValues,
     validationSchema: validationSchema,
+
     onSubmit: async values => {
       formik.setFieldValue("id", crypto.randomUUID());
       addedColumnsWithDays.columns[0].days = [values];
-
-      const columnsData = {
-        allHours: numberOfDays,
-        columns: updatedColumnsWithAddedDays,
-      };
 
       data === null
         ? await addDays(addedColumnsWithDays)
         : await updateColumns({
             id: dataBaseColumnsId,
-            columns: columnsData,
+            columns: {
+              allHours: dataBaseAllHours,
+              pendingHours: usersHoursSum,
+              columns: updatedColumnsWithAddedDays,
+            },
           });
     },
   });
 
   const {
+    dataBaseAllHours,
+    dataBasePendingHours,
     dataBaseColumnsId,
     updatedColumnsWithAddedDays,
     data,
+    usersHoursSum,
     success,
     updateColumns,
     addDays,

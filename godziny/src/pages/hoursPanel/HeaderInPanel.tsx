@@ -1,42 +1,38 @@
-
 import TextInput from "../../components/inputs/TextInput";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  useAddDaysMutation,
   useColumnsQuery,
-  useDeleteAllColumnsMutation
+  useDeleteAllColumnsMutation,
 } from "../../services/apiSlice";
 import { RootState } from "../../redux/store";
 import { handleChange } from "../../redux/storeFeatures/hoursPanelSlice";
 import useDataBaseValues from "./useDataBaseValues";
 
 const HeaderInPanel = () => {
-   const dispatch = useDispatch();
-   const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
-  // const { data, error } = useColumnsQuery(undefined);
+  const dispatch = useDispatch();
+  const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
 
   const [deleteAllColumns, isLoading] = useDeleteAllColumnsMutation();
-
-  
 
   const {
     dataBaseColumnsId,
     dataBaseAllHours,
+    dataBasePendingHours,
     updatedColumnsWithAddedDays,
     databaseColumns,
     data,
-    success,
+
     updateColumns,
-    addDays,
   } = useDataBaseValues();
 
- const columnsIdFRomDatabase = data && Object.keys(data).join();
+  const columnsIdFRomDatabase = data && Object.keys(data).join();
+
 
 
   const handleDelete = async () => {
     await deleteAllColumns(columnsIdFRomDatabase);
   };
-
-
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -44,18 +40,16 @@ const HeaderInPanel = () => {
   };
 
   const handleAddHours = async () => {
-
-const columnsData = {
-  allHours: numberOfDays,
-  columns: updatedColumnsWithAddedDays,
-};
-
-      await updateColumns({
-        id: dataBaseColumnsId,
-        columns: columnsData,
-      });
+    await updateColumns({
+      id: dataBaseColumnsId,
+      columns: {
+        allHours: +numberOfDays,
+        pendingHours: dataBasePendingHours,
+        columns: updatedColumnsWithAddedDays,
+      },
+    });
+  
   };
-
 
   return (
     <header>

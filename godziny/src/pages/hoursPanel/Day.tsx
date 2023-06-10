@@ -10,13 +10,14 @@ interface Props {
 }
 
 const Day = (props: Props) => {
-    const { numberOfDays } = useSelector(
-      (state: RootState) => state.hoursPanel
-    );
-  const { dataBaseColumnsId,
-     newColumnsFromDatabase,
-     updateColumns } =
-    useDataBaseValues();
+  const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
+  const {
+    dataBaseColumnsId,
+    newColumnsFromDatabase,
+    usersHoursSum,
+    dataBaseAllHours,
+    updateColumns,
+  } = useDataBaseValues();
 
   const handleUpdate = async (id: any) => {
     const updatedColumnsWithDeletedDays = newColumnsFromDatabase.map(
@@ -31,14 +32,13 @@ const Day = (props: Props) => {
       }
     );
 
-const columnsData = {
-  allHours: numberOfDays,
-  columns: updatedColumnsWithDeletedDays,
-};
-
     await updateColumns({
       id: dataBaseColumnsId,
-      columns: columnsData,
+      columns: {
+        allHours: dataBaseAllHours,
+        pendingHours: usersHoursSum,
+        columns: updatedColumnsWithDeletedDays,
+      },
     });
   };
 

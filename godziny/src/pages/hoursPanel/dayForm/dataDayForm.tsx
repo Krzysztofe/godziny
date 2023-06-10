@@ -36,13 +36,11 @@ const columns: ColumnModel[] = [
   },
 ];
 
-
-
 export const addedColumnsWithDays = {
-  allHours: "",
+  allHours: 0,
+  pendingHours: 0,
   columns: columns,
 };
-
 
 // export const addedColumnsWithDays:ColumnModel[] = [
 //   {

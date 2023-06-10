@@ -70,3 +70,51 @@ export const handleDragDrop = (results: any, columns: any, setColumns: any) => {
     setColumns(newColumns);
   }
 };
+
+// const firebasey = {
+//   uwrahts: {
+//     allHours: 50,
+//     columns: [
+//       {
+//         name: "ppp",
+//         id: "22",
+//         days: [
+//           { data: "222", name: "olo", hours: 3 },
+//           { data: "222", name: "olo", hours: 3 },
+//           { data: "222", name: "olo", hours: 3 },
+//           { data: "222", name: "olo", hours: 3 },
+//         ],
+//       },
+//       {
+//         name: "zatwierdzone",
+//         id: "22",
+//         days: [
+//           { data: "222", name: "olo", hours: 3 },
+//           { data: "222", name: "olo", hours: 20 },
+//           { data: "222", name: "olo", hours: 3 },
+//           { data: "222", name: "olo", hours: 3 },
+//         ],
+//       },
+//     ],
+//   },
+// };
+
+// const count = (obj: any) => {
+//   const allHours = obj.uwrahts.allHours;
+
+// if (
+//   obj &&
+//   obj.uwrahts &&
+//   obj.uwrahts.columns &&
+//   obj.uwrahts.columns.length > 1
+// ) {
+//   const secondObject = obj.uwrahts.columns[1];
+//   if (secondObject && secondObject.days) {
+//     return secondObject.days.reduce((sum:any, day:any) => sum + day.hours, 0);
+//   }
+// }
+
+// return 0;
+// };
+
+// console.log("ooo", count(firebasey));

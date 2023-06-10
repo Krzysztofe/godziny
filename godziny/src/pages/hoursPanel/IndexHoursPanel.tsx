@@ -1,73 +1,73 @@
 import { useEffect, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-import {
-  useDeleteAllColumnsMutation,
-  useColumnsQuery,
-  useUpdateColumnsMutation,
-} from "../../services/apiSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 import Column from "./Column";
 import HeaderInPanel from "./HeaderInPanel";
-import { handleDragDrop, addDaysToEmptyColumns } from "./utils";
 import DayForm from "./dayForm/DayForm";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
 import useDataBaseValues from "./useDataBaseValues";
+import { handleDragDrop } from "./utils";
 
 const IndexHoursPanel = () => {
-  // const { data, error } = useColumnsQuery(undefined);
-  // const [deleteAllColumns, isLoading] = useDeleteAllColumnsMutation();
-  // const [updateColumns, success] = useUpdateColumnsMutation();
   const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
 
   const {
-    dataBaseColumnsId,
     dataBaseAllHours,
-    // updatedColumnsWithAddedDays,
+    dataBasePendingHours,
+    dataBaseColumnsId,
     databaseColumns,
+    usersHoursSum,
     data,
-    success,
     updateColumns,
-    addDays,
   } = useDataBaseValues();
 
-  // const columnsFromDatabase = data && Object.values(data).flat();
-  // const columnsToPrint = addDaysToEmptyColumns(columnsFromDatabase);
+  const [allHours, setAllHours] = useState(0);
+  const [pendingHours, setPendingHours] = useState(0)
   const [columns, setColumns] = useState([]);
 
-  // const columnsId = data && Object.keys(data).join();
+  useEffect(() => {
+    setAllHours(dataBaseAllHours);
+  }, [data]);
 
-  const columnsData = {
-    allHours: dataBaseAllHours,
-    columns: columns,
-  };
+ useEffect(() => {
+   setPendingHours(dataBasePendingHours);
+ }, [data]);
 
-  const columnsToUpdate = { id: dataBaseColumnsId, columns: columnsData };
-
-  console.log("", data);
 
   useEffect(() => {
     setColumns(databaseColumns);
   }, [data]);
 
   useEffect(() => {
-    dataBaseColumnsId && updateColumns(columnsToUpdate);
+    dataBaseColumnsId &&
+      updateColumns({
+        id: dataBaseColumnsId,
+        columns: {
+          allHours: allHours,
+          pendingHours: usersHoursSum,
+          columns: columns,
+        },
+      });
   }, [columns, numberOfDays]);
 
   return (
     <>
       <HeaderInPanel />
       <DayForm />
-      <div style={{ display: "flex" }}>
-        <p>wszystkie godziny: {dataBaseAllHours}</p>
-        <DragDropContext
-          onDragEnd={results => handleDragDrop(results, columns, setColumns)}
-        >
-          {columns &&
-            columns.length > 0 &&
-            columns.map((column: any, idx: any) => {
-              return <Column column={column} key={column.id} />;
-            })}
-        </DragDropContext>
+      <div>
+        <p>wszystkie godziny: {dataBaseAllHours - dataBasePendingHours} </p>
+        <p>oczekujące godziny: {pendingHours}</p>
+        <div style={{ display: "flex" }}>
+          <DragDropContext
+            onDragEnd={results => handleDragDrop(results, columns, setColumns)}
+          >
+            {columns &&
+              columns.length > 0 &&
+              columns.map((column: any, idx: any) => {
+                return <Column column={column} key={column.id} />;
+              })}
+          </DragDropContext>
+        </div>
       </div>
     </>
   );
