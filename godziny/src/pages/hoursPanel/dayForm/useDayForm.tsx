@@ -1,7 +1,9 @@
 import { useFormik } from "formik";
 import useDataBaseValues from "../useDataBaseValues";
-import { columnsWithAddedDays, initialValues } from "./dataDayForm";
+import { addedColumnsWithDays, initialValues } from "./dataDayForm";
 import { validationSchema } from "./validationDayForm";
+import { RootState } from "../../../redux/store";
+import { useSelector } from "react-redux";
 
 interface FormValues {
   date: string;
@@ -11,34 +13,39 @@ interface FormValues {
 }
 
 const useDayForm = () => {
+  const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
+
   const formik = useFormik<FormValues>({
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: async values => {
       formik.setFieldValue("id", crypto.randomUUID());
-      columnsWithAddedDays[0].days = [values];
+      addedColumnsWithDays.columns[0].days = [values];
+
+      const columnsData = {
+        allHours: numberOfDays,
+        columns: updatedColumnsWithAddedDays,
+      };
 
       data === null
-        ? await addDays(columnsWithAddedDays)
+        ? await addDays(addedColumnsWithDays)
         : await updateColumns({
-            id: columnsIdFRomDatabase,
-            columns: updatedColumns,
+            id: dataBaseColumnsId,
+            columns: columnsData,
           });
-          
     },
-  
   });
 
   const {
-    columnsIdFRomDatabase,
-    updatedColumns,
+    dataBaseColumnsId,
+    updatedColumnsWithAddedDays,
     data,
     success,
     updateColumns,
     addDays,
   } = useDataBaseValues(formik.values);
 
-// console.log("", success.isLoading);
+  // console.log("", success.isLoading);
 
   return { formik };
 };

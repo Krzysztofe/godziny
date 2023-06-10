@@ -20,7 +20,7 @@ interface ColumnModel {
   days?: DayModel[];
 }
 
-export const columnsWithAddedDays: ColumnModel[] = [
+const columns: ColumnModel[] = [
   {
     id: "miesiac",
     columnName: "Miesiąc",
@@ -35,3 +35,27 @@ export const columnsWithAddedDays: ColumnModel[] = [
     columnName: "Zatwierdzone",
   },
 ];
+
+
+
+export const addedColumnsWithDays = {
+  allHours: "",
+  columns: columns,
+};
+
+
+// export const addedColumnsWithDays:ColumnModel[] = [
+//   {
+//     id: "miesiac",
+//     columnName: "Miesiąc",
+//     days: [],
+//   },
+//   {
+//     id: "oczekujące",
+//     columnName: "Oczekujące",
+//   },
+//   {
+//     id: "zatwierdzone",
+//     columnName: "Zatwierdzone",
+//   },
+// ];

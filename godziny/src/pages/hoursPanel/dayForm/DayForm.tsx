@@ -21,7 +21,7 @@ const DayForm = () => {
 
   const { formik } = useDayForm();
 
-  console.log("", requestState.edit.isLoading);
+
 
   return (
     <>

@@ -1,44 +1,44 @@
-import { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import DayForm from "./dayForm/DayForm";
-import {
-  useUpdateColumnsMutation,
-  useDeleteAllColumnsMutation,
-  useColumnsQuery,
-} from "../../services/apiSlice";
 import { FaTrashAlt } from "react-icons/fa";
-import { addDaysToEmptyColumns } from "./utils";
 import DayPrintData from "./DayPrintData";
-
+import useDataBaseValues from "./useDataBaseValues";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 interface Props {
   day: any;
   index: any;
 }
 
 const Day = (props: Props) => {
-  const [updateColumns] = useUpdateColumnsMutation();
-
-  const { data, error } = useColumnsQuery(undefined);
-  const columnsIdFRomDatabase = data && Object.keys(data).join();
-  const columnsFromDatabase = data ? Object.values(data).flat() : [];
-  const columnsToPrint = addDaysToEmptyColumns(columnsFromDatabase);
-
-  const updatedColumnsx = data ? [...columnsToPrint] : [];
+    const { numberOfDays } = useSelector(
+      (state: RootState) => state.hoursPanel
+    );
+  const { dataBaseColumnsId,
+     newColumnsFromDatabase,
+     updateColumns } =
+    useDataBaseValues();
 
   const handleUpdate = async (id: any) => {
-    const updatedColumnsWithFilteredDay = updatedColumnsx.map((column: any) => {
-      if (column && column.days) {
-        return {
-          ...column,
-          days: column.days.filter((day: any) => day.id !== id),
-        };
+    const updatedColumnsWithDeletedDays = newColumnsFromDatabase.map(
+      (column: any) => {
+        if (column && column.days) {
+          return {
+            ...column,
+            days: column.days.filter((day: any) => day.id !== id),
+          };
+        }
+        return column;
       }
-      return column;
-    });
+    );
+
+const columnsData = {
+  allHours: numberOfDays,
+  columns: updatedColumnsWithDeletedDays,
+};
 
     await updateColumns({
-      id: columnsIdFRomDatabase,
-      columns: updatedColumnsWithFilteredDay,
+      id: dataBaseColumnsId,
+      columns: columnsData,
     });
   };
 

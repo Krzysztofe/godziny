@@ -7,15 +7,30 @@ import {
 } from "../../services/apiSlice";
 import { RootState } from "../../redux/store";
 import { handleChange } from "../../redux/storeFeatures/hoursPanelSlice";
+import useDataBaseValues from "./useDataBaseValues";
 
 const HeaderInPanel = () => {
    const dispatch = useDispatch();
    const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
-  const { data, error } = useColumnsQuery(undefined);
+  // const { data, error } = useColumnsQuery(undefined);
 
   const [deleteAllColumns, isLoading] = useDeleteAllColumnsMutation();
 
-  const columnsIdFRomDatabase = data && Object.keys(data).join();
+  
+
+  const {
+    dataBaseColumnsId,
+    dataBaseAllHours,
+    updatedColumnsWithAddedDays,
+    databaseColumns,
+    data,
+    success,
+    updateColumns,
+    addDays,
+  } = useDataBaseValues();
+
+ const columnsIdFRomDatabase = data && Object.keys(data).join();
+
 
   const handleDelete = async () => {
     await deleteAllColumns(columnsIdFRomDatabase);
@@ -28,8 +43,17 @@ const HeaderInPanel = () => {
     dispatch(handleChange(value));
   };
 
-  const handleAddDays = async () => {
-    ;
+  const handleAddHours = async () => {
+
+const columnsData = {
+  allHours: numberOfDays,
+  columns: updatedColumnsWithAddedDays,
+};
+
+      await updateColumns({
+        id: dataBaseColumnsId,
+        columns: columnsData,
+      });
   };
 
 
@@ -43,7 +67,7 @@ const HeaderInPanel = () => {
         placeholder="Dni"
         handleChange={handleInputChange}
       />
-      <button onClick={handleAddDays}>Dodaj dni</button>
+      <button onClick={handleAddHours}>Dodaj godziny</button>
 
       <button onClick={handleDelete}> usuń wszystko</button>
     </header>
