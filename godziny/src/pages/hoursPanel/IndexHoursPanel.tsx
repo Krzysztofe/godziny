@@ -11,6 +11,7 @@ import {
   useColumnsQuery,
   useUpdateColumnsMutation,
 } from "../../services/apiSlice";
+import IndexNavbar from "./navBar/IndexNavbar";
 
 const IndexHoursPanel = () => {
   const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
@@ -31,7 +32,8 @@ const IndexHoursPanel = () => {
     submitedHoursSum,
   } = useDataBaseValues();
 
-  const [columns, setColumns] = useState([]);
+
+const [columns, setColumns] = useState<any[]>([]);
 
   useEffect(() => {
     setColumns(databaseColumns);
@@ -42,6 +44,7 @@ const IndexHoursPanel = () => {
       updateColumns({
         id: databaseColumnsId,
         columns: {
+          mounth:"",
           allHours: databaseAllHours,
           currentHours:
             databaseAllHours -
@@ -73,12 +76,12 @@ const IndexHoursPanel = () => {
         >
           <div style={{ display: "flex" }}>
             {[
-              { header: "Złożone", counter: dataBaseSubmitedHours },
-              { header: "Zakceptowane", counter: databaseAccepteddHours },
-              { header: "Odrzucone", counter: databaseRejectedHours },
+              { header: "Złożone:", counter: dataBaseSubmitedHours },
+              { header: "Zakceptowane:", counter: databaseAccepteddHours },
+              { header: "Odrzucone:", counter: databaseRejectedHours },
             ].map(({ header, counter }) => {
               return (
-                <h4 key={header} style={{ marginLeft: 20, width: "30vw" }}>
+                <h4 key={header} style={{ marginLeft: 20, width: "20vw" }}>
                   {header} {""}
                   {counter} godz.
                 </h4>
@@ -108,11 +111,15 @@ const IndexHoursPanel = () => {
   }
 
   return (
-    <>
-      <HeaderInPanel />
-      <DayForm />
-      {columnsContent}
-    </>
+    <div style={{ display: "flex" }}>
+      <IndexNavbar />
+      <div>
+        <HeaderInPanel />
+        <DayForm />
+
+        {columnsContent}
+      </div>
+    </div>
   );
 };
 

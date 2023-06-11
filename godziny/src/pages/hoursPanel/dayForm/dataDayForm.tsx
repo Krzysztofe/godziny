@@ -37,6 +37,7 @@ const columns: ColumnModel[] = [
 ];
 
 export const addedColumnsWithDays = {
+  mounth: '',
   allHours: 0,
   currentHours:0,
   submitedHours: 0,
@@ -45,20 +46,6 @@ export const addedColumnsWithDays = {
   columns: columns,
 };
 
-// export const addedColumnsWithDays:ColumnModel[] = [
-//   {
-//     id: "miesiac",
-//     columnName: "Miesiąc",
-//     days: [],
-//   },
-//   {
-//     id: "oczekujące",
-//     columnName: "Oczekujące",
-//   },
-//   {
-//     id: "zatwierdzone",
-//     columnName: "Zatwierdzone",
-//   },
-// ];
+
 
 

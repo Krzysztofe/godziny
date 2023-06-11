@@ -61,6 +61,7 @@ const HeaderInPanel = () => {
     await updateColumns({
       id: databaseColumnsId,
       columns: {
+        mounth:"",
         allHours: +numberOfDays,
         currentHours:
           +numberOfDays -

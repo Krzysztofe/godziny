@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import {
-  useColumnsQuery,
   useAddDaysMutation,
+  useColumnsQuery,
   useUpdateColumnsMutation,
 } from "../../services/apiSlice";
 import { addDaysToEmptyColumns } from "./utils";
-import { useDispatch } from "react-redux";
-import { handleEidtisLoading } from "../../redux/storeFeatures/hoursPanelSlice";
 
 const defaultValue = null;
 interface DatabaseColumns {
@@ -59,35 +57,31 @@ const useDataBaseValues = (valuesFromFormik: any = defaultValue) => {
 
   const databaseColumns = addDaysToEmptyColumns(dataBaseColumnsWithoutDays);
 
-  const updatedColumnsWithAddedDays = data && databaseAllData.length > 0 ?[...databaseColumns] : [];
-  const newColumnsFromDatabase = data && databaseAllData.length > 0 ? [...databaseColumns] : [];
+  const updatedColumnsWithAddedDays =
+    data && databaseAllData.length > 0 ? [...databaseColumns] : [];
+  const newColumnsFromDatabase =
+    data && databaseAllData.length > 0 ? [...databaseColumns] : [];
 
   const submitedHoursSum =
-    data && databaseAllData.length > 0
+    data && databaseAllData.length > 0 && databaseColumns[0]?.days
       ? databaseColumns[0].days.reduce((sum: any, day: any) => {
-          return sum + day?.hours;
+          return sum + day.hours;
         }, 0)
-      : [];
+      : 0;
 
   const acceptedHoursSum =
-    data && databaseAllData.length > 0
+    data && databaseAllData.length > 0 && databaseColumns[1]?.days
       ? databaseColumns[1].days.reduce((sum: any, day: any) => {
-          return sum + day?.hours;
+          return sum + day.hours;
         }, 0)
-      : [];
+      : 0;
 
   const rejectedHoursSum =
-    data && databaseAllData.length > 0
+    data && databaseAllData.length > 0 && databaseColumns[2]?.days
       ? databaseColumns[2].days.reduce((sum: any, day: any) => {
-          return sum + day?.hours;
+          return sum + day.hours;
         }, 0)
-      : [];
-
-  // useEffect(() => {
-  //   dispatch(handleEidtisLoading(success.isLoading));
-  // }, [success.isLoading, dispatch]);
-
-  // console.log("", databaseAllData);
+      : 0;
 
   return {
     databaseAllHours,

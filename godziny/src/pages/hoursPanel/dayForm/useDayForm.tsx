@@ -35,6 +35,7 @@ const useDayForm = () => {
         : await updateColumns({
             id: databaseColumnsId,
             columns: {
+              mounth:"",
               allHours: databaseAllHours,
               currentHours: databaseAllHours - submitedHoursSum,
               submitedHours: submitedHoursSum,

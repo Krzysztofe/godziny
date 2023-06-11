@@ -1,4 +1,8 @@
 export const addDaysToEmptyColumns = (arr: any) => {
+
+  //  if (!Array.isArray(arr)) {
+  //    return []; 
+  //  }
   return arr?.map((obj: any) => {
     if (!obj.hasOwnProperty("days")) {
       return { ...obj, days: [] };
@@ -6,6 +10,11 @@ export const addDaysToEmptyColumns = (arr: any) => {
     return obj;
   });
 };
+
+
+
+
+
 
 export const handleDragDrop = (results: any, columns: any, setColumns: any) => {
   const { source, destination } = results;

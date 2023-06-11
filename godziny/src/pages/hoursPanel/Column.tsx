@@ -28,7 +28,7 @@ const Column = (props: Props) => {
               ref={provided.innerRef}
               style={{
                 border: "1px solid black",
-                width: "30vw",
+                width: "20vw",
                 minHeight: "100vh",
                 height: "fit-content",
               }}

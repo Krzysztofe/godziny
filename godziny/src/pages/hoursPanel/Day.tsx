@@ -51,6 +51,7 @@ const Day = (props: Props) => {
         await updateColumns({
           id: databaseColumnsId,
           columns: {
+            mounth:"",
             allHours: databaseAllHours,
             currentHours:
               databaseAllHours -
