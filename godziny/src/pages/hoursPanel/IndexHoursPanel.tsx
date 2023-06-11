@@ -12,60 +12,69 @@ const IndexHoursPanel = () => {
   const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
 
   const {
-    dataBaseAllHours,
-    dataBasePendingHours,
-    dataBaseColumnsId,
+    databaseColumnsId,
+    databaseAllHours,
+    dataCurrentHours,
+    dataBaseSubmitedHours,
     databaseColumns,
-    usersHoursSum,
+    submitedHoursSum,
     data,
     updateColumns,
   } = useDataBaseValues();
 
-  const [allHours, setAllHours] = useState(0);
-  const [pendingHours, setPendingHours] = useState(0)
+
   const [columns, setColumns] = useState([]);
-
-  useEffect(() => {
-    setAllHours(dataBaseAllHours);
-  }, [data]);
-
- useEffect(() => {
-   setPendingHours(dataBasePendingHours);
- }, [data]);
-
 
   useEffect(() => {
     setColumns(databaseColumns);
   }, [data]);
 
   useEffect(() => {
-    dataBaseColumnsId &&
+    databaseColumnsId &&
       updateColumns({
-        id: dataBaseColumnsId,
+        id: databaseColumnsId,
         columns: {
-          allHours: allHours,
-          pendingHours: usersHoursSum,
+          allHours: databaseAllHours,
+          currentHours: databaseAllHours - submitedHoursSum,
+          submitedHours: submitedHoursSum,
           columns: columns,
         },
       });
-  }, [columns, numberOfDays]);
+  }, [columns, numberOfDays, submitedHoursSum]);
+
+  // console.log("", dataCurrentHours);
 
   return (
     <>
       <HeaderInPanel />
       <DayForm />
       <div>
-        <p>wszystkie godziny: {dataBaseAllHours - dataBasePendingHours} </p>
-        <p>oczekujące godziny: {pendingHours}</p>
-        <div style={{ display: "flex" }}>
+        <div>
           <DragDropContext
             onDragEnd={results => handleDragDrop(results, columns, setColumns)}
           >
-            {columns &&
-              columns.length > 0 &&
-              columns.map((column: any, idx: any) => {
-                return <Column column={column} key={column.id} />;
+            <div style={{ display: "flex" }}>
+              {[
+                { header: "Złożone", counter: dataBaseSubmitedHours },
+                { header: "Zakceptowane", counter: 0 },
+                { header: "Odrzucone", counter: 0 },
+              ].map(({ header, counter }) => {
+                return (
+                  <h4 key={header} style={{ marginLeft: 20, width: "30vw" }}>
+                    {header} {""}
+                    {counter} godz.
+                  </h4>
+                );
               })}
+            </div>
+
+            <div style={{ display: "flex" }}>
+              {columns &&
+                columns.length > 0 &&
+                columns.map((column: any, idx: any) => {
+                  return <Column column={column} key={column.id} />;
+                })}
+            </div>
           </DragDropContext>
         </div>
       </div>

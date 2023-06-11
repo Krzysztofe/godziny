@@ -12,10 +12,10 @@ interface Props {
 const Day = (props: Props) => {
   const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
   const {
-    dataBaseColumnsId,
+    databaseColumnsId,
     newColumnsFromDatabase,
-    usersHoursSum,
-    dataBaseAllHours,
+    submitedHoursSum,
+    databaseAllHours,
     updateColumns,
   } = useDataBaseValues();
 
@@ -33,10 +33,10 @@ const Day = (props: Props) => {
     );
 
     await updateColumns({
-      id: dataBaseColumnsId,
+      id: databaseColumnsId,
       columns: {
-        allHours: dataBaseAllHours,
-        pendingHours: usersHoursSum,
+        allHours: databaseAllHours,
+        pendingHours: submitedHoursSum,
         columns: updatedColumnsWithDeletedDays,
       },
     });

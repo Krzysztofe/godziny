@@ -23,13 +23,20 @@ const useDayForm = () => {
       formik.setFieldValue("id", crypto.randomUUID());
       addedColumnsWithDays.columns[0].days = [values];
 
+      updatedColumnsWithAddedDays[0] = data &&
+        dataBaseColumnsWithoutDays?.length > 0 && {
+          ...databaseColumns?.[0],
+          days: [...databaseColumns?.[0]?.days, ...[values]],
+        };
+
       data === null
         ? await addDays(addedColumnsWithDays)
         : await updateColumns({
-            id: dataBaseColumnsId,
-            columns: {
-              allHours: dataBaseAllHours,
-              pendingHours: usersHoursSum,
+            id: databaseColumnsId,
+            columns: { 
+              allHours: databaseAllHours,
+              currentHours: databaseAllHours - submitedHoursSum,
+              submitedHours: submitedHoursSum,
               columns: updatedColumnsWithAddedDays,
             },
           });
@@ -37,12 +44,14 @@ const useDayForm = () => {
   });
 
   const {
-    dataBaseAllHours,
-    dataBasePendingHours,
-    dataBaseColumnsId,
+    databaseAllHours,
+    dataBaseSubmitedHours,
+    dataBaseColumnsWithoutDays,
+    databaseColumns,
+    databaseColumnsId,
     updatedColumnsWithAddedDays,
     data,
-    usersHoursSum,
+    submitedHoursSum,
     success,
     updateColumns,
     addDays,

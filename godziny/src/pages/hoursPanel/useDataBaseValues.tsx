@@ -14,47 +14,46 @@ interface DatabaseColumns {
   columns: any[];
 }
 
-const useDataBaseValues = (values: any = defaultValue) => {
+const useDataBaseValues = (valuesFromFormik: any = defaultValue) => {
   const dispatch = useDispatch();
 
   const { data, error } = useColumnsQuery(undefined);
   const [addDays, success] = useAddDaysMutation();
   const [updateColumns] = useUpdateColumnsMutation();
 
-  const dataBaseColumnsId = data && Object.keys(data).join();
+  const databaseColumnsId = data && Object.keys(data).join();
 
-  const dataBaseAllData = data
+  const databaseAllData = data
     ? Object.values(data).flat()
     : ([] as DatabaseColumns[]);
 
-  const dataBaseAllHours =
-    data && dataBaseAllData.length > 0
-      ? (dataBaseAllData[0] as any)?.allHours
+  const databaseAllHours =
+    data && databaseAllData.length > 0
+      ? (databaseAllData[0] as any)?.allHours
       : "";
 
-  const dataBasePendingHours =
-    data && dataBaseAllData.length > 0
-      ? (dataBaseAllData[0] as any)?.pendingHours
+  const dataCurrentHours =
+    data && databaseAllData.length > 0
+      ? (databaseAllData[0] as any)?.currentHours
+      : "";
+
+  const dataBaseSubmitedHours =
+    data && databaseAllData.length > 0
+      ? (databaseAllData[0] as any)?.submitedHours
       : "";
 
   const dataBaseColumnsWithoutDays =
-    data && dataBaseAllData.length > 0
-      ? (dataBaseAllData[0] as any)?.columns
+    data && databaseAllData.length > 0
+      ? (databaseAllData[0] as any)?.columns
       : [];
 
   const databaseColumns = addDaysToEmptyColumns(dataBaseColumnsWithoutDays);
 
   const updatedColumnsWithAddedDays = data ? [...databaseColumns] : [];
-  updatedColumnsWithAddedDays[0] = data &&
-    dataBaseColumnsWithoutDays?.length > 0 && {
-      ...databaseColumns?.[0],
-      days: [...databaseColumns?.[0]?.days, ...[values]],
-    };
-
   const newColumnsFromDatabase = data ? [...databaseColumns] : [];
 
-  const usersHoursSum =
-    data && dataBaseAllData.length > 0
+  const submitedHoursSum =
+    data && databaseAllData.length > 0
       ? databaseColumns[0].days.reduce((sum: any, day: any) => {
           return sum + day?.hours;
         }, 0)
@@ -64,16 +63,19 @@ const useDataBaseValues = (values: any = defaultValue) => {
     dispatch(handleEidtisLoading(success.isLoading));
   }, [success.isLoading, dispatch]);
 
-  console.log("", usersHoursSum);
+  console.log("", databaseAllData);
 
   return {
-    dataBaseAllHours,
-    dataBasePendingHours,
-    dataBaseColumnsId,
+    databaseAllHours,
+    dataCurrentHours,
+    databaseAllData,
+    dataBaseSubmitedHours,
+    databaseColumnsId,
     updatedColumnsWithAddedDays,
+    dataBaseColumnsWithoutDays,
     newColumnsFromDatabase,
     databaseColumns,
-    usersHoursSum,
+    submitedHoursSum,
     data,
     error,
     success,

@@ -58,8 +58,8 @@ const DayForm = () => {
         )}
       </div>
 
-      <>{requestState.edit.isLoading ? "loading" : "uu"}</>
-      
+      <>{requestState.edit.isLoading ? "loading" : null}</>
+
       <button type={"submit"}>
         <FcApproval />
       </button>

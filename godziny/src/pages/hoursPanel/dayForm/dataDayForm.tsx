@@ -38,7 +38,8 @@ const columns: ColumnModel[] = [
 
 export const addedColumnsWithDays = {
   allHours: 0,
-  pendingHours: 0,
+  currentHours:0,
+  submitedHours: 0,
   columns: columns,
 };
 

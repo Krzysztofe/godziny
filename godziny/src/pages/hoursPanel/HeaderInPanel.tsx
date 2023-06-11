@@ -8,6 +8,7 @@ import {
 import { RootState } from "../../redux/store";
 import { handleChange } from "../../redux/storeFeatures/hoursPanelSlice";
 import useDataBaseValues from "./useDataBaseValues";
+import { FcApproval } from "react-icons/fc";
 
 const HeaderInPanel = () => {
   const dispatch = useDispatch();
@@ -16,19 +17,18 @@ const HeaderInPanel = () => {
   const [deleteAllColumns, isLoading] = useDeleteAllColumnsMutation();
 
   const {
-    dataBaseColumnsId,
-    dataBaseAllHours,
-    dataBasePendingHours,
+    databaseColumnsId,
+    databaseAllHours,
+    dataBaseSubmitedHours,
+    submitedHoursSum,
     updatedColumnsWithAddedDays,
     databaseColumns,
     data,
-
+    dataCurrentHours,
     updateColumns,
   } = useDataBaseValues();
 
   const columnsIdFRomDatabase = data && Object.keys(data).join();
-
-
 
   const handleDelete = async () => {
     await deleteAllColumns(columnsIdFRomDatabase);
@@ -41,29 +41,36 @@ const HeaderInPanel = () => {
 
   const handleAddHours = async () => {
     await updateColumns({
-      id: dataBaseColumnsId,
+      id: databaseColumnsId,
       columns: {
         allHours: +numberOfDays,
-        pendingHours: dataBasePendingHours,
+        currentHours: +numberOfDays - submitedHoursSum,
+        submitedHours: dataBaseSubmitedHours,
         columns: updatedColumnsWithAddedDays,
       },
     });
-  
   };
 
   return (
     <header>
-      <TextInput
-        type="number"
-        name="numberOfDays"
-        value={numberOfDays}
-        label="Godziny w miesiącu "
-        placeholder="Dni"
-        handleChange={handleInputChange}
-      />
-      <button onClick={handleAddHours}>Dodaj godziny</button>
+      <div style={{ display: "flex" }}>
+        <TextInput
+          type="number"
+          name="numberOfDays"
+          value={numberOfDays}
+          label="Podaj liczbę godzin w miesiącu "
+          placeholder="liczba"
+          handleChange={handleInputChange}
+        />
+        <button onClick={handleAddHours}>
+          {" "}
+          <FcApproval />
+        </button>
+      </div>
 
       <button onClick={handleDelete}> usuń wszystko</button>
+      <p>Liczba godzin w miesiącu: {databaseAllHours} </p>
+      <p>Liczba godzin go wykorzystania: {dataCurrentHours} </p>
     </header>
   );
 };
