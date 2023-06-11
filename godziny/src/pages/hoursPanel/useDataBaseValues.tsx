@@ -42,6 +42,16 @@ const useDataBaseValues = (valuesFromFormik: any = defaultValue) => {
       ? (databaseAllData[0] as any)?.submitedHours
       : "";
 
+  const databaseAccepteddHours =
+    data && databaseAllData.length > 0
+      ? (databaseAllData[0] as any)?.acceptedHours
+      : "";
+
+  const databaseRejectedHours =
+    data && databaseAllData.length > 0
+      ? (databaseAllData[0] as any)?.rejectedHpurs
+      : "";
+
   const dataBaseColumnsWithoutDays =
     data && databaseAllData.length > 0
       ? (databaseAllData[0] as any)?.columns
@@ -59,16 +69,34 @@ const useDataBaseValues = (valuesFromFormik: any = defaultValue) => {
         }, 0)
       : [];
 
+  const acceptedHoursSum =
+    data && databaseAllData.length > 0
+      ? databaseColumns[1].days.reduce((sum: any, day: any) => {
+          return sum + day?.hours;
+        }, 0)
+      : [];
+
+  const rejectedHoursSum =
+    data && databaseAllData.length > 0
+      ? databaseColumns[2].days.reduce((sum: any, day: any) => {
+          return sum + day?.hours;
+        }, 0)
+      : [];
+
   useEffect(() => {
     dispatch(handleEidtisLoading(success.isLoading));
   }, [success.isLoading, dispatch]);
 
-  console.log("", databaseAllData);
+  // console.log("", databaseAllData);
 
   return {
     databaseAllHours,
     dataCurrentHours,
+    databaseAccepteddHours,
+    databaseRejectedHours,
     databaseAllData,
+    acceptedHoursSum,
+    rejectedHoursSum,
     dataBaseSubmitedHours,
     databaseColumnsId,
     updatedColumnsWithAddedDays,

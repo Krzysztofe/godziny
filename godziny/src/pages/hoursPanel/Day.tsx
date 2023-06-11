@@ -16,6 +16,8 @@ const Day = (props: Props) => {
     newColumnsFromDatabase,
     submitedHoursSum,
     databaseAllHours,
+    acceptedHoursSum,
+    rejectedHoursSum,
     updateColumns,
   } = useDataBaseValues();
 
@@ -36,7 +38,15 @@ const Day = (props: Props) => {
       id: databaseColumnsId,
       columns: {
         allHours: databaseAllHours,
-        pendingHours: submitedHoursSum,
+        currentHours:
+          databaseAllHours -
+          submitedHoursSum -
+          acceptedHoursSum -
+          rejectedHoursSum +
+          rejectedHoursSum,
+        submitedHours: submitedHoursSum,
+        acceptedHours: acceptedHoursSum,
+        rejectedHpurs: rejectedHoursSum,
         columns: updatedColumnsWithDeletedDays,
       },
     });

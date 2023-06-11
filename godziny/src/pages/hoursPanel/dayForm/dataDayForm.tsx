@@ -40,6 +40,8 @@ export const addedColumnsWithDays = {
   allHours: 0,
   currentHours:0,
   submitedHours: 0,
+  acceptedHours:0,
+  rejectedHours:0,
   columns: columns,
 };
 
@@ -58,3 +60,5 @@ export const addedColumnsWithDays = {
 //     columnName: "Zatwierdzone",
 //   },
 // ];
+
+

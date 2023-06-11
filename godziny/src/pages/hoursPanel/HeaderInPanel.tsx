@@ -21,8 +21,12 @@ const HeaderInPanel = () => {
     databaseAllHours,
     dataBaseSubmitedHours,
     submitedHoursSum,
+    databaseAccepteddHours,
+    databaseRejectedHours,
     updatedColumnsWithAddedDays,
     databaseColumns,
+    rejectedHoursSum,
+    acceptedHoursSum,
     data,
     dataCurrentHours,
     updateColumns,
@@ -44,8 +48,15 @@ const HeaderInPanel = () => {
       id: databaseColumnsId,
       columns: {
         allHours: +numberOfDays,
-        currentHours: +numberOfDays - submitedHoursSum,
+        currentHours:
+          +numberOfDays -
+          submitedHoursSum -
+          acceptedHoursSum -
+          rejectedHoursSum +
+          rejectedHoursSum,
         submitedHours: dataBaseSubmitedHours,
+        acceptedHours: databaseAccepteddHours,
+        rejectedHpurs: databaseRejectedHours,
         columns: updatedColumnsWithAddedDays,
       },
     });
@@ -59,7 +70,7 @@ const HeaderInPanel = () => {
           name="numberOfDays"
           value={numberOfDays}
           label="Podaj liczbę godzin w miesiącu "
-          placeholder="liczba"
+          placeholder=""
           handleChange={handleInputChange}
         />
         <button onClick={handleAddHours}>

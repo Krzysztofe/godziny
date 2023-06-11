@@ -15,13 +15,16 @@ const IndexHoursPanel = () => {
     databaseColumnsId,
     databaseAllHours,
     dataCurrentHours,
+    databaseAccepteddHours,
+    databaseRejectedHours,
+    acceptedHoursSum,
+    rejectedHoursSum,
     dataBaseSubmitedHours,
     databaseColumns,
     submitedHoursSum,
     data,
     updateColumns,
   } = useDataBaseValues();
-
 
   const [columns, setColumns] = useState([]);
 
@@ -35,12 +38,25 @@ const IndexHoursPanel = () => {
         id: databaseColumnsId,
         columns: {
           allHours: databaseAllHours,
-          currentHours: databaseAllHours - submitedHoursSum,
+          currentHours:
+            databaseAllHours -
+            submitedHoursSum -
+            acceptedHoursSum -
+            rejectedHoursSum +
+            rejectedHoursSum,
           submitedHours: submitedHoursSum,
+          acceptedHours: acceptedHoursSum,
+          rejectedHpurs: rejectedHoursSum,
           columns: columns,
         },
       });
-  }, [columns, numberOfDays, submitedHoursSum]);
+  }, [
+    columns,
+    numberOfDays,
+    submitedHoursSum,
+    acceptedHoursSum,
+    rejectedHoursSum,
+  ]);
 
   // console.log("", dataCurrentHours);
 
@@ -56,8 +72,8 @@ const IndexHoursPanel = () => {
             <div style={{ display: "flex" }}>
               {[
                 { header: "Złożone", counter: dataBaseSubmitedHours },
-                { header: "Zakceptowane", counter: 0 },
-                { header: "Odrzucone", counter: 0 },
+                { header: "Zakceptowane", counter: databaseAccepteddHours },
+                { header: "Odrzucone", counter: databaseRejectedHours },
               ].map(({ header, counter }) => {
                 return (
                   <h4 key={header} style={{ marginLeft: 20, width: "30vw" }}>

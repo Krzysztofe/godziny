@@ -33,10 +33,12 @@ const useDayForm = () => {
         ? await addDays(addedColumnsWithDays)
         : await updateColumns({
             id: databaseColumnsId,
-            columns: { 
+            columns: {
               allHours: databaseAllHours,
               currentHours: databaseAllHours - submitedHoursSum,
               submitedHours: submitedHoursSum,
+              acceptedHours: acceptedHoursSum,
+              rejectedHpurs: rejectedHoursSum,
               columns: updatedColumnsWithAddedDays,
             },
           });
@@ -50,6 +52,8 @@ const useDayForm = () => {
     databaseColumns,
     databaseColumnsId,
     updatedColumnsWithAddedDays,
+    acceptedHoursSum,
+    rejectedHoursSum,
     data,
     submitedHoursSum,
     success,
