@@ -4,6 +4,7 @@ import {
   useAddDaysMutation,
   useColumnsQuery,
   useDeleteAllColumnsMutation,
+  useUpdateColumnsMutation,
 } from "../../services/apiSlice";
 import { RootState } from "../../redux/store";
 import { handleChange } from "../../redux/storeFeatures/hoursPanelSlice";
@@ -15,6 +16,7 @@ const HeaderInPanel = () => {
   const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
 
   const [deleteAllColumns, isLoading] = useDeleteAllColumnsMutation();
+  const [updateColumns, succes] = useUpdateColumnsMutation();
 
   const {
     databaseColumnsId,
@@ -29,7 +31,6 @@ const HeaderInPanel = () => {
     acceptedHoursSum,
     data,
     dataCurrentHours,
-    updateColumns,
   } = useDataBaseValues();
 
   const columnsIdFRomDatabase = data && Object.keys(data).join();
@@ -42,6 +43,19 @@ const HeaderInPanel = () => {
     const { value } = e.target;
     dispatch(handleChange(value));
   };
+
+  let btnContent = <FcApproval />;
+
+  if (succes.isLoading) {
+    btnContent = <div> "Loading" </div>;
+  }
+
+  
+  if (succes.isError) {
+    btnContent = <div> "Błąd" </div>;
+  }
+
+  // console.log("head", succes.isError);
 
   const handleAddHours = async () => {
     await updateColumns({
@@ -73,15 +87,15 @@ const HeaderInPanel = () => {
           placeholder=""
           handleChange={handleInputChange}
         />
+
         <button onClick={handleAddHours}>
-          {" "}
-          <FcApproval />
+          {btnContent}
         </button>
       </div>
 
       <button onClick={handleDelete}> usuń wszystko</button>
-      <p>Liczba godzin w miesiącu: {databaseAllHours} </p>
-      <p>Liczba godzin go wykorzystania: {dataCurrentHours} </p>
+      <p>Godziny w miesiącu: {databaseAllHours} </p>
+      <p>Godziny do wykorzystania: {dataCurrentHours} </p>
     </header>
   );
 };

@@ -3,7 +3,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 interface ModelInitialState {
   numberOfDays: any;
   data: any;
-  requestState: {
+  requestStates: {
     edit: { isLoading: boolean; isError: boolean };
     delete: { isLoading: boolean; isError: boolean };
   };
@@ -12,7 +12,7 @@ interface ModelInitialState {
 const initialState: any = {
   numberOfDays: "",
   dataFromBack: [],
-  requestState: {
+  requestStates: {
     edit: { isLoading: false, isError: false },
     delete: {
       isLoading: false,
@@ -33,7 +33,7 @@ export const hoursPanelSlice = createSlice({
       state.dataFromBack = tt.flat();
     },
     handleEidtisLoading: (state, action: PayloadAction<boolean>) => {
-      state.requestState.edit.isLoading = action.payload;
+      state.requestStates.edit.isLoading = action.payload;
     },
   },
 });

@@ -59,8 +59,8 @@ const useDataBaseValues = (valuesFromFormik: any = defaultValue) => {
 
   const databaseColumns = addDaysToEmptyColumns(dataBaseColumnsWithoutDays);
 
-  const updatedColumnsWithAddedDays = data ? [...databaseColumns] : [];
-  const newColumnsFromDatabase = data ? [...databaseColumns] : [];
+  const updatedColumnsWithAddedDays = data && databaseAllData.length > 0 ?[...databaseColumns] : [];
+  const newColumnsFromDatabase = data && databaseAllData.length > 0 ? [...databaseColumns] : [];
 
   const submitedHoursSum =
     data && databaseAllData.length > 0
@@ -83,9 +83,9 @@ const useDataBaseValues = (valuesFromFormik: any = defaultValue) => {
         }, 0)
       : [];
 
-  useEffect(() => {
-    dispatch(handleEidtisLoading(success.isLoading));
-  }, [success.isLoading, dispatch]);
+  // useEffect(() => {
+  //   dispatch(handleEidtisLoading(success.isLoading));
+  // }, [success.isLoading, dispatch]);
 
   // console.log("", databaseAllData);
 

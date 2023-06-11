@@ -20,6 +20,7 @@ const useDayForm = () => {
     validationSchema: validationSchema,
 
     onSubmit: async values => {
+      // if (dataCurrentHours <= 0 || values.hours > dataCurrentHours) return;
       formik.setFieldValue("id", crypto.randomUUID());
       addedColumnsWithDays.columns[0].days = [values];
 
@@ -47,6 +48,7 @@ const useDayForm = () => {
 
   const {
     databaseAllHours,
+    dataCurrentHours,
     dataBaseSubmitedHours,
     dataBaseColumnsWithoutDays,
     databaseColumns,
