@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useSearchParams, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAddDaysMutation } from "../../../services/apiSlice";
 import { addedColumnsWithDays } from "../dayForm/dataDayForm";
 import useDataBaseValues from "../useDataBaseValues";
@@ -50,13 +50,12 @@ const IndexSidebar = () => {
       year: "numeric",
       month: "long",
       timeZone: "UTC",
-    }).format(monthToDateFormat)
+    }).format(monthToDateFormat);
   });
 
-
-  // useEffect(() => {
-  //   navigate(`/miesiac/${databaseMonth}`);
-  // }, []);
+  useEffect(() => {
+    navigate(`/miesiac/${year}`);
+  }, []);
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setYear(e.target.value);
@@ -69,8 +68,6 @@ const IndexSidebar = () => {
     await addDays(addMounth);
   };
 
-  // console.log("", year);
-  // console.log("gg", data);
 
   return (
     <div>
@@ -87,8 +84,14 @@ const IndexSidebar = () => {
 
       {data === null
         ? null
-        : databaseMonthsToString.map(month => {
-            return <div key={month}>{month}</div>;
+        : databaseMonthsToString.map((month, idx) => {
+            return (
+              <div key = {month}>
+                <Link to={`/miesiac/${databaseMounths[idx]}`} key={month}>
+                  {month}
+                </Link>
+              </div>
+            );
           })}
     </div>
   );

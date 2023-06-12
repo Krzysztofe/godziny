@@ -16,7 +16,7 @@ const HeaderInPanel = () => {
   const dispatch = useDispatch();
   const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
 
-const {id} = useParams();
+const {month} = useParams();
 
   const [deleteAllColumns, isLoading] = useDeleteAllColumnsMutation();
   const [updateColumns, succes] = useUpdateColumnsMutation();
@@ -82,6 +82,7 @@ const {id} = useParams();
 
   return (
     <header>
+      <div>{month}</div>
       {/* <div style={{ display: "flex" }}>
         <TextInput
           type="number"
