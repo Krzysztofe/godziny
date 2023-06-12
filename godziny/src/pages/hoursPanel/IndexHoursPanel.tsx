@@ -11,7 +11,7 @@ import {
   useColumnsQuery,
   useUpdateColumnsMutation,
 } from "../../services/apiSlice";
-import IndexNavbar from "./navBar/IndexNavbar";
+import IndexSidebar from "./sidebar/IndexSidebar";
 
 const IndexHoursPanel = () => {
   const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
@@ -30,41 +30,41 @@ const IndexHoursPanel = () => {
     dataBaseSubmitedHours,
     databaseColumns,
     submitedHoursSum,
+    databaseMonth,
   } = useDataBaseValues();
 
-
-const [columns, setColumns] = useState<any[]>([]);
+  const [columns, setColumns] = useState<any[]>([]);
 
   useEffect(() => {
     setColumns(databaseColumns);
   }, [data]);
 
-  useEffect(() => {
-    databaseColumnsId &&
-      updateColumns({
-        id: databaseColumnsId,
-        columns: {
-          mounth:"",
-          allHours: databaseAllHours,
-          currentHours:
-            databaseAllHours -
-            submitedHoursSum -
-            acceptedHoursSum -
-            rejectedHoursSum +
-            rejectedHoursSum,
-          submitedHours: submitedHoursSum,
-          acceptedHours: acceptedHoursSum,
-          rejectedHpurs: rejectedHoursSum,
-          columns: columns,
-        },
-      });
-  }, [
-    columns,
-    numberOfDays,
-    submitedHoursSum,
-    acceptedHoursSum,
-    rejectedHoursSum,
-  ]);
+  // useEffect(() => {
+  //   databaseColumnsId &&
+  //     updateColumns({
+  //       id: databaseColumnsId,
+  //       columns: {
+  //         month: databaseMonth,
+  //         allHours: databaseAllHours,
+  //         currentHours:
+  //           databaseAllHours -
+  //           submitedHoursSum -
+  //           acceptedHoursSum -
+  //           rejectedHoursSum +
+  //           rejectedHoursSum,
+  //         submitedHours: submitedHoursSum,
+  //         acceptedHours: acceptedHoursSum,
+  //         rejectedHpurs: rejectedHoursSum,
+  //         columns: columns,
+  //       },
+  //     });
+  // }, [
+  //   columns,
+  //   numberOfDays,
+  //   submitedHoursSum,
+  //   acceptedHoursSum,
+  //   rejectedHoursSum,
+  // ]);
 
   // console.log("", dataCurrentHours);
 
@@ -112,12 +112,12 @@ const [columns, setColumns] = useState<any[]>([]);
 
   return (
     <div style={{ display: "flex" }}>
-      <IndexNavbar />
+      <IndexSidebar />
       <div>
         <HeaderInPanel />
         <DayForm />
 
-        {columnsContent}
+        {/* {columnsContent} */}
       </div>
     </div>
   );

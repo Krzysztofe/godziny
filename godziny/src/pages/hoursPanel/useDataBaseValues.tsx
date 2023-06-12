@@ -16,7 +16,7 @@ const useDataBaseValues = (valuesFromFormik: any = defaultValue) => {
   const dispatch = useDispatch();
 
   const { data, error } = useColumnsQuery(undefined);
-  const [addDays, success] = useAddDaysMutation();
+ const [addDays, success] = useAddDaysMutation();
   const [updateColumns] = useUpdateColumnsMutation();
 
   const databaseColumnsId = data && Object.keys(data).join();
@@ -50,6 +50,11 @@ const useDataBaseValues = (valuesFromFormik: any = defaultValue) => {
       ? (databaseAllData[0] as any)?.rejectedHpurs
       : "";
 
+        const databaseMonth =
+          data && databaseAllData.length > 0
+            ? (databaseAllData[0] as any)?.month
+            : "";
+
   const dataBaseColumnsWithoutDays =
     data && databaseAllData.length > 0
       ? (databaseAllData[0] as any)?.columns
@@ -64,21 +69,21 @@ const useDataBaseValues = (valuesFromFormik: any = defaultValue) => {
 
   const submitedHoursSum =
     data && databaseAllData.length > 0 && databaseColumns[0]?.days
-      ? databaseColumns[0].days.reduce((sum: any, day: any) => {
+      ? databaseColumns[0]?.days.reduce((sum: any, day: any) => {
           return sum + day.hours;
         }, 0)
       : 0;
 
   const acceptedHoursSum =
     data && databaseAllData.length > 0 && databaseColumns[1]?.days
-      ? databaseColumns[1].days.reduce((sum: any, day: any) => {
+      ? databaseColumns[1]?.days.reduce((sum: any, day: any) => {
           return sum + day.hours;
         }, 0)
       : 0;
 
   const rejectedHoursSum =
     data && databaseAllData.length > 0 && databaseColumns[2]?.days
-      ? databaseColumns[2].days.reduce((sum: any, day: any) => {
+      ? databaseColumns[2]?.days.reduce((sum: any, day: any) => {
           return sum + day.hours;
         }, 0)
       : 0;
@@ -90,6 +95,7 @@ const useDataBaseValues = (valuesFromFormik: any = defaultValue) => {
     databaseRejectedHours,
     databaseAllData,
     acceptedHoursSum,
+    databaseMonth,
     rejectedHoursSum,
     dataBaseSubmitedHours,
     databaseColumnsId,

@@ -1,8 +1,8 @@
 export const addDaysToEmptyColumns = (arr: any) => {
 
-  //  if (!Array.isArray(arr)) {
-  //    return []; 
-  //  }
+   if (!Array.isArray(arr)) {
+     return []; 
+   }
   return arr?.map((obj: any) => {
     if (!obj.hasOwnProperty("days")) {
       return { ...obj, days: [] };

@@ -37,7 +37,7 @@ const columns: ColumnModel[] = [
 ];
 
 export const addedColumnsWithDays = {
-  mounth: '',
+  month: '',
   allHours: 0,
   currentHours:0,
   submitedHours: 0,

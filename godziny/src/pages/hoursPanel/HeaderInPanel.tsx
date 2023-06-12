@@ -10,10 +10,13 @@ import { RootState } from "../../redux/store";
 import { handleChange } from "../../redux/storeFeatures/hoursPanelSlice";
 import useDataBaseValues from "./useDataBaseValues";
 import { FcApproval } from "react-icons/fc";
+import { useParams } from "react-router-dom";
 
 const HeaderInPanel = () => {
   const dispatch = useDispatch();
   const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
+
+const {id} = useParams();
 
   const [deleteAllColumns, isLoading] = useDeleteAllColumnsMutation();
   const [updateColumns, succes] = useUpdateColumnsMutation();
@@ -79,7 +82,7 @@ const HeaderInPanel = () => {
 
   return (
     <header>
-      <div style={{ display: "flex" }}>
+      {/* <div style={{ display: "flex" }}>
         <TextInput
           type="number"
           name="numberOfDays"
@@ -97,6 +100,7 @@ const HeaderInPanel = () => {
       <button onClick={handleDelete}> usuń wszystko</button>
       <p>Godziny w miesiącu: {databaseAllHours} </p>
       <p>Godziny do wykorzystania: {dataCurrentHours} </p>
+      <p>{id}</p> */}
     </header>
   );
 };

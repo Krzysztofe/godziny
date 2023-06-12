@@ -2,7 +2,9 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoadingPage from "./pages/loadingPage/LoadingPage";
 const Login = lazy(() => import("./pages/login/Login"));
-const IndexHoursPanel = lazy(() => import("./pages/hoursPanel/IndexHoursPanel"));
+const IndexHoursPanel = lazy(
+  () => import("./pages/hoursPanel/IndexHoursPanel")
+);
 
 function App() {
   return (
@@ -11,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/miesiac" element={<IndexHoursPanel />} />
+          <Route path="/miesiac/:month" element={<IndexHoursPanel />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

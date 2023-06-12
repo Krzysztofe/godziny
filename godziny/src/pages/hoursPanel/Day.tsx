@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Day = (props: Props) => {
-  const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
+  // const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
 
   const [updateColumns, succes] = useUpdateColumnsMutation();
 
@@ -51,7 +51,7 @@ const Day = (props: Props) => {
         await updateColumns({
           id: databaseColumnsId,
           columns: {
-            mounth:"",
+            month: "",
             allHours: databaseAllHours,
             currentHours:
               databaseAllHours -
@@ -82,7 +82,6 @@ const Day = (props: Props) => {
               {...provided.dragHandleProps}
               ref={provided.innerRef}
             >
-              <strong>{props.day.content}</strong>
               <DayPrintData day={props.day} />
               <button onClick={() => handleUpdate(props.day.id)}>
                 <FaTrashAlt />
