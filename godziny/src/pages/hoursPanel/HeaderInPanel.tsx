@@ -82,7 +82,7 @@ const {month} = useParams();
 
   return (
     <header>
-      <div>{month}</div>
+      {/* <div>{month}</div> */}
       {/* <div style={{ display: "flex" }}>
         <TextInput
           type="number"

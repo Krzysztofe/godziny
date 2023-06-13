@@ -23,6 +23,7 @@ const IndexSidebar = () => {
     databaseMonth,
     data,
     databaseAllData,
+    databaseMonthsCollection,
   } = useDataBaseValues();
 
   var date = new Date();
@@ -40,12 +41,12 @@ const IndexSidebar = () => {
 
   const [year, setYear] = useState(`${currYear}-${currMounthNum}`);
 
-  const databaseMounths = databaseAllData.map((month: any) => {
+  const databaseMonthValues = databaseMonthsCollection.map((month: any) => {
     return month.month;
   });
 
-  const databaseMonthsToString = databaseMounths.map(month => {
-    const monthToDateFormat = new Date(month);
+  const databaseMonthsToString = databaseMonthValues.map((monthValue: any) => {
+    const monthToDateFormat = new Date(monthValue);
     return new Intl.DateTimeFormat("pl-PL", {
       year: "numeric",
       month: "long",
@@ -53,9 +54,9 @@ const IndexSidebar = () => {
     }).format(monthToDateFormat);
   });
 
-  useEffect(() => {
-    navigate(`/miesiac/${year}`);
-  }, []);
+  // useEffect(() => {
+  //   navigate(`/miesiac/${year}`);
+  // }, []);
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setYear(e.target.value);
@@ -84,10 +85,10 @@ const IndexSidebar = () => {
 
       {data === null
         ? null
-        : databaseMonthsToString.map((month, idx) => {
+        : databaseMonthsToString.map((month:any, idx:any) => {
             return (
-              <div key = {month}>
-                <Link to={`/miesiac/${databaseMounths[idx]}`} key={month}>
+              <div key={month}>
+                <Link to={`/miesiac/${databaseMonthValues[idx]}`} key={month}>
                   {month}
                 </Link>
               </div>

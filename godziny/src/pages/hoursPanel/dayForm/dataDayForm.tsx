@@ -17,7 +17,7 @@ interface DayModel {
 interface ColumnModel {
   id: string;
   columnName: string;
-  days?: DayModel[];
+  days?: any;
 }
 
 const columns: ColumnModel[] = [
@@ -39,7 +39,7 @@ const columns: ColumnModel[] = [
 export const addedColumnsWithDays = {
   id: "",
   month: "",
-  allHours: 0,
+  allHours: 44,
   currentHours: 0,
   submitedHours: 0,
   acceptedHours: 0,

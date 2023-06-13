@@ -4,7 +4,7 @@ import {
   useColumnsQuery,
   useUpdateColumnsMutation,
 } from "../../services/apiSlice";
-import { addDaysToEmptyColumns } from "./utils";
+import {addDaysToColumns, addDaysToEmptyColumns } from "./utils";
 
 const defaultValue = null;
 interface DatabaseColumns {
@@ -12,23 +12,46 @@ interface DatabaseColumns {
   columns: any[];
 }
 
-const useDataBaseValues = (valuesFromFormik: any = defaultValue) => {
-  const dispatch = useDispatch();
-
+const useDataBaseValues = (monthValue: any = defaultValue) => {
   const { data, error } = useColumnsQuery(undefined);
- const [addDays, success] = useAddDaysMutation();
+  const [addDays, success] = useAddDaysMutation();
   const [updateColumns] = useUpdateColumnsMutation();
 
   const databaseColumnsId = data && Object.keys(data).join();
+
+  const databaseColumnsIdxxx = data && Object.keys(data);
 
   const databaseAllData = data
     ? Object.values(data).flat()
     : ([] as DatabaseColumns[]);
 
+  const databaseDataWithId =
+    databaseColumnsIdxxx &&
+    Object.values(data)
+      .flat()
+      .map((item: any, idx) => {
+        return { ...item, id: databaseColumnsIdxxx[idx] };
+      });
+
+  const databaseMonthsCollection = addDaysToColumns(databaseDataWithId);
+
+  const databaseMonthNew: any =
+    data && databaseMonthsCollection.length > 0
+      ? databaseMonthsCollection?.find(
+          (month: any) => month.month === monthValue
+        )
+      : undefined;
+
+  const databaseColumnsNew = data && databaseMonthNew?.columns;
+
+  // const databaseColumnsUtils = addDaysToEmptyColumns(databaseColumnsNew);
+
   const databaseAllHours =
-    data && databaseAllData.length > 0
-      ? (databaseAllData[0] as any)?.allHours
+    databaseMonthNew && "allHours" in databaseMonthNew
+      ? databaseMonthNew.allHours
       : "";
+
+  console.log("", databaseColumnsNew);
 
   const dataCurrentHours =
     data && databaseAllData.length > 0
@@ -50,10 +73,10 @@ const useDataBaseValues = (valuesFromFormik: any = defaultValue) => {
       ? (databaseAllData[0] as any)?.rejectedHpurs
       : "";
 
-        const databaseMonth =
-          data && databaseAllData.length > 0
-            ? (databaseAllData[0] as any)?.month
-            : "";
+  const databaseMonth =
+    data && databaseAllData.length > 0
+      ? (databaseAllData[0] as any)?.month
+      : "";
 
   const dataBaseColumnsWithoutDays =
     data && databaseAllData.length > 0
@@ -64,6 +87,7 @@ const useDataBaseValues = (valuesFromFormik: any = defaultValue) => {
 
   const updatedColumnsWithAddedDays =
     data && databaseAllData.length > 0 ? [...databaseColumns] : [];
+
   const newColumnsFromDatabase =
     data && databaseAllData.length > 0 ? [...databaseColumns] : [];
 
@@ -89,11 +113,19 @@ const useDataBaseValues = (valuesFromFormik: any = defaultValue) => {
       : 0;
 
   return {
+    databaseMonthsCollection,
+    // mounthWithArrays,
+    // databaseColumnsUtils,
+    databaseAllData,
+    databaseColumnsNew,
+    databaseColumnsIdxxx,
+
+    databaseMonthNew,
+    databaseDataWithId,
     databaseAllHours,
     dataCurrentHours,
     databaseAccepteddHours,
     databaseRejectedHours,
-    databaseAllData,
     acceptedHoursSum,
     databaseMonth,
     rejectedHoursSum,

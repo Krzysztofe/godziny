@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
@@ -18,6 +19,7 @@ const IndexHoursPanel = () => {
 
   const { data, isLoading, error } = useColumnsQuery(undefined);
   const [updateColumns, succes] = useUpdateColumnsMutation();
+  const { monthValue } = useParams();
 
   const {
     databaseColumnsId,
@@ -31,13 +33,39 @@ const IndexHoursPanel = () => {
     databaseColumns,
     submitedHoursSum,
     databaseMonth,
-  } = useDataBaseValues();
+    databaseMonthNew,
+    databaseDataWithId,
+    databaseColumnsNew,
+    // databaseMonthsCollection,
+    // mounthWithArrays,
+  } = useDataBaseValues(monthValue);
 
   const [columns, setColumns] = useState<any[]>([]);
 
   useEffect(() => {
-    setColumns(databaseColumns);
-  }, [data]);
+    data && setColumns(databaseMonthNew?.columns);
+  }, [data, monthValue]);
+
+  // console.log("columns", columns);
+
+  useEffect(() => {
+    databaseColumnsId &&
+      updateColumns({
+        id: data && databaseMonthNew.id,
+        columns: {
+          ...databaseMonthNew,
+          columns: columns,
+        },
+      });
+  }, [
+    columns,
+    // data && mounthWithArrays.id,
+    // mounthWithArrays,
+    // numberOfDays,
+    // submitedHoursSum,
+    // acceptedHoursSum,
+    // rejectedHoursSum,
+  ]);
 
   // useEffect(() => {
   //   databaseColumnsId &&
@@ -66,7 +94,7 @@ const IndexHoursPanel = () => {
   //   rejectedHoursSum,
   // ]);
 
-  // console.log("", dataCurrentHours);
+  // console.log("col", columns);
 
   let columnsContent = !succes.isError ? (
     <div>
@@ -116,8 +144,8 @@ const IndexHoursPanel = () => {
       <div>
         <HeaderInPanel />
         <DayForm />
-
-        {/* {columnsContent} */}
+        {/* {data && <div> {databaseMonthNew.month} </div>} */}
+        {columnsContent}
       </div>
     </div>
   );

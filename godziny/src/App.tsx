@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/miesiac" element={<IndexHoursPanel />} />
-          <Route path="/miesiac/:month" element={<IndexHoursPanel />} />
+          <Route path="/miesiac/:monthValue" element={<IndexHoursPanel />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

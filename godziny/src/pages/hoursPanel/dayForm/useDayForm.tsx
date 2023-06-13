@@ -4,7 +4,7 @@ import { addedColumnsWithDays, initialValues } from "./dataDayForm";
 import { validationSchema } from "./validationDayForm";
 import { RootState } from "../../../redux/store";
 import { useSelector } from "react-redux";
-
+import { useParams } from "react-router-dom";
 interface FormValues {
   date: string;
   hours: number | string;
@@ -14,42 +14,42 @@ interface FormValues {
 
 const useDayForm = () => {
   const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
+  const { monthValue } = useParams();
 
   const formik = useFormik<FormValues>({
     initialValues: initialValues,
     validationSchema: validationSchema,
 
     onSubmit: async values => {
-      // if (dataCurrentHours <= 0 || values.hours > dataCurrentHours) return;
       formik.setFieldValue("id", crypto.randomUUID());
-      addedColumnsWithDays.columns[0].days = [values];
 
-      updatedColumnsWithAddedDays[0] = data &&
-        dataBaseColumnsWithoutDays?.length > 0 && {
-          ...databaseColumns?.[0],
-          days: [...databaseColumns?.[0]?.days, ...[values]],
-        };
+      const columnsWithAddedDays = data && [...databaseColumnsNew];
 
-      data === null
-        ? await addDays(addedColumnsWithDays)
-        : await updateColumns({
-            id: databaseColumnsId,
-            columns: {
-              mounth:"",
-              allHours: databaseAllHours,
-              currentHours: databaseAllHours - submitedHoursSum,
-              submitedHours: submitedHoursSum,
-              acceptedHours: acceptedHoursSum,
-              rejectedHpurs: rejectedHoursSum,
-              columns: updatedColumnsWithAddedDays,
-            },
-          });
+      columnsWithAddedDays[0] = data && {
+        ...databaseColumnsNew?.[0],
+        days: [...databaseColumnsNew?.[0]?.days, ...[values]],
+      };
+
+      await updateColumns({
+        id: data && databaseMonthNew.id,
+        columns: {
+          ...databaseMonthNew,
+          columns: columnsWithAddedDays,
+        },
+      });
     },
   });
 
   const {
+    databaseMonthsCollection,
+    databaseDataWithId,
+    // databaseColumnsUtils,
+    databaseAllData,
+    // databaseColumnsNewCopy,
+    databaseColumnsNew,
     databaseAllHours,
     dataCurrentHours,
+    databaseMonthNew,
     dataBaseSubmitedHours,
     dataBaseColumnsWithoutDays,
     databaseColumns,
@@ -62,9 +62,10 @@ const useDayForm = () => {
     success,
     updateColumns,
     addDays,
-  } = useDataBaseValues(formik.values);
-
-  // console.log("", success.isLoading);
+    databaseColumnsIdxxx,
+    // databaseMonthsCollection,
+  } = useDataBaseValues(monthValue);
+  // console.log("form", data && databaseMonthNew);
 
   return { formik };
 };
