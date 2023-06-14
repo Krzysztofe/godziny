@@ -19,7 +19,7 @@ const Day = (props: Props) => {
 
   const { data, error } = useColumnsQuery(undefined);
   const [updateColumns, succes] = useUpdateColumnsMutation();
-  const { monthValue } = useParams();
+  const { monthURL } = useParams();
 
   const {
     databaseColumns,
@@ -28,7 +28,7 @@ const Day = (props: Props) => {
     acceptedHoursSum,
     rejectedHoursSum,
     submitedHoursSum,
-  } = useDataBaseValues(monthValue);
+  } = useDataBaseValues(monthURL);
 
   const handleUpdate = async (id: any) => {
     Swal.fire({

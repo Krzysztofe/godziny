@@ -8,11 +8,11 @@ import useDataBaseValues from "../useDataBaseValues";
 import { FcApproval } from "react-icons/fc";
 
 const FormHeaderMonhPanel = () => {
-  const { monthValue } = useParams();
+  const { monthURL } = useParams();
   const dispatch = useDispatch();
   const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
-  const { databaseMonth, data } = useDataBaseValues(monthValue);
-  const [updateColumns, succes] = useUpdateColumnsMutation();
+  const { databaseMonth, data } = useDataBaseValues(monthURL);
+  const [updateColumns, success] = useUpdateColumnsMutation();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -32,11 +32,11 @@ const FormHeaderMonhPanel = () => {
 
   let btnContent = <FcApproval />;
 
-  if (succes.isLoading) {
+  if (success.isLoading) {
     btnContent = <div> "Loading" </div>;
   }
 
-  if (succes.isError) {
+  if (success.isError) {
     btnContent = <div> "Błąd" </div>;
   }
 
@@ -46,8 +46,8 @@ const FormHeaderMonhPanel = () => {
         type="number"
         name="numberOfDays"
         value={numberOfDays}
-        label="Liczba godzin w miesiącu "
-        placeholder=""
+        label="Podaj liczbę godzin w miesiącu "
+        placeholder="Liczba"
         handleChange={handleInputChange}
       />
 

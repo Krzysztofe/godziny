@@ -3,12 +3,11 @@ import useDataBaseValues from "../hooksMonthPanel/useDataBaseValues";
 import FormHeaderMonhPanel from "./FormHeaderMonhPanel";
 
 const HeaderMonthPanel = () => {
-  const { monthValue } = useParams();
+  const { monthURL } = useParams();
 
-  const { databaseAllHours, dataCurrentHours } =
-    useDataBaseValues(monthValue);
+  const { databaseAllHours, dataCurrentHours } = useDataBaseValues(monthURL);
 
-  const monthToDateFormat = monthValue && new Date(monthValue);
+  const monthToDateFormat = monthURL && new Date(monthURL);
   const monthToString =
     monthToDateFormat &&
     new Intl.DateTimeFormat("pl-PL", {
@@ -19,13 +18,16 @@ const HeaderMonthPanel = () => {
 
   return (
     <header>
-      <div style = {{display: "flex",}}>
-      <FormHeaderMonhPanel />
-      <div style = {{marginLeft: 30}}>{monthToString}</div>
+      <div style={{ display: "flex" }}>
+        <FormHeaderMonhPanel />
+        
+        <div style={{ marginLeft: 30 }}>{monthToString}</div>
       </div>
-      
-      <div>Godziny w miesiącu: {databaseAllHours} </div>
-      <div>Godziny do wykorzystania: {dataCurrentHours} </div>
+
+      <div>
+        Godziny w miesiącu - {databaseAllHours} /{" "}
+        {dataCurrentHours} - Godziny do wykorzystania:
+      </div>
     </header>
   );
 };

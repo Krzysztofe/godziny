@@ -1,13 +1,20 @@
 import { FcApproval } from "react-icons/fc";
-import RadioInput from "../../../components/inputs/RadioInput";
-import TextInput from "../../../components/inputs/TextInput";
+import RadioInput from "../../inputs/RadioInput";
+import TextInput from "../../inputs/TextInput";
 import useDayForm from "./useDayForm";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
-import useDataBaseValues from "../hooksMonthPanel/useDataBaseValues";
 
 const DayForm = () => {
-  const { formik } = useDayForm();
+  const { formik, success } = useDayForm();
+
+  let btnContent = <FcApproval />;
+
+  if (success.isLoading) {
+    btnContent = <div> "Loading" </div>;
+  }
+
+  if (success.isError) {
+    btnContent = <div> "Błąd" </div>;
+  }
 
   return (
     <form onSubmit={formik.handleSubmit} style={{ marginTop: 20 }}>
@@ -56,9 +63,7 @@ const DayForm = () => {
         )}
       </div>
 
-      <button type={"submit"}>
-        <FcApproval />
-      </button>
+      <button type="submit">{btnContent}</button>
     </form>
   );
 };

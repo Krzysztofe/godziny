@@ -7,7 +7,7 @@ interface DatabaseColumns {
   columns: any[];
 }
 
-const useDataBaseValues = (monthValue: any = null) => {
+const useDataBaseValues = (monthURL: any = null) => {
   const { data } = useColumnsQuery(undefined);
 
   const databaseMonthsId = data && Object.keys(data);
@@ -24,9 +24,7 @@ const useDataBaseValues = (monthValue: any = null) => {
 
   const databaseMonth: any =
     data && databaseMonthsCollection.length > 0
-      ? databaseMonthsCollection?.find(
-          (month: any) => month.month === monthValue
-        )
+      ? databaseMonthsCollection?.find((month: any) => month.month === monthURL)
       : undefined;
 
   const databaseColumns = data && databaseMonth?.columns;

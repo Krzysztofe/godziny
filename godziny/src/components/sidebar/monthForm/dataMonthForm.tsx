@@ -36,7 +36,7 @@ const columns: ColumnModel[] = [
   },
 ];
 
-export const monthPattern  = {
+export const monthPattern = {
   id: "",
   month: "",
   allHours: 0,

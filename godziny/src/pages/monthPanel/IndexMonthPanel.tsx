@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { useParams } from "react-router-dom";
+import IndexSidebar from "../../components/sidebar/IndexSidebar";
 import {
   useColumnsQuery,
   useUpdateColumnsMutation,
 } from "../../services/apiSlice";
 import Column from "./Column";
 import HeaderMonthPanel from "./headerMonthPanel/HeaderMonthPanel";
-import DayForm from "./dayForm/DayForm";
-import IndexSidebar from "./sidebar/IndexSidebar";
 import useDataBaseValues from "./hooksMonthPanel/useDataBaseValues";
 import { handleDragDrop } from "./utils";
+import DayForm from "../../components/sidebar/dayForm/DayForm";
+
 
 const IndexMonthPanel = () => {
   const { data, error } = useColumnsQuery(undefined);
   const [updateColumns, succes] = useUpdateColumnsMutation();
-  const { monthValue } = useParams();
+  const { monthURL } = useParams();
 
   const {
     databaseAllHours,
@@ -26,34 +27,34 @@ const IndexMonthPanel = () => {
     submitedHoursSum,
     acceptedHoursSum,
     rejectedHoursSum,
-  } = useDataBaseValues(monthValue);
+  } = useDataBaseValues(monthURL);
 
   const [columns, setColumns] = useState<any[]>([]);
 
   useEffect(() => {
     data && setColumns(databaseMonth?.columns);
-  }, [data, monthValue]);
+  }, [data, monthURL]);
 
-  useEffect(() => {
-    data &&
-      databaseMonth?.month &&
-      updateColumns({
-        id: data && databaseMonth?.id,
-        columns: {
-          ...databaseMonth,
-          columns: columns,
-          currentHours:
-            databaseAllHours -
-            submitedHoursSum -
-            acceptedHoursSum -
-            rejectedHoursSum +
-            rejectedHoursSum,
-          submitedHours: submitedHoursSum,
-          acceptedHours: acceptedHoursSum,
-          rejectedHours: rejectedHoursSum,
-        },
-      });
-  }, [columns, submitedHoursSum, acceptedHoursSum, rejectedHoursSum]);
+  // useEffect(() => {
+  //   data &&
+  //     databaseMonth?.month &&
+  //     updateColumns({
+  //       id: data && databaseMonth?.id,
+  //       columns: {
+  //         ...databaseMonth,
+  //         columns: columns,
+  //         currentHours:
+  //           databaseAllHours -
+  //           submitedHoursSum -
+  //           acceptedHoursSum -
+  //           rejectedHoursSum +
+  //           rejectedHoursSum,
+  //         submitedHours: submitedHoursSum,
+  //         acceptedHours: acceptedHoursSum,
+  //         rejectedHours: rejectedHoursSum,
+  //       },
+  //     });
+  // }, [columns, submitedHoursSum, acceptedHoursSum, rejectedHoursSum]);
 
   let columnsContent = !succes.isError ? (
     <div>
@@ -70,7 +71,7 @@ const IndexMonthPanel = () => {
               return (
                 <h4 key={header} style={{ marginLeft: 20, width: "20vw" }}>
                   {header} {""}
-                  {counter} godz.
+                  {counter} 
                 </h4>
               );
             })}
@@ -98,12 +99,18 @@ const IndexMonthPanel = () => {
   }
 
   return (
-    <div style={{ display: "flex" }}>
-      <IndexSidebar />
-      <div>
-        <HeaderMonthPanel />
-        {columnsContent}
-      </div>
+    <div style={{ margin: "0, auto" }}>
+      {/* {data === null ? (
+        <div style={{ textAlign: "center" }}>bak danych</div>
+      ) : ( */}
+        <div style={{ display: "flex", marginLeft: "30vw" }}>
+          <div>
+            {/* <IndexSidebar /> */}
+            <HeaderMonthPanel />
+            {columnsContent}
+          </div>
+        </div>
+      {/* )} */}
     </div>
   );
 };

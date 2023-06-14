@@ -1,11 +1,10 @@
 import { useFormik } from "formik";
-import useDataBaseValues from "../hooksMonthPanel/useDataBaseValues";
-import { monthPattern, initialValues } from "./dataDayForm";
+import { useParams, useLocation } from "react-router-dom";
+import useDataBaseValues from "../../../pages/monthPanel/useDataBaseValues";
+import { initialValues } from "./dataDayForm";
 import { validationSchema } from "./validationDayForm";
-import { RootState } from "../../../redux/store";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { useUpdateColumnsMutation } from "../../../services/apiSlice";
+
 interface FormValues {
   date: string;
   hours: number | string;
@@ -14,8 +13,15 @@ interface FormValues {
 }
 
 const useDayForm = () => {
-  const [updateColumns] = useUpdateColumnsMutation();
-  const { monthValue } = useParams();
+  const [updateColumns, success] = useUpdateColumnsMutation();
+  const urlParts = useLocation().pathname.split("/");
+  const lastPartMonthURL = urlParts[urlParts.length - 1];
+ const {monthURL} = useParams()
+
+
+  const { databaseColumns, databaseMonth, data } =
+    useDataBaseValues(lastPartMonthURL);
+
 
   const formik = useFormik<FormValues>({
     initialValues: initialValues,
@@ -46,10 +52,7 @@ const useDayForm = () => {
     },
   });
 
-  const { databaseColumns, databaseMonth, data } =
-    useDataBaseValues(monthValue);
-
-  return { formik };
+  return { formik, success };
 };
 
 export default useDayForm;
