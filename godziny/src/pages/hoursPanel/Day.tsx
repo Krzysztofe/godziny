@@ -1,11 +1,10 @@
 import { Draggable } from "react-beautiful-dnd";
 import { FaTrashAlt } from "react-icons/fa";
+import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useColumnsQuery, useUpdateColumnsMutation } from "../../services/apiSlice";
 import DayPrintData from "./DayPrintData";
 import useDataBaseValues from "./useDataBaseValues";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-import { useUpdateColumnsMutation } from "../../services/apiSlice";
-import Swal from "sweetalert2";
 
 interface Props {
   day: any;
@@ -15,16 +14,18 @@ interface Props {
 const Day = (props: Props) => {
   // const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
 
+  const { data, error } = useColumnsQuery(undefined);
   const [updateColumns, succes] = useUpdateColumnsMutation();
+  const { monthValue } = useParams();
 
   const {
-    databaseColumnsId,
-    newColumnsFromDatabase,
-    submitedHoursSum,
+    databaseColumns,
     databaseAllHours,
+    databaseMonth,
     acceptedHoursSum,
     rejectedHoursSum,
-  } = useDataBaseValues();
+    submitedHoursSum,
+  } = useDataBaseValues(monthValue);
 
   const handleUpdate = async (id: any) => {
     Swal.fire({
@@ -36,7 +37,7 @@ const Day = (props: Props) => {
       cancelButtonText: "Nie",
     }).then(async result => {
       if (result.isConfirmed) {
-        const updatedColumnsWithDeletedDays = newColumnsFromDatabase.map(
+        const updatedColumnsWithDeletedDays = [...databaseColumns].map(
           (column: any) => {
             if (column && column.days) {
               return {
@@ -49,19 +50,8 @@ const Day = (props: Props) => {
         );
 
         await updateColumns({
-          id: databaseColumnsId,
-          columns: {
-            month: "",
-            allHours: databaseAllHours,
-            currentHours:
-              databaseAllHours -
-              submitedHoursSum -
-              acceptedHoursSum -
-              rejectedHoursSum +
-              rejectedHoursSum,
-            submitedHours: submitedHoursSum,
-            acceptedHours: acceptedHoursSum,
-            rejectedHpurs: rejectedHoursSum,
+          id: data && databaseMonth?.id,
+          columns: {...databaseMonth, 
             columns: updatedColumnsWithDeletedDays,
           },
         });

@@ -5,6 +5,7 @@ import { validationSchema } from "./validationDayForm";
 import { RootState } from "../../../redux/store";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { useUpdateColumnsMutation } from "../../../services/apiSlice";
 interface FormValues {
   date: string;
   hours: number | string;
@@ -13,7 +14,7 @@ interface FormValues {
 }
 
 const useDayForm = () => {
-  const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
+  const [updateColumns] = useUpdateColumnsMutation();
   const { monthValue } = useParams();
 
   const formik = useFormik<FormValues>({
@@ -23,49 +24,30 @@ const useDayForm = () => {
     onSubmit: async values => {
       formik.setFieldValue("id", crypto.randomUUID());
 
-      const columnsWithAddedDays = data && [...databaseColumnsNew];
+      const databaseColumnsAddedDays =
+        data && databaseMonth && databaseColumns?.length > 0
+          ? [...databaseColumns]
+          : [];
 
-      columnsWithAddedDays[0] = data && {
-        ...databaseColumnsNew?.[0],
-        days: [...databaseColumnsNew?.[0]?.days, ...[values]],
-      };
+      databaseColumnsAddedDays[0] = data &&
+        databaseMonth &&
+        databaseColumns?.length > 0 && {
+          ...databaseColumns?.[0],
+          days: [...databaseColumns?.[0]?.days, ...[values]],
+        };
 
       await updateColumns({
-        id: data && databaseMonthNew.id,
+        id: data && databaseMonth.id,
         columns: {
-          ...databaseMonthNew,
-          columns: columnsWithAddedDays,
+          ...databaseMonth,
+          columns: databaseColumnsAddedDays,
         },
       });
     },
   });
 
-  const {
-    databaseMonthsCollection,
-    databaseDataWithId,
-    // databaseColumnsUtils,
-    databaseAllData,
-    // databaseColumnsNewCopy,
-    databaseColumnsNew,
-    databaseAllHours,
-    dataCurrentHours,
-    databaseMonthNew,
-    dataBaseSubmitedHours,
-    dataBaseColumnsWithoutDays,
-    databaseColumns,
-    databaseColumnsId,
-    updatedColumnsWithAddedDays,
-    acceptedHoursSum,
-    rejectedHoursSum,
-    data,
-    submitedHoursSum,
-    success,
-    updateColumns,
-    addDays,
-    databaseColumnsIdxxx,
-    // databaseMonthsCollection,
-  } = useDataBaseValues(monthValue);
-  // console.log("form", data && databaseMonthNew);
+  const { databaseColumns, databaseMonth, data } =
+    useDataBaseValues(monthValue);
 
   return { formik };
 };

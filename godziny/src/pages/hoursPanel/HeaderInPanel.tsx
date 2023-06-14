@@ -16,25 +16,17 @@ const HeaderInPanel = () => {
   const dispatch = useDispatch();
   const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
 
-const {month} = useParams();
+  const { monthValue } = useParams();
 
   const [deleteAllColumns, isLoading] = useDeleteAllColumnsMutation();
   const [updateColumns, succes] = useUpdateColumnsMutation();
 
   const {
-    databaseColumnsId,
     databaseAllHours,
-    dataBaseSubmitedHours,
-    submitedHoursSum,
-    databaseAccepteddHours,
-    databaseRejectedHours,
-    updatedColumnsWithAddedDays,
-    databaseColumns,
-    rejectedHoursSum,
-    acceptedHoursSum,
+    databaseMonth,
     data,
     dataCurrentHours,
-  } = useDataBaseValues();
+  } = useDataBaseValues(monthValue);
 
   const columnsIdFRomDatabase = data && Object.keys(data).join();
 
@@ -53,37 +45,23 @@ const {month} = useParams();
     btnContent = <div> "Loading" </div>;
   }
 
-  
   if (succes.isError) {
     btnContent = <div> "Błąd" </div>;
   }
 
-  // console.log("head", succes.isError);
-
   const handleAddHours = async () => {
     await updateColumns({
-      id: databaseColumnsId,
+      id: data && databaseMonth?.id,
       columns: {
-        mounth:"",
+        ...databaseMonth,
         allHours: +numberOfDays,
-        currentHours:
-          +numberOfDays -
-          submitedHoursSum -
-          acceptedHoursSum -
-          rejectedHoursSum +
-          rejectedHoursSum,
-        submitedHours: dataBaseSubmitedHours,
-        acceptedHours: databaseAccepteddHours,
-        rejectedHpurs: databaseRejectedHours,
-        columns: updatedColumnsWithAddedDays,
       },
     });
   };
 
   return (
     <header>
-      {/* <div>{month}</div> */}
-      {/* <div style={{ display: "flex" }}>
+      <div style={{ display: "flex" }}>
         <TextInput
           type="number"
           name="numberOfDays"
@@ -93,15 +71,12 @@ const {month} = useParams();
           handleChange={handleInputChange}
         />
 
-        <button onClick={handleAddHours}>
-          {btnContent}
-        </button>
+        <button onClick={handleAddHours}>{btnContent}</button>
       </div>
 
       <button onClick={handleDelete}> usuń wszystko</button>
       <p>Godziny w miesiącu: {databaseAllHours} </p>
       <p>Godziny do wykorzystania: {dataCurrentHours} </p>
-      <p>{id}</p> */}
     </header>
   );
 };

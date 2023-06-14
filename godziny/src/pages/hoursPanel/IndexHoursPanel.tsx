@@ -1,100 +1,64 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { DragDropContext } from "react-beautiful-dnd";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-import Column from "./Column";
-import HeaderInPanel from "./HeaderInPanel";
-import DayForm from "./dayForm/DayForm";
-import useDataBaseValues from "./useDataBaseValues";
-import { handleDragDrop } from "./utils";
+import { useParams } from "react-router-dom";
 import {
   useColumnsQuery,
   useUpdateColumnsMutation,
 } from "../../services/apiSlice";
+import Column from "./Column";
+import HeaderInPanel from "./HeaderInPanel";
+import DayForm from "./dayForm/DayForm";
 import IndexSidebar from "./sidebar/IndexSidebar";
+import useDataBaseValues from "./useDataBaseValues";
+import { handleDragDrop } from "./utils";
 
 const IndexHoursPanel = () => {
-  const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
 
-  const { data, isLoading, error } = useColumnsQuery(undefined);
+  const { data, error } = useColumnsQuery(undefined);
   const [updateColumns, succes] = useUpdateColumnsMutation();
   const { monthValue } = useParams();
 
   const {
-    databaseColumnsId,
     databaseAllHours,
-    dataCurrentHours,
-    databaseAccepteddHours,
+    databaseAcceptedHours,
     databaseRejectedHours,
+    dataBaseSubmitedHours,
+    databaseMonth,
+    submitedHoursSum,
     acceptedHoursSum,
     rejectedHoursSum,
-    dataBaseSubmitedHours,
-    databaseColumns,
-    submitedHoursSum,
-    databaseMonth,
-    databaseMonthNew,
-    databaseDataWithId,
-    databaseColumnsNew,
-    // databaseMonthsCollection,
-    // mounthWithArrays,
   } = useDataBaseValues(monthValue);
 
   const [columns, setColumns] = useState<any[]>([]);
 
   useEffect(() => {
-    data && setColumns(databaseMonthNew?.columns);
+    data && setColumns(databaseMonth?.columns);
   }, [data, monthValue]);
 
-  // console.log("columns", columns);
-
   useEffect(() => {
-    databaseColumnsId &&
+    data &&
       updateColumns({
-        id: data && databaseMonthNew.id,
+        id: data && databaseMonth?.id,
         columns: {
-          ...databaseMonthNew,
+          ...databaseMonth,
           columns: columns,
+          currentHours:
+            databaseAllHours -
+            submitedHoursSum -
+            acceptedHoursSum -
+            rejectedHoursSum +
+            rejectedHoursSum,
+          submitedHours: submitedHoursSum,
+          acceptedHours: acceptedHoursSum,
+          rejectedHours: rejectedHoursSum,
         },
       });
   }, [
     columns,
-    // data && mounthWithArrays.id,
-    // mounthWithArrays,
-    // numberOfDays,
-    // submitedHoursSum,
-    // acceptedHoursSum,
-    // rejectedHoursSum,
+    submitedHoursSum,
+    acceptedHoursSum,
+    rejectedHoursSum,
   ]);
-
-  // useEffect(() => {
-  //   databaseColumnsId &&
-  //     updateColumns({
-  //       id: databaseColumnsId,
-  //       columns: {
-  //         month: databaseMonth,
-  //         allHours: databaseAllHours,
-  //         currentHours:
-  //           databaseAllHours -
-  //           submitedHoursSum -
-  //           acceptedHoursSum -
-  //           rejectedHoursSum +
-  //           rejectedHoursSum,
-  //         submitedHours: submitedHoursSum,
-  //         acceptedHours: acceptedHoursSum,
-  //         rejectedHpurs: rejectedHoursSum,
-  //         columns: columns,
-  //       },
-  //     });
-  // }, [
-  //   columns,
-  //   numberOfDays,
-  //   submitedHoursSum,
-  //   acceptedHoursSum,
-  //   rejectedHoursSum,
-  // ]);
-
-  // console.log("col", columns);
 
   let columnsContent = !succes.isError ? (
     <div>
@@ -105,7 +69,7 @@ const IndexHoursPanel = () => {
           <div style={{ display: "flex" }}>
             {[
               { header: "Złożone:", counter: dataBaseSubmitedHours },
-              { header: "Zakceptowane:", counter: databaseAccepteddHours },
+              { header: "Zakceptowane:", counter: databaseAcceptedHours },
               { header: "Odrzucone:", counter: databaseRejectedHours },
             ].map(({ header, counter }) => {
               return (
@@ -144,7 +108,6 @@ const IndexHoursPanel = () => {
       <div>
         <HeaderInPanel />
         <DayForm />
-        {/* {data && <div> {databaseMonthNew.month} </div>} */}
         {columnsContent}
       </div>
     </div>

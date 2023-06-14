@@ -7,17 +7,6 @@ interface Props {
 }
 
 const Column = (props: Props) => {
-  const {
-    databaseColumnsId,
-    databaseAllHours,
-    dataCurrentHours,
-    dataBaseSubmitedHours,
-    databaseColumns,
-    submitedHoursSum,
-    data,
-    updateColumns,
-  } = useDataBaseValues();
-
   return (
     <div>
       <Droppable droppableId={props.column.id}>

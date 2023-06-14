@@ -4,7 +4,7 @@ import {
   useColumnsQuery,
   useUpdateColumnsMutation,
 } from "../../services/apiSlice";
-import {addDaysToColumns, addDaysToEmptyColumns } from "./utils";
+import { addDaysToColumns, addDaysToEmptyColumns } from "./utils";
 
 const defaultValue = null;
 interface DatabaseColumns {
@@ -13,134 +13,76 @@ interface DatabaseColumns {
 }
 
 const useDataBaseValues = (monthValue: any = defaultValue) => {
-  const { data, error } = useColumnsQuery(undefined);
-  const [addDays, success] = useAddDaysMutation();
-  const [updateColumns] = useUpdateColumnsMutation();
+  const { data } = useColumnsQuery(undefined);
 
-  const databaseColumnsId = data && Object.keys(data).join();
+  const databaseMonthsId = data && Object.keys(data);
 
-  const databaseColumnsIdxxx = data && Object.keys(data);
-
-  const databaseAllData = data
-    ? Object.values(data).flat()
-    : ([] as DatabaseColumns[]);
-
-  const databaseDataWithId =
-    databaseColumnsIdxxx &&
+  const databaseMonthsWithId =
+    databaseMonthsId &&
     Object.values(data)
       .flat()
       .map((item: any, idx) => {
-        return { ...item, id: databaseColumnsIdxxx[idx] };
+        return { ...item, id: databaseMonthsId[idx] };
       });
 
-  const databaseMonthsCollection = addDaysToColumns(databaseDataWithId);
+  const databaseMonthsCollection = addDaysToColumns(databaseMonthsWithId);
 
-  const databaseMonthNew: any =
+  const databaseMonth: any =
     data && databaseMonthsCollection.length > 0
       ? databaseMonthsCollection?.find(
           (month: any) => month.month === monthValue
         )
       : undefined;
 
-  const databaseColumnsNew = data && databaseMonthNew?.columns;
+  const databaseColumns = data && databaseMonth?.columns;
 
-  // const databaseColumnsUtils = addDaysToEmptyColumns(databaseColumnsNew);
+  // hours values
 
-  const databaseAllHours =
-    databaseMonthNew && "allHours" in databaseMonthNew
-      ? databaseMonthNew.allHours
-      : "";
+  const databaseAllHours = data ? databaseMonth?.allHours : "";
+  const dataCurrentHours = data ? databaseMonth?.currentHours : "";
+  const dataBaseSubmitedHours = data ? databaseMonth?.submitedHours : "";
+  const databaseAcceptedHours = data ? databaseMonth?.acceptedHours : "";
+  const databaseRejectedHours = data ? databaseMonth?.rejectedHours : "";
 
-  console.log("", databaseColumnsNew);
-
-  const dataCurrentHours =
-    data && databaseAllData.length > 0
-      ? (databaseAllData[0] as any)?.currentHours
-      : "";
-
-  const dataBaseSubmitedHours =
-    data && databaseAllData.length > 0
-      ? (databaseAllData[0] as any)?.submitedHours
-      : "";
-
-  const databaseAccepteddHours =
-    data && databaseAllData.length > 0
-      ? (databaseAllData[0] as any)?.acceptedHours
-      : "";
-
-  const databaseRejectedHours =
-    data && databaseAllData.length > 0
-      ? (databaseAllData[0] as any)?.rejectedHpurs
-      : "";
-
-  const databaseMonth =
-    data && databaseAllData.length > 0
-      ? (databaseAllData[0] as any)?.month
-      : "";
-
-  const dataBaseColumnsWithoutDays =
-    data && databaseAllData.length > 0
-      ? (databaseAllData[0] as any)?.columns
-      : [];
-
-  const databaseColumns = addDaysToEmptyColumns(dataBaseColumnsWithoutDays);
-
-  const updatedColumnsWithAddedDays =
-    data && databaseAllData.length > 0 ? [...databaseColumns] : [];
-
-  const newColumnsFromDatabase =
-    data && databaseAllData.length > 0 ? [...databaseColumns] : [];
+  // hours sums
 
   const submitedHoursSum =
-    data && databaseAllData.length > 0 && databaseColumns[0]?.days
-      ? databaseColumns[0]?.days.reduce((sum: any, day: any) => {
+    data && databaseMonthsCollection.length > 0 && databaseColumns?.[0].days
+      ? databaseColumns?.[0].days.reduce((sum: any, day: any) => {
           return sum + day.hours;
         }, 0)
       : 0;
 
   const acceptedHoursSum =
-    data && databaseAllData.length > 0 && databaseColumns[1]?.days
-      ? databaseColumns[1]?.days.reduce((sum: any, day: any) => {
+    data && databaseMonthsCollection.length > 0 && databaseColumns?.[0].days
+      ? databaseColumns?.[1].days.reduce((sum: any, day: any) => {
           return sum + day.hours;
         }, 0)
       : 0;
 
   const rejectedHoursSum =
-    data && databaseAllData.length > 0 && databaseColumns[2]?.days
-      ? databaseColumns[2]?.days.reduce((sum: any, day: any) => {
+    data && databaseMonthsCollection.length > 0 && databaseColumns?.[0].days
+      ? databaseColumns?.[2].days.reduce((sum: any, day: any) => {
           return sum + day.hours;
         }, 0)
       : 0;
 
-  return {
-    databaseMonthsCollection,
-    // mounthWithArrays,
-    // databaseColumnsUtils,
-    databaseAllData,
-    databaseColumnsNew,
-    databaseColumnsIdxxx,
+  
 
-    databaseMonthNew,
-    databaseDataWithId,
+  return {
+    data,
+    databaseMonthsId,
+    databaseMonthsCollection,
+    databaseMonth,
+    databaseColumns,
     databaseAllHours,
     dataCurrentHours,
-    databaseAccepteddHours,
+    databaseAcceptedHours,
     databaseRejectedHours,
-    acceptedHoursSum,
-    databaseMonth,
-    rejectedHoursSum,
     dataBaseSubmitedHours,
-    databaseColumnsId,
-    updatedColumnsWithAddedDays,
-    dataBaseColumnsWithoutDays,
-    newColumnsFromDatabase,
-    databaseColumns,
+    acceptedHoursSum,
+    rejectedHoursSum,
     submitedHoursSum,
-    data,
-    error,
-    success,
-    updateColumns,
-    addDays,
   };
 };
 

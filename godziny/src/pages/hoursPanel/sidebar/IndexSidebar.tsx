@@ -9,22 +9,7 @@ const IndexSidebar = () => {
   const navigate = useNavigate();
   const [addDays, success] = useAddDaysMutation();
 
-  const {
-    databaseColumnsId,
-    databaseAllHours,
-    dataCurrentHours,
-    databaseAccepteddHours,
-    databaseRejectedHours,
-    acceptedHoursSum,
-    rejectedHoursSum,
-    dataBaseSubmitedHours,
-    databaseColumns,
-    submitedHoursSum,
-    databaseMonth,
-    data,
-    databaseAllData,
-    databaseMonthsCollection,
-  } = useDataBaseValues();
+  const { data, databaseMonthsCollection } = useDataBaseValues();
 
   var date = new Date();
   var currMounth = new Intl.DateTimeFormat("pl", {
@@ -69,7 +54,6 @@ const IndexSidebar = () => {
     await addDays(addMounth);
   };
 
-
   return (
     <div>
       <form onSubmit={handleSubmit} style={{ marginRight: 20 }}>
@@ -85,7 +69,7 @@ const IndexSidebar = () => {
 
       {data === null
         ? null
-        : databaseMonthsToString.map((month:any, idx:any) => {
+        : databaseMonthsToString.map((month: any, idx: any) => {
             return (
               <div key={month}>
                 <Link to={`/miesiac/${databaseMonthValues[idx]}`} key={month}>
