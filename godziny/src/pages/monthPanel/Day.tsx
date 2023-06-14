@@ -2,9 +2,12 @@ import { Draggable } from "react-beautiful-dnd";
 import { FaTrashAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useColumnsQuery, useUpdateColumnsMutation } from "../../services/apiSlice";
+import {
+  useColumnsQuery,
+  useUpdateColumnsMutation,
+} from "../../services/apiSlice";
 import DayPrintData from "./DayPrintData";
-import useDataBaseValues from "./useDataBaseValues";
+import useDataBaseValues from "./hooksMonthPanel/useDataBaseValues";
 
 interface Props {
   day: any;
@@ -51,9 +54,7 @@ const Day = (props: Props) => {
 
         await updateColumns({
           id: data && databaseMonth?.id,
-          columns: {...databaseMonth, 
-            columns: updatedColumnsWithDeletedDays,
-          },
+          columns: { ...databaseMonth, columns: updatedColumnsWithDeletedDays },
         });
       }
     });

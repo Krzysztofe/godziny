@@ -6,14 +6,13 @@ import {
   useUpdateColumnsMutation,
 } from "../../services/apiSlice";
 import Column from "./Column";
-import HeaderInPanel from "./HeaderInPanel";
+import HeaderMonthPanel from "./headerMonthPanel/HeaderMonthPanel";
 import DayForm from "./dayForm/DayForm";
 import IndexSidebar from "./sidebar/IndexSidebar";
-import useDataBaseValues from "./useDataBaseValues";
+import useDataBaseValues from "./hooksMonthPanel/useDataBaseValues";
 import { handleDragDrop } from "./utils";
 
-const IndexHoursPanel = () => {
-
+const IndexMonthPanel = () => {
   const { data, error } = useColumnsQuery(undefined);
   const [updateColumns, succes] = useUpdateColumnsMutation();
   const { monthValue } = useParams();
@@ -37,6 +36,7 @@ const IndexHoursPanel = () => {
 
   useEffect(() => {
     data &&
+      databaseMonth?.month &&
       updateColumns({
         id: data && databaseMonth?.id,
         columns: {
@@ -53,12 +53,7 @@ const IndexHoursPanel = () => {
           rejectedHours: rejectedHoursSum,
         },
       });
-  }, [
-    columns,
-    submitedHoursSum,
-    acceptedHoursSum,
-    rejectedHoursSum,
-  ]);
+  }, [columns, submitedHoursSum, acceptedHoursSum, rejectedHoursSum]);
 
   let columnsContent = !succes.isError ? (
     <div>
@@ -106,12 +101,11 @@ const IndexHoursPanel = () => {
     <div style={{ display: "flex" }}>
       <IndexSidebar />
       <div>
-        <HeaderInPanel />
-        <DayForm />
+        <HeaderMonthPanel />
         {columnsContent}
       </div>
     </div>
   );
 };
 
-export default IndexHoursPanel;
+export default IndexMonthPanel;

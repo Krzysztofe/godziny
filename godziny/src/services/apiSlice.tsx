@@ -13,11 +13,11 @@ export const columnsApiSlice = createApi({
       providesTags: ["columns"],
     }),
 
-    addDays: builder.mutation<void, any>({
-      query: reaction => ({
+    addMonth: builder.mutation<void, any>({
+      query: body => ({
         url: "/columns.json",
         method: "POST",
-        body: reaction,
+        body: body,
       }),
       invalidatesTags: ["columns"],
     }),
@@ -51,7 +51,7 @@ export const columnsApiSlice = createApi({
 
 export const {
   useColumnsQuery,
-  useAddDaysMutation,
+  useAddMonthMutation,
   useDeleteAllColumnsMutation,
   useUpdateColumnsMutation,
   useUpdateDayMutation,

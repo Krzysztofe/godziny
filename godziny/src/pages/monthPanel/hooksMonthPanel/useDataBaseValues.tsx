@@ -1,18 +1,13 @@
-import { useDispatch } from "react-redux";
-import {
-  useAddDaysMutation,
-  useColumnsQuery,
-  useUpdateColumnsMutation,
-} from "../../services/apiSlice";
-import { addDaysToColumns, addDaysToEmptyColumns } from "./utils";
+import { useColumnsQuery } from "../../../services/apiSlice";
+import { addDaysToColumns } from "../utils";
 
-const defaultValue = null;
+// const defaultValue = null;
 interface DatabaseColumns {
   allHours: any;
   columns: any[];
 }
 
-const useDataBaseValues = (monthValue: any = defaultValue) => {
+const useDataBaseValues = (monthValue: any = null) => {
   const { data } = useColumnsQuery(undefined);
 
   const databaseMonthsId = data && Object.keys(data);
@@ -66,8 +61,6 @@ const useDataBaseValues = (monthValue: any = defaultValue) => {
           return sum + day.hours;
         }, 0)
       : 0;
-
-  
 
   return {
     data,

@@ -1,6 +1,6 @@
 import { Droppable } from "react-beautiful-dnd";
 import Day from "./Day";
-import useDataBaseValues from "./useDataBaseValues";
+import useDataBaseValues from "./hooksMonthPanel/useDataBaseValues";
 
 interface Props {
   column: any;

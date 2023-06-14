@@ -4,28 +4,10 @@ import TextInput from "../../../components/inputs/TextInput";
 import useDayForm from "./useDayForm";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import useDataBaseValues from "../useDataBaseValues";
+import useDataBaseValues from "../hooksMonthPanel/useDataBaseValues";
 
 const DayForm = () => {
-  const dispatch = useDispatch();
-
-
-  // const {
-  //   databaseColumnsId,
-  //   databaseAllHours,
-  //   dataCurrentHours,
-  //   databaseAcceptedHours,
-  //   databaseRejectedHours,
-  //   acceptedHoursSum,
-  //   rejectedHoursSum,
-  //   dataBaseSubmitedHours,
-  //   databaseColumns,
-  //   submitedHoursSum,
-  // } = useDataBaseValues();
-
   const { formik } = useDayForm();
-
-
 
   return (
     <form onSubmit={formik.handleSubmit} style={{ marginTop: 20 }}>
@@ -77,7 +59,6 @@ const DayForm = () => {
       <button type={"submit"}>
         <FcApproval />
       </button>
-    
     </form>
   );
 };
