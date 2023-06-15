@@ -6,6 +6,7 @@ import { useUpdateColumnsMutation } from "../../../services/apiSlice";
 import { useParams } from "react-router-dom";
 import useDataBaseValues from "../useDataBaseValues";
 import { FcApproval } from "react-icons/fc";
+import { Form, Button } from "react-bootstrap";
 
 const FormHeaderMonhPanel = () => {
   const { monthURL } = useParams();
@@ -41,18 +42,32 @@ const FormHeaderMonhPanel = () => {
   }
 
   return (
-    <form onSubmit={handleAddHours} style={{ display: "flex" }}>
-      <TextInput
-        type="number"
-        name="numberOfDays"
-        value={numberOfDays}
-        label="Godziny w miesiącu "
-        placeholder="Liczba"
-        handleChange={handleInputChange}
-      />
+    <Form>
+      {/* <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Godziny w miesiącu</Form.Label>
+        <Form.Control type="number" placeholder="Liczba" />
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+        </Form.Text>
+      </Form.Group>
 
-      <button type="submit">{btnContent}</button>
-    </form>
+      <Button variant="primary" type="submit">
+        {btnContent}
+      </Button> */}
+
+      <form onSubmit={handleAddHours} style={{ display: "flex" }}>
+        <TextInput
+          type="number"
+          name="numberOfDays"
+          value={numberOfDays}
+          label="Godziny w miesiącu "
+          placeholder="Liczba"
+          handleChange={handleInputChange}
+        />
+
+        <button type="submit">{btnContent}</button>
+      </form>
+    </Form>
   );
 };
 

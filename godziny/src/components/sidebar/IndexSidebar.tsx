@@ -4,6 +4,7 @@ import { useColumnsQuery } from "../../services/apiSlice";
 import DayForm from "./dayForm/DayForm";
 import MonthForm from "./monthForm/MonthForm";
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const IndexSidebar = () => {
   const navigate = useNavigate();
@@ -11,16 +12,26 @@ const IndexSidebar = () => {
   const { data } = useColumnsQuery(undefined);
   const { databaseMonthsCollection } = useDataBaseValues(monthURL);
 
-  const databaseMonthsDates =
+  const databaseMonthsDatesSorted =
     data && databaseMonthsCollection
-      ? databaseMonthsCollection.map(month => month.month)
+      ? databaseMonthsCollection
+          .map(month => month.month)
+          .sort((date1: any, date2: any) => {
+            if (date1 < date2) {
+              return -1;
+            } else if (date1 > date2) {
+              return 1;
+            } else {
+              return 0;
+            }
+          })
       : [];
 
   const databaseMonthsDatesToString =
     data &&
-    databaseMonthsDates?.map((monthDate: any) => {
+    databaseMonthsDatesSorted?.map((monthDate: any) => {
       const monthToDateFormat =
-        data && databaseMonthsDates && new Date(monthDate);
+        data && databaseMonthsDatesSorted && new Date(monthDate);
 
       return new Intl.DateTimeFormat("pl-PL", {
         year: "numeric",
@@ -29,33 +40,56 @@ const IndexSidebar = () => {
       }).format(monthToDateFormat);
     });
 
-  const uu = databaseMonthsDates[databaseMonthsDates.length - 1];
+  // const date = new Date();
+  // const currYearNum = new Intl.DateTimeFormat("pl", {
+  //   year: "numeric",
+  // }).format(date);
 
-  // console.log("", databaseMonthsDates[databaseMonthsDates.length - 1]);
+  // const currMonthNum = new Intl.DateTimeFormat("pl", {
+  //   month: "2-digit",
+  // }).format(date);
+
+  const url = databaseMonthsDatesSorted[databaseMonthsDatesSorted.length - 1];
 
   // useEffect(() => {
-  //   navigate(`/miesiac/${uu}`);
-  // }, [databaseMonthsDates]);
+  //   const date = new Date();
+  //   const currYearNum = new Intl.DateTimeFormat("pl", {
+  //     year: "numeric",
+  //   }).format(date);
+  //   const currMonthNum = new Intl.DateTimeFormat("pl", {
+  //     month: "2-digit",
+  //   }).format(date);
+  //   data && url && navigate(`/miesiac/${currYearNum}-${currMonthNum}`);
+  // }, []);
+
+  const urlPrintNavBar = useLocation().pathname;
 
   return (
-    <div style={{ position: "fixed" }}>
-      <MonthForm />
+    <>
+      {!["/"].includes(urlPrintNavBar) ? (
+        <div style={{ position: "fixed" }}>
+          <MonthForm />
 
-      {data === undefined || data === null ? (
-        <p>Brak danych</p>
-      ) : (
-        databaseMonthsDatesToString.map((month: any, idx: any) => {
-          return (
-            <div key={month}>
-              <Link to={`/miesiac/${databaseMonthsDates[idx]}`} key={month}>
-                {month}
-              </Link>
-            </div>
-          );
-        })
-      )}
-      <DayForm />
-    </div>
+          {data === undefined || data === null ? (
+            <p>Brak danych</p>
+          ) : (
+            databaseMonthsDatesToString.map((month: any, idx: any) => {
+              return (
+                <div key={month}>
+                  <Link
+                    to={`/miesiac/${databaseMonthsDatesSorted[idx]}`}
+                    key={month}
+                  >
+                    {month}
+                  </Link>
+                </div>
+              );
+            })
+          )}
+          <DayForm />
+        </div>
+      ) : null}
+    </>
   );
 };
 

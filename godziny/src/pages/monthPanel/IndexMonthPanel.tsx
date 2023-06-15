@@ -11,6 +11,7 @@ import HeaderMonthPanel from "./headerMonthPanel/HeaderMonthPanel";
 import useDataBaseValues from "./hooksMonthPanel/useDataBaseValues";
 import { handleDragDrop } from "./utils";
 import DayForm from "../../components/sidebar/dayForm/DayForm";
+import Nav from "react-bootstrap/Nav";
 
 const IndexMonthPanel = () => {
   const { data, error } = useColumnsQuery(undefined);
@@ -35,11 +36,12 @@ const IndexMonthPanel = () => {
     data && setColumns(databaseMonth?.columns);
   }, [data, monthURL]);
 
-  console.log('columns',columns)
+  // console.log('columns',columns)
   // console.log("database", databaseColumns);
 
   useEffect(() => {
     data &&
+      columns?.length > 0 &&
       databaseMonth?.month &&
       updateColumns({
         id: data && databaseMonth?.id,
