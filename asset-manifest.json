@@ -1,22 +1,25 @@
 {
   "files": {
-    "main.js": "/godziny/static/js/main.d2fa5951.js",
-    "static/js/855.ed70fd91.chunk.js": "/godziny/static/js/855.ed70fd91.chunk.js",
-    "static/js/35.ee239980.chunk.js": "/godziny/static/js/35.ee239980.chunk.js",
-    "static/js/839.a08f09f9.chunk.js": "/godziny/static/js/839.a08f09f9.chunk.js",
+    "main.css": "/godziny/static/css/main.4da62354.css",
+    "main.js": "/godziny/static/js/main.c087816c.js",
+    "static/js/54.a76844cd.chunk.js": "/godziny/static/js/54.a76844cd.chunk.js",
+    "static/js/35.cc7858dc.chunk.js": "/godziny/static/js/35.cc7858dc.chunk.js",
+    "static/js/839.745ba9fc.chunk.js": "/godziny/static/js/839.745ba9fc.chunk.js",
     "static/js/183.89be9c25.chunk.js": "/godziny/static/js/183.89be9c25.chunk.js",
     "static/js/568.d197c8c8.chunk.js": "/godziny/static/js/568.d197c8c8.chunk.js",
-    "static/js/526.ed48132f.chunk.js": "/godziny/static/js/526.ed48132f.chunk.js",
+    "static/js/181.add83eda.chunk.js": "/godziny/static/js/181.add83eda.chunk.js",
     "index.html": "/godziny/index.html",
-    "main.d2fa5951.js.map": "/godziny/static/js/main.d2fa5951.js.map",
-    "855.ed70fd91.chunk.js.map": "/godziny/static/js/855.ed70fd91.chunk.js.map",
-    "35.ee239980.chunk.js.map": "/godziny/static/js/35.ee239980.chunk.js.map",
-    "839.a08f09f9.chunk.js.map": "/godziny/static/js/839.a08f09f9.chunk.js.map",
+    "main.4da62354.css.map": "/godziny/static/css/main.4da62354.css.map",
+    "main.c087816c.js.map": "/godziny/static/js/main.c087816c.js.map",
+    "54.a76844cd.chunk.js.map": "/godziny/static/js/54.a76844cd.chunk.js.map",
+    "35.cc7858dc.chunk.js.map": "/godziny/static/js/35.cc7858dc.chunk.js.map",
+    "839.745ba9fc.chunk.js.map": "/godziny/static/js/839.745ba9fc.chunk.js.map",
     "183.89be9c25.chunk.js.map": "/godziny/static/js/183.89be9c25.chunk.js.map",
     "568.d197c8c8.chunk.js.map": "/godziny/static/js/568.d197c8c8.chunk.js.map",
-    "526.ed48132f.chunk.js.map": "/godziny/static/js/526.ed48132f.chunk.js.map"
+    "181.add83eda.chunk.js.map": "/godziny/static/js/181.add83eda.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.d2fa5951.js"
+    "static/css/main.4da62354.css",
+    "static/js/main.c087816c.js"
   ]
 }
