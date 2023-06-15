@@ -51,16 +51,16 @@ const IndexSidebar = () => {
 
   const url = databaseMonthsDatesSorted[databaseMonthsDatesSorted.length - 1];
 
-  // useEffect(() => {
-  //   const date = new Date();
-  //   const currYearNum = new Intl.DateTimeFormat("pl", {
-  //     year: "numeric",
-  //   }).format(date);
-  //   const currMonthNum = new Intl.DateTimeFormat("pl", {
-  //     month: "2-digit",
-  //   }).format(date);
-  //   data && url && navigate(`/miesiac/${currYearNum}-${currMonthNum}`);
-  // }, []);
+  useEffect(() => {
+    const date = new Date();
+    const currYearNum = new Intl.DateTimeFormat("pl", {
+      year: "numeric",
+    }).format(date);
+    const currMonthNum = new Intl.DateTimeFormat("pl", {
+      month: "2-digit",
+    }).format(date);
+    data && url && navigate(`/miesiac/${currYearNum}-${currMonthNum}`);
+  }, []);
 
   const urlPrintNavBar = useLocation().pathname;
 

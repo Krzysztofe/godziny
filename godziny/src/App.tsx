@@ -18,6 +18,7 @@ function App() {
           <Route path="/" element={<Login />} />
           {/* <Route path="/miesiac" element={<IndexMonthPanel />} /> */}
           <Route path="/miesiac/:monthURL" element={<IndexMonthPanel />} />
+        
         </Routes>
       </Suspense>
     </BrowserRouter>

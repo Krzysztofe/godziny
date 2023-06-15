@@ -6,7 +6,8 @@ import { useUpdateColumnsMutation } from "../../../services/apiSlice";
 import { useParams } from "react-router-dom";
 import useDataBaseValues from "../useDataBaseValues";
 import { FcApproval } from "react-icons/fc";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Spinner } from "react-bootstrap";
+
 
 const FormHeaderMonhPanel = () => {
   const { monthURL } = useParams();
@@ -34,7 +35,11 @@ const FormHeaderMonhPanel = () => {
   let btnContent = <FcApproval />;
 
   if (success.isLoading) {
-    btnContent = <div> "Loading" </div>;
+    btnContent = (
+      <Spinner animation="border" size="sm" variant="secondary">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
   }
 
   if (success.isError) {
@@ -42,32 +47,18 @@ const FormHeaderMonhPanel = () => {
   }
 
   return (
-    <Form>
-      {/* <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Godziny w miesiącu</Form.Label>
-        <Form.Control type="number" placeholder="Liczba" />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
+    <form onSubmit={handleAddHours} style={{ display: "flex" }}>
+      <TextInput
+        type="number"
+        name="numberOfDays"
+        value={numberOfDays}
+        label="Godziny w miesiącu "
+        placeholder="Liczba"
+        handleChange={handleInputChange}
+      />
 
-      <Button variant="primary" type="submit">
-        {btnContent}
-      </Button> */}
-
-      <form onSubmit={handleAddHours} style={{ display: "flex" }}>
-        <TextInput
-          type="number"
-          name="numberOfDays"
-          value={numberOfDays}
-          label="Godziny w miesiącu "
-          placeholder="Liczba"
-          handleChange={handleInputChange}
-        />
-
-        <button type="submit">{btnContent}</button>
-      </form>
-    </Form>
+      <button type="submit">{btnContent}</button>
+    </form>
   );
 };
 

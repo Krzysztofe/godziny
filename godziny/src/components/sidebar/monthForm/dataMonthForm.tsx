@@ -29,10 +29,12 @@ const columns: ColumnModel[] = [
   {
     id: "oczekujące",
     columnName: "Oczekujące",
+    days: [null],
   },
   {
     id: "zatwierdzone",
     columnName: "Zatwierdzone",
+    days: [null],
   },
 ];
 

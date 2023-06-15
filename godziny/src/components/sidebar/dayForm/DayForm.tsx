@@ -4,6 +4,7 @@ import TextInput from "../../inputs/TextInput";
 import useDayForm from "./useDayForm";
 import { useParams, useLocation } from "react-router-dom";
 import useDataBaseValues from "../../../pages/monthPanel/useDataBaseValues";
+import {Spinner } from "react-bootstrap"
 
 const DayForm = () => {
   const { monthURL } = useParams();
@@ -29,7 +30,11 @@ const DayForm = () => {
   let btnContent = <FcApproval />;
 
   if (success.isLoading) {
-    btnContent = <div> "Loading" </div>;
+    btnContent = (
+      <Spinner animation="border" size="sm" variant="secondary">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
   }
 
   if (success.isError) {

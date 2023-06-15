@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import useDataBaseValues from "../hooksMonthPanel/useDataBaseValues";
 import FormHeaderMonhPanel from "./FormHeaderMonhPanel";
 
-
 const HeaderMonthPanel = () => {
   const { monthURL } = useParams();
 
@@ -25,9 +24,14 @@ const HeaderMonthPanel = () => {
         <div style={{ marginLeft: 30 }}>{monthToString}</div>
       </div>
 
-      <div>
-      Wszystkie &nbsp;&nbsp; {databaseAllHours} - {dataCurrentHours}{" "}
-        &nbsp;&nbsp; Do wykorzystania
+      <div style={{ display: "flex" }}>
+        <div style={{ marginRight: 20 }}>
+          Wszystkie w miesiącu: {databaseAllHours}
+        </div>
+
+        <div>
+          Do wykorzystania: {dataCurrentHours}
+        </div>
       </div>
     </header>
   );

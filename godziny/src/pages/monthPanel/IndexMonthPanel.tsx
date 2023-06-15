@@ -33,15 +33,15 @@ const IndexMonthPanel = () => {
   const [columns, setColumns] = useState<any[]>([]);
 
   useEffect(() => {
-    data && setColumns(databaseMonth?.columns);
+    data && databaseMonth && setColumns(databaseColumns);
   }, [data, monthURL]);
 
-  // console.log('columns',columns)
+  // console.log("columns", columns);
   // console.log("database", databaseColumns);
 
   useEffect(() => {
     data &&
-      columns?.length > 0 &&
+      columns?.length > 1 &&
       databaseMonth?.month &&
       updateColumns({
         id: data && databaseMonth?.id,
@@ -59,13 +59,7 @@ const IndexMonthPanel = () => {
           rejectedHours: rejectedHoursSum,
         },
       });
-  }, [
-    columns,
-    databaseAllHours,
-    submitedHoursSum,
-    acceptedHoursSum,
-    rejectedHoursSum,
-  ]);
+  }, [columns]);
 
   let columnsContent = !succes.isError ? (
     <div>

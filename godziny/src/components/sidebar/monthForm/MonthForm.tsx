@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { monthPattern } from "./dataMonthForm";
 import { useAddMonthMutation } from "../../../services/apiSlice";
 import { FcApproval } from "react-icons/fc";
+import { Spinner } from "react-bootstrap";
 
 const MonthForm = () => {
   const [addMonth, success] = useAddMonthMutation();
@@ -28,16 +29,19 @@ const MonthForm = () => {
     await addMonth(monthToPOST);
   };
 
-let btnContent = <FcApproval />;
+  let btnContent = <FcApproval />;
 
-if (success.isLoading) {
-  btnContent = <div> "Loading" </div>;
-}
+  if (success.isLoading) {
+    btnContent = (
+      <Spinner animation="border" size="sm" variant="secondary">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
+  }
 
-if (success.isError) {
-  btnContent = <div> "Błąd" </div>;
-}
-
+  if (success.isError) {
+    btnContent = <div> "Błąd" </div>;
+  }
 
   return (
     <form onSubmit={handleSubmit} style={{ marginRight: 20 }}>
