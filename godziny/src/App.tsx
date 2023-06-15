@@ -1,10 +1,9 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoadingPage from "./pages/loadingPage/LoadingPage";
-import IndexSidebar from "./components/sidebar/IndexSidebar";
-const Login = lazy(() => import("./pages/login/Login"));
 
-// const IndexSidebar = lazy(() => import("./components/sidebar/IndexSidebar"));
+const Login = lazy(() => import("./pages/login/Login"));
+const IndexSidebar = lazy(() => import("./components/sidebar/IndexSidebar"));
 const IndexMonthPanel = lazy(
   () => import("./pages/monthPanel/IndexMonthPanel")
 );

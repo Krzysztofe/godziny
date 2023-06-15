@@ -16,12 +16,10 @@ const useDayForm = () => {
   const [updateColumns, success] = useUpdateColumnsMutation();
   const urlParts = useLocation().pathname.split("/");
   const lastPartMonthURL = urlParts[urlParts.length - 1];
- const {monthURL} = useParams()
+  const { monthURL } = useParams();
 
-
-  const { databaseColumns, databaseMonth, data } =
+  const { databaseColumns, databaseMonth, data, dataCurrentHours } =
     useDataBaseValues(lastPartMonthURL);
-
 
   const formik = useFormik<FormValues>({
     initialValues: initialValues,
@@ -29,7 +27,7 @@ const useDayForm = () => {
 
     onSubmit: async values => {
       formik.setFieldValue("id", crypto.randomUUID());
-
+      if (dataCurrentHours - +formik.values.hours < 0) return;
       const databaseColumnsAddedDays =
         data && databaseMonth && databaseColumns?.length > 0
           ? [...databaseColumns]

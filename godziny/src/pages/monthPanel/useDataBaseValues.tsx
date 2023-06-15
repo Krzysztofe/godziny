@@ -78,11 +78,15 @@ const useDataBaseValues = (monthURL: any = null): DatabaseValues => {
         }, 0)
       : 0;
 
-  // date transformation
 
-  const databaseMonthsDates = databaseMonthsCollection.map((month: any) => {
-    return month.month;
-  });
+
+
+  // date transformation
+ const databaseMonthsDates =
+   data && databaseMonthsCollection
+     ? databaseMonthsCollection.map(month => month.month)
+     : [];
+ 
 
   const string = databaseMonthsDates.map((monthDate: any) => {
     const monthToDateFormat = new Date(monthDate);

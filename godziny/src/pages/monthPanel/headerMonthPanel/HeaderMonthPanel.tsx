@@ -20,13 +20,13 @@ const HeaderMonthPanel = () => {
     <header>
       <div style={{ display: "flex" }}>
         <FormHeaderMonhPanel />
-        
+
         <div style={{ marginLeft: 30 }}>{monthToString}</div>
       </div>
 
       <div>
-        Godziny w miesiącu - {databaseAllHours} /{" "}
-        {dataCurrentHours} - Godziny do wykorzystania:
+      Wszystkie &nbsp;&nbsp; {databaseAllHours} - {dataCurrentHours}{" "}
+        &nbsp;&nbsp; Do wykorzystania
       </div>
     </header>
   );

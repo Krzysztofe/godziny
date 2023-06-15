@@ -3,6 +3,7 @@ import useDataBaseValues from "../../pages/monthPanel/hooksMonthPanel/useDataBas
 import { useColumnsQuery } from "../../services/apiSlice";
 import DayForm from "./dayForm/DayForm";
 import MonthForm from "./monthForm/MonthForm";
+import { useEffect } from "react";
 
 const IndexSidebar = () => {
   const navigate = useNavigate();
@@ -16,9 +17,11 @@ const IndexSidebar = () => {
       : [];
 
   const databaseMonthsDatesToString =
-    databaseMonthsDates &&
+    data &&
     databaseMonthsDates?.map((monthDate: any) => {
-      const monthToDateFormat = databaseMonthsDates && new Date(monthDate);
+      const monthToDateFormat =
+        data && databaseMonthsDates && new Date(monthDate);
+
       return new Intl.DateTimeFormat("pl-PL", {
         year: "numeric",
         month: "long",
@@ -26,17 +29,19 @@ const IndexSidebar = () => {
       }).format(monthToDateFormat);
     });
 
+  const uu = databaseMonthsDates[databaseMonthsDates.length - 1];
+
+  // console.log("", databaseMonthsDates[databaseMonthsDates.length - 1]);
+
   // useEffect(() => {
-  //   navigate(`/miesiac/${year}`);
+  //   navigate(`/miesiac/${uu}`);
   // }, [databaseMonthsDates]);
 
-
-
   return (
-    <div style = {{ position: "fixed"}}>
+    <div style={{ position: "fixed" }}>
       <MonthForm />
 
-      {data === null ? (
+      {data === undefined || data === null ? (
         <p>Brak danych</p>
       ) : (
         databaseMonthsDatesToString.map((month: any, idx: any) => {

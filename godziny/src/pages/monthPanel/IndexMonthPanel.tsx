@@ -12,7 +12,6 @@ import useDataBaseValues from "./hooksMonthPanel/useDataBaseValues";
 import { handleDragDrop } from "./utils";
 import DayForm from "../../components/sidebar/dayForm/DayForm";
 
-
 const IndexMonthPanel = () => {
   const { data, error } = useColumnsQuery(undefined);
   const [updateColumns, succes] = useUpdateColumnsMutation();
@@ -20,6 +19,7 @@ const IndexMonthPanel = () => {
 
   const {
     databaseAllHours,
+    databaseColumns,
     databaseAcceptedHours,
     databaseRejectedHours,
     dataBaseSubmitedHours,
@@ -35,26 +35,35 @@ const IndexMonthPanel = () => {
     data && setColumns(databaseMonth?.columns);
   }, [data, monthURL]);
 
-  // useEffect(() => {
-  //   data &&
-  //     databaseMonth?.month &&
-  //     updateColumns({
-  //       id: data && databaseMonth?.id,
-  //       columns: {
-  //         ...databaseMonth,
-  //         columns: columns,
-  //         currentHours:
-  //           databaseAllHours -
-  //           submitedHoursSum -
-  //           acceptedHoursSum -
-  //           rejectedHoursSum +
-  //           rejectedHoursSum,
-  //         submitedHours: submitedHoursSum,
-  //         acceptedHours: acceptedHoursSum,
-  //         rejectedHours: rejectedHoursSum,
-  //       },
-  //     });
-  // }, [columns, submitedHoursSum, acceptedHoursSum, rejectedHoursSum]);
+  console.log('columns',columns)
+  // console.log("database", databaseColumns);
+
+  useEffect(() => {
+    data &&
+      databaseMonth?.month &&
+      updateColumns({
+        id: data && databaseMonth?.id,
+        columns: {
+          ...databaseMonth,
+          columns: columns,
+          currentHours:
+            databaseAllHours -
+            submitedHoursSum -
+            acceptedHoursSum -
+            rejectedHoursSum +
+            rejectedHoursSum,
+          submitedHours: submitedHoursSum,
+          acceptedHours: acceptedHoursSum,
+          rejectedHours: rejectedHoursSum,
+        },
+      });
+  }, [
+    columns,
+    databaseAllHours,
+    submitedHoursSum,
+    acceptedHoursSum,
+    rejectedHoursSum,
+  ]);
 
   let columnsContent = !succes.isError ? (
     <div>
@@ -71,7 +80,7 @@ const IndexMonthPanel = () => {
               return (
                 <h4 key={header} style={{ marginLeft: 20, width: "20vw" }}>
                   {header} {""}
-                  {counter} 
+                  {counter}
                 </h4>
               );
             })}
@@ -97,21 +106,20 @@ const IndexMonthPanel = () => {
         <div style={{ textAlign: "center" }}> {error.error} </div>
       );
   }
-
+  // console.log("", databaseMonth);
   return (
-    <div style={{ margin: "0, auto" }}>
-      {/* {data === null ? (
-        <div style={{ textAlign: "center" }}>bak danych</div>
-      ) : ( */}
+    <>
+      {databaseMonth === undefined || databaseMonth === null ? (
+        <div style={{ textAlign: "center" }}>Wybierz miesiąc</div>
+      ) : (
         <div style={{ display: "flex", marginLeft: "30vw" }}>
           <div>
-            {/* <IndexSidebar /> */}
             <HeaderMonthPanel />
             {columnsContent}
           </div>
         </div>
-      {/* )} */}
-    </div>
+      )}
+    </>
   );
 };
 

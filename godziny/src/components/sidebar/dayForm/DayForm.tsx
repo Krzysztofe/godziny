@@ -2,9 +2,29 @@ import { FcApproval } from "react-icons/fc";
 import RadioInput from "../../inputs/RadioInput";
 import TextInput from "../../inputs/TextInput";
 import useDayForm from "./useDayForm";
+import { useParams, useLocation } from "react-router-dom";
+import useDataBaseValues from "../../../pages/monthPanel/useDataBaseValues";
 
 const DayForm = () => {
+  const { monthURL } = useParams();
   const { formik, success } = useDayForm();
+  const urlParts = useLocation().pathname.split("/");
+  const lastPartMonthURL = urlParts[urlParts.length - 1];
+
+  const { dataCurrentHours, databaseAllHours } =
+    useDataBaseValues(lastPartMonthURL);
+
+
+
+  let errorHoursContent = <div></div>;
+
+  if (dataCurrentHours - +formik.values.hours < 0) {
+    errorHoursContent = <div> Brak wolnych godzin</div>;
+  }
+
+  if (databaseAllHours === 0) {
+    errorHoursContent = <div> Podaj ilość godzin w miesiącu</div>;
+  }
 
   let btnContent = <FcApproval />;
 
@@ -63,6 +83,7 @@ const DayForm = () => {
         )}
       </div>
 
+      {errorHoursContent}
       <button type="submit">{btnContent}</button>
     </form>
   );
