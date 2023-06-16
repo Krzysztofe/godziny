@@ -52,7 +52,7 @@ const FormHeaderMonhPanel = () => {
         type="number"
         name="numberOfDays"
         value={numberOfDays}
-        label="Godziny w miesiącu "
+        label="Podaj liczbę godziny w miesiącu "
         placeholder="Liczba"
         handleChange={handleInputChange}
       />

@@ -3,6 +3,8 @@ import { monthPattern } from "./dataMonthForm";
 import { useAddMonthMutation } from "../../../services/apiSlice";
 import { FcApproval } from "react-icons/fc";
 import { Spinner } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../../../data/firebaseConfig";
 
 const MonthForm = () => {
   const [addMonth, success] = useAddMonthMutation();
@@ -29,6 +31,12 @@ const MonthForm = () => {
     await addMonth(monthToPOST);
   };
 
+  const navigate = useNavigate();
+  const logout = () => {
+    auth.signOut();
+    navigate("/")
+  };
+
   let btnContent = <FcApproval />;
 
   if (success.isLoading) {
@@ -44,16 +52,19 @@ const MonthForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginRight: 20 }}>
-      <input
-        type="month"
-        value={year}
-        onChange={handleDateChange}
-        min="2023-06"
-        max="2025-12"
-      />
-      <button type="submit">{btnContent}</button>
-    </form>
+    <>
+      <button onClick={logout}> wyloguj</button>
+      <form onSubmit={handleSubmit} style={{ marginRight: 20 }}>
+        <input
+          type="month"
+          value={year}
+          onChange={handleDateChange}
+          min="2023-06"
+          max="2025-12"
+        />
+        <button type="submit">{btnContent}</button>
+      </form>
+    </>
   );
 };
 

@@ -59,7 +59,7 @@ const IndexMonthPanel = () => {
           rejectedHours: rejectedHoursSum,
         },
       });
-  }, [columns]);
+  }, [columns, databaseAllHours]);
 
   let columnsContent = !succes.isError ? (
     <div>
@@ -74,10 +74,10 @@ const IndexMonthPanel = () => {
               { header: "Odrzucone:", counter: databaseRejectedHours },
             ].map(({ header, counter }) => {
               return (
-                <h4 key={header} style={{ marginLeft: 20, width: "20vw" }}>
+                <h6 key={header} style={{ marginLeft: 20, width: "20vw" }}>
                   {header} {""}
                   {counter}
-                </h4>
+                </h6>
               );
             })}
           </div>

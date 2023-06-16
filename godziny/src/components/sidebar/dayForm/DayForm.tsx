@@ -20,11 +20,11 @@ const DayForm = () => {
   let errorHoursContent = <div></div>;
 
   if (dataCurrentHours - +formik.values.hours < 0) {
-    errorHoursContent = <div> Brak wolnych godzin</div>;
+    errorHoursContent = <div>Brak tylu godzin do wykorzystania</div>;
   }
 
   if (databaseAllHours === 0) {
-    errorHoursContent = <div> Podaj ilość godzin w miesiącu</div>;
+    errorHoursContent = <div> Podaj liczbę godzin w miesiącu</div>;
   }
 
   let btnContent = <FcApproval />;

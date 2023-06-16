@@ -1,13 +1,24 @@
+import { useEffect } from "react";
+import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
+import { auth } from "../../data/firebaseConfig";
 import useLoginForm from "./useLoginForm";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const { formik } = useLoginForm();
+  const { formik, error } = useLoginForm();
+  const navigate = useNavigate();
+  useEffect(() => {
+    auth.onAuthStateChanged(user => {
+      user && navigate("/miesiac/2023-06");
+    });
+  }, []);
+
+  
 
   return (
     <div style={{ textAlign: "center" }}>
-      <Link to="/miesiac"> godziny</Link>
+     
       <Form onSubmit={formik.handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label htmlFor="password">Podaj hasło</Form.Label>
@@ -26,6 +37,7 @@ const Login = () => {
             )}
           </Form.Text>
         </Form.Group>
+        <p>{error}</p>
         <Button variant="primary" type="submit">
           Zaloguj
         </Button>
