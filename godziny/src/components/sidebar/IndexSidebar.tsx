@@ -3,8 +3,13 @@ import useDataBaseValues from "../../pages/monthPanel/hooksMonthPanel/useDataBas
 import { useColumnsQuery } from "../../services/apiSlice";
 import DayForm from "./dayForm/DayForm";
 import MonthForm from "./monthForm/MonthForm";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { auth } from "../../data/firebaseConfig";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import Button from "react-bootstrap/Button";
+import { GiHamburgerMenu } from "react-icons/gi";
+import MonthsList from "./MonthsList";
 
 const IndexSidebar = () => {
   const navigate = useNavigate();
@@ -64,30 +69,64 @@ const IndexSidebar = () => {
 
   const urlPrintNavBar = useLocation().pathname;
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const toggleShow = () => setShow(s => !s);
+
+
   return (
     <>
       {!["/"].includes(urlPrintNavBar) ? (
-        <div style={{ position: "fixed" }}>
-          <MonthForm />
-
-          {data === undefined || data === null ? (
-            <p>Brak danych</p>
-          ) : (
-            databaseMonthsDatesToString.map((month: any, idx: any) => {
-              return (
-                <div key={month}>
-                  <Link
-                    to={`/miesiac/${databaseMonthsDatesSorted[idx]}`}
-                    key={month}
-                  >
-                    {month}
-                  </Link>
+        <>
+          <Button variant="primary" onClick={toggleShow} className="me-2">
+            <GiHamburgerMenu />
+          </Button>
+          <Offcanvas
+            show={show}
+            onHide={handleClose}
+            name="Disable backdrop"
+            scroll={true}
+            backdrop={false}
+            className="w-20"
+            style={{ width: 200 }}
+          >
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title>
+                <div
+                  onClick={logout}
+                  className="fs-6"
+                  style={{ cursor: "pointer" }}
+                >
+                  Wyloguj
                 </div>
-              );
-            })
-          )}
-          <DayForm />
-        </div>
+              </Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              <MonthForm />
+
+              {/* {data === undefined || data === null ? (
+                <p>Brak danych</p>
+              ) : (
+                databaseMonthsDatesToString.map((month: any, idx: any) => {
+                  return (
+                    <div key={month}>
+                      <Link
+                        to={`/miesiac/${databaseMonthsDatesSorted[idx]}`}
+                        key={month}
+                      >
+                        {month}
+                      </Link>
+                    </div>
+                  );
+                })
+              )} */}
+
+              <MonthsList />
+              <DayForm />
+            </Offcanvas.Body>
+          </Offcanvas>
+        </>
       ) : null}
     </>
   );

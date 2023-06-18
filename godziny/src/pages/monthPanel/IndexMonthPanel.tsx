@@ -110,8 +110,8 @@ const IndexMonthPanel = () => {
       ) : (
         <div style={{ display: "flex", marginLeft: "30vw" }}>
           <div>
-            <HeaderMonthPanel />
-            {columnsContent}
+            <HeaderMonthPanel /> 
+             {columnsContent}
           </div>
         </div>
       )}

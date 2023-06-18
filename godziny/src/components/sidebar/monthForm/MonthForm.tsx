@@ -5,37 +5,12 @@ import { FcApproval } from "react-icons/fc";
 import { Spinner } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../../data/firebaseConfig";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import useMonthForm from "./useMonthForm";
 
 const MonthForm = () => {
-  const [addMonth, success] = useAddMonthMutation();
-
-  const date = new Date();
-
-  const currYearNum = new Intl.DateTimeFormat("pl", {
-    year: "numeric",
-  }).format(date);
-
-  const currMonthNum = new Intl.DateTimeFormat("pl", {
-    month: "2-digit",
-  }).format(date);
-
-  const [year, setYear] = useState(`${currYearNum}-${currMonthNum}`);
-
-  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setYear(e.target.value);
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const monthToPOST = { ...monthPattern, month: year };
-    await addMonth(monthToPOST);
-  };
-
-  const navigate = useNavigate();
-  const logout = () => {
-    auth.signOut();
-    navigate("/")
-  };
+  const { formik, success } = useMonthForm();
 
   let btnContent = <FcApproval />;
 
@@ -53,17 +28,35 @@ const MonthForm = () => {
 
   return (
     <>
-      <button onClick={logout}> wyloguj</button>
-      <form onSubmit={handleSubmit} style={{ marginRight: 20 }}>
-        <input
-          type="month"
-          value={year}
-          onChange={handleDateChange}
-          min="2023-06"
-          max="2025-12"
-        />
-        <button type="submit">{btnContent}</button>
-      </form>
+      <Form onSubmit={formik.handleSubmit} className="">
+        <Form.Group className="d-flex">
+          <Form.Control
+            type="month"
+            name="monthYear"
+            min="2023-06"
+            max="2025-12"
+            value={formik.values.monthYear}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            size="sm"
+            className="rounded-0"
+          />
+
+          <Button
+            type="submit"
+            variant="secondary"
+            className="rounded-0"
+            size="sm"
+          >
+            {btnContent}
+          </Button>
+
+          {/* <Form.Text
+          className="text-danger py-1"
+          style={{ fontSize: "0.7rem" }}
+        >uuuu</Form.Text> */}
+        </Form.Group>
+      </Form>
     </>
   );
 };
