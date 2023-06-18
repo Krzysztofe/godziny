@@ -106,7 +106,7 @@ const IndexMonthPanel = () => {
   return (
     <>
       {databaseMonth === undefined || databaseMonth === null ? (
-        <div style={{ textAlign: "center" }}>Wybierz miesiąc</div>
+        <div style={{ textAlign: "center" }}>Brak danych, wybierz miesiąc</div>
       ) : (
         <div style={{ display: "flex", marginLeft: "30vw" }}>
           <div>

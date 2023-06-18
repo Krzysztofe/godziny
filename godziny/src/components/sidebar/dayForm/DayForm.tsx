@@ -4,7 +4,12 @@ import TextInput from "../../inputs/TextInput";
 import useDayForm from "./useDayForm";
 import { useParams, useLocation } from "react-router-dom";
 import useDataBaseValues from "../../../pages/monthPanel/useDataBaseValues";
-import {Spinner } from "react-bootstrap"
+import { Spinner } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const DayForm = () => {
   const { monthURL } = useParams();
@@ -15,16 +20,18 @@ const DayForm = () => {
   const { dataCurrentHours, databaseAllHours } =
     useDataBaseValues(lastPartMonthURL);
 
-
-
   let errorHoursContent = <div></div>;
 
   if (dataCurrentHours - +formik.values.hours < 0) {
-    errorHoursContent = <div>Brak tylu godzin do wykorzystania</div>;
+    errorHoursContent = (
+      <small style={{ color: "red" }}>Brak godzin do wykorzystania </small>
+    );
   }
 
   if (databaseAllHours === 0) {
-    errorHoursContent = <div> Podaj liczbę godzin w miesiącu</div>;
+    errorHoursContent = (
+      <small style={{ color: "red" }}> Podaj godziny w miesiącu </small>
+    );
   }
 
   let btnContent = <FcApproval />;
@@ -42,55 +49,67 @@ const DayForm = () => {
   }
 
   return (
-    <form onSubmit={formik.handleSubmit} style={{ marginTop: 20 }}>
+    <Form onSubmit={formik.handleSubmit} className="mt-4">
       {[
         { type: "text", value: "userName", label: "Imię" },
         { type: "date", value: "date", label: "Dzień" },
         { type: "number", value: "hours", label: "Godz." },
       ].map(({ type, value, label }) => {
         return (
-          <div key={value}>
-            <TextInput
+          <Form.Group key={label} className="">
+            <div className=" fs-6 ">
+              <Form.Label htmlFor="password" className="mb-0">
+                {label}
+              </Form.Label>
+            </div>
+            <Form.Control
+              id={label}
               type={type}
               name={value}
               value={formik.values[value as keyof typeof formik.values]}
-              label={label}
-              placeholder={label}
-              handleChange={formik.handleChange}
-              handleBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              placeholder=""
+              size="sm"
+              className="shadow-sm rounded-0"
             />
-            <div style={{ color: "red" }}>
+            <Form.Text className="text-danger" style={{ fontSize: "0.7rem" }}>
               {formik.touched[value as keyof typeof formik.values] &&
-                formik.errors[value as keyof typeof formik.values] && (
-                  <small>
-                    {formik.errors[value as keyof typeof formik.values]}
-                  </small>
-                )}
-            </div>
-          </div>
+                formik.errors[value as keyof typeof formik.values] &&
+                formik.errors[value as keyof typeof formik.values]}
+            </Form.Text>
+          </Form.Group>
         );
       })}
 
-      {["Wewnątrz", "Poza"].map(place => {
-        return (
-          <RadioInput
-            key={place}
-            value={place}
+      {["Wewnątrz", "Poza"].map(place => (
+        <Form.Group key={place} className="mb-3">
+          <Form.Check
+            type="radio"
+            id={place}
             name={"place"}
-            handleChange={formik.handleChange}
+            value={place}
+            label={place}
+            onChange={formik.handleChange}
             checked={formik.values.place === place}
           />
-        );
-      })}
-      <div style={{ color: "red" }}>
-        {formik.touched.place && formik.errors.place && (
-          <small>{formik.errors.place}</small>
-        )}
-      </div>
+        </Form.Group>
+      ))}
 
+      <Form.Text className="text-danger" style={{ fontSize: "0.7rem" }}>
+        {formik.touched.place && formik.errors.place && formik.errors.place}
+      </Form.Text>
       {errorHoursContent}
-      <button type="submit">{btnContent}</button>
-    </form>
+      <div className="d-grid">
+        <Button
+          variant="primary"
+          type="submit"
+          className="rounded-0 fw-medium mt-4"
+        >
+          {btnContent}
+        </Button>
+      </div>
+    </Form>
   );
 };
 
