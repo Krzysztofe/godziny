@@ -59,7 +59,7 @@ const IndexMonthPanel = () => {
           rejectedHours: rejectedHoursSum,
         },
       });
-  }, [columns, databaseAllHours]);
+  }, [columns]);
 
   let columnsContent = !succes.isError ? (
     <div>

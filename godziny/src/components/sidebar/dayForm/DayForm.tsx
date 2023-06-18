@@ -50,55 +50,96 @@ const DayForm = () => {
 
   return (
     <Form onSubmit={formik.handleSubmit} className="mt-4">
-      {[
-        { type: "text", value: "userName", label: "Imię" },
-        { type: "date", value: "date", label: "Dzień" },
-        { type: "number", value: "hours", label: "Godz." },
-      ].map(({ type, value, label }) => {
-        return (
-          <Form.Group key={label} className="">
-            <div className=" fs-6 ">
-              <Form.Label htmlFor="password" className="mb-0">
-                {label}
-              </Form.Label>
-            </div>
-            <Form.Control
-              id={label}
-              type={type}
-              name={value}
-              value={formik.values[value as keyof typeof formik.values]}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              placeholder=""
-              size="sm"
-              className="shadow-sm rounded-0"
-            />
-            <Form.Text className="text-danger" style={{ fontSize: "0.7rem" }}>
-              {formik.touched[value as keyof typeof formik.values] &&
-                formik.errors[value as keyof typeof formik.values] &&
-                formik.errors[value as keyof typeof formik.values]}
-            </Form.Text>
-          </Form.Group>
-        );
-      })}
+      <Form.Select
+        name="userName"
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        size="sm"
+        className="rounded-0"
+      >
+        <option>Podaj imię</option>
+        {["Jan", "Maria", "Mariola"].map(name => {
+          return (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          );
+        })}
+      </Form.Select>
 
-      {["Wewnątrz", "Poza"].map(place => (
-        <Form.Group key={place} className="mb-3">
-          <Form.Check
-            type="radio"
-            id={place}
-            name={"place"}
-            value={place}
-            label={place}
-            onChange={formik.handleChange}
-            checked={formik.values.place === place}
-          />
-        </Form.Group>
-      ))}
+      <Form.Text
+        className="text-danger d-block mt-0 mb-1 lh-0"
+        style={{ fontSize: "0.7rem", height: "1rem" }}
+      >
+        {formik.touched.userName &&
+          formik.errors.userName &&
+          formik.errors.userName}
+      </Form.Text>
 
-      <Form.Text className="text-danger" style={{ fontSize: "0.7rem" }}>
+      <Form.Group className="">
+        <Form.Control
+          id="date"
+          type="date"
+          name="date"
+          value={formik.values.date}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          min={1}
+          placeholder="Liczba"
+          size="sm"
+          className="rounded-0"
+        />
+        <Form.Text
+          className="text-danger d-block mt-0 mb-1 lh-0"
+          style={{ fontSize: "0.7rem", height: "1rem" }}
+        >
+          {formik.touched.date && formik.errors.date && formik.errors.date}
+        </Form.Text>
+      </Form.Group>
+
+      <Form.Select
+        name="hours"
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        size="sm"
+        className="rounded-0"
+      >
+        <option>Liczba godzin </option>
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(item => {
+          return (
+            <option key={item} value={+item}>
+              {item}
+            </option>
+          );
+        })}
+      </Form.Select>
+
+      <Form.Text
+        className="text-danger d-block mt-0 mb-1 lh-0"
+        style={{ fontSize: "0.7rem", height: "1rem" }}
+      >
+        {formik.touched.hours && formik.errors.hours && formik.errors.hours}
+      </Form.Text>
+
+      <Form.Select
+        name="place"
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        size="sm"
+        className="rounded-0"
+      >
+        <option>Lokalizacja</option>
+        <option value="Wewnątrz">Wewnątrz</option>
+        <option value="Poza">Poza</option>
+      </Form.Select>
+
+      <Form.Text
+        className="text-danger d-block mt-0 mb-1 lh-0"
+        style={{ fontSize: "0.7rem", height: "1rem" }}
+      >
         {formik.touched.place && formik.errors.place && formik.errors.place}
       </Form.Text>
+
       {errorHoursContent}
       <div className="d-grid">
         <Button

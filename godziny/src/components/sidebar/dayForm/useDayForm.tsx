@@ -28,6 +28,7 @@ const useDayForm = () => {
     onSubmit: async values => {
       formik.setFieldValue("id", crypto.randomUUID());
       if (dataCurrentHours - +formik.values.hours < 0) return;
+
       const databaseColumnsAddedDays =
         data && databaseMonth && databaseColumns?.length > 0
           ? [...databaseColumns]
@@ -37,7 +38,10 @@ const useDayForm = () => {
         databaseMonth &&
         databaseColumns?.length > 0 && {
           ...databaseColumns?.[0],
-          days: [...databaseColumns?.[0]?.days, ...[values]],
+          days: [
+            ...databaseColumns?.[0]?.days,
+            ...[{ ...values, hours: +values.hours }],
+          ],
         };
 
       await updateColumns({
