@@ -11,16 +11,12 @@ interface ModelFormValues {
 
 const useLoginForm = () => {
   const navigate = useNavigate();
-  const validationSchema = yup.object({
-    password: yup.string().required("Podaj hasło").min(3, "Hasło min. 3 znaki"),
-  });
   const [error, setError] = useState<string | null>(null);
   // ww@wp.pl
   // wwwwww;
 
   const formik = useFormik<ModelFormValues>({
     initialValues: { password: "wwwwww" },
-    validationSchema: validationSchema,
 
     onSubmit: values => {
       signInWithEmailAndPassword(auth, "ww@wp.pl", values.password)

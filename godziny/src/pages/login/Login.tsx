@@ -1,9 +1,12 @@
 import { useEffect } from "react";
-import { Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../../data/firebaseConfig";
 import useLoginForm from "./useLoginForm";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { formik, error } = useLoginForm();
@@ -14,14 +17,19 @@ const Login = () => {
     });
   }, []);
 
-  
-
   return (
-    <div style={{ textAlign: "center" }}>
-     
-      <Form onSubmit={formik.handleSubmit}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label htmlFor="password">Podaj hasło</Form.Label>
+    <main className="d-flex justify-content-center  align-items-center vh-100">
+      <Form
+        onSubmit={formik.handleSubmit}
+        className="w-sm-90 border border-1 p-4 "
+      >
+        <Form.Group className="mx-auto">
+          <div className="text-center fs-3 fw-medium mb-4">
+            <Form.Label htmlFor="password" className="mb-0">
+              Podaj hasło
+            </Form.Label>
+          </div>
+
           <Form.Control
             id="password"
             type="password"
@@ -30,19 +38,30 @@ const Login = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             placeholder="Hasło"
+            size="lg"
+            className="shadow-sm rounded-0"
           />
-          <Form.Text className="text-muted">
-            {formik.touched.password && formik.errors.password && (
-              <div className="error">{formik.errors.password}</div>
-            )}
+          <Form.Text
+            className="text-danger py-1"
+            style={{ fontSize: "0.7rem" }}
+          >
+            {/* {formik.touched.password &&
+              formik.errors.password &&
+              formik.errors.password} */}
+            {error && `Błąd ${error}`}
           </Form.Text>
         </Form.Group>
-        <p>{error}</p>
-        <Button variant="primary" type="submit">
-          Zaloguj
-        </Button>
+        <div className="d-grid">
+          <Button
+            variant="primary"
+            type="submit"
+            className="rounded-0 fw-medium mt-4"
+          >
+            Zaloguj
+          </Button>
+        </div>
       </Form>
-    </div>
+    </main>
   );
 };
 

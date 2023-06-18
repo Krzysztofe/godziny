@@ -26,11 +26,11 @@ const HeaderMonthPanel = () => {
 
       <div style={{ display: "flex" }}>
         <div style={{ marginRight: 20 }}>
-          Liczba godzin w miesiącu: {databaseAllHours}
+          W miesiącu: {databaseAllHours}
         </div>
 
         <div>
-          Godziny do wykorzystania: {dataCurrentHours}
+          Do wykorzystania: {dataCurrentHours}
         </div>
       </div>
     </header>
