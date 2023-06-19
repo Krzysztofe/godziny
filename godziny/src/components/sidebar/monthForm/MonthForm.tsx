@@ -9,14 +9,16 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import useMonthForm from "./useMonthForm";
 
+import { AiOutlinePlusCircle } from "react-icons/ai";
+
 const MonthForm = () => {
   const { formik, success } = useMonthForm();
 
-  let btnContent = <FcApproval />;
+  let btnContent = <AiOutlinePlusCircle style={{ fontSize: "2rem" }} />;
 
   if (success.isLoading) {
     btnContent = (
-      <Spinner animation="border" size="sm" variant="secondary">
+      <Spinner animation="border"  variant="secondary">
         <span className="visually-hidden">Loading...</span>
       </Spinner>
     );
@@ -45,8 +47,9 @@ const MonthForm = () => {
           <Button
             type="submit"
             variant="secondary"
-            className="rounded-0"
             size="sm"
+            className="rounded-0 d-flex align-items-center justify-content-center px-0  bg-transparent  text-dark border-0"
+            style={{ width: "25%", height: "100%" }}
           >
             {btnContent}
           </Button>
