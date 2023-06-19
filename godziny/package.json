@@ -59,6 +59,7 @@
   "devDependencies": {
     "@types/react-beautiful-dnd": "^13.1.4",
     "gh-pages": "^5.0.0",
-    "postcss-loader": "^7.3.3"
+    "postcss-loader": "^7.3.3",
+    "sass": "^1.63.4"
   }
 }

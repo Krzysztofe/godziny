@@ -9,7 +9,7 @@ import { auth } from "../../data/firebaseConfig";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Button from "react-bootstrap/Button";
 import { GiHamburgerMenu } from "react-icons/gi";
-import MonthsList from "./MonthsList";
+import MonthsList from "./monthList/MonthsList";
 
 const IndexSidebar = () => {
   const navigate = useNavigate();
@@ -30,7 +30,12 @@ const IndexSidebar = () => {
     <>
       {!["/"].includes(urlPrintNavBar) ? (
         <>
-          <Button variant="primary" onClick={toggleShow} className="me-2">
+          <Button
+            variant="primary"
+            onClick={toggleShow}
+            className="me-2"
+            style={{ position: "absolute", right: 0 }}
+          >
             <GiHamburgerMenu />
           </Button>
           <Offcanvas
@@ -42,11 +47,11 @@ const IndexSidebar = () => {
             className="w-20"
             style={{ width: 200 }}
           >
-            <Offcanvas.Header closeButton>
+            <Offcanvas.Header className="pb-0">
               <Offcanvas.Title>
                 <div
                   onClick={logout}
-                  className="fs-6"
+                  className="fs-6 "
                   style={{ cursor: "pointer" }}
                 >
                   Wyloguj

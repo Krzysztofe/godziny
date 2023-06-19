@@ -2,8 +2,9 @@ import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useColumnsQuery } from "../../services/apiSlice";
-import useDataBaseValues from "../../pages/monthPanel/useDataBaseValues";
+import { useColumnsQuery } from "../../../services/apiSlice";
+import useDataBaseValues from "../../../pages/monthPanel/useDataBaseValues";
+import "./monthList.scss";
 
 const MonthsList = () => {
   const { data } = useColumnsQuery(undefined);
@@ -39,18 +40,18 @@ const MonthsList = () => {
     });
 
   return (
-    <>
+    <div className="monthListContainer">
       {data === undefined || data === null ? (
-        <p>Brak danych</p>
+        <p className="py-1 px-2">Brak danych</p>
       ) : (
         databaseMonthsDatesToString.map((month: any, idx: any) => {
           return (
             <ListGroup key={month}>
-              <ListGroup.Item className="border-0 p-0 px-1">
+              <ListGroup.Item className="border-0 p-0 px-1 ">
                 <Link
                   to={`/miesiac/${databaseMonthsDatesSorted[idx]}`}
                   key={month}
-                  style={{ textDecoration: "none" }}
+                  style={{ textDecoration: "none", color: "black" }}
                 >
                   {month}
                 </Link>
@@ -59,7 +60,7 @@ const MonthsList = () => {
           );
         })
       )}
-    </>
+    </div>
   );
 };
 

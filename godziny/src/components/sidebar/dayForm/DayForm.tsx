@@ -20,21 +20,8 @@ const DayForm = () => {
   const { dataCurrentHours, databaseAllHours } =
     useDataBaseValues(lastPartMonthURL);
 
-  let errorHoursContent = <div></div>;
 
-  if (dataCurrentHours - +formik.values.hours < 0) {
-    errorHoursContent = (
-      <small style={{ color: "red" }}>Brak godzin do wykorzystania </small>
-    );
-  }
-
-  if (databaseAllHours === 0) {
-    errorHoursContent = (
-      <small style={{ color: "red" }}> Podaj godziny w miesiącu </small>
-    );
-  }
-
-  let btnContent = <FcApproval />;
+  let btnContent = <span>Zatwierdź dzień</span>;
 
   if (success.isLoading) {
     btnContent = (
@@ -45,8 +32,21 @@ const DayForm = () => {
   }
 
   if (success.isError) {
-    btnContent = <div> "Błąd" </div>;
+    btnContent = <span> "Błąd" </span>;
   }
+
+ if (databaseAllHours === 0) {
+   btnContent = (
+     <span style={{ color: "red" }}> Podaj godziny</span>
+   );
+ }
+
+  if (dataCurrentHours - +formik.values.hours < 0) {
+    btnContent = (
+      <span style={{ color: "red" }}>Brak godzin </span>
+    );
+  }
+
 
   return (
     <Form onSubmit={formik.handleSubmit} className="mt-4">
@@ -57,7 +57,7 @@ const DayForm = () => {
         size="sm"
         className="rounded-0"
       >
-        <option>Podaj imię</option>
+        <option>Imię</option>
         {["Jan", "Maria", "Mariola"].map(name => {
           return (
             <option key={name} value={name}>
@@ -140,12 +140,11 @@ const DayForm = () => {
         {formik.touched.place && formik.errors.place && formik.errors.place}
       </Form.Text>
 
-      {errorHoursContent}
       <div className="d-grid">
         <Button
           variant="primary"
           type="submit"
-          className="rounded-0 fw-medium mt-4"
+          className="rounded-0 fw-medium"
         >
           {btnContent}
         </Button>

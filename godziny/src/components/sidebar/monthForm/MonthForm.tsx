@@ -23,7 +23,7 @@ const MonthForm = () => {
   }
 
   if (success.isError) {
-    btnContent = <div> "Błąd" </div>;
+    btnContent = <span> "Błąd" </span>;
   }
 
   return (
