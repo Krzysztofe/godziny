@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import useDataBaseValues from "../hooksMonthPanel/useDataBaseValues";
-import FormHeaderMonhPanel from "./FormHeaderMonhPanel";
+import FormHeaderMonhPanel from "./formHeaderMonthPanel/FormHeaderMonhPanel";
 
 const HeaderMonthPanel = () => {
   const { monthURL } = useParams();
@@ -21,17 +21,13 @@ const HeaderMonthPanel = () => {
       <div style={{ display: "flex" }}>
         <FormHeaderMonhPanel />
 
-        <div style={{ marginLeft: 30 }}>{monthToString}</div>
+        {/* <div style={{ marginLeft: 30 }}>{monthToString}</div> */}
       </div>
 
       <div style={{ display: "flex" }}>
-        <div style={{ marginRight: 20 }}>
-          W miesiącu: {databaseAllHours}
-        </div>
+        <div style={{ marginRight: 20 }}>Wszystkie: {databaseAllHours}</div>
 
-        <div>
-          Do wykorzystania: {dataCurrentHours}
-        </div>
+        <div>Wolne: {dataCurrentHours}</div>
       </div>
     </header>
   );

@@ -56,6 +56,7 @@ const DayForm = () => {
         onBlur={formik.handleBlur}
         size="sm"
         className="rounded-0"
+        
       >
         <option>Imię</option>
         {["Jan", "Maria", "Mariola"].map(name => {
@@ -142,7 +143,7 @@ const DayForm = () => {
 
       <div className="d-grid">
         <Button
-          variant="primary"
+          variant="secondary"
           type="submit"
           className="rounded-0 fw-medium"
         >

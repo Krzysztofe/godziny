@@ -40,27 +40,25 @@ const MonthsList = () => {
     });
 
   return (
-    <div className="monthListContainer">
+    <ListGroup className="monthListContainer">
       {data === undefined || data === null ? (
         <p className="py-1 px-2">Brak danych</p>
       ) : (
         databaseMonthsDatesToString.map((month: any, idx: any) => {
           return (
-            <ListGroup key={month}>
-              <ListGroup.Item className="border-0 p-0 px-1 ">
-                <Link
-                  to={`/miesiac/${databaseMonthsDatesSorted[idx]}`}
-                  key={month}
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  {month}
-                </Link>
-              </ListGroup.Item>
-            </ListGroup>
+            <ListGroup.Item key={month} className="border-0 p-0 px-1 ">
+              <Link
+                to={`/miesiac/${databaseMonthsDatesSorted[idx]}`}
+                key={month}
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                {month}
+              </Link>
+            </ListGroup.Item>
           );
         })
       )}
-    </div>
+    </ListGroup>
   );
 };
 

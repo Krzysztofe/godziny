@@ -34,7 +34,7 @@ const IndexSidebar = () => {
             variant="primary"
             onClick={toggleShow}
             className="me-2"
-            style={{ position: "absolute", right: 0 }}
+            style={{ position: "absolute", right: 0, bottom:"60%" }}
           >
             <GiHamburgerMenu />
           </Button>
