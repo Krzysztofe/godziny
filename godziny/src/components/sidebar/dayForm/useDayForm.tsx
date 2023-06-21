@@ -3,7 +3,7 @@ import { useParams, useLocation } from "react-router-dom";
 import useDataBaseValues from "../../../pages/monthPanel/useDataBaseValues";
 import { initialValues } from "./dataDayForm";
 import { validationSchema } from "./validationDayForm";
-import { useUpdateColumnsMutation } from "../../../services/apiSlice";
+import { useUpdateMonthMutation } from "../../../services/apiSlice";
 
 interface FormValues {
   date: string;
@@ -13,7 +13,7 @@ interface FormValues {
 }
 
 const useDayForm = () => {
-  const [updateColumns, success] = useUpdateColumnsMutation();
+  const [updateColumns, success] = useUpdateMonthMutation();
   const urlParts = useLocation().pathname.split("/");
   const lastPartMonthURL = urlParts[urlParts.length - 1];
   const { monthURL } = useParams();

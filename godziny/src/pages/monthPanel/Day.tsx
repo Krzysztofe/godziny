@@ -3,11 +3,12 @@ import { FaTrashAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
-  useColumnsQuery,
-  useUpdateColumnsMutation,
+  useMonthsDataQuery,
+  useUpdateMonthMutation,
 } from "../../services/apiSlice";
 import DayPrintData from "./DayPrintData";
-import useDataBaseValues from "./hooksMonthPanel/useDataBaseValues";
+// import useDataBaseValues from "./hooksMonthPanel/useDataBaseValues";
+import useDataBaseValues from "./useDataBaseValues";
 
 interface Props {
   day: any;
@@ -17,8 +18,8 @@ interface Props {
 const Day = (props: Props) => {
   // const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
 
-  const { data, error } = useColumnsQuery(undefined);
-  const [updateColumns, succes] = useUpdateColumnsMutation();
+  const { data, error } = useMonthsDataQuery(undefined);
+  const [updateColumns, succes] = useUpdateMonthMutation();
   const { monthURL } = useParams();
 
   const {

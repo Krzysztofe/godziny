@@ -1,9 +1,6 @@
 import { useEffect } from "react";
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../data/firebaseConfig";
 import useLoginForm from "./useLoginForm";
@@ -11,6 +8,7 @@ import useLoginForm from "./useLoginForm";
 const Login = () => {
   const { formik, error } = useLoginForm();
   const navigate = useNavigate();
+  
   useEffect(() => {
     auth.onAuthStateChanged(user => {
       user && navigate("/miesiac/2023-06");
@@ -45,9 +43,6 @@ const Login = () => {
             className="text-danger py-1"
             style={{ fontSize: "0.7rem" }}
           >
-            {/* {formik.touched.password &&
-              formik.errors.password &&
-              formik.errors.password} */}
             {error && `Błąd ${error}`}
           </Form.Text>
         </Form.Group>

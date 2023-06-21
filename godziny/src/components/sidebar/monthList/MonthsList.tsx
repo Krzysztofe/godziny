@@ -2,12 +2,12 @@ import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useColumnsQuery } from "../../../services/apiSlice";
+import { useMonthsDataQuery } from "../../../services/apiSlice";
 import useDataBaseValues from "../../../pages/monthPanel/useDataBaseValues";
 import "./monthList.scss";
 
 const MonthsList = () => {
-  const { data } = useColumnsQuery(undefined);
+  const { data } = useMonthsDataQuery(undefined);
   const { monthURL } = useParams();
   const { databaseMonthsCollection } = useDataBaseValues(monthURL);
 

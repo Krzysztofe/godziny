@@ -3,19 +3,21 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { useParams } from "react-router-dom";
 import IndexSidebar from "../../components/sidebar/IndexSidebar";
 import {
-  useColumnsQuery,
-  useUpdateColumnsMutation,
+  useMonthsDataQuery,
+  useUpdateMonthMutation,
 } from "../../services/apiSlice";
 import Column from "./Column";
 import HeaderMonthPanel from "./headerMonthPanel/HeaderMonthPanel";
-import useDataBaseValues from "./hooksMonthPanel/useDataBaseValues";
+// import useDataBaseValues from "./hooksMonthPanel/useDataBaseValues";
 import { handleDragDrop } from "./utils";
 import DayForm from "../../components/sidebar/dayForm/DayForm";
 import Nav from "react-bootstrap/Nav";
 
+import useDataBaseValues from "./useDataBaseValues";
+
 const IndexMonthPanel = () => {
-  const { data, error } = useColumnsQuery(undefined);
-  const [updateColumns, succes] = useUpdateColumnsMutation();
+  const { data, error } = useMonthsDataQuery(undefined);
+  const [updateColumns, succes] = useUpdateMonthMutation();
   const { monthURL } = useParams();
 
   const {

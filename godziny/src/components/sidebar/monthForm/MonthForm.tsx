@@ -1,12 +1,6 @@
-import React, { useState } from "react";
-import { monthPattern } from "./dataMonthForm";
-import { useAddMonthMutation } from "../../../services/apiSlice";
-import { FcApproval } from "react-icons/fc";
 import { Spinner } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../../../data/firebaseConfig";
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import useMonthForm from "./useMonthForm";
 
 import { AiOutlinePlusCircle } from "react-icons/ai";
@@ -57,7 +51,9 @@ const MonthForm = () => {
           {/* <Form.Text
           className="text-danger py-1"
           style={{ fontSize: "0.7rem" }}
-        >uuuu</Form.Text> */}
+        >    {formik.touched.allHours &&
+                formik.errors.allHours &&
+                formik.errors.allHours}</Form.Text> */}
         </Form.Group>
       </Form>
     </>

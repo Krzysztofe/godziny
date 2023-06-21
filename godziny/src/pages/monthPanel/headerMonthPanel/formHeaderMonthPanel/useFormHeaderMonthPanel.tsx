@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { useUpdateColumnsMutation } from "../../../../services/apiSlice";
+import { useUpdateMonthMutation } from "../../../../services/apiSlice";
 import useDataBaseValues from "../../useDataBaseValues";
 import { RootState } from "../../../../redux/store";
 import { useParams, useLocation } from "react-router-dom";
@@ -13,7 +13,7 @@ interface ModelFormValues {
 
 const useFormHeaderMonhPanel = () => {
   const { monthURL } = useParams();
-  const [updateColumns, success] = useUpdateColumnsMutation();
+  const [updateColumns, success] = useUpdateMonthMutation();
   const { databaseMonth, data } = useDataBaseValues(monthURL);
 
   const formik = useFormik<ModelFormValues>({

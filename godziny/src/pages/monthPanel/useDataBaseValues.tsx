@@ -1,11 +1,5 @@
-import { useColumnsQuery } from "../../services/apiSlice";
+import { useMonthsDataQuery } from "../../services/apiSlice";
 import { addDaysToColumns } from "./utils";
-
-// const defaultValue = null;
-interface DatabaseColumns {
-  allHours: any;
-  columns: any[];
-}
 
 interface DatabaseValues {
   data: any;
@@ -26,7 +20,7 @@ interface DatabaseValues {
 }
 
 const useDataBaseValues = (monthURL: any = null): DatabaseValues => {
-  const { data } = useColumnsQuery(undefined);
+  const { data } = useMonthsDataQuery(undefined)
 
   const databaseMonthsId = data && Object.keys(data);
 
@@ -78,15 +72,11 @@ const useDataBaseValues = (monthURL: any = null): DatabaseValues => {
         }, 0)
       : 0;
 
-
-
-
   // date transformation
- const databaseMonthsDates =
-   data && databaseMonthsCollection
-     ? databaseMonthsCollection.map(month => month.month)
-     : [];
- 
+  const databaseMonthsDates =
+    data && databaseMonthsCollection
+      ? databaseMonthsCollection.map(month => month.month)
+      : [];
 
   const string = databaseMonthsDates.map((monthDate: any) => {
     const monthToDateFormat = new Date(monthDate);

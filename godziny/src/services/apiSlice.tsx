@@ -3,56 +3,56 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const URL_DATA =
   "https://godziny-3b30f-default-rtdb.europe-west1.firebasedatabase.app";
 
-export const columnsApiSlice = createApi({
-  reducerPath: "columnsApi",
+export const monthsApiSlice = createApi({
+  reducerPath: "monthsApi",
   baseQuery: fetchBaseQuery({ baseUrl: URL_DATA }),
-  tagTypes: ["columns"],
+  tagTypes: ["months"],
   endpoints: builder => ({
-    columns: builder.query<any, void>({
-      query: () => "/columns.json",
-      providesTags: ["columns"],
+    monthsData: builder.query<any, void>({
+      query: () => "/months.json",
+      providesTags: ["months"],
     }),
 
     addMonth: builder.mutation<void, any>({
       query: body => ({
-        url: "/columns.json",
+        url: "/months.json",
         method: "POST",
         body: body,
       }),
-      invalidatesTags: ["columns"],
+      invalidatesTags: ["months"],
     }),
 
-    updateColumns: builder.mutation<void, any>({
+    updateMonth: builder.mutation<void, any>({
       query: updateColumns => ({
-        url: `/columns/${updateColumns.id}.json`,
+        url: `/months/${updateColumns.id}.json`,
         method: "PUT",
         body: updateColumns.columns,
       }),
-      invalidatesTags: ["columns"],
+      invalidatesTags: ["months"],
     }),
-    updateDay: builder.mutation<void, any>({
-      query: updateDay => ({
-        url: `/columns/${updateDay.id}.json`,
-        method: "PUT",
-        body: updateDay.columns,
-      }),
-      invalidatesTags: ["columns"],
-    }),
+    // updateDay: builder.mutation<void, any>({
+    //   query: updateDay => ({
+    //     url: `/months/${updateDay.id}.json`,
+    //     method: "PUT",
+    //     body: updateDay.columns,
+    //   }),
+    //   invalidatesTags: ["columns"],
+    // }),
 
-    deleteAllColumns: builder.mutation<any, string | undefined>({
+    deleteMonth: builder.mutation<any, string | undefined>({
       query: id => ({
-        url: `/columns/${id}.json`,
+        url: `/months/${id}.json`,
         method: "DELETE",
       }),
-      invalidatesTags: ["columns"],
+      invalidatesTags: ["months"],
     }),
   }),
 });
 
 export const {
-  useColumnsQuery,
+  useMonthsDataQuery,
   useAddMonthMutation,
-  useDeleteAllColumnsMutation,
-  useUpdateColumnsMutation,
-  useUpdateDayMutation,
-} = columnsApiSlice;
+  useDeleteMonthMutation,
+  useUpdateMonthMutation,
+  // useUpdateDayMutation,
+} = monthsApiSlice;
