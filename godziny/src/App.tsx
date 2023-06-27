@@ -8,6 +8,11 @@ const IndexMonthPanel = lazy(
   () => import("./pages/monthPanel/IndexMonthPanel")
 );
 
+const IndexSettings = lazy(
+  () => import("./pages/settings/IndexSettings")
+);
+
+
 function App() {
   return (
     <BrowserRouter basename="/godziny">
@@ -17,6 +22,7 @@ function App() {
           <Route path="/" element={<Login />} />
           {/* <Route path="/miesiac" element={<IndexMonthPanel />} /> */}
           <Route path="/miesiac/:monthURL" element={<IndexMonthPanel />} />
+          <Route path="/settings" element={<IndexSettings />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

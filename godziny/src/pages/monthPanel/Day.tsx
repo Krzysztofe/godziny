@@ -1,5 +1,4 @@
 import { Draggable } from "react-beautiful-dnd";
-import { FaTrashAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
@@ -7,8 +6,8 @@ import {
   useUpdateMonthMutation,
 } from "../../services/apiSlice";
 import DayPrintData from "./DayPrintData";
-// import useDataBaseValues from "./hooksMonthPanel/useDataBaseValues";
 import useDataBaseValues from "./useDataBaseValues";
+import Button from "react-bootstrap/Button";
 
 interface Props {
   day: any;
@@ -62,27 +61,31 @@ const Day = (props: Props) => {
   };
 
   let btnContent = (
-    <div style={{ border: "1px solid black" }}>
-      <Draggable
-        draggableId={props.day && props?.day?.id.toString()}
-        index={props.index}
-      >
-        {provided => {
-          return (
-            <div
-              {...provided.draggableProps}
-              {...provided.dragHandleProps}
-              ref={provided.innerRef}
+    <Draggable
+      draggableId={props.day && props?.day?.id.toString()}
+      index={props.index}
+    >
+      {provided => {
+        return (
+          <div
+            className="bg-white mb-2"
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}
+          >
+            <DayPrintData day={props.day} />
+            <Button
+              variant="secondary"
+              size="sm"
+              className="rounded-0 w-100 fw-medium"
+              onClick={() => handleUpdate(props.day.id)}
             >
-              <DayPrintData day={props.day} />
-              <button onClick={() => handleUpdate(props.day.id)}>
-                <FaTrashAlt />
-              </button>
-            </div>
-          );
-        }}
-      </Draggable>
-    </div>
+              Usuń
+            </Button>
+          </div>
+        );
+      }}
+    </Draggable>
   );
 
   if (succes.isLoading) {

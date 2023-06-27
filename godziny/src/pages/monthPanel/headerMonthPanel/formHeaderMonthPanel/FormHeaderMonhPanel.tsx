@@ -4,9 +4,21 @@ import Form from "react-bootstrap/Form";
 import Spinner from "react-bootstrap/Spinner";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import useFormHeaderMonhPanel from "./useFormHeaderMonthPanel";
+import React, { useState } from "react";
+
 
 const FormHeaderMonhPanel = () => {
+
   const { formik, success } = useFormHeaderMonhPanel();
+
+
+
+    const [value, setValue] = useState(0);
+
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = parseInt(e.target.value);
+    setValue(newValue);
+  };
 
   let btnContent = (
     <AiOutlinePlusCircle style={{ fontSize: "2rem" }} />
@@ -31,7 +43,7 @@ const FormHeaderMonhPanel = () => {
           className="d-flex align-items-end my-3"
           style={{ height: "2rem" }}
         >
-          <Form.Label htmlFor="allHours" className="mb-0">
+          {/* <Form.Label htmlFor="allHours" className="mb-0">
             Podaj ilość godzin
           </Form.Label>
           <div className="align-self-start">
@@ -55,7 +67,7 @@ const FormHeaderMonhPanel = () => {
                 formik.errors.allHours &&
                 formik.errors.allHours}
             </Form.Text>
-          </div>
+          </div> */}
           <Button
             type="submit"
             variant="secondary"
@@ -64,6 +76,15 @@ const FormHeaderMonhPanel = () => {
           >
             {btnContent}
           </Button>
+
+          <Form.Range
+            min={0}
+            max={300}
+            value={value}
+            onChange={handleChange}
+            className="form-range"
+            style={{ height: "2px", backgroundColor: "red" }}
+          />
         </Form.Group>
       </Form>
     </>

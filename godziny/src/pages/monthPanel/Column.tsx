@@ -1,8 +1,5 @@
 import { Droppable } from "react-beautiful-dnd";
 import Day from "./Day";
-// import useDataBaseValues from "./hooksMonthPanel/useDataBaseValues";
-
-import useDataBaseValues from "./useDataBaseValues";
 
 interface Props {
   column: any;
@@ -10,18 +7,20 @@ interface Props {
 
 const Column = (props: Props) => {
   return (
-    <div>
+    <div
+      style={{
+        width: "100%",
+      }}
+    >
       <Droppable droppableId={props.column.id}>
         {(provided, snapshot) => {
           return (
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
+              className="p-1 bg-secondary-subtle"
               style={{
-                border: "1px solid black",
-                width: "20vw",
-                minHeight: "100vh",
-                height: "fit-content",
+                height: "100%",
               }}
             >
               {props.column.days &&

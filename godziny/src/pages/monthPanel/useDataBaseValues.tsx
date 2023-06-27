@@ -3,6 +3,7 @@ import { addDaysToColumns } from "./utils";
 
 interface DatabaseValues {
   data: any;
+  error?: {};
   databaseMonthsId: any;
   databaseMonthsCollection: any[];
   databaseMonth: any;
@@ -20,7 +21,7 @@ interface DatabaseValues {
 }
 
 const useDataBaseValues = (monthURL: any = null): DatabaseValues => {
-  const { data } = useMonthsDataQuery(undefined)
+  const { data, error } = useMonthsDataQuery(undefined)
 
   const databaseMonthsId = data && Object.keys(data);
 
@@ -90,6 +91,7 @@ const useDataBaseValues = (monthURL: any = null): DatabaseValues => {
   return {
     string,
     data,
+    error,
     databaseMonthsId,
     databaseMonthsCollection,
     databaseMonth,
