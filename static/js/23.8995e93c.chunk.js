@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgodziny=self.webpackChunkgodziny||[]).push([[23],{6023:function(n,e,i){i.r(e);i(2791);var u=i(184);e.default=function(){return(0,u.jsx)("div",{children:(0,u.jsx)("h6",{children:"ustawienia"})})}}}]);
+//# sourceMappingURL=23.8995e93c.chunk.js.map
