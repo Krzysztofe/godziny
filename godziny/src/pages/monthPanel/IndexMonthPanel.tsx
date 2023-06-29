@@ -10,12 +10,14 @@ const IndexMonthPanel = () => {
   return (
     <>
       {!databaseMonth || databaseMonth === null ? (
-        <main style={{ textAlign: "center" }}>Brak danych, wybierz miesiąc</main>
+        <main style={{ textAlign: "center" }}>
+          Brak danych, wybierz miesiąc
+        </main>
       ) : (
-        <main>
+        <div className = "d-flex flex-column" style={{ height: "100vh" }}>
           <HeaderMonthPanel />
           <Columns />
-        </main>
+        </div>
       )}
     </>
   );

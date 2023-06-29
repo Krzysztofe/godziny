@@ -1,32 +1,23 @@
-
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Spinner from "react-bootstrap/Spinner";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import useFormHeaderMonhPanel from "./useFormHeaderMonthPanel";
 import React, { useState } from "react";
-
+import "./_formHeaderMonthPAnel.scss";
 
 const FormHeaderMonhPanel = () => {
-
   const { formik, success } = useFormHeaderMonhPanel();
 
-
-
-    const [value, setValue] = useState(0);
-
-  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseInt(e.target.value);
-    setValue(newValue);
-  };
-
   let btnContent = (
-    <AiOutlinePlusCircle style={{ fontSize: "2rem" }} />
+    <div className={formik.values.allHours === 0 ? "text-danger" : ""}>
+      Zapisz liczbę godzin
+    </div>
   );
 
   if (success.isLoading) {
     btnContent = (
-      <Spinner animation="border"  variant="secondary">
+      <Spinner animation="border" size="sm" variant="secondary">
         <span className="visually-hidden">Loading...</span>
       </Spinner>
     );
@@ -39,52 +30,35 @@ const FormHeaderMonhPanel = () => {
   return (
     <>
       <Form onSubmit={formik.handleSubmit} className="">
-        <Form.Group
-          className="d-flex align-items-end my-3"
-          style={{ height: "2rem" }}
-        >
-          {/* <Form.Label htmlFor="allHours" className="mb-0">
-            Podaj ilość godzin
-          </Form.Label>
-          <div className="align-self-start">
-            <Form.Control
-              id="allHours"
-              type="number"
+        <Form.Group className="my-1">
+          <div className="text-center fw-medium">{formik.values.allHours}</div>
+          <div className="d-flex align-items-center w-100">
+            <div className="fw-medium">0</div>
+            <Form.Range
               name="allHours"
-              min={1}
+              min={0}
+              max={320}
               value={formik.values.allHours}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              size="sm"
-              className="rounded-0 ms-2"
-              style={{ width: "4rem" }}
+              className="form-range custom-range mx-2 medium"
+              style={{
+                height: 10,
+                background: `linear-gradient(to right, olive 0%, red ${formik.values.allHours}%, transparent ${formik.values.allHours}%, transparent 100%)`,
+              }}
             />
-            <Form.Text
-              className="text-danger d-block mt-0 mb-1 lh-0 ms-2"
-              style={{ fontSize: "0.7rem", height: "1rem" }}
+            <div className="fw-medium">320</div>
+          </div>
+          <div className="text-center">
+            <Button
+              type="submit"
+              variant="info"
+              size="sm"
+              className="fw-medium mx-auto"
             >
-              {formik.touched.allHours &&
-                formik.errors.allHours &&
-                formik.errors.allHours}
-            </Form.Text>
-          </div> */}
-          <Button
-            type="submit"
-            variant="secondary"
-            className="rounded-0 d-flex align-items-center justify-content-center px-0  bg-transparent  text-dark border-0"
-            style={{ width: "10%", height: "100%" }}
-          >
-            {btnContent}
-          </Button>
-
-          <Form.Range
-            min={0}
-            max={300}
-            value={value}
-            onChange={handleChange}
-            className="form-range"
-            style={{ height: "2px", backgroundColor: "red" }}
-          />
+              {btnContent}
+            </Button>
+          </div>
         </Form.Group>
       </Form>
     </>

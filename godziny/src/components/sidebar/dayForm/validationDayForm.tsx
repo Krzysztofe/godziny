@@ -3,24 +3,24 @@ import * as yup from "yup";
 export const validationSchema = yup.object({
   userName: yup
     .string()
-    .test("is-name-valid", "Podaj imię", value => value !== "Imię")
-    .required("Podaj imię"),
-  date: yup.string().required("Podaj datę"),
+    .test("is-name-valid", "Imię wymagane", value => value !== "Imię")
+    .required("Imię wymagane"),
+  date: yup.string().required("Data wymagana"),
   hours: yup
     .mixed()
     .test(
       "is-hours-valid",
-      "Podaj liczbę złożonych godzin",
+      "Liczba godzin wymagana",
       value => value !== "Liczba godzin"
     )
-    .required("Podaj liczbę złożonych godzin"),
+    .required("Liczba godzin wymagana"),
 
   place: yup
     .string()
     .test(
       "is-place-valid",
-      "Podaj lokalizację",
+      "Lokalizacja wymagana",
       value => value !== "Lokalizacja"
     )
-    .required("Podaj lokalizację"),
+    .required("Lokalizacja wymagana"),
 });

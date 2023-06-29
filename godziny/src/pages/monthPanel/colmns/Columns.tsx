@@ -5,28 +5,28 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useUpdateMonthMutation } from "../../../services/apiSlice";
 import Column from "../Column";
-import "./_columns.scss";
 import HeaderColumns from "../headerColumns.tsx/HeaderColumns";
+import Container from "react-bootstrap/Container";
 
 const Columns = () => {
   const { monthURL } = useParams();
   const {
     data,
-    error,
     databaseAllHours,
     databaseColumns,
-    databaseAcceptedHours,
-    databaseRejectedHours,
-    dataBaseSubmitedHours,
+    dataCurrentHours,
     databaseMonth,
     submitedHoursSum,
     acceptedHoursSum,
     rejectedHoursSum,
   } = useDataBaseValues(monthURL);
 
+  // console.log("", databaseMonth);
+
   const [updateColumns, succes] = useUpdateMonthMutation();
 
   const [columns, setColumns] = useState<any[]>([]);
+  
   useEffect(() => {
     data && databaseMonth && setColumns(databaseColumns);
   }, [data, monthURL]);
@@ -51,23 +51,30 @@ const Columns = () => {
           rejectedHours: rejectedHoursSum,
         },
       });
-  }, [columns]);
+  }, [columns, databaseAllHours, dataCurrentHours]);
 
   return (
-    <DragDropContext
-      onDragEnd={results => handleDragDrop(results, columns, setColumns)}
-    >
-      <section className="monthColumns">
-        <HeaderColumns />
-        <div className="d-flex grid gap-0 column-gap-2" style={{height:"fit-content"}}>
-          {columns &&
-            columns.length > 0 &&
-            columns.map((column: any, idx: any) => {
-              return <Column column={column} key={column.id} />;
-            })}
-        </div>
-      </section>
-    </DragDropContext>
+    <>
+      <main className=" mb-2 overflow-y-scroll ">
+        <Container className="mx-0 ms-sm-auto sticky-top d-flex column-gap-2">
+          <HeaderColumns />
+        </Container>
+        <Container
+          className="mx-0 ms-sm-auto mb-5 d-flex column-gap-2"
+          style={{ height: "fit-content" }}
+        >
+          <DragDropContext
+            onDragEnd={results => handleDragDrop(results, columns, setColumns)}
+          >
+            {columns &&
+              columns.length > 0 &&
+              columns.map((column: any) => {
+                return <Column column={column} key={column.id} />;
+              })}
+          </DragDropContext>
+        </Container>
+      </main>
+    </>
   );
 };
 

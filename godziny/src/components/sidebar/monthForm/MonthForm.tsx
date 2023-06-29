@@ -7,11 +7,16 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 const MonthForm = () => {
   const { formik, success } = useMonthForm();
 
-  let btnContent = <AiOutlinePlusCircle style={{ fontSize: "2rem" }} />;
+  let btnContent = (
+    <AiOutlinePlusCircle
+      className="info-text-emphasis"
+      style={{ fontSize: "2rem" }}
+    />
+  );
 
   if (success.isLoading) {
     btnContent = (
-      <Spinner animation="border"  variant="secondary">
+      <Spinner animation="border" variant="primary" size="sm">
         <span className="visually-hidden">Loading...</span>
       </Spinner>
     );
@@ -23,8 +28,8 @@ const MonthForm = () => {
 
   return (
     <>
-      <Form onSubmit={formik.handleSubmit} className="">
-        <Form.Group className="d-flex">
+      <Form onSubmit={formik.handleSubmit}>
+        <Form.Group className="d-flex align-items-center">
           <Form.Control
             type="month"
             name="monthYear"
@@ -34,14 +39,15 @@ const MonthForm = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             size="sm"
-            className="rounded-0"
+            className="p-0 px-1 d-block border border-primary"
+            style={{ minHeight: 0, height: "fit-content", cursor: "pointer" }}
           />
 
           <Button
             type="submit"
             variant="secondary"
             size="sm"
-            className="rounded-0 d-flex align-items-center justify-content-center px-0  bg-transparent  text-dark border-0"
+            className="rounded-0 d-flex align-items-center justify-content-center px-0  bg-transparent text-info-emphasis border-0"
             style={{ width: "25%", height: "100%" }}
           >
             {btnContent}

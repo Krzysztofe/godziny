@@ -1,9 +1,5 @@
-import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useDataBaseValues from "../useDataBaseValues";
-import { BsFillSendFill } from "react-icons/bs";
-import { FaThumbsUp } from "react-icons/fa";
-import { FaThumbsDown } from "react-icons/fa";
 
 const HeaderColumns = () => {
   const { monthURL } = useParams();
@@ -13,60 +9,50 @@ const HeaderColumns = () => {
     dataBaseSubmitedHours,
   } = useDataBaseValues(monthURL);
 
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setWindowWidth(window.innerWidth);
+  //   };
 
-    window.addEventListener("resize", handleResize);
+  //   window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
 
-  const displayHeaderContent = windowWidth > 576;
+  // const displayHeaderContent = windowWidth > 576;
 
   return (
-    <div className="d-flex grid gap-0 column-gap-2">
+    <>
       {[
         {
           headerText: "Złożone:",
-          headerIcon: <BsFillSendFill />,
           counter: dataBaseSubmitedHours,
         },
         {
-          headerText: "Przyjęte:",
-          headerIcon: <FaThumbsUp />,
+          headerText: "Przyznane:",
           counter: databaseAcceptedHours,
         },
         {
           headerText: "Odrzucone:",
-          headerIcon: <FaThumbsDown className="secondary" />,
           counter: databaseRejectedHours,
         },
-      ].map(({ headerText, counter, headerIcon }) => {
+      ].map(({ headerText, counter }) => {
         return (
           <div
             key={headerText}
-            className=" mb-0 p-1 bg-secondary-subtle text-dark-emphasis fw-medium fs-6"
-            style={{ width: "100%" }}
+            className="p-1 bg-primary-subtle text-dark-emphasis fw-medium w-100 "
+            style={{ fontSize: "clamp(0.8rem, 3.4vw, 1rem)" }}
           >
-            {displayHeaderContent ? (
-              <>
-                {headerText} {counter}
-              </>
-            ) : (
-              <>
-                {headerIcon} {counter}{" "}
-              </>
-            )}
+            {headerText} {""}
+            {counter}
           </div>
         );
       })}
-    </div>
+    </>
   );
 };
 

@@ -21,21 +21,18 @@ const HeaderMonthPanel = () => {
     }).format(monthToDateFormat);
 
   return (
-    <header>
-      <Container>
-        <Row>
-          <Col sm={7} className="order-1 order-sm-2 px-0">
-            <FormHeaderMonhPanel />
-          </Col>
-
-          <Col sm={5} className="order-2 order-sm-1 px-0">
-            <div className="d-flex my-3">
-              <div>Wszystkie: {databaseAllHours}</div>
-
-              <div className="ms-4">Wolne: {dataCurrentHours}</div>
-            </div>
-          </Col>
-        </Row>
+    <header className="me-3">
+      <Container className="mx-0 ms-sm-auto">
+        <FormHeaderMonhPanel />
+        <div className="d-flex justify-content-center mb-1 fw-medium">
+          <div className="text-end" style={{ width: "25%" }}>
+            Wszystkie
+          </div>
+          <div className="text-center mx-2" style={{}}>
+            {databaseAllHours} - {dataCurrentHours}
+          </div>
+          <div style={{ width: "25%" }}>Wolne</div>
+        </div>
       </Container>
     </header>
   );

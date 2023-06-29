@@ -24,17 +24,17 @@ const DayPrintData = (props: Props) => {
   const date = props.day.date.slice(5);
   const dateToPrint = date[0] === "0" ? date.slice(1) : date;
 
-  console.log("", monthToString);
+  // console.log("", monthToString);
 
   return (
-    <div className="px-1 py-2">
+    <div className="px-1 py-2 py-sm-1">
       <div
         className="d-flex justify-content-between"
-        style={{ fontSize: "clamp(0.8rem, 3.4vw, 1.2rem)" }}
+        style={{ fontSize: "clamp(0.8rem, 3.4vw, 1rem)" }}
       >
         <div>{props.day.userName}</div>
         <div>
-          {props.day.hours} <FiClock className="text-secondary" />
+          {props.day.hours} <FiClock className="text-primary" />
         </div>
       </div>
 

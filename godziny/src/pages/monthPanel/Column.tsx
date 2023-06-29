@@ -7,18 +7,14 @@ interface Props {
 
 const Column = (props: Props) => {
   return (
-    <div
-      style={{
-        width: "100%",
-      }}
-    >
+    <div className="w-100">
       <Droppable droppableId={props.column.id}>
         {(provided, snapshot) => {
           return (
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className="p-1 bg-secondary-subtle"
+              className="p-1 bg-primary-subtle"
               style={{
                 height: "100%",
               }}

@@ -19,7 +19,7 @@ const Login = () => {
     <main className="d-flex justify-content-center  align-items-center vh-100">
       <Form
         onSubmit={formik.handleSubmit}
-        className="w-sm-90 border border-1 p-4 "
+        className="w-sm-90 border p-4 "
       >
         <Form.Group className="mx-auto">
           <div className="text-center fs-3 fw-medium mb-4">
@@ -37,7 +37,7 @@ const Login = () => {
             onBlur={formik.handleBlur}
             placeholder="Hasło"
             size="lg"
-            className="shadow-sm rounded-0"
+            className="shadow-sm"
           />
           <Form.Text
             className="text-danger py-1"
@@ -47,11 +47,7 @@ const Login = () => {
           </Form.Text>
         </Form.Group>
         <div className="d-grid">
-          <Button
-            variant="primary"
-            type="submit"
-            className="rounded-0 fw-medium mt-4"
-          >
+          <Button variant="info" type="submit" className="fw-medium mt-4">
             Zaloguj
           </Button>
         </div>

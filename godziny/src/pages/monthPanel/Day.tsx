@@ -68,16 +68,16 @@ const Day = (props: Props) => {
       {provided => {
         return (
           <div
-            className="bg-white mb-2"
+            className="bg-white card mb-2"
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
           >
             <DayPrintData day={props.day} />
             <Button
-              variant="secondary"
+              variant="info"
               size="sm"
-              className="rounded-0 w-100 fw-medium"
+              className="rounded-top-0 w-100 fw-medium "
               onClick={() => handleUpdate(props.day.id)}
             >
               Usuń

@@ -1,15 +1,9 @@
-import { FcApproval } from "react-icons/fc";
-import RadioInput from "../../inputs/RadioInput";
-import TextInput from "../../inputs/TextInput";
-import useDayForm from "./useDayForm";
-import { useParams, useLocation } from "react-router-dom";
-import useDataBaseValues from "../../../pages/monthPanel/useDataBaseValues";
 import { Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { useLocation, useParams } from "react-router-dom";
+import useDataBaseValues from "../../../pages/monthPanel/useDataBaseValues";
+import useDayForm from "./useDayForm";
 
 const DayForm = () => {
   const { monthURL } = useParams();
@@ -20,8 +14,10 @@ const DayForm = () => {
   const { dataCurrentHours, databaseAllHours } =
     useDataBaseValues(lastPartMonthURL);
 
+ const disabled = success.isLoading
 
-  let btnContent = <span>Zatwierdź dzień</span>;
+
+  let btnContent = <span>Zapisz dzień</span>;
 
   if (success.isLoading) {
     btnContent = (
@@ -35,49 +31,67 @@ const DayForm = () => {
     btnContent = <span> "Błąd" </span>;
   }
 
- if (databaseAllHours === 0) {
-   btnContent = (
-     <span style={{ color: "red" }}> Podaj godziny</span>
-   );
- }
-
-  if (dataCurrentHours - +formik.values.hours < 0) {
-    btnContent = (
-      <span style={{ color: "red" }}>Brak godzin </span>
-    );
+  if (databaseAllHours === 0) {
+    btnContent = <span style={{ color: "red" }}> Podaj godziny</span>;
   }
 
+  if (dataCurrentHours - +formik.values.hours < 0) {
+    btnContent = <span style={{ color: "red" }}>Brak godzin </span>;
+  }
 
   return (
     <Form onSubmit={formik.handleSubmit} className="mt-4">
-      <Form.Select
-        name="userName"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        size="sm"
-        className="rounded-0"
-        
-      >
-        <option>Imię</option>
-        {["Jan", "Maria", "Mariola"].map(name => {
-          return (
-            <option key={name} value={name}>
-              {name}
-            </option>
-          );
-        })}
-      </Form.Select>
+      {/* userName */}
 
-      <Form.Text
-        className="text-danger d-block mt-0 mb-1 lh-0"
-        style={{ fontSize: "0.7rem", height: "1rem" }}
-      >
-        {formik.touched.userName &&
-          formik.errors.userName &&
-          formik.errors.userName}
-      </Form.Text>
+      <Form.Group>
+        <Form.Label
+          htmlFor="userName"
+          className="mb-0"
+          style={{ fontSize: "0.8rem" }}
+        >
+          Podaj imię
+        </Form.Label>
 
-      <Form.Group className="">
+        <Form.Select
+          name="userName"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          size="sm"
+          className="p-0 px-1 border border-primary"
+          style={{
+            cursor: "pointer",
+          }}
+        >
+          <option>Imię</option>
+          {["Jan", "Maria", "Mariola"].map(name => {
+            return (
+              <option key={name} value={name}>
+                {name}
+              </option>
+            );
+          })}
+        </Form.Select>
+
+        <Form.Text
+          className="text-danger d-block mt-0 lh-0"
+          style={{ fontSize: "0.6rem", height: "0.7rem" }}
+        >
+          {formik.touched.userName &&
+            formik.errors.userName &&
+            formik.errors.userName}
+        </Form.Text>
+      </Form.Group>
+
+      {/* date */}
+
+      <Form.Group>
+        <Form.Label
+          htmlFor="date"
+          className="mb-0"
+          style={{ fontSize: "0.8rem" }}
+        >
+          Podaj dzień
+        </Form.Label>
         <Form.Control
           id="date"
           type="date"
@@ -88,68 +102,93 @@ const DayForm = () => {
           min={1}
           placeholder="Liczba"
           size="sm"
-          className="rounded-0"
+          className="p-0 px-1 border border-primary"
+          style={{ minHeight: 0, cursor: "pointer" }}
         />
         <Form.Text
-          className="text-danger d-block mt-0 mb-1 lh-0"
-          style={{ fontSize: "0.7rem", height: "1rem" }}
+          className="text-danger d-block mt-0 mb-0 lh-0"
+          style={{ fontSize: "0.6rem", height: "0.7rem" }}
         >
           {formik.touched.date && formik.errors.date && formik.errors.date}
         </Form.Text>
       </Form.Group>
 
-      <Form.Select
-        name="hours"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        size="sm"
-        className="rounded-0"
-      >
-        <option>Liczba godzin </option>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(item => {
-          return (
-            <option key={item} value={+item}>
-              {item}
-            </option>
-          );
-        })}
-      </Form.Select>
+      {/* hours */}
 
-      <Form.Text
-        className="text-danger d-block mt-0 mb-1 lh-0"
-        style={{ fontSize: "0.7rem", height: "1rem" }}
-      >
-        {formik.touched.hours && formik.errors.hours && formik.errors.hours}
-      </Form.Text>
-
-      <Form.Select
-        name="place"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        size="sm"
-        className="rounded-0"
-      >
-        <option>Lokalizacja</option>
-        <option value="Wewnątrz">Wewnątrz</option>
-        <option value="Poza">Poza</option>
-      </Form.Select>
-
-      <Form.Text
-        className="text-danger d-block mt-0 mb-1 lh-0"
-        style={{ fontSize: "0.7rem", height: "1rem" }}
-      >
-        {formik.touched.place && formik.errors.place && formik.errors.place}
-      </Form.Text>
-
-      <div className="d-grid">
-        <Button
-          variant="secondary"
-          type="submit"
-          className="rounded-0 fw-medium"
+      <Form.Group>
+        <Form.Label
+          htmlFor="hours"
+          className="mb-0"
+          style={{ fontSize: "0.8rem" }}
         >
-          {btnContent}
-        </Button>
-      </div>
+          Podaj liczbę godzin
+        </Form.Label>
+        <Form.Select
+          name="hours"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          size="sm"
+          className="p-0 px-1 border border-primary"
+          style={{ cursor: "pointer" }}
+        >
+          <option>Liczba godzin </option>
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(item => {
+            return (
+              <option key={item} value={+item}>
+                {item}
+              </option>
+            );
+          })}
+        </Form.Select>
+
+        <Form.Text
+          className="text-danger d-block mt-0 mb-1 lh-0"
+          style={{ fontSize: "0.6rem", height: "0.7rem" }}
+        >
+          {formik.touched.hours && formik.errors.hours && formik.errors.hours}
+        </Form.Text>
+      </Form.Group>
+
+      {/* localization */}
+
+      <Form.Group>
+        <Form.Label
+          htmlFor="place"
+          className="mb-0"
+          style={{ fontSize: "0.8rem" }}
+        >
+          Podaj lokalizację
+        </Form.Label>
+        <Form.Select
+          name="place"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          size="sm"
+          className="p-0 px-1 border border-primary"
+          style={{ cursor: "pointer" }}
+        >
+          <option>Lokalizacja</option>
+          <option value="Wewnątrz">Wewnątrz</option>
+          <option value="Poza">Poza</option>
+        </Form.Select>
+
+        <Form.Text
+          className="text-danger d-block mt-0 mb-1 lh-0"
+          style={{ fontSize: "0.6rem", height: "0.7rem" }}
+        >
+          {formik.touched.place && formik.errors.place && formik.errors.place}
+        </Form.Text>
+      </Form.Group>
+
+      <Button
+        variant="info"
+        type="submit"
+      
+        disabled= {disabled}
+        className="fw-medium w-100 mt-2 "
+      >
+        {btnContent}
+      </Button>
     </Form>
   );
 };

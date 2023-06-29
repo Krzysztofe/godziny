@@ -19,7 +19,7 @@ const useFormHeaderMonhPanel = () => {
   const formik = useFormik<ModelFormValues>({
     initialValues: { allHours: 0 },
     validationSchema: validationSchema,
-    onSubmit: async (values, {resetForm}) => {
+    onSubmit: async (values) => {
       await updateColumns({
         id: data && databaseMonth?.id,
         columns: {
@@ -27,7 +27,7 @@ const useFormHeaderMonhPanel = () => {
           allHours: values.allHours,
         },
       });
-       resetForm();
+      //  resetForm();
     },
   });
 
