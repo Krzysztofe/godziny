@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/868.e1b445b2.chunk.css","mappings":"AAAA,cAEI,YADA,UACA,CACF,wBAHF,cAII,kBACA","sources":["pages/monthPanel/colmns/_columns.scss"],"sourcesContent":[".monthColumns {\r\n    width: 100%;\r\n    height: 100%;\r\n  @media (min-width: 576px){\r\n    margin-left: 150px;\r\n    width: calc(100% - 150px);\r\n  }\r\n}\r\n"],"names":[],"sourceRoot":""}
