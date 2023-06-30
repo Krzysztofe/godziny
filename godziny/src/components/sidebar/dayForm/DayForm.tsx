@@ -2,7 +2,7 @@ import { Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useLocation, useParams } from "react-router-dom";
-import useDataBaseValues from "../../../pages/monthPanel/useDataBaseValues";
+import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import useDayForm from "./useDayForm";
 
 const DayForm = () => {
@@ -12,10 +12,7 @@ const DayForm = () => {
   const lastPartMonthURL = urlParts[urlParts.length - 1];
 
   const { dataCurrentHours, databaseAllHours } =
-    useDataBaseValues(lastPartMonthURL);
-
- const disabled = success.isLoading
-
+    useDatabaseValues(lastPartMonthURL);
 
   let btnContent = <span>Zapisz dzień</span>;
 
@@ -44,15 +41,12 @@ const DayForm = () => {
       {/* userName */}
 
       <Form.Group>
-        <Form.Label
-          htmlFor="userName"
-          className="mb-0"
-          style={{ fontSize: "0.8rem" }}
-        >
+        <Form.Label htmlFor="userName" className="mb-0 fs-7">
           Podaj imię
         </Form.Label>
 
         <Form.Select
+          id="userName"
           name="userName"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -72,24 +66,20 @@ const DayForm = () => {
           })}
         </Form.Select>
 
-        <Form.Text
-          className="text-danger d-block mt-0 lh-0"
-          style={{ fontSize: "0.6rem", height: "0.7rem" }}
+        <div
+          className="text-danger d-block mt-0 fs-8"
+          style={{ height: "0.7rem" }}
         >
           {formik.touched.userName &&
             formik.errors.userName &&
             formik.errors.userName}
-        </Form.Text>
+        </div>
       </Form.Group>
 
       {/* date */}
 
       <Form.Group>
-        <Form.Label
-          htmlFor="date"
-          className="mb-0"
-          style={{ fontSize: "0.8rem" }}
-        >
+        <Form.Label htmlFor="date" className="mb-0 fs-7">
           Podaj dzień
         </Form.Label>
         <Form.Control
@@ -105,25 +95,22 @@ const DayForm = () => {
           className="p-0 px-1 border border-primary"
           style={{ minHeight: 0, cursor: "pointer" }}
         />
-        <Form.Text
-          className="text-danger d-block mt-0 mb-0 lh-0"
-          style={{ fontSize: "0.6rem", height: "0.7rem" }}
+        <div
+          className="text-danger d-block mt-0 fs-8"
+          style={{ height: "0.7rem" }}
         >
           {formik.touched.date && formik.errors.date && formik.errors.date}
-        </Form.Text>
+        </div>
       </Form.Group>
 
       {/* hours */}
 
       <Form.Group>
-        <Form.Label
-          htmlFor="hours"
-          className="mb-0"
-          style={{ fontSize: "0.8rem" }}
-        >
+        <Form.Label htmlFor="hours" className="mb-0 fs-7">
           Podaj liczbę godzin
         </Form.Label>
         <Form.Select
+          id="hours"
           name="hours"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -141,25 +128,22 @@ const DayForm = () => {
           })}
         </Form.Select>
 
-        <Form.Text
-          className="text-danger d-block mt-0 mb-1 lh-0"
-          style={{ fontSize: "0.6rem", height: "0.7rem" }}
+        <div
+          className="text-danger d-block mt-0 fs-8"
+          style={{ height: "0.7rem" }}
         >
           {formik.touched.hours && formik.errors.hours && formik.errors.hours}
-        </Form.Text>
+        </div>
       </Form.Group>
 
       {/* localization */}
 
       <Form.Group>
-        <Form.Label
-          htmlFor="place"
-          className="mb-0"
-          style={{ fontSize: "0.8rem" }}
-        >
+        <Form.Label htmlFor="place" className="mb-0 fs-7">
           Podaj lokalizację
         </Form.Label>
         <Form.Select
+          id="place"
           name="place"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -172,19 +156,18 @@ const DayForm = () => {
           <option value="Poza">Poza</option>
         </Form.Select>
 
-        <Form.Text
-          className="text-danger d-block mt-0 mb-1 lh-0"
-          style={{ fontSize: "0.6rem", height: "0.7rem" }}
+        <div
+          className="text-danger d-block mt-0 fs-8"
+          style={{ height: "0.7rem" }}
         >
           {formik.touched.place && formik.errors.place && formik.errors.place}
-        </Form.Text>
+        </div>
       </Form.Group>
 
       <Button
         variant="info"
         type="submit"
-      
-        disabled= {disabled}
+        disabled={success.isLoading}
         className="fw-medium w-100 mt-2 "
       >
         {btnContent}

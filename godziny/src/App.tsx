@@ -5,13 +5,10 @@ import LoadingPage from "./pages/loadingPage/LoadingPage";
 const Login = lazy(() => import("./pages/login/Login"));
 const IndexSidebar = lazy(() => import("./components/sidebar/IndexSidebar"));
 const IndexMonthPanel = lazy(
-  () => import("./pages/monthPanel/IndexMonthPanel")
+  () => import("./pages/monthPanel/indexMonthPanel/IndexMonthPanel")
 );
 
-const IndexSettings = lazy(
-  () => import("./pages/settings/IndexSettings")
-);
-
+const IndexSettings = lazy(() => import("./pages/settings/IndexSettings"));
 
 function App() {
   return (

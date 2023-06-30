@@ -1,12 +1,4 @@
-export const initialValues = {
-  id: crypto.randomUUID(),
-  date: "",
-  hours: "",
-  userName: "",
-  place: "",
-};
-
-interface DayModel {
+interface ModelDay {
   id?: string;
   userName: string;
   date: string;
@@ -14,13 +6,13 @@ interface DayModel {
   place: string;
 }
 
-interface ColumnModel {
+interface ModelColumn {
   id: string;
   columnName: string;
-  days?: any;
+  days?: ModelDay[];
 }
 
-const columns: ColumnModel[] = [
+const columns: ModelColumn[] = [
   {
     id: "miesiac",
     columnName: "Miesiąc",
@@ -29,18 +21,18 @@ const columns: ColumnModel[] = [
   {
     id: "oczekujące",
     columnName: "Oczekujące",
-    days: [null],
+    days: [],
   },
   {
     id: "zatwierdzone",
     columnName: "Zatwierdzone",
-    days: [null],
+    days: [],
   },
 ];
 
 export const monthPattern = {
   id: "",
-  month: "",
+  monthDate: "",
   allHours: 0,
   currentHours: 0,
   submitedHours: 0,

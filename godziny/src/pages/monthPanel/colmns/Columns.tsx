@@ -1,6 +1,6 @@
 import { DragDropContext } from "react-beautiful-dnd";
 import { handleDragDrop } from "../utils";
-import useDataBaseValues from "../useDataBaseValues";
+import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useUpdateMonthMutation } from "../../../services/apiSlice";
@@ -19,14 +19,14 @@ const Columns = () => {
     submitedHoursSum,
     acceptedHoursSum,
     rejectedHoursSum,
-  } = useDataBaseValues(monthURL);
+  } = useDatabaseValues(monthURL);
 
   // console.log("", databaseMonth);
 
   const [updateColumns, succes] = useUpdateMonthMutation();
 
   const [columns, setColumns] = useState<any[]>([]);
-  
+
   useEffect(() => {
     data && databaseMonth && setColumns(databaseColumns);
   }, [data, monthURL]);
@@ -34,7 +34,7 @@ const Columns = () => {
   useEffect(() => {
     data &&
       columns?.length > 1 &&
-      databaseMonth?.month &&
+      databaseMonth?.monthDate &&
       updateColumns({
         id: data && databaseMonth?.id,
         columns: {
@@ -55,7 +55,7 @@ const Columns = () => {
 
   return (
     <>
-      <main className=" mb-2 overflow-y-scroll ">
+      <main className="mb-2 overflow-y-scroll ">
         <Container className="mx-0 ms-sm-auto sticky-top d-flex column-gap-2">
           <HeaderColumns />
         </Container>

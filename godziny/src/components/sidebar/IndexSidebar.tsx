@@ -5,7 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { useLocation } from "react-router-dom";
 import SidebarTitle from "./SidebarTitle";
 import DayForm from "./dayForm/DayForm";
-import MonthForm from "./monthForm/MonthForm";
+import SidebarMonthForm from "./sidebarMonthForm/SidebarMonthForm";
 import MonthsList from "./monthList/MonthsList";
 
 const IndexSidebar = () => {
@@ -37,7 +37,6 @@ const IndexSidebar = () => {
             backdrop={false}
             className="w-20 bg-primary-subtle"
             style={{ width: 200 }}
-            
           >
             <Offcanvas.Header className="pb-0">
               <Offcanvas.Title>
@@ -45,7 +44,7 @@ const IndexSidebar = () => {
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body className="pt-0">
-              <MonthForm />
+              <SidebarMonthForm />
               <MonthsList />
               <DayForm />
             </Offcanvas.Body>

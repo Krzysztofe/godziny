@@ -1,9 +1,10 @@
-import { useMonthsDataQuery } from "../../services/apiSlice";
-import { addDaysToColumns } from "./utils";
+import { useMonthsDataQuery } from "../services/apiSlice";
+import { addDaysToColumns } from "../pages/monthPanel/utils";
 
 interface DatabaseValues {
   data: any;
   error?: {};
+  isLoading: boolean;
   databaseMonthsId: any;
   databaseMonthsCollection: any[];
   databaseMonth: any;
@@ -20,8 +21,8 @@ interface DatabaseValues {
   databaseMonthsDates: any[];
 }
 
-const useDataBaseValues = (monthURL: any = null): DatabaseValues => {
-  const { data, error } = useMonthsDataQuery(undefined)
+const useDatabaseValues = (monthURL: any = null): DatabaseValues => {
+  const { data, error, isLoading } = useMonthsDataQuery(undefined);
 
   const databaseMonthsId = data && Object.keys(data);
 
@@ -37,10 +38,13 @@ const useDataBaseValues = (monthURL: any = null): DatabaseValues => {
 
   const databaseMonth: any =
     data && databaseMonthsCollection.length > 0
-      ? databaseMonthsCollection?.find((month: any) => month.month === monthURL)
+      ? databaseMonthsCollection?.find(
+          (month: any) => month.monthDate === monthURL
+        )
       : undefined;
 
   const databaseColumns = data && databaseMonth?.columns;
+
 
   // hours values
 
@@ -76,7 +80,7 @@ const useDataBaseValues = (monthURL: any = null): DatabaseValues => {
   // date transformation
   const databaseMonthsDates =
     data && databaseMonthsCollection
-      ? databaseMonthsCollection.map(month => month.month)
+      ? databaseMonthsCollection.map(month => month.monthDate)
       : [];
 
   const string = databaseMonthsDates.map((monthDate: any) => {
@@ -92,6 +96,7 @@ const useDataBaseValues = (monthURL: any = null): DatabaseValues => {
     string,
     data,
     error,
+    isLoading,
     databaseMonthsId,
     databaseMonthsCollection,
     databaseMonth,
@@ -108,4 +113,4 @@ const useDataBaseValues = (monthURL: any = null): DatabaseValues => {
   };
 };
 
-export default useDataBaseValues;
+export default useDatabaseValues;

@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { useParams, useLocation } from "react-router-dom";
-import useDataBaseValues from "../../../pages/monthPanel/useDataBaseValues";
+import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import { initialValues } from "./dataDayForm";
 import { validationSchema } from "./validationDayForm";
 import { useUpdateMonthMutation } from "../../../services/apiSlice";
@@ -19,7 +19,7 @@ const useDayForm = () => {
   const { monthURL } = useParams();
 
   const { databaseColumns, databaseMonth, data, dataCurrentHours } =
-    useDataBaseValues(lastPartMonthURL);
+    useDatabaseValues(lastPartMonthURL);
 
   const formik = useFormik<FormValues>({
     initialValues: initialValues,

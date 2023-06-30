@@ -1,6 +1,6 @@
 
 
-const useDataBaseDate = () => {
+const useDatabaseDate = () => {
     
 
   const date = new Date();
@@ -17,4 +17,4 @@ const useDataBaseDate = () => {
     return { currYearNum, currMonthNum };
 };
 
-export default useDataBaseDate;
+export default useDatabaseDate;

@@ -1,20 +1,18 @@
-import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
-
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useMonthsDataQuery } from "../../../services/apiSlice";
-import useDataBaseValues from "../../../pages/monthPanel/useDataBaseValues";
+import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import "./monthList.scss";
 
 const MonthsList = () => {
   const { data } = useMonthsDataQuery(undefined);
   const { monthURL } = useParams();
-  const { databaseMonthsCollection } = useDataBaseValues(monthURL);
+  const { databaseMonthsCollection } = useDatabaseValues(monthURL);
 
   const databaseMonthsDatesSorted =
     data && databaseMonthsCollection
       ? databaseMonthsCollection
-          .map(month => month.month)
+          .map(month => month.monthDate)
           .sort((date1: any, date2: any) => {
             if (date1 < date2) {
               return -1;
@@ -41,7 +39,7 @@ const MonthsList = () => {
 
   return (
     <ListGroup className="monthListContainer">
-      {data === undefined || data === null ? (
+      {!data ? (
         <p className="py-1 px-2">Brak danych</p>
       ) : (
         databaseMonthsDatesToString.map((month: any, idx: any) => {

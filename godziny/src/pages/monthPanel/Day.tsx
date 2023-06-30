@@ -6,7 +6,7 @@ import {
   useUpdateMonthMutation,
 } from "../../services/apiSlice";
 import DayPrintData from "./DayPrintData";
-import useDataBaseValues from "./useDataBaseValues";
+import useDatabaseValues from "../../hooks/useDatabaseValues";
 import Button from "react-bootstrap/Button";
 
 interface Props {
@@ -28,7 +28,7 @@ const Day = (props: Props) => {
     acceptedHoursSum,
     rejectedHoursSum,
     submitedHoursSum,
-  } = useDataBaseValues(monthURL);
+  } = useDatabaseValues(monthURL);
 
   const handleUpdate = async (id: any) => {
     Swal.fire({
