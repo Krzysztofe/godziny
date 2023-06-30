@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import SidebarTitle from "./SidebarTitle";
 import DayForm from "./dayForm/DayForm";
 import SidebarMonthForm from "./sidebarMonthForm/SidebarMonthForm";
-import MonthsList from "./monthList/MonthsList";
+import SidebarMonthCollapse from "./SidebarMonthCollapse";
 
 const IndexSidebar = () => {
   const urlPrintNavBar = useLocation().pathname;
@@ -45,7 +45,7 @@ const IndexSidebar = () => {
             </Offcanvas.Header>
             <Offcanvas.Body className="pt-0">
               <SidebarMonthForm />
-              <MonthsList />
+              <SidebarMonthCollapse />
               <DayForm />
             </Offcanvas.Body>
           </Offcanvas>

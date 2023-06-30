@@ -4,10 +4,11 @@ import { useMonthsDataQuery } from "../../../services/apiSlice";
 import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import "./monthList.scss";
 
-const MonthsList = () => {
+const SidebarMonthsList = () => {
   const { data } = useMonthsDataQuery(undefined);
   const { monthURL } = useParams();
   const { databaseMonthsCollection } = useDatabaseValues(monthURL);
+ 
 
   const databaseMonthsDatesSorted =
     data && databaseMonthsCollection
@@ -38,7 +39,7 @@ const MonthsList = () => {
     });
 
   return (
-    <ListGroup className="monthListContainer">
+    <ListGroup className="monthListContainer bg-white">
       {!data ? (
         <p className="py-1 px-2">Brak danych</p>
       ) : (
@@ -60,4 +61,4 @@ const MonthsList = () => {
   );
 };
 
-export default MonthsList;
+export default SidebarMonthsList;

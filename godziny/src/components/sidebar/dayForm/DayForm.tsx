@@ -37,7 +37,7 @@ const DayForm = () => {
   }
 
   return (
-    <Form onSubmit={formik.handleSubmit} className="mt-4">
+    <Form onSubmit={formik.handleSubmit} className="mt-2">
       {/* userName */}
 
       <Form.Group>
