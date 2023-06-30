@@ -24,7 +24,7 @@ const HeaderMonthPanel = () => {
             {databaseAllHours} - {dataCurrentHours}
           </div>
           <div style={{ width: "25%" }}>Wolne</div>
-          <div>{monthURLStringFormat}</div>
+          <small className="text-capitalize">{monthURLStringFormat}</small>
         </div>
       </Container>
     </header>

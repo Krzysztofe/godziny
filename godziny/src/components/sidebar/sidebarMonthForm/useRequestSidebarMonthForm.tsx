@@ -2,7 +2,7 @@ import useSidebarMonthFormik from "./useSidebarMonthFormik";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { Spinner } from "react-bootstrap";
 
-const useRequestSidebarMonth = () => {
+const useRequestSidebarMonthForm = () => {
   const { formik, success } = useSidebarMonthFormik();
 
   let btnContent;
@@ -23,10 +23,7 @@ const useRequestSidebarMonth = () => {
     btnContent = <AiOutlinePlusCircle style={{ fontSize: "1.5rem" }} />;
   }
 
-
-
-
   return { formik, success, btnContent };
 };
 
-export default useRequestSidebarMonth;
+export default useRequestSidebarMonthForm;

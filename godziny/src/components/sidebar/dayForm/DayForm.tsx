@@ -4,6 +4,8 @@ import Form from "react-bootstrap/Form";
 import { useLocation, useParams } from "react-router-dom";
 import useDatabaseValues from "../../../hooks/useMonthURLToString";
 import useDayForm from "./useDayForm";
+import "./_dayForm.scss"
+
 
 const DayForm = () => {
   const { monthURL } = useParams();
@@ -28,13 +30,13 @@ const DayForm = () => {
     btnContent = <span> "Błąd" </span>;
   }
 
-  if (databaseAllHours === 0) {
-    btnContent = <span style={{ color: "red" }}> Podaj godziny</span>;
-  }
+  // if (databaseAllHours === 0) {
+  //   btnContent = <span style={{ color: "red" }}> Podaj godziny</span>;
+  // }
 
-  if (dataCurrentHours - +formik.values.hours < 0) {
-    btnContent = <span style={{ color: "red" }}>Brak godzin </span>;
-  }
+  // if (dataCurrentHours - +formik.values.hours < 0) {
+  //   btnContent = <span style={{ color: "red" }}>Brak godzin </span>;
+  // }
 
   return (
     <Form onSubmit={formik.handleSubmit} className="mt-2">
