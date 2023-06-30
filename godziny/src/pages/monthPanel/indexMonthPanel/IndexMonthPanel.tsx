@@ -2,11 +2,12 @@ import { Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Columns from "../colmns/Columns";
 import HeaderMonthPanel from "../headerMonthPanel/HeaderMonthPanel";
-import useDatabaseValues from "../../../hooks/useDatabaseValues";
+import useDatabaseValues from "../../../hooks/useMonthURLToString";
+import { currMonthDateToString } from "../../../data/dataCurrentDates";
 
 const IndexMonthPanel = () => {
   const { monthURL } = useParams();
-  const { databaseMonth, data, isLoading } = useDatabaseValues(monthURL);
+  const { databaseMonth, data, error, isLoading } = useDatabaseValues(monthURL);
 
   let panelContent;
 
@@ -21,15 +22,29 @@ const IndexMonthPanel = () => {
         </Spinner>
       </main>
     );
+  } else if (error) {
+    if ("status" in error) {
+      const errMsg = "status" in error && error.status;
+
+      return (
+        <main
+          className="d-flex justify-content-center align-items-center"
+          style={{ height: "100vh" }}
+        >
+          <h3 className="text-danger">
+            <> Błąd: {errMsg} </>
+          </h3>
+        </main>
+      );
+    }
   } else if (!data) {
     panelContent = (
       <main
         className="d-flex justify-content-center align-items-center text-center"
         style={{ height: "100vh" }}
       >
-        <h3>
-          Brak miesięcy zapisanych w bazie danych.
-          <br /> Zapisz miesiąc w formularzu
+        <h3 className="text-warning text-center">
+          Brak miesięcy zapisanych w bazie danych. Zapisz miesiąc w formularzu
         </h3>
       </main>
     );
@@ -39,7 +54,9 @@ const IndexMonthPanel = () => {
         className="d-flex justify-content-center align-items-center text-center"
         style={{ height: "100vh" }}
       >
-        <h3>Brak danych z miesiąca...</h3>
+        <h3 className="text-warning text-center">
+          Brak danych z miesiąca {currMonthDateToString}
+        </h3>
       </main>
     );
   } else {

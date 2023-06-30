@@ -3,21 +3,14 @@ import FormHeaderMonhPanel from "./formHeaderMonthPanel/FormHeaderMonhPanel";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import useDatabaseValues from "../../../hooks/useDatabaseValues";
+import useDatabaseValues from "../../../hooks/useMonthURLToString";
+import useMonthURLToString from "../../../hooks/useCurrentDates";
 
 const HeaderMonthPanel = () => {
   const { monthURL } = useParams();
 
   const { databaseAllHours, dataCurrentHours } = useDatabaseValues(monthURL);
-
-  const monthToDateFormat = monthURL && new Date(monthURL);
-  const monthToString =
-    monthToDateFormat &&
-    new Intl.DateTimeFormat("pl-PL", {
-      year: "numeric",
-      month: "long",
-      timeZone: "UTC",
-    }).format(monthToDateFormat);
+  const { monthURLStringFormat } = useMonthURLToString();
 
   return (
     <header className="me-3">
@@ -31,6 +24,7 @@ const HeaderMonthPanel = () => {
             {databaseAllHours} - {dataCurrentHours}
           </div>
           <div style={{ width: "25%" }}>Wolne</div>
+          <div>{monthURLStringFormat}</div>
         </div>
       </Container>
     </header>

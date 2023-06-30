@@ -6,7 +6,7 @@ import {
   useUpdateMonthMutation,
 } from "../../services/apiSlice";
 import DayPrintData from "./DayPrintData";
-import useDatabaseValues from "../../hooks/useDatabaseValues";
+import useDatabaseValues from "../../hooks/useMonthURLToString";
 import Button from "react-bootstrap/Button";
 
 interface Props {

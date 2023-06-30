@@ -1,30 +1,13 @@
-import { Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import useSidebarMonthFormik from "./useSidebarMonthFormik";
-import { AiOutlinePlusCircle } from "react-icons/ai";
-import { error } from "console";
+import useRequestSidebarMonth from "./useRequestSidebarMonth";
+import { currMonthNumber, currYearNumber } from "../../../data/dataCurrentDates";
+
 
 const SidebarMonthForm = () => {
-  const { formik, success } = useSidebarMonthFormik();
-
-  let btnContent = <AiOutlinePlusCircle style={{ fontSize: "1.5rem" }} />;
-
-  if (success.isLoading) {
-    btnContent = (
-      <Spinner
-        animation="border"
-        variant="primary"
-        style={{ height: "1.5rem", width: "1.5rem" }}
-      >
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
-    );
-  }
-
-  if (success.isError) {
-    btnContent = <span> "Błąd" </span>;
-  }
+ 
+  const { formik, success, btnContent } =
+    useRequestSidebarMonth();
 
   return (
     <>
@@ -38,7 +21,7 @@ const SidebarMonthForm = () => {
               id="monthDate"
               type="month"
               name="monthDate"
-              min="2023-06"
+              min = {`${currYearNumber}-${currMonthNumber}`}
               max="2025-12"
               value={formik.values.monthDate}
               onChange={formik.handleChange}

@@ -64,6 +64,6 @@ export const {
   useAddMonthMutation,
   useDeleteMonthMutation,
   useUpdateMonthMutation,
-  usePATCHupdateMonthMutation,
+  // usePATCHupdateMonth,
   // useUpdateDayMutation,
 } = monthsApiSlice;

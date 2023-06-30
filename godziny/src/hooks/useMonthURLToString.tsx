@@ -17,8 +17,9 @@ interface DatabaseValues {
   acceptedHoursSum: any;
   rejectedHoursSum: any;
   submitedHoursSum: any;
-  string: any[];
-  databaseMonthsDates: any[];
+  databaseMonthsDates: string[];
+  databaseMonthsDatesSorted: any;
+  databaseMonthsDatesToString: string[];
 }
 
 const useDatabaseValues = (monthURL: any = null): DatabaseValues => {
@@ -44,7 +45,6 @@ const useDatabaseValues = (monthURL: any = null): DatabaseValues => {
       : undefined;
 
   const databaseColumns = data && databaseMonth?.columns;
-
 
   // hours values
 
@@ -77,23 +77,37 @@ const useDatabaseValues = (monthURL: any = null): DatabaseValues => {
         }, 0)
       : 0;
 
-  // date transformation
+  // dates transformation
   const databaseMonthsDates =
     data && databaseMonthsCollection
       ? databaseMonthsCollection.map(month => month.monthDate)
       : [];
 
-  const string = databaseMonthsDates.map((monthDate: any) => {
-    const monthToDateFormat = new Date(monthDate);
-    return new Intl.DateTimeFormat("pl-PL", {
-      year: "numeric",
-      month: "long",
-      timeZone: "UTC",
-    }).format(monthToDateFormat);
-  });
+  const databaseMonthsDatesSorted = data
+    ? databaseMonthsDates.sort((date1: any, date2: any) => {
+        if (date1 < date2) {
+          return -1;
+        } else if (date1 > date2) {
+          return 1;
+        } else {
+          return 0;
+        }
+      })
+    : [];
+
+
+  const databaseMonthsDatesToString = databaseMonthsDatesSorted.map(
+    (monthDate: any) => {
+      const monthToDateFormat = new Date(monthDate);
+      return new Intl.DateTimeFormat("pl-PL", {
+        year: "numeric",
+        month: "long",
+        timeZone: "UTC",
+      }).format(monthToDateFormat);
+    }
+  );
 
   return {
-    string,
     data,
     error,
     isLoading,
@@ -110,6 +124,8 @@ const useDatabaseValues = (monthURL: any = null): DatabaseValues => {
     rejectedHoursSum,
     submitedHoursSum,
     databaseMonthsDates,
+    databaseMonthsDatesSorted,
+    databaseMonthsDatesToString,
   };
 };
 

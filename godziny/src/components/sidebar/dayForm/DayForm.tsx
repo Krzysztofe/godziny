@@ -2,7 +2,7 @@ import { Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useLocation, useParams } from "react-router-dom";
-import useDatabaseValues from "../../../hooks/useDatabaseValues";
+import useDatabaseValues from "../../../hooks/useMonthURLToString";
 import useDayForm from "./useDayForm";
 
 const DayForm = () => {
