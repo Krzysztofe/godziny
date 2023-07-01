@@ -1,5 +1,5 @@
-import useMonthURLToString from "../../../hooks/useCurrentDates";
-import useDatabaseValues from "../../../hooks/useMonthURLToString";
+import useMonthURLToString from "../../../hooks/useMonthURLToString";
+import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import { useParams } from "react-router-dom";
 
 const MonthPanelHeaderSummary = () => {
@@ -8,7 +8,7 @@ const MonthPanelHeaderSummary = () => {
   const { monthURLStringFormat } = useMonthURLToString();
 
   return (
-    <div className="d-flex justify-content-center mb-1 fw-medium position-relative">
+    <div className="d-flex justify-content-center my-2 fw-medium position-relative">
       <div className="text-capitalize position-absolute end-0">
         {monthURLStringFormat}
       </div>

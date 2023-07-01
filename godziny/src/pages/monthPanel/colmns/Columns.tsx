@@ -1,6 +1,6 @@
 import { DragDropContext } from "react-beautiful-dnd";
 import { handleDragDrop } from "../utils";
-import useDatabaseValues from "../../../hooks/useMonthURLToString";
+import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { useUpdateMonthMutation } from "../../../services/apiSlice";
@@ -21,9 +21,9 @@ const Columns = () => {
     rejectedHoursSum,
   } = useDatabaseValues(monthURL);
 
-  // console.log("", databaseMonth);
+  const [updateColumns, success] = useUpdateMonthMutation();
 
-  const [updateColumns, succes] = useUpdateMonthMutation();
+  console.log("", success.isLoading);
 
   const [columns, setColumns] = useState<any[]>([]);
 
@@ -53,22 +53,19 @@ const Columns = () => {
       });
   }, [columns, databaseAllHours, dataCurrentHours]);
 
+  const scrollableRef = useRef(null);
+  const [thumbPosition, setThumbPosition] = useState(0);
 
+  const handleScroll = () => {
+    const element = scrollableRef.current;
 
-const scrollableRef = useRef(null);
-const [thumbPosition, setThumbPosition] = useState(0);
-
-const handleScroll = () => {
-  const element = scrollableRef.current;
-
-  if (element) {
-    const { scrollTop, scrollHeight, clientHeight } = element;
-    const maxScrollTop = scrollHeight - clientHeight;
-    const thumbPosition = (scrollTop / maxScrollTop) * 100;
-    setThumbPosition(thumbPosition);
-  }
-};
-
+    if (element) {
+      const { scrollTop, scrollHeight, clientHeight } = element;
+      const maxScrollTop = scrollHeight - clientHeight;
+      const thumbPosition = (scrollTop / maxScrollTop) * 100;
+      setThumbPosition(thumbPosition);
+    }
+  };
 
   return (
     <>

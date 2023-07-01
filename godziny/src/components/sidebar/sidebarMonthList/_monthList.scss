@@ -1,8 +1,6 @@
 .monthListContainer {
-  border: 1px solid rgb(240, 240, 240);
   height: 5rem;
   overflow-y: scroll;
-  margin-top: 0.5rem;
   font-size: 0.875rem;
   &::-webkit-scrollbar {
     display: none;

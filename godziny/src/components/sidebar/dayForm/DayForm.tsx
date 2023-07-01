@@ -1,19 +1,19 @@
 import { Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useLocation, useParams } from "react-router-dom";
-import useDatabaseValues from "../../../hooks/useMonthURLToString";
+import { useLocation } from "react-router-dom";
+import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import useDayForm from "./useDayForm";
 import "./_dayForm.scss";
+import { currDateNumber } from "../../../data/dataCurrentDates";
 
 const DayForm = () => {
-  const { monthURL } = useParams();
   const { formik, success } = useDayForm();
   const urlParts = useLocation().pathname.split("/");
-  const lastPartMonthURL = urlParts[urlParts.length - 1];
+  const lastPartOfMonthURL = urlParts[urlParts.length - 1];
 
-  const { dataCurrentHours, databaseAllHours, data, databaseMonth } =
-    useDatabaseValues(lastPartMonthURL);
+  const { dataCurrentHours, databaseAllHours, databaseMonth } =
+    useDatabaseValues(lastPartOfMonthURL);
 
   let btnContent = <span>Zapisz dzień</span>;
 
@@ -28,14 +28,6 @@ const DayForm = () => {
   if (success.isError) {
     btnContent = <span> "Błąd" </span>;
   }
-
-  // if (databaseAllHours === 0) {
-  //   btnContent = <span style={{ color: "red" }}> Podaj godziny</span>;
-  // }
-
-  // if (dataCurrentHours - +formik.values.hours < 0) {
-  //   btnContent = <span style={{ color: "red" }}>Brak godzin </span>;
-  // }
 
   return (
     <Form
@@ -95,7 +87,7 @@ const DayForm = () => {
           value={formik.values.date}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          min={1}
+          min={currDateNumber}
           placeholder="Liczba"
           size="sm"
           className="p-0 px-1 border border-primary"
@@ -183,7 +175,9 @@ const DayForm = () => {
         className="text-danger d-block mt-0 fs-8"
         style={{ height: "0.7rem" }}
       >
-        {dataCurrentHours - +formik.values.hours < 0 ? "Brak wolnych godzin" : ""}
+        {dataCurrentHours - +formik.values.hours < 0
+          ? "Brak wolnych godzin"
+          : ""}
       </div>
     </Form>
   );

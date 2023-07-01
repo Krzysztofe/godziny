@@ -12,7 +12,7 @@
     backdrop-filter: blur(2px);
   }
   &::after {
-    content: "Brak godzin \A do wykorzystania";
+    content: "Zapisz leczbę godzin \A w miesiącu";
     position: absolute;
     color: $danger;
     text-align: center;

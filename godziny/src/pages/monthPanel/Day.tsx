@@ -6,7 +6,7 @@ import {
   useUpdateMonthMutation,
 } from "../../services/apiSlice";
 import DayPrintData from "./DayPrintData";
-import useDatabaseValues from "../../hooks/useMonthURLToString";
+import useDatabaseValues from "../../hooks/useDatabaseValues";
 import Button from "react-bootstrap/Button";
 
 interface Props {
@@ -15,20 +15,13 @@ interface Props {
 }
 
 const Day = (props: Props) => {
-  // const { numberOfDays } = useSelector((state: RootState) => state.hoursPanel);
 
-  const { data, error } = useMonthsDataQuery(undefined);
   const [updateColumns, succes] = useUpdateMonthMutation();
   const { monthURL } = useParams();
 
-  const {
-    databaseColumns,
-    databaseAllHours,
-    databaseMonth,
-    acceptedHoursSum,
-    rejectedHoursSum,
-    submitedHoursSum,
-  } = useDatabaseValues(monthURL);
+  const { databaseColumns, databaseMonth, data } =
+    useDatabaseValues(monthURL);
+
 
   const handleUpdate = async (id: any) => {
     Swal.fire({
@@ -64,6 +57,7 @@ const Day = (props: Props) => {
     <Draggable
       draggableId={props.day && props?.day?.id.toString()}
       index={props.index}
+      isDragDisabled={false}
     >
       {provided => {
         return (

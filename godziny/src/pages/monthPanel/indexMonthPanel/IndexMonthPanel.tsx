@@ -2,7 +2,7 @@ import { Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Columns from "../colmns/Columns";
 import MonthPanelHeader from "../monthPanelHeader/MonthPanelHeader";
-import useDatabaseValues from "../../../hooks/useMonthURLToString";
+import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import { currMonthDateToString } from "../../../data/dataCurrentDates";
 
 const IndexMonthPanel = () => {
@@ -43,9 +43,9 @@ const IndexMonthPanel = () => {
         className="d-flex justify-content-center align-items-center text-center"
         style={{ height: "100vh" }}
       >
-        <h3 className="text-warning text-center col-5">
-          Brak miesięcy zapisanych w bazie danych. Zapisz miesiąc w formularzu
-        </h3>
+        <h5 className="text-warning text-center col-5">
+          Brak  miesięcy zapisanych w bazie danych. Dodaj miesiąc za pomocą formularza
+        </h5>
       </main>
     );
   } else if (!databaseMonth) {

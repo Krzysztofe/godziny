@@ -16,7 +16,7 @@ const MonthPanelHeaderCollapse = () => {
         variant="info"
         className="fw-medium p-1 w-100 mt-1 d-flex justify-content-center align-items-center"
       >
-        Podaj liczbę godzin w miesiącu
+       Liczba godzin w miesiącu
         <MdOutlineKeyboardArrowDown
           className="fs-2 fw-medium"
           style={{
@@ -26,7 +26,7 @@ const MonthPanelHeaderCollapse = () => {
         />
       </Button>
       <Collapse in={open}>
-        <div>
+        <div className="bg-primary-subtle rounded p-1">
           <FormHeaderMonhPanel />
         </div>
       </Collapse>

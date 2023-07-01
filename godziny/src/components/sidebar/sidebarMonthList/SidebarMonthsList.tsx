@@ -1,10 +1,8 @@
 import ListGroup from "react-bootstrap/ListGroup";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import { useMonthsDataQuery } from "../../../services/apiSlice";
-import useDatabaseValues from "../../../hooks/useMonthURLToString";
 import "./_monthList.scss";
-import useMonthURLToString from "../../../hooks/useCurrentDates";
-import { TbTable } from "react-icons/tb";
 
 const SidebarMonthsList = () => {
   const location = useLocation();
@@ -24,30 +22,22 @@ const SidebarMonthsList = () => {
     }).format(monthURLToDateFormat);
 
   return (
-    <ListGroup className="monthListContainer bg-white">
+    <ListGroup className="monthListContainer bg-white border border-primary">
       {!data ? (
         <p className="py-1 px-2 text-warning text-center">Brak danych</p>
       ) : (
         databaseMonthsDatesToString.map((month: any, idx: any) => {
           return (
-            <ListGroup.Item key={month} className="border-0 p-0 px-1 ">
-              {monthURLStringFormat !== month ? (
-                <Link
-                  to={`/miesiac/${databaseMonthsDatesSorted[idx]}`}
-                  key={month}
-                  className="text-reset text-decoration-none text-capitalize"
-                >
-                  {month}
-                </Link>
-              ) : (
-                <Link
-                  to={`/miesiac/${databaseMonthsDatesSorted[idx]}`}
-                  key={month}
-                  className="text-success text-decoration-none text-capitalize"
-                >
-                  {month}
-                </Link>
-              )}
+            <ListGroup.Item key={month} action className="border-0 p-0 px-1">
+              <Link
+                to={`/miesiac/${databaseMonthsDatesSorted[idx]}`}
+                key={month}
+                className={`${
+                  monthURLStringFormat !== month ? "text-reset" : "text-success"
+                } text-decoration-none text-capitalize`}
+              >
+                {month}
+              </Link>
             </ListGroup.Item>
           );
         })

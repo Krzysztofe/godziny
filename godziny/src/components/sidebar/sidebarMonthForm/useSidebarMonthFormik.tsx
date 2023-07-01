@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { monthPattern } from "./dataSidebarMonthForm";
 import { useAddMonthMutation } from "../../../services/apiSlice";
 import * as yup from "yup";
-import useDatabaseValues from "../../../hooks/useMonthURLToString";
+import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import { useNavigate } from "react-router-dom";
 import {
   currYearNumber,
