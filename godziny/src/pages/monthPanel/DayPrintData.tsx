@@ -39,7 +39,7 @@ const DayPrintData = (props: Props) => {
       </div>
 
       <div className="d-flex justify-content-between">
-        {/* <div>{date}</div> */}
+        <div>{date}</div>
         <div>
           {props.day.place === "Poza" ? (
             <TbArrowBigRightLineFilled className="text-success" />

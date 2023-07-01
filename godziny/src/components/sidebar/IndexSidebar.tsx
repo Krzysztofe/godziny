@@ -23,10 +23,10 @@ const IndexSidebar = () => {
           <Button
             variant="secondary"
             onClick={toggleShow}
-            className="me-2"
+            className="me-2 p-1 mt-1 col-sm-1"
             style={{ position: "absolute", right: 0 }}
           >
-            <GiHamburgerMenu />
+            <GiHamburgerMenu className="fs-1" />
           </Button>
 
           <Offcanvas

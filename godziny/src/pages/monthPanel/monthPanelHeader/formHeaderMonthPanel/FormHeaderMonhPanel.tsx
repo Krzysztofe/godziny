@@ -59,7 +59,7 @@ const FormHeaderMonhPanel = () => {
         type="submit"
         variant="info"
         size="sm"
-        className="fw-medium d-block mx-auto mt-2"
+        className="fw-medium d-block mx-auto mt-2 col-sm-4 col-md-3 col-lg-2"
         disabled={success.isLoading}
       >
         {btnContent}
