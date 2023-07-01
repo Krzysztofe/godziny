@@ -12,8 +12,6 @@ const SidebarMonthsList = () => {
   const { databaseMonthsDatesSorted, databaseMonthsDatesToString } =
     useDatabaseValues();
 
-  // const { monthURLStringFormat } = useMonthURLToString();
-
   const monthURL = location.pathname.split("/").slice(-1)[0];
   const monthURLToDateFormat = new Date(monthURL);
 

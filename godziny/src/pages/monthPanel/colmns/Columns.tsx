@@ -2,7 +2,7 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { handleDragDrop } from "../utils";
 import useDatabaseValues from "../../../hooks/useMonthURLToString";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useUpdateMonthMutation } from "../../../services/apiSlice";
 import Column from "../Column";
 import HeaderColumns from "../headerColumns.tsx/HeaderColumns";
@@ -53,9 +53,31 @@ const Columns = () => {
       });
   }, [columns, databaseAllHours, dataCurrentHours]);
 
+
+
+const scrollableRef = useRef(null);
+const [thumbPosition, setThumbPosition] = useState(0);
+
+const handleScroll = () => {
+  const element = scrollableRef.current;
+
+  if (element) {
+    const { scrollTop, scrollHeight, clientHeight } = element;
+    const maxScrollTop = scrollHeight - clientHeight;
+    const thumbPosition = (scrollTop / maxScrollTop) * 100;
+    setThumbPosition(thumbPosition);
+  }
+};
+
+
   return (
     <>
-      <main className="mb-2 overflow-y-scroll ">
+      <main
+        ref={scrollableRef}
+        onScroll={handleScroll}
+        className="mb-2 overflow-y-scroll "
+        style={{ top: `${thumbPosition}%` }}
+      >
         <Container className="mx-0 ms-sm-auto sticky-top d-flex column-gap-2">
           <HeaderColumns />
         </Container>
