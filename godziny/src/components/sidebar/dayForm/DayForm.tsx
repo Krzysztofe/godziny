@@ -4,8 +4,7 @@ import Form from "react-bootstrap/Form";
 import { useLocation, useParams } from "react-router-dom";
 import useDatabaseValues from "../../../hooks/useMonthURLToString";
 import useDayForm from "./useDayForm";
-import "./_dayForm.scss"
-
+import "./_dayForm.scss";
 
 const DayForm = () => {
   const { monthURL } = useParams();
@@ -13,7 +12,7 @@ const DayForm = () => {
   const urlParts = useLocation().pathname.split("/");
   const lastPartMonthURL = urlParts[urlParts.length - 1];
 
-  const { dataCurrentHours, databaseAllHours } =
+  const { dataCurrentHours, databaseAllHours, data, databaseMonth } =
     useDatabaseValues(lastPartMonthURL);
 
   let btnContent = <span>Zapisz dzień</span>;
@@ -39,7 +38,12 @@ const DayForm = () => {
   // }
 
   return (
-    <Form onSubmit={formik.handleSubmit} className="mt-2">
+    <Form
+      onSubmit={formik.handleSubmit}
+      className={`mt-2 ${!databaseMonth ? "d-none" : ""} ${
+        databaseMonth && databaseAllHours === 0 ? "formContainer" : ""
+      }`}
+    >
       {/* userName */}
 
       <Form.Group>
@@ -174,6 +178,13 @@ const DayForm = () => {
       >
         {btnContent}
       </Button>
+
+      <div
+        className="text-danger d-block mt-0 fs-8"
+        style={{ height: "0.7rem" }}
+      >
+        {dataCurrentHours - +formik.values.hours < 0 ? "Brak wolnych godzin" : ""}
+      </div>
     </Form>
   );
 };

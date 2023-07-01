@@ -1,7 +1,7 @@
 import { Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Columns from "../colmns/Columns";
-import HeaderMonthPanel from "../headerMonthPanel/HeaderMonthPanel";
+import MonthPanelHeader from "../monthPanelHeader/MonthPanelHeader";
 import useDatabaseValues from "../../../hooks/useMonthURLToString";
 import { currMonthDateToString } from "../../../data/dataCurrentDates";
 
@@ -31,7 +31,7 @@ const IndexMonthPanel = () => {
           className="d-flex justify-content-center align-items-center"
           style={{ height: "100vh" }}
         >
-          <h3 className="text-danger">
+          <h3 className="text-danger col-5">
             <> Błąd: {errMsg} </>
           </h3>
         </main>
@@ -43,7 +43,7 @@ const IndexMonthPanel = () => {
         className="d-flex justify-content-center align-items-center text-center"
         style={{ height: "100vh" }}
       >
-        <h3 className="text-warning text-center">
+        <h3 className="text-warning text-center col-5">
           Brak miesięcy zapisanych w bazie danych. Zapisz miesiąc w formularzu
         </h3>
       </main>
@@ -54,7 +54,7 @@ const IndexMonthPanel = () => {
         className="d-flex justify-content-center align-items-center text-center"
         style={{ height: "100vh" }}
       >
-        <h3 className="text-warning text-center">
+        <h3 className="text-warning text-center col-5">
           Brak danych z miesiąca {currMonthDateToString}
         </h3>
       </main>
@@ -62,7 +62,7 @@ const IndexMonthPanel = () => {
   } else {
     panelContent = (
       <main className="d-flex flex-column" style={{ height: "100vh" }}>
-        <HeaderMonthPanel />
+        <MonthPanelHeader />
         <Columns />
       </main>
     );

@@ -4,12 +4,13 @@ import * as yup from "yup";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../data/firebaseConfig";
 import { useNavigate } from "react-router-dom";
+import { currYearNumber, currMonthNumber } from "../../data/dataCurrentDates";
 
 interface ModelFormValues {
   password: string;
 }
 
-const useLoginForm = () => {
+const useLoginFormik = () => {
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
   // ww@wp.pl
@@ -20,7 +21,7 @@ const useLoginForm = () => {
 
     onSubmit: values => {
       signInWithEmailAndPassword(auth, "ww@wp.pl", values.password)
-        .then(() => navigate("/miesiac/2023-06"))
+        .then(() => navigate(`/miesiac/${currYearNumber}-${currMonthNumber}`))
 
         .catch(error => setError(error.message));
     },
@@ -29,4 +30,4 @@ const useLoginForm = () => {
   return { formik, error };
 };
 
-export default useLoginForm;
+export default useLoginFormik;

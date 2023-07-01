@@ -11,7 +11,6 @@ const useMonthURLToString = () => {
       month: "long",
       timeZone: "UTC",
     }).format(monthURLToDateFormat);
-  console.log("x", monthURLToDateFormat);
 
   return { monthURLStringFormat };
 };

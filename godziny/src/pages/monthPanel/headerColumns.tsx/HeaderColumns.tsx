@@ -44,7 +44,7 @@ const HeaderColumns = () => {
         return (
           <div
             key={headerText}
-            className="p-1 bg-primary-subtle text-dark-emphasis fw-medium w-100 "
+            className="p-1 bg-primary-subtle text-dark-emphasis fw-medium w-100 border-4 border-bottom border-white"
             style={{ fontSize: "clamp(0.8rem, 3.4vw, 1rem)" }}
           >
             {headerText} {""}

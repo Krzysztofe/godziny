@@ -3,24 +3,22 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../data/firebaseConfig";
-import useLoginForm from "./useLoginForm";
+import useLoginFormik from "./useLoginFormik";
+import { currYearNumber, currMonthNumber } from "../../data/dataCurrentDates";
 
 const Login = () => {
-  const { formik, error } = useLoginForm();
   const navigate = useNavigate();
-  
+  const { formik, error } = useLoginFormik();
+
   useEffect(() => {
     auth.onAuthStateChanged(user => {
-      user && navigate("/miesiac/2023-06");
+      user && navigate(`/miesiac/${currYearNumber}-${currMonthNumber}`);
     });
   }, []);
 
   return (
     <main className="d-flex justify-content-center  align-items-center vh-100">
-      <Form
-        onSubmit={formik.handleSubmit}
-        className="w-sm-90 border p-4 "
-      >
+      <Form onSubmit={formik.handleSubmit} className="w-sm-90 border p-4 ">
         <Form.Group className="mx-auto">
           <div className="text-center fs-3 fw-medium mb-4">
             <Form.Label htmlFor="password" className="mb-0">
