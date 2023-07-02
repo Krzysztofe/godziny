@@ -3,9 +3,14 @@ import Form from "react-bootstrap/Form";
 import Spinner from "react-bootstrap/Spinner";
 import "./_formHeaderMonthPAnel.scss";
 import useFormHeaderMonhPanel from "./useFormHeaderMonthPanel";
+import useDatabaseValues from "../../../../hooks/useDatabaseValues";
+import { useParams } from "react-router-dom";
 
 const FormHeaderMonhPanel = () => {
+  const {monthURL} = useParams()
   const { formik, success } = useFormHeaderMonhPanel();
+  const { dataBaseSubmitedHours, databaseAcceptedHours } =
+    useDatabaseValues(monthURL);
 
   let btnContent;
 
@@ -23,6 +28,8 @@ const FormHeaderMonhPanel = () => {
 
   return (
     <Form onSubmit={formik.handleSubmit} className="my-2">
+
+        
       <Form.Control
         type="number"
         name="allHours"
@@ -37,7 +44,19 @@ const FormHeaderMonhPanel = () => {
         style={{ minHeight: 0, cursor: "pointer", width: "fit-content" }}
       />
 
-      <Form.Group className="d-flex align-items-center w-100">
+      <div
+        className="text-danger d-block mt-0 fs-8 text-center"
+        style={{ height: "0.7rem" }}
+      >
+        {dataBaseSubmitedHours + databaseAcceptedHours > +formik.values.allHours
+          ? `Podaj ilość godzin większą od ${
+              dataBaseSubmitedHours + databaseAcceptedHours
+            } `
+          : ""}
+      </div>
+     
+
+      <Form.Group className="mt-2 d-flex align-items-center w-100">
         <div className="fw-medium">0</div>
         <Form.Range
           name="allHours"

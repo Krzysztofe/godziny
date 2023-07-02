@@ -2,29 +2,19 @@ import { MdFactory } from "react-icons/md";
 import { TbArrowBigRightLineFilled } from "react-icons/tb";
 import { FiClock } from "react-icons/fi";
 import { useParams } from "react-router-dom";
+import { date } from "yup";
 
 interface Props {
   day: any;
 }
 
 const DayPrintData = (props: Props) => {
-  const { monthURL } = useParams();
+  const date = new Date(props.day.date);
 
-  const monthToDateFormat = monthURL && new Date(monthURL);
-  const monthToString =
-    monthToDateFormat &&
-    new Intl.DateTimeFormat("pl-PL", {
-      year: "numeric",
-      month: "long",
-      timeZone: "UTC",
-    })
-      .format(monthToDateFormat)
-      .slice(0, -5);
-
-  const date = props.day.date.slice(5);
-  const dateToPrint = date[0] === "0" ? date.slice(1) : date;
-
-  // console.log("", monthToString);
+  const dateToPrint = new Intl.DateTimeFormat("pl-PL", {
+    day: "numeric",
+    month: "short",
+  }).format(date);
 
   return (
     <div className="px-1 py-2 py-sm-1">
@@ -39,7 +29,7 @@ const DayPrintData = (props: Props) => {
       </div>
 
       <div className="d-flex justify-content-between">
-        <div>{date}</div>
+        <div>{dateToPrint}</div>
         <div>
           {props.day.place === "Poza" ? (
             <TbArrowBigRightLineFilled className="text-success" />

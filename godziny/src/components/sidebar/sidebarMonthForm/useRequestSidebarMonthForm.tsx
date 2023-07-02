@@ -20,7 +20,12 @@ const useRequestSidebarMonthForm = () => {
   } else if (success.isError) {
     btnContent = <span className="text-danger"> Błąd </span>;
   } else {
-    btnContent = <AiOutlinePlusCircle style={{ fontSize: "1.5rem" }} />;
+    btnContent = (
+      <AiOutlinePlusCircle
+        className="text-info"
+        style={{ fontSize: "1.5rem" }}
+      />
+    );
   }
 
   return { formik, success, btnContent };

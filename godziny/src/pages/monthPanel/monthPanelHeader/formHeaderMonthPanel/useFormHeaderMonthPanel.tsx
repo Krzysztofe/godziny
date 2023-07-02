@@ -1,10 +1,7 @@
-import React from "react";
 import { useFormik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
-import { useUpdateMonthMutation } from "../../../../services/apiSlice";
+import { useParams } from "react-router-dom";
 import useDatabaseValues from "../../../../hooks/useDatabaseValues";
-import { RootState } from "../../../../redux/store";
-import { useParams, useLocation } from "react-router-dom";
+import { useUpdateMonthMutation } from "../../../../services/apiSlice";
 import { validationSchema } from "./validationFormHeaderMonthPanel";
 
 interface ModelFormValues {
@@ -14,12 +11,18 @@ interface ModelFormValues {
 const useFormHeaderMonhPanel = () => {
   const { monthURL } = useParams();
   const [updateColumns, success] = useUpdateMonthMutation();
-  const { databaseMonth, data } = useDatabaseValues(monthURL);
+  const { databaseMonth, data, dataBaseSubmitedHours, databaseAcceptedHours } =
+    useDatabaseValues(monthURL);
 
   const formik = useFormik<ModelFormValues>({
     initialValues: { allHours: 0 },
     validationSchema: validationSchema,
     onSubmit: async values => {
+      if (
+        dataBaseSubmitedHours + databaseAcceptedHours >
+        +formik.values.allHours
+      )
+        return;
       await updateColumns({
         id: data && databaseMonth?.id,
         columns: {

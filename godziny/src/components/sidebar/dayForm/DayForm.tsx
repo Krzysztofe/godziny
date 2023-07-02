@@ -5,7 +5,8 @@ import { useLocation } from "react-router-dom";
 import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import useDayForm from "./useDayForm";
 import "./_dayForm.scss";
-import { currDateNumber } from "../../../data/dataCurrentDates";
+import { dateIn14Days, dateIn60Days } from "../../../data/dataCurrentDates";
+
 
 const DayForm = () => {
   const { formik, success } = useDayForm();
@@ -87,7 +88,8 @@ const DayForm = () => {
           value={formik.values.date}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          min={currDateNumber}
+          min={dateIn14Days}
+          max={dateIn60Days}
           placeholder="Liczba"
           size="sm"
           className="p-0 px-1 border border-primary"
@@ -176,7 +178,7 @@ const DayForm = () => {
         style={{ height: "0.7rem" }}
       >
         {dataCurrentHours - +formik.values.hours < 0
-          ? "Brak wolnych godzin"
+          ? "Brak dostępnych godzin"
           : ""}
       </div>
     </Form>

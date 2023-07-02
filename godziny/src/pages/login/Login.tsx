@@ -1,20 +1,22 @@
-import { useEffect } from "react";
+import { Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useNavigate } from "react-router-dom";
-import { auth } from "../../data/firebaseConfig";
 import useLoginFormik from "./useLoginFormik";
-import { currYearNumber, currMonthNumber } from "../../data/dataCurrentDates";
 
 const Login = () => {
-  const navigate = useNavigate();
-  const { formik, error } = useLoginFormik();
+  const { formik, isLoading } = useLoginFormik();
 
-  useEffect(() => {
-    auth.onAuthStateChanged(user => {
-      user && navigate(`/miesiac/${currYearNumber}-${currMonthNumber}`);
-    });
-  }, []);
+  let btnContent;
+
+  if (isLoading) {
+    btnContent = (
+      <Spinner animation="border" size="sm" variant="secondary">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
+  } else {
+    btnContent = "Zaloguj";
+  }
 
   return (
     <main className="d-flex justify-content-center  align-items-center vh-100">
@@ -34,19 +36,14 @@ const Login = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             placeholder="Hasło"
+            disabled={isLoading}
             size="lg"
             className="shadow-sm"
           />
-          <Form.Text
-            className="text-danger py-1"
-            style={{ fontSize: "0.7rem" }}
-          >
-            {error && `Błąd ${error}`}
-          </Form.Text>
         </Form.Group>
         <div className="d-grid">
           <Button variant="info" type="submit" className="fw-medium mt-4">
-            Zaloguj
+            {btnContent}
           </Button>
         </div>
       </Form>

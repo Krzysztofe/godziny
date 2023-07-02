@@ -5,8 +5,8 @@ import * as yup from "yup";
 import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import { useNavigate } from "react-router-dom";
 import {
-  currYearNumber,
-  currMonthNumber,
+  currYearDigits,
+  currMonthDigits,
 } from "../../../data/dataCurrentDates";
 
 interface ModelFormValues {
@@ -20,7 +20,7 @@ const useSidebarMonthFormik = () => {
   const { databaseMonthsDates = [] } = useDatabaseValues();
 
   const formik = useFormik<ModelFormValues>({
-    initialValues: { monthDate: `${currYearNumber}-${currMonthNumber}` },
+    initialValues: { monthDate: `${currYearDigits}-${currMonthDigits}` },
     validationSchema: yup.object({
       monthDate: yup
         .string()

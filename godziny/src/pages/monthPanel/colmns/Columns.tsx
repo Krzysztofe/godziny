@@ -23,8 +23,6 @@ const Columns = () => {
 
   const [updateColumns, success] = useUpdateMonthMutation();
 
-  console.log("", success.isLoading);
-
   const [columns, setColumns] = useState<any[]>([]);
 
   useEffect(() => {

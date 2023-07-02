@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import useRequestSidebarMonthForm from "./useRequestSidebarMonthForm";
-import { currMonthNumber, currYearNumber } from "../../../data/dataCurrentDates";
+import { currMonthDigits, currYearDigits } from "../../../data/dataCurrentDates";
 
 
 const SidebarMonthForm = () => {
@@ -20,7 +20,7 @@ const SidebarMonthForm = () => {
               id="monthDate"
               type="month"
               name="monthDate"
-              min = {`${currYearNumber}-${currMonthNumber}`}
+              min={`${currYearDigits}-${currMonthDigits}`}
               max="2025-12"
               value={formik.values.monthDate}
               onChange={formik.handleChange}

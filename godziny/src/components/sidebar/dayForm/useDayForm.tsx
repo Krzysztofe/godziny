@@ -1,11 +1,12 @@
 import { useFormik } from "formik";
-import { useParams, useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+import { dateIn14Days } from "../../../data/dataCurrentDates";
 import useDatabaseValues from "../../../hooks/useDatabaseValues";
-import { initialValues } from "./dataDayForm";
-import { validationSchema } from "./validationDayForm";
 import { useUpdateMonthMutation } from "../../../services/apiSlice";
+import { validationSchema } from "./validationDayForm";
 
 interface FormValues {
+  id: string;
   date: string;
   hours: number | string;
   userName: string;
@@ -22,7 +23,13 @@ const useDayForm = () => {
     useDatabaseValues(lastPartMonthURL);
 
   const formik = useFormik<FormValues>({
-    initialValues: initialValues,
+    initialValues: {
+      id: crypto.randomUUID(),
+      date: dateIn14Days,
+      hours: "",
+      userName: "",
+      place: "",
+    },
     validationSchema: validationSchema,
 
     onSubmit: async values => {

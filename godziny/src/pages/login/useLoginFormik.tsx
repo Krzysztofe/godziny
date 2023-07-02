@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useFormik } from "formik";
-import * as yup from "yup";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../data/firebaseConfig";
+import { useFormik } from "formik";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { currYearNumber, currMonthNumber } from "../../data/dataCurrentDates";
+import { currMonthDigits, currYearDigits } from "../../data/dataCurrentDates";
+import { auth } from "../../data/firebaseConfig";
+import Swal from "sweetalert2";
 
 interface ModelFormValues {
   password: string;
@@ -12,7 +12,7 @@ interface ModelFormValues {
 
 const useLoginFormik = () => {
   const navigate = useNavigate();
-  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   // ww@wp.pl
   // wwwwww;
 
@@ -20,14 +20,26 @@ const useLoginFormik = () => {
     initialValues: { password: "wwwwww" },
 
     onSubmit: values => {
+      setIsLoading(true);
       signInWithEmailAndPassword(auth, "ww@wp.pl", values.password)
-        .then(() => navigate(`/miesiac/${currYearNumber}-${currMonthNumber}`))
-
-        .catch(error => setError(error.message));
+        .then(() => {
+          navigate(`/miesiac/${currYearDigits}-${currMonthDigits}`);
+          setIsLoading(false);
+        })
+        .catch(error =>
+          Swal.fire({
+            title: "Błąd",
+            text: error.message,
+            confirmButtonColor: "rgb(31, 180, 255)",
+          })
+        )
+        .finally(() => {
+        setIsLoading(false);
+      });
     },
   });
 
-  return { formik, error };
+  return { formik, isLoading };
 };
 
 export default useLoginFormik;

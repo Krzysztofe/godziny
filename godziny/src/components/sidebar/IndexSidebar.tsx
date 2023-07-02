@@ -23,7 +23,7 @@ const IndexSidebar = () => {
           <Button
             variant="secondary"
             onClick={toggleShow}
-            className="me-2 p-1 mt-1 col-sm-1"
+            className="me-2 p-1 mt-1 col-2 col-sm-1"
             style={{ position: "absolute", right: 0 }}
           >
             <GiHamburgerMenu className="fs-1" />
@@ -39,9 +39,7 @@ const IndexSidebar = () => {
             style={{ width: 200 }}
           >
             <Offcanvas.Header className="pb-0">
-              <Offcanvas.Title>
-                <SidebarTitle />
-              </Offcanvas.Title>
+              <SidebarTitle />
             </Offcanvas.Header>
             <Offcanvas.Body className="pt-0">
               <SidebarMonthForm />
