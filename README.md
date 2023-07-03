@@ -1,6 +1,10 @@
 # godziny
 https://krzysztofe.github.io/godziny/
 
+
+
+*Protected routes
+
 * SCSS,
 * React, TypeScript
 * Redux Toolkit 
