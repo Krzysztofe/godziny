@@ -1,8 +1,9 @@
-import "./App.scss";
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.scss";
 import LoadingPage from "./pages/loadingPage/LoadingPage";
 const Login = lazy(() => import("./pages/login/Login"));
+const PrivateRoutes = lazy(() => import("./components/PrivateRoutes"));
 const IndexSidebar = lazy(() => import("./components/sidebar/IndexSidebar"));
 const IndexMonthPanel = lazy(
   () => import("./pages/monthPanel/indexMonthPanel/IndexMonthPanel")
@@ -17,9 +18,10 @@ function App() {
         <IndexSidebar />
         <Routes>
           <Route path="/" element={<Login />} />
-          {/* <Route path="/miesiac" element={<IndexMonthPanel />} /> */}
-          <Route path="/miesiac/:monthURL" element={<IndexMonthPanel />} />
-          <Route path="/settings" element={<IndexSettings />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path="/miesiac/:monthURL" element={<IndexMonthPanel />} />
+            <Route path="/settings" element={<IndexSettings />} />
+          </Route>
         </Routes>
       </Suspense>
     </BrowserRouter>
