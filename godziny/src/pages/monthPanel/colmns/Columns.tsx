@@ -35,7 +35,7 @@ const Columns = () => {
       databaseMonth?.monthDate &&
       updateColumns({
         id: data && databaseMonth?.id,
-        columns: {
+        month: {
           ...databaseMonth,
           columns: columns,
           currentHours:

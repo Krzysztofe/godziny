@@ -5,7 +5,6 @@ export const validationSchema = yup.object({
     .string()
     .test("is-name-valid", "Imię wymagane", value => value !== "Imię")
     .required("Imię wymagane"),
-  date: yup.string().required("Data wymagana"),
   hours: yup
     .mixed()
     .test(

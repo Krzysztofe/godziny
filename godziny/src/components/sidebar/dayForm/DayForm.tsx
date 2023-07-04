@@ -1,34 +1,21 @@
-import { Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useLocation } from "react-router-dom";
-import useDatabaseValues from "../../../hooks/useDatabaseValues";
-import useDayForm from "./useDayForm";
-import "./_dayForm.scss";
 import { dateIn14Days, dateIn60Days } from "../../../data/dataCurrentDates";
-
+import useDatabaseValues from "../../../hooks/useDatabaseValues";
+import "./_dayForm.scss";
+import useDayFormik from "./useDayFormik";
+import useHTTPState from "../../../hooks/useHTTPState";
 
 const DayForm = () => {
-  const { formik, success } = useDayForm();
+  const { formik, success } = useDayFormik();
   const urlParts = useLocation().pathname.split("/");
   const lastPartOfMonthURL = urlParts[urlParts.length - 1];
-
   const { dataCurrentHours, databaseAllHours, databaseMonth } =
     useDatabaseValues(lastPartOfMonthURL);
+    
+  const { btnContent } = useHTTPState(success, "Zapisz dzień");
 
-  let btnContent = <span>Zapisz dzień</span>;
-
-  if (success.isLoading) {
-    btnContent = (
-      <Spinner animation="border" size="sm" variant="secondary">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
-    );
-  }
-
-  if (success.isError) {
-    btnContent = <span> "Błąd" </span>;
-  }
 
   return (
     <Form

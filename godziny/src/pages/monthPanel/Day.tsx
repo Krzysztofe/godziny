@@ -2,7 +2,6 @@ import { Draggable } from "react-beautiful-dnd";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
-  useMonthsDataQuery,
   useUpdateMonthMutation,
 } from "../../services/apiSlice";
 import DayPrintData from "./DayPrintData";
@@ -47,7 +46,7 @@ const Day = (props: Props) => {
 
         await updateColumns({
           id: data && databaseMonth?.id,
-          columns: { ...databaseMonth, columns: updatedColumnsWithDeletedDays },
+          month: { ...databaseMonth, columns: updatedColumnsWithDeletedDays },
         });
       }
     });
@@ -83,10 +82,10 @@ const Day = (props: Props) => {
   );
 
   if (succes.isLoading) {
-    btnContent = <div> "Loading" </div>;
+    btnContent = <div> Loading </div>;
   }
   if (succes.isError) {
-    btnContent = <div> "Błąd" </div>;
+    btnContent = <div> Błąd </div>;
   }
 
   return <>{btnContent}</>;

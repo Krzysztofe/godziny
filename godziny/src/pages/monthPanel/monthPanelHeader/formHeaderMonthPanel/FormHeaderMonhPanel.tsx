@@ -1,35 +1,24 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Spinner from "react-bootstrap/Spinner";
+import { useParams } from "react-router-dom";
+import useDatabaseValues from "../../../../hooks/useDatabaseValues";
+import useHTTPState from "../../../../hooks/useHTTPState";
 import "./_formHeaderMonthPAnel.scss";
 import useFormHeaderMonhPanel from "./useFormHeaderMonthPanel";
-import useDatabaseValues from "../../../../hooks/useDatabaseValues";
-import { useParams } from "react-router-dom";
 
 const FormHeaderMonhPanel = () => {
-  const {monthURL} = useParams()
+  const { monthURL } = useParams();
   const { formik, success } = useFormHeaderMonhPanel();
   const { dataBaseSubmitedHours, databaseAcceptedHours } =
     useDatabaseValues(monthURL);
 
-  let btnContent;
 
-  if (success.isLoading) {
-    btnContent = (
-      <Spinner animation="border" size="sm" variant="secondary">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
-    );
-  } else if (success.isError) {
-    btnContent = <div> "Błąd" </div>;
-  } else {
-    btnContent = "Zapisz liczbę godzin";
-  }
+  const { btnContent } = useHTTPState(success, "Zapisz liczbę godzin");
+
+ 
 
   return (
     <Form onSubmit={formik.handleSubmit} className="my-2">
-
-        
       <Form.Control
         type="number"
         name="allHours"
@@ -54,7 +43,6 @@ const FormHeaderMonhPanel = () => {
             } `
           : ""}
       </div>
-     
 
       <Form.Group className="mt-2 d-flex align-items-center w-100">
         <div className="fw-medium">0</div>

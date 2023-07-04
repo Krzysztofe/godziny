@@ -1,9 +1,10 @@
 import { useFormik } from "formik";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { dateIn14Days } from "../../../data/dataCurrentDates";
 import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import { useUpdateMonthMutation } from "../../../services/apiSlice";
-import { validationSchema } from "./validationDayForm";
+import { validationSchema } from "./validationDayFormik";
+
 
 interface FormValues {
   id: string;
@@ -13,11 +14,10 @@ interface FormValues {
   place: string;
 }
 
-const useDayForm = () => {
-  const [updateColumns, success] = useUpdateMonthMutation();
+const useDayFormik = () => {
+  const [updateMonth, success] = useUpdateMonthMutation();
   const urlParts = useLocation().pathname.split("/");
   const lastPartMonthURL = urlParts[urlParts.length - 1];
-  const { monthURL } = useParams();
 
   const { databaseColumns, databaseMonth, data, dataCurrentHours } =
     useDatabaseValues(lastPartMonthURL);
@@ -36,32 +36,30 @@ const useDayForm = () => {
       formik.setFieldValue("id", crypto.randomUUID());
       if (dataCurrentHours - +formik.values.hours < 0) return;
 
-      const databaseColumnsAddedDays =
-        data && databaseMonth && databaseColumns?.length > 0
-          ? [...databaseColumns]
-          : [];
+      if (data && databaseMonth?.id && databaseColumns?.length > 0) {
+        const databaseColumnsAddedDays = JSON.parse(
+          JSON.stringify(databaseColumns)
+        );
 
-      databaseColumnsAddedDays[0] = data &&
-        databaseMonth &&
-        databaseColumns?.length > 0 && {
-          ...databaseColumns?.[0],
-          days: [
-            ...databaseColumns?.[0]?.days,
-            ...[{ ...values, hours: +values.hours }],
-          ],
-        };
+        const hours = +values.hours || 0;
 
-      await updateColumns({
-        id: data && databaseMonth.id,
-        columns: {
-          ...databaseMonth,
-          columns: databaseColumnsAddedDays,
-        },
-      });
+        databaseColumnsAddedDays?.[0]?.days?.push({
+          ...values,
+          hours,
+        });
+
+        await updateMonth({
+          id: databaseMonth.id,
+          month: {
+            ...databaseMonth,
+            columns: databaseColumnsAddedDays,
+          },
+        });
+      }
     },
   });
 
   return { formik, success };
 };
 
-export default useDayForm;
+export default useDayFormik;

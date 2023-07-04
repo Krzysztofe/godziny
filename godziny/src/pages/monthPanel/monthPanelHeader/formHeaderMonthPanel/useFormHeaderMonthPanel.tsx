@@ -25,7 +25,7 @@ const useFormHeaderMonhPanel = () => {
         return;
       await updateColumns({
         id: data && databaseMonth?.id,
-        columns: {
+        month: {
           ...databaseMonth,
           allHours: values.allHours,
         },

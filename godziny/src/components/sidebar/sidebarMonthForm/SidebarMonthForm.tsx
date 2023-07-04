@@ -1,12 +1,20 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import useRequestSidebarMonthForm from "./useRequestSidebarMonthForm";
-import { currMonthDigits, currYearDigits } from "../../../data/dataCurrentDates";
-
+import {
+  currMonthDigits,
+  currYearDigits,
+} from "../../../data/dataCurrentDates";
+import useHTTPState from "../../../hooks/useHTTPState";
+import useSidebarMonthFormik from "./useSidebarMonthFormik";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 
 const SidebarMonthForm = () => {
- 
-  const { formik, success, btnContent } = useRequestSidebarMonthForm();
+
+  const { formik, success } = useSidebarMonthFormik();
+  const { btnContent } = useHTTPState(
+    success,
+    <AiOutlinePlusCircle className="text-info" style={{ fontSize: "1.5rem" }} />
+  );
 
   return (
     <>
