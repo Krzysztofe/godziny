@@ -44,7 +44,7 @@ const IndexSidebar = () => {
             <Offcanvas.Body className="pt-0">
               <SidebarMonthForm />
               <SidebarMonthCollapse />
-              {/* <DayForm /> */}
+              <DayForm /><>oo</>
             </Offcanvas.Body>
           </Offcanvas>
         </>

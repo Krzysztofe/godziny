@@ -14,15 +14,15 @@ const DayForm = () => {
   const { dataCurrentHours, databaseAllHours, databaseMonth } =
     useDatabaseValues(lastPartOfMonthURL);
     
-  const { btnContent } = useHTTPState(success, "Zapisz dzień");
+  // const { btnContent } = useHTTPState(success, "Zapisz dzień");
 
 
   return (
     <Form
       onSubmit={formik.handleSubmit}
-      className={`mt-2 ${!databaseMonth ? "d-none" : ""} ${
-        databaseMonth && databaseAllHours === 0 ? "formContainer" : ""
-      }`}
+      // className={`mt-2 ${!databaseMonth ? "d-none" : ""} ${
+      //   databaseMonth && databaseAllHours === 0 ? "formContainer" : ""
+      // }`}
     >
       {/* userName */}
 
@@ -157,7 +157,8 @@ const DayForm = () => {
         disabled={success.isLoading}
         className="fw-medium w-100 mt-2 "
       >
-        {btnContent}
+        {/* {btnContent} */}
+        zapisz
       </Button>
 
       <div

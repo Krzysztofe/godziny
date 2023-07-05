@@ -3,10 +3,14 @@ import { handleDragDrop } from "../utils";
 import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
-import { useMonthDataQuery, useUpdateMonthMutation } from "../../../services/apiSlice";
+import {
+  useMonthDataQuery,
+  useUpdateMonthMutation,
+} from "../../../services/apiSlice";
 import Column from "../Column";
 import HeaderColumns from "../headerColumns.tsx/HeaderColumns";
 import Container from "react-bootstrap/Container";
+import { addDaysToEmptyColumns } from "../utils";
 
 const Columns = () => {
   const { monthURL } = useParams();
@@ -21,17 +25,16 @@ const Columns = () => {
     rejectedHoursSum,
   } = useDatabaseValues(monthURL);
 
+  const yearFromURL = monthURL?.slice(0, 4);
+  const monthFromURL = monthURL?.slice(-2);
 
+  const { data } = useMonthDataQuery({
+    year: yearFromURL,
+    month: monthFromURL,
+  });
+  const columnsAddedDays = addDaysToEmptyColumns(data?.columns);
 
-
-const yearFromURL = monthURL?.slice(0,4)
-const monthFromURL = monthURL?.slice(-2)
-
-
-
-const { data } = useMonthDataQuery({ year: yearFromURL, month: monthFromURL });
-console.log("ddd", data?.columns);
-
+  // console.log("ddd", columnsAddedDays);
 
   const [updateColumns, success] = useUpdateMonthMutation();
 
@@ -96,11 +99,9 @@ console.log("ddd", data?.columns);
           <DragDropContext
             onDragEnd={results => handleDragDrop(results, columns, setColumns)}
           >
-            {columns &&
-              columns.length > 0 &&
-              data?.columns.map((column: any) => {
-                return <Column column={column} key={column.id} />;
-              })}
+            {columnsAddedDays?.map((column: any) => {
+              return <Column column={column} key={column.id} />;
+            })}
           </DragDropContext>
         </Container>
       </main>

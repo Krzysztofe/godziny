@@ -15,25 +15,25 @@ export const addDaysToEmptyColumns = (arr: any) => {
 
 
 
-// export const addDaysToColumns = (arr: any[]) => {
-//   if (!Array.isArray(arr)) {
-//     return [];
-//   }
+export const addDaysToColumnsvvvvv = (arr: any[]) => {
+  if (!Array.isArray(arr)) {
+    return [];
+  }
 
-//   return arr?.map((obj: any) => {
-//     if (obj?.columns?.map((column:any) => column.hasOwnProperty("days"))) {
-//       return {
-//         ...obj,
-//         columns: obj?.columns?.map((column: any) => {
-//           return { ...column, days: [] };
-//         }),
-//       };
-//     }
+  return arr?.map((obj: any) => {
+    if (obj?.columns?.map((column:any) => column.hasOwnProperty("days"))) {
+      return {
+        ...obj,
+        columns: obj?.columns?.map((column: any) => {
+          return { ...column, days: [] };
+        }),
+      };
+    }
 
-//     return obj
-//   });
+    return obj
+  });
   
-// };
+};
 
 
 export const addDaysToColumns = (arr: any[]) => {

@@ -8,21 +8,19 @@ interface ModelDay {
 
 interface ModelColumn {
   id: string;
-  days: string;
+  // days?: string[];
 }
 
 const columns: ModelColumn[] = [
   {
     id: "submitted",
-    days: "[]",
+   
   },
   {
     id: "accepted",
-    days: "[]",
   },
   {
     id: "rejected",
-    days: "[]",
   },
 ];
 
