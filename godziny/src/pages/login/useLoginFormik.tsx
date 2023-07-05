@@ -23,7 +23,7 @@ const useLoginFormik = () => {
       setIsLoading(true);
       signInWithEmailAndPassword(auth, "ww@wp.pl", values.password)
         .then(() => {
-          navigate(`/miesiac/${currYearDigits}-${currMonthDigits}`);
+          navigate(`/${currYearDigits}-${currMonthDigits}`);
           setIsLoading(false);
         })
         .catch(error =>

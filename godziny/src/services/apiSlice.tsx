@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-
 const URL_DATA =
   "https://godziny-3b30f-default-rtdb.europe-west1.firebasedatabase.app";
 
@@ -10,15 +9,20 @@ export const monthsApiSlice = createApi({
   tagTypes: ["months"],
   endpoints: builder => ({
     monthsData: builder.query<any, void>({
-      query: () => "/months.json",
+      query: () => ".json",
+      providesTags: ["months"],
+    }),
+
+    monthData: builder.query<any, any>({
+      query: month => `/${month.year}/month_${month.month}.json`,
       providesTags: ["months"],
     }),
 
     addMonth: builder.mutation<void, any>({
-      query: body => ({
-        url: "/months.json",
-        method: "POST",
-        body: body,
+      query: month => ({
+        url: `/${month.year}/month_${month.month}.json`,
+        method: "PUT",
+        body: month.monthBody,
       }),
       invalidatesTags: ["months"],
     }),
@@ -31,8 +35,6 @@ export const monthsApiSlice = createApi({
       }),
       invalidatesTags: ["months"],
     }),
-
- 
 
     // PATCHupdateMonth: builder.mutation<void, any>({
     //   query: ({ id, columns }) => ({
@@ -64,6 +66,7 @@ export const monthsApiSlice = createApi({
 
 export const {
   useMonthsDataQuery,
+  useMonthDataQuery,
   useAddMonthMutation,
   useDeleteMonthMutation,
   useUpdateMonthMutation,

@@ -4,11 +4,11 @@ import { useParams } from "react-router-dom";
 import useDatabaseValues from "../../../../hooks/useDatabaseValues";
 import useHTTPState from "../../../../hooks/useHTTPState";
 import "./_formHeaderMonthPAnel.scss";
-import useFormHeaderMonhPanel from "./useFormHeaderMonthPanel";
+import useMonthPanelHeaderFormik from "./useMonthPanelHeaderFormik";
 
-const FormHeaderMonhPanel = () => {
+const MonhPanelHeaderForm = () => {
   const { monthURL } = useParams();
-  const { formik, success } = useFormHeaderMonhPanel();
+  const { formik, success } = useMonthPanelHeaderFormik();
   const { dataBaseSubmitedHours, databaseAcceptedHours } =
     useDatabaseValues(monthURL);
 
@@ -75,4 +75,4 @@ const FormHeaderMonhPanel = () => {
   );
 };
 
-export default FormHeaderMonhPanel;
+export default MonhPanelHeaderForm;

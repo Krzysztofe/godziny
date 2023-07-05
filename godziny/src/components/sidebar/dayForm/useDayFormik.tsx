@@ -5,7 +5,6 @@ import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import { useUpdateMonthMutation } from "../../../services/apiSlice";
 import { validationSchema } from "./validationDayFormik";
 
-
 interface FormValues {
   id: string;
   date: string;
@@ -16,8 +15,9 @@ interface FormValues {
 
 const useDayFormik = () => {
   const [updateMonth, success] = useUpdateMonthMutation();
-  const urlParts = useLocation().pathname.split("/");
-  const lastPartMonthURL = urlParts[urlParts.length - 1];
+  const { pathname } = useLocation();
+
+  const lastPartMonthURL = pathname.split("/").pop() || "";
 
   const { databaseColumns, databaseMonth, data, dataCurrentHours } =
     useDatabaseValues(lastPartMonthURL);
@@ -34,7 +34,7 @@ const useDayFormik = () => {
 
     onSubmit: async values => {
       formik.setFieldValue("id", crypto.randomUUID());
-      if (dataCurrentHours - +formik.values.hours < 0) return;
+      // if (dataCurrentHours - +formik.values.hours < 0) return;
 
       if (data && databaseMonth?.id && databaseColumns?.length > 0) {
         const databaseColumnsAddedDays = JSON.parse(

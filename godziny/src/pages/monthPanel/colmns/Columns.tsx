@@ -3,7 +3,7 @@ import { handleDragDrop } from "../utils";
 import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
-import { useUpdateMonthMutation } from "../../../services/apiSlice";
+import { useMonthDataQuery, useUpdateMonthMutation } from "../../../services/apiSlice";
 import Column from "../Column";
 import HeaderColumns from "../headerColumns.tsx/HeaderColumns";
 import Container from "react-bootstrap/Container";
@@ -11,7 +11,7 @@ import Container from "react-bootstrap/Container";
 const Columns = () => {
   const { monthURL } = useParams();
   const {
-    data,
+    // data,
     databaseAllHours,
     databaseColumns,
     dataCurrentHours,
@@ -21,18 +21,30 @@ const Columns = () => {
     rejectedHoursSum,
   } = useDatabaseValues(monthURL);
 
+
+
+
+const yearFromURL = monthURL?.slice(0,4)
+const monthFromURL = monthURL?.slice(-2)
+
+
+
+const { data } = useMonthDataQuery({ year: yearFromURL, month: monthFromURL });
+console.log("ddd", data?.columns);
+
+
   const [updateColumns, success] = useUpdateMonthMutation();
 
-  const [columns, setColumns] = useState<any[]>([]);
+  const [columns, setColumns] = useState([]);
+
+  // console.log("", columns);
 
   useEffect(() => {
-    data && databaseMonth && setColumns(databaseColumns);
+    setColumns(databaseColumns);
   }, [data, monthURL]);
 
   useEffect(() => {
-    data &&
-      columns?.length > 1 &&
-      databaseMonth?.monthDate &&
+    if (data && databaseMonth?.monthDate && columns.length > 1) {
       updateColumns({
         id: data && databaseMonth?.id,
         month: {
@@ -49,6 +61,7 @@ const Columns = () => {
           rejectedHours: rejectedHoursSum,
         },
       });
+    }
   }, [columns, databaseAllHours, dataCurrentHours]);
 
   const scrollableRef = useRef(null);
@@ -85,7 +98,7 @@ const Columns = () => {
           >
             {columns &&
               columns.length > 0 &&
-              columns.map((column: any) => {
+              data?.columns.map((column: any) => {
                 return <Column column={column} key={column.id} />;
               })}
           </DragDropContext>

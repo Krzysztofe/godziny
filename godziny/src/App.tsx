@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route element={<PrivateRoutes />}>
-            <Route path="/miesiac/:monthURL" element={<IndexMonthPanel />} />
+            <Route path="/:monthURL" element={<IndexMonthPanel />} />
             <Route path="/settings" element={<IndexSettings />} />
           </Route>
         </Routes>

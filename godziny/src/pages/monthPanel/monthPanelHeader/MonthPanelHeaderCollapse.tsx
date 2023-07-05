@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
-import FormHeaderMonhPanel from "./formHeaderMonthPanel/FormHeaderMonhPanel";
+import MonthPanelHeaderForm from "./formHeaderMonthPanel/MonhPanelHeaderForm";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 const MonthPanelHeaderCollapse = () => {
@@ -16,7 +16,7 @@ const MonthPanelHeaderCollapse = () => {
         variant="info"
         className="fw-medium p-1 w-100 mt-1 d-flex justify-content-center align-items-center"
       >
-       Liczba godzin w miesiącu
+        Liczba godzin w miesiącu
         <MdOutlineKeyboardArrowDown
           className="fs-1 fw-medium"
           style={{
@@ -27,7 +27,7 @@ const MonthPanelHeaderCollapse = () => {
       </Button>
       <Collapse in={open}>
         <div className="bg-primary-subtle rounded p-1">
-          <FormHeaderMonhPanel />
+          <MonthPanelHeaderForm />
         </div>
       </Collapse>
     </>

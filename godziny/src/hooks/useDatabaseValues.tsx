@@ -19,11 +19,13 @@ interface DatabaseValues {
   submitedHoursSum: any;
   databaseMonthsDates: string[];
   databaseMonthsDatesSorted: any;
-  databaseMonthsDatesToString: string[];
+  // databaseMonthsDatesToString: string[];
 }
 
 const useDatabaseValues = (monthURL: any = null): DatabaseValues => {
   const { data, error, isLoading } = useMonthsDataQuery(undefined);
+
+// console.log('',data)
 
   const databaseMonthsId = data && Object.keys(data);
 
@@ -37,7 +39,9 @@ const useDatabaseValues = (monthURL: any = null): DatabaseValues => {
 
   const databaseMonthsCollection = addDaysToColumns(databaseMonthsWithId);
 
-  const databaseMonth: any =
+
+
+  const databaseMonth =
     data && databaseMonthsCollection.length > 0
       ? databaseMonthsCollection?.find(
           (month: any) => month.monthDate === monthURL
@@ -70,9 +74,8 @@ const useDatabaseValues = (monthURL: any = null): DatabaseValues => {
         }, 0)
       : 0;
 
-   
   const rejectedHoursSum =
-    data && databaseMonthsCollection.length > 0 && databaseColumns?.[0].days 
+    data && databaseMonthsCollection.length > 0 && databaseColumns?.[0].days
       ? databaseColumns?.[2]?.days.reduce((sum: any, day: any) => {
           return sum + day?.hours;
         }, 0)
@@ -96,17 +99,16 @@ const useDatabaseValues = (monthURL: any = null): DatabaseValues => {
       })
     : [];
 
-
-  const databaseMonthsDatesToString = databaseMonthsDatesSorted.map(
-    (monthDate: any) => {
-      const monthToDateFormat = new Date(monthDate);
-      return new Intl.DateTimeFormat("pl-PL", {
-        year: "numeric",
-        month: "long",
-        timeZone: "UTC",
-      }).format(monthToDateFormat);
-    }
-  );
+  // const databaseMonthsDatesToString = databaseMonthsDatesSorted.map(
+  //   (monthDate: any) => {
+  //     const monthToDateFormat = new Date(monthDate);
+  //     return new Intl.DateTimeFormat("pl-PL", {
+  //       year: "numeric",
+  //       month: "long",
+  //       timeZone: "UTC",
+  //     }).format(monthToDateFormat);
+  //   }
+  // );
 
   return {
     data,
@@ -126,7 +128,7 @@ const useDatabaseValues = (monthURL: any = null): DatabaseValues => {
     submitedHoursSum,
     databaseMonthsDates,
     databaseMonthsDatesSorted,
-    databaseMonthsDatesToString,
+    // databaseMonthsDatesToString,
   };
 };
 

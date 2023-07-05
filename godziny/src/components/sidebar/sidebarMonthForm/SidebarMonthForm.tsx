@@ -7,6 +7,8 @@ import {
 import useHTTPState from "../../../hooks/useHTTPState";
 import useSidebarMonthFormik from "./useSidebarMonthFormik";
 import { AiOutlinePlusCircle } from "react-icons/ai";
+import useDatabaseValues from "../../../hooks/useDatabaseValues";
+import { useMonthsDataQuery } from "../../../services/apiSlice";
 
 const SidebarMonthForm = () => {
 
@@ -15,6 +17,11 @@ const SidebarMonthForm = () => {
     success,
     <AiOutlinePlusCircle className="text-info" style={{ fontSize: "1.5rem" }} />
   );
+
+const {data} = useMonthsDataQuery()
+
+// console.log('data',data)
+
 
   return (
     <>

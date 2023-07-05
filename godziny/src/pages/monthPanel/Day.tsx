@@ -1,12 +1,11 @@
 import { Draggable } from "react-beautiful-dnd";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import {
-  useUpdateMonthMutation,
-} from "../../services/apiSlice";
+import { useUpdateMonthMutation } from "../../services/apiSlice";
 import DayPrintData from "./DayPrintData";
 import useDatabaseValues from "../../hooks/useDatabaseValues";
 import Button from "react-bootstrap/Button";
+import useHTTPState from "../../hooks/useHTTPState";
 
 interface Props {
   day: any;
@@ -14,13 +13,11 @@ interface Props {
 }
 
 const Day = (props: Props) => {
-
-  const [updateColumns, succes] = useUpdateMonthMutation();
   const { monthURL } = useParams();
+  const { databaseColumns, databaseMonth, data } = useDatabaseValues(monthURL);
+  const [updateColumns, success] = useUpdateMonthMutation();
 
-  const { databaseColumns, databaseMonth, data } =
-    useDatabaseValues(monthURL);
-
+  const { btnContent } = useHTTPState(success, "Usuń");
 
   const handleUpdate = async (id: any) => {
     Swal.fire({
@@ -32,7 +29,7 @@ const Day = (props: Props) => {
       cancelButtonText: "Nie",
     }).then(async result => {
       if (result.isConfirmed) {
-        const updatedColumnsWithDeletedDays = [...databaseColumns].map(
+        const columnsWithDeletedDays = [...databaseColumns].map(
           (column: any) => {
             if (column && column.days) {
               return {
@@ -46,15 +43,15 @@ const Day = (props: Props) => {
 
         await updateColumns({
           id: data && databaseMonth?.id,
-          month: { ...databaseMonth, columns: updatedColumnsWithDeletedDays },
+          month: { ...databaseMonth, columns: columnsWithDeletedDays },
         });
       }
     });
   };
 
-  let btnContent = (
+  return (
     <Draggable
-      draggableId={props.day && props?.day?.id.toString()}
+      draggableId={props.day && props?.day?.id}
       index={props.index}
       isDragDisabled={false}
     >
@@ -72,23 +69,15 @@ const Day = (props: Props) => {
               size="sm"
               className="rounded-top-0 w-100 fw-medium "
               onClick={() => handleUpdate(props.day.id)}
+              disabled={success.isLoading}
             >
-              Usuń
+              {btnContent}
             </Button>
           </div>
         );
       }}
     </Draggable>
   );
-
-  if (succes.isLoading) {
-    btnContent = <div> Loading </div>;
-  }
-  if (succes.isError) {
-    btnContent = <div> Błąd </div>;
-  }
-
-  return <>{btnContent}</>;
 };
 
 export default Day;

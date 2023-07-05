@@ -2,13 +2,13 @@ import { useFormik } from "formik";
 import { useParams } from "react-router-dom";
 import useDatabaseValues from "../../../../hooks/useDatabaseValues";
 import { useUpdateMonthMutation } from "../../../../services/apiSlice";
-import { validationSchema } from "./validationFormHeaderMonthPanel";
+import { validationSchema } from "./validationMonthPanelHeaderForm";
 
 interface ModelFormValues {
   allHours: number;
 }
 
-const useFormHeaderMonhPanel = () => {
+const useMonthPanelHeaderFormik = () => {
   const { monthURL } = useParams();
   const [updateColumns, success] = useUpdateMonthMutation();
   const { databaseMonth, data, dataBaseSubmitedHours, databaseAcceptedHours } =
@@ -37,4 +37,4 @@ const useFormHeaderMonhPanel = () => {
   return { formik, success };
 };
 
-export default useFormHeaderMonhPanel;
+export default useMonthPanelHeaderFormik;

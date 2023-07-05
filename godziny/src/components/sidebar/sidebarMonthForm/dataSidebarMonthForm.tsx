@@ -8,35 +8,72 @@ interface ModelDay {
 
 interface ModelColumn {
   id: string;
-  columnName: string;
-  days?: ModelDay[];
+  days: string;
 }
 
 const columns: ModelColumn[] = [
   {
-    id: "miesiac",
-    columnName: "Miesiąc",
-    days: [],
+    id: "submitted",
+    days: "[]",
   },
   {
-    id: "oczekujące",
-    columnName: "Oczekujące",
-    days: [],
+    id: "accepted",
+    days: "[]",
   },
   {
-    id: "zatwierdzone",
-    columnName: "Zatwierdzone",
-    days: [],
+    id: "rejected",
+    days: "[]",
   },
 ];
 
-export const monthPattern = {
-  id: "",
-  monthDate: "",
+const calc = {
   allHours: 0,
   currentHours: 0,
   submitedHours: 0,
   acceptedHours: 0,
   rejectedHours: 0,
-  columns: columns,
+};
+
+// export const monthPattern = {
+//   id: "",
+//   monthDate: "",
+//   allHours: 0,
+//   currentHours: 0,
+//   submitedHours: 0,
+//   acceptedHours: 0,
+//   rejectedHours: 0,
+//   columns: columns,
+// };
+
+export const monthPattern = {
+  id: "",
+  columns,
+  calc,
+};
+
+const years = {
+  2023: {
+    month_07: {
+      monthDate: "2023-07",
+      columns: {},
+    },
+    month_08: {
+      monthDate: "2023-08",
+      columns: {},
+    },
+    month_09: {
+      monthDate: "2023-09",
+      columns: {},
+    },
+  },
+  2024: {
+    month_08: {
+      monthDate: "2023-08",
+      columns: {},
+    },
+    month_07: {
+      monthDate: "2023-07",
+      columns: {},
+    },
+  },
 };

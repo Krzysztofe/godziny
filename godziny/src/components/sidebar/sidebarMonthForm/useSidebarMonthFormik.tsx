@@ -32,9 +32,12 @@ const useSidebarMonthFormik = () => {
     }),
 
     onSubmit: async values => {
-      const monthToPOST = { ...monthPattern, monthDate: values.monthDate };
-      await addMonth(monthToPOST);
-      navigate(`/miesiac/${values.monthDate}`);
+      const year = values.monthDate.slice(0, 4);
+      const month = values.monthDate.slice(-2);
+      const monthBody = { ...monthPattern, id: values.monthDate };
+
+      await addMonth({ year, month, monthBody });
+      navigate(`/${values.monthDate}`);
     },
   });
 
