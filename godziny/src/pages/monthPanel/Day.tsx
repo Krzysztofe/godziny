@@ -1,25 +1,26 @@
 import { Draggable } from "react-beautiful-dnd";
-import { useParams } from "react-router-dom";
-import Swal from "sweetalert2";
-import { useUpdateMonthMutation } from "../../services/apiSlice";
-import DayPrintData from "./DayPrintData";
-import useDatabaseValues from "../../hooks/useDatabaseValues";
 import Button from "react-bootstrap/Button";
+import Swal from "sweetalert2";
 import useHTTPState from "../../hooks/useHTTPState";
+import useURLValues from "../../hooks/useURLValues";
+import {
+  useAddDayMutation,
+  useDeleteDayMutation,
+} from "../../services/apiSlice";
+import DayPrintData from "./DayPrintData";
 
 interface Props {
   day: any;
-  index: any;
+  columnIdx: number;
+  dayIdx: number;
 }
 
 const Day = (props: Props) => {
-  const { monthURL } = useParams();
-  const { databaseColumns, databaseMonth, data } = useDatabaseValues(monthURL);
-  const [updateColumns, success] = useUpdateMonthMutation();
-
+  const { yearFromURL, monthFromURL } = useURLValues();
+  const [deleteDay, success] = useDeleteDayMutation();
   const { btnContent } = useHTTPState(success, "Usuń");
 
-  const handleUpdate = async (id: any) => {
+  const handleDelete = async (idx: any) => {
     Swal.fire({
       title: "Chcesz usunąć dzień?",
       showCancelButton: true,
@@ -29,21 +30,11 @@ const Day = (props: Props) => {
       cancelButtonText: "Nie",
     }).then(async result => {
       if (result.isConfirmed) {
-        const columnsWithDeletedDays = [...databaseColumns].map(
-          (column: any) => {
-            if (column && column.days) {
-              return {
-                ...column,
-                days: column.days.filter((day: any) => day.id !== id),
-              };
-            }
-            return column;
-          }
-        );
-
-        await updateColumns({
-          id: data && databaseMonth?.id,
-          month: { ...databaseMonth, columns: columnsWithDeletedDays },
+        await deleteDay({
+          year: yearFromURL,
+          month: monthFromURL,
+          colIdx: props.columnIdx,
+          dayIdx: idx,
         });
       }
     });
@@ -52,7 +43,7 @@ const Day = (props: Props) => {
   return (
     <Draggable
       draggableId={props.day && props?.day?.id}
-      index={props.index}
+      index={props.dayIdx}
       isDragDisabled={false}
     >
       {provided => {
@@ -68,7 +59,7 @@ const Day = (props: Props) => {
               variant="info"
               size="sm"
               className="rounded-top-0 w-100 fw-medium "
-              onClick={() => handleUpdate(props.day.id)}
+              onClick={() => handleDelete(props.dayIdx)}
               disabled={success.isLoading}
             >
               {btnContent}

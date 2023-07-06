@@ -8,12 +8,12 @@ import useMonthPanelHeaderFormik from "./useMonthPanelHeaderFormik";
 
 const MonhPanelHeaderForm = () => {
   const { monthURL } = useParams();
-  const { formik, success } = useMonthPanelHeaderFormik();
+  const { formik } = useMonthPanelHeaderFormik();
   const { dataBaseSubmitedHours, databaseAcceptedHours } =
     useDatabaseValues(monthURL);
 
 
-  const { btnContent } = useHTTPState(success, "Zapisz liczbę godzin");
+  // const { btnContent } = useHTTPState(success, "Zapisz liczbę godzin");
 
  
 
@@ -67,9 +67,9 @@ const MonhPanelHeaderForm = () => {
         variant="info"
         size="sm"
         className="fw-medium d-block mx-auto mt-2 col-sm-4 col-md-3 col-lg-2"
-        disabled={success.isLoading}
+        // disabled={success.isLoading}
       >
-        {btnContent}
+        {/* {btnContent} */} yo
       </Button>
     </Form>
   );

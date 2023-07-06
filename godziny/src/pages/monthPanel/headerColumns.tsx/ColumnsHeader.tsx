@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import useDatabaseValues from "../../../hooks/useDatabaseValues";
 
-const HeaderColumns = () => {
+const ColumnsHeader = () => {
   const { monthURL } = useParams();
   const {
     databaseAcceptedHours,
@@ -56,4 +56,4 @@ const HeaderColumns = () => {
   );
 };
 
-export default HeaderColumns;
+export default ColumnsHeader;

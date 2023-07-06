@@ -50,11 +50,26 @@ export const monthsApiSlice = createApi({
       invalidatesTags: ["months"],
     }),
 
-    updateMonth: builder.mutation<void, any>({
-      query: updatedMonth => ({
-        url: `/months/${updatedMonth.id}.json`,
+    deleteDay: builder.mutation<any, any>({
+      query: month => ({
+        url: `/${month?.year}/month_${month?.month}/columns/${month.colIdx}/days/${month.dayIdx}.json`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["months"],
+    }),
+
+    // calc
+
+    calcData: builder.query<any, any>({
+      query: month => `/${month.year}/month_${month.month}/calc.json`,
+      providesTags: ["months"],
+    }),
+
+    addAllHours: builder.mutation<void, any>({
+      query: month => ({
+        url: `/${month.year}/month_${month.month}/calc/allHours.json`,
         method: "PUT",
-        body: updatedMonth.month,
+        body: month.allHours,
       }),
       invalidatesTags: ["months"],
     }),
@@ -68,22 +83,13 @@ export const monthsApiSlice = createApi({
     //   invalidatesTags: ["months"],
     // }),
 
-    // updateDay: builder.mutation<void, any>({
-    //   query: updateDay => ({
-    //     url: `/months/${updateDay.id}.json`,
-    //     method: "PUT",
-    //     body: updateDay.columns,
+    // deleteMonth: builder.mutation<any, string | undefined>({
+    //   query: id => ({
+    //     url: `/months/${id}.json`,
+    //     method: "DELETE",
     //   }),
-    //   invalidatesTags: ["columns"],
+    //   invalidatesTags: ["months"],
     // }),
-
-    deleteMonth: builder.mutation<any, string | undefined>({
-      query: id => ({
-        url: `/months/${id}.json`,
-        method: "DELETE",
-      }),
-      invalidatesTags: ["months"],
-    }),
   }),
 });
 
@@ -94,8 +100,7 @@ export const {
   useAddMonthMutation,
   useAddDayMutation,
   useUpdateColumnsMutation,
-  useDeleteMonthMutation,
-  useUpdateMonthMutation,
-  // usePATCHupdateMonth,
-  // useUpdateDayMutation,
+  useDeleteDayMutation,
+  useCalcDataQuery,
+  useAddAllHoursMutation
 } = monthsApiSlice;

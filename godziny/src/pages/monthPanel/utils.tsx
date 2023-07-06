@@ -108,7 +108,7 @@ export const handleDragDrop = (results: any, columns: any, setColumns: any) => {
 
     const newDestinationDays =
       source.droppableId !== destination.dropableId
-        ? [...columns[destinationColumnIdx]?.days]
+        ? [...columns[destinationColumnIdx].days]
         : newSourceDays;
 
     const [deletedDay] = newSourceDays.splice(source.index, 1);

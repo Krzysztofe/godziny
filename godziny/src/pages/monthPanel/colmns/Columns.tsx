@@ -1,40 +1,31 @@
+import { useEffect, useRef, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-import { handleDragDrop } from "../utils";
-import useDatabaseValues from "../../../hooks/useDatabaseValues";
-import { useParams } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
+import Container from "react-bootstrap/Container";
+import useURLValues from "../../../hooks/useURLValues";
 import {
   useMonthDataQuery,
   useUpdateColumnsMutation,
-  useUpdateMonthMutation,
 } from "../../../services/apiSlice";
 import Column from "../Column";
-import HeaderColumns from "../headerColumns.tsx/HeaderColumns";
-import Container from "react-bootstrap/Container";
-import { addDaysToEmptyColumns } from "../utils";
-import useURLValues from "../../../hooks/useURLValues";
+import ColumnsHeader from "../headerColumns.tsx/ColumnsHeader";
+import { addDaysToEmptyColumns, handleDragDrop } from "../utils";
 
 const Columns = () => {
   const { monthURL, yearFromURL, monthFromURL } = useURLValues();
 
-  const { data: month } = useMonthDataQuery({
+  const { data: dataMonth } = useMonthDataQuery({
     year: yearFromURL,
     month: monthFromURL,
   });
   const [updateColumns] = useUpdateColumnsMutation();
-  const columnsWithDays = addDaysToEmptyColumns(month?.columns);
+  const columnsWithDays = addDaysToEmptyColumns(dataMonth?.columns);
 
   const [columns, setColumns] = useState<any[]>([]);
   const [results, setResults] = useState(null);
 
   useEffect(() => {
     setColumns(columnsWithDays);
-  }, [month, monthURL]);
-
-  const handleDragEnd = (results: any) => {
-    handleDragDrop(results, columns, setColumns);
-    setResults(results);
-  };
+  }, [dataMonth]);
 
   useEffect(() => {
     if (results !== null) {
@@ -45,6 +36,14 @@ const Columns = () => {
       });
     }
   }, [results]);
+
+  const handleDragEnd = (results: any) => {
+    handleDragDrop(results, columns, setColumns);
+    setResults(results);
+  };
+
+console.log('',columns)
+
 
   const scrollableRef = useRef(null);
   const [thumbPosition, setThumbPosition] = useState(0);
@@ -69,15 +68,15 @@ const Columns = () => {
         style={{ top: `${thumbPosition}%` }}
       >
         <Container className="mx-0 ms-sm-auto sticky-top d-flex column-gap-2">
-          <HeaderColumns />
+          <ColumnsHeader />
         </Container>
         <Container
           className="mx-0 ms-sm-auto mb-5 d-flex column-gap-2"
           style={{ height: "fit-content" }}
         >
           <DragDropContext onDragEnd={handleDragEnd}>
-            {columns?.map((column: any) => {
-              return <Column column={column} key={column.id} />;
+            {columns?.map((column: any, idx: number) => {
+              return <Column key={column.id} column={column} columnIdx={idx} />;
             })}
           </DragDropContext>
         </Container>

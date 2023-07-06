@@ -3,6 +3,7 @@ import Day from "./Day";
 
 interface Props {
   column: any;
+  columnIdx: number;
 }
 
 const Column = (props: Props) => {
@@ -14,18 +15,20 @@ const Column = (props: Props) => {
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className="p-1 bg-primary-subtle"
-              style={{
-                height: "100%",
-              }}
+              className="p-1 bg-primary-subtle h-100"
             >
-              {props.column.days &&
-                props.column.days.length > 0 &&
-                props.column?.days?.map((day: any, idx: any) => {
-                  return (
-                    <Day day={day} index={idx} key={crypto.randomUUID()} />
-                  );
-                })}
+              {Array.isArray(props.column.days)
+                ? props.column.days.map((day: any, idx: number) => {
+                    return (
+                      <Day
+                        key={crypto.randomUUID()}
+                        day={day}
+                        columnIdx={props.columnIdx}
+                        dayIdx={idx}
+                      />
+                    );
+                  })
+                : []}
               {provided.placeholder}
             </div>
           );

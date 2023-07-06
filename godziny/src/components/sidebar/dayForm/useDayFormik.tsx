@@ -4,9 +4,7 @@ import { dateIn14Days } from "../../../data/dataCurrentDates";
 import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import {
   useAddDayMutation,
-  useAddMonthMutation,
   useFirstColumnDataQuery,
-  useUpdateMonthMutation,
 } from "../../../services/apiSlice";
 import { validationSchema } from "./validationDayFormik";
 
@@ -19,20 +17,17 @@ interface FormValues {
 }
 
 const useDayFormik = () => {
-  const [updateMonth, success] = useUpdateMonthMutation();
   const { pathname } = useLocation();
-  const [addDay] = useAddDayMutation();
+  const [addDay, success] = useAddDayMutation();
 
   const lastPartMonthURL = pathname.split("/").pop() || "";
   const yearFromURL = lastPartMonthURL.slice(0, 4);
   const monthFromURL = lastPartMonthURL.slice(-2);
 
-  const { data } = useFirstColumnDataQuery({
+  const { data: dataFirstColumn } = useFirstColumnDataQuery({
     year: yearFromURL,
     month: monthFromURL,
   });
-
-  // console.log("ccc", data);
 
   const { databaseColumns, databaseMonth, dataCurrentHours } =
     useDatabaseValues(lastPartMonthURL);
@@ -52,36 +47,14 @@ const useDayFormik = () => {
       // if (dataCurrentHours - +formik.values.hours < 0) return;
       // console.log("", values);
 
-      // if (data && databaseMonth?.id && databaseColumns?.length > 0) {
-      //   const databaseColumnsAddedDays = JSON.parse(
-      //     JSON.stringify(databaseColumns)
-      //   );
-
-      //   const hours = +values.hours || 0;
-
-      //   databaseColumnsAddedDays?.[0]?.days?.push({
-      //     ...values,
-      //     hours,
-      //   });
-      //   await addDay({
-      //     year: yearFromURL,
-      //     month: monthFromURL,
-      //     monthBody: {
-      //       ...databaseMonth,
-      //       columns: databaseColumnsAddedDays,
-      //     },
-      //   });
-      // }
-
-      // const newDay = data.days.push(values)
-      // console.log('uuu',newDay)
-
       await addDay({
         year: yearFromURL,
         month: monthFromURL,
         monthBody: {
-          ...data,
-          days: data.days ? [...data.days, values] : [values],
+          ...dataFirstColumn,
+          days: dataFirstColumn.days
+            ? [...dataFirstColumn.days, values]
+            : [values],
         },
       });
     },

@@ -2,14 +2,12 @@ import { MdFactory } from "react-icons/md";
 import { TbArrowBigRightLineFilled } from "react-icons/tb";
 import { FiClock } from "react-icons/fi";
 import { useParams } from "react-router-dom";
-import { date } from "yup";
-
 interface Props {
   day: any;
 }
 
 const DayPrintData = (props: Props) => {
-  const date = new Date(props.day.date);
+  const date = new Date(props.day?.date);
 
   const dateToPrint = new Intl.DateTimeFormat("pl-PL", {
     day: "numeric",

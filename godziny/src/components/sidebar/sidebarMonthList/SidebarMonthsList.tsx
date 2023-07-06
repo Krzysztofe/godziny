@@ -11,6 +11,12 @@ const SidebarMonthsList = () => {
 
   const monthURL = location.pathname.split("/").slice(-1)[0];
   const monthURLToDateFormat = new Date(monthURL);
+  
+  const monthDates =
+    data &&
+    Object.values(data as { [key: string]: unknown }).flatMap(
+        year => data && Object.values(year as { [key: string]: unknown })
+      ).map(year => year.id);
 
   const monthURLStringFormat =
     monthURL &&
@@ -20,11 +26,7 @@ const SidebarMonthsList = () => {
       timeZone: "UTC",
     }).format(monthURLToDateFormat);
 
-  const monthDates =
-    data &&
-    Object.values(data as { [key: string]: unknown }).flatMap(
-        year => data && Object.values(year as { [key: string]: unknown })
-      ).map(year => year.id);
+
 
   return (
     <ListGroup className="monthListContainer bg-white border border-primary">
