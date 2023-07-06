@@ -39,12 +39,12 @@ const IndexSidebar = () => {
             style={{ width: 200 }}
           >
             <Offcanvas.Header className="pb-0">
-              {/* <SidebarTitle /> */}
+              <SidebarTitle />
             </Offcanvas.Header>
             <Offcanvas.Body className="pt-0">
               <SidebarMonthForm />
               <SidebarMonthCollapse />
-              <DayForm /><>oo</>
+              <DayForm />
             </Offcanvas.Body>
           </Offcanvas>
         </>

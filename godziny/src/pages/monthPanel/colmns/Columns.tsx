@@ -5,67 +5,46 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import {
   useMonthDataQuery,
+  useUpdateColumnsMutation,
   useUpdateMonthMutation,
 } from "../../../services/apiSlice";
 import Column from "../Column";
 import HeaderColumns from "../headerColumns.tsx/HeaderColumns";
 import Container from "react-bootstrap/Container";
 import { addDaysToEmptyColumns } from "../utils";
+import useURLValues from "../../../hooks/useURLValues";
 
 const Columns = () => {
-  const { monthURL } = useParams();
-  const {
-    // data,
-    databaseAllHours,
-    databaseColumns,
-    dataCurrentHours,
-    databaseMonth,
-    submitedHoursSum,
-    acceptedHoursSum,
-    rejectedHoursSum,
-  } = useDatabaseValues(monthURL);
+  const { monthURL, yearFromURL, monthFromURL } = useURLValues();
 
-  const yearFromURL = monthURL?.slice(0, 4);
-  const monthFromURL = monthURL?.slice(-2);
-
-  const { data } = useMonthDataQuery({
+  const { data: month } = useMonthDataQuery({
     year: yearFromURL,
     month: monthFromURL,
   });
-  const columnsAddedDays = addDaysToEmptyColumns(data?.columns);
+  const [updateColumns] = useUpdateColumnsMutation();
+  const columnsWithDays = addDaysToEmptyColumns(month?.columns);
 
-  // console.log("ddd", columnsAddedDays);
-
-  const [updateColumns, success] = useUpdateMonthMutation();
-
-  const [columns, setColumns] = useState([]);
-
-  // console.log("", columns);
+  const [columns, setColumns] = useState<any[]>([]);
+  const [results, setResults] = useState(null);
 
   useEffect(() => {
-    setColumns(databaseColumns);
-  }, [data, monthURL]);
+    setColumns(columnsWithDays);
+  }, [month, monthURL]);
+
+  const handleDragEnd = (results: any) => {
+    handleDragDrop(results, columns, setColumns);
+    setResults(results);
+  };
 
   useEffect(() => {
-    if (data && databaseMonth?.monthDate && columns.length > 1) {
+    if (results !== null) {
       updateColumns({
-        id: data && databaseMonth?.id,
-        month: {
-          ...databaseMonth,
-          columns: columns,
-          currentHours:
-            databaseAllHours -
-            submitedHoursSum -
-            acceptedHoursSum -
-            rejectedHoursSum +
-            rejectedHoursSum,
-          submitedHours: submitedHoursSum,
-          acceptedHours: acceptedHoursSum,
-          rejectedHours: rejectedHoursSum,
-        },
+        year: yearFromURL,
+        month: monthFromURL,
+        columnsBody: columns,
       });
     }
-  }, [columns, databaseAllHours, dataCurrentHours]);
+  }, [results]);
 
   const scrollableRef = useRef(null);
   const [thumbPosition, setThumbPosition] = useState(0);
@@ -96,10 +75,8 @@ const Columns = () => {
           className="mx-0 ms-sm-auto mb-5 d-flex column-gap-2"
           style={{ height: "fit-content" }}
         >
-          <DragDropContext
-            onDragEnd={results => handleDragDrop(results, columns, setColumns)}
-          >
-            {columnsAddedDays?.map((column: any) => {
+          <DragDropContext onDragEnd={handleDragEnd}>
+            {columns?.map((column: any) => {
               return <Column column={column} key={column.id} />;
             })}
           </DragDropContext>

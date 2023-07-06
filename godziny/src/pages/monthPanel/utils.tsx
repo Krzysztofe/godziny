@@ -83,6 +83,9 @@ export const addDaysToColumns = (arr: any[]) => {
 
 
 export const handleDragDrop = (results: any, columns: any, setColumns: any) => {
+
+
+  
   const { source, destination } = results;
 
   if (!destination) return;
@@ -93,19 +96,19 @@ export const handleDragDrop = (results: any, columns: any, setColumns: any) => {
     return;
 
   if (source.droppableId !== destination.droppableId) {
-    const sourceColumnIdx = columns.findIndex((column: any) => {
+    const sourceColumnIdx = columns?.findIndex((column: any) => {
       return column.id === source.droppableId;
     });
 
-    const destinationColumnIdx = columns.findIndex((column: any) => {
+    const destinationColumnIdx = columns?.findIndex((column: any) => {
       return column.id === destination.droppableId;
     });
 
-    const newSourceDays = [...columns[sourceColumnIdx].days];
+    const newSourceDays = columns && [...columns[sourceColumnIdx]?.days];
 
     const newDestinationDays =
       source.droppableId !== destination.dropableId
-        ? [...columns[destinationColumnIdx].days]
+        ? [...columns[destinationColumnIdx]?.days]
         : newSourceDays;
 
     const [deletedDay] = newSourceDays.splice(source.index, 1);
