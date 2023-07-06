@@ -27,21 +27,11 @@ const columns: ModelColumn[] = [
 const calc = {
   allHours: 0,
   currentHours: 0,
-  submitedHours: 0,
+  submittedHours: 0,
   acceptedHours: 0,
   rejectedHours: 0,
 };
 
-// export const monthPattern = {
-//   id: "",
-//   monthDate: "",
-//   allHours: 0,
-//   currentHours: 0,
-//   submitedHours: 0,
-//   acceptedHours: 0,
-//   rejectedHours: 0,
-//   columns: columns,
-// };
 
 export const monthPattern = {
   id: "",

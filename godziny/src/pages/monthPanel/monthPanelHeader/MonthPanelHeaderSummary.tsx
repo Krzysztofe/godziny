@@ -3,12 +3,14 @@ import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import { useParams } from "react-router-dom";
 import { useCalcDataQuery } from "../../../services/apiSlice";
 import useURLValues from "../../../hooks/useURLValues";
+import useHoursCalc from "../colmns/useHoursCalc";
 
 const MonthPanelHeaderSummary = () => {
   // const { monthURL } = useParams();
   const { monthURL, yearFromURL, monthFromURL } = useURLValues();
   const { databaseAllHours, dataCurrentHours } = useDatabaseValues(monthURL);
   const { monthURLStringFormat } = useMonthURLToString();
+
 
   const { data: dataCalc } = useCalcDataQuery({
     year: yearFromURL,
@@ -28,9 +30,9 @@ const MonthPanelHeaderSummary = () => {
 
         <div className="col-3 text-end">Wszystkie</div>
         <div className="mx-2">
-          {dataCalc.allHours} -{" "}
+          {dataCalc?.allHours} -{" "}
           <span className={`${dataCurrentHours < 0 ? "text-danger" : ""}`}>
-            {dataCurrentHours}
+            {dataCalc?.currentHours}
           </span>
         </div>
         <div className={`col-3 ${dataCurrentHours < 0 ? "text-danger" : ""}`}>

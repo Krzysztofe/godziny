@@ -26,7 +26,13 @@ const SidebarMonthsList = () => {
       timeZone: "UTC",
     }).format(monthURLToDateFormat);
 
-
+console.log(
+  "",
+  data &&
+    Object.values(data as { [key: string]: unknown }).flatMap(
+      year => data && Object.values(year as { [key: string]: unknown })
+    ).map(year => year.id)
+);
 
   return (
     <ListGroup className="monthListContainer bg-white border border-primary">

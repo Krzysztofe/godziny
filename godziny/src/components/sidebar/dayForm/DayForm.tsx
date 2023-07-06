@@ -14,7 +14,7 @@ const DayForm = () => {
   const { dataCurrentHours, databaseAllHours, databaseMonth } =
     useDatabaseValues(lastPartOfMonthURL);
     
-  // const { btnContent } = useHTTPState(success, "Zapisz dzień");
+  const { btnContent } = useHTTPState(success, "Zapisz dzień");
 
 
   return (
@@ -154,11 +154,11 @@ const DayForm = () => {
       <Button
         variant="info"
         type="submit"
-        disabled={success.isLoading}
+        // disabled={success.isLoading}
         className="fw-medium w-100 mt-2 "
       >
-        {/* {btnContent} */}
-        zapisz
+        {btnContent}
+     
       </Button>
 
       <div

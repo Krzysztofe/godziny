@@ -41,6 +41,15 @@ export const monthsApiSlice = createApi({
       invalidatesTags: ["months"],
     }),
 
+    updateMonth: builder.mutation<void, any>({
+      query: month => ({
+        url: `/${month.year}/month_${month.month}.json`,
+        method: "PUT",
+        body: month.monthBody,
+      }),
+      invalidatesTags: ["months"],
+    }),
+
     updateColumns: builder.mutation<void, any>({
       query: month => ({
         url: `/${month.year}/month_${month.month}/columns.json`,
@@ -74,6 +83,15 @@ export const monthsApiSlice = createApi({
       invalidatesTags: ["months"],
     }),
 
+    updateCalc: builder.mutation<void, any>({
+      query: month => ({
+        url: `/${month.year}/month_${month.month}/calc.json`,
+        method: "PUT",
+        body: month.allHours,
+      }),
+      invalidatesTags: ["months"],
+    }),
+
     // PATCHupdateMonth: builder.mutation<void, any>({
     //   query: ({ id, columns }) => ({
     //     url: `/months/${id}.json`,
@@ -99,8 +117,10 @@ export const {
   useFirstColumnDataQuery,
   useAddMonthMutation,
   useAddDayMutation,
+  useUpdateMonthMutation,
   useUpdateColumnsMutation,
   useDeleteDayMutation,
   useCalcDataQuery,
-  useAddAllHoursMutation
+  useAddAllHoursMutation,
+  useUpdateCalcMutation,
 } = monthsApiSlice;

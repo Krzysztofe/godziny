@@ -11,7 +11,7 @@ import { validationSchema } from "./validationDayFormik";
 interface FormValues {
   id: string;
   date: string;
-  hours: number | string;
+  hours: number;
   userName: string;
   place: string;
 }
@@ -29,14 +29,11 @@ const useDayFormik = () => {
     month: monthFromURL,
   });
 
-  const { databaseColumns, databaseMonth, dataCurrentHours } =
-    useDatabaseValues(lastPartMonthURL);
-
   const formik = useFormik<FormValues>({
     initialValues: {
       id: crypto.randomUUID(),
       date: dateIn14Days,
-      hours: "",
+      hours: 0,
       userName: "",
       place: "",
     },
@@ -45,16 +42,18 @@ const useDayFormik = () => {
     onSubmit: async values => {
       formik.setFieldValue("id", crypto.randomUUID());
       // if (dataCurrentHours - +formik.values.hours < 0) return;
-      // console.log("", values);
+ 
+      const valuesToDatabase = { ...values, hours: +values.hours };
+   
 
       await addDay({
         year: yearFromURL,
         month: monthFromURL,
         monthBody: {
           ...dataFirstColumn,
-          days: dataFirstColumn.days
-            ? [...dataFirstColumn.days, values]
-            : [values],
+          days: dataFirstColumn?.days
+            ? [...dataFirstColumn.days, valuesToDatabase]
+            : [valuesToDatabase],
         },
       });
     },
