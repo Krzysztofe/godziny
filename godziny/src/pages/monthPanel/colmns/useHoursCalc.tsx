@@ -3,7 +3,7 @@ import { useMonthDataQuery } from "../../../services/apiSlice";
 import { addDaysToEmptyColumns } from "../utils";
 
 const useHoursCalc = () => {
-  const { monthURL, yearFromURL, monthFromURL } = useURLValues();
+  const { yearFromURL, monthFromURL } = useURLValues();
   const { data: dataMonth } = useMonthDataQuery({
     year: yearFromURL,
     month: monthFromURL,
@@ -11,27 +11,30 @@ const useHoursCalc = () => {
 
   const columnsWithDays = addDaysToEmptyColumns(dataMonth?.columns);
 
-  const submittedHoursSum = columnsWithDays[0]?.days.reduce(
+  const submittedHoursSum = dataMonth && columnsWithDays && columnsWithDays[0]?.days.reduce(
     (sum: number, day: any) => {
-      return sum + day.hours;
+      // console.log('sum',sum, "day", day)
+      const dayHours = day === null ? 0 : day?.hours;
+      return sum + dayHours;
     },
     0
   );
 
+  // console.log('',submittedHoursSum)
+
   const acceptedHoursSum = columnsWithDays[1]?.days.reduce(
     (sum: number, day: any) => {
-      return sum + day.hours;
+      return sum + day?.hours;
     },
     0
   );
 
   const rejectedHoursSum = columnsWithDays[2]?.days.reduce(
     (sum: number, day: any) => {
-      return sum + day.hours;
+      return sum + day?.hours;
     },
     0
   );
-
 
   return { submittedHoursSum, acceptedHoursSum, rejectedHoursSum };
 };

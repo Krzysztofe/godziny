@@ -14,19 +14,19 @@ import { addDaysToEmptyColumns, handleDragDrop } from "../utils";
 import useHoursCalc from "./useHoursCalc";
 
 const Columns = () => {
-  const { monthURL, yearFromURL, monthFromURL } = useURLValues();
-  const { submittedHoursSum, acceptedHoursSum, rejectedHoursSum } =
-    useHoursCalc();
-
+  const { yearFromURL, monthFromURL } = useURLValues();
   const { data: dataMonth } = useMonthDataQuery({
     year: yearFromURL,
     month: monthFromURL,
   });
   const [updateColumns] = useUpdateColumnsMutation();
-  const [updateMonth] = useUpdateMonthMutation();
   const [updateCalc] = useUpdateCalcMutation();
-
   const columnsWithDays = addDaysToEmptyColumns(dataMonth?.columns);
+
+  // console.log("eee", columnsWithDays);
+
+  const { submittedHoursSum, acceptedHoursSum, rejectedHoursSum } =
+    useHoursCalc();
 
   const [columns, setColumns] = useState<any[]>([]);
   const [results, setResults] = useState(null);
@@ -34,14 +34,6 @@ const Columns = () => {
   useEffect(() => {
     setColumns(columnsWithDays);
   }, [dataMonth]);
-
-  // const monthUpdated = {
-  //   ...dataMonth,
-  //   columns: columns,
-  //   calc: { ...dataMonth?.calc, currentHours: dataMonth?.calc?.allHours - 10 },
-  // };
-
-  // console.log("", dataMonth?.calc);
 
   useEffect(() => {
     if (results !== null) {

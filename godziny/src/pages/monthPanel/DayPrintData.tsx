@@ -7,7 +7,7 @@ interface Props {
 }
 
 const DayPrintData = (props: Props) => {
-  const date = new Date(props.day?.date);
+  const date = new Date(props?.day?.date);
 
   const dateToPrint = new Intl.DateTimeFormat("pl-PL", {
     day: "numeric",

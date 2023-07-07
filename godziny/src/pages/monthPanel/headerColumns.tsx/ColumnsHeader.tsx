@@ -1,17 +1,18 @@
 import { useParams } from "react-router-dom";
 import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import useHoursCalc from "../colmns/useHoursCalc";
+import useURLValues from "../../../hooks/useURLValues";
+import {
+  useCalcDataQuery,
+  useMonthDataQuery,
+} from "../../../services/apiSlice";
 
 const ColumnsHeader = () => {
-  const { monthURL } = useParams();
-  const {
-    databaseAcceptedHours,
-    databaseRejectedHours,
-    dataBaseSubmitedHours,
-  } = useDatabaseValues(monthURL);
-
- 
-
+  const { yearFromURL, monthFromURL } = useURLValues();
+  const { data: dataCalc } = useCalcDataQuery({
+    year: yearFromURL,
+    month: monthFromURL,
+  });
   // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   // useEffect(() => {
@@ -28,20 +29,22 @@ const ColumnsHeader = () => {
 
   // const displayHeaderContent = windowWidth > 576;
 
+
+
   return (
     <>
       {[
         {
           headerText: "Złożone:",
-          counter: dataBaseSubmitedHours,
+          counter: dataCalc?.submittedHours,
         },
         {
           headerText: "Przyznane:",
-          counter: databaseAcceptedHours,
+          counter: dataCalc?.acceptedHours,
         },
         {
           headerText: "Odrzucone:",
-          counter: databaseRejectedHours,
+          counter: dataCalc?.rejectedHours,
         },
       ].map(({ headerText, counter }) => {
         return (

@@ -6,6 +6,7 @@ import useURLValues from "../../hooks/useURLValues";
 import {
   useAddDayMutation,
   useDeleteDayMutation,
+  useMonthDataQuery,
 } from "../../services/apiSlice";
 import DayPrintData from "./DayPrintData";
 
@@ -17,10 +18,15 @@ interface Props {
 
 const Day = (props: Props) => {
   const { yearFromURL, monthFromURL } = useURLValues();
+  const { data: dataMonth } = useMonthDataQuery({
+    year: yearFromURL,
+    month: monthFromURL,
+  });
+
   const [deleteDay, success] = useDeleteDayMutation();
   const { btnContent } = useHTTPState(success, "Usuń");
 
-  const handleDelete = async (idx: any) => {
+  const handleDelete = async (idx: number, id: string) => {
     Swal.fire({
       title: "Chcesz usunąć dzień?",
       showCancelButton: true,
@@ -30,11 +36,19 @@ const Day = (props: Props) => {
       cancelButtonText: "Nie",
     }).then(async result => {
       if (result.isConfirmed) {
+
+        const daysBodyPUTRequest = dataMonth?.columns[idx]?.days?.filter(
+          (day: any) => {
+            return day.id !== id;
+          }
+        );
+     
+
         await deleteDay({
           year: yearFromURL,
           month: monthFromURL,
           colIdx: props.columnIdx,
-          dayIdx: idx,
+          daysBody: daysBodyPUTRequest,
         });
       }
     });
@@ -59,7 +73,7 @@ const Day = (props: Props) => {
               variant="info"
               size="sm"
               className="rounded-top-0 w-100 fw-medium "
-              onClick={() => handleDelete(props.dayIdx)}
+              onClick={() => handleDelete(props.columnIdx, props.day.id)}
               disabled={success.isLoading}
             >
               {btnContent}

@@ -11,12 +11,14 @@ const SidebarMonthsList = () => {
 
   const monthURL = location.pathname.split("/").slice(-1)[0];
   const monthURLToDateFormat = new Date(monthURL);
-  
+
   const monthDates =
     data &&
-    Object.values(data as { [key: string]: unknown }).flatMap(
+    Object.values(data as { [key: string]: unknown })
+      .flatMap(
         year => data && Object.values(year as { [key: string]: unknown })
-      ).map(year => year.id);
+      )
+      .map(year => year.id);
 
   const monthURLStringFormat =
     monthURL &&
@@ -25,14 +27,6 @@ const SidebarMonthsList = () => {
       month: "long",
       timeZone: "UTC",
     }).format(monthURLToDateFormat);
-
-console.log(
-  "",
-  data &&
-    Object.values(data as { [key: string]: unknown }).flatMap(
-      year => data && Object.values(year as { [key: string]: unknown })
-    ).map(year => year.id)
-);
 
   return (
     <ListGroup className="monthListContainer bg-white border border-primary">
@@ -51,25 +45,6 @@ console.log(
             </ListGroup.Item>
           );
         })
-    //  <></>
-        // )
-
-        // databaseMonthsDatesToString.map((month: any, idx: any) => {
-        //   return (
-        //     <ListGroup.Item key={month} action className="border-0 p-0 px-1">
-        //       <Link
-        //         to={`/miesiac/${databaseMonthsDatesSorted[idx]}`}
-        //         key={month}
-        //         className={`${
-        //           monthURLStringFormat !== month ? "text-reset" : "text-success"
-        //         } text-decoration-none text-capitalize`}
-        //       >
-        //         {month}
-        //       </Link>
-        //     </ListGroup.Item>
-        //   );
-        // })
-        // <></>
       )}
     </ListGroup>
   );

@@ -8,13 +8,12 @@ interface ModelDay {
 
 interface ModelColumn {
   id: string;
-  // days?: string[];
+  days?: string;
 }
 
 const columns: ModelColumn[] = [
   {
     id: "submitted",
-   
   },
   {
     id: "accepted",
@@ -32,7 +31,6 @@ const calc = {
   rejectedHours: 0,
 };
 
-
 export const monthPattern = {
   id: "",
   columns,
@@ -47,7 +45,11 @@ const years = {
     },
     month_08: {
       monthDate: "2023-08",
-      columns: {},
+      columns: [
+        { id: "zatwierdzone", days: [{ hours: 9 }, null, { hours: 7 }, null] },
+        { id: "odrzucone", days: [{ hours: 9 }, null, { hours: 7 }, null] },
+        { id: "nara", days: [{ hours: 9 }, null, { hours: 7 }, null] },
+      ],
     },
     month_09: {
       monthDate: "2023-09",
@@ -65,3 +67,12 @@ const years = {
     },
   },
 };
+
+const columnsx =  [
+        { id: "zatwierdzone", days: [{ hours: 9 }, null, { hours: 7 }, null] },
+        { id: "odrzucone", days: [{ hours: 9 }, null, { hours: 7 }, null] },
+        { id: "nara", days: [{ hours: 9 }, null, { hours: 7 }, null] },
+      ]
+
+
+

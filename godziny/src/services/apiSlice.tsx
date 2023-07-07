@@ -59,13 +59,22 @@ export const monthsApiSlice = createApi({
       invalidatesTags: ["months"],
     }),
 
-    deleteDay: builder.mutation<any, any>({
+    deleteDay: builder.mutation<void, any>({
       query: month => ({
-        url: `/${month?.year}/month_${month?.month}/columns/${month.colIdx}/days/${month.dayIdx}.json`,
-        method: "DELETE",
+        url: `/${month.year}/month_${month.month}/columns/${month.colIdx}/days.json`,
+        method: "PUT",
+        body: month.daysBody,
       }),
       invalidatesTags: ["months"],
     }),
+
+    // deleteDay: builder.mutation<any, any>({
+    //   query: month => ({
+    //     url: `/${month?.year}/month_${month?.month}/columns/${month.colIdx}/days/${month.dayIdx}.json`,
+    //     method: "DELETE",
+    //   }),
+    //   invalidatesTags: ["months"],
+    // }),
 
     // calc
 
