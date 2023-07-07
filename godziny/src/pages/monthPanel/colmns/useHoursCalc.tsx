@@ -11,30 +11,29 @@ const useHoursCalc = () => {
 
   const columnsWithDays = addDaysToEmptyColumns(dataMonth?.columns);
 
-  const submittedHoursSum = dataMonth && columnsWithDays && columnsWithDays[0]?.days.reduce(
-    (sum: number, day: any) => {
-      // console.log('sum',sum, "day", day)
+console.log("ff", columnsWithDays);
+
+  const submittedHoursSum =
+    dataMonth &&
+    columnsWithDays &&
+    columnsWithDays[0]?.days?.reduce((sum: number, day: any) => {
       const dayHours = day === null ? 0 : day?.hours;
       return sum + dayHours;
-    },
-    0
-  );
+    }, 0);
 
-  // console.log('',submittedHoursSum)
-
-  const acceptedHoursSum = columnsWithDays[1]?.days.reduce(
-    (sum: number, day: any) => {
+  const acceptedHoursSum =
+    dataMonth &&
+    columnsWithDays &&
+    columnsWithDays[1]?.days?.reduce((sum: number, day: any) => {
       return sum + day?.hours;
-    },
-    0
-  );
+    }, 0);
 
-  const rejectedHoursSum = columnsWithDays[2]?.days.reduce(
-    (sum: number, day: any) => {
+  const rejectedHoursSum =
+    dataMonth &&
+    columnsWithDays &&
+    columnsWithDays[2]?.days?.reduce((sum: number, day: any) => {
       return sum + day?.hours;
-    },
-    0
-  );
+    }, 0);
 
   return { submittedHoursSum, acceptedHoursSum, rejectedHoursSum };
 };

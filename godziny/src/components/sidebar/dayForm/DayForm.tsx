@@ -1,28 +1,38 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useLocation } from "react-router-dom";
 import { dateIn14Days, dateIn60Days } from "../../../data/dataCurrentDates";
-import useDatabaseValues from "../../../hooks/useDatabaseValues";
+import useHTTPState from "../../../hooks/useHTTPState";
+import useSidebarURLValues from "../../../hooks/useSidebarURLValues";
+import {
+  useCalcDataQuery,
+  useMonthDataQuery,
+} from "../../../services/apiSlice";
 import "./_dayForm.scss";
 import useDayFormik from "./useDayFormik";
-import useHTTPState from "../../../hooks/useHTTPState";
 
 const DayForm = () => {
-  const { formik, success } = useDayFormik();
-  const urlParts = useLocation().pathname.split("/");
-  const lastPartOfMonthURL = urlParts[urlParts.length - 1];
-  const { dataCurrentHours, databaseAllHours, databaseMonth } =
-    useDatabaseValues(lastPartOfMonthURL);
-    
-  const { btnContent } = useHTTPState(success, "Zapisz dzień");
+  const { yearFromURL, monthFromURL } = useSidebarURLValues();
+  const { data: dataMonth } = useMonthDataQuery({
+    year: yearFromURL,
+    month: monthFromURL,
+  });
 
+  const { data: dataCalc } = useCalcDataQuery({
+    year: yearFromURL,
+    month: monthFromURL,
+  });
+
+  const { formik, success } = useDayFormik();
+
+
+  const { btnContent } = useHTTPState(success, "Zapisz dzień");
 
   return (
     <Form
       onSubmit={formik.handleSubmit}
-      // className={`mt-2 ${!databaseMonth ? "d-none" : ""} ${
-      //   databaseMonth && databaseAllHours === 0 ? "formContainer" : ""
-      // }`}
+      className={`mt-2 ${!dataMonth ? "d-none" : ""} ${
+        dataCalc.allHours === 0 ? "formContainer" : ""
+      }`}
     >
       {/* userName */}
 
@@ -154,18 +164,17 @@ const DayForm = () => {
       <Button
         variant="info"
         type="submit"
-        // disabled={success.isLoading}
+        disabled={success.isLoading}
         className="fw-medium w-100 mt-2 "
       >
         {btnContent}
-     
       </Button>
 
       <div
         className="text-danger d-block mt-0 fs-8"
         style={{ height: "0.7rem" }}
       >
-        {dataCurrentHours - +formik.values.hours < 0
+        {dataCalc?.currentHours - +formik.values.hours < 0
           ? "Brak dostępnych godzin"
           : ""}
       </div>

@@ -1,13 +1,16 @@
 import { useFormik } from "formik";
-import { monthPattern } from "./dataSidebarMonthForm";
-import { useAddMonthMutation } from "../../../services/apiSlice";
-import * as yup from "yup";
-import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
 import {
-  currYearDigits,
   currMonthDigits,
+  currYearDigits,
 } from "../../../data/dataCurrentDates";
+import useMonthDates from "../../../hooks/useMonthDates";
+import {
+  useAddMonthMutation,
+  useMonthsDataQuery
+} from "../../../services/apiSlice";
+import { monthPattern } from "./dataSidebarMonthForm";
 
 interface ModelFormValues {
   monthDate: string;
@@ -15,9 +18,9 @@ interface ModelFormValues {
 
 const useSidebarMonthFormik = () => {
   const navigate = useNavigate();
+  const { data } = useMonthsDataQuery(undefined);
+  const { monthDates } = useMonthDates(data);
   const [addMonth, success] = useAddMonthMutation();
-
-  const { databaseMonthsDates = [] } = useDatabaseValues();
 
   const formik = useFormik<ModelFormValues>({
     initialValues: { monthDate: `${currYearDigits}-${currMonthDigits}` },
@@ -27,7 +30,7 @@ const useSidebarMonthFormik = () => {
         .test(
           "is-in-database",
           "Miesiąc już zapisany",
-          value => value !== undefined && !databaseMonthsDates?.includes(value)
+          value => value !== undefined && !monthDates?.includes(value)
         ),
     }),
 

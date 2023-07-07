@@ -4,25 +4,31 @@ import { dateIn14Days } from "../../../data/dataCurrentDates";
 import useDatabaseValues from "../../../hooks/useDatabaseValues";
 import {
   useAddDayMutation,
+  useCalcDataQuery,
   useFirstColumnDataQuery,
 } from "../../../services/apiSlice";
 import { validationSchema } from "./validationDayFormik";
+import useSidebarURLValues from "../../../hooks/useSidebarURLValues";
 
 interface FormValues {
   id: string;
   date: string;
-  hours: number;
+  hours: string;
   userName: string;
   place: string;
 }
 
 const useDayFormik = () => {
-  const { pathname } = useLocation();
-  const [addDay, success] = useAddDayMutation();
+ const { monthURL, yearFromURL, monthFromURL } = useSidebarURLValues();
 
-  const lastPartMonthURL = pathname.split("/").pop() || "";
-  const yearFromURL = lastPartMonthURL.slice(0, 4);
-  const monthFromURL = lastPartMonthURL.slice(-2);
+  const [addDay, success] = useAddDayMutation();
+ 
+  const { data: dataCalc } = useCalcDataQuery({
+    year: yearFromURL,
+    month: monthFromURL,
+  });
+
+
 
   const { data: dataFirstColumn } = useFirstColumnDataQuery({
     year: yearFromURL,
@@ -33,7 +39,7 @@ const useDayFormik = () => {
     initialValues: {
       id: crypto.randomUUID(),
       date: dateIn14Days,
-      hours: 0,
+      hours: "",
       userName: "",
       place: "",
     },
@@ -41,7 +47,7 @@ const useDayFormik = () => {
 
     onSubmit: async values => {
       formik.setFieldValue("id", crypto.randomUUID());
-      // if (dataCurrentHours - +formik.values.hours < 0) return;
+      if (dataCalc.currentHours - +formik.values.hours < 0) return;
  
       const valuesToDatabase = { ...values, hours: +values.hours };
    

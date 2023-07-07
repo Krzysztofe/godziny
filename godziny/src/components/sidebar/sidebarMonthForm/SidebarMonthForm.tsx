@@ -12,7 +12,7 @@ const SidebarMonthForm = () => {
   const { formik, success } = useSidebarMonthFormik();
   const { btnContent } = useHTTPState(
     success,
-    <AiOutlinePlusCircle className="text-info" style={{ fontSize: "1.5rem" }} />
+    <AiOutlinePlusCircle className="text-info" style={{ fontSize: "1.4rem" }} />
   );
 
   return (
@@ -33,13 +33,13 @@ const SidebarMonthForm = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               size="sm"
-              className="p-0 px-1 d-block border border-primary"
+              className="p-0 px-1 d-block border border-primary "
               style={{ minHeight: 0, height: "fit-content", cursor: "pointer" }}
             />
             <Button
               type="submit"
               disabled={success.isLoading}
-              className="d-flex justify-content-center align-items-start m-0 justify-content-center p-0 ms-1  text-info-emphasis border-0 bg-transparent"
+              className="col-2 d-flex justify-content-center align-items-center m-0 justify-content-center p-0 m-0 ms-1  text-info-emphasis border-0 bg-transparent"
             >
               {btnContent}
             </Button>

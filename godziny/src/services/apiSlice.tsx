@@ -8,6 +8,8 @@ export const monthsApiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: URL_DATA }),
   tagTypes: ["months"],
   endpoints: builder => ({
+    // queries
+
     monthsData: builder.query<any, void>({
       query: () => ".json",
       providesTags: ["months"],
@@ -22,6 +24,8 @@ export const monthsApiSlice = createApi({
       query: month => `/${month.year}/month_${month.month}/columns/0.json`,
       providesTags: ["months"],
     }),
+
+    // mutations
 
     addMonth: builder.mutation<void, any>({
       query: month => ({
@@ -60,28 +64,22 @@ export const monthsApiSlice = createApi({
     }),
 
     deleteDay: builder.mutation<void, any>({
-      query: month => ({
-        url: `/${month.year}/month_${month.month}/columns/${month.colIdx}/days.json`,
+      query: ({ year, month, colIdx, daysBody }) => ({
+        url: `/${year}/month_${month}/columns/${colIdx}/days.json`,
         method: "PUT",
-        body: month.daysBody,
+        body: daysBody,
       }),
       invalidatesTags: ["months"],
     }),
 
-    // deleteDay: builder.mutation<any, any>({
-    //   query: month => ({
-    //     url: `/${month?.year}/month_${month?.month}/columns/${month.colIdx}/days/${month.dayIdx}.json`,
-    //     method: "DELETE",
-    //   }),
-    //   invalidatesTags: ["months"],
-    // }),
-
-    // calc
+    // calc queries
 
     calcData: builder.query<any, any>({
       query: month => `/${month.year}/month_${month.month}/calc.json`,
       providesTags: ["months"],
     }),
+
+    // calc mutations
 
     addAllHours: builder.mutation<void, any>({
       query: month => ({
@@ -100,6 +98,14 @@ export const monthsApiSlice = createApi({
       }),
       invalidatesTags: ["months"],
     }),
+
+    // deleteDay: builder.mutation<any, any>({
+    //   query: month => ({
+    //     url: `/${month?.year}/month_${month?.month}/columns/${month.colIdx}/days/${month.dayIdx}.json`,
+    //     method: "DELETE",
+    //   }),
+    //   invalidatesTags: ["months"],
+    // }),
 
     // PATCHupdateMonth: builder.mutation<void, any>({
     //   query: ({ id, columns }) => ({
