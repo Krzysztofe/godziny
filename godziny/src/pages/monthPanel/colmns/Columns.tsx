@@ -6,12 +6,11 @@ import {
   useMonthDataQuery,
   useUpdateCalcMutation,
   useUpdateColumnsMutation,
-  useUpdateMonthMutation,
 } from "../../../services/apiSlice";
 import Column from "../Column";
 import ColumnsHeader from "../headerColumns.tsx/ColumnsHeader";
-import { addDaysToEmptyColumns, handleDragDrop } from "../utils";
-import useHoursCalc from "./useHoursCalc";
+import { addDaysToColumns, handleDragDrop } from "../utils";
+import useHoursSum from "../../../hooks/useHoursSum";
 
 const Columns = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
@@ -21,12 +20,12 @@ const Columns = () => {
   });
   const [updateColumns] = useUpdateColumnsMutation();
   const [updateCalc] = useUpdateCalcMutation();
-  const columnsWithDays = addDaysToEmptyColumns(dataMonth?.columns);
+  const columnsWithDays = addDaysToColumns(dataMonth?.columns);
 
   // console.log("eee", columnsWithDays);
 
   const { submittedHoursSum, acceptedHoursSum, rejectedHoursSum } =
-    useHoursCalc();
+    useHoursSum();
 
   const [columns, setColumns] = useState<any[]>([]);
   const [results, setResults] = useState(null);
@@ -64,14 +63,10 @@ const Columns = () => {
     });
   }, [dataMonth]);
 
-  // console.log('',)
-
   const handleDragEnd = (results: any) => {
     handleDragDrop(results, columns, setColumns);
     setResults(results);
   };
-
-  // console.log("", dataMonth);
 
   const scrollableRef = useRef(null);
   const [thumbPosition, setThumbPosition] = useState(0);

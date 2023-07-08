@@ -1,14 +1,15 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import useHTTPState from "../../../../hooks/useHTTPState";
-import useSidebarURLValues from "../../../../hooks/useSidebarURLValues";
 import { useCalcDataQuery } from "../../../../services/apiSlice";
 import "./_formHeaderMonthPAnel.scss";
 import useMonthPanelHeaderFormik from "./useMonthPanelHeaderFormik";
+import useURLValues from "../../../../hooks/useURLValues";
 
 const MonhPanelHeaderForm = () => {
   const { formik, success } = useMonthPanelHeaderFormik();
-  const { yearFromURL, monthFromURL } = useSidebarURLValues();
+  const { yearFromURL, monthFromURL } = useURLValues();
+
   const { data: dataCalc } = useCalcDataQuery({
     year: yearFromURL,
     month: monthFromURL,
@@ -69,7 +70,7 @@ const MonhPanelHeaderForm = () => {
         className="fw-medium d-block mx-auto mt-2 col-sm-4 col-md-3 col-lg-2"
         disabled={success.isLoading}
       >
-        {btnContent} 
+        {btnContent}
       </Button>
     </Form>
   );

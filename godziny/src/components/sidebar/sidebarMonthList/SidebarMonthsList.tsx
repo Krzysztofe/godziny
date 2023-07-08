@@ -3,12 +3,12 @@ import { Link, useLocation } from "react-router-dom";
 import useMonthDates from "../../../hooks/useMonthDates";
 import { useMonthsDataQuery } from "../../../services/apiSlice";
 import "./_monthList.scss";
-import useSidebarURLValues from "../../../hooks/useSidebarURLValues";
+import useURLValues from "../../../hooks/useURLValues";
 
 const SidebarMonthsList = () => {
   const { data } = useMonthsDataQuery(undefined);
   const { monthDates } = useMonthDates(data);
-  const { monthURL } = useSidebarURLValues();
+  const { monthURL } = useURLValues();
 
   const databaseMonthsDatesToString = monthDates?.map((monthDate: any) => {
     const monthToDateFormat = new Date(monthDate);

@@ -1,102 +1,18 @@
-// export const addDaysToEmptyColumns = (arr: any) => {
-//   if (!Array.isArray(arr)) {
-//     return [];
-//   }
-//   return arr?.map((obj: any) => {
-//     if (!obj?.hasOwnProperty("days")) {
-//       return { ...obj, days: [] };
-//     }
-//     return obj;
-//   });
-// };
-
-
-export const addDaysToEmptyColumns = (arr: any) => {
-  if (!Array.isArray(arr)) {
+export const addDaysToColumns = (columns: any) => {
+  if (!Array.isArray(columns)) {
     return [];
   }
-  return arr?.map((obj: any) => {
-    if (!obj?.hasOwnProperty("days")) {
-      return { ...obj, days: [] };
+  return columns?.map((column: any) => {
+    if (!column?.hasOwnProperty("days")) {
+      return { ...column, days: [] };
     }
-    return obj;
+    return column;
   });
 };
-
-
-
-
-
-
-
-export const addDaysToColumns = (arr: any[]) => {
-  if (!Array.isArray(arr)) {
-    return [];
-  }
-
-  return arr?.map((obj: any) => {
-    const hasDaysProperty = obj?.columns?.every((column: any) =>
-      column.hasOwnProperty("days")
-    );
-
-    if (!hasDaysProperty) {
-      return {
-        ...obj,
-        columns: obj?.columns?.map((column: any) => ({
-          ...column,
-          days: column.days || [],
-        })),
-      };
-    }
-
-    return obj;
-  });
-};
-
-
-// export const addDaysToColumnsvvvvv = (arr: any[]) => {
-//   if (!Array.isArray(arr)) {
-//     return [];
-//   }
-
-//   return arr?.map((obj: any) => {
-//     if (obj?.columns?.map((column:any) => column.hasOwnProperty("days"))) {
-//       return {
-//         ...obj,
-//         columns: obj?.columns?.map((column: any) => {
-//           return { ...column, days: [] };
-//         }),
-//       };
-//     }
-
-//     return obj
-//   });
-  
-// };
-
-
-// export const addDaysToColumns = (data:any) => {
-//   for (const key in data) {
-//     if (data.hasOwnProperty(key)) {
-//       const item = data[key];
-//       if (item.columns) {
-//         item.columns.forEach((column:any) => {
-//           if (!column.hasOwnProperty("days")) {
-//             column.days = [];
-//           }
-//         });
-//       }
-//     }
-//   }
-// }
-
-
 
 
 export const handleDragDrop = (results: any, columns: any, setColumns: any) => {
-
-
-  
+ 
   const { source, destination } = results;
 
   if (!destination) return;

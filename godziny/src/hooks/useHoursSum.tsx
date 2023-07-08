@@ -1,15 +1,15 @@
-import useURLValues from "../../../hooks/useURLValues";
-import { useMonthDataQuery } from "../../../services/apiSlice";
-import { addDaysToEmptyColumns } from "../utils";
+import useURLValues from "./useURLValues";
+import { useMonthDataQuery } from "../services/apiSlice";
+import { addDaysToColumns } from "../pages/monthPanel/utils";
 
-const useHoursCalc = () => {
+const useHoursSum = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
   const { data: dataMonth } = useMonthDataQuery({
     year: yearFromURL,
     month: monthFromURL,
   });
 
-  const columnsWithDays = addDaysToEmptyColumns(dataMonth?.columns);
+  const columnsWithDays = addDaysToColumns(dataMonth?.columns);
 
   const submittedHoursSum =
     dataMonth &&
@@ -36,4 +36,4 @@ const useHoursCalc = () => {
   return { submittedHoursSum, acceptedHoursSum, rejectedHoursSum };
 };
 
-export default useHoursCalc;
+export default useHoursSum;

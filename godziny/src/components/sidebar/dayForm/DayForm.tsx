@@ -2,16 +2,16 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { dateIn14Days, dateIn60Days } from "../../../data/dataCurrentDates";
 import useHTTPState from "../../../hooks/useHTTPState";
-import useSidebarURLValues from "../../../hooks/useSidebarURLValues";
 import {
   useCalcDataQuery,
   useMonthDataQuery,
 } from "../../../services/apiSlice";
 import "./_dayForm.scss";
 import useDayFormik from "./useDayFormik";
+import useURLValues from "../../../hooks/useURLValues";
 
 const DayForm = () => {
-  const { yearFromURL, monthFromURL } = useSidebarURLValues();
+  const { yearFromURL, monthFromURL } = useURLValues();
   const { data: dataMonth } = useMonthDataQuery({
     year: yearFromURL,
     month: monthFromURL,

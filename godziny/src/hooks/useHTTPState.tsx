@@ -5,8 +5,6 @@ import { ReactNode } from "react";
 
 const useHTTPState = (success: any, btnText: string | ReactNode) => {
 
-// console.log('',success.isError)
-
   useEffect(() => {
     if (success.isError) {
       const error = success.error;
