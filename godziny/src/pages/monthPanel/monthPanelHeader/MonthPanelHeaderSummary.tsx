@@ -1,21 +1,14 @@
 import useMonthURLToString from "../../../hooks/useMonthURLToString";
-import useDatabaseValues from "../../../hooks/useDatabaseValues";
-import { useParams } from "react-router-dom";
-import { useCalcDataQuery } from "../../../services/apiSlice";
 import useURLValues from "../../../hooks/useURLValues";
-import useHoursCalc from "../colmns/useHoursCalc";
+import { useCalcDataQuery } from "../../../services/apiSlice";
 
 const MonthPanelHeaderSummary = () => {
-  // const { monthURL } = useParams();
-  const { monthURL, yearFromURL, monthFromURL } = useURLValues();
-  const { databaseAllHours, dataCurrentHours } = useDatabaseValues(monthURL);
-  const { monthURLStringFormat } = useMonthURLToString();
-
-
+  const { yearFromURL, monthFromURL } = useURLValues();
   const { data: dataCalc } = useCalcDataQuery({
     year: yearFromURL,
     month: monthFromURL,
   });
+  const { monthURLStringFormat } = useMonthURLToString();
 
   return (
     <>
@@ -31,12 +24,16 @@ const MonthPanelHeaderSummary = () => {
         <div className="col-3 text-end">Wszystkie</div>
         <div className="mx-2">
           {dataCalc?.allHours} -{" "}
-          <span className={`${dataCurrentHours < 0 ? "text-danger" : ""}`}>
+          <span
+            className={`${dataCalc?.currentHours < 0 ? "text-danger" : ""}`}
+          >
             {dataCalc?.currentHours}
           </span>
         </div>
-        <div className={`col-3 ${dataCurrentHours < 0 ? "text-danger" : ""}`}>
-          {dataCurrentHours < 0 ? "Brak" : "Dostępne"}
+        <div
+          className={`col-3 ${dataCalc?.currentHours < 0 ? "text-danger" : ""}`}
+        >
+          {dataCalc?.currentHours < 0 ? "Brak" : "Dostępne"}
         </div>
       </div>
     </>

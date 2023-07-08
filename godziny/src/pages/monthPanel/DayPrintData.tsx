@@ -16,9 +16,6 @@ const DayPrintData = (props: Props) => {
       month: "short",
     }).format(date);
 
-
-
-
   return (
     <div className="px-1 py-2 py-sm-1">
       <div

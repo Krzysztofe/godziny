@@ -1,10 +1,6 @@
-import { useParams } from "react-router-dom";
-import useDatabaseValues from "../../../hooks/useDatabaseValues";
-import useHoursCalc from "../colmns/useHoursCalc";
 import useURLValues from "../../../hooks/useURLValues";
 import {
-  useCalcDataQuery,
-  useMonthDataQuery,
+  useCalcDataQuery
 } from "../../../services/apiSlice";
 
 const ColumnsHeader = () => {
@@ -13,21 +9,7 @@ const ColumnsHeader = () => {
     year: yearFromURL,
     month: monthFromURL,
   });
-  // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setWindowWidth(window.innerWidth);
-  //   };
-
-  //   window.addEventListener("resize", handleResize);
-
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, []);
-
-  // const displayHeaderContent = windowWidth > 576;
 
 
 

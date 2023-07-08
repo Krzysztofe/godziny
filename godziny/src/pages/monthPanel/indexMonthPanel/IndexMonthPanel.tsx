@@ -1,11 +1,9 @@
 import { Spinner } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { currMonthDateToString } from "../../../data/dataCurrentDates";
+import useURLValues from "../../../hooks/useURLValues";
+import { useMonthDataQuery, useMonthsDataQuery } from "../../../services/apiSlice";
 import Columns from "../colmns/Columns";
 import MonthPanelHeader from "../monthPanelHeader/MonthPanelHeader";
-import useDatabaseValues from "../../../hooks/useDatabaseValues";
-import { currMonthDateToString } from "../../../data/dataCurrentDates";
-import { useMonthDataQuery, useMonthsDataQuery } from "../../../services/apiSlice";
-import useURLValues from "../../../hooks/useURLValues";
 
 const IndexMonthPanel = () => {
   const {  yearFromURL, monthFromURL } = useURLValues();

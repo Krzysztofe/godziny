@@ -23,15 +23,13 @@ const DayForm = () => {
   });
 
   const { formik, success } = useDayFormik();
-
-
   const { btnContent } = useHTTPState(success, "Zapisz dzień");
 
   return (
     <Form
       onSubmit={formik.handleSubmit}
       className={`mt-2 ${!dataMonth ? "d-none" : ""} ${
-        dataCalc.allHours === 0 ? "formContainer" : ""
+        dataCalc?.allHours === 0 ? "formContainer" : ""
       }`}
     >
       {/* userName */}

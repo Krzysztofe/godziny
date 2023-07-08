@@ -11,8 +11,6 @@ const useHoursCalc = () => {
 
   const columnsWithDays = addDaysToEmptyColumns(dataMonth?.columns);
 
-console.log("ff", columnsWithDays);
-
   const submittedHoursSum =
     dataMonth &&
     columnsWithDays &&

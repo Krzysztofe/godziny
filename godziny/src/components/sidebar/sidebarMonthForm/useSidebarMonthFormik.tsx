@@ -29,7 +29,7 @@ const useSidebarMonthFormik = () => {
         .string()
         .test(
           "is-in-database",
-          "Miesiąc już zapisany",
+          "Miesiąc zapisany",
           value => value !== undefined && !monthDates?.includes(value)
         ),
     }),

@@ -39,7 +39,7 @@ const Day = (props: Props) => {
 
         const daysBodyPUTRequest = dataMonth?.columns[idx]?.days?.filter(
           (day: any) => {
-            return day.id !== id;
+            return day?.id !== id;
           }
         );
      

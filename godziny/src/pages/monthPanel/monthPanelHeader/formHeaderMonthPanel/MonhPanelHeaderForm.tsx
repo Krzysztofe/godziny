@@ -1,21 +1,20 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { useParams } from "react-router-dom";
-import useDatabaseValues from "../../../../hooks/useDatabaseValues";
 import useHTTPState from "../../../../hooks/useHTTPState";
+import useSidebarURLValues from "../../../../hooks/useSidebarURLValues";
+import { useCalcDataQuery } from "../../../../services/apiSlice";
 import "./_formHeaderMonthPAnel.scss";
 import useMonthPanelHeaderFormik from "./useMonthPanelHeaderFormik";
 
 const MonhPanelHeaderForm = () => {
-  const { monthURL } = useParams();
-  const { formik } = useMonthPanelHeaderFormik();
-  const { dataBaseSubmitedHours, databaseAcceptedHours } =
-    useDatabaseValues(monthURL);
+  const { formik, success } = useMonthPanelHeaderFormik();
+  const { yearFromURL, monthFromURL } = useSidebarURLValues();
+  const { data: dataCalc } = useCalcDataQuery({
+    year: yearFromURL,
+    month: monthFromURL,
+  });
 
-
-  // const { btnContent } = useHTTPState(success, "Zapisz liczbę godzin");
-
- 
+  const { btnContent } = useHTTPState(success, "Zapisz liczbę godzin");
 
   return (
     <Form onSubmit={formik.handleSubmit} className="my-2">
@@ -37,9 +36,10 @@ const MonhPanelHeaderForm = () => {
         className="text-danger d-block mt-0 fs-8 text-center"
         style={{ height: "0.7rem" }}
       >
-        {dataBaseSubmitedHours + databaseAcceptedHours > +formik.values.allHours
+        {dataCalc?.submittedHours + dataCalc?.acceptedHours >
+        +formik.values.allHours
           ? `Podaj ilość godzin większą od ${
-              dataBaseSubmitedHours + databaseAcceptedHours
+              dataCalc?.submittedHours + dataCalc?.acceptedHours
             } `
           : ""}
       </div>
@@ -67,9 +67,9 @@ const MonhPanelHeaderForm = () => {
         variant="info"
         size="sm"
         className="fw-medium d-block mx-auto mt-2 col-sm-4 col-md-3 col-lg-2"
-        // disabled={success.isLoading}
+        disabled={success.isLoading}
       >
-        {/* {btnContent} */} yo
+        {btnContent} 
       </Button>
     </Form>
   );

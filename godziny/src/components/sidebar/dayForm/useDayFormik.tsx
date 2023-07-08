@@ -1,14 +1,12 @@
 import { useFormik } from "formik";
-import { useLocation } from "react-router-dom";
 import { dateIn14Days } from "../../../data/dataCurrentDates";
-import useDatabaseValues from "../../../hooks/useDatabaseValues";
+import useSidebarURLValues from "../../../hooks/useSidebarURLValues";
 import {
   useAddDayMutation,
   useCalcDataQuery,
   useFirstColumnDataQuery,
 } from "../../../services/apiSlice";
 import { validationSchema } from "./validationDayFormik";
-import useSidebarURLValues from "../../../hooks/useSidebarURLValues";
 
 interface FormValues {
   id: string;
@@ -19,7 +17,7 @@ interface FormValues {
 }
 
 const useDayFormik = () => {
- const { monthURL, yearFromURL, monthFromURL } = useSidebarURLValues();
+ const { yearFromURL, monthFromURL } = useSidebarURLValues();
 
   const [addDay, success] = useAddDayMutation();
  
