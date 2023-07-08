@@ -3,15 +3,21 @@ https://krzysztofe.github.io/godziny/
 
 
 
-*Protected routes
 
-* SCSS,
+
+* SCSS, Bootstrap
 * React, TypeScript
 * Redux Toolkit 
 * RTK Query: GET, POST, PUT, DELETE
 * Firebase: Authentication, Realtime Database 
 * Formik / Yup 
 * Lazy loading
+* Protected routes
+* Dynamic Routing
+* Login
+* Dragg and Dropp
+* Forms / Validations
+* RWD
 
 * React hooks: <br/> useState, useEffect, <br/> useDispatch, useSelector, <br/> useNavigate, useParams, useLocation, <br/> useAuthState, useFormik, custom hooks
 * Libraries: <br/>
