@@ -1,8 +1,11 @@
-export const addDaysToColumns = (columns: any) => {
+import { DropResult } from "react-beautiful-dnd";
+import { ModelColumn } from "../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
+
+export const addDaysToColumns = (columns: ModelColumn[]) => {
   if (!Array.isArray(columns)) {
     return [];
   }
-  return columns?.map((column: any) => {
+  return columns?.map((column: ModelColumn) => {
     if (!column?.hasOwnProperty("days")) {
       return { ...column, days: [] };
     }
@@ -11,8 +14,13 @@ export const addDaysToColumns = (columns: any) => {
 };
 
 
-export const handleDragDrop = (results: any, columns: any, setColumns: any) => {
- 
+
+export const handleDragDrop = (
+  // results: DropResult,
+  results: any,
+  columns: ModelColumn[],
+  setColumns: React.Dispatch<React.SetStateAction<ModelColumn[]>>
+) => {
   const { source, destination } = results;
 
   if (!destination) return;
@@ -31,7 +39,7 @@ export const handleDragDrop = (results: any, columns: any, setColumns: any) => {
       return column.id === destination.droppableId;
     });
 
-    const newSourceDays = columns && [...columns[sourceColumnIdx]?.days];
+    const newSourceDays = columns && [...columns[sourceColumnIdx].days];
 
     const newDestinationDays =
       source.droppableId !== destination.dropableId
@@ -75,4 +83,3 @@ export const handleDragDrop = (results: any, columns: any, setColumns: any) => {
     setColumns(newColumns);
   }
 };
-

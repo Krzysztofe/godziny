@@ -7,10 +7,10 @@ import {
   useMonthDataQuery,
 } from "../../../services/apiSlice";
 import "./_dayForm.scss";
-import useDayFormik from "./useDayFormik";
+import useSidebarDayFormik from "./useSidebarDayFormik";
 import useURLValues from "../../../hooks/useURLValues";
 
-const DayForm = () => {
+const SidebarDayForm = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
   const { data: dataMonth } = useMonthDataQuery({
     year: yearFromURL,
@@ -22,7 +22,7 @@ const DayForm = () => {
     month: monthFromURL,
   });
 
-  const { formik, success } = useDayFormik();
+  const { formik, success } = useSidebarDayFormik();
   const { btnContent } = useHTTPState(success, "Zapisz dzień");
 
   return (
@@ -180,4 +180,4 @@ const DayForm = () => {
   );
 };
 
-export default DayForm;
+export default SidebarDayForm;

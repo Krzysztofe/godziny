@@ -9,7 +9,6 @@ import useURLValues from "../../../../hooks/useURLValues";
 const MonhPanelHeaderForm = () => {
   const { formik, success } = useMonthPanelHeaderFormik();
   const { yearFromURL, monthFromURL } = useURLValues();
-
   const { data: dataCalc } = useCalcDataQuery({
     year: yearFromURL,
     month: monthFromURL,

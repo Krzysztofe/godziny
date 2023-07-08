@@ -1,12 +1,14 @@
 import { Droppable } from "react-beautiful-dnd";
-import Day from "./Day";
+import MonthPanelDay from "./MonthPanelDay";
+import { ModelColumn } from "../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
+import { ModelDay } from "../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
 
 interface Props {
-  column: any;
+  column: ModelColumn;
   columnIdx: number;
 }
 
-const Column = (props: Props) => {
+const MonthPanelColumn = (props: Props) => {
   return (
     <div className="w-100">
       <Droppable droppableId={props.column.id}>
@@ -18,9 +20,9 @@ const Column = (props: Props) => {
               className="p-1 bg-primary-subtle h-100"
             >
               {Array.isArray(props.column.days)
-                ? props.column.days.map((day: any, idx: number) => {
+                ? props.column.days.map((day: ModelDay, idx: number) => {
                     return (
-                      <Day
+                      <MonthPanelDay
                         key={crypto.randomUUID()}
                         day={day}
                         columnIdx={props.columnIdx}
@@ -38,4 +40,4 @@ const Column = (props: Props) => {
   );
 };
 
-export default Column;
+export default MonthPanelColumn;

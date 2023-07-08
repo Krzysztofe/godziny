@@ -3,15 +3,12 @@ import {
   useCalcDataQuery
 } from "../../../services/apiSlice";
 
-const ColumnsHeader = () => {
+const MonthPanelColumnsHeader = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
   const { data: dataCalc } = useCalcDataQuery({
     year: yearFromURL,
     month: monthFromURL,
   });
-
-
-
 
   return (
     <>
@@ -44,4 +41,4 @@ const ColumnsHeader = () => {
   );
 };
 
-export default ColumnsHeader;
+export default MonthPanelColumnsHeader;

@@ -1,23 +1,16 @@
 import { useFormik } from "formik";
 import { dateIn14Days } from "../../../data/dataCurrentDates";
-
 import {
   useAddDayMutation,
   useCalcDataQuery,
   useFirstColumnDataQuery,
 } from "../../../services/apiSlice";
-import { validationSchema } from "./validationDayFormik";
+import { validationSchema } from "./validationSidebarDayFormik";
 import useURLValues from "../../../hooks/useURLValues";
+import { ModelDay } from "../sidebarMonthForm/dataSidebarMonthForm";
 
-interface FormValues {
-  id: string;
-  date: string;
-  hours: string;
-  userName: string;
-  place: string;
-}
 
-const useDayFormik = () => {
+const useSidebarDayFormik = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
 
   const [addDay, success] = useAddDayMutation();
@@ -32,11 +25,11 @@ const useDayFormik = () => {
     month: monthFromURL,
   });
 
-  const formik = useFormik<FormValues>({
+  const formik = useFormik<ModelDay>({
     initialValues: {
       id: crypto.randomUUID(),
       date: dateIn14Days,
-      hours: "",
+      hours: 0,
       userName: "",
       place: "",
     },
@@ -51,7 +44,7 @@ const useDayFormik = () => {
       await addDay({
         year: yearFromURL,
         month: monthFromURL,
-        monthBody: {
+        firstColumnBody: {
           ...dataFirstColumn,
           days: dataFirstColumn?.days
             ? [...dataFirstColumn.days, valuesToDatabase]
@@ -64,4 +57,4 @@ const useDayFormik = () => {
   return { formik, success };
 };
 
-export default useDayFormik;
+export default useSidebarDayFormik;

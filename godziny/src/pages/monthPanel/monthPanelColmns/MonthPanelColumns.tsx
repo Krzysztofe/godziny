@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { DragDropContext } from "react-beautiful-dnd";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import Container from "react-bootstrap/Container";
 import useURLValues from "../../../hooks/useURLValues";
 import {
@@ -7,12 +7,13 @@ import {
   useUpdateCalcMutation,
   useUpdateColumnsMutation,
 } from "../../../services/apiSlice";
-import Column from "../Column";
-import ColumnsHeader from "../headerColumns.tsx/ColumnsHeader";
-import { addDaysToColumns, handleDragDrop } from "../utils";
+import MonthPanelColumn from "../MonthPanelColumn";
+import MonthPanelColumnsHeader from "../monthPanelColumnsheader.tsx/MonthPanelColumnsHeader";
+import { addDaysToColumns, handleDragDrop } from "../utilsMonthPanelColumns";
 import useHoursSum from "../../../hooks/useHoursSum";
+import { ModelColumn } from "../../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
 
-const Columns = () => {
+const MonthPanelColumns = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
   const { data: dataMonth } = useMonthDataQuery({
     year: yearFromURL,
@@ -20,15 +21,14 @@ const Columns = () => {
   });
   const [updateColumns] = useUpdateColumnsMutation();
   const [updateCalc] = useUpdateCalcMutation();
-  const columnsWithDays = addDaysToColumns(dataMonth?.columns);
-
-  // console.log("eee", columnsWithDays);
-
+  const columnsWithDays = dataMonth?.columns
+    ? addDaysToColumns(dataMonth.columns)
+    : [];
   const { submittedHoursSum, acceptedHoursSum, rejectedHoursSum } =
     useHoursSum();
 
-  const [columns, setColumns] = useState<any[]>([]);
-  const [results, setResults] = useState(null);
+  const [columns, setColumns] = useState<ModelColumn[]>([]);
+  const [results, setResults] = useState<DropResult | null>(null);
 
   useEffect(() => {
     setColumns(columnsWithDays);
@@ -51,7 +51,7 @@ const Columns = () => {
       allHours: {
         ...dataMonth?.calc,
         currentHours:
-          dataMonth?.calc?.allHours -
+          (dataMonth?.calc?.allHours ?? 0) -
           submittedHoursSum -
           acceptedHoursSum -
           rejectedHoursSum +
@@ -63,7 +63,7 @@ const Columns = () => {
     });
   }, [dataMonth]);
 
-  const handleDragEnd = (results: any) => {
+  const handleDragEnd = (results: DropResult) => {
     handleDragDrop(results, columns, setColumns);
     setResults(results);
   };
@@ -91,15 +91,21 @@ const Columns = () => {
         style={{ top: `${thumbPosition}%` }}
       >
         <Container className="mx-0 ms-sm-auto sticky-top d-flex column-gap-2">
-          <ColumnsHeader />
+          <MonthPanelColumnsHeader />
         </Container>
         <Container
           className="mx-0 ms-sm-auto mb-5 d-flex column-gap-2"
           style={{ height: "fit-content" }}
         >
           <DragDropContext onDragEnd={handleDragEnd}>
-            {columns?.map((column: any, idx: number) => {
-              return <Column key={column.id} column={column} columnIdx={idx} />;
+            {columns?.map((column: ModelColumn, idx: number) => {
+              return (
+                <MonthPanelColumn
+                  key={column.id}
+                  column={column}
+                  columnIdx={idx}
+                />
+              );
             })}
           </DragDropContext>
         </Container>
@@ -108,4 +114,4 @@ const Columns = () => {
   );
 };
 
-export default Columns;
+export default MonthPanelColumns;

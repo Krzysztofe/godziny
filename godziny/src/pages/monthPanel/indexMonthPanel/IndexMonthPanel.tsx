@@ -2,7 +2,7 @@ import { Spinner } from "react-bootstrap";
 import { currMonthDateToString } from "../../../data/dataCurrentDates";
 import useURLValues from "../../../hooks/useURLValues";
 import { useMonthDataQuery, useMonthsDataQuery } from "../../../services/apiSlice";
-import Columns from "../colmns/Columns";
+import MonthPanelColumns from "../monthPanelColmns/MonthPanelColumns";
 import MonthPanelHeader from "../monthPanelHeader/MonthPanelHeader";
 
 const IndexMonthPanel = () => {
@@ -69,7 +69,7 @@ const IndexMonthPanel = () => {
     panelContent = (
       <main className="d-flex flex-column" style={{ height: "100vh" }}>
         <MonthPanelHeader />
-        <Columns />
+        <MonthPanelColumns />
       </main>
     );
   }

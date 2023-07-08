@@ -1,29 +1,37 @@
-interface ModelDay {
-  id?: string;
+export interface ModelDay {
+  id: string;
   userName: string;
   date: string;
-  hours: string | number;
+  hours: number;
   place: string;
 }
 
-interface ModelColumn {
+export interface ModelColumn {
   id: string;
-  days?: string;
+  days: ModelDay[];
+}
+
+export interface ModelCalc {
+  allHours: number;
+  currentHours: number;
+  submittedHours: number;
+  acceptedHours: number;
+  rejectedHours: number;
+}
+
+export interface ModelMonthPattern {
+  id: string;
+  columns: ModelColumn[];
+  calc: ModelCalc;
 }
 
 const columns: ModelColumn[] = [
-  {
-    id: "submitted",
-  },
-  {
-    id: "accepted",
-  },
-  {
-    id: "rejected",
-  },
+  { id: "submitted", days: [] },
+  { id: "accepted", days: [] },
+  { id: "rejected", days: [] },
 ];
 
-const calc = {
+const calc: ModelCalc = {
   allHours: 0,
   currentHours: 0,
   submittedHours: 0,
@@ -31,7 +39,7 @@ const calc = {
   rejectedHours: 0,
 };
 
-export const monthPattern = {
+export const monthPattern: ModelMonthPattern = {
   id: "",
   columns,
   calc,
@@ -68,11 +76,8 @@ const years = {
   },
 };
 
-const columnsx =  [
-        { id: "zatwierdzone", days: [{ hours: 9 }, null, { hours: 7 }, null] },
-        { id: "odrzucone", days: [{ hours: 9 }, null, { hours: 7 }, null] },
-        { id: "nara", days: [{ hours: 9 }, null, { hours: 7 }, null] },
-      ]
-
-
-
+const columnsx = [
+  { id: "zatwierdzone", days: [{ hours: 9 }, null, { hours: 7 }, null] },
+  { id: "odrzucone", days: [{ hours: 9 }, null, { hours: 7 }, null] },
+  { id: "nara", days: [{ hours: 9 }, null, { hours: 7 }, null] },
+];

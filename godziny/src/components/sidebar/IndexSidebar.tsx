@@ -4,7 +4,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useLocation } from "react-router-dom";
 import SidebarTitle from "./SidebarTitle";
-import DayForm from "./dayForm/DayForm";
+import SidebarDayForm from "./sidebarDayForm/SidebarDayForm";
 import SidebarMonthForm from "./sidebarMonthForm/SidebarMonthForm";
 import SidebarMonthCollapse from "./SidebarMonthCollapse";
 
@@ -44,7 +44,7 @@ const IndexSidebar = () => {
             <Offcanvas.Body className="pt-0">
               <SidebarMonthForm />
               <SidebarMonthCollapse />
-              <DayForm />
+              <SidebarDayForm />
             </Offcanvas.Body>
           </Offcanvas>
         </>

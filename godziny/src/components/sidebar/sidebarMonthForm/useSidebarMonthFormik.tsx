@@ -10,7 +10,9 @@ import {
   useAddMonthMutation,
   useMonthsDataQuery
 } from "../../../services/apiSlice";
-import { monthPattern } from "./dataSidebarMonthForm";
+import { monthPattern, ModelMonthPattern} from "./dataSidebarMonthForm";
+
+
 
 interface ModelFormValues {
   monthDate: string;
@@ -37,7 +39,10 @@ const useSidebarMonthFormik = () => {
     onSubmit: async values => {
       const year = values.monthDate.slice(0, 4);
       const month = values.monthDate.slice(-2);
-      const monthBody = { ...monthPattern, id: values.monthDate };
+      const monthBody: ModelMonthPattern = {
+        ...monthPattern,
+        id: values.monthDate,
+      };
 
       await addMonth({ year, month, monthBody });
       navigate(`/${values.monthDate}`);

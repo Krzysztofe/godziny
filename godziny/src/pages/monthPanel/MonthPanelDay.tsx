@@ -1,22 +1,22 @@
 import { Draggable } from "react-beautiful-dnd";
 import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
+import { ModelDay } from "../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
 import useHTTPState from "../../hooks/useHTTPState";
 import useURLValues from "../../hooks/useURLValues";
 import {
-  useAddDayMutation,
   useDeleteDayMutation,
   useMonthDataQuery,
 } from "../../services/apiSlice";
-import DayPrintData from "./DayPrintData";
+import MonthPanelDayPrintData from "./MonthPanelDayPrintData";
 
 interface Props {
-  day: any;
+  day: ModelDay;
   columnIdx: number;
   dayIdx: number;
 }
 
-const Day = (props: Props) => {
+const MonthPanelDay = (props: Props) => {
   const { yearFromURL, monthFromURL } = useURLValues();
   const { data: dataMonth } = useMonthDataQuery({
     year: yearFromURL,
@@ -36,13 +36,11 @@ const Day = (props: Props) => {
       cancelButtonText: "Nie",
     }).then(async result => {
       if (result.isConfirmed) {
-
         const daysBodyPUTRequest = dataMonth?.columns[idx]?.days?.filter(
-          (day: any) => {
+          (day: ModelDay) => {
             return day?.id !== id;
           }
         );
-     
 
         await deleteDay({
           year: yearFromURL,
@@ -68,7 +66,7 @@ const Day = (props: Props) => {
             {...provided.dragHandleProps}
             ref={provided.innerRef}
           >
-            <DayPrintData day={props.day} />
+            <MonthPanelDayPrintData day={props.day} />
             <Button
               variant="info"
               size="sm"
@@ -85,4 +83,4 @@ const Day = (props: Props) => {
   );
 };
 
-export default Day;
+export default MonthPanelDay;

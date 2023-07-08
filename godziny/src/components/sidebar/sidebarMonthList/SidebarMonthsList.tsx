@@ -1,16 +1,16 @@
 import ListGroup from "react-bootstrap/ListGroup";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useMonthDates from "../../../hooks/useMonthDates";
+import useURLValues from "../../../hooks/useURLValues";
 import { useMonthsDataQuery } from "../../../services/apiSlice";
 import "./_monthList.scss";
-import useURLValues from "../../../hooks/useURLValues";
 
 const SidebarMonthsList = () => {
   const { data } = useMonthsDataQuery(undefined);
   const { monthDates } = useMonthDates(data);
   const { monthURL } = useURLValues();
 
-  const databaseMonthsDatesToString = monthDates?.map((monthDate: any) => {
+  const databaseMonthsDatesToString = monthDates?.map((monthDate: string) => {
     const monthToDateFormat = new Date(monthDate);
     return new Intl.DateTimeFormat("pl-PL", {
       year: "numeric",
