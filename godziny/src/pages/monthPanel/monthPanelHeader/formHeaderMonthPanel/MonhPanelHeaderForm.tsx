@@ -16,8 +16,14 @@ const MonhPanelHeaderForm = () => {
 
   const { btnContent } = useHTTPState(success, "Zapisz liczbę godzin");
 
+  const gradientBackground = `linear-gradient(to right, rgba(180,160,255) ${formik.values.allHours}%, rgba(231, 227, 243) ${formik.values.allHours}%, rgba(231, 227, 243) 100%)`;
+
+
   return (
-    <Form onSubmit={formik.handleSubmit} className="my-2">
+    <Form
+      onSubmit={formik.handleSubmit}
+      className="p-2 bg-primary rounded-bottom-1"
+    >
       <Form.Control
         type="number"
         name="allHours"
@@ -56,7 +62,7 @@ const MonhPanelHeaderForm = () => {
           className="form-range custom-range mx-2 medium"
           style={{
             height: 10,
-            background: `linear-gradient(to right, olive 0%, red ${formik.values.allHours}%, transparent ${formik.values.allHours}%, transparent 100%)`,
+            background: gradientBackground,
           }}
         />
         <div className="fw-medium">320</div>
@@ -66,7 +72,7 @@ const MonhPanelHeaderForm = () => {
         type="submit"
         variant="info"
         size="sm"
-        className="fw-medium d-block mx-auto mt-2 col-sm-4 col-md-3 col-lg-2"
+        className="fw-medium d-block mx-auto mt-2 col-sm-6 col-md-4 col-lg-3 col-xxl-2"
         disabled={success.isLoading}
       >
         {btnContent}

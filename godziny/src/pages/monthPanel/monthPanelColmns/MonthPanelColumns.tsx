@@ -83,23 +83,21 @@ const MonthPanelColumns = () => {
     }
   };
 
-
-
   return (
-    <>
-      <Container
-        fluid
-        ref={scrollableRef}
-        onScroll={handleScroll}
-        className=" mb-1 overflow-y-scroll "
-        style={{ top: `${thumbPosition}%` }}
-      >
-        <Row className="col-sm-8 col-md-9 d-flex column-gap-1 justify-content-end me-lg-5 ms-sm-auto px-1 sticky-top  ">
+    <Container
+      fluid
+      ref={scrollableRef}
+      onScroll={handleScroll}
+      className=" mb-1 overflow-y-scroll"
+      style={{ top: `${thumbPosition}%` }}
+    >
+      <div className="">
+        <Row className="col-sm-8 col-md-9 col-xl-8 col-xxl-8 d-flex column-gap-1 ms-sm-auto mx-xl-auto  px-1 sticky-top">
           <MonthPanelColumnsHeader thumbPosition={thumbPosition} />
         </Row>
 
         <Row
-          className="col-sm-8 col-md-9 d-flex column-gap-1 justify-content-end me-lg-5 ms-sm-auto px-1"
+          className="col-sm-8 col-md-9 col-xl-8 d-flex column-gap-1 ms-sm-auto mx-xl-auto  px-1"
           style={{ height: "fit-content" }}
         >
           <DragDropContext onDragEnd={handleDragEnd}>
@@ -114,8 +112,8 @@ const MonthPanelColumns = () => {
             })}
           </DragDropContext>
         </Row>
-      </Container>
-    </>
+      </div>
+    </Container>
   );
 };
 

@@ -13,8 +13,9 @@ const MonthPanelHeaderCollapse = () => {
         onClick={() => setOpen(!open)}
         aria-controls="example-collapse-text"
         aria-expanded={open}
-        variant="info"
-        className="fw-medium p-1 w-100 mt-1 d-flex justify-content-center align-items-center"
+        className={`fw-medium w-100 mt-1 d-flex justify-content-center align-items-center bg-primary ${
+          open ? "rounded-bottom-0" : ""
+        }`}
       >
         Liczba godzin w miesiącu
         <MdOutlineKeyboardArrowDown
@@ -26,7 +27,7 @@ const MonthPanelHeaderCollapse = () => {
         />
       </Button>
       <Collapse in={open}>
-        <div className="bg-primary-subtle rounded p-1">
+        <div className="bg-white p-0">
           <MonthPanelHeaderForm />
         </div>
       </Collapse>

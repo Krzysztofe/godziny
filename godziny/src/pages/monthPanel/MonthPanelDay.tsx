@@ -63,11 +63,12 @@ const MonthPanelDay = (props: Props) => {
       {(provided, snapshot) => {
         return (
           <div
-            className={`bg-white card mb-2 px-1 py-2 py-sm-1 ${snapshot.isDragging ? "border-dark" : "border"}`}
+            className={`bg-white card mb-2 px-1 py-2 py-sm-1 ${
+              snapshot.isDragging ? "border-dark" : "border"
+            }`}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
-            
           >
             <MonthPanelDayPrintData day={props.day} />
 
@@ -77,7 +78,7 @@ const MonthPanelDay = (props: Props) => {
               disabled={success.isLoading}
             >
               <div className="d-flex align-items-center fs-7">
-                {props.day?.hours} <FiClock className="  ms-1 text-primary" />
+                {props.day?.hours} <FiClock className="  ms-1" />
               </div>
               <div className="d-flex align-items-center">{btnContent}</div>
             </Button>

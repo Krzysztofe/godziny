@@ -20,20 +20,16 @@ const MonthPanelDayPrintData = (props: Props) => {
     }).format(date);
     return (
       <div className="">
-        <div
-          className="d-flex justify-content-between fs-7"
-          // style={{ fontSize: "clamp(0.8rem)" }}
-        >
+        <div className="d-flex justify-content-between fs-7">
           <div>{props.day?.userName}</div>
 
           <div>
             {props.day?.place === "Poza" ? (
-              <TbArrowBigRightLineFilled className="text-success" />
-            ) : (
-              <MdFactory
-             
-                style={{ color: "rgb(75,173,232)" }}
+              <TbArrowBigRightLineFilled
+                style={{ color: "rgb(80,173,150)" }}
               />
+            ) : (
+              <MdFactory style={{ color: "rgb(180,160,255)" }} />
             )}
           </div>
         </div>

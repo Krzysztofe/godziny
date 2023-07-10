@@ -13,8 +13,6 @@ const MonthPanelColumnsHeader = (props: Props) => {
     month: monthFromURL,
   });
 
-  console.log("", props.thumbPosition);
-
   return (
     <>
       {[
@@ -34,10 +32,10 @@ const MonthPanelColumnsHeader = (props: Props) => {
         return (
           <Col
             key={headerText}
-            className={`bg-primary-subtle text-dark-emphasis fw-medium p-1 ${
+            className={`bg-primary text-dark-emphasis fw-medium p-1 ${
               props.thumbPosition === 0
                 ? ""
-                : " border-bottom border-1 border-dark"
+                : " border-bottom border-1 border-dark-subtle"
             }`}
             style={{ fontSize: "clamp(0.8rem, 3.4vw, 1rem)" }}
           >

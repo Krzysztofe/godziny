@@ -160,10 +160,10 @@ const SidebarDayForm = () => {
       </Form.Group>
 
       <Button
-        variant="info"
+        variant="emphasis"
         type="submit"
         disabled={success.isLoading}
-        className="fw-medium w-100 mt-2 "
+        className="fw-medium w-100 mt-2 bg-info text-white"
       >
         {btnContent}
       </Button>
@@ -172,7 +172,8 @@ const SidebarDayForm = () => {
         className="text-danger d-block mt-0 fs-8"
         style={{ height: "0.7rem" }}
       >
-        {dataCalc?.currentHours && dataCalc?.currentHours - +formik.values.hours < 0
+        {dataCalc?.currentHours &&
+        dataCalc?.currentHours - +formik.values.hours < 0
           ? "Brak dostępnych godzin"
           : ""}
       </div>

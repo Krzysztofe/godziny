@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -16,15 +16,36 @@ const IndexSidebar = () => {
   const handleClose = () => setShow(false);
   const toggleShow = () => setShow(s => !s);
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    windowWidth > 575 && setShow(true);
+  }, [windowWidth]);
+
+
   return (
     <>
       {!["/"].includes(urlPrintNavBar) ? (
-        <>
+        <aside>
           <Button
-            variant="secondary"
+            variant="info"
             onClick={toggleShow}
-            className="me-2 p-1 mt-1 col-2 col-sm-1"
-            style={{ position: "absolute", right: 0 }}
+            className={`me-2 p-2 mt-1  ${
+              windowWidth > 575 ? "d-none" : "d-block"
+            }`}
+            style={{ position: "absolute", right: 0, borderRadius: "50%" }}
           >
             <GiHamburgerMenu className="fs-1" />
           </Button>
@@ -35,7 +56,7 @@ const IndexSidebar = () => {
             name="Disable backdrop"
             scroll={true}
             backdrop={false}
-            className="w-20 bg-primary-subtle"
+            className="bg-primary-subtle"
             style={{ width: 200 }}
           >
             <Offcanvas.Header className="pb-0">
@@ -47,7 +68,7 @@ const IndexSidebar = () => {
               <SidebarDayForm />
             </Offcanvas.Body>
           </Offcanvas>
-        </>
+        </aside>
       ) : null}
     </>
   );

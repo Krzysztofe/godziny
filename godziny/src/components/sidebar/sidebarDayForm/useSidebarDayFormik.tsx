@@ -7,8 +7,15 @@ import {
 } from "../../../services/apiSlice";
 import { validationSchema } from "./validationSidebarDayFormik";
 import useURLValues from "../../../hooks/useURLValues";
-import { ModelDay } from "../sidebarMonthForm/dataSidebarMonthForm";
+// import { ModelDay } from "../sidebarMonthForm/dataSidebarMonthForm";
 
+interface ModelDay {
+  id: string;
+  date: string;
+  hours: string;
+  userName: string;
+  place: string;
+}
 
 const useSidebarDayFormik = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
@@ -29,7 +36,7 @@ const useSidebarDayFormik = () => {
     initialValues: {
       id: crypto.randomUUID(),
       date: dateInNext14Days,
-      hours: 0,
+      hours: "",
       userName: "",
       place: "",
     },
@@ -50,9 +57,9 @@ const useSidebarDayFormik = () => {
         month: monthFromURL,
         firstColumnBody: {
           ...dataFirstColumn,
-  days: dataFirstColumn?.days
-    ? [...dataFirstColumn.days, { ...valuesToDatabase, id: "" }]
-    : [{ ...valuesToDatabase, id: "" }],
+          days: dataFirstColumn?.days
+            ? [...dataFirstColumn.days, { ...valuesToDatabase }]
+            : [{ ...valuesToDatabase }],
         },
       });
     },

@@ -6,10 +6,8 @@ import Row from "react-bootstrap/Row";
 const MonthPanelHeader = () => {
   return (
     <header className="me-3">
-      <Container
-        fluid
-      >
-        <Row className="col-sm-8 col-md-9 d-flex justify-content-end me-lg-5 ms-sm-auto px-1">
+      <Container fluid>
+        <Row className="col-sm-8 col-md-9 col-xl-8 col-xxl-8 ms-sm-auto mx-xl-auto px-1 ">
           <MonthPanelHeaderCollapse />
           <MonthPanelHeaderSummary />
         </Row>
@@ -19,5 +17,3 @@ const MonthPanelHeader = () => {
 };
 
 export default MonthPanelHeader;
-
-

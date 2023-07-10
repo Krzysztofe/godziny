@@ -72,11 +72,12 @@ const IndexMonthPanel = () => {
     );
   } else {
     panelContent = (
-      <main className="d-flex flex-column" style={{ height: "100vh" }}>
-        {/* <Container fluid> */}
-          <MonthPanelHeader />
-          <MonthPanelColumns />
-        {/* </Container> */}
+      <main
+        className="d-flex flex-column bg-primary-subtle"
+        style={{ height: "100vh" }}
+      >
+        <MonthPanelHeader />
+        <MonthPanelColumns />
       </main>
     );
   }

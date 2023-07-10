@@ -30,7 +30,7 @@ const SidebarMonthsList = () => {
     }).format(monthURLToDateFormat);
 
   return (
-    <ListGroup className="monthListContainer bg-white border border-primary">
+    <ListGroup className="monthListContainer bg-white rounded-0 border border-primary">
       {!data ? (
         <p className="py-1 px-2 text-warning text-center">Brak danych</p>
       ) : (

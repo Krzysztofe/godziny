@@ -13,12 +13,12 @@ const SidebarMonthCollapse = () => {
         onClick={() => setOpen(!open)}
         aria-controls="example-collapse-text"
         aria-expanded={open}
-        variant="info"
-        className="fw-medium p-1 w-100 mt-1"
+        size="sm"
+        className="p-0 px-1 border border-primary w-100 mt-1 text-start bg-white fw-medium d-flex justify-content-between align-items-center"
       >
         Wybierz miesiąc
         <MdOutlineKeyboardArrowDown
-          className="fs-3 fw-medium"
+          className="fs-3 me-1"
           style={{
             transform: `${open ? "rotate(180deg)" : ""} `,
             transitionDuration: "320ms",

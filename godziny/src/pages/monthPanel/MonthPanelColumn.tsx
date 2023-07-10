@@ -19,9 +19,8 @@ const MonthPanelColumn = (props: Props) => {
               {...provided.droppableProps}
               ref={provided.innerRef}
               className={`p-1 h-100 ${
-                snapshot.isDraggingOver ? "bg-white" : "bg-primary-subtle" 
+                snapshot.isDraggingOver ? "bg-dark-subtle" : "bg-primary"
               }`}
-           
             >
               {Array.isArray(props.column.days)
                 ? props.column.days.map((day: ModelDay, idx: number) => {
