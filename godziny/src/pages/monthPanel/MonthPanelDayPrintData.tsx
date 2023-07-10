@@ -19,26 +19,27 @@ const MonthPanelDayPrintData = (props: Props) => {
       month: "short",
     }).format(date);
     return (
-      <div className="px-1 py-2 py-sm-1">
+      <div className="">
         <div
-          className="d-flex justify-content-between"
-          style={{ fontSize: "clamp(0.8rem, 3.4vw, 1rem)" }}
+          className="d-flex justify-content-between fs-7"
+          // style={{ fontSize: "clamp(0.8rem)" }}
         >
           <div>{props.day?.userName}</div>
-          <div>
-            {props.day?.hours} <FiClock className="text-primary" />
-          </div>
-        </div>
 
-        <div className="d-flex justify-content-between">
-          <div>{dateToPrint ? dateToPrint : ""}</div>
           <div>
             {props.day?.place === "Poza" ? (
               <TbArrowBigRightLineFilled className="text-success" />
             ) : (
-              <MdFactory className="text-danger" />
+              <MdFactory
+             
+                style={{ color: "rgb(75,173,232)" }}
+              />
             )}
           </div>
+        </div>
+
+        <div className="d-flex fw-medium justify-content-between">
+          <div>{dateToPrint ? dateToPrint : ""}</div>
         </div>
       </div>
     );

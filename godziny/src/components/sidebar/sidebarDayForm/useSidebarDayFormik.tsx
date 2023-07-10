@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { dateIn14Days } from "../../../data/dataCurrentDates";
+import { dateInNext14Days } from "../../../data/dataCurrentDates";
 import {
   useAddDayMutation,
   useCalcDataQuery,
@@ -28,7 +28,7 @@ const useSidebarDayFormik = () => {
   const formik = useFormik<ModelDay>({
     initialValues: {
       id: crypto.randomUUID(),
-      date: dateIn14Days,
+      date: dateInNext14Days,
       hours: 0,
       userName: "",
       place: "",
@@ -37,7 +37,11 @@ const useSidebarDayFormik = () => {
 
     onSubmit: async values => {
       formik.setFieldValue("id", crypto.randomUUID());
-      if (dataCalc.currentHours - +formik.values.hours < 0) return;
+      if (
+        dataCalc?.currentHours &&
+        dataCalc?.currentHours - +formik.values.hours < 0
+      )
+        return;
 
       const valuesToDatabase = { ...values, hours: +values.hours };
 
@@ -46,9 +50,9 @@ const useSidebarDayFormik = () => {
         month: monthFromURL,
         firstColumnBody: {
           ...dataFirstColumn,
-          days: dataFirstColumn?.days
-            ? [...dataFirstColumn.days, valuesToDatabase]
-            : [valuesToDatabase],
+  days: dataFirstColumn?.days
+    ? [...dataFirstColumn.days, { ...valuesToDatabase, id: "" }]
+    : [{ ...valuesToDatabase, id: "" }],
         },
       });
     },

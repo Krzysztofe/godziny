@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { dateIn14Days, dateIn60Days } from "../../../data/dataCurrentDates";
+import { dateInNext14Days, dateInNext60Days } from "../../../data/dataCurrentDates";
 import useHTTPState from "../../../hooks/useHTTPState";
 import {
   useCalcDataQuery,
@@ -83,8 +83,8 @@ const SidebarDayForm = () => {
           value={formik.values.date}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          min={dateIn14Days}
-          max={dateIn60Days}
+          min={dateInNext14Days}
+          max={dateInNext60Days}
           placeholder="Liczba"
           size="sm"
           className="p-0 px-1 border border-primary"
@@ -172,7 +172,7 @@ const SidebarDayForm = () => {
         className="text-danger d-block mt-0 fs-8"
         style={{ height: "0.7rem" }}
       >
-        {dataCalc?.currentHours - +formik.values.hours < 0
+        {dataCalc?.currentHours && dataCalc?.currentHours - +formik.values.hours < 0
           ? "Brak dostępnych godzin"
           : ""}
       </div>

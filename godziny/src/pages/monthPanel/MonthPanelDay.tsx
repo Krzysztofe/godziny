@@ -9,6 +9,8 @@ import {
   useMonthDataQuery,
 } from "../../services/apiSlice";
 import MonthPanelDayPrintData from "./MonthPanelDayPrintData";
+import { FiClock } from "react-icons/fi";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 interface Props {
   day: ModelDay;
@@ -24,7 +26,7 @@ const MonthPanelDay = (props: Props) => {
   });
 
   const [deleteDay, success] = useDeleteDayMutation();
-  const { btnContent } = useHTTPState(success, "Usuń");
+  const { btnContent } = useHTTPState(success, <RiDeleteBin6Line className="text-danger" />);
 
   const handleDelete = async (idx: number, id: string) => {
     Swal.fire({
@@ -46,7 +48,7 @@ const MonthPanelDay = (props: Props) => {
           year: yearFromURL,
           month: monthFromURL,
           colIdx: props.columnIdx,
-          daysBody: daysBodyPUTRequest,
+          daysBody: daysBodyPUTRequest || [],
         });
       }
     });
@@ -58,23 +60,26 @@ const MonthPanelDay = (props: Props) => {
       index={props.dayIdx}
       isDragDisabled={false}
     >
-      {provided => {
+      {(provided, snapshot) => {
         return (
           <div
-            className="bg-white card mb-2"
+            className={`bg-white card mb-2 px-1 py-2 py-sm-1 ${snapshot.isDragging ? "border-dark" : "border"}`}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
+            
           >
             <MonthPanelDayPrintData day={props.day} />
+
             <Button
-              variant="info"
-              size="sm"
-              className="rounded-top-0 w-100 fw-medium "
               onClick={() => handleDelete(props.columnIdx, props.day.id)}
+              className="d-flex justify-content-between  align-items-center p-0 bg-transparent border-0"
               disabled={success.isLoading}
             >
-              {btnContent}
+              <div className="d-flex align-items-center fs-7">
+                {props.day?.hours} <FiClock className="  ms-1 text-primary" />
+              </div>
+              <div className="d-flex align-items-center">{btnContent}</div>
             </Button>
           </div>
         );

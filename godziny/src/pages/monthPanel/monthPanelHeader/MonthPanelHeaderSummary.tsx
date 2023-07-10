@@ -12,12 +12,12 @@ const MonthPanelHeaderSummary = () => {
 
   return (
     <>
-      <div className="text-capitalize fw-medium mt-2 text-center d-sm-none">
+      <div className="text-capitalize fw-medium mt-2 text-center d-md-none">
         {monthURLStringFormat}
       </div>
 
       <div className=" d-flex justify-content-center my-2 fw-medium position-relative">
-        <div className="text-capitalize fw-medium d-none d-sm-block  position-absolute end-0">
+        <div className="text-capitalize fw-medium d-none d-md-block  position-absolute end-0">
           {monthURLStringFormat}
         </div>
 

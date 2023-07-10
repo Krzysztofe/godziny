@@ -7,16 +7,16 @@ const formatDate = (date: Date) => {
   return `${year}-${month}-${day}`;
 };
 
-const futureDateIn14Days = new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000);
-const futureDateIn60Days = new Date(today.getTime() + 60 * 24 * 60 * 60 * 1000);
+const futureDateInNext14Days = new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000);
+const futureDateInNext60Days = new Date(today.getTime() + 60 * 24 * 60 * 60 * 1000);
 
 export const currYearDigits = today.getFullYear();
 export const currMonthDigits = String(today.getMonth() + 1).padStart(2, "0");
 export const currDayDigits = String(today.getDate()).padStart(2, "0");
 export const currDateDigits = formatDate(today);
 
-export const dateIn14Days = formatDate(futureDateIn14Days);
-export const dateIn60Days = formatDate(futureDateIn60Days);
+export const dateInNext14Days = formatDate(futureDateInNext14Days);
+export const dateInNext60Days = formatDate(futureDateInNext60Days);
 
 
 

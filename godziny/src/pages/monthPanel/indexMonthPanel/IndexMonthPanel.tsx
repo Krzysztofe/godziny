@@ -1,18 +1,22 @@
 import { Spinner } from "react-bootstrap";
 import { currMonthDateToString } from "../../../data/dataCurrentDates";
 import useURLValues from "../../../hooks/useURLValues";
-import { useMonthDataQuery, useMonthsDataQuery } from "../../../services/apiSlice";
+import {
+  useMonthDataQuery,
+  useMonthsDataQuery,
+} from "../../../services/apiSlice";
 import MonthPanelColumns from "../monthPanelColmns/MonthPanelColumns";
 import MonthPanelHeader from "../monthPanelHeader/MonthPanelHeader";
 
+
+
 const IndexMonthPanel = () => {
-  const {  yearFromURL, monthFromURL } = useURLValues();
+  const { yearFromURL, monthFromURL } = useURLValues();
   const { data, error, isLoading } = useMonthsDataQuery(undefined);
   const { data: dataMonth } = useMonthDataQuery({
     year: yearFromURL,
     month: monthFromURL,
   });
-  
 
   let panelContent;
 
@@ -49,7 +53,8 @@ const IndexMonthPanel = () => {
         style={{ height: "100vh" }}
       >
         <h5 className="text-warning text-center col-5">
-          Brak  miesięcy zapisanych w bazie danych. Dodaj miesiąc za pomocą formularza
+          Brak miesięcy zapisanych w bazie danych. Dodaj miesiąc za pomocą
+          formularza
         </h5>
       </main>
     );
@@ -60,16 +65,18 @@ const IndexMonthPanel = () => {
         style={{ height: "100vh" }}
       >
         <h3 className="text-warning text-center col-5">
-          Brak danych z miesiąca {currMonthDateToString}. Dodaj miesiąc za pomocą
-          formularza
+          Brak danych z miesiąca {currMonthDateToString}. Dodaj miesiąc za
+          pomocą formularza
         </h3>
       </main>
     );
   } else {
     panelContent = (
       <main className="d-flex flex-column" style={{ height: "100vh" }}>
-        <MonthPanelHeader />
-        <MonthPanelColumns />
+        {/* <Container fluid> */}
+          <MonthPanelHeader />
+          <MonthPanelColumns />
+        {/* </Container> */}
       </main>
     );
   }

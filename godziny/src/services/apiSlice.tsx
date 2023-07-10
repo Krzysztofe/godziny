@@ -50,7 +50,7 @@ export const monthsApiSlice = createApi({
 
     addMonth: builder.mutation<
       void,
-      { year: string; month: string; monthBody: any }
+      { year: string; month: string; monthBody: ModelMonthPattern }
     >({
       query: ({ year, month, monthBody }) =>
         mutationBody(createUrl(year, month), "PUT", monthBody),
@@ -90,7 +90,7 @@ export const monthsApiSlice = createApi({
 
     deleteDay: builder.mutation<
       void,
-      { year: string; month: string; colIdx: number; daysBody: any }
+      { year: string; month: string; colIdx: number; daysBody: ModelDay[] }
     >({
       query: ({ year, month, colIdx, daysBody }) =>
         mutationBody(

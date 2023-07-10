@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import useURLValues from "../../../hooks/useURLValues";
 import {
   useMonthDataQuery,
@@ -82,19 +83,23 @@ const MonthPanelColumns = () => {
     }
   };
 
+
+
   return (
     <>
-      <main
+      <Container
+        fluid
         ref={scrollableRef}
         onScroll={handleScroll}
-        className="mb-2 overflow-y-scroll "
+        className=" mb-1 overflow-y-scroll "
         style={{ top: `${thumbPosition}%` }}
       >
-        <Container className="mx-0 ms-sm-auto sticky-top d-flex column-gap-2">
-          <MonthPanelColumnsHeader />
-        </Container>
-        <Container
-          className="mx-0 ms-sm-auto mb-5 d-flex column-gap-2"
+        <Row className="col-sm-8 col-md-9 d-flex column-gap-1 justify-content-end me-lg-5 ms-sm-auto px-1 sticky-top  ">
+          <MonthPanelColumnsHeader thumbPosition={thumbPosition} />
+        </Row>
+
+        <Row
+          className="col-sm-8 col-md-9 d-flex column-gap-1 justify-content-end me-lg-5 ms-sm-auto px-1"
           style={{ height: "fit-content" }}
         >
           <DragDropContext onDragEnd={handleDragEnd}>
@@ -108,8 +113,8 @@ const MonthPanelColumns = () => {
               );
             })}
           </DragDropContext>
-        </Container>
-      </main>
+        </Row>
+      </Container>
     </>
   );
 };

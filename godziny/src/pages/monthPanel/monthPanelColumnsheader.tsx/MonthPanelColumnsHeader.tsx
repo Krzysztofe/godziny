@@ -1,14 +1,19 @@
 import useURLValues from "../../../hooks/useURLValues";
-import {
-  useCalcDataQuery
-} from "../../../services/apiSlice";
+import { useCalcDataQuery } from "../../../services/apiSlice";
+import Col from "react-bootstrap/Col";
 
-const MonthPanelColumnsHeader = () => {
+interface Props {
+  thumbPosition: number;
+}
+
+const MonthPanelColumnsHeader = (props: Props) => {
   const { yearFromURL, monthFromURL } = useURLValues();
   const { data: dataCalc } = useCalcDataQuery({
     year: yearFromURL,
     month: monthFromURL,
   });
+
+  console.log("", props.thumbPosition);
 
   return (
     <>
@@ -27,14 +32,18 @@ const MonthPanelColumnsHeader = () => {
         },
       ].map(({ headerText, counter }) => {
         return (
-          <div
+          <Col
             key={headerText}
-            className="p-1 bg-primary-subtle text-dark-emphasis fw-medium w-100 border-4 border-bottom border-white"
+            className={`bg-primary-subtle text-dark-emphasis fw-medium p-1 ${
+              props.thumbPosition === 0
+                ? ""
+                : " border-bottom border-1 border-dark"
+            }`}
             style={{ fontSize: "clamp(0.8rem, 3.4vw, 1rem)" }}
           >
             {headerText} {""}
             {counter}
-          </div>
+          </Col>
         );
       })}
     </>
