@@ -1,13 +1,13 @@
+import { useMonthsDataQuery } from "../services/apiSlice";
 
-
-const useMonthDates = (data: any) => {
+const useMonthDates = () => {
+    const { data } = useMonthsDataQuery(undefined);
+    
   const monthDates =
     data &&
-    Object.values(data as { [key: string]: unknown })
-      .flatMap(
-        year => data && Object.values(year as { [key: string]: unknown })
-      )
-      .map(year => year.id);
+    Object.values(data).flatMap(year =>
+      Object.values(year).flatMap(month => month.id)
+    );
   return { monthDates };
 };
 

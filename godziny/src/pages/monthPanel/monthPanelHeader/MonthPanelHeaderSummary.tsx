@@ -10,6 +10,14 @@ const MonthPanelHeaderSummary = () => {
   });
   const { monthURLStringFormat } = useMonthURLToString();
 
+   let currentHours = 0;
+ 
+
+   if (dataCalc?.currentHours) {
+     currentHours = dataCalc?.currentHours;
+    
+   }
+
   return (
     <>
       <div className="text-capitalize fw-medium mt-2 text-center d-md-none">
@@ -25,15 +33,15 @@ const MonthPanelHeaderSummary = () => {
         <div className="mx-2">
           {dataCalc?.allHours} -{" "}
           <span
-            className={`${dataCalc?.currentHours < 0 ? "text-danger" : ""}`}
+            className={`${currentHours < 0 ? "text-danger" : ""}`}
           >
             {dataCalc?.currentHours}
           </span>
         </div>
         <div
-          className={`col-3 ${dataCalc?.currentHours < 0 ? "text-danger" : ""}`}
+          className={`col-3 ${currentHours < 0 ? "text-danger" : ""}`}
         >
-          {dataCalc?.currentHours < 0 ? "Brak" : "Dostępne"}
+          {currentHours < 0 ? "Brak" : "Dostępne"}
         </div>
       </div>
     </>

@@ -13,7 +13,7 @@ const MonthPanelHeaderCollapse = () => {
         onClick={() => setOpen(!open)}
         aria-controls="example-collapse-text"
         aria-expanded={open}
-        className={`fw-medium w-100 mt-1 d-flex justify-content-center align-items-center bg-primary ${
+        className={`fw-medium w-100 mt-1 d-flex justify-content-center align-items-center bg-primary border-0 p-0 ${
           open ? "rounded-bottom-0" : ""
         }`}
       >

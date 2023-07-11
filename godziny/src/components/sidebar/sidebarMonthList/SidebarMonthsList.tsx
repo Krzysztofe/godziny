@@ -7,7 +7,7 @@ import "./_monthList.scss";
 
 const SidebarMonthsList = () => {
   const { data } = useMonthsDataQuery(undefined);
-  const { monthDates } = useMonthDates(data);
+  const { monthDates } = useMonthDates();
   const { monthURL } = useURLValues();
 
   const databaseMonthsDatesToString = monthDates?.map((monthDate: string) => {
@@ -34,13 +34,13 @@ const SidebarMonthsList = () => {
       {!data ? (
         <p className="py-1 px-2 text-warning text-center">Brak danych</p>
       ) : (
-        databaseMonthsDatesToString.map((month: string, idx: number) => {
+        databaseMonthsDatesToString?.map((month: string, idx: number) => {
           return (
             <ListGroup.Item key={month} className="border-0 p-0 px-1">
               <Link
-                to={`/${monthDates[idx]}`}
+                to={`/${monthDates?.[idx]}`}
                 className={`${
-                  monthURLStringFormat !== month ? "text-reset" : "text-success"
+                  monthURLStringFormat !== month ? "text-reset" : "text-warning"
                 } text-decoration-none text-capitalize`}
               >
                 {month}

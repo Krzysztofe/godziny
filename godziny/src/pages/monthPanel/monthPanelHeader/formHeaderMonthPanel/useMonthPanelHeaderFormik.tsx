@@ -18,13 +18,22 @@ const useMonthPanelHeaderFormik = () => {
   });
 
   const [addAllHours, success] = useAddAllHoursMutation();
+  
+ let submittedHours = 0;
+ let acceptedHours = 0;
+
+ if (dataCalc?.submittedHours && dataCalc.acceptedHours) {
+   submittedHours = dataCalc?.submittedHours;
+   acceptedHours = dataCalc?.acceptedHours;
+ }
+
 
   const formik = useFormik<ModelFormValues>({
     initialValues: { allHours: 0 },
     validationSchema: validationSchema,
     onSubmit: async values => {
       if (
-        dataCalc?.submittedHours + dataCalc?.acceptedHours >
+        submittedHours + acceptedHours >
         +formik.values.allHours
       )
         return;

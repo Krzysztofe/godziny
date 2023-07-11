@@ -26,7 +26,10 @@ const MonthPanelDay = (props: Props) => {
   });
 
   const [deleteDay, success] = useDeleteDayMutation();
-  const { btnContent } = useHTTPState(success, <RiDeleteBin6Line className="text-danger" />);
+  const { btnContent } = useHTTPState(
+    success,
+    <RiDeleteBin6Line className="text-danger" />
+  );
 
   const handleDelete = async (idx: number, id: string) => {
     Swal.fire({

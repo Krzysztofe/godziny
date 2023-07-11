@@ -7,7 +7,6 @@ import {
 } from "../../../services/apiSlice";
 import { validationSchema } from "./validationSidebarDayFormik";
 import useURLValues from "../../../hooks/useURLValues";
-// import { ModelDay } from "../sidebarMonthForm/dataSidebarMonthForm";
 
 interface ModelDay {
   id: string;
@@ -52,16 +51,18 @@ const useSidebarDayFormik = () => {
 
       const valuesToDatabase = { ...values, hours: +values.hours };
 
-      await addDay({
-        year: yearFromURL,
-        month: monthFromURL,
-        firstColumnBody: {
-          ...dataFirstColumn,
-          days: dataFirstColumn?.days
-            ? [...dataFirstColumn.days, { ...valuesToDatabase }]
-            : [{ ...valuesToDatabase }],
-        },
-      });
+      if (dataFirstColumn?.id) {
+        await addDay({
+          year: yearFromURL,
+          month: monthFromURL,
+          firstColumnBody: {
+            ...dataFirstColumn,
+            days: dataFirstColumn?.days
+              ? [...dataFirstColumn.days, { ...valuesToDatabase }]
+              : [{ ...valuesToDatabase }],
+          },
+        });
+      }
     },
   });
 

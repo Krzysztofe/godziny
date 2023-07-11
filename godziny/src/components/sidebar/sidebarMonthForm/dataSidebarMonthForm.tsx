@@ -25,6 +25,12 @@ export interface ModelMonthPattern {
   calc: ModelCalc;
 }
 
+export interface ModelMonthsPatern {
+  [key: string]: {
+    [key: string]: ModelMonthPattern
+  };
+}
+
 const columns: ModelColumn[] = [
   { id: "submitted", days: [] },
   { id: "accepted", days: [] },
@@ -44,6 +50,10 @@ export const monthPattern: ModelMonthPattern = {
   columns,
   calc,
 };
+
+
+
+
 
 const years = {
   2023: {

@@ -5,7 +5,13 @@ import { ReactNode } from "react";
 
 
 
-const useHTTPState = (success: any, btnText: string | ReactNode) => {
+interface ModelSuccess {
+  isLoading: boolean;
+  isError: boolean;
+  error?: any;
+}
+
+const useHTTPState = (success: ModelSuccess, btnText: string | ReactNode) => {
 
   useEffect(() => {
     if (success.isError) {

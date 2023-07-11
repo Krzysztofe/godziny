@@ -13,6 +13,8 @@ import MonthPanelColumnsHeader from "../monthPanelColumnsheader.tsx/MonthPanelCo
 import { addDaysToColumns, handleDragDrop } from "../utilsMonthPanelColumns";
 import useHoursSum from "../../../hooks/useHoursSum";
 import { ModelColumn } from "../../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
+import useScrollThumbPosition from "./useScrollThumbPosition";
+
 
 const MonthPanelColumns = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
@@ -22,11 +24,14 @@ const MonthPanelColumns = () => {
   });
   const [updateColumns] = useUpdateColumnsMutation();
   const [updateCalc] = useUpdateCalcMutation();
+    const { submittedHoursSum, acceptedHoursSum, rejectedHoursSum } =
+    useHoursSum();
+   const { scrollableRef, thumbPosition, handleScroll } =
+     useScrollThumbPosition();
+
   const columnsWithDays = dataMonth?.columns
     ? addDaysToColumns(dataMonth.columns)
     : [];
-  const { submittedHoursSum, acceptedHoursSum, rejectedHoursSum } =
-    useHoursSum();
 
   const [columns, setColumns] = useState<ModelColumn[]>([]);
   const [results, setResults] = useState<DropResult | null>(null);
@@ -46,41 +51,29 @@ const MonthPanelColumns = () => {
   }, [results]);
 
   useEffect(() => {
-    updateCalc({
-      year: yearFromURL,
-      month: monthFromURL,
-      allHours: {
-        ...dataMonth?.calc,
-        currentHours:
-          (dataMonth?.calc?.allHours ?? 0) -
-          submittedHoursSum -
-          acceptedHoursSum -
-          rejectedHoursSum +
-          rejectedHoursSum,
-        submittedHours: submittedHoursSum,
-        acceptedHours: acceptedHoursSum,
-        rejectedHours: rejectedHoursSum,
-      },
-    });
+    if (dataMonth?.id) {
+      updateCalc({
+        year: yearFromURL,
+        month: monthFromURL,
+        calcBody: {
+          ...dataMonth?.calc,
+          currentHours:
+            (dataMonth?.calc?.allHours ?? 0) -
+            submittedHoursSum -
+            acceptedHoursSum -
+            rejectedHoursSum +
+            rejectedHoursSum,
+          submittedHours: submittedHoursSum,
+          acceptedHours: acceptedHoursSum,
+          rejectedHours: rejectedHoursSum,
+        },
+      });
+    }
   }, [dataMonth]);
 
   const handleDragEnd = (results: DropResult) => {
     handleDragDrop(results, columns, setColumns);
     setResults(results);
-  };
-
-  const scrollableRef = useRef(null);
-  const [thumbPosition, setThumbPosition] = useState(0);
-
-  const handleScroll = () => {
-    const element = scrollableRef.current;
-
-    if (element) {
-      const { scrollTop, scrollHeight, clientHeight } = element;
-      const maxScrollTop = scrollHeight - clientHeight;
-      const thumbPosition = (scrollTop / maxScrollTop) * 100;
-      setThumbPosition(thumbPosition);
-    }
   };
 
   return (
@@ -89,7 +82,6 @@ const MonthPanelColumns = () => {
       ref={scrollableRef}
       onScroll={handleScroll}
       className=" mb-1 overflow-y-scroll"
-      style={{ top: `${thumbPosition}%` }}
     >
       <div className="">
         <Row className="col-sm-8 col-md-9 col-xl-8 col-xxl-8 d-flex column-gap-1 ms-sm-auto mx-xl-auto  px-1 sticky-top">

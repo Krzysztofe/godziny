@@ -12,16 +12,13 @@ import {
 } from "../../../services/apiSlice";
 import { monthPattern, ModelMonthPattern} from "./dataSidebarMonthForm";
 
-
-
 interface ModelFormValues {
   monthDate: string;
 }
 
 const useSidebarMonthFormik = () => {
   const navigate = useNavigate();
-  const { data } = useMonthsDataQuery(undefined);
-  const { monthDates } = useMonthDates(data);
+  const { monthDates } = useMonthDates();
   const [addMonth, success] = useAddMonthMutation();
 
   const formik = useFormik<ModelFormValues>({

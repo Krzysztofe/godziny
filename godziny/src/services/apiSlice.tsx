@@ -1,20 +1,19 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { URL_MONTHS_DATA } from "../data/URL";
 import {
+  ModelMonthsPatern,
   ModelMonthPattern,
   ModelColumn,
   ModelDay,
   ModelCalc,
 } from "../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
 
-// interface Reactions {
-//   [key: string]: ModelReaction;
-// }
+
 
 const createUrl = (year: string, month: string, suffix = "") =>
   `/${year}/month_${month}${suffix}.json`;
 
-const mutationBody = (url: any, method: string, body: any) => {
+const mutationBody = (url: string, method: string, body: any) => {
   return { url, method, body };
 };
 
@@ -25,7 +24,7 @@ export const monthsApiSlice = createApi({
   endpoints: builder => ({
     // queries
 
-    monthsData: builder.query<any, void>({
+    monthsData: builder.query<ModelMonthsPatern, void>({
       query: () => ".json",
       providesTags: ["months"],
     }),
@@ -59,7 +58,7 @@ export const monthsApiSlice = createApi({
 
     addDay: builder.mutation<
       void,
-      { year: string; month: string; firstColumnBody: any }
+      { year: string; month: string; firstColumnBody: ModelColumn }
     >({
       query: ({ year, month, firstColumnBody }) =>
         mutationBody(
@@ -103,7 +102,7 @@ export const monthsApiSlice = createApi({
 
     // calc queries
 
-    calcData: builder.query<any, { year: string; month: string }>({
+    calcData: builder.query<ModelCalc, { year: string; month: string }>({
       query: ({ year, month }) => createUrl(year, month, "/calc"),
       providesTags: ["months"],
     }),
@@ -121,10 +120,10 @@ export const monthsApiSlice = createApi({
 
     updateCalc: builder.mutation<
       void,
-      { year: string; month: string; allHours: any }
+      { year: string; month: string; calcBody: ModelCalc }
     >({
-      query: ({ year, month, allHours }) =>
-        mutationBody(createUrl(year, month, `/calc`), "PUT", allHours),
+      query: ({ year, month, calcBody }) =>
+        mutationBody(createUrl(year, month, `/calc`), "PUT", calcBody),
       invalidatesTags: ["months"],
     }),
 

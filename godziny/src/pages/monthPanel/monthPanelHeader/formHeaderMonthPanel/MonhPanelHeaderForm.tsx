@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import useHTTPState from "../../../../hooks/useHTTPState";
 import { useCalcDataQuery } from "../../../../services/apiSlice";
-import "./_formHeaderMonthPAnel.scss";
+import "./_formHeaderMonthPanel.scss";
 import useMonthPanelHeaderFormik from "./useMonthPanelHeaderFormik";
 import useURLValues from "../../../../hooks/useURLValues";
 
@@ -16,8 +16,16 @@ const MonhPanelHeaderForm = () => {
 
   const { btnContent } = useHTTPState(success, "Zapisz liczbę godzin");
 
-  const gradientBackground = `linear-gradient(to right, rgba(180,160,255) ${formik.values.allHours}%, rgba(231, 227, 243) ${formik.values.allHours}%, rgba(231, 227, 243) 100%)`;
+  let submittedHours = 0;
+  let acceptedHours = 0;
 
+  if (dataCalc?.submittedHours && dataCalc.acceptedHours) {
+    submittedHours = dataCalc?.submittedHours;
+    acceptedHours = dataCalc?.acceptedHours;
+  }
+
+  const gradientValue = formik.values.allHours / 3.2;
+  const gradientBackground: string = `linear-gradient(to right, rgba(180,120,255) ${gradientValue}%, rgba(180,180,255) ${gradientValue}%)`;
 
   return (
     <Form
@@ -42,11 +50,8 @@ const MonhPanelHeaderForm = () => {
         className="text-danger d-block mt-0 fs-8 text-center"
         style={{ height: "0.7rem" }}
       >
-        {dataCalc?.submittedHours + dataCalc?.acceptedHours >
-        +formik.values.allHours
-          ? `Podaj ilość godzin większą od ${
-              dataCalc?.submittedHours + dataCalc?.acceptedHours
-            } `
+        {submittedHours + acceptedHours > +formik.values.allHours
+          ? `Podaj ilość godzin większą od ${submittedHours + acceptedHours} `
           : ""}
       </div>
 
@@ -72,7 +77,7 @@ const MonhPanelHeaderForm = () => {
         type="submit"
         variant="info"
         size="sm"
-        className="fw-medium d-block mx-auto mt-2 col-sm-6 col-md-4 col-lg-3 col-xxl-2"
+        className="fw-medium d-block mx-auto mt-2 col-7 col-sm-6 col-md-4 col-lg-3 col-xxl-2"
         disabled={success.isLoading}
       >
         {btnContent}

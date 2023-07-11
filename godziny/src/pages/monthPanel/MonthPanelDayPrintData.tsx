@@ -1,6 +1,5 @@
 import { MdFactory } from "react-icons/md";
 import { TbArrowBigRightLineFilled } from "react-icons/tb";
-import { FiClock } from "react-icons/fi";
 import { ModelDay } from "../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
 
 interface Props {
@@ -25,11 +24,9 @@ const MonthPanelDayPrintData = (props: Props) => {
 
           <div>
             {props.day?.place === "Poza" ? (
-              <TbArrowBigRightLineFilled
-                style={{ color: "rgb(80,173,150)" }}
-              />
+              <TbArrowBigRightLineFilled style={{ color: "rgb(80,173,150)" }} />
             ) : (
-              <MdFactory style={{ color: "rgb(180,160,255)" }} />
+              <MdFactory style={{ color: "rgb(255, 181, 9)" }} />
             )}
           </div>
         </div>
