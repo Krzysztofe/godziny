@@ -7,14 +7,18 @@ import SidebarTitle from "./SidebarTitle";
 import SidebarDayForm from "./sidebarDayForm/SidebarDayForm";
 import SidebarMonthForm from "./sidebarMonthForm/SidebarMonthForm";
 import SidebarMonthCollapse from "./SidebarMonthCollapse";
+import { Link } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../data/firebaseConfig";
 
 const IndexSidebar = () => {
   const urlPrintNavBar = useLocation().pathname;
-
   const [show, setShow] = useState(false);
+  const [user] = useAuthState(auth);
 
   const handleClose = () => setShow(false);
   const toggleShow = () => setShow(s => !s);
+
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -33,7 +37,6 @@ const IndexSidebar = () => {
   useEffect(() => {
     windowWidth > 575 && setShow(true);
   }, [windowWidth]);
-
 
   return (
     <>
@@ -66,6 +69,13 @@ const IndexSidebar = () => {
               <SidebarMonthForm />
               <SidebarMonthCollapse />
               <SidebarDayForm />
+              {user?.email === "ww@wp.pl" ? (
+                <Link to="/ustawienia" className="text-dark">
+                  Ustawienia
+                </Link>
+              ) : (
+                ""
+              )}
             </Offcanvas.Body>
           </Offcanvas>
         </aside>

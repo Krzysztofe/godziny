@@ -5,7 +5,7 @@ import { auth } from "../data/firebaseConfig";
 const PrivateRoutes = () => {
   const [user] = useAuthState(auth);
 
-  console.log('',user?.email)
+  // console.log('',user)
   const email = "www@wp.pl";
   const atIndex = email.indexOf("@");
   const substring = email.substring(0, atIndex);

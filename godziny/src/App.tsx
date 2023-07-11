@@ -20,7 +20,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route element={<PrivateRoutes />}>
             <Route path="/:monthURL" element={<IndexMonthPanel />} />
-            <Route path="/settings" element={<IndexSettings />} />
+            <Route path="/ustawienia" element={<IndexSettings />} />
           </Route>
         </Routes>
       </Suspense>

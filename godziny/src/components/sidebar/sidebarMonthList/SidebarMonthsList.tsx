@@ -4,6 +4,10 @@ import useMonthDates from "../../../hooks/useMonthDates";
 import useURLValues from "../../../hooks/useURLValues";
 import { useMonthsDataQuery } from "../../../services/apiSlice";
 import "./_monthList.scss";
+import {
+  currYearDigits,
+  currMonthDigits,
+} from "../../../data/dataCurrentDates";
 
 const SidebarMonthsList = () => {
   const { data } = useMonthsDataQuery(undefined);
@@ -19,10 +23,12 @@ const SidebarMonthsList = () => {
     }).format(monthToDateFormat);
   });
 
-  const monthURLToDateFormat = new Date(monthURL);
+  const isMonthInURL = /^\d{4}-\d{2}$/.test(monthURL);
+
+  const monthURLToDateFormat = isMonthInURL ? new Date(monthURL) : null;
 
   const monthURLStringFormat =
-    monthURL &&
+    monthURLToDateFormat &&
     new Intl.DateTimeFormat("pl-PL", {
       year: "numeric",
       month: "long",
@@ -40,7 +46,9 @@ const SidebarMonthsList = () => {
               <Link
                 to={`/${monthDates?.[idx]}`}
                 className={`${
-                  monthURLStringFormat !== month ? "text-reset" : "text-warning"
+                  monthURLStringFormat !== month || !monthURLStringFormat
+                    ? "text-reset"
+                    : "text-warning"
                 } text-decoration-none text-capitalize`}
               >
                 {month}
