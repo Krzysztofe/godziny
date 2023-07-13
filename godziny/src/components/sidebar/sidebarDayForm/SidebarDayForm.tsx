@@ -30,7 +30,6 @@ const SidebarDayForm = () => {
   const { formik, success } = useSidebarDayFormik();
   const { btnContent } = useHTTPState(success, "Zapisz dzień");
 
-
   return (
     <Form
       onSubmit={formik.handleSubmit}
@@ -50,14 +49,18 @@ const SidebarDayForm = () => {
               name={name}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              disabled={success.isLoading}
               size="sm"
-              className="p-0 px-1 border border-primary"
+              className={`p-0 px-1 border border-primary ${
+                firstOption === "Zapisz w ustawieniach"
+                  ? "text-danger"
+                  : ""
+              }`}
               style={{
                 cursor: "pointer",
               }}
             >
               <option>{firstOption}</option>
+
               {options?.map((option: string | number) => {
                 return (
                   <option key={option} value={option}>

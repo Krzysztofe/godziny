@@ -19,7 +19,7 @@ const MonthPanelHeaderCollapse = () => {
       >
         Liczba godzin w miesiącu
         <MdOutlineKeyboardArrowDown
-          className="fs-1 fw-medium"
+          className="fs-2 fw-medium"
           style={{
             transform: `${open ? "rotate(180deg)" : ""} `,
             transitionDuration: "320ms",

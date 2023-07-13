@@ -3,8 +3,6 @@ import { useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { ReactNode } from "react";
 
-
-
 interface ModelSuccess {
   isLoading: boolean;
   isError: boolean;
@@ -12,7 +10,6 @@ interface ModelSuccess {
 }
 
 const useHTTPState = (success: ModelSuccess, btnText: string | ReactNode) => {
-
   useEffect(() => {
     if (success.isError) {
       const error = success.error;

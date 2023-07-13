@@ -12,7 +12,7 @@ export const validationSchema = yup.object({
       "Liczba godzin wymagana",
       value => value !== "Liczba godzin"
     )
-    .required("Liczba godzin wyma"),
+    .required("Liczba godzin wymagana"),
   place: yup
     .string()
     .test(

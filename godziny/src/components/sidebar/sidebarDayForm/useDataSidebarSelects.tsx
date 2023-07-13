@@ -4,17 +4,16 @@ import { ModelUser } from "../../../pages/settings/settingsUserForm/useSettingsU
 const useDataSidebarSelects = () => {
   const { data: dataUsers } = useUsersQuery();
 
-  const users = dataUsers ? dataUsers : []
+  const users = dataUsers ? dataUsers : [];
 
   const names = users?.map(({ userName }: ModelUser) => {
     return userName;
   });
 
-
   const dataSelects = [
     {
       name: "userName",
-      firstOption: "Imię",
+      firstOption: `${names.length === 0 ? "Zapisz w ustawieniach" : "Imię"}`,
       labelText: "Podaj imię",
       options: names,
     },

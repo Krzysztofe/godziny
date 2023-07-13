@@ -11,7 +11,7 @@ import {
 import MonthPanelDayPrintData from "./MonthPanelDayPrintData";
 import { FiClock } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useUsersQuery } from "../../services/apiSliceUsers";
+import { alertHelper } from "../../utils/alertHelper";
 
 interface Props {
   day: ModelDay;
@@ -33,14 +33,9 @@ const MonthPanelDay = (props: Props) => {
   );
 
   const handleDelete = async (idx: number, id: string) => {
-    Swal.fire({
-      title: "Chcesz usunąć dzień?",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Tak",
-      cancelButtonText: "Nie",
-    }).then(async result => {
+    Swal.fire(
+      alertHelper("Chcesz usuniąć dzień")    
+    ).then(async result => {
       if (result.isConfirmed) {
         
         const daysBodyPUTRequest = dataMonth?.columns[idx]?.days?.filter(

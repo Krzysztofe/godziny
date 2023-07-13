@@ -98,6 +98,14 @@ export const monthsApiSlice = createApi({
       invalidatesTags: ["months"],
     }),
 
+    deleteMonth: builder.mutation<any, any>({
+      query: ({year, month}) => ({
+        url: `/${year}/month_${month}.json`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["months"],
+    }),
+
     // calc queries
 
     calcData: builder.query<ModelCalc, { year: string; month: string }>({
@@ -124,8 +132,6 @@ export const monthsApiSlice = createApi({
         mutationBody(createUrl(year, month, `/calc`), "PUT", calcBody),
       invalidatesTags: ["months"],
     }),
-
-    
 
     // deleteDay: builder.mutation<any, any>({
     //   query: month => ({
@@ -163,6 +169,7 @@ export const {
   useUpdateMonthMutation,
   useUpdateColumnsMutation,
   useDeleteDayMutation,
+  useDeleteMonthMutation,
   useCalcDataQuery,
   useAddAllHoursMutation,
   useUpdateCalcMutation,

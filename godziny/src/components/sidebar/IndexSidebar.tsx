@@ -61,7 +61,7 @@ const IndexSidebar = () => {
             scroll={true}
             backdrop={false}
             className="bg-primary-subtle"
-            style={{ width: 200 }}
+            style={{ width: 210 }}
           >
             <Offcanvas.Header className="pb-0">
               <SidebarTitle />
