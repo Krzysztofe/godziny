@@ -73,7 +73,7 @@ const IndexSidebar = () => {
 
               <Link
                 to="/ustawienia"
-                className="text-black mt-auto fw-medium text-decoration-none "
+                className="text-info mt-auto fw-medium text-decoration-none "
               >
                 <AiTwotoneSetting /> Ustawienia
               </Link>

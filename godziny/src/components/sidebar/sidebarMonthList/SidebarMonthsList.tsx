@@ -4,10 +4,6 @@ import useMonthDates from "../../../hooks/useMonthDates";
 import useURLValues from "../../../hooks/useURLValues";
 import { useMonthsDataQuery } from "../../../services/apiSlice";
 import "./_monthList.scss";
-import {
-  currYearDigits,
-  currMonthDigits,
-} from "../../../data/dataCurrentDates";
 
 const SidebarMonthsList = () => {
   const { data } = useMonthsDataQuery(undefined);

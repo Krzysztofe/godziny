@@ -107,7 +107,6 @@ const SidebarDayForm = () => {
       </Form.Group>
 
       <Button
-        variant="emphasis"
         type="submit"
         disabled={success.isLoading}
         className="fw-medium w-100 mt-2 bg-info text-white"

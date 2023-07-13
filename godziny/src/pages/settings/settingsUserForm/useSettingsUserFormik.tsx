@@ -20,7 +20,7 @@ const useUserSettingsFormik = () => {
 
   const formik = useFormik<ModelUser>({
     initialValues: {
-      id: crypto.randomUUID(),
+      id: "",
       userName: "",
       userColor: "#e0cce1",
     },
@@ -43,10 +43,15 @@ const useUserSettingsFormik = () => {
     }),
 
     onSubmit: async (values, { resetForm }) => {
+      const updatedValues = {
+        ...values,
+        id: crypto.randomUUID(),
+      };
+
       if (dataUsers) {
-        await addUser([...dataUsers, { ...values }]);
+        await addUser([...dataUsers, updatedValues]);
       } else {
-        await addUser([values]);
+        await addUser([updatedValues]);
       }
       resetForm();
     },

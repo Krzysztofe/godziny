@@ -26,7 +26,16 @@ export const usersApiSlice = createApi({
       }),
       invalidatesTags: ["users"],
     }),
+
+    deleteUser: builder.mutation<void, ModelUser[]>({
+      query: users => ({
+        url: "/users.json",
+        method: "PUT",
+        body: users,
+      }),
+      invalidatesTags: ["users"],
+    }),
   }),
 });
 
-export const { useAddUserMutation, useUsersQuery } = usersApiSlice;
+export const { useUsersQuery, useAddUserMutation, useDeleteUserMutation } = usersApiSlice;

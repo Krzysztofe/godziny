@@ -42,6 +42,7 @@ const MonthPanelDay = (props: Props) => {
       cancelButtonText: "Nie",
     }).then(async result => {
       if (result.isConfirmed) {
+        
         const daysBodyPUTRequest = dataMonth?.columns[idx]?.days?.filter(
           (day: ModelDay) => {
             return day?.id !== id;
