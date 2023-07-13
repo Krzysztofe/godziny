@@ -8,8 +8,6 @@ import {
   ModelCalc,
 } from "../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
 
-
-
 const createUrl = (year: string, month: string, suffix = "") =>
   `/${year}/month_${month}${suffix}.json`;
 
@@ -127,6 +125,8 @@ export const monthsApiSlice = createApi({
       invalidatesTags: ["months"],
     }),
 
+    
+
     // deleteDay: builder.mutation<any, any>({
     //   query: month => ({
     //     url: `/${month?.year}/month_${month?.month}/columns/${month.colIdx}/days/${month.dayIdx}.json`,
@@ -166,4 +166,5 @@ export const {
   useCalcDataQuery,
   useAddAllHoursMutation,
   useUpdateCalcMutation,
+
 } = monthsApiSlice;

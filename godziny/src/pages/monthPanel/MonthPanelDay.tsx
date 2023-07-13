@@ -11,6 +11,7 @@ import {
 import MonthPanelDayPrintData from "./MonthPanelDayPrintData";
 import { FiClock } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { useUsersQuery } from "../../services/apiSliceUsers";
 
 interface Props {
   day: ModelDay;
@@ -66,25 +67,30 @@ const MonthPanelDay = (props: Props) => {
       {(provided, snapshot) => {
         return (
           <div
-            className={`bg-white card mb-2 px-1 py-2 py-sm-1 ${
-              snapshot.isDragging ? "border-dark" : "border"
-            }`}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
+            className={`border rounded-1 ${
+              snapshot.isDragging ? "border-dark" : "border-0"
+            }`}
           >
-            <MonthPanelDayPrintData day={props.day} />
-
-            <Button
-              onClick={() => handleDelete(props.columnIdx, props.day.id)}
-              className="d-flex justify-content-between  align-items-center p-0 bg-transparent border-0"
-              disabled={success.isLoading}
+            <div
+              className="mb-2 px-1 py-2 py-sm-1 rounded-1"
+              style={{ backgroundColor: props.day?.userColor }}
             >
-              <div className="d-flex align-items-center fs-7">
-                {props.day?.hours} <FiClock className="  ms-1" />
-              </div>
-              <div className="d-flex align-items-center">{btnContent}</div>
-            </Button>
+              <MonthPanelDayPrintData day={props.day} />
+
+              <Button
+                onClick={() => handleDelete(props.columnIdx, props.day.id)}
+                className="d-flex justify-content-between  align-items-center w-100 p-0 bg-transparent border-0"
+                disabled={success.isLoading}
+              >
+                <div className="d-flex align-items-center fs-7">
+                  {props.day?.hours} <FiClock className="  ms-1" />
+                </div>
+                <div className="d-flex align-items-center">{btnContent}</div>
+              </Button>
+            </div>
           </div>
         );
       }}

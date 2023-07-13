@@ -12,7 +12,7 @@ import {
 import "./_dayForm.scss";
 import useSidebarDayFormik from "./useSidebarDayFormik";
 import useURLValues from "../../../hooks/useURLValues";
-import { dataSelects } from "./dataSidebarDayForm";
+import useDataSidebarSelects from "./useDataSidebarSelects";
 
 const SidebarDayForm = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
@@ -26,10 +26,10 @@ const SidebarDayForm = () => {
     month: monthFromURL,
   });
 
+  const { dataSelects } = useDataSidebarSelects();
   const { formik, success } = useSidebarDayFormik();
   const { btnContent } = useHTTPState(success, "Zapisz dzień");
 
- 
 
   return (
     <Form
@@ -50,6 +50,7 @@ const SidebarDayForm = () => {
               name={name}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
+              disabled={success.isLoading}
               size="sm"
               className="p-0 px-1 border border-primary"
               style={{
@@ -57,7 +58,7 @@ const SidebarDayForm = () => {
               }}
             >
               <option>{firstOption}</option>
-              {options.map((option: string | number) => {
+              {options?.map((option: string | number) => {
                 return (
                   <option key={option} value={option}>
                     {option}
@@ -91,6 +92,7 @@ const SidebarDayForm = () => {
           onBlur={formik.handleBlur}
           min={dateInNext14Days}
           max={dateInNext60Days}
+          disabled={success.isLoading}
           placeholder="Liczba"
           size="sm"
           className="p-0 px-1 border border-primary"

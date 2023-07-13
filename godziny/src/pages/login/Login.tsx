@@ -21,7 +21,6 @@ const Login = () => {
 
   return (
     <main className="d-flex justify-content-center  align-items-center vh-100">
-    
       <Form onSubmit={formik.handleSubmit} className="w-sm-90 border p-4 ">
         <Form.Group className="mx-auto">
           <div className="text-center fs-3 fw-medium mb-4">
@@ -44,7 +43,12 @@ const Login = () => {
           />
         </Form.Group>
         <div className="d-grid">
-          <Button variant="info" type="submit" className="fw-medium mt-4">
+          <Button
+            disabled={isLoading}
+            variant="info"
+            type="submit"
+            className="fw-medium mt-4"
+          >
             {btnContent}
           </Button>
         </div>

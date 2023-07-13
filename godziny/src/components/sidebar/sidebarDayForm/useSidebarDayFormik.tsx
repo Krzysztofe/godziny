@@ -7,6 +7,7 @@ import {
 } from "../../../services/apiSlice";
 import { validationSchema } from "./validationSidebarDayFormik";
 import useURLValues from "../../../hooks/useURLValues";
+import { useUsersQuery } from "../../../services/apiSliceUsers";
 
 interface ModelDay {
   id: string;
@@ -14,6 +15,7 @@ interface ModelDay {
   hours: string;
   userName: string;
   place: string;
+  userColor: string;
 }
 
 const useSidebarDayFormik = () => {
@@ -31,6 +33,14 @@ const useSidebarDayFormik = () => {
     month: monthFromURL,
   });
 
+  const { data: dataUsers } = useUsersQuery();
+
+// const getUser = dataUsers?.filter((user: any) => {
+//   return user?.userName === props.day?.userName;
+// });
+// const backgroundColor = getUser?.userColor;
+
+
   const formik = useFormik<ModelDay>({
     initialValues: {
       id: crypto.randomUUID(),
@@ -38,6 +48,7 @@ const useSidebarDayFormik = () => {
       hours: "",
       userName: "",
       place: "",
+      userColor:""
     },
     validationSchema: validationSchema,
 
@@ -49,7 +60,16 @@ const useSidebarDayFormik = () => {
       )
         return;
 
-      const valuesToDatabase = { ...values, hours: +values.hours };
+      const userColor = dataUsers?.find((user: any) => {
+        return user?.userName === values.userName;
+      }).userColor
+
+
+      const valuesToDatabase = {
+        ...values,
+        hours: +values.hours,
+        userColor: userColor,
+      };
 
       if (dataFirstColumn?.id) {
         await addDay({

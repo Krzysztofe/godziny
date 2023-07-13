@@ -1,24 +1,19 @@
-import { useState } from "react";
-
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import UserSettings from "./settingsUserForm/SettingsUserForm";
 
 const IndexSettings = () => {
-  const [color, setColor] = useState("#ffffff");
 
-  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setColor(e.target.value);
-  };
 
 
   return (
-    <div>
-      <h6>ustawienia</h6>
-      <div>
-        <input type="color" value={color} onChange={handleChange} />
-        <div
-          style={{ backgroundColor: color, width: "100px", height: "100px" }}
-        ></div>
-      </div>
-    </div>
+    <main>
+      <Container fluid>
+        <Row className="col-sm-8 col-md-9 col-xl-8 col-xxl-8 ms-sm-auto mx-xl-auto px-1 ">
+         <UserSettings/>
+        </Row>
+      </Container>
+    </main>
   );
 };
 

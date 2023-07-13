@@ -1,12 +1,15 @@
 import { MdFactory } from "react-icons/md";
 import { TbArrowBigRightLineFilled } from "react-icons/tb";
 import { ModelDay } from "../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
+import { useUsersQuery } from "../../services/apiSliceUsers";
 
 interface Props {
   day: ModelDay;
 }
 
 const MonthPanelDayPrintData = (props: Props) => {
+  const { data: dataUsers } = useUsersQuery();
+
   let dateToPrint;
 
   if (!props?.day?.date) {
@@ -17,8 +20,11 @@ const MonthPanelDayPrintData = (props: Props) => {
       day: "numeric",
       month: "short",
     }).format(date);
+
+
+
     return (
-      <div className="">
+      <>
         <div className="d-flex justify-content-between fs-7">
           <div>{props.day?.userName}</div>
 
@@ -34,7 +40,7 @@ const MonthPanelDayPrintData = (props: Props) => {
         <div className="d-flex fw-medium justify-content-between">
           <div>{dateToPrint ? dateToPrint : ""}</div>
         </div>
-      </div>
+      </>
     );
   }
 };
