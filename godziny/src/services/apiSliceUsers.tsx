@@ -18,7 +18,7 @@ export const usersApiSlice = createApi({
 
     // mutations
 
-    addUser: builder.mutation<void, any>({
+    addUser: builder.mutation<void, ModelUser[]>({
       query: user => ({
         url: "/users.json",
         method: "PUT",

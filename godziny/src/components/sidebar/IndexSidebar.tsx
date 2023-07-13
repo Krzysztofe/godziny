@@ -10,6 +10,8 @@ import SidebarMonthCollapse from "./SidebarMonthCollapse";
 import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../data/firebaseConfig";
+import { AiTwotoneSetting } from "react-icons/ai";
+
 
 const IndexSidebar = () => {
   const urlPrintNavBar = useLocation().pathname;
@@ -18,7 +20,6 @@ const IndexSidebar = () => {
 
   const handleClose = () => setShow(false);
   const toggleShow = () => setShow(s => !s);
-
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -65,17 +66,17 @@ const IndexSidebar = () => {
             <Offcanvas.Header className="pb-0">
               <SidebarTitle />
             </Offcanvas.Header>
-            <Offcanvas.Body className="pt-0">
+            <Offcanvas.Body className="d-flex flex-column pt-0">
               <SidebarMonthForm />
               <SidebarMonthCollapse />
               <SidebarDayForm />
-              {user?.email === "ww@wp.pl" ? (
-                <Link to="/ustawienia" className="text-dark">
-                  Ustawienia
-                </Link>
-              ) : (
-                ""
-              )}
+
+              <Link
+                to="/ustawienia"
+                className="text-black mt-auto fw-medium text-decoration-none "
+              >
+                <AiTwotoneSetting /> Ustawienia
+              </Link>
             </Offcanvas.Body>
           </Offcanvas>
         </aside>

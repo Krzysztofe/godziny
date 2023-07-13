@@ -7,10 +7,9 @@ import {
 } from "../../../data/dataCurrentDates";
 import useMonthDates from "../../../hooks/useMonthDates";
 import {
-  useAddMonthMutation,
-  useMonthsDataQuery
+  useAddMonthMutation
 } from "../../../services/apiSlice";
-import { monthPattern, ModelMonthPattern} from "./dataSidebarMonthForm";
+import { ModelMonthPattern, monthPattern } from "./dataSidebarMonthForm";
 
 interface ModelFormValues {
   monthDate: string;

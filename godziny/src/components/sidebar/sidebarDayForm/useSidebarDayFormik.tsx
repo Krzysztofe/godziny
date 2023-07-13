@@ -52,8 +52,16 @@ const useSidebarDayFormik = () => {
     },
     validationSchema: validationSchema,
 
+
+
     onSubmit: async values => {
       formik.setFieldValue("id", crypto.randomUUID());
+      // console.log("", +formik.values.hours);
+      // console.log("", dataCalc?.currentHours);
+      // console.log(
+      //   "",
+      //   dataCalc?.currentHours && dataCalc?.currentHours - +formik.values.hours
+      // );
       if (
         dataCalc?.currentHours &&
         dataCalc?.currentHours - +formik.values.hours < 0

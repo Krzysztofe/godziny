@@ -2,32 +2,13 @@ import React from "react";
 import useUserSettingsFormik from "./useSettingsUserFormik";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-
+import { dataUserInputs } from "./dataSettingsUserForm";
 
 
 const SettingsUserForm = () => {
   const { formik, success } = useUserSettingsFormik();
 
-
-
-
-  const dataUserInputs = [
-    {
-      labelText: "Podaj imię",
-      name: "userName",
-      type: "text",
-      placeholder: "Imię",
-    },
-    {
-      labelText: "Podaj kolor",
-      name: "userColor",
-      type: "color",
-      placeholder: "",
-    },
-   
-  ];
-
-console.log('',formik.values)
+  // cl
 
   return (
     <Form onSubmit={formik.handleSubmit}>
@@ -48,7 +29,6 @@ console.log('',formik.values)
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               placeholder={placeholder}
-              //   disabled={isLoading}
               size="lg"
               className="shadow-sm"
             />
