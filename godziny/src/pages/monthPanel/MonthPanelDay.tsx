@@ -33,11 +33,8 @@ const MonthPanelDay = (props: Props) => {
   );
 
   const handleDelete = async (idx: number, id: string) => {
-    Swal.fire(
-      alertHelper("Chcesz usuniąć dzień")    
-    ).then(async result => {
+    Swal.fire(alertHelper("Chcesz usuniąć dzień")).then(async result => {
       if (result.isConfirmed) {
-        
         const daysBodyPUTRequest = dataMonth?.columns[idx]?.days?.filter(
           (day: ModelDay) => {
             return day?.id !== id;
@@ -66,13 +63,13 @@ const MonthPanelDay = (props: Props) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
-            className={`border rounded-1 ${
-              snapshot.isDragging ? "border-dark" : "border-0"
-            }`}
+            className="mb-2"
           >
             <div
-              className="mb-2 px-1 py-2 py-sm-1 rounded-1"
-              style={{ backgroundColor: props.day?.userColor }}
+              className={`border rounded-1 mb-2 px-1 py-2 py-sm-1 ${
+                snapshot.isDragging ? "border-secondary" : "border-secondary-subtle"
+              }`}
+              style={{ backgroundColor: props.day?.userColor, opacity:   snapshot.isDragging ? 0.7 :  1 }}
             >
               <MonthPanelDayPrintData day={props.day} />
 

@@ -35,7 +35,7 @@ const MonthPanelColumnsHeader = (props: Props) => {
             className={`bg-primary text-dark-emphasis fw-medium p-1 ${
               props.thumbPosition === 0
                 ? ""
-                : " border-bottom border-1 border-dark-subtle"
+                : " border-bottom border-1 border-white"
             }`}
             style={{ fontSize: "clamp(0.8rem, 3.4vw, 1rem)" }}
           >

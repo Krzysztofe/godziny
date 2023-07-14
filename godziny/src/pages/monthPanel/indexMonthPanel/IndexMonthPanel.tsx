@@ -43,14 +43,14 @@ const IndexMonthPanel = () => {
   } else if (!data) {
     panelContent = (
       <h5 className="text-warning text-center col-5">
-        Brak miesięcy zapisanych w bazie danych. Dodaj miesiąc za pomocą
+        Brak miesięcy zapisanych w bazie danych. Zapisz miesiąc za pomocą
         formularza
       </h5>
     );
   } else if (!dataMonth) {
     panelContent = (
       <h3 className="text-warning text-center col-5">
-        Brak danych z miesiąca {currMonthDateToString}. Dodaj miesiąc za pomocą
+        Brak danych z miesiąca {currMonthDateToString}. Zapisz miesiąc za pomocą
         formularza
       </h3>
     );
