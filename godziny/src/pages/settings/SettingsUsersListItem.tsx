@@ -8,7 +8,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import { ModelUser } from "./settingsUserForm/useSettingsUserFormik";
-import { alertHelper } from "../../utils/alertHelper";
+import { alertHelper } from "../../utils/alertHelpers";
 
 interface Props {
   user: ModelUser;
@@ -40,9 +40,9 @@ const SettingsUsersListItem = (props: Props) => {
       // className="border-0 p-0 px-1 "
       style={{ color: props.user.userColor }}
     >
-      <Button disabled={success.isLoading} 
-      // className=" bg-transparent border-0"
-      
+      <Button
+        disabled={success.isLoading}
+        // className=" bg-transparent border-0"
       >
         {props.user.userName}
         {btnContent}

@@ -11,7 +11,7 @@ import {
 import MonthPanelDayPrintData from "./MonthPanelDayPrintData";
 import { FiClock } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { alertHelper } from "../../utils/alertHelper";
+import { alertHelper } from "../../utils/alertHelpers";
 
 interface Props {
   day: ModelDay;
@@ -67,9 +67,14 @@ const MonthPanelDay = (props: Props) => {
           >
             <div
               className={`border rounded-1 mb-2 px-1 py-2 py-sm-1 ${
-                snapshot.isDragging ? "border-secondary" : "border-secondary-subtle"
+                snapshot.isDragging
+                  ? "border-secondary"
+                  : "border-secondary-subtle"
               }`}
-              style={{ backgroundColor: props.day?.userColor, opacity:   snapshot.isDragging ? 0.7 :  1 }}
+              style={{
+                backgroundColor: props.day?.userColor,
+                opacity: snapshot.isDragging ? 0.7 : 1,
+              }}
             >
               <MonthPanelDayPrintData day={props.day} />
 

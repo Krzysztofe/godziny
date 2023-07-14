@@ -9,7 +9,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import { ModelUser } from "../settingsUserForm/useSettingsUserFormik";
-import { alertHelper } from "../../../utils/alertHelper";
+import { alertHelper } from "../../../utils/alertHelpers";
 
 interface Props {
   user: ModelUser;

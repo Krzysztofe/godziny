@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { currMonthDigits, currYearDigits } from "../../data/dataCurrentDates";
 import { auth } from "../../data/firebaseConfig";
-import Swal from "sweetalert2";
+import { alert } from "../../utils/alertHelpers";
 
 interface ModelFormValues {
   password: string;
@@ -13,9 +13,7 @@ interface ModelFormValues {
 const useLoginFormik = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  // ww@wp.pl
-  // wwwwww;
-
+ 
   const formik = useFormik<ModelFormValues>({
     initialValues: { password: "wwwwww" },
 
@@ -26,16 +24,10 @@ const useLoginFormik = () => {
           navigate(`/${currYearDigits}-${currMonthDigits}`);
           setIsLoading(false);
         })
-        .catch(error =>
-          Swal.fire({
-            title: "Błąd",
-            text: error.message,
-            confirmButtonColor: "rgb(31, 180, 255)",
-          })
-        )
+        .catch(error => alert(error.message))
         .finally(() => {
-        setIsLoading(false);
-      });
+          setIsLoading(false);
+        });
     },
   });
 

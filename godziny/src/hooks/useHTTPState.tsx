@@ -16,7 +16,7 @@ const useHTTPState = (success: ModelSuccess, btnText: string | ReactNode) => {
       const errMsg = error && "status" in error && error.status && error.status;
 
       Swal.fire({
-        title: `Błąd: ${errMsg || ""}`,
+        text: `Błąd: ${errMsg || ""}`,
         confirmButtonColor: "rgb(31, 180, 255)",
       });
     }

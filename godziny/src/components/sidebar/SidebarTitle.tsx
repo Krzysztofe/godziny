@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Spinner } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import { auth } from "../../data/firebaseConfig";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../data/firebaseConfig";
+import { alert } from "../../utils/alertHelpers";
 
 const SidebarTitle = () => {
   const navigate = useNavigate();
@@ -16,13 +16,7 @@ const SidebarTitle = () => {
       .then(() => {
         navigate("/");
       })
-      .catch(error => {
-        Swal.fire({
-          title: "Błąd",
-          text: error.message,
-          confirmButtonColor: "rgb(31, 180, 255)",
-        });
-      })
+      .catch(error => alert(error))
       .finally(() => {
         setIsLoading(false);
       });
@@ -32,7 +26,12 @@ const SidebarTitle = () => {
 
   if (isLoading) {
     btnContent = (
-      <Spinner animation="border" size="sm" variant="secondary" className="mx-auto">
+      <Spinner
+        animation="border"
+        size="sm"
+        variant="secondary"
+        className="mx-auto"
+      >
         <span className="visually-hidden">Loading...</span>
       </Spinner>
     );

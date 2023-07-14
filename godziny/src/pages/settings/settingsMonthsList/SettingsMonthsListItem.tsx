@@ -3,7 +3,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import useHTTPState from "../../../hooks/useHTTPState";
-import { alertHelper } from "../../../utils/alertHelper";
+import { alertHelper } from "../../../utils/alertHelpers";
 import { useDeleteMonthMutation } from "../../../services/apiSlice";
 
 interface Props {
@@ -31,11 +31,7 @@ const SettingsMonthsListItem = (props: Props) => {
   };
 
   return (
-    <ListGroup.Item
-      onClick={handleDelete}
-      className="border-0 p-0 px-1 "
-    >
-
+    <ListGroup.Item onClick={handleDelete} className="border-0 p-0 px-1 ">
       <Button
         disabled={success.isLoading}
         className="w-100 d-flex justify-content-between align-items-center px-0 bg-transparent text-capitalize border-0 fs-5"
