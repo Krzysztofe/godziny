@@ -14,13 +14,10 @@ export interface ModelUser {
 
 const useUserSettingsFormik = () => {
   const [addUser, success] = useAddUserMutation();
-
-const { validationSchema } = useValidationSettingsUserForm();
-
+  const { validationSchema } = useValidationSettingsUserForm();
   const { data: dataUsers } = useUsersQuery();
 
-  const usersNames = dataUsers?.map(({ userName }: ModelUser) => userName);
-  const UsersColors = dataUsers?.map(({ userColor }: ModelUser) => userColor);
+  const users = dataUsers || []
 
   const formik = useFormik<ModelUser>({
     initialValues: {
@@ -36,7 +33,7 @@ const { validationSchema } = useValidationSettingsUserForm();
       };
 
       if (dataUsers) {
-        await addUser([...dataUsers, updatedValues]);
+        await addUser([...users, updatedValues]);
       } else {
         await addUser([updatedValues]);
       }

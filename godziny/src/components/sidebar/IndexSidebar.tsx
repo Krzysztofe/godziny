@@ -14,9 +14,8 @@ import { AiTwotoneSetting } from "react-icons/ai";
 
 
 const IndexSidebar = () => {
-  const urlPrintNavBar = useLocation().pathname;
+  const {pathname} = useLocation();
   const [show, setShow] = useState(false);
-  const [user] = useAuthState(auth);
 
   const handleClose = () => setShow(false);
   const toggleShow = () => setShow(s => !s);
@@ -41,7 +40,7 @@ const IndexSidebar = () => {
 
   return (
     <>
-      {!["/"].includes(urlPrintNavBar) ? (
+      {!["/"].includes(pathname) ? (
         <aside>
           <Button
             variant="info"

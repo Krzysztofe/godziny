@@ -4,6 +4,8 @@ import {
 } from "../services/apiSliceMonths";
 import { addDaysToColumns } from "../pages/monthPanel/utilsMonthPanelColumns";
 import { ModelDay } from "../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const useHoursSum = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
@@ -12,12 +14,14 @@ const useHoursSum = () => {
     month: monthFromURL,
   });
 
+ const { month } = useSelector((state: RootState) => state.hoursPanel);
+
   let submittedHoursSum = 0;
   let acceptedHoursSum = 0;
   let rejectedHoursSum = 0;
 
   if (dataColumns) {
-    const columnsWithDays = addDaysToColumns(dataColumns);
+    const columnsWithDays = addDaysToColumns(month?.columns);
 
     for (const column of columnsWithDays) {
       const columnDays = column.days || [];

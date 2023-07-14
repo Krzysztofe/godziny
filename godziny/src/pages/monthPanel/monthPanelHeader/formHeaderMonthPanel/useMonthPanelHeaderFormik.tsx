@@ -1,10 +1,8 @@
 import { useFormik } from "formik";
+import { useSelector } from "react-redux";
 import useURLValues from "../../../../hooks/useURLValues";
-import {
-  useAddAllHoursMutation,
-  useCalcDataQuery,
-} from "../../../../services/apiSliceMonths";
-import { validationSchema } from "./validationMonthPanelHeaderForm";
+import { RootState } from "../../../../redux/store";
+import { useAddAllHoursMutation } from "../../../../services/apiSliceMonths";
 
 interface ModelFormValues {
   allHours: number;
@@ -12,24 +10,17 @@ interface ModelFormValues {
 
 const useMonthPanelHeaderFormik = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
-  const { data: dataCalc } = useCalcDataQuery({
-    year: yearFromURL,
-    month: monthFromURL,
-  });
+
+  const { month } = useSelector((state: RootState) => state.hoursPanel);
 
   const [addAllHours, success] = useAddAllHoursMutation();
 
-  let submittedHours = 0;
-  let acceptedHours = 0;
-
-  if (dataCalc?.submittedHours && dataCalc.acceptedHours) {
-    submittedHours = dataCalc?.submittedHours;
-    acceptedHours = dataCalc?.acceptedHours;
-  }
+  const submittedHours = month?.calc?.submittedHours;
+  const acceptedHours = month?.calc?.acceptedHours;
 
   const formik = useFormik<ModelFormValues>({
     initialValues: { allHours: 0 },
-    validationSchema: validationSchema,
+
     onSubmit: async values => {
       if (submittedHours + acceptedHours > +formik.values.allHours) return;
 

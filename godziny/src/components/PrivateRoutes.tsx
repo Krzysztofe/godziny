@@ -3,13 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import { auth } from "../data/firebaseConfig";
 
 const PrivateRoutes = () => {
-  const [user] = useAuthState(auth);
-
-  // console.log('',user?.uid)
-  const email = "www@wp.pl";
-  const atIndex = email.indexOf("@");
-  const substring = email.substring(0, atIndex);
-  
+  const [user] = useAuthState(auth);  
   return user ? <Outlet /> : <Navigate to="/" />;
 };
 

@@ -22,7 +22,7 @@ const SidebarTitle = () => {
       });
   };
 
-  let btnContent;
+  let btnContent = <div className="text-start w-100">Wyloguj</div>;
 
   if (isLoading) {
     btnContent = (
@@ -35,8 +35,6 @@ const SidebarTitle = () => {
         <span className="visually-hidden">Loading...</span>
       </Spinner>
     );
-  } else {
-    btnContent = <div className="text-start w-100">Wyloguj</div>;
   }
 
   return (

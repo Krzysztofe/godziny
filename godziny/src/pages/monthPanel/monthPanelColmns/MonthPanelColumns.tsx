@@ -2,63 +2,47 @@ import { useEffect, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import { useSelector } from "react-redux";
 import { ModelColumn } from "../../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
 import useHoursSum from "../../../hooks/useHoursSum";
 import useURLValues from "../../../hooks/useURLValues";
-import {
-  useMonthDataQuery,
-  useUpdateCalcMutation,
-  useUpdateColumnsMutation,
-} from "../../../services/apiSliceMonths";
+import { RootState } from "../../../redux/store";
+import { useUpdateMonthMutation } from "../../../services/apiSliceMonths";
 import MonthPanelColumn from "../MonthPanelColumn";
-import MonthPanelColumnsHeader from "../monthPanelColumnsheader.tsx/MonthPanelColumnsHeader";
+import MonthPanelColumnsHeader from "../monthPanelColumnsHeader.tsx/MonthPanelColumnsHeader";
 import { addDaysToColumns, handleDragDrop } from "../utilsMonthPanelColumns";
 import useScrollThumbPosition from "./useScrollThumbPosition";
-import { motion } from "framer-motion";
 
 const MonthPanelColumns = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
-  const { data: dataMonth } = useMonthDataQuery({
-    year: yearFromURL,
-    month: monthFromURL,
-  });
-  const [updateColumns] = useUpdateColumnsMutation();
-  const [updateCalc] = useUpdateCalcMutation();
+  const [updateMonth] = useUpdateMonthMutation();
   const { submittedHoursSum, acceptedHoursSum, rejectedHoursSum } =
     useHoursSum();
+
   const { scrollableRef, thumbPosition, handleScroll } =
     useScrollThumbPosition();
 
-  const columnsWithDays = dataMonth?.columns
-    ? addDaysToColumns(dataMonth.columns)
-    : [];
+  const { month } = useSelector((state: RootState) => state.hoursPanel);
+
+  const columnsWithDays = addDaysToColumns(month?.columns);
 
   const [columns, setColumns] = useState<ModelColumn[]>([]);
-  const [results, setResults] = useState<DropResult | null>(null);
 
   useEffect(() => {
     setColumns(columnsWithDays);
-  }, [dataMonth]);
+  }, [month]);
 
   useEffect(() => {
-    if (results !== null) {
-      updateColumns({
-        year: yearFromURL,
-        month: monthFromURL,
-        columnsBody: columns,
-      });
-    }
-  }, [results]);
-
-  useEffect(() => {
-    if (dataMonth?.id) {
-      updateCalc({
-        year: yearFromURL,
-        month: monthFromURL,
-        calcBody: {
-          ...dataMonth?.calc,
+    updateMonth({
+      year: yearFromURL,
+      month: monthFromURL,
+      monthBody: {
+        ...month,
+        columns: columns,
+        calc: {
+          ...month?.calc,
           currentHours:
-            (dataMonth?.calc?.allHours ?? 0) -
+            (month?.calc?.allHours ?? 0) -
             submittedHoursSum -
             acceptedHoursSum -
             rejectedHoursSum +
@@ -67,13 +51,12 @@ const MonthPanelColumns = () => {
           acceptedHours: acceptedHoursSum,
           rejectedHours: rejectedHoursSum,
         },
-      });
-    }
-  }, [dataMonth]);
+      },
+    });
+  }, [columns]);
 
   const handleDragEnd = (results: DropResult) => {
     handleDragDrop(results, columns, setColumns);
-    setResults(results);
   };
 
   return (

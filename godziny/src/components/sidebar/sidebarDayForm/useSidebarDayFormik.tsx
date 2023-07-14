@@ -21,26 +21,26 @@ interface ModelDay {
 
 const useSidebarDayFormik = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
-
-  const [addDay, success] = useAddDayMutation();
-
   const { data: dataCalc } = useCalcDataQuery({
     year: yearFromURL,
     month: monthFromURL,
   });
-
   const { data: dataFirstColumn } = useFirstColumnDataQuery({
     year: yearFromURL,
     month: monthFromURL,
   });
-
   const { data: dataUsers } = useUsersQuery();
+  const [addDay, success] = useAddDayMutation();
 
-  const users = dataUsers && dataUsers?.length > 0 ? dataUsers : [];
+  const currentHours = dataCalc?.currentHours || 0;
+  const firstColumn = dataFirstColumn?.days
+    ? dataFirstColumn
+    : { id: "submitted", days: [] };
+  const users = dataUsers || [];
 
   const formik = useFormik<ModelDay>({
     initialValues: {
-      id: crypto.randomUUID(),
+      id: "",
       date: dateInNext14Days,
       hours: "",
       userName: "",
@@ -50,21 +50,15 @@ const useSidebarDayFormik = () => {
     validationSchema: validationSchema,
 
     onSubmit: async values => {
-      formik.setFieldValue("id", crypto.randomUUID());
-
-      if (
-        (dataCalc?.currentHours &&
-          dataCalc?.currentHours - +formik.values.hours < 0) ||
-        dataCalc?.currentHours === 0
-      )
-        return;
+      if (currentHours - +values.hours < 0 || currentHours === 0) return;
 
       const userColor = users.find((user: ModelUser) => {
-        return user?.userName === values.userName;
+        return user.userName === values.userName;
       })?.userColor;
 
       const valuesToDatabase = {
         ...values,
+        id: crypto.randomUUID(),
         hours: +values.hours,
         userColor: userColor || "",
       };
@@ -74,10 +68,10 @@ const useSidebarDayFormik = () => {
           year: yearFromURL,
           month: monthFromURL,
           firstColumnBody: {
-            ...dataFirstColumn,
-            days: dataFirstColumn?.days
-              ? [...dataFirstColumn.days, { ...valuesToDatabase }]
-              : [{ ...valuesToDatabase }],
+            ...firstColumn,
+            days: firstColumn?.days
+              ? [...firstColumn.days, valuesToDatabase]
+              : [valuesToDatabase],
           },
         });
       }

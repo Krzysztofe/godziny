@@ -1,16 +1,19 @@
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import SettingsUsersList from "../settingsUsersList/SettingsUsersList";
-import SettingsUsersForm from "../settingsUserForm/SettingsUserForm";
-import SettingsMonthsList from "../settingsMonthsList/SettingsMonthsList";
 import { useUsersQuery } from "../../../services/apiSliceUsers";
-import { Spinner } from "react-bootstrap";
 import useHTTPIndexSettings from "./useHTTPIndexSettings";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getUsers } from "../../../redux/storeFeatures/usersSlice";
 
 const IndexSettings = () => {
+  const dispatch = useDispatch();
   const { settingsContent } = useHTTPIndexSettings();
+  const { data, error, isLoading } = useUsersQuery();
 
-  const { error, isLoading } = useUsersQuery();
+
+
+  useEffect(() => {
+    dispatch(getUsers(data));
+  }, [data, dispatch]);
 
   let mainStyles = "bg-primary-subtle";
 

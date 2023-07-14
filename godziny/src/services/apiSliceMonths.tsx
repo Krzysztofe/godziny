@@ -74,14 +74,14 @@ export const monthsApiSlice = createApi({
       invalidatesTags: ["months"],
     }),
 
-    // updateMonth: builder.mutation<
-    //   void,
-    //   { year: string; month: string; monthBody: ModelMonthPattern }
-    // >({
-    //   query: ({ year, month, monthBody }) =>
-    //     mutationBody(createUrl(year, month), "PUT", monthBody),
-    //   invalidatesTags: ["months"],
-    // }),
+    updateMonth: builder.mutation<
+      void,
+      { year: string; month: string; monthBody: ModelMonthPattern }
+    >({
+      query: ({ year, month, monthBody }) =>
+        mutationBody(createUrl(year, month), "PUT", monthBody),
+      invalidatesTags: ["months"],
+    }),
 
     updateColumns: builder.mutation<
       void,
@@ -174,7 +174,7 @@ export const {
   useFirstColumnDataQuery,
   useAddMonthMutation,
   useAddDayMutation,
-  // useUpdateMonthMutation,
+  useUpdateMonthMutation,
   useUpdateColumnsMutation,
   useDeleteDayMutation,
   useDeleteMonthMutation,

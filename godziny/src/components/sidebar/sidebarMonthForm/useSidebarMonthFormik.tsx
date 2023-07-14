@@ -1,11 +1,9 @@
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
-import * as yup from "yup";
 import {
   currMonthDigits,
   currYearDigits,
 } from "../../../data/dataCurrentDates";
-import useMonthDates from "../../../hooks/useMonthDates";
 import { useAddMonthMutation } from "../../../services/apiSliceMonths";
 import { ModelMonthPattern, monthPattern } from "./dataSidebarMonthForm";
 import useValidationSidebarMonthForm from "./useValidationSidebarMonthForm";

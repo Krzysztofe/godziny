@@ -2,12 +2,12 @@ import { Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import useLoginFormik from "./useLoginFormik";
-
+import React from "react";
 
 const Login = () => {
   const { formik, isLoading } = useLoginFormik();
 
-  let btnContent;
+  let btnContent: string | React.ReactNode = "Zaloguj";
 
   if (isLoading) {
     btnContent = (
@@ -15,8 +15,6 @@ const Login = () => {
         <span className="visually-hidden">Loading...</span>
       </Spinner>
     );
-  } else {
-    btnContent = "Zaloguj";
   }
 
   return (

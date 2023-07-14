@@ -1,6 +1,8 @@
 import useURLValues from "../../../hooks/useURLValues";
 import { useCalcDataQuery } from "../../../services/apiSliceMonths";
 import Col from "react-bootstrap/Col";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
 
 interface Props {
   thumbPosition: number;
@@ -13,20 +15,22 @@ const MonthPanelColumnsHeader = (props: Props) => {
     month: monthFromURL,
   });
 
+const { month } = useSelector((state: RootState) => state.hoursPanel);
+
   return (
     <>
       {[
         {
           headerText: "Złożone:",
-          counter: dataCalc?.submittedHours,
+          counter: month?.calc?.submittedHours,
         },
         {
           headerText: "Przyznane:",
-          counter: dataCalc?.acceptedHours,
+          counter: month?.calc?.acceptedHours,
         },
         {
           headerText: "Odrzucone:",
-          counter: dataCalc?.rejectedHours,
+          counter: month?.calc?.rejectedHours,
         },
       ].map(({ headerText, counter }) => {
         return (
