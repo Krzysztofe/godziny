@@ -1,14 +1,24 @@
-import { useMonthsDataQuery } from "../services/apiSlice";
+import { useMonthsDataQuery } from "../services/apiSliceMonths";
 
 const useMonthDates = () => {
-    const { data } = useMonthsDataQuery(undefined);
-    
+  const { data: dataMonths } = useMonthsDataQuery(undefined);
+
   const monthDates =
-    data &&
-    Object.values(data).flatMap(year =>
+    dataMonths &&
+    Object.values(dataMonths).flatMap(year =>
       Object.values(year).flatMap(month => month.id)
     );
-  return { monthDates };
+
+  const databaseMonthsDatesToString = monthDates?.map((monthDate: string) => {
+    const monthToDateFormat = new Date(monthDate);
+    return new Intl.DateTimeFormat("pl-PL", {
+      year: "numeric",
+      month: "long",
+      timeZone: "UTC",
+    }).format(monthToDateFormat);
+  });
+
+  return { monthDates, databaseMonthsDatesToString };
 };
 
 export default useMonthDates;

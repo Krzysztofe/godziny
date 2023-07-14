@@ -4,6 +4,7 @@ import {
   useUsersQuery,
 } from "../../../services/apiSliceUsers";
 import * as yup from "yup";
+import useValidationSettingsUserForm from "./useValidationSettingsUserForm";
 
 export interface ModelUser {
   id: string;
@@ -13,6 +14,9 @@ export interface ModelUser {
 
 const useUserSettingsFormik = () => {
   const [addUser, success] = useAddUserMutation();
+
+const { validationSchema } = useValidationSettingsUserForm();
+
   const { data: dataUsers } = useUsersQuery();
 
   const usersNames = dataUsers?.map(({ userName }: ModelUser) => userName);
@@ -24,24 +28,7 @@ const useUserSettingsFormik = () => {
       userName: "",
       userColor: "#e0cce1",
     },
-    validationSchema: yup.object({
-      userName: yup
-        .string()
-        .test(
-          "is-in-database",
-          "Imię zajęte",
-          value => value !== undefined && !usersNames?.includes(value)
-        )
-        .required("Imię wymagane"),
-      userColor: yup
-        .string()
-        .test(
-          "is-in-database",
-          "Kolor zajęty",
-          value => value !== undefined && !UsersColors?.includes(value)
-        ),
-    }),
-
+    validationSchema: validationSchema,
     onSubmit: async (values, { resetForm }) => {
       const updatedValues = {
         ...values,

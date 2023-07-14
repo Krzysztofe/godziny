@@ -1,5 +1,5 @@
 import useURLValues from "../../../hooks/useURLValues";
-import { useCalcDataQuery } from "../../../services/apiSlice";
+import { useCalcDataQuery } from "../../../services/apiSliceMonths";
 import Col from "react-bootstrap/Col";
 
 interface Props {

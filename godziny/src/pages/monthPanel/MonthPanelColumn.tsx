@@ -3,6 +3,7 @@ import MonthPanelDay from "./MonthPanelDay";
 import { ModelColumn } from "../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
 import { ModelDay } from "../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
 import Col from "react-bootstrap/Col";
+import { motion } from "framer-motion";
 
 interface Props {
   column: ModelColumn;

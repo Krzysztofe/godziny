@@ -2,28 +2,19 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { Link } from "react-router-dom";
 import useMonthDates from "../../../hooks/useMonthDates";
 import useURLValues from "../../../hooks/useURLValues";
-import { useMonthsDataQuery } from "../../../services/apiSlice";
+import { useMonthsDataQuery } from "../../../services/apiSliceMonths";
 import "./_monthList.scss";
 
 const SidebarMonthsList = () => {
   const { data } = useMonthsDataQuery(undefined);
-  const { monthDates } = useMonthDates();
+  const { monthDates, databaseMonthsDatesToString } = useMonthDates();
   const { monthURL } = useURLValues();
-
-  const databaseMonthsDatesToString = monthDates?.map((monthDate: string) => {
-    const monthToDateFormat = new Date(monthDate);
-    return new Intl.DateTimeFormat("pl-PL", {
-      year: "numeric",
-      month: "long",
-      timeZone: "UTC",
-    }).format(monthToDateFormat);
-  });
 
   const isMonthInURL = /^\d{4}-\d{2}$/.test(monthURL);
 
   const monthURLToDateFormat = isMonthInURL ? new Date(monthURL) : null;
 
-  const monthURLStringFormat =
+  const curMonthURLStringFormat =
     monthURLToDateFormat &&
     new Intl.DateTimeFormat("pl-PL", {
       year: "numeric",
@@ -42,7 +33,7 @@ const SidebarMonthsList = () => {
               <Link
                 to={`/${monthDates?.[idx]}`}
                 className={`${
-                  monthURLStringFormat !== month || !monthURLStringFormat
+                  curMonthURLStringFormat !== month || !curMonthURLStringFormat
                     ? "text-reset"
                     : "text-warning"
                 } text-decoration-none text-capitalize`}

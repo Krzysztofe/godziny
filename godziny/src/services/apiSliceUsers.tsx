@@ -11,7 +11,7 @@ export const usersApiSlice = createApi({
   endpoints: builder => ({
     // queries
 
-    users: builder.query<any, void>({
+    users: builder.query<ModelUser[], void>({
       query: () => "/users.json",
       providesTags: ["users"],
     }),

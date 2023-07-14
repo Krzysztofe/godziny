@@ -4,10 +4,11 @@ import {
   useAddDayMutation,
   useCalcDataQuery,
   useFirstColumnDataQuery,
-} from "../../../services/apiSlice";
+} from "../../../services/apiSliceMonths";
 import { validationSchema } from "./validationSidebarDayFormik";
 import useURLValues from "../../../hooks/useURLValues";
 import { useUsersQuery } from "../../../services/apiSliceUsers";
+import { ModelUser } from "../../../pages/settings/settingsUserForm/useSettingsUserFormik";
 
 interface ModelDay {
   id: string;
@@ -35,11 +36,7 @@ const useSidebarDayFormik = () => {
 
   const { data: dataUsers } = useUsersQuery();
 
-// const getUser = dataUsers?.filter((user: any) => {
-//   return user?.userName === props.day?.userName;
-// });
-// const backgroundColor = getUser?.userColor;
-
+  const users = dataUsers && dataUsers?.length > 0 ? dataUsers : [];
 
   const formik = useFormik<ModelDay>({
     initialValues: {
@@ -48,35 +45,28 @@ const useSidebarDayFormik = () => {
       hours: "",
       userName: "",
       place: "",
-      userColor:""
+      userColor: "",
     },
     validationSchema: validationSchema,
 
-
-
     onSubmit: async values => {
       formik.setFieldValue("id", crypto.randomUUID());
-      // console.log("", +formik.values.hours);
-      // console.log("", dataCalc?.currentHours);
-      // console.log(
-      //   "",
-      //   dataCalc?.currentHours && dataCalc?.currentHours - +formik.values.hours
-      // );
+
       if (
-        dataCalc?.currentHours &&
-        dataCalc?.currentHours - +formik.values.hours < 0
+        (dataCalc?.currentHours &&
+          dataCalc?.currentHours - +formik.values.hours < 0) ||
+        dataCalc?.currentHours === 0
       )
         return;
 
-      const userColor = dataUsers?.find((user: any) => {
+      const userColor = users.find((user: ModelUser) => {
         return user?.userName === values.userName;
-      }).userColor
-
+      })?.userColor;
 
       const valuesToDatabase = {
         ...values,
         hours: +values.hours,
-        userColor: userColor,
+        userColor: userColor || "",
       };
 
       if (dataFirstColumn?.id) {

@@ -1,6 +1,6 @@
 import useMonthURLToString from "../../../hooks/useMonthURLToString";
 import useURLValues from "../../../hooks/useURLValues";
-import { useCalcDataQuery } from "../../../services/apiSlice";
+import { useCalcDataQuery } from "../../../services/apiSliceMonths";
 
 const MonthPanelHeaderSummary = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
@@ -10,13 +10,11 @@ const MonthPanelHeaderSummary = () => {
   });
   const { monthURLStringFormat } = useMonthURLToString();
 
-   let currentHours = 0;
- 
+  let currentHours = 0;
 
-   if (dataCalc?.currentHours) {
-     currentHours = dataCalc?.currentHours;
-    
-   }
+  if (dataCalc?.currentHours) {
+    currentHours = dataCalc?.currentHours;
+  }
 
   return (
     <>
@@ -32,15 +30,11 @@ const MonthPanelHeaderSummary = () => {
         <div className="col-3 text-end">Wszystkie</div>
         <div className="mx-2">
           {dataCalc?.allHours} -{" "}
-          <span
-            className={`${currentHours < 0 ? "text-danger" : ""}`}
-          >
+          <span className={`${currentHours < 0 ? "text-danger" : ""}`}>
             {dataCalc?.currentHours}
           </span>
         </div>
-        <div
-          className={`col-3 ${currentHours < 0 ? "text-danger" : ""}`}
-        >
+        <div className={`col-3 ${currentHours < 0 ? "text-danger" : ""}`}>
           {currentHours < 0 ? "Brak" : "Dostępne"}
         </div>
       </div>

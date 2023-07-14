@@ -1,20 +1,20 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import { ModelColumn } from "../../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
+import useHoursSum from "../../../hooks/useHoursSum";
 import useURLValues from "../../../hooks/useURLValues";
 import {
   useMonthDataQuery,
   useUpdateCalcMutation,
   useUpdateColumnsMutation,
-} from "../../../services/apiSlice";
+} from "../../../services/apiSliceMonths";
 import MonthPanelColumn from "../MonthPanelColumn";
 import MonthPanelColumnsHeader from "../monthPanelColumnsheader.tsx/MonthPanelColumnsHeader";
 import { addDaysToColumns, handleDragDrop } from "../utilsMonthPanelColumns";
-import useHoursSum from "../../../hooks/useHoursSum";
-import { ModelColumn } from "../../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
 import useScrollThumbPosition from "./useScrollThumbPosition";
-
+import { motion } from "framer-motion";
 
 const MonthPanelColumns = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
@@ -24,10 +24,10 @@ const MonthPanelColumns = () => {
   });
   const [updateColumns] = useUpdateColumnsMutation();
   const [updateCalc] = useUpdateCalcMutation();
-    const { submittedHoursSum, acceptedHoursSum, rejectedHoursSum } =
+  const { submittedHoursSum, acceptedHoursSum, rejectedHoursSum } =
     useHoursSum();
-   const { scrollableRef, thumbPosition, handleScroll } =
-     useScrollThumbPosition();
+  const { scrollableRef, thumbPosition, handleScroll } =
+    useScrollThumbPosition();
 
   const columnsWithDays = dataMonth?.columns
     ? addDaysToColumns(dataMonth.columns)
@@ -83,7 +83,7 @@ const MonthPanelColumns = () => {
       onScroll={handleScroll}
       className=" mb-1 overflow-y-scroll"
     >
-      <div className="">
+      <div>
         <Row className="col-sm-8 col-md-9 col-xl-8 col-xxl-8 d-flex column-gap-1 ms-sm-auto mx-xl-auto  px-1 sticky-top">
           <MonthPanelColumnsHeader thumbPosition={thumbPosition} />
         </Row>

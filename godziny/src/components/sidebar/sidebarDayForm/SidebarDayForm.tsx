@@ -8,7 +8,7 @@ import useHTTPState from "../../../hooks/useHTTPState";
 import {
   useCalcDataQuery,
   useMonthDataQuery,
-} from "../../../services/apiSlice";
+} from "../../../services/apiSliceMonths";
 import "./_dayForm.scss";
 import useSidebarDayFormik from "./useSidebarDayFormik";
 import useURLValues from "../../../hooks/useURLValues";
@@ -51,9 +51,7 @@ const SidebarDayForm = () => {
               onBlur={formik.handleBlur}
               size="sm"
               className={`p-0 px-1 border border-primary ${
-                firstOption === "Zapisz w ustawieniach"
-                  ? "text-danger"
-                  : ""
+                firstOption === "Zapisz w ustawieniach" ? "text-danger" : ""
               }`}
               style={{
                 cursor: "pointer",
@@ -121,8 +119,9 @@ const SidebarDayForm = () => {
         className="text-danger d-block mt-0 fs-8"
         style={{ height: "0.7rem" }}
       >
-        {dataCalc?.currentHours &&
-        dataCalc?.currentHours - +formik.values.hours < 0
+        {(dataCalc?.currentHours &&
+          dataCalc?.currentHours - +formik.values.hours < 0) ||
+        dataCalc?.currentHours === 0
           ? "Brak dostępnych godzin"
           : ""}
       </div>

@@ -1,4 +1,3 @@
-import React from "react";
 import Swal from "sweetalert2";
 import {
   useDeleteUserMutation,
@@ -20,17 +19,19 @@ const SettingsUsersListItem = (props: Props) => {
   const [deleteUser, success] = useDeleteUserMutation();
   const { btnContent } = useHTTPState(
     success,
-    <RiDeleteBin6Line className="text-danger fs-4 ms-auto" />
+    <RiDeleteBin6Line className="text-danger fs-5 ms-auto" />
   );
+
+  const users = dataUsers && dataUsers?.length > 0 ? dataUsers : [];
 
   const handleDelete = async (id: string) => {
     Swal.fire(alertHelper("Chcesz usuniąć użytkownika?")).then(async result => {
       if (result.isConfirmed) {
-        const usersBodyPUTRequest = dataUsers?.filter((user: ModelUser) => {
-          return user.id !== id;
+        const userBodyPUTRequest = users?.filter((user: ModelUser) => {
+          return user?.id !== id;
         });
 
-        await deleteUser(usersBodyPUTRequest);
+        await deleteUser(userBodyPUTRequest);
       }
     });
   };
@@ -38,11 +39,17 @@ const SettingsUsersListItem = (props: Props) => {
   return (
     <ListGroup.Item
       onClick={() => handleDelete(props.user.id)}
-      className="border-0 p-0 px-1 fs-4 text-decoration-none text-capitalize  d-flex justify-content-between align-items-center"
-      style={{ color: props.user.userColor, cursor: "pointer" }}
+      className="border-0 p-0"
+      style={{ color: props.user.userColor }}
     >
-      {props.user.userName}
-      <Button className=" bg-transparent border-0">{btnContent}</Button>
+      <Button
+        disabled={success.isLoading}
+        className="w-100 d-flex justify-content-between align-items-center px-1 bg-primary-subtle text-capitalize border-0 fs-5"
+        style={{ color: props.user.userColor }}
+      >
+        {props.user.userName}
+        {btnContent}
+      </Button>
     </ListGroup.Item>
   );
 };

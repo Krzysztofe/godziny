@@ -9,7 +9,9 @@ const IndexMonthPanel = lazy(
   () => import("./pages/monthPanel/indexMonthPanel/IndexMonthPanel")
 );
 
-const IndexSettings = lazy(() => import("./pages/settings/IndexSettings"));
+const IndexSettings = lazy(
+  () => import("./pages/settings/indexSettings/IndexSettings")
+);
 
 function App() {
   return (

@@ -8,8 +8,8 @@ const SettingsUsersList = () => {
 
   return (
     <>
-      <h3 className="h4">Lista urzytkowników</h3>
-      <ListGroup className="border border-primary bg-white pe-0 monthListContainer">
+      <h3 className="h4">Usuń użytkownika</h3>
+      <ListGroup className="border-0 bg-primary-subtle p-0">
         {!dataUsers ? (
           <p className="py-1 px-2 fs-4 text-warning">Brak danych</p>
         ) : (

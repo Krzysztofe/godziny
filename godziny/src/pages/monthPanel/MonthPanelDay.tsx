@@ -7,7 +7,7 @@ import useURLValues from "../../hooks/useURLValues";
 import {
   useDeleteDayMutation,
   useMonthDataQuery,
-} from "../../services/apiSlice";
+} from "../../services/apiSliceMonths";
 import MonthPanelDayPrintData from "./MonthPanelDayPrintData";
 import { FiClock } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -73,7 +73,7 @@ const MonthPanelDay = (props: Props) => {
               }`}
               style={{
                 backgroundColor: props.day?.userColor,
-                opacity: snapshot.isDragging ? 0.7 : 1,
+                opacity: snapshot.isDragging ? 0.8 : 1,
               }}
             >
               <MonthPanelDayPrintData day={props.day} />

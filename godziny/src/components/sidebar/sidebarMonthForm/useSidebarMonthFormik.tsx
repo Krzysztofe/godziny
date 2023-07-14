@@ -6,10 +6,9 @@ import {
   currYearDigits,
 } from "../../../data/dataCurrentDates";
 import useMonthDates from "../../../hooks/useMonthDates";
-import {
-  useAddMonthMutation
-} from "../../../services/apiSlice";
+import { useAddMonthMutation } from "../../../services/apiSliceMonths";
 import { ModelMonthPattern, monthPattern } from "./dataSidebarMonthForm";
+import useValidationSidebarMonthForm from "./useValidationSidebarMonthForm";
 
 interface ModelFormValues {
   monthDate: string;
@@ -17,20 +16,12 @@ interface ModelFormValues {
 
 const useSidebarMonthFormik = () => {
   const navigate = useNavigate();
-  const { monthDates } = useMonthDates();
   const [addMonth, success] = useAddMonthMutation();
+  const { validationSchema } = useValidationSidebarMonthForm();
 
   const formik = useFormik<ModelFormValues>({
     initialValues: { monthDate: `${currYearDigits}-${currMonthDigits}` },
-    validationSchema: yup.object({
-      monthDate: yup
-        .string()
-        .test(
-          "is-in-database",
-          "Miesiąc zapisany",
-          value => value !== undefined && !monthDates?.includes(value)
-        ),
-    }),
+    validationSchema: validationSchema,
 
     onSubmit: async values => {
       const year = values.monthDate.slice(0, 4);

@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { monthsApiSlice } from "../services/apiSlice";
+import { monthsApiSlice } from "../services/apiSliceMonths";
 import hoursPanelSlice from "./storeFeatures/hoursPanelSlice";
 import { usersApiSlice } from "../services/apiSliceUsers";
 
