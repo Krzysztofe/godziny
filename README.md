@@ -1,4 +1,7 @@
-# godziny
+# godziny - reset form
+
+
+
 https://krzysztofe.github.io/godziny/
 
 
