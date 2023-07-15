@@ -10,22 +10,24 @@ const useValidationSettingsUserForm = () => {
 
 
    const validationSchema = yup.object({
-      userName: yup
-        .string()
-        .test(
-          "is-in-database",
-          "Imię zajęte",
-          value => value !== undefined && !usersNames?.includes(value)
-        )
-        .required("Imię wymagane"),
-      userColor: yup
-        .string()
-        .test(
-          "is-in-database",
-          "Kolor zajęty",
-          value => value !== undefined && !UsersColors?.includes(value)
-        ),
-    })
+     userName: yup
+       .string()
+       .min(3, "Min. 3 litery")
+       .max(10, "Max. 10 liter")
+       .test(
+         "is-in-database",
+         "Imię zajęte",
+         value => value !== undefined && !usersNames?.includes(value)
+       )
+       .required("Imię wymagane"),
+     userColor: yup
+       .string()
+       .test(
+         "is-in-database",
+         "Kolor zajęty",
+         value => value !== undefined && !UsersColors?.includes(value)
+       ),
+   });
 
 
     return { validationSchema };

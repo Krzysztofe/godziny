@@ -1,14 +1,18 @@
-import React from "react";
+import { Spinner } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import { Spinner } from "react-bootstrap";
-import { useUsersQuery } from "../../../services/apiSliceUsers";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
 import SettingsMonthsList from "../settingsMonthsList/SettingsMonthsList";
-import SettingsUsersList from "../settingsUsersList/SettingsUsersList";
 import SettingsUserForm from "../settingsUserForm/SettingsUserForm";
+import SettingsUsersList from "../settingsUsersList/SettingsUsersList";
 
 const useHTTPIndexSettings = () => {
-  const { error, isLoading } = useUsersQuery();
+ 
+
+  const { users, usersError, usersIsLoading } = useSelector(
+    (state: RootState) => state.users
+  );
 
   const rowStyles =
     "col-sm-8 col-md-9 col-xl-8 col-xxl-8 ms-sm-auto mx-xl-auto px-1 pt-4";
@@ -26,17 +30,17 @@ const useHTTPIndexSettings = () => {
       </Row>
     </Container>
   );
+ 
 
-  if (isLoading) {
+  if (usersIsLoading) {
     settingsContent = (
       <Spinner animation="border" variant="secondary">
         <span className="visually-hidden">Loading...</span>
       </Spinner>
-    
     );
-  } else if (error) {
-    if ("status" in error) {
-      const errMsg = "status" in error && error.status;
+  } else if (usersError) {
+    if ("status" in usersError) {
+      const errMsg = "status" in usersError && usersError.status;
 
       settingsContent = (
         <h3 className="text-danger col-5">

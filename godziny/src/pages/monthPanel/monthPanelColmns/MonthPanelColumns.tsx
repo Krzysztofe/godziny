@@ -22,7 +22,7 @@ const MonthPanelColumns = () => {
   const { scrollableRef, thumbPosition, handleScroll } =
     useScrollThumbPosition();
 
-  const { month } = useSelector((state: RootState) => state.hoursPanel);
+  const { month } = useSelector((state: RootState) => state.monthsPanel);
 
   const columnsWithDays = addDaysToColumns(month?.columns);
 

@@ -3,7 +3,6 @@ import {
   useAddUserMutation,
   useUsersQuery,
 } from "../../../services/apiSliceUsers";
-import * as yup from "yup";
 import useValidationSettingsUserForm from "./useValidationSettingsUserForm";
 
 export interface ModelUser {

@@ -1,17 +1,15 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useSelector } from "react-redux";
 import useHTTPState from "../../../../hooks/useHTTPState";
-import { useCalcDataQuery } from "../../../../services/apiSliceMonths";
+import { RootState } from "../../../../redux/store";
 import "./_formHeaderMonthPanel.scss";
 import useMonthPanelHeaderFormik from "./useMonthPanelHeaderFormik";
-import useURLValues from "../../../../hooks/useURLValues";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../redux/store";
 
 const MonhPanelHeaderForm = () => {
   const { formik, success } = useMonthPanelHeaderFormik();
   const { btnContent } = useHTTPState(success, "Zapisz liczbę godzin");
-  const { month } = useSelector((state: RootState) => state.hoursPanel);
+  const { month } = useSelector((state: RootState) => state.monthsPanel);
 
   const submittedHours = month?.calc.submittedHours;
   const acceptedHours = month?.calc.acceptedHours;

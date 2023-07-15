@@ -8,9 +8,8 @@ import "./_monthList.scss";
 
 const SidebarMonthsList = () => {
   const { databaseMonthsDatesToString } = useMonthDates();
-  const { monthURL } = useURLValues();
- const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
-  const isMonthInURL = /^\d{4}-\d{2}$/.test(monthURL);
+  const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
+  const { monthURL, isMonthInURL } = useURLValues();
 
   const monthURLToDateFormat = isMonthInURL ? new Date(monthURL) : null;
 

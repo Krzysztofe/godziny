@@ -5,14 +5,6 @@ import {
   ModelMonthPattern,
 } from "../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
 
-interface ModelInitialState {
-  numberOfDays: any;
-  data: any;
-  requestStates: {
-    edit: { isLoading: boolean; isError: boolean };
-    delete: { isLoading: boolean; isError: boolean };
-  };
-}
 
 const columns: ModelColumn[] = [
   { id: "submitted", days: [] },
@@ -34,14 +26,20 @@ const monthPattern: ModelMonthPattern = {
   calc,
 };
 
-const initialState: any = {
+interface ModelInitialState {
+  month: ModelMonthPattern;
+  error: {};
+  isLoading: boolean;
+}
+
+const initialState: ModelInitialState = {
   month: monthPattern,
   error: {},
   isLoading: false,
 };
 
-export const hoursPanelSlice = createSlice({
-  name: "hoursPanel",
+export const monthsPanelSlice = createSlice({
+  name: "monthsPanel",
   initialState,
   reducers: {
     getMonth: (state, action: PayloadAction<any>) => {
@@ -57,5 +55,5 @@ export const hoursPanelSlice = createSlice({
   },
 });
 
-export const { getMonth, getMonthError, getMonthIsLoading } = hoursPanelSlice.actions;
-export default hoursPanelSlice.reducer;
+export const { getMonth, getMonthError, getMonthIsLoading } = monthsPanelSlice.actions;
+export default monthsPanelSlice.reducer;

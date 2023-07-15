@@ -20,7 +20,7 @@ interface ModelDay {
 
 const useSidebarDayFormik = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
-  const { month } = useSelector((state: RootState) => state.hoursPanel);
+  const { month } = useSelector((state: RootState) => state.monthsPanel);
   const { users } = useSelector((state: RootState) => state.users);
   const [addDay, success] = useAddDayMutation();
   const firstColumn = month && month?.columns?.[0];
@@ -43,7 +43,7 @@ const useSidebarDayFormik = () => {
       )
         return;
 
-      const userColor = users.find((user: ModelUser) => {
+      const userColor = users?.find((user: ModelUser) => {
         return user.userName === values.userName;
       })?.userColor;
 

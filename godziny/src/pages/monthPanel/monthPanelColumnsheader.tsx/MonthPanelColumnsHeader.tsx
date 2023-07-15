@@ -8,7 +8,7 @@ interface Props {
 
 const MonthPanelColumnsHeader = (props: Props) => {
   
-  const { month } = useSelector((state: RootState) => state.hoursPanel);
+  const { month } = useSelector((state: RootState) => state.monthsPanel);
 
   return (
     <>
@@ -31,8 +31,8 @@ const MonthPanelColumnsHeader = (props: Props) => {
             key={headerText}
             className={`bg-primary text-dark-emphasis fw-medium p-1 ${
               props.thumbPosition === 0
-                ? ""
-                : " border-bottom border-1 border-white"
+                ? "border-bottom border-2 border-primary"
+                : " border-bottom border-2 border-white"
             }`}
             style={{ fontSize: "clamp(0.8rem, 3.4vw, 1rem)" }}
           >

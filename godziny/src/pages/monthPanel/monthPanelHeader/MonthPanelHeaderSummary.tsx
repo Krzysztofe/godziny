@@ -3,7 +3,7 @@ import useMonthURLToString from "../../../hooks/useMonthURLToString";
 import { RootState } from "../../../redux/store";
 
 const MonthPanelHeaderSummary = () => {
-  const { month } = useSelector((state: RootState) => state.hoursPanel);
+  const { month } = useSelector((state: RootState) => state.monthsPanel);
   const { monthURLStringFormat } = useMonthURLToString();
 
   return (

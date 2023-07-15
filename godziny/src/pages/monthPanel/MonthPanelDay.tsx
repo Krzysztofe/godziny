@@ -23,7 +23,7 @@ interface Props {
 
 const MonthPanelDay = (props: Props) => {
   const { yearFromURL, monthFromURL } = useURLValues();
-  const { month } = useSelector((state: RootState) => state.hoursPanel);
+  const { month } = useSelector((state: RootState) => state.monthsPanel);
   const [deleteDay, success] = useDeleteDayMutation();
   const { btnContent } = useHTTPState(
     success,

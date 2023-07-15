@@ -1,12 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ModelUser } from "../pages/settings/settingsUserForm/useSettingsUserFormik";
+import { URL_USERS_DATA } from "../data/URL";
 
-const URL_USERS =
-  "https://godziny-users-default-rtdb.europe-west1.firebasedatabase.app";
 
 export const usersApiSlice = createApi({
   reducerPath: "usersApi",
-  baseQuery: fetchBaseQuery({ baseUrl: URL_USERS }),
+  baseQuery: fetchBaseQuery({ baseUrl: URL_USERS_DATA }),
   tagTypes: ["users"],
   endpoints: builder => ({
     // queries

@@ -1,6 +1,3 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getDatabase, ref, get } from "firebase/database";
 
 import "firebase/database";
 import { useEffect, useState } from "react";
@@ -10,27 +7,16 @@ import { AiTwotoneSetting } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { getInfoMonths } from "../../redux/storeFeatures/infoMonthsSlice";
+import {
+  getInfoMonthError,
+  getInfoMonthIsLoading,
+  getInfoMonths,
+} from "../../redux/storeFeatures/infoMonthsSlice";
 import { useMonthsInfoQuery } from "../../services/apiSliceMonths";
 import SidebarMonthCollapse from "./SidebarMonthCollapse";
 import SidebarTitle from "./SidebarTitle";
 import SidebarDayForm from "./sidebarDayForm/SidebarDayForm";
 import SidebarMonthForm from "./sidebarMonthForm/SidebarMonthForm";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAvvdzLRow-8AdA5zJH6uv19MOsPLNwC3A",
-  authDomain: "godziny-3b30f.firebaseapp.com",
-  projectId: "godziny-3b30f",
-  storageBucket: "godziny-3b30f.appspot.com",
-  messagingSenderId: "367174950216",
-  appId: "1:367174950216:web:0bd1ea3c1c77b5e797677d",
-};
-
-export const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const database = getDatabase(app);
-
-
 
 
 const IndexSidebar = () => {
@@ -43,10 +29,12 @@ const IndexSidebar = () => {
 
   const { data, error, isLoading } = useMonthsInfoQuery();
 
+  
+
   useEffect(() => {
     dispatch(getInfoMonths(data));
-    // dispatch(getMonthError(error));
-    // dispatch(getMonthIsLoading(isLoading));
+    dispatch(getInfoMonthError(error));
+    dispatch(getInfoMonthIsLoading(isLoading));
   }, [data, dispatch]);
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -63,27 +51,8 @@ const IndexSidebar = () => {
     };
   }, []);
 
-  const fetchKeysOfNonNestedData = async () => {
-    // console.log(ref(database));
-
-    try {
-      const snapshot = await get(ref(database));
-       console.log("snapshot", snapshot.val());
-      const keys: any = [];
-      snapshot.forEach(childSnapshot => {
-        const value = childSnapshot.val();
-        if (typeof value !== "object") {
-          keys.push(childSnapshot.key);
-        }
-      });
-    } catch (error) {
-      console.error("Error retrieving data:", error);
-    }
-  };
-
   useEffect(() => {
     windowWidth > 575 && setShow(true);
-    fetchKeysOfNonNestedData();
   }, [windowWidth]);
 
   return (

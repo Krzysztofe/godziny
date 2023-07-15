@@ -10,12 +10,14 @@ import { RootState } from "../../../redux/store";
 import "./_dayForm.scss";
 import useDataSidebarSelects from "./useDataSidebarSelects";
 import useSidebarDayFormik from "./useSidebarDayFormik";
+import useURLValues from "../../../hooks/useURLValues";
 
 const SidebarDayForm = () => {
-  const { month } = useSelector((state: RootState) => state.hoursPanel);
+  const { month } = useSelector((state: RootState) => state.monthsPanel);
   const { dataSelects } = useDataSidebarSelects();
   const { formik, success } = useSidebarDayFormik();
   const { btnContent } = useHTTPState(success, "Zapisz dzień");
+  const { isMonthInURL } = useURLValues();
 
   const allHours = month?.calc?.allHours;
   const currentHours = month?.calc?.currentHours;
@@ -23,7 +25,7 @@ const SidebarDayForm = () => {
   return (
     <Form
       onSubmit={formik.handleSubmit}
-      className={`mt-2 ${!month ? "d-none" : ""} ${
+      className={`mt-2 ${!month || !isMonthInURL ? "d-none" : ""} ${
         allHours === 0 ? "formContainer" : ""
       }`}
     >

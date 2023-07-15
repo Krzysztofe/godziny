@@ -8,9 +8,9 @@ import {
 } from "../../../data/dataCurrentDates";
 import { RootState } from "../../../redux/store";
 import {
-  useAddMonthInfoMutation,
-  useAddMonthMutation,
   useDeleteMonthMutation,
+  useUpdateMonthInfoMutation,
+  useUpdateMonthMutation
 } from "../../../services/apiSliceMonths";
 import { alert } from "../../../utils/alertHelpers";
 import { ModelMonthPattern, monthPattern } from "./dataSidebarMonthForm";
@@ -21,8 +21,8 @@ interface ModelFormValues {
 
 const useSidebarMonthFormik = () => {
   const navigate = useNavigate();
-  const [addMonth, success] = useAddMonthMutation();
-  const [addMonthInfo, successInfo] = useAddMonthInfoMutation();
+  const [updateMonth, success] = useUpdateMonthMutation()
+  const [updateMonthInfo, successInfo] = useUpdateMonthInfoMutation();
   const [deleteMonth] = useDeleteMonthMutation();
   const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
   const { validationSchema } = useValidationSidebarMonthForm();
@@ -41,7 +41,7 @@ const useSidebarMonthFormik = () => {
         id: values.monthDate,
       };
 
-      await addMonth({ year, month, monthBody });
+      await updateMonth({ year, month, monthBody });
     },
   });
 
@@ -57,7 +57,7 @@ const useSidebarMonthFormik = () => {
         const year = formik.values.monthDate.slice(0, 4);
         const month = formik.values.monthDate.slice(-2);
         const months = infoMonths ? infoMonths : [];
-        await addMonthInfo([...months, `${year}-${month}`]);
+        await updateMonthInfo([...months, `${year}-${month}`]);
         navigate(`/${formik.values.monthDate}`);
       } else if (success.isError) {
         const year = formik.values.monthDate.slice(0, 4);
@@ -68,7 +68,7 @@ const useSidebarMonthFormik = () => {
     };
 
     executeAddMonthInfo();
-  }, [isSuccess, addMonthInfo]);
+  }, [isSuccess, updateMonthInfo]);
 
   return { formik, success };
 };

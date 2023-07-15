@@ -5,7 +5,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.scss";
 import LoadingPage from "./pages/loadingPage/LoadingPage";
 import { useUsersQuery } from "./services/apiSliceUsers";
-import { getUsers } from "./redux/storeFeatures/usersSlice";
+import {
+  getUsers,
+  getUsersError,
+  getUsersIsLoading,
+} from "./redux/storeFeatures/usersSlice";
 
 const Login = lazy(() => import("./pages/login/Login"));
 const PrivateRoutes = lazy(() => import("./components/PrivateRoutes"));
@@ -24,7 +28,9 @@ function App() {
 
   useEffect(() => {
     dispatch(getUsers(data));
-  }, [data, dispatch]);
+    dispatch(getUsersError(error));
+    dispatch(getUsersIsLoading(isLoading));
+  }, [data, error, isLoading, dispatch]);
 
   return (
     <BrowserRouter basename="/godziny">

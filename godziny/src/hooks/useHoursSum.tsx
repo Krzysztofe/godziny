@@ -1,26 +1,17 @@
-import useURLValues from "./useURLValues";
-import {
-  useColumnsDataQuery,
-} from "../services/apiSliceMonths";
-import { addDaysToColumns } from "../pages/monthPanel/utilsMonthPanelColumns";
+import { useSelector } from "react-redux";
 import { ModelDay } from "../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
-import { useDispatch, useSelector } from "react-redux";
+import { addDaysToColumns } from "../pages/monthPanel/utilsMonthPanelColumns";
 import { RootState } from "../redux/store";
 
 const useHoursSum = () => {
-  const { yearFromURL, monthFromURL } = useURLValues();
-  const { data: dataColumns } = useColumnsDataQuery({
-    year: yearFromURL,
-    month: monthFromURL,
-  });
 
- const { month } = useSelector((state: RootState) => state.hoursPanel);
+ const { month } = useSelector((state: RootState) => state.monthsPanel);
 
   let submittedHoursSum = 0;
   let acceptedHoursSum = 0;
   let rejectedHoursSum = 0;
 
-  if (dataColumns) {
+ 
     const columnsWithDays = addDaysToColumns(month?.columns);
 
     for (const column of columnsWithDays) {
@@ -48,12 +39,7 @@ const useHoursSum = () => {
       }
     }
     return { submittedHoursSum, acceptedHoursSum, rejectedHoursSum };
-  } else {
-    const submittedHoursSum = 0;
-    const acceptedHoursSum = 0;
-    const rejectedHoursSum = 0;
-    return { submittedHoursSum, acceptedHoursSum, rejectedHoursSum };
-  }
+ 
 };
 
 export default useHoursSum;

@@ -1,8 +1,9 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-
 const initialState: any = {
   users: [],
+  usersError: {},
+  usersIsLoading: false
 };
 
 export const usersSlice = createSlice({
@@ -12,8 +13,14 @@ export const usersSlice = createSlice({
     getUsers: (state, action: PayloadAction<any>) => {
       state.users = action.payload;
     },
+    getUsersError: (state, action: PayloadAction<any>) => {
+      state.usersError = action.payload;
+    },
+    getUsersIsLoading: (state, action: PayloadAction<any>) => {
+      state.usersIsLoading = action.payload;
+    },
   },
 });
 
-export const { getUsers } = usersSlice.actions;
+export const { getUsers, getUsersError, getUsersIsLoading } = usersSlice.actions;
 export default usersSlice.reducer;

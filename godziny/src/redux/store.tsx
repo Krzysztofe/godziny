@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { monthsApiSlice } from "../services/apiSliceMonths";
-import hoursPanelSlice from "./storeFeatures/hoursPanelSlice";
+import monthsPanelSlice from "./storeFeatures/monthsPanelSlice";
 import usersSlice from "./storeFeatures/usersSlice";
 import infoMonthsSlice from "./storeFeatures/infoMonthsSlice";
 import { usersApiSlice } from "../services/apiSliceUsers";
 
 export const store = configureStore({
   reducer: {
-    hoursPanel: hoursPanelSlice,
+    monthsPanel: monthsPanelSlice,
     users: usersSlice,
     infoMonths: infoMonthsSlice,
     [monthsApiSlice.reducerPath]: monthsApiSlice.reducer,

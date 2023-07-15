@@ -6,7 +6,9 @@ const useURLValues = () => {
   const yearFromURL = monthURL?.slice(0, 4);
   const monthFromURL = monthURL?.slice(-2);
 
-  return { monthURL, yearFromURL, monthFromURL };
+  const isMonthInURL = /^\d{4}-\d{2}$/.test(monthURL);
+
+  return { monthURL, yearFromURL, monthFromURL, isMonthInURL };
 };
 
 export default useURLValues;

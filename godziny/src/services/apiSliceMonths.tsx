@@ -5,7 +5,6 @@ import {
   ModelMonthPattern,
   ModelColumn,
   ModelDay,
-  ModelCalc,
 } from "../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
 
 const createUrl = (year: string, month: string, suffix = "") =>
@@ -22,11 +21,6 @@ export const monthsApiSlice = createApi({
   endpoints: builder => ({
     // queries
 
-    monthsData: builder.query<ModelMonthsPatern, void>({
-      query: () => "years.json",
-      providesTags: ["months"],
-    }),
-
     monthData: builder.query<
       ModelMonthPattern,
       { year: string; month: string }
@@ -34,22 +28,10 @@ export const monthsApiSlice = createApi({
       query: ({ year, month }) => createUrl(year, month),
       providesTags: ["months"],
     }),
-    columnsData: builder.query<ModelColumn[], { year: string; month: string }>({
-      query: ({ year, month }) => createUrl(year, month, "/columns"),
-      providesTags: ["months"],
-    }),
-
-    firstColumnData: builder.query<
-      ModelColumn,
-      { year: string; month: string }
-    >({
-      query: ({ year, month }) => createUrl(year, month, "/columns/0"),
-      providesTags: ["months"],
-    }),
 
     // mutations
 
-    addMonth: builder.mutation<
+    updateMonth: builder.mutation<
       void,
       { year: string; month: string; monthBody: ModelMonthPattern }
     >({
@@ -71,24 +53,6 @@ export const monthsApiSlice = createApi({
       invalidatesTags: ["months"],
     }),
 
-    updateMonth: builder.mutation<
-      void,
-      { year: string; month: string; monthBody: ModelMonthPattern }
-    >({
-      query: ({ year, month, monthBody }) =>
-        mutationBody(createUrl(year, month), "PUT", monthBody),
-      invalidatesTags: ["months"],
-    }),
-
-    updateColumns: builder.mutation<
-      void,
-      { year: string; month: string; columnsBody: ModelColumn[] }
-    >({
-      query: ({ year, month, columnsBody }) =>
-        mutationBody(createUrl(year, month, "/columns"), "PUT", columnsBody),
-      invalidatesTags: ["months"],
-    }),
-
     deleteDay: builder.mutation<
       void,
       { year: string; month: string; colIdx: number; daysBody: ModelDay[] }
@@ -102,13 +66,14 @@ export const monthsApiSlice = createApi({
       invalidatesTags: ["months"],
     }),
 
-    deleteMonth: builder.mutation<any, any>({
+    deleteMonth: builder.mutation<ModelMonthPattern, any>({
       query: ({ year, month }) => ({
         url: `/years/${year}/month_${month}.json`,
         method: "DELETE",
       }),
       invalidatesTags: ["months"],
     }),
+
     // info queries
 
     monthsInfo: builder.query<ModelMonthsPatern, void>({
@@ -117,20 +82,13 @@ export const monthsApiSlice = createApi({
     }),
 
     // info mutations
-    addMonthInfo: builder.mutation<void, any>({
+    updateMonthInfo: builder.mutation<void, string[]>({
       query: monthInfo => ({
         url: "/info.json",
         method: "PUT",
         body: monthInfo,
       }),
       invalidatesTags: ["months"],
-    }),
-
-    // calc queries
-
-    calcData: builder.query<ModelCalc, { year: string; month: string }>({
-      query: ({ year, month }) => createUrl(year, month, "/calc"),
-      providesTags: ["months"],
     }),
 
     // calc mutations
@@ -143,58 +101,16 @@ export const monthsApiSlice = createApi({
         mutationBody(createUrl(year, month, `/calc/allHours`), "PUT", allHours),
       invalidatesTags: ["months"],
     }),
-
-    updateCalc: builder.mutation<
-      void,
-      { year: string; month: string; calcBody: ModelCalc }
-    >({
-      query: ({ year, month, calcBody }) =>
-        mutationBody(createUrl(year, month, `/calc`), "PUT", calcBody),
-      invalidatesTags: ["months"],
-    }),
-
-    // deleteDay: builder.mutation<any, any>({
-    //   query: month => ({
-    //     url: `/${month?.year}/month_${month?.month}/columns/${month.colIdx}/days/${month.dayIdx}.json`,
-    //     method: "DELETE",
-    //   }),
-    //   invalidatesTags: ["months"],
-    // }),
-
-    // PATCHupdateMonth: builder.mutation<void, any>({
-    //   query: ({ id, columns }) => ({
-    //     url: `/months/${id}.json`,
-    //     method: "PATCH",
-    //     body: columns,
-    //   }),
-    //   invalidatesTags: ["months"],
-    // }),
-
-    // deleteMonth: builder.mutation<any, any>({
-    //   query: id => ({
-    //     url: `/months/${id}.json`,
-    //     method: "DELETE",
-    //   }),
-    //   invalidatesTags: ["months"],
-    // }),
   }),
 });
 
 export const {
-  useMonthsDataQuery,
   useMonthDataQuery,
-  useColumnsDataQuery,
-  useFirstColumnDataQuery,
-  useAddMonthMutation,
   useMonthsInfoQuery,
-  useAddMonthInfoMutation,
+  useUpdateMonthInfoMutation,
   useAddDayMutation,
   useUpdateMonthMutation,
-  useUpdateColumnsMutation,
   useDeleteDayMutation,
   useDeleteMonthMutation,
-  useCalcDataQuery,
   useAddAllHoursMutation,
-  useUpdateCalcMutation,
-
 } = monthsApiSlice;

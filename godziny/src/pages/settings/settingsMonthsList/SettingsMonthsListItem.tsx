@@ -5,9 +5,8 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import useHTTPState from "../../../hooks/useHTTPState";
 import { alertHelper } from "../../../utils/alertHelpers";
 import {
-  useAddAllHoursMutation,
-  useAddMonthInfoMutation,
   useDeleteMonthMutation,
+  useUpdateMonthInfoMutation,
 } from "../../../services/apiSliceMonths";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
@@ -19,7 +18,7 @@ interface Props {
 
 const SettingsMonthsListItem = (props: Props) => {
   const [deleteMonth, success] = useDeleteMonthMutation();
-  const [addMonthInfo, successInfo] = useAddMonthInfoMutation();
+  const [updateMonthInfo, successInfo] = useUpdateMonthInfoMutation();
   const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
 
   const { btnContent } = useHTTPState(
@@ -37,14 +36,10 @@ const SettingsMonthsListItem = (props: Props) => {
           return infoMonth !== `${year}-${month}`;
         });
 
-console.log("", updatedMonthsInfo);
-
         await deleteMonth({ year: year, month: month });
-        await addMonthInfo(updatedMonthsInfo);
+        await updateMonthInfo(updatedMonthsInfo);
       }
     });
-
-    console.log("", success.isSuccess);
   };
 
   return (
