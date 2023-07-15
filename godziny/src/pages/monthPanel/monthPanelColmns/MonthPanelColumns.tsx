@@ -28,31 +28,35 @@ const MonthPanelColumns = () => {
 
   const [columns, setColumns] = useState<ModelColumn[]>([]);
 
+
+
   useEffect(() => {
     setColumns(columnsWithDays);
   }, [month]);
 
   useEffect(() => {
-    updateMonth({
-      year: yearFromURL,
-      month: monthFromURL,
-      monthBody: {
-        ...month,
-        columns: columns,
-        calc: {
-          ...month?.calc,
-          currentHours:
-            (month?.calc?.allHours ?? 0) -
-            submittedHoursSum -
-            acceptedHoursSum -
-            rejectedHoursSum +
-            rejectedHoursSum,
-          submittedHours: submittedHoursSum,
-          acceptedHours: acceptedHoursSum,
-          rejectedHours: rejectedHoursSum,
+    if (columns.length > 0) {
+      updateMonth({
+        year: yearFromURL,
+        month: monthFromURL,
+        monthBody: {
+          ...month,
+          columns: columns,
+          calc: {
+            ...month?.calc,
+            currentHours:
+              (month?.calc?.allHours ?? 0) -
+              submittedHoursSum -
+              acceptedHoursSum -
+              rejectedHoursSum +
+              rejectedHoursSum,
+            submittedHours: submittedHoursSum,
+            acceptedHours: acceptedHoursSum,
+            rejectedHours: rejectedHoursSum,
+          },
         },
-      },
-    });
+      });
+    }
   }, [columns]);
 
   const handleDragEnd = (results: DropResult) => {

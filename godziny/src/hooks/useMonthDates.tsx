@@ -1,15 +1,16 @@
-import { useMonthsDataQuery } from "../services/apiSliceMonths";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const useMonthDates = () => {
-  const { data: dataMonths } = useMonthsDataQuery(undefined);
+  const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
 
-  const monthDates =
-    dataMonths &&
-    Object.values(dataMonths).flatMap(year =>
-      Object.values(year).flatMap(month => month.id)
-    );
+  const sortedMonths = infoMonths && [...infoMonths].sort((a: string, b: string) => {
+    const dateA = new Date(a).getTime();
+    const dateB = new Date(b).getTime();
+    return dateA - dateB;
+  });
 
-  const databaseMonthsDatesToString = monthDates?.map((monthDate: string) => {
+  const databaseMonthsDatesToString = infoMonths?.map((monthDate: string) => {
     const monthToDateFormat = new Date(monthDate);
     return new Intl.DateTimeFormat("pl-PL", {
       year: "numeric",
@@ -18,7 +19,7 @@ const useMonthDates = () => {
     }).format(monthToDateFormat);
   });
 
-  return { monthDates, databaseMonthsDatesToString };
+  return { databaseMonthsDatesToString };
 };
 
 export default useMonthDates;

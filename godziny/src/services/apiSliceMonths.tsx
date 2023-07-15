@@ -9,7 +9,7 @@ import {
 } from "../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
 
 const createUrl = (year: string, month: string, suffix = "") =>
-  `/${year}/month_${month}${suffix}.json`;
+  `/years/${year}/month_${month}${suffix}.json`;
 
 const mutationBody = (url: string, method: string, body: any) => {
   return { url, method, body };
@@ -23,7 +23,7 @@ export const monthsApiSlice = createApi({
     // queries
 
     monthsData: builder.query<ModelMonthsPatern, void>({
-      query: () => ".json",
+      query: () => "years.json",
       providesTags: ["months"],
     }),
 
@@ -34,10 +34,7 @@ export const monthsApiSlice = createApi({
       query: ({ year, month }) => createUrl(year, month),
       providesTags: ["months"],
     }),
-    columnsData: builder.query<
-      ModelColumn[],
-      { year: string; month: string }
-    >({
+    columnsData: builder.query<ModelColumn[], { year: string; month: string }>({
       query: ({ year, month }) => createUrl(year, month, "/columns"),
       providesTags: ["months"],
     }),
@@ -107,8 +104,24 @@ export const monthsApiSlice = createApi({
 
     deleteMonth: builder.mutation<any, any>({
       query: ({ year, month }) => ({
-        url: `/${year}/month_${month}.json`,
+        url: `/years/${year}/month_${month}.json`,
         method: "DELETE",
+      }),
+      invalidatesTags: ["months"],
+    }),
+    // info queries
+
+    monthsInfo: builder.query<ModelMonthsPatern, void>({
+      query: () => "info.json",
+      providesTags: ["months"],
+    }),
+
+    // info mutations
+    addMonthInfo: builder.mutation<void, any>({
+      query: monthInfo => ({
+        url: "/info.json",
+        method: "PUT",
+        body: monthInfo,
       }),
       invalidatesTags: ["months"],
     }),
@@ -157,7 +170,7 @@ export const monthsApiSlice = createApi({
     //   invalidatesTags: ["months"],
     // }),
 
-    // deleteMonth: builder.mutation<any, string | undefined>({
+    // deleteMonth: builder.mutation<any, any>({
     //   query: id => ({
     //     url: `/months/${id}.json`,
     //     method: "DELETE",
@@ -173,6 +186,8 @@ export const {
   useColumnsDataQuery,
   useFirstColumnDataQuery,
   useAddMonthMutation,
+  useMonthsInfoQuery,
+  useAddMonthInfoMutation,
   useAddDayMutation,
   useUpdateMonthMutation,
   useUpdateColumnsMutation,

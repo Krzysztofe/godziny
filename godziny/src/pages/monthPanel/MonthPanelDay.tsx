@@ -12,6 +12,8 @@ import MonthPanelDayPrintData from "./MonthPanelDayPrintData";
 import { FiClock } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { alertHelper } from "../../utils/alertHelpers";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 interface Props {
   day: ModelDay;
@@ -21,11 +23,7 @@ interface Props {
 
 const MonthPanelDay = (props: Props) => {
   const { yearFromURL, monthFromURL } = useURLValues();
-  const { data: dataMonth } = useMonthDataQuery({
-    year: yearFromURL,
-    month: monthFromURL,
-  });
-
+  const { month } = useSelector((state: RootState) => state.hoursPanel);
   const [deleteDay, success] = useDeleteDayMutation();
   const { btnContent } = useHTTPState(
     success,
@@ -35,7 +33,7 @@ const MonthPanelDay = (props: Props) => {
   const handleDelete = async (idx: number, id: string) => {
     Swal.fire(alertHelper("Chcesz usuniąć dzień")).then(async result => {
       if (result.isConfirmed) {
-        const daysBodyPUTRequest = dataMonth?.columns[idx]?.days?.filter(
+        const daysBodyPUTRequest = month?.columns[idx]?.days?.filter(
           (day: ModelDay) => {
             return day?.id !== id;
           }

@@ -1,40 +1,30 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useSelector } from "react-redux";
 import {
   dateInNext14Days,
   dateInNext60Days,
 } from "../../../data/dataCurrentDates";
 import useHTTPState from "../../../hooks/useHTTPState";
-import {
-  useCalcDataQuery,
-  useMonthDataQuery,
-} from "../../../services/apiSliceMonths";
+import { RootState } from "../../../redux/store";
 import "./_dayForm.scss";
-import useSidebarDayFormik from "./useSidebarDayFormik";
-import useURLValues from "../../../hooks/useURLValues";
 import useDataSidebarSelects from "./useDataSidebarSelects";
+import useSidebarDayFormik from "./useSidebarDayFormik";
 
 const SidebarDayForm = () => {
-  const { yearFromURL, monthFromURL } = useURLValues();
-  const { data: dataMonth } = useMonthDataQuery({
-    year: yearFromURL,
-    month: monthFromURL,
-  });
-
-  const { data: dataCalc } = useCalcDataQuery({
-    year: yearFromURL,
-    month: monthFromURL,
-  });
-
+  const { month } = useSelector((state: RootState) => state.hoursPanel);
   const { dataSelects } = useDataSidebarSelects();
   const { formik, success } = useSidebarDayFormik();
   const { btnContent } = useHTTPState(success, "Zapisz dzień");
 
+  const allHours = month?.calc?.allHours;
+  const currentHours = month?.calc?.currentHours;
+
   return (
     <Form
       onSubmit={formik.handleSubmit}
-      className={`mt-2 ${!dataMonth ? "d-none" : ""} ${
-        dataCalc?.allHours === 0 ? "formContainer" : ""
+      className={`mt-2 ${!month ? "d-none" : ""} ${
+        allHours === 0 ? "formContainer" : ""
       }`}
     >
       {dataSelects.map(({ name, firstOption, labelText, options }) => {
@@ -93,7 +83,6 @@ const SidebarDayForm = () => {
           onBlur={formik.handleBlur}
           min={dateInNext14Days}
           max={dateInNext60Days}
-          disabled={success.isLoading}
           placeholder="Liczba"
           size="sm"
           className="p-0 px-1 border border-primary"
@@ -119,9 +108,7 @@ const SidebarDayForm = () => {
         className="text-danger d-block mt-0 fs-8"
         style={{ height: "0.7rem" }}
       >
-        {(dataCalc?.currentHours &&
-          dataCalc?.currentHours - +formik.values.hours < 0) ||
-        dataCalc?.currentHours === 0
+        {currentHours - +formik.values.hours < 0 || currentHours === 0
           ? "Brak dostępnych godzin"
           : ""}
       </div>

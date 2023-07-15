@@ -1,15 +1,15 @@
 import ListGroup from "react-bootstrap/ListGroup";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import useMonthDates from "../../../hooks/useMonthDates";
 import useURLValues from "../../../hooks/useURLValues";
-import { useMonthsDataQuery } from "../../../services/apiSliceMonths";
+import { RootState } from "../../../redux/store";
 import "./_monthList.scss";
 
 const SidebarMonthsList = () => {
-  const { data } = useMonthsDataQuery(undefined);
-  const { monthDates, databaseMonthsDatesToString } = useMonthDates();
+  const { databaseMonthsDatesToString } = useMonthDates();
   const { monthURL } = useURLValues();
-
+ const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
   const isMonthInURL = /^\d{4}-\d{2}$/.test(monthURL);
 
   const monthURLToDateFormat = isMonthInURL ? new Date(monthURL) : null;
@@ -24,14 +24,14 @@ const SidebarMonthsList = () => {
 
   return (
     <ListGroup className="monthListContainer bg-white rounded-0 border border-primary">
-      {!data ? (
+      {!infoMonths || infoMonths.length === 0 ? (
         <p className="py-1 px-2 text-warning text-center">Brak danych</p>
       ) : (
         databaseMonthsDatesToString?.map((month: string, idx: number) => {
           return (
             <ListGroup.Item key={month} className="border-0 p-0 px-1">
               <Link
-                to={`/${monthDates?.[idx]}`}
+                to={`/${infoMonths?.[idx]}`}
                 className={`${
                   curMonthURLStringFormat !== month || !curMonthURLStringFormat
                     ? "text-reset"

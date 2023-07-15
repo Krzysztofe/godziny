@@ -1,19 +1,9 @@
 import { useUsersQuery } from "../../../services/apiSliceUsers";
 import useHTTPIndexSettings from "./useHTTPIndexSettings";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getUsers } from "../../../redux/storeFeatures/usersSlice";
 
 const IndexSettings = () => {
-  const dispatch = useDispatch();
   const { settingsContent } = useHTTPIndexSettings();
   const { data, error, isLoading } = useUsersQuery();
-
-
-
-  useEffect(() => {
-    dispatch(getUsers(data));
-  }, [data, dispatch]);
 
   let mainStyles = "bg-primary-subtle";
 

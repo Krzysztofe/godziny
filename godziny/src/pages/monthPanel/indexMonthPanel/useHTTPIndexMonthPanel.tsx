@@ -5,15 +5,23 @@ import { Spinner } from "react-bootstrap";
 import { currMonthDateToString } from '../../../data/dataCurrentDates';
 import MonthPanelColumns from '../monthPanelColmns/MonthPanelColumns';
 import MonthPanelHeader from '../monthPanelHeader/MonthPanelHeader';
+import { useSelector } from "react-redux";
+import { RootState } from '../../../redux/store';
 
-const useHTTPIndexMonthPanel = () => {
+const useHTTPMonthPanel = () => {
 
 const { yearFromURL, monthFromURL } = useURLValues();
-const { data, error, isLoading } = useMonthsDataQuery();
+// const { data, error, isLoading } = useMonthsDataQuery();
 const { data: dataMonth } = useMonthDataQuery({
   year: yearFromURL,
   month: monthFromURL,
 });
+
+const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
+ const { month, error, isLoading } = useSelector(
+   (state: RootState) => state.hoursPanel
+ );
+
 
 let panelContent = (
   <>
@@ -38,14 +46,14 @@ if (isLoading) {
       </h3>
     );
   }
-} else if (!data) {
+} else if (!infoMonths || infoMonths?.length === 0) {
   panelContent = (
     <h5 className="text-warning text-center col-5">
       Brak miesięcy zapisanych w bazie danych. Zapisz miesiąc za pomocą
       formularza
     </h5>
   );
-} else if (!dataMonth) {
+} else if (!month?.id) {
   panelContent = (
     <h3 className="text-warning text-center col-5">
       Brak danych z miesiąca {currMonthDateToString}. Zapisz miesiąc za pomocą
@@ -54,8 +62,7 @@ if (isLoading) {
   );
 }
 
-
     return { panelContent };
 };
 
-export default useHTTPIndexMonthPanel;
+export default useHTTPMonthPanel;

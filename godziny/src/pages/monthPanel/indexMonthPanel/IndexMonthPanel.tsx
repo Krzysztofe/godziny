@@ -1,44 +1,44 @@
-import useURLValues from "../../../hooks/useURLValues";
-import { getMonth } from "../../../redux/storeFeatures/hoursPanelSlice";
-import {
-  useMonthDataQuery,
-  useMonthsDataQuery,
-} from "../../../services/apiSliceMonths";
-import useHTTPIndexMonthPanel from "./useHTTPIndexMonthPanel";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-
+import useURLValues from "../../../hooks/useURLValues";
+import { RootState } from "../../../redux/store";
+import {
+  getMonth,
+  getMonthError,
+  getMonthIsLoading,
+} from "../../../redux/storeFeatures/hoursPanelSlice";
+import { useMonthDataQuery } from "../../../services/apiSliceMonths";
+import useHTTPIndexMonthPanel from "./useHTTPIndexMonthPanel";
 
 const IndexMonthPanel = () => {
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { yearFromURL, monthFromURL } = useURLValues();
-  // const { data, error, isLoading } = useMonthsDataQuery();
-
-  const {
-    data: dataMonth,
-    error,
-    isLoading,
-  } = useMonthDataQuery({
+  const { data } = useMonthDataQuery({
     year: yearFromURL,
     month: monthFromURL,
   });
 
- 
-
-
-const { panelContent } = useHTTPIndexMonthPanel();
+  const { month, error, isLoading } = useSelector(
+    (state: RootState) => state.hoursPanel
+  );
 
   useEffect(() => {
-    dispatch(getMonth(dataMonth));
-  }, [dataMonth, dispatch]);
+    dispatch(getMonth(data));
+    dispatch(getMonthError(error));
+    dispatch(getMonthIsLoading(isLoading));
+  }, [data, dispatch]);
 
+  const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
+  const { panelContent } = useHTTPIndexMonthPanel();
 
   let mainStyles = "d-flex flex-column bg-primary-subtle";
 
-  if (isLoading || error || !dataMonth) {
-    mainStyles = "d-flex justify-content-center align-items-center";
+
+  if (isLoading || error || !data) {
+    let mainStyles = "d-flex justify-content-center align-items-center";
   }
+
+
 
   return (
     <main className={mainStyles} style={{ height: "100vh" }}>

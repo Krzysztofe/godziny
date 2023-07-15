@@ -1,7 +1,5 @@
-import useURLValues from "../../../hooks/useURLValues";
-import { useCalcDataQuery } from "../../../services/apiSliceMonths";
 import Col from "react-bootstrap/Col";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 
 interface Props {
@@ -9,13 +7,8 @@ interface Props {
 }
 
 const MonthPanelColumnsHeader = (props: Props) => {
-  const { yearFromURL, monthFromURL } = useURLValues();
-  const { data: dataCalc } = useCalcDataQuery({
-    year: yearFromURL,
-    month: monthFromURL,
-  });
-
-const { month } = useSelector((state: RootState) => state.hoursPanel);
+  
+  const { month } = useSelector((state: RootState) => state.hoursPanel);
 
   return (
     <>

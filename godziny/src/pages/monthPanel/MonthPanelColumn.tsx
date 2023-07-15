@@ -1,9 +1,7 @@
 import { Droppable } from "react-beautiful-dnd";
-import MonthPanelDay from "./MonthPanelDay";
-import { ModelColumn } from "../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
-import { ModelDay } from "../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
 import Col from "react-bootstrap/Col";
-import { motion } from "framer-motion";
+import { ModelColumn, ModelDay } from "../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
+import MonthPanelDay from "./MonthPanelDay";
 
 interface Props {
   column: ModelColumn;

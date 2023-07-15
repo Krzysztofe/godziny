@@ -1,28 +1,28 @@
-import Swal from "sweetalert2";
-import {
-  useDeleteUserMutation,
-  useUsersQuery,
-} from "../../../services/apiSliceUsers";
-import useHTTPState from "../../../hooks/useHTTPState";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
-import { ModelUser } from "../settingsUserForm/useSettingsUserFormik";
+import ListGroup from "react-bootstrap/ListGroup";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import useHTTPState from "../../../hooks/useHTTPState";
+import { RootState } from "../../../redux/store";
+import {
+  useDeleteUserMutation
+} from "../../../services/apiSliceUsers";
 import { alertHelper } from "../../../utils/alertHelpers";
+import { ModelUser } from "../settingsUserForm/useSettingsUserFormik";
 
 interface Props {
   user: ModelUser;
 }
 
 const SettingsUsersListItem = (props: Props) => {
-  const { data: dataUsers } = useUsersQuery();
   const [deleteUser, success] = useDeleteUserMutation();
   const { btnContent } = useHTTPState(
     success,
     <RiDeleteBin6Line className="text-danger fs-5 ms-auto" />
   );
 
-  const users = dataUsers && dataUsers?.length > 0 ? dataUsers : [];
+  const { users } = useSelector((state: RootState) => state.users);
 
   const handleDelete = async (id: string) => {
     Swal.fire(alertHelper("Chcesz usuniąć użytkownika?")).then(async result => {

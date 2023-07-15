@@ -1,14 +1,13 @@
 import { useFormik } from "formik";
+import { useSelector } from "react-redux";
 import { dateInNext14Days } from "../../../data/dataCurrentDates";
+import useURLValues from "../../../hooks/useURLValues";
+import { ModelUser } from "../../../pages/settings/settingsUserForm/useSettingsUserFormik";
+import { RootState } from "../../../redux/store";
 import {
-  useAddDayMutation,
-  useCalcDataQuery,
-  useFirstColumnDataQuery,
+  useAddDayMutation
 } from "../../../services/apiSliceMonths";
 import { validationSchema } from "./validationSidebarDayFormik";
-import useURLValues from "../../../hooks/useURLValues";
-import { useUsersQuery } from "../../../services/apiSliceUsers";
-import { ModelUser } from "../../../pages/settings/settingsUserForm/useSettingsUserFormik";
 
 interface ModelDay {
   id: string;
@@ -21,22 +20,10 @@ interface ModelDay {
 
 const useSidebarDayFormik = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
-  const { data: dataCalc } = useCalcDataQuery({
-    year: yearFromURL,
-    month: monthFromURL,
-  });
-  const { data: dataFirstColumn } = useFirstColumnDataQuery({
-    year: yearFromURL,
-    month: monthFromURL,
-  });
-  const { data: dataUsers } = useUsersQuery();
+  const { month } = useSelector((state: RootState) => state.hoursPanel);
+  const { users } = useSelector((state: RootState) => state.users);
   const [addDay, success] = useAddDayMutation();
-
-  const currentHours = dataCalc?.currentHours || 0;
-  const firstColumn = dataFirstColumn?.days
-    ? dataFirstColumn
-    : { id: "submitted", days: [] };
-  const users = dataUsers || [];
+  const firstColumn = month && month?.columns?.[0];
 
   const formik = useFormik<ModelDay>({
     initialValues: {
@@ -50,7 +37,11 @@ const useSidebarDayFormik = () => {
     validationSchema: validationSchema,
 
     onSubmit: async values => {
-      if (currentHours - +values.hours < 0 || currentHours === 0) return;
+      if (
+        month?.calc?.currentHours - +values.hours < 0 ||
+        month?.calc?.currentHours === 0
+      )
+        return;
 
       const userColor = users.find((user: ModelUser) => {
         return user.userName === values.userName;
@@ -63,18 +54,16 @@ const useSidebarDayFormik = () => {
         userColor: userColor || "",
       };
 
-      if (dataFirstColumn?.id) {
-        await addDay({
-          year: yearFromURL,
-          month: monthFromURL,
-          firstColumnBody: {
-            ...firstColumn,
-            days: firstColumn?.days
-              ? [...firstColumn.days, valuesToDatabase]
-              : [valuesToDatabase],
-          },
-        });
-      }
+      await addDay({
+        year: yearFromURL,
+        month: monthFromURL,
+        firstColumnBody: {
+          ...firstColumn,
+          days: firstColumn?.days
+            ? [...firstColumn.days, valuesToDatabase]
+            : [valuesToDatabase],
+        },
+      });
     },
   });
 

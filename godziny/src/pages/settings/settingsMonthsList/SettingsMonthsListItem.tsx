@@ -4,7 +4,13 @@ import Button from "react-bootstrap/Button";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import useHTTPState from "../../../hooks/useHTTPState";
 import { alertHelper } from "../../../utils/alertHelpers";
-import { useDeleteMonthMutation } from "../../../services/apiSliceMonths";
+import {
+  useAddAllHoursMutation,
+  useAddMonthInfoMutation,
+  useDeleteMonthMutation,
+} from "../../../services/apiSliceMonths";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
 
 interface Props {
   monthDateToString: string;
@@ -13,6 +19,8 @@ interface Props {
 
 const SettingsMonthsListItem = (props: Props) => {
   const [deleteMonth, success] = useDeleteMonthMutation();
+  const [addMonthInfo, successInfo] = useAddMonthInfoMutation();
+  const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
 
   const { btnContent } = useHTTPState(
     success,
@@ -25,9 +33,18 @@ const SettingsMonthsListItem = (props: Props) => {
         const year = props.monthDate.slice(0, 4);
         const month = props.monthDate.slice(-2);
 
+        const updatedMonthsInfo = infoMonths.filter((infoMonth: string) => {
+          return infoMonth !== `${year}-${month}`;
+        });
+
+console.log("", updatedMonthsInfo);
+
         await deleteMonth({ year: year, month: month });
+        await addMonthInfo(updatedMonthsInfo);
       }
     });
+
+    console.log("", success.isSuccess);
   };
 
   return (

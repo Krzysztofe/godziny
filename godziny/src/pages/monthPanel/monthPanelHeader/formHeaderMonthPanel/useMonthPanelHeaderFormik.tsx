@@ -10,9 +10,7 @@ interface ModelFormValues {
 
 const useMonthPanelHeaderFormik = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
-
   const { month } = useSelector((state: RootState) => state.hoursPanel);
-
   const [addAllHours, success] = useAddAllHoursMutation();
 
   const submittedHours = month?.calc?.submittedHours;

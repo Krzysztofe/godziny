@@ -1,8 +1,10 @@
 import * as yup from "yup";
-import useMonthDates from "../../../hooks/useMonthDates";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
 
 const useValidationSidebarMonthForm = () => {
-const { monthDates } = useMonthDates();
+ const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
+
 
 const validationSchema = yup.object({
   monthDate: yup
@@ -10,7 +12,7 @@ const validationSchema = yup.object({
     .test(
       "is-in-database",
       "Miesiąc zapisany",
-      value => value !== undefined && !monthDates?.includes(value)
+      value => value !== undefined && !infoMonths?.includes(value)
     ),
 });
 

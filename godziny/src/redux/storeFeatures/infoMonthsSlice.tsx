@@ -35,27 +35,28 @@ const monthPattern: ModelMonthPattern = {
 };
 
 const initialState: any = {
-  month: monthPattern,
-  error: {},
-  isLoading: false,
+  infoMonths: [],
+  infoMonthsError: {},
+  infoMonthsIsLoading: false,
 };
 
-export const hoursPanelSlice = createSlice({
-  name: "hoursPanel",
+export const infoMonthsSlice = createSlice({
+  name: "infoMonths",
   initialState,
   reducers: {
-    getMonth: (state, action: PayloadAction<any>) => {
-      state.month = action.payload;
+    getInfoMonths: (state, action: PayloadAction<any>) => {
+      state.infoMonths = action.payload;
     },
-    getMonthError: (state, action: PayloadAction<any>) => {
-      state.error = action.payload;
+    getInfoMonthError: (state, action: PayloadAction<any>) => {
+      state.infoMonthsError = action.payload;
     },
 
-    getMonthIsLoading: (state, action: PayloadAction<any>) => {
-      state.isLoading = action.payload;
+    getInfoMonthIsLoading: (state, action: PayloadAction<any>) => {
+      state.infoMonthsIsLoading = action.payload;
     },
   },
 });
 
-export const { getMonth, getMonthError, getMonthIsLoading } = hoursPanelSlice.actions;
-export default hoursPanelSlice.reducer;
+export const { getInfoMonths, getInfoMonthError, getInfoMonthIsLoading } =
+  infoMonthsSlice.actions;
+export default infoMonthsSlice.reducer;
