@@ -1,5 +1,4 @@
-import { DropResult } from "react-beautiful-dnd";
-import { ModelColumn } from "../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
+import { ModelColumn } from "../../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
 
 export const addDaysToColumns = (columns: ModelColumn[]) => {
   if (!Array.isArray(columns)) {
@@ -13,10 +12,7 @@ export const addDaysToColumns = (columns: ModelColumn[]) => {
   });
 };
 
-
-
 export const handleDragDrop = (
-  // results: DropResult,
   results: any,
   columns: ModelColumn[],
   setColumns: React.Dispatch<React.SetStateAction<ModelColumn[]>>

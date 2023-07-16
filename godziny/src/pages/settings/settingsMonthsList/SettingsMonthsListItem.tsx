@@ -27,7 +27,7 @@ const SettingsMonthsListItem = (props: Props) => {
   );
 
   const handleDelete = async () => {
-    Swal.fire(alertHelper("Chcesz usuniąć użytkownika?")).then(async result => {
+    Swal.fire(alertHelper("Chcesz usuniąć miesiąc?")).then(async result => {
       if (result.isConfirmed) {
         const year = props.monthDate.slice(0, 4);
         const month = props.monthDate.slice(-2);

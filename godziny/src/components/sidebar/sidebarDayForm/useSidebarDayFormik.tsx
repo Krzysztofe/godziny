@@ -30,13 +30,13 @@ const useSidebarDayFormik = () => {
       id: "",
       date: dateInNext14Days,
       hours: "",
-      userName: "",
+      userName: "Imię",
       place: "",
       userColor: "",
     },
     validationSchema: validationSchema,
 
-    onSubmit: async values => {
+    onSubmit: async (values) => {
       if (
         month?.calc?.currentHours - +values.hours < 0 ||
         month?.calc?.currentHours === 0
@@ -64,6 +64,7 @@ const useSidebarDayFormik = () => {
             : [valuesToDatabase],
         },
       });
+
     },
   });
 

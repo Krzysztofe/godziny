@@ -43,6 +43,8 @@ export const monthsPanelSlice = createSlice({
   initialState,
   reducers: {
     getMonth: (state, action) => {
+
+      
       state.month = action.payload;
     },
     getMonthError: (state, action) => {

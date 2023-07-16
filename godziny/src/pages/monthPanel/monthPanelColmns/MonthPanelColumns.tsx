@@ -10,7 +10,7 @@ import { RootState } from "../../../redux/store";
 import { useUpdateMonthMutation } from "../../../services/apiSliceMonths";
 import MonthPanelColumn from "../MonthPanelColumn";
 import MonthPanelColumnsHeader from "../monthPanelColumnsHeader.tsx/MonthPanelColumnsHeader";
-import { addDaysToColumns, handleDragDrop } from "../utilsMonthPanelColumns";
+import { addDaysToColumns, handleDragDrop } from "./utilsMonthPanelColumns";
 import useScrollThumbPosition from "./useScrollThumbPosition";
 
 const MonthPanelColumns = () => {
@@ -27,8 +27,6 @@ const MonthPanelColumns = () => {
   const columnsWithDays = addDaysToColumns(month?.columns);
 
   const [columns, setColumns] = useState<ModelColumn[]>([]);
-
-
 
   useEffect(() => {
     setColumns(columnsWithDays);
@@ -63,8 +61,8 @@ const MonthPanelColumns = () => {
     handleDragDrop(results, columns, setColumns);
   };
 
-const rowStyles =
-  "col-sm-8 col-md-9 col-xl-8 d-flex column-gap-1 ms-sm-auto mx-xl-auto  px-1";
+  const rowStyles =
+    "col-sm-8 col-md-9 col-xl-8 d-flex column-gap-1 ms-sm-auto mx-xl-auto  px-1";
 
   return (
     <Container
@@ -78,10 +76,7 @@ const rowStyles =
           <MonthPanelColumnsHeader thumbPosition={thumbPosition} />
         </Row>
 
-        <Row
-          className= {rowStyles}
-          style={{ height: "fit-content" }}
-        >
+        <Row className={rowStyles} style={{ height: "fit-content" }}>
           <DragDropContext onDragEnd={handleDragEnd}>
             {columns?.map((column: ModelColumn, idx: number) => {
               return (
