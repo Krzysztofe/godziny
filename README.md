@@ -77,5 +77,5 @@ react-bootstrap, sweetalert2, react-icons
 * Navigate to the project directory
 * Install the project dependencies by running npm install or yarn install
 * Start the development server npm start or yarn start
-* Open your browser and visit http://localhost:3000 to see the running application.
+* Open your browser and visit your localhost:3000 to see the running application.
 
