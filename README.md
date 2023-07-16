@@ -1,6 +1,6 @@
 # Godziny - reset form
 
-"Godziny" is an app designed for the presidency of a trade union's workers council to plan the so-called union hours. In Poland, the presidency of the trade union's council is entitled to use hours for union activities. The allocation of these union hours is determined monthly and depends on the number of days in the month and the number of council members. Once the number of hours for the month is determined, the members of the presidency provide the employer with data on the number of hours taken on specific days of the month. Subsequently, the employer can either accept or reject the request for union hours.
+"Godziny" is an react app designed for the presidency of a trade union's workers council to plan the so-called union hours. In Poland, the presidency of the trade union's council is entitled to use hours for union activities. The allocation of these union hours is determined monthly and depends on the number of days in the month and the number of council members. Once the number of hours for the month is determined, the members of the presidency provide the employer with data on the number of hours taken on specific days of the month. Subsequently, the employer can either accept or reject the request for union hours.
 
 - The application have only a login function as it is intended for a predetermined number of council members, ranging from 5 to 20 individuals.
 - After logging in, the user is redirected to the URL corresponding to the current month.
@@ -69,4 +69,13 @@ react-bootstrap, sweetalert2, react-icons
 
 * On the mobile version of aplication, the drag and drop functionality is not well supported on touch events. It works in the following way: when you press on a tile with information about a day, a black border appears around the tile and its background becomes transparent. To make a change, you need to release your finger and then touch the tile again to drag it to the desired column.
  
-* To optimize data retrieval from the database and at the same have access to a list of dates of all saved months, the data structure has been divided into an object with the key "years" and an object with the key "info". The "years" object contains all the data related to the months, while the "info" object holds an array with the collection of dates of all the months saved under the "years" key. The application fetches only data from a single month and the entire array of dates from the saved months in real-time. The dates of all the months from the "info" key are rendered in the sidebar and settings panel without the need to fetch all the data from the database. However, this approach presents a challenge related to performing two requests at the same time: one for the month data to the "years" key and another for the month date to the "info" array. The duplication of PUT and DELETE requests needs to be limited to one in the future. 
+* To optimize data retrieval from the database and at the same have access to a list of dates of all saved months, the data structure has been divided into an object with the key "years" and an object with the key "info". The "years" object contains all the data related to the months, while the "info" object holds an array with the collection of dates of all the months saved under the "years" key. The application fetches only data from a single month and the entire array of dates from the saved months in real-time. The dates of all the months from the "info" key are rendered in the sidebar and settings panel without the need to fetch all the data from the database. However, this approach presents a challenge related to performing two requests at the same time: one for the month data to the "years" key and another for the month date to the "info" array. The duplication of PUT and DELETE requests needs to be limited to one in the future.
+
+## Prerequisites
+* Before getting started, make sure you have the Node.js and npm or yarn
+* Clone this repository to your local machine
+* Navigate to the project directory
+* Install the project dependencies by running npm install or yarn install
+* Start the development server npm start or yarn start
+* Open your browser and visit http://localhost:3000 to see the running application.
+
