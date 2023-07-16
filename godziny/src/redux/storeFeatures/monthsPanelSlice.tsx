@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import {
   ModelCalc,
   ModelColumn,
@@ -42,14 +42,14 @@ export const monthsPanelSlice = createSlice({
   name: "monthsPanel",
   initialState,
   reducers: {
-    getMonth: (state, action: PayloadAction<any>) => {
+    getMonth: (state, action) => {
       state.month = action.payload;
     },
-    getMonthError: (state, action: PayloadAction<any>) => {
+    getMonthError: (state, action) => {
       state.error = action.payload;
     },
 
-    getMonthIsLoading: (state, action: PayloadAction<any>) => {
+    getMonthIsLoading: (state, action) => {
       state.isLoading = action.payload;
     },
   },

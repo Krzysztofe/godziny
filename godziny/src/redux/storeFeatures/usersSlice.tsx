@@ -10,13 +10,13 @@ export const usersSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    getUsers: (state, action: PayloadAction<any>) => {
+    getUsers: (state, action) => {
       state.users = action.payload;
     },
-    getUsersError: (state, action: PayloadAction<any>) => {
+    getUsersError: (state, action) => {
       state.usersError = action.payload;
     },
-    getUsersIsLoading: (state, action: PayloadAction<any>) => {
+    getUsersIsLoading: (state, action) => {
       state.usersIsLoading = action.payload;
     },
   },

@@ -21,14 +21,14 @@ const MonthPanelHeaderSummary = () => {
         <div className="mx-2">
           {month?.calc?.allHours} -{" "}
           <span
-            className={`${month?.calc?.currentHours < 0 ? "text-danger" : ""}`}
+            className={`${month?.calc?.currentHours <=0 ? "text-danger" : ""}`}
           >
             {month?.calc?.currentHours}
           </span>
         </div>
         <div
           className={`col-3 ${
-            month?.calc?.currentHours < 0 ? "text-danger" : ""
+            month?.calc?.currentHours <=0 ? "text-danger" : ""
           }`}
         >
           {month?.calc?.currentHours < 0 ? "Brak" : "Dostępne"}

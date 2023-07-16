@@ -4,16 +4,29 @@ import { RootState } from "../redux/store";
 const useMonthDates = () => {
   const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
 
-  const databaseMonthsDatesToString = infoMonths?.map((monthDate: string) => {
-    const monthToDateFormat = new Date(monthDate);
-    return new Intl.DateTimeFormat("pl-PL", {
-      year: "numeric",
-      month: "long",
-      timeZone: "UTC",
-    }).format(monthToDateFormat);
-  });
+  const sortedInfoMonths = infoMonths && [...infoMonths]?.sort(
+    (a: string, b: string) => {
+      const dateA = new Date(a).getTime();
+      const dateB = new Date(b).getTime();
 
-  return { databaseMonthsDatesToString };
+      return dateA - dateB;
+    }
+  );
+
+ 
+
+  const databaseMonthsDatesToString = sortedInfoMonths?.map(
+    (monthDate: string) => {
+      const monthToDateFormat = new Date(monthDate);
+      return new Intl.DateTimeFormat("pl-PL", {
+        year: "numeric",
+        month: "long",
+        timeZone: "UTC",
+      }).format(monthToDateFormat);
+    }
+  );
+
+  return { sortedInfoMonths, databaseMonthsDatesToString };
 };
 
 export default useMonthDates;

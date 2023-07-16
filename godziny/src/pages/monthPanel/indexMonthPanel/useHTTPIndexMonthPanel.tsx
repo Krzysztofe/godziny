@@ -11,12 +11,8 @@ const useHTTPMonthPanel = () => {
     (state: RootState) => state.monthsPanel
   );
 
-  let panelContent = (
-    <>
-      <MonthPanelHeader />
-      <MonthPanelColumns />
-    </>
-  );
+
+  let panelContent 
 
   if (isLoading) {
     panelContent = (
@@ -29,24 +25,31 @@ const useHTTPMonthPanel = () => {
       const errMsg = "status" in error && error.status;
 
       panelContent = (
-        <h3 className="text-danger col-5">
+        <h3 className="text-danger mx-auto ">
           <> Błąd: {errMsg} </>
         </h3>
       );
     }
   } else if (!infoMonths || infoMonths?.length === 0) {
     panelContent = (
-      <h5 className="text-warning text-center col-5">
+      <h5 className="text-warning">
         Brak miesięcy zapisanych w bazie danych. Zapisz miesiąc za pomocą
         formularza
       </h5>
     );
-  } else if (!month?.id) {
+  } else if (!month || month?.id==="") {
     panelContent = (
-      <h3 className="text-warning text-center col-5">
+      <h3 className="text-warning">
         Brak danych z miesiąca {currMonthDateToString}. Zapisz miesiąc za pomocą
         formularza
       </h3>
+    );
+  } else {
+    panelContent = (
+      <>
+        <MonthPanelHeader />
+        <MonthPanelColumns />
+      </>
     );
   }
 

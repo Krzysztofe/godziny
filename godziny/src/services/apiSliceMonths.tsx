@@ -10,9 +10,6 @@ import {
 const createUrl = (year: string, month: string, suffix = "") =>
   `/years/${year}/month_${month}${suffix}.json`;
 
-const mutationBody = (url: string, method: string, body: any) => {
-  return { url, method, body };
-};
 
 export const monthsApiSlice = createApi({
   reducerPath: "monthsApi",
@@ -35,8 +32,11 @@ export const monthsApiSlice = createApi({
       void,
       { year: string; month: string; monthBody: ModelMonthPattern }
     >({
-      query: ({ year, month, monthBody }) =>
-        mutationBody(createUrl(year, month), "PUT", monthBody),
+      query: ({ year, month, monthBody }) => ({
+        url: createUrl(year, month),
+        method: "PUT",
+        body: monthBody,
+      }),
       invalidatesTags: ["months"],
     }),
 
@@ -44,12 +44,11 @@ export const monthsApiSlice = createApi({
       void,
       { year: string; month: string; firstColumnBody: ModelColumn }
     >({
-      query: ({ year, month, firstColumnBody }) =>
-        mutationBody(
-          createUrl(year, month, "/columns/0"),
-          "PUT",
-          firstColumnBody
-        ),
+      query: ({ year, month, firstColumnBody }) => ({
+        url: createUrl(year, month, "/columns/0"),
+        method: "PUT",
+        body: firstColumnBody,
+      }),
       invalidatesTags: ["months"],
     }),
 
@@ -57,18 +56,17 @@ export const monthsApiSlice = createApi({
       void,
       { year: string; month: string; colIdx: number; daysBody: ModelDay[] }
     >({
-      query: ({ year, month, colIdx, daysBody }) =>
-        mutationBody(
-          createUrl(year, month, `/columns/${colIdx}/days`),
-          "PUT",
-          daysBody
-        ),
+      query: ({ year, month, colIdx, daysBody }) => ({
+        url: createUrl(year, month, `/columns/${colIdx}/days`),
+        method: "PUT",
+        body: daysBody,
+      }),
       invalidatesTags: ["months"],
     }),
 
     deleteMonth: builder.mutation<ModelMonthPattern, any>({
       query: ({ year, month }) => ({
-        url: `/years/${year}/month_${month}.json`,
+        url: createUrl(year, month),
         method: "DELETE",
       }),
       invalidatesTags: ["months"],
@@ -97,8 +95,11 @@ export const monthsApiSlice = createApi({
       void,
       { year: string; month: string; allHours: number }
     >({
-      query: ({ year, month, allHours }) =>
-        mutationBody(createUrl(year, month, `/calc/allHours`), "PUT", allHours),
+      query: ({ year, month, allHours }) => ({
+        url: createUrl(year, month, `/calc/allHours`),
+        method: "PUT",
+        body: allHours,
+      }),
       invalidatesTags: ["months"],
     }),
   }),

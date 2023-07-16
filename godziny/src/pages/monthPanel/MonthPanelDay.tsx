@@ -1,19 +1,18 @@
 import { Draggable } from "react-beautiful-dnd";
 import Button from "react-bootstrap/Button";
+import { FiClock } from "react-icons/fi";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { ModelDay } from "../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
 import useHTTPState from "../../hooks/useHTTPState";
 import useURLValues from "../../hooks/useURLValues";
-import {
-  useDeleteDayMutation,
-  useMonthDataQuery,
-} from "../../services/apiSliceMonths";
-import MonthPanelDayPrintData from "./MonthPanelDayPrintData";
-import { FiClock } from "react-icons/fi";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { alertHelper } from "../../utils/alertHelpers";
-import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import {
+  useDeleteDayMutation
+} from "../../services/apiSliceMonths";
+import { alertHelper } from "../../utils/alertHelpers";
+import MonthPanelDayPrintData from "./MonthPanelDayPrintData";
 
 interface Props {
   day: ModelDay;
@@ -66,7 +65,7 @@ const MonthPanelDay = (props: Props) => {
             <div
               className={`border rounded-1 mb-2 px-1 py-2 py-sm-1 ${
                 snapshot.isDragging
-                  ? "border-secondary"
+                  ? "border-dark"
                   : "border-secondary-subtle"
               }`}
               style={{

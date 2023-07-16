@@ -7,7 +7,7 @@ import { RootState } from "../../../redux/store";
 import "./_monthList.scss";
 
 const SidebarMonthsList = () => {
-  const { databaseMonthsDatesToString } = useMonthDates();
+  const { sortedInfoMonths, databaseMonthsDatesToString } = useMonthDates();
   const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
   const { monthURL, isMonthInURL } = useURLValues();
 
@@ -30,7 +30,7 @@ const SidebarMonthsList = () => {
           return (
             <ListGroup.Item key={month} className="border-0 p-0 px-1">
               <Link
-                to={`/${infoMonths?.[idx]}`}
+                to={`/${sortedInfoMonths?.[idx]}`}
                 className={`${
                   curMonthURLStringFormat !== month || !curMonthURLStringFormat
                     ? "text-reset"

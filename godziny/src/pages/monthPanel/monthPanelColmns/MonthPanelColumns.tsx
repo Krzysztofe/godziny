@@ -63,6 +63,9 @@ const MonthPanelColumns = () => {
     handleDragDrop(results, columns, setColumns);
   };
 
+const rowStyles =
+  "col-sm-8 col-md-9 col-xl-8 d-flex column-gap-1 ms-sm-auto mx-xl-auto  px-1";
+
   return (
     <Container
       fluid
@@ -71,12 +74,12 @@ const MonthPanelColumns = () => {
       className=" mb-1 overflow-y-scroll"
     >
       <div>
-        <Row className="col-sm-8 col-md-9 col-xl-8 col-xxl-8 d-flex column-gap-1 ms-sm-auto mx-xl-auto  px-1 sticky-top">
+        <Row className={`${rowStyles} sticky-top  `}>
           <MonthPanelColumnsHeader thumbPosition={thumbPosition} />
         </Row>
 
         <Row
-          className="col-sm-8 col-md-9 col-xl-8 d-flex column-gap-1 ms-sm-auto mx-xl-auto  px-1"
+          className= {rowStyles}
           style={{ height: "fit-content" }}
         >
           <DragDropContext onDragEnd={handleDragEnd}>

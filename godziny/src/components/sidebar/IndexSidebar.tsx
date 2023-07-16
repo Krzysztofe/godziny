@@ -1,4 +1,3 @@
-
 import "firebase/database";
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
@@ -17,25 +16,14 @@ import SidebarMonthCollapse from "./SidebarMonthCollapse";
 import SidebarTitle from "./SidebarTitle";
 import SidebarDayForm from "./sidebarDayForm/SidebarDayForm";
 import SidebarMonthForm from "./sidebarMonthForm/SidebarMonthForm";
-
+import useReduxDatabase from "../../useReduxDatabase";
 
 const IndexSidebar = () => {
-  const dispatch = useDispatch();
+  useReduxDatabase();
   const { pathname } = useLocation();
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const toggleShow = () => setShow(s => !s);
-
-  const { data, error, isLoading } = useMonthsInfoQuery();
-
-  
-
-  useEffect(() => {
-    dispatch(getInfoMonths(data));
-    dispatch(getInfoMonthError(error));
-    dispatch(getInfoMonthIsLoading(isLoading));
-  }, [data, dispatch]);
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -43,7 +31,6 @@ const IndexSidebar = () => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
-
     window.addEventListener("resize", handleResize);
 
     return () => {

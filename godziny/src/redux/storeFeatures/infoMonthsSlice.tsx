@@ -1,6 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-
-
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: any = {
   infoMonths: [],
@@ -12,14 +10,14 @@ export const infoMonthsSlice = createSlice({
   name: "infoMonths",
   initialState,
   reducers: {
-    getInfoMonths: (state, action: PayloadAction<any>) => {
+    getInfoMonths: (state, action) => {
       state.infoMonths = action.payload;
     },
-    getInfoMonthError: (state, action: PayloadAction<any>) => {
+    getInfoMonthError: (state, action) => {
       state.infoMonthsError = action.payload;
     },
 
-    getInfoMonthIsLoading: (state, action: PayloadAction<boolean>) => {
+    getInfoMonthIsLoading: (state, action) => {
       state.infoMonthsIsLoading = action.payload;
     },
   },

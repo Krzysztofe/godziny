@@ -2,7 +2,6 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ModelUser } from "../pages/settings/settingsUserForm/useSettingsUserFormik";
 import { URL_USERS_DATA } from "../data/URL";
 
-
 export const usersApiSlice = createApi({
   reducerPath: "usersApi",
   baseQuery: fetchBaseQuery({ baseUrl: URL_USERS_DATA }),

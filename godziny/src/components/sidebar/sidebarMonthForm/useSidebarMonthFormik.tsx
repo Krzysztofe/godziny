@@ -22,11 +22,10 @@ interface ModelFormValues {
 const useSidebarMonthFormik = () => {
   const navigate = useNavigate();
   const [updateMonth, success] = useUpdateMonthMutation()
-  const [updateMonthInfo, successInfo] = useUpdateMonthInfoMutation();
+  const [updateMonthInfo] = useUpdateMonthInfoMutation();
   const [deleteMonth] = useDeleteMonthMutation();
   const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
   const { validationSchema } = useValidationSidebarMonthForm();
-  const [setned, setSented] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   const formik = useFormik<ModelFormValues>({
