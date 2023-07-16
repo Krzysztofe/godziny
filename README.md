@@ -58,12 +58,29 @@ react-bootstrap, sweetalert2, react-icons
 
 ## Demo <a href = "https://krzysztofe.github.io/godziny/"> here --></a>
 
+## Desktop
 
-## Do do 
+<img src="https://github.com/Krzysztofe/godziny/assets/96065197/2fd80bb0-7706-483a-99ef-f6622065a0d6" width="500" alt="Desktop Screenshot" margin="20">
+
+<img src="https://github.com/Krzysztofe/godziny/assets/96065197/f333c22f-c793-4bd6-9eb7-b5587154c1ec" width="500" alt="Desktop Screenshot">
+
+<img src="https://github.com/Krzysztofe/godziny/assets/96065197/81770d78-57f9-4817-9697-3a078b4d22a2" width="500" alt="Desktop Screenshot">
+
+<img src="https://github.com/Krzysztofe/godziny/assets/96065197/8efd450b-dac2-4a64-a5e3-ac6c01578238" width="500" alt="Desktop Screenshot">
+
+## Mobile
+
+<img src="https://github.com/Krzysztofe/godziny/assets/96065197/670227ce-4803-464e-94c4-c0f6d06c76cf" width="300" alt="Mobile Screenshot">
+
+<img src="https://github.com/Krzysztofe/godziny/assets/96065197/82ccd815-341c-4c2a-bb8f-57144d59fde7" width="300" alt="Mobile Screenshot">
+
+## Do do
+
 * Fast tile movement on dragg and dropp componentscan cause issues with data transmission. To address this, it is necessary to implement JS throttling, which helps regulate the data transfer rate and resolve the problem.
 * Validation on hours input type number in heder month panel
-* Styles in settings panel
+* Styles
 * Full TypeScript types
+* Error page
 
  ## Comments
 * The Firebase Config keys are not hidden in the .env file to allow access for setting up the project locally.
