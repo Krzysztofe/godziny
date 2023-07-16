@@ -62,9 +62,12 @@ react-bootstrap, sweetalert2, react-icons
 
 <img src="https://github.com/Krzysztofe/godziny/assets/96065197/2fd80bb0-7706-483a-99ef-f6622065a0d6" width="500" alt="Desktop Screenshot" margin="20">
 
+
 <img src="https://github.com/Krzysztofe/godziny/assets/96065197/f333c22f-c793-4bd6-9eb7-b5587154c1ec" width="500" alt="Desktop Screenshot">
 
+
 <img src="https://github.com/Krzysztofe/godziny/assets/96065197/81770d78-57f9-4817-9697-3a078b4d22a2" width="500" alt="Desktop Screenshot">
+
 
 <img src="https://github.com/Krzysztofe/godziny/assets/96065197/8efd450b-dac2-4a64-a5e3-ac6c01578238" width="500" alt="Desktop Screenshot">
 
