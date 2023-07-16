@@ -20,7 +20,7 @@ The application was developed in consultation with trade union workers council m
 
 
 
-##Features
+## Features
 
 * Comunication with database
 * Login form 
@@ -31,7 +31,7 @@ The application was developed in consultation with trade union workers council m
 * RWD
 
 
-##Technologies
+## Technologies
 
 * SCSS, Bootstrap
 * React, TypeScript
@@ -59,7 +59,7 @@ react-bootstrap, sweetalert2, react-icons
 
 
 ## Do do 
-* Throttling on dragg and dropp components
+* Fast tile movement on dragg and dropp componentscan cause issues with data transmission. To address this, it is necessary to implement JS throttling, which helps regulate the data transfer rate and resolve the problem.
 * Validation on hours input type number in heder month panel
 * Styles in settings panel
 * Full TypeScript types
