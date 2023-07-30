@@ -8,9 +8,7 @@ import { ModelDay } from "../../components/sidebar/sidebarMonthForm/dataSidebarM
 import useHTTPState from "../../hooks/useHTTPState";
 import useURLValues from "../../hooks/useURLValues";
 import { RootState } from "../../redux/store";
-import {
-  useDeleteDayMutation
-} from "../../services/apiSliceMonths";
+import { useDeleteDayMutation } from "../../services/apiSliceMonths";
 import { alertHelper } from "../../utils/alertHelpers";
 import MonthPanelDayPrintData from "./MonthPanelDayPrintData";
 
@@ -48,6 +46,8 @@ const MonthPanelDay = (props: Props) => {
     });
   };
 
+  console.log("", props.day?.userColor);
+
   return (
     <Draggable
       draggableId={props.day && props?.day?.id}
@@ -60,16 +60,17 @@ const MonthPanelDay = (props: Props) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
-            className="mb-2"
+            className={`mb-2 bg-white rounded border ${
+              snapshot.isDragging
+                ? "border-secondary-subtle"
+                : "border-transparent"
+            } `}
           >
             <div
-              className={`border rounded-1 mb-2 px-1 py-2 py-sm-1 ${
-                snapshot.isDragging
-                  ? "border-dark"
-                  : "border-secondary-subtle"
-              }`}
+              className= " mb-2 px-1 py-2 py-sm-1"
+              
               style={{
-                backgroundColor: props.day?.userColor,
+                borderTop: `4px solid ${props.day?.userColor}`,
                 opacity: snapshot.isDragging ? 0.8 : 1,
               }}
             >

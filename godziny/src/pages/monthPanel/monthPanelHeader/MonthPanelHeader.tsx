@@ -8,7 +8,7 @@ const MonthPanelHeader = () => {
     <header className="me-3">
       <Container fluid>
         <Row className="col-sm-8 col-md-9 col-xl-8 col-xxl-8 ms-sm-auto mx-xl-auto px-1 ">
-          <MonthPanelHeaderCollapse />
+          {/* <MonthPanelHeaderCollapse /> */}
           <MonthPanelHeaderSummary />
         </Row>
       </Container>

@@ -17,6 +17,10 @@ import SidebarTitle from "./SidebarTitle";
 import SidebarDayForm from "./sidebarDayForm/SidebarDayForm";
 import SidebarMonthForm from "./sidebarMonthForm/SidebarMonthForm";
 import useReduxDatabase from "../../useReduxDatabase";
+import MonthPanelHeaderForm from "../../pages/monthPanel/monthPanelHeader/formHeaderMonthPanel/MonhPanelHeaderForm";
+import SidebarHoursForm from "./SidebarHoursForm";
+import MonthPanelHeaderSummary from "../../pages/monthPanel/monthPanelHeader/MonthPanelHeaderSummary";
+import "./../../pages/monthPanel/indexMonthPanel/_bgImage.scss";
 
 const IndexSidebar = () => {
   useReduxDatabase();
@@ -42,6 +46,14 @@ const IndexSidebar = () => {
     windowWidth > 575 && setShow(true);
   }, [windowWidth]);
 
+  let offCanvasWidth = "100%";
+  if (windowWidth > 575) {
+    offCanvasWidth = "35%";
+  }
+  if (windowWidth > 766) {
+    offCanvasWidth = "25%";
+  }
+
   return (
     <>
       {!["/"].includes(pathname) ? (
@@ -63,24 +75,35 @@ const IndexSidebar = () => {
             name="Disable backdrop"
             scroll={true}
             backdrop={false}
-            className="bg-primary-subtle"
-            style={{ width: 220 }}
+            style={{
+              width: offCanvasWidth,
+              backgroundColor: windowWidth > 575 && "rgba(255, 255, 255, 0)",
+            }}
           >
-            <Offcanvas.Header className="pb-0">
-              <SidebarTitle />
-            </Offcanvas.Header>
-            <Offcanvas.Body className="d-flex flex-column pt-0">
-              <SidebarMonthForm />
-              <SidebarMonthCollapse />
-              <SidebarDayForm />
+            <div className={`${windowWidth < 575 && "backgroundImage"}`}>
+              <div style={{ backgroundColor: "rgba(255, 255, 255, 0.5)" }}>
+                <Offcanvas.Header
+                  closeButton={windowWidth < 575}
+                  className="pb-0"
+                >
+                  <SidebarTitle />
+                </Offcanvas.Header>
+                <Offcanvas.Body className="d-flex flex-column pt-0 w-0 m-3 bg-white">
+                  <SidebarMonthForm />
+                  <SidebarHoursForm />
+                  {windowWidth < 575 ? <MonthPanelHeaderSummary /> : null}
+                  <SidebarMonthCollapse />
+                  <SidebarDayForm />
 
-              <Link
-                to="/ustawienia"
-                className="text-info mt-auto fw-medium text-decoration-none "
-              >
-                <AiTwotoneSetting /> Ustawienia
-              </Link>
-            </Offcanvas.Body>
+                  <Link
+                    to="/ustawienia"
+                    className="text-info mt-auto fw-medium text-decoration-none "
+                  >
+                    <AiTwotoneSetting /> Ustawienia
+                  </Link>
+                </Offcanvas.Body>
+              </div>
+            </div>
           </Offcanvas>
         </aside>
       ) : null}

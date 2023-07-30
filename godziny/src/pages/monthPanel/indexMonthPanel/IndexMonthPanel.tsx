@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import useHTTPIndexMonthPanel from "./useHTTPIndexMonthPanel";
+import "./_bgImage.scss"
+
 
 const IndexMonthPanel = () => {
   const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
@@ -11,7 +13,7 @@ const IndexMonthPanel = () => {
 
   const { panelContent } = useHTTPIndexMonthPanel();
 
-  let mainStyles = "d-flex flex-column bg-primary-subtle";
+  let mainStyles = "d-flex flex-column backgroundImage";
 
   if (isLoading && !month) {
     mainStyles = "d-flex align-items-center justify-content-center";
@@ -23,7 +25,7 @@ const IndexMonthPanel = () => {
   }
 
   return (
-    <main className={mainStyles} style={{ height: "100vh" }}>
+    <main className={mainStyles} style={{ height: "100vh"}}>
       {panelContent}
     </main>
   );
