@@ -24,7 +24,6 @@ import "./../../pages/monthPanel/indexMonthPanel/_bgImage.scss";
 import SidebarHoursFormCollapse from "./sidebarHoursForm/SidebarHoursFormCollapse";
 import SidebarMonthFormColapse from "./sidebarMonthFormCollapse/SidebarMonthFormColapse";
 
-
 const IndexSidebar = () => {
   useReduxDatabase();
   const { pathname } = useLocation();
@@ -78,34 +77,27 @@ const IndexSidebar = () => {
             name="Disable backdrop"
             scroll={true}
             backdrop={false}
+            className={`${windowWidth < 575 && "backgroundImage"}`}
             style={{
               width: offCanvasWidth,
-              backgroundColor: windowWidth > 575 && "rgba(255, 255, 255, 0)",
+              backgroundColor: windowWidth > 575 && "rgba(255, 255, 255, 0.4)",
             }}
           >
-            <div className={`${windowWidth < 575 && "backgroundImage"}`}>
-              <div style={{ backgroundColor: "rgba(255, 255, 255, 0.5)" }}>
-                <Offcanvas.Header
-                  closeButton={windowWidth < 575}
-                  className="pb-0"
-                >
-                  <SidebarTitle />
-                </Offcanvas.Header>
-                <Offcanvas.Body className="d-flex flex-column pt-0 w-0 m-3 bg-white">
-                  <SidebarMonthFormColapse />
-                  <SidebarHoursFormCollapse />
-                  {windowWidth < 575 ? <MonthPanelHeaderSummary /> : null}
-                  <SidebarDayForm />
-                  {/* <SidebarMonthCollapse /> */}
-                  <Link
-                    to="/ustawienia"
-                    className="text-info mt-auto fw-medium text-decoration-none "
-                  >
-                    <AiTwotoneSetting /> Ustawienia
-                  </Link>
-                </Offcanvas.Body>
-              </div>
-            </div>
+            <Offcanvas.Header closeButton={windowWidth < 575} className="pb-0">
+              <SidebarTitle />
+            </Offcanvas.Header>
+            <Offcanvas.Body className="flex-grow-0 m-1 bg-white rounded">
+              <SidebarMonthFormColapse />
+              <SidebarHoursFormCollapse />
+              {windowWidth < 575 ? <MonthPanelHeaderSummary /> : null}
+              <SidebarDayForm />
+            </Offcanvas.Body>
+            <Link
+              to="/ustawienia"
+              className="text-info mt-auto fw-medium text-decoration-none "
+            >
+              <AiTwotoneSetting /> Ustawienia
+            </Link>
           </Offcanvas>
         </aside>
       ) : null}

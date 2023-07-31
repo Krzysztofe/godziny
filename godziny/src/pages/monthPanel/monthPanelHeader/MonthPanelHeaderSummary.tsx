@@ -9,7 +9,7 @@ const MonthPanelHeaderSummary = () => {
 
   return (
     <>
-      <SidebarMonthCollapse />
+   
       {/* <div className="text-capitalize fw-medium mt-2 text-center d-md-none">
         {monthURLStringFormat}
       </div> */}
