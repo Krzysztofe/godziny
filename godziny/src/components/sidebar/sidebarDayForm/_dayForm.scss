@@ -13,7 +13,7 @@
     backdrop-filter: blur(5px);
   }
   &::after {
-    content: "Zapisz liczbę godzin \A w miesiącu";
+    content: "Dodaj godziny \A w miesiącu";
     position: absolute;
     color: $danger;
     text-align: center;

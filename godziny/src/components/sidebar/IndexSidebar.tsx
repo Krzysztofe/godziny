@@ -21,6 +21,9 @@ import MonthPanelHeaderForm from "../../pages/monthPanel/monthPanelHeader/formHe
 import SidebarHoursForm from "./SidebarHoursForm";
 import MonthPanelHeaderSummary from "../../pages/monthPanel/monthPanelHeader/MonthPanelHeaderSummary";
 import "./../../pages/monthPanel/indexMonthPanel/_bgImage.scss";
+import SidebarHoursFormCollapse from "./sidebarHoursForm/SidebarHoursFormCollapse";
+import SidebarMonthFormColapse from "./sidebarMonthFormCollapse/SidebarMonthFormColapse";
+
 
 const IndexSidebar = () => {
   useReduxDatabase();
@@ -89,12 +92,11 @@ const IndexSidebar = () => {
                   <SidebarTitle />
                 </Offcanvas.Header>
                 <Offcanvas.Body className="d-flex flex-column pt-0 w-0 m-3 bg-white">
-                  <SidebarMonthForm />
-                  <SidebarHoursForm />
+                  <SidebarMonthFormColapse />
+                  <SidebarHoursFormCollapse />
                   {windowWidth < 575 ? <MonthPanelHeaderSummary /> : null}
-                  <SidebarMonthCollapse />
                   <SidebarDayForm />
-
+                  {/* <SidebarMonthCollapse /> */}
                   <Link
                     to="/ustawienia"
                     className="text-info mt-auto fw-medium text-decoration-none "

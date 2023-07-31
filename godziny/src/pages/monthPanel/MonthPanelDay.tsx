@@ -67,10 +67,9 @@ const MonthPanelDay = (props: Props) => {
             } `}
           >
             <div
-              className= " mb-2 px-1 py-2 py-sm-1"
-              
+              className="mb-2 px-1 py-2 py-sm-1"
               style={{
-                borderTop: `4px solid ${props.day?.userColor}`,
+                borderTop: `8px solid ${props.day?.userColor}`,
                 opacity: snapshot.isDragging ? 0.8 : 1,
               }}
             >
@@ -82,7 +81,7 @@ const MonthPanelDay = (props: Props) => {
                 disabled={success.isLoading}
               >
                 <div className="d-flex align-items-center fs-7">
-                  {props.day?.hours} <FiClock className="  ms-1" />
+                  {props.day?.hours} h
                 </div>
                 <div className="d-flex align-items-center">{btnContent}</div>
               </Button>

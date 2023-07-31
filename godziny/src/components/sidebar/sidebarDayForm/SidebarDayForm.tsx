@@ -16,7 +16,7 @@ const SidebarDayForm = () => {
   const { month } = useSelector((state: RootState) => state.monthsPanel);
   const { dataSelects } = useDataSidebarSelects();
   const { formik, success } = useSidebarDayFormik();
-  const { btnContent } = useHTTPState(success, "Zapisz dzień");
+  const { btnContent } = useHTTPState(success, "Dodaj dzień");
   const { isMonthInURL } = useURLValues();
 
   const allHours = month?.calc?.allHours;

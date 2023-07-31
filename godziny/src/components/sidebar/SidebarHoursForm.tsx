@@ -8,7 +8,7 @@ import Form from "react-bootstrap/Form";
 
 const SidebarHoursForm = () => {
   const { formik, success } = useMonthPanelHeaderFormik();
-  const { btnContent } = useHTTPState(success, "Zapisz liczbę godzin");
+  const { btnContent } = useHTTPState(success, "Dodaj godziny");
   const { month } = useSelector((state: RootState) => state.monthsPanel);
 
   const submittedHours = month?.calc.submittedHours;
@@ -36,14 +36,14 @@ const SidebarHoursForm = () => {
         <span> &nbsp; h</span>
       </div>
 
-      <div
+      {/* <div
         className="text-danger d-block mt-0 fs-8 text-center"
         style={{ height: "0.7rem" }}
       >
         {submittedHours + acceptedHours > +formik.values.allHours
-          ? `Podaj ilość godzin większą od ${submittedHours + acceptedHours} `
+          ? `Min. ${submittedHours + acceptedHours} h`
           : ""}
-      </div>
+      </div> */}
 
       <Form.Group className="mt-2 d-flex align-items-center w-100">
         <Form.Range
@@ -62,7 +62,14 @@ const SidebarHoursForm = () => {
       </Form.Group>
 
       <div className="d-flex justify-content-between">
-        <div className="fw-medium">0 h</div> <div className="fw-medium">320 h</div>
+        <div className="fw-medium">0 h</div>
+
+        <div className="text-danger  mt-auto fs-8">
+          {submittedHours + acceptedHours > +formik.values.allHours
+            ? `Min. ${submittedHours + acceptedHours} h`
+            : ""}
+        </div>
+        <div className="fw-medium">320 h</div>
       </div>
       <Button
         type="submit"

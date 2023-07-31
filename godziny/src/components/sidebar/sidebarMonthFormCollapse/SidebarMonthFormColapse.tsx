@@ -1,13 +1,12 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
-import SidebarMonthsList from "./sidebarMonthList/SidebarMonthsList";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import useMonthURLToString from "../../hooks/useMonthURLToString";
+import SidebarMonthForm from "../sidebarMonthForm/SidebarMonthForm";
 
-const SidebarMonthCollapse = () => {
-  const [open, setOpen] = useState(false);
-  const { monthURLStringFormat } = useMonthURLToString();
+
+const SidebarMonthFormColapse = () => {
+ const [open, setOpen] = useState(false);
 
   return (
     <>
@@ -15,12 +14,14 @@ const SidebarMonthCollapse = () => {
         onClick={() => setOpen(!open)}
         aria-controls="example-collapse-text"
         aria-expanded={open}
-        size="sm"
-        className="p-0 px-1 border border-primary w-100 mt-1 text-start bg-white fw-medium d-flex justify-content-between align-items-center"
+        className="fw-medium w-100 mt-2 bg-info text-white"
+        // className={`fw-medium w-100 mt-1 d-flex justify-content-center align-items-center bg-primary border-0 p-1 ${
+        //   open ? "rounded-bottom-0" : ""
+        // }`}
       >
-        {monthURLStringFormat}
+        Dodaj miesiąc
         <MdOutlineKeyboardArrowDown
-          className="fs-3 me-1"
+          className="fs-4 fw-medium"
           style={{
             transform: `${open ? "rotate(180deg)" : ""} `,
             transitionDuration: "320ms",
@@ -28,12 +29,12 @@ const SidebarMonthCollapse = () => {
         />
       </Button>
       <Collapse in={open}>
-        <div>
-          <SidebarMonthsList />
+        <div className="bg-white p-0">
+          <SidebarMonthForm />
         </div>
       </Collapse>
     </>
   );
 };
 
-export default SidebarMonthCollapse;
+export default SidebarMonthFormColapse;
