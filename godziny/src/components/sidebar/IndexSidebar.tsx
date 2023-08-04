@@ -43,9 +43,9 @@ const IndexSidebar = () => {
   if (windowWidth > 575) {
     offCanvasWidth = "200px";
   }
-   if (windowWidth > 769) {
-     offCanvasWidth = "230px";
-   }
+  if (windowWidth > 769) {
+    offCanvasWidth = "230px";
+  }
   if (windowWidth > 992) {
     offCanvasWidth = "250px";
   }
@@ -54,16 +54,22 @@ const IndexSidebar = () => {
     <>
       {!["/"].includes(pathname) ? (
         <aside>
-          {/* <Button
+          <Button
             variant="info"
             onClick={toggleShow}
             className={`rounded-0 p-0 ${
               windowWidth > 575 ? "d-none" : "d-block"
             }`}
-            style={{ position: "absolute", height: "2.5rem", width: "110%", right: 0, bottom:0, }}
+            style={{
+              position: "absolute",
+              height: "2.5rem",
+              width: "110%",
+              right: 0,
+              bottom: 0,
+            }}
           >
-            Menu 
-          </Button> */}
+            Menu
+          </Button>
 
           <Offcanvas
             show={show}
@@ -71,13 +77,18 @@ const IndexSidebar = () => {
             name="Disable backdrop"
             scroll={true}
             backdrop={false}
-            className={`${windowWidth < 575 && "backgroundImage"} p-1 border-white`}
+            className={`${
+              windowWidth < 575 && "backgroundImage"
+            } p-1 border-white`}
             style={{
               width: offCanvasWidth,
               backgroundColor: windowWidth > 575 && "rgba(255, 255, 255, 0.4)",
             }}
           >
-     
+            <Offcanvas.Header
+              closeButton={windowWidth < 575}
+              className="ms-auto"
+            ></Offcanvas.Header>
             {isMonthInURL && (
               <Offcanvas.Body className="flex-grow-0 p-2 bg-white rounded">
                 <SidebarMonthFormColapse />
