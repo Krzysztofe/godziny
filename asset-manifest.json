@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/godziny/static/css/main.d58a8afc.css",
-    "main.js": "/godziny/static/js/main.3e3176f9.js",
+    "main.js": "/godziny/static/js/main.3db1d485.js",
     "static/js/695.e89d1ef4.chunk.js": "/godziny/static/js/695.e89d1ef4.chunk.js",
     "static/js/92.934720f6.chunk.js": "/godziny/static/js/92.934720f6.chunk.js",
     "static/css/140.61ccd405.chunk.css": "/godziny/static/css/140.61ccd405.chunk.css",
-    "static/js/140.540267a6.chunk.js": "/godziny/static/js/140.540267a6.chunk.js",
+    "static/js/140.5e94c2dd.chunk.js": "/godziny/static/js/140.5e94c2dd.chunk.js",
     "static/css/491.74fcc58b.chunk.css": "/godziny/static/css/491.74fcc58b.chunk.css",
     "static/js/491.48aa29df.chunk.js": "/godziny/static/js/491.48aa29df.chunk.js",
     "static/js/507.63ed4b79.chunk.js": "/godziny/static/js/507.63ed4b79.chunk.js",
@@ -20,11 +20,11 @@
     "static/js/950.a1faf04f.chunk.js": "/godziny/static/js/950.a1faf04f.chunk.js",
     "index.html": "/godziny/index.html",
     "main.d58a8afc.css.map": "/godziny/static/css/main.d58a8afc.css.map",
-    "main.3e3176f9.js.map": "/godziny/static/js/main.3e3176f9.js.map",
+    "main.3db1d485.js.map": "/godziny/static/js/main.3db1d485.js.map",
     "695.e89d1ef4.chunk.js.map": "/godziny/static/js/695.e89d1ef4.chunk.js.map",
     "92.934720f6.chunk.js.map": "/godziny/static/js/92.934720f6.chunk.js.map",
     "140.61ccd405.chunk.css.map": "/godziny/static/css/140.61ccd405.chunk.css.map",
-    "140.540267a6.chunk.js.map": "/godziny/static/js/140.540267a6.chunk.js.map",
+    "140.5e94c2dd.chunk.js.map": "/godziny/static/js/140.5e94c2dd.chunk.js.map",
     "491.74fcc58b.chunk.css.map": "/godziny/static/css/491.74fcc58b.chunk.css.map",
     "491.48aa29df.chunk.js.map": "/godziny/static/js/491.48aa29df.chunk.js.map",
     "507.63ed4b79.chunk.js.map": "/godziny/static/js/507.63ed4b79.chunk.js.map",
@@ -40,6 +40,6 @@
   },
   "entrypoints": [
     "static/css/main.d58a8afc.css",
-    "static/js/main.3e3176f9.js"
+    "static/js/main.3db1d485.js"
   ]
 }
