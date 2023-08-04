@@ -32,7 +32,7 @@ const SidebarDayForm = () => {
       {dataSelects.map(({ name, firstOption, labelText, options }) => {
         return (
           <Form.Group key={labelText}>
-            <Form.Label htmlFor={name} className="mb-0 fs-7">
+            <Form.Label htmlFor={name} className="mb-0 fs-6 fw-medium">
               {labelText}
             </Form.Label>
 
@@ -42,7 +42,7 @@ const SidebarDayForm = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               size="sm"
-              className={`p-0 px-1 border border-primary ${
+              className={`p-0 px-1 border border-primary text-capitalize ${
                 firstOption === "Zapisz w ustawieniach" ? "text-danger" : ""
               }`}
               style={{
@@ -73,7 +73,7 @@ const SidebarDayForm = () => {
       })}
 
       <Form.Group>
-        <Form.Label htmlFor="date" className="mb-0 fs-7">
+        <Form.Label htmlFor="date" className="mb-0 fs-6 fw-medium">
           Podaj dzień
         </Form.Label>
         <Form.Control

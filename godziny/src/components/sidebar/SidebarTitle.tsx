@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../../data/firebaseConfig";
 import { alert } from "../../utils/alertHelpers";
 import useAutoLogout from "../../hooks/useAutoLogout";
+import { RiLogoutBoxLine } from "react-icons/ri";
 
 const SidebarTitle = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const SidebarTitle = () => {
 
   // useAutoLogout();
 
-console.log('ooo',)
+// console.log('ooo',)
 
   const logout = () => {
     setIsLoading(true);
@@ -27,7 +28,12 @@ console.log('ooo',)
       });
   };
 
-  let btnContent = <div className="text-start w-100">Wyloguj</div>;
+  let btnContent = (
+    <div className="d-flex align-center text-start w-100">
+      <RiLogoutBoxLine className = "fs-6 me-1"/>
+      Wyloguj
+    </div>
+  );
 
   if (isLoading) {
     btnContent = (

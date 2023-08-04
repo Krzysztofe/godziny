@@ -62,35 +62,36 @@ const MonthPanelColumns = () => {
   };
 
   const rowStyles =
-    "col-sm-8 col-md-9 col-xl-8 d-flex column-gap-1 ms-sm-auto mx-xl-auto  px-1";
+    "d-flex column-gap-1 px-1";
 
   return (
-    <Container
-      fluid
+    <div
       ref={scrollableRef}
       onScroll={handleScroll}
-      className=" mb-1 overflow-y-scroll"
+      className="overflow-x-hidden overflow-y-scroll  ps-2 mb-1 col-xxl-9 border border-3 border-dark"
+      style={{ maxHeight: "calc(100% - 155px)" }}
     >
-      <div>
-        <Row className={`${rowStyles} sticky-top  `}>
-          <MonthPanelColumnsHeader thumbPosition={thumbPosition} />
-        </Row>
+      <Row
+        className={`${rowStyles} sticky-top  `}
+        style={{ marginRight: "0.1px" }}
+      >
+        <MonthPanelColumnsHeader thumbPosition={thumbPosition} />
+      </Row>
 
-        <Row className={rowStyles} style={{ height: "fit-content" }}>
-          <DragDropContext onDragEnd={handleDragEnd}>
-            {columns?.map((column: ModelColumn, idx: number) => {
-              return (
-                <MonthPanelColumn
-                  key={column.id}
-                  column={column}
-                  columnIdx={idx}
-                />
-              );
-            })}
-          </DragDropContext>
-        </Row>
-      </div>
-    </Container>
+      <Row className={`${rowStyles}`} style={{ marginRight: "0.1px" }}>
+        <DragDropContext onDragEnd={handleDragEnd}>
+          {columns?.map((column: ModelColumn, idx: number) => {
+            return (
+              <MonthPanelColumn
+                key={column.id}
+                column={column}
+                columnIdx={idx}
+              />
+            );
+          })}
+        </DragDropContext>
+      </Row>
+    </div>
   );
 };
 

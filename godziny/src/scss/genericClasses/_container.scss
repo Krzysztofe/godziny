@@ -1,0 +1,14 @@
+@import "../mixins.scss";
+
+.container {
+  max-width: 100%;
+  @include sm {
+    padding-left: 210px;
+  }
+  @include md {
+    padding-left: 250px;
+  }
+  @include lg {
+    padding-left: 260px;
+  }
+}

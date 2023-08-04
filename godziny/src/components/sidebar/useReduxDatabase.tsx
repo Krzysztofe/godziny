@@ -1,26 +1,26 @@
 import { useDispatch } from "react-redux";
-import useURLValues from "./hooks/useURLValues";
+import useURLValues from "../../hooks/useURLValues";
 import {
   useMonthDataQuery,
   useMonthsInfoQuery,
-} from "./services/apiSliceMonths";
+} from "../../services/apiSliceMonths";
 import { useEffect } from "react";
 import {
   getMonth,
   getMonthError,
   getMonthIsLoading,
-} from "./redux/storeFeatures/monthsPanelSlice";
-import { useUsersQuery } from "./services/apiSliceUsers";
+} from "../../redux/storeFeatures/monthsPanelSlice";
+import { useUsersQuery } from "../../services/apiSliceUsers";
 import {
   getUsers,
   getUsersError,
   getUsersIsLoading,
-} from "./redux/storeFeatures/usersSlice";
+} from "../../redux/storeFeatures/usersSlice";
 import {
   getInfoMonths,
   getInfoMonthError,
   getInfoMonthIsLoading,
-} from "./redux/storeFeatures/infoMonthsSlice";
+} from "../../redux/storeFeatures/infoMonthsSlice";
 
 const useReduxDatabase = () => {
   const dispatch = useDispatch();

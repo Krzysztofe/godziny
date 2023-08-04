@@ -4,15 +4,20 @@ import { RootState } from "../../../redux/store";
 import MonthPanelColumns from "../monthPanelColmns/MonthPanelColumns";
 import MonthPanelHeader from "../monthPanelHeader/MonthPanelHeader";
 import { Spinner } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import "../../../scss/genericClasses/_container.scss";
 
 const useHTTPMonthPanel = () => {
   const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
   const { month, error, isLoading } = useSelector(
     (state: RootState) => state.monthsPanel
   );
+  
 
+console.log("", currMonthDateToString);
 
-  let panelContent 
+  let panelContent;
 
   if (isLoading) {
     panelContent = (
@@ -37,7 +42,7 @@ const useHTTPMonthPanel = () => {
         formularza
       </h5>
     );
-  } else if (!month || month?.id==="") {
+  } else if (!month || month?.id === "") {
     panelContent = (
       <h3 className="text-warning">
         Brak danych z miesiąca {currMonthDateToString}. Zapisz miesiąc za pomocą
@@ -46,13 +51,17 @@ const useHTTPMonthPanel = () => {
     );
   } else {
     panelContent = (
-      <>
+      <Container
+        fluid
+        className="d-flex flex-column   container backgroundImage "
+        style={{ height: "100vh" }}
+      >
+      
         <MonthPanelHeader />
         <MonthPanelColumns />
-      </>
+      </Container>
     );
   }
-
   return { panelContent };
 };
 

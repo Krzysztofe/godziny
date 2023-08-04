@@ -5,13 +5,22 @@ import Row from "react-bootstrap/Row";
 import useHTTPState from "../../../hooks/useHTTPState";
 import { dataUserInputs } from "./dataSettingsUserForm";
 import useUserSettingsFormik from "./useSettingsUserFormik";
+import { createBrowserHistory } from "history";
 
 const SettingsUserForm = () => {
   const { formik, success } = useUserSettingsFormik();
   const { btnContent } = useHTTPState(success, "Zapisz użytkowanika");
 
+ const history = createBrowserHistory();
+
+  const handleGoBack = () => {
+    history.back();
+  };
+
+
   return (
     <Form onSubmit={formik.handleSubmit}>
+      <button onClick={handleGoBack}>Wróć</button>
       <Row>
         {dataUserInputs.map(({ labelText, name, type, placeholder }, idx) => {
           return (

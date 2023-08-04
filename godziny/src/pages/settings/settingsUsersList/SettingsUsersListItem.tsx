@@ -25,7 +25,7 @@ const SettingsUsersListItem = (props: Props) => {
   const { users } = useSelector((state: RootState) => state.users);
 
   const handleDelete = async (id: string) => {
-    Swal.fire(alertHelper("Chcesz usuniąć użytkownika?")).then(async result => {
+    Swal.fire(alertHelper("Chcesz usunąć użytkownika?")).then(async result => {
       if (result.isConfirmed) {
         const userBodyPUTRequest = users?.filter((user: ModelUser) => {
           return user?.id !== id;

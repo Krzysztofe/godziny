@@ -12,15 +12,16 @@ const SidebarHoursFormCollapse = () => {
   return (
     <>
       <Button
+        variant="outline-info"
         onClick={() => setOpen(!open)}
         aria-controls="example-collapse-text"
         aria-expanded={open}
-        className="fw-medium w-100 mt-2 bg-info text-white"
+        className="fw-medium w-100 mt-2 "
         // className={`fw-medium w-100 mt-1 d-flex justify-content-center align-items-center bg-primary border-0 p-1 ${
         //   open ? "rounded-bottom-0" : ""
         // }`}
       >
-        Dodaj godziny
+        Godziny
         <MdOutlineKeyboardArrowDown
           className="fs-5 fw-medium"
           style={{

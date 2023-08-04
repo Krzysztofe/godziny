@@ -28,7 +28,7 @@ const MonthPanelDay = (props: Props) => {
   );
 
   const handleDelete = async (idx: number, id: string) => {
-    Swal.fire(alertHelper("Chcesz usuniąć dzień")).then(async result => {
+    Swal.fire(alertHelper("Chcesz usunąć dzień")).then(async result => {
       if (result.isConfirmed) {
         const daysBodyPUTRequest = month?.columns[idx]?.days?.filter(
           (day: ModelDay) => {
@@ -46,7 +46,6 @@ const MonthPanelDay = (props: Props) => {
     });
   };
 
-  console.log("", props.day?.userColor);
 
   return (
     <Draggable

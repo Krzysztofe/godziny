@@ -13,7 +13,8 @@ const IndexMonthPanel = () => {
 
   const { panelContent } = useHTTPIndexMonthPanel();
 
-  let mainStyles = "d-flex flex-column backgroundImage";
+
+  let mainStyles = "backgroundImage";
 
   if (isLoading && !month) {
     mainStyles = "d-flex align-items-center justify-content-center";
@@ -25,7 +26,7 @@ const IndexMonthPanel = () => {
   }
 
   return (
-    <main className={mainStyles} style={{ height: "100vh"}}>
+    <main>
       {panelContent}
     </main>
   );

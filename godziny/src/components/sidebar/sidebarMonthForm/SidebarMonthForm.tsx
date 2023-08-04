@@ -19,7 +19,7 @@ const SidebarMonthForm = () => {
     <>
       <Form onSubmit={formik.handleSubmit} className="mt-1">
         <Form.Group>
-          <Form.Label htmlFor="monthDate" className="mb-0 fs-7">
+          <Form.Label htmlFor="monthDate" className="mb-0 fs-6 fw-medium">
             Podaj miesiąc
           </Form.Label>
           <div className="d-flex">
