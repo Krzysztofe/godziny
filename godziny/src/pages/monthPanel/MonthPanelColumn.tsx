@@ -10,7 +10,7 @@ interface Props {
 
 const MonthPanelColumn = (props: Props) => {
   return (
-    <Col className="p-0">
+    <Col>
       <Droppable droppableId={props.column.id}>
         {(provided, snapshot) => {
           return (

@@ -22,20 +22,23 @@ const SidebarMonthsList = () => {
     }).format(monthURLToDateFormat);
 
   return (
-    <ListGroup className="monthListContainer bg-white rounded-0 border border-primary">
+    <ListGroup className="monthListContainer bg-white rounded-0 border border-primary text-capitalize bg-transparent">
       {!infoMonths || infoMonths.length === 0 ? (
         <p className="py-1 px-2 text-warning text-center">Brak danych</p>
       ) : (
         databaseMonthsDatesToString?.map((month: string, idx: number) => {
           return (
-            <ListGroup.Item key={month} className="border-0 p-0 px-1">
+            <ListGroup.Item
+              key={month}
+              className="bg-transparent  border-0 p-0 px-1"
+            >
               <Link
                 to={`/${sortedInfoMonths?.[idx]}`}
                 className={`${
                   curMonthURLStringFormat !== month || !curMonthURLStringFormat
-                    ? "text-reset"
+                    ? "text-white"
                     : "text-warning"
-                } text-decoration-none text-capitalize`}
+                } text-decoration-none`}
               >
                 {month}
               </Link>

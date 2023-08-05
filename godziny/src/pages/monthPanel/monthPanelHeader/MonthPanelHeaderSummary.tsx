@@ -1,43 +1,38 @@
 import { useSelector } from "react-redux";
 import useMonthURLToString from "../../../hooks/useMonthURLToString";
 import { RootState } from "../../../redux/store";
-import SidebarMonthCollapse from "../../../components/sidebar/SidebarMonthCollapse";
+import SidebarMonthCollapse from "../MonthPanelMonthsCollapse";
+import useWindowWidth from "../../../hooks/useWindowWidth";
+import Col from "react-bootstrap/Col";
 
-const MonthPanelHeaderSummary = () => {
+const MonthHoursSummary = () => {
   const { month } = useSelector((state: RootState) => state.monthsPanel);
   const { monthURLStringFormat } = useMonthURLToString();
 
+  const { windowWidth } = useWindowWidth();
+
+  const styles = "col-4 col-xxl-3 p-0";
+
   return (
     <>
-   
-      {/* <div className="text-capitalize fw-medium mt-2 text-center d-md-none">
-        {monthURLStringFormat}
-      </div> */}
-
-      <div className=" d-flex justify-content-center my-2 fw-medium position-relative">
-        <div className="text-capitalize fw-medium d-none d-md-block  position-absolute end-0">
-          {monthURLStringFormat}
-        </div>
-
-        <div className="col-3 text-end">Wszystkie</div>
-        <div className="mx-2">
-          {month?.calc?.allHours} -{" "}
-          <span
-            className={`${month?.calc?.currentHours <= 0 ? "text-danger" : ""}`}
-          >
-            {month?.calc?.currentHours}
-          </span>
-        </div>
-        <div
-          className={`col-3 ${
-            month?.calc?.currentHours <= 0 ? "text-danger" : ""
-          }`}
+      <Col className={`${styles} text-end`}>Wszystkie</Col>
+      <Col className="col-4 col-md-2 col-xxl-1 p-0 text-center">
+        {month?.calc?.allHours} -{" "}
+        <span
+          className={`${month?.calc?.currentHours <= 0 ? "text-danger" : ""}`}
         >
-          {month?.calc?.currentHours < 0 ? "Brak" : "Dostępne"}
-        </div>
-      </div>
+          {month?.calc?.currentHours}
+        </span>
+      </Col>
+      <Col
+        className={`${styles} ${
+          month?.calc?.currentHours <= 0 ? "text-danger" : ""
+        }`}
+      >
+        {month?.calc?.currentHours < 0 ? "Brak" : "Dostępne"}
+      </Col>
     </>
   );
 };
 
-export default MonthPanelHeaderSummary;
+export default MonthHoursSummary;

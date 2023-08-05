@@ -12,6 +12,7 @@ import MonthPanelColumn from "../MonthPanelColumn";
 import MonthPanelColumnsHeader from "../monthPanelColumnsHeader.tsx/MonthPanelColumnsHeader";
 import { addDaysToColumns, handleDragDrop } from "./utilsMonthPanelColumns";
 import useScrollThumbPosition from "./useScrollThumbPosition";
+import Col from "react-bootstrap/Col";
 
 const MonthPanelColumns = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
@@ -61,24 +62,20 @@ const MonthPanelColumns = () => {
     handleDragDrop(results, columns, setColumns);
   };
 
-  const rowStyles =
-    "d-flex column-gap-1 px-1";
+  const rowStyles = "d-flex column-gap-1";
 
   return (
     <div
       ref={scrollableRef}
       onScroll={handleScroll}
-      className="overflow-x-hidden overflow-y-scroll  ps-2 mb-1 col-xxl-9 border border-3 border-dark"
-      style={{ maxHeight: "calc(100% - 155px)" }}
+      className=" p-0 overflow-y-scroll"
+      style={{ height: "fit-content", maxHeight: "100%" }}
     >
-      <Row
-        className={`${rowStyles} sticky-top  `}
-        style={{ marginRight: "0.1px" }}
-      >
+      <div className={`${rowStyles} sticky-top  `}>
         <MonthPanelColumnsHeader thumbPosition={thumbPosition} />
-      </Row>
+      </div>
 
-      <Row className={`${rowStyles}`} style={{ marginRight: "0.1px" }}>
+      <div className={`${rowStyles}`}>
         <DragDropContext onDragEnd={handleDragEnd}>
           {columns?.map((column: ModelColumn, idx: number) => {
             return (
@@ -90,7 +87,7 @@ const MonthPanelColumns = () => {
             );
           })}
         </DragDropContext>
-      </Row>
+      </div>
     </div>
   );
 };

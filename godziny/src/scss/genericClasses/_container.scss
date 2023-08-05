@@ -3,12 +3,12 @@
 .container {
   max-width: 100%;
   @include sm {
-    padding-left: 210px;
+    padding-left: 200px;
   }
   @include md {
-    padding-left: 250px;
+    padding-left: 230px;
   }
   @include lg {
-    padding-left: 260px;
+    padding-left: 250px;
   }
 }

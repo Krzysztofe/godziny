@@ -7,21 +7,33 @@ import { Spinner } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import "../../../scss/genericClasses/_container.scss";
+import MonthPanelMonthsCollapse from "../MonthPanelMonthsCollapse";
+import MonthHoursSummary from "../monthPanelHeader/MonthPanelHeaderSummary";
+import useWindowWidth from "../../../hooks/useWindowWidth";
 
 const useHTTPMonthPanel = () => {
   const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
   const { month, error, isLoading } = useSelector(
     (state: RootState) => state.monthsPanel
   );
-  
 
-console.log("", currMonthDateToString);
+  const { isOpenCollapseMonths } = useSelector(
+    (state: RootState) => state.monthsListCollapse
+  );
+
+  const { windowWidth } = useWindowWidth();
+
+  const renderContent = (contentJSX: React.ReactNode) => (
+    <div className="h-100 d-flex justify-content-center align-items-center">
+      <div className="fs-3 text-white text-center ">{contentJSX}</div>
+    </div>
+  );
 
   let panelContent;
 
   if (isLoading) {
-    panelContent = (
-      <Spinner animation="border" variant="secondary">
+    panelContent = renderContent(
+      <Spinner animation="border" variant="secondary" className="fs-6">
         <span className="visually-hidden">Loading...</span>
       </Spinner>
     );
@@ -29,37 +41,55 @@ console.log("", currMonthDateToString);
     if ("status" in error) {
       const errMsg = "status" in error && error.status;
 
-      panelContent = (
-        <h3 className="text-danger mx-auto ">
+      panelContent = renderContent(
+        <div className="text-danger text-center ">
           <> Błąd: {errMsg} </>
-        </h3>
+        </div>
       );
     }
   } else if (!infoMonths || infoMonths?.length === 0) {
-    panelContent = (
-      <h5 className="text-warning">
+    panelContent = renderContent(
+      <div>
         Brak miesięcy zapisanych w bazie danych. Zapisz miesiąc za pomocą
         formularza
-      </h5>
+      </div>
     );
   } else if (!month || month?.id === "") {
-    panelContent = (
-      <h3 className="text-warning">
+    panelContent = renderContent(
+      <div>
         Brak danych z miesiąca {currMonthDateToString}. Zapisz miesiąc za pomocą
         formularza
-      </h3>
+      </div>
     );
   } else {
+    const styles = "col-12 col-xxl-9 me-xxl-auto ps-3";
+
     panelContent = (
-      <Container
-        fluid
-        className="d-flex flex-column   container backgroundImage "
-        style={{ height: "100vh" }}
-      >
-      
-        <MonthPanelHeader />
-        <MonthPanelColumns />
-      </Container>
+      <>
+        <Row className={`${styles} mt-1`}>
+          <MonthPanelMonthsCollapse />
+        </Row>
+        <Row
+          className={`${styles} d-flex justify-content-center my-2 pe-4 fw-medium`}
+        >
+          <MonthHoursSummary />
+        </Row>
+        <Row
+          className={`${styles} flex-grow-1`}
+          style={{
+            maxHeight: isOpenCollapseMonths
+              ? windowWidth > 576
+                ? "calc(100% - 170px)"
+                : "calc(100% - 170px - 35px)"
+              : windowWidth > 576
+              ? "calc(100% - 90px)"
+              : "calc(100% - 90px - 35px)",
+            transitionDuration: "350ms",
+          }}
+        >
+          <MonthPanelColumns />
+        </Row>
+      </>
     );
   }
   return { panelContent };

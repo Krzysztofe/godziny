@@ -13,40 +13,32 @@ import SidebarDayForm from "./sidebarDayForm/SidebarDayForm";
 import SidebarHoursFormCollapse from "./sidebarHoursForm/SidebarHoursFormCollapse";
 import SidebarMonthFormColapse from "./sidebarMonthFormCollapse/SidebarMonthFormColapse";
 import useURLValues from "../../hooks/useURLValues";
+import useWindowWidth from "../../hooks/useWindowWidth";
+import useMonthURLToString from "../../hooks/useMonthURLToString";
+import Row from "react-bootstrap/Row";
 
 const IndexSidebar = () => {
   useReduxDatabase();
   const { isMonthInURL } = useURLValues();
   const { pathname } = useLocation();
   const [show, setShow] = useState(false);
+  const { windowWidth } = useWindowWidth();
+
   const handleClose = () => setShow(false);
   const toggleShow = () => setShow(s => !s);
-
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   useEffect(() => {
     windowWidth > 575 && setShow(true);
   }, [windowWidth]);
 
   let offCanvasWidth = "100%";
-  if (windowWidth > 575) {
+  if (windowWidth >= 576) {
     offCanvasWidth = "200px";
   }
-  if (windowWidth > 769) {
+  if (windowWidth >= 768) {
     offCanvasWidth = "230px";
   }
-  if (windowWidth > 992) {
+  if (windowWidth >=992) {
     offCanvasWidth = "250px";
   }
 
@@ -78,7 +70,7 @@ const IndexSidebar = () => {
             scroll={true}
             backdrop={false}
             className={`${
-              windowWidth < 575 && "backgroundImage"
+              windowWidth < 576 && "backgroundImage"
             } p-1 border-white`}
             style={{
               width: offCanvasWidth,
@@ -86,14 +78,20 @@ const IndexSidebar = () => {
             }}
           >
             <Offcanvas.Header
-              closeButton={windowWidth < 575}
+              closeButton={windowWidth < 576}
               className="ms-auto"
             ></Offcanvas.Header>
             {isMonthInURL && (
               <Offcanvas.Body className="flex-grow-0 p-2 bg-white rounded">
                 <SidebarMonthFormColapse />
                 <SidebarHoursFormCollapse />
-                {windowWidth < 575 ? <MonthPanelHeaderSummary /> : null}
+                {windowWidth < 576 ? (
+                  <Row className="w-100 fw-medium ">
+                    {" "}
+                    <MonthPanelHeaderSummary />{" "}
+                  </Row>
+                ) : null}
+
                 <SidebarDayForm />
               </Offcanvas.Body>
             )}

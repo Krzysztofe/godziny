@@ -2,6 +2,7 @@ import { useUsersQuery } from "../../../services/apiSliceUsers";
 import useHTTPIndexSettings from "./useHTTPIndexSettings";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
+import Container from "react-bootstrap/Container";
 
 const IndexSettings = () => {
   const { settingsContent } = useHTTPIndexSettings();
@@ -11,28 +12,33 @@ const IndexSettings = () => {
   const { infoMonths, infoMonthsError, infoMonthsIsLoading } = useSelector(
     (state: RootState) => state.infoMonths
   );
-  const cc = true;
-  let mainStyles = "bg-primary-subtle";
+  // const cc = true;
+  // let mainStyles = "bg-primary-subtle";
 
-  if ((infoMonthsIsLoading && !infoMonths) || (usersIsLoading && !users)) {
-    mainStyles = "d-flex align-items-center justify-content-center vh-100";
-  }
+  // if ((infoMonthsIsLoading && !infoMonths) || (usersIsLoading && !users)) {
+  //   mainStyles = "d-flex align-items-center justify-content-center vh-100";
+  // }
 
-  if (
-    !infoMonths ||
-    infoMonthsError ||
-    infoMonthsIsLoading ||
-    !users ||
-    usersError ||
-    usersIsLoading 
-  ) {
-    mainStyles =
-      "d-flex justify-content-end align-items-center p-1 pe-sm-5 col-sm-7 col-md-8 ms-auto mx-xxl-auto";
-  }
+  // if (
+  //   !infoMonths ||
+  //   infoMonthsError ||
+  //   infoMonthsIsLoading ||
+  //   !users ||
+  //   usersError ||
+  //   usersIsLoading
+  // ) {
+  //   mainStyles =
+  //     "d-flex justify-content-end align-items-center p-1 pe-sm-5 col-sm-7 col-md-8 ms-auto mx-xxl-auto";
+  // }
 
   return (
-    <main className={mainStyles} style={{ minHeight: "100vh" }}>
-      {settingsContent}
+    <main style={{ height: "100vh" }}>
+      <Container
+        className="d-flex align-items-center flex-column backgroundImage pe-0"
+        style={{ minHeight: "100vh" }}
+      >
+        {settingsContent}
+      </Container>
     </main>
   );
 };

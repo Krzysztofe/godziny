@@ -10,7 +10,9 @@ const SettingsMonthsList = () => {
 
   return (
     <>
-      <h3 className="h4">Usuń miesiąc</h3>
+      <h3 className="h4"
+      style={{}}
+      >Usuń miesiąc</h3>
       <ListGroup className="border-0 bg-primary-subtle p-0">
         {!infoMonths ? (
           <p className="py-1 px-2 fs-4 text-warning">Brak danych</p>

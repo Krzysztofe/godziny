@@ -15,11 +15,8 @@ const useHTTPIndexSettings = () => {
     (state: RootState) => state.infoMonths
   );
 
-  const rowStyles =
-    "col-sm-8 col-md-9 col-xl-8 col-xxl-8 ms-sm-auto mx-xl-auto px-1 pt-4";
-
-     const cc = true;
-  let settingsContent 
+  const cc = true;
+  let settingsContent;
 
   if (usersIsLoading || infoMonthsIsLoading) {
     settingsContent = (
@@ -48,18 +45,20 @@ const useHTTPIndexSettings = () => {
       );
     }
   } else {
+    const styles = "col-12 col-xxl-9 me-xxl-auto bg-white";
+
     settingsContent = (
-      <Container fluid>
-        <Row className={rowStyles}>
+      <>
+        <Row className={styles}>
           <SettingsUserForm />
         </Row>
-        <Row className={rowStyles}>
+        <Row className={styles}>
           <SettingsUsersList />
         </Row>
-        <Row className={rowStyles}>
+        <Row className={`${styles} flex-grow-1 d-block`}>
           <SettingsMonthsList />
         </Row>
-      </Container>
+      </>
     );
   }
 
