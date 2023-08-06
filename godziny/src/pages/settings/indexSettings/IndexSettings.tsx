@@ -3,6 +3,7 @@ import useHTTPIndexSettings from "./useHTTPIndexSettings";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import Container from "react-bootstrap/Container";
+import useWindowWidth from "../../../hooks/useWindowWidth";
 
 const IndexSettings = () => {
   const { settingsContent } = useHTTPIndexSettings();
@@ -12,6 +13,10 @@ const IndexSettings = () => {
   const { infoMonths, infoMonthsError, infoMonthsIsLoading } = useSelector(
     (state: RootState) => state.infoMonths
   );
+
+    const { windowWidth } = useWindowWidth();
+
+ 
   // const cc = true;
   // let mainStyles = "bg-primary-subtle";
 
@@ -32,10 +37,13 @@ const IndexSettings = () => {
   // }
 
   return (
-    <main style={{ height: "100vh" }}>
+    <main className="backgroundImage" style={{ height: "100vh" }}>
       <Container
-        className="d-flex align-items-center flex-column backgroundImage pe-0"
-        style={{ minHeight: "100vh" }}
+        className="d-flex align-items-center flex-column  pe-0 overflow-y-scroll"
+        style={{
+          maxHeight:
+            windowWidth > 576 ? "100vh" : "calc(100vh - 40px)",
+        }}
       >
         {settingsContent}
       </Container>

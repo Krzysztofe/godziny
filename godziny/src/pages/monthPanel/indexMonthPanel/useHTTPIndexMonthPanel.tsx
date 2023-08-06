@@ -62,7 +62,7 @@ const useHTTPMonthPanel = () => {
       </div>
     );
   } else {
-    const styles = "col-12 col-xxl-9 me-xxl-auto ps-3";
+    const styles = "col-12 col-xxl-9 me-xxl-auto ps-sm-3";
 
     panelContent = (
       <>

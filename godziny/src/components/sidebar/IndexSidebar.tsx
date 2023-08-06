@@ -69,8 +69,8 @@ const IndexSidebar = () => {
             name="Disable backdrop"
             scroll={true}
             backdrop={false}
-            className={`${
-              windowWidth < 576 && "backgroundImage"
+            className={`${windowWidth < 576 && "backgroundImage"} ${
+              windowWidth < 576 && "border-0"
             } p-1 border-white`}
             style={{
               width: offCanvasWidth,

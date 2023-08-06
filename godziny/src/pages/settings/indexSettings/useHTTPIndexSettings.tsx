@@ -45,7 +45,7 @@ const useHTTPIndexSettings = () => {
       );
     }
   } else {
-    const styles = "col-12 col-xxl-9 me-xxl-auto bg-white";
+    const styles = "col-12 bg-white";
 
     settingsContent = (
       <>
@@ -55,7 +55,9 @@ const useHTTPIndexSettings = () => {
         <Row className={styles}>
           <SettingsUsersList />
         </Row>
-        <Row className={`${styles} flex-grow-1 d-block`}>
+        <Row className={`${styles} flex-grow-1 d-block`}
+        style = {{maxHeight:"20%"}}
+        >
           <SettingsMonthsList />
         </Row>
       </>
