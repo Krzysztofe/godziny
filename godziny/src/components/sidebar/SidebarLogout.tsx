@@ -4,16 +4,11 @@ import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../data/firebaseConfig";
 import { alert } from "../../utils/alertHelpers";
-import useAutoLogout from "../../hooks/useAutoLogout";
 import { RiLogoutBoxLine } from "react-icons/ri";
 
-const SidebarTitle = () => {
+const SidebarLogout = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-
-  // useAutoLogout();
-
-// console.log('ooo',)
 
   const logout = () => {
     setIsLoading(true);
@@ -29,8 +24,8 @@ const SidebarTitle = () => {
   };
 
   let btnContent = (
-    <div className="d-flex align-center text-start w-100">
-      <RiLogoutBoxLine className = "fs-6 me-1"/>
+    <div className="d-flex align-center  d-flex align-items-center text-start w-100">
+      <RiLogoutBoxLine className="fs-6 me-1 " />
       Wyloguj
     </div>
   );
@@ -48,22 +43,10 @@ const SidebarTitle = () => {
     );
   }
 
-  // const [counter, setCounter] = useState(0);
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setCounter(prevCounter => prevCounter + 1);
-  //   }, 1000); // 1000 ms = 1 second
-
-  //   // Cleanup: clear the interval when the component unmounts to avoid memory leaks
-  //   return () => clearInterval(interval);
-  // }, []);
-
-
   return (
     <Button
       onClick={logout}
-      className="fw-bolder text-info p-0 bg-transparent border-0 w-50"
+      className="fs-6 fw-medium text-info p-0 bg-transparent border-0 w-50"
       style={{
         cursor: "pointer",
         fontSize: "0.8rem",
@@ -71,11 +54,8 @@ const SidebarTitle = () => {
       disabled={isLoading}
     >
       {btnContent}
-      {/* <div>
-        <h1>Counter: {counter}</h1>
-      </div> */}
     </Button>
   );
 };
 
-export default SidebarTitle;
+export default SidebarLogout;

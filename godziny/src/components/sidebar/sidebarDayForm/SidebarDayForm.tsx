@@ -42,8 +42,8 @@ const SidebarDayForm = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               size="sm"
-              className={`p-0 px-1 border border-primary text-capitalize ${
-                firstOption === "Zapisz w ustawieniach" ? "text-danger" : ""
+              className={`p-0 px-1 border border-primary shadow-sm text-capitalize ${
+                firstOption === "Ustawienia" ? "text-danger" : ""
               }`}
               style={{
                 cursor: "pointer",
@@ -87,7 +87,7 @@ const SidebarDayForm = () => {
           max={dateInNext60Days}
           placeholder="Liczba"
           size="sm"
-          className="p-0 px-1 border border-primary"
+          className="p-0 px-1 border border-primary shadow-sm"
           style={{ minHeight: 0, cursor: "pointer" }}
         />
         <div

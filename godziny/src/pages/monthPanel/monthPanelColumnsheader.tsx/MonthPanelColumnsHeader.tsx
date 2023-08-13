@@ -29,12 +29,14 @@ const MonthPanelColumnsHeader = (props: Props) => {
         return (
           <Col
             key={headerText}
-            className={`bg-primary text-dark-emphasis fw-medium p-1 ${
+            className={`text-dark-emphasis bg-white fw-medium p-1 ${
               props.thumbPosition === 0
-                ? "border-bottom border-2 border-primary"
-                : " border-bottom border-2 border-white"
+                ? "border-bottom border-2 border-white"
+                : "border-bottom border-2 border-dark-subtle"
             }`}
-            style={{ fontSize: "clamp(0.8rem, 3.4vw, 1rem)" }}
+            style={{
+              fontSize: "clamp(0.8rem, 3.4vw, 1rem)",
+            }}
           >
             {headerText} {""}
             {counter}

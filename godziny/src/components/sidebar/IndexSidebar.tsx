@@ -2,20 +2,18 @@ import "firebase/database";
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { AiTwotoneSetting } from "react-icons/ai";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { Link, useLocation } from "react-router-dom";
+import Row from "react-bootstrap/Row";
+import { useLocation } from "react-router-dom";
+import useMonthURLToString from "../../hooks/useMonthURLToString";
+import useURLValues from "../../hooks/useURLValues";
+import useWindowWidth from "../../hooks/useWindowWidth";
 import MonthPanelHeaderSummary from "../../pages/monthPanel/monthPanelHeader/MonthPanelHeaderSummary";
-import useReduxDatabase from "./useReduxDatabase";
 import "./../../pages/monthPanel/indexMonthPanel/_bgImage.scss";
-import SidebarTitle from "./SidebarTitle";
+import SidebarList from "./SidebarList";
 import SidebarDayForm from "./sidebarDayForm/SidebarDayForm";
 import SidebarHoursFormCollapse from "./sidebarHoursForm/SidebarHoursFormCollapse";
 import SidebarMonthFormColapse from "./sidebarMonthFormCollapse/SidebarMonthFormColapse";
-import useURLValues from "../../hooks/useURLValues";
-import useWindowWidth from "../../hooks/useWindowWidth";
-import useMonthURLToString from "../../hooks/useMonthURLToString";
-import Row from "react-bootstrap/Row";
+import useReduxDatabase from "./useReduxDatabase";
 
 const IndexSidebar = () => {
   useReduxDatabase();
@@ -23,6 +21,7 @@ const IndexSidebar = () => {
   const { pathname } = useLocation();
   const [show, setShow] = useState(false);
   const { windowWidth } = useWindowWidth();
+  const { monthURLStringFormat } = useMonthURLToString();
 
   const handleClose = () => setShow(false);
   const toggleShow = () => setShow(s => !s);
@@ -38,7 +37,7 @@ const IndexSidebar = () => {
   if (windowWidth >= 768) {
     offCanvasWidth = "230px";
   }
-  if (windowWidth >=992) {
+  if (windowWidth >= 992) {
     offCanvasWidth = "250px";
   }
 
@@ -49,18 +48,18 @@ const IndexSidebar = () => {
           <Button
             variant="info"
             onClick={toggleShow}
-            className={`rounded-0 p-0 ${
+            className={`rounded-0 p-0 fw-medium ${
               windowWidth > 575 ? "d-none" : "d-block"
             }`}
             style={{
               position: "absolute",
               height: "2.5rem",
-              width: "110%",
+              width: "100%",
               right: 0,
               bottom: 0,
             }}
           >
-            Menu
+           Menu
           </Button>
 
           <Offcanvas
@@ -74,35 +73,30 @@ const IndexSidebar = () => {
             } p-1 border-white`}
             style={{
               width: offCanvasWidth,
-              backgroundColor: windowWidth > 575 && "rgba(255, 255, 255, 0.4)",
+              backgroundColor:"rgba(255, 255, 255, 0.6)",
             }}
           >
-            <Offcanvas.Header
-              closeButton={windowWidth < 576}
-              className="ms-auto"
-            ></Offcanvas.Header>
+            {windowWidth < 576 && (
+              <Offcanvas.Header closeButton className="w-100">
+                <div className="text-capitalize fw-medium">
+                  {monthURLStringFormat}
+                </div>
+              </Offcanvas.Header>
+            )}
             {isMonthInURL && (
               <Offcanvas.Body className="flex-grow-0 p-2 bg-white rounded">
                 <SidebarMonthFormColapse />
                 <SidebarHoursFormCollapse />
                 {windowWidth < 576 ? (
                   <Row className="w-100 fw-medium ">
-                    {" "}
-                    <MonthPanelHeaderSummary />{" "}
+                    <MonthPanelHeaderSummary />
                   </Row>
                 ) : null}
 
                 <SidebarDayForm />
               </Offcanvas.Body>
             )}
-            <Link
-              to="/ustawienia"
-              className="text-info mt-auto fw-medium text-decoration-none "
-            >
-              <AiTwotoneSetting /> Ustawienia
-            </Link>
-
-            <SidebarTitle />
+            <SidebarList />
           </Offcanvas>
         </aside>
       ) : null}

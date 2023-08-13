@@ -2,6 +2,7 @@
 
 .container {
   max-width: 100%;
+  padding: 0;
   @include sm {
     padding-left: 200px;
   }
@@ -11,4 +12,7 @@
   @include lg {
     padding-left: 250px;
   }
+  // @include xl {
+  //   padding-left: 265px;
+  // }
 }

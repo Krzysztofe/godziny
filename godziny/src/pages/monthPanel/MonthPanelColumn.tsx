@@ -1,7 +1,11 @@
 import { Droppable } from "react-beautiful-dnd";
 import Col from "react-bootstrap/Col";
-import { ModelColumn, ModelDay } from "../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
+import {
+  ModelColumn,
+  ModelDay,
+} from "../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
 import MonthPanelDay from "./MonthPanelDay";
+import { v4 as UUID } from "uuid";
 
 interface Props {
   column: ModelColumn;
@@ -17,15 +21,18 @@ const MonthPanelColumn = (props: Props) => {
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className={`p-1 h-100 ${
-                snapshot.isDraggingOver ? "bg-dark-subtle" : "bg-primary"
-              }`}
+              className="p-1 h-100 overflow-hidden border border-1"
+              style={{
+                backgroundColor: snapshot.isDraggingOver
+                  ? "rgba(0, 0, 0, 0.1)"
+                  : "rgba(255, 255, 255, 0.2)",
+              }}
             >
               {Array.isArray(props.column.days)
                 ? props.column.days.map((day: ModelDay, idx: number) => {
                     return (
                       <MonthPanelDay
-                        key={crypto.randomUUID()}
+                        key={UUID()}
                         day={day}
                         columnIdx={props.columnIdx}
                         dayIdx={idx}

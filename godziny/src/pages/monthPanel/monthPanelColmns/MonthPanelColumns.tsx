@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
 import { useSelector } from "react-redux";
 import { ModelColumn } from "../../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
 import useHoursSum from "../../../hooks/useHoursSum";
@@ -10,9 +8,8 @@ import { RootState } from "../../../redux/store";
 import { useUpdateMonthMutation } from "../../../services/apiSliceMonths";
 import MonthPanelColumn from "../MonthPanelColumn";
 import MonthPanelColumnsHeader from "../monthPanelColumnsHeader.tsx/MonthPanelColumnsHeader";
-import { addDaysToColumns, handleDragDrop } from "./utilsMonthPanelColumns";
 import useScrollThumbPosition from "./useScrollThumbPosition";
-import Col from "react-bootstrap/Col";
+import { addDaysToColumns, handleDragDrop } from "./utilsMonthPanelColumns";
 
 const MonthPanelColumns = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
@@ -68,10 +65,10 @@ const MonthPanelColumns = () => {
     <div
       ref={scrollableRef}
       onScroll={handleScroll}
-      className=" p-0 overflow-y-scroll"
+      className="p-0 overflow-y-scroll"
       style={{ height: "fit-content", maxHeight: "100%" }}
     >
-      <div className={`${rowStyles} sticky-top  `}>
+      <div className={`${rowStyles} sticky-top`}>
         <MonthPanelColumnsHeader thumbPosition={thumbPosition} />
       </div>
 

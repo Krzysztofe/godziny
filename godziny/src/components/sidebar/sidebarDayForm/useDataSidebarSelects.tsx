@@ -13,7 +13,7 @@ const useDataSidebarSelects = () => {
   const dataSelects = [
     {
       name: "userName",
-      firstOption: `${names.length === 0 ? "Zapisz w ustawieniach" : "Imię"}`,
+      firstOption: `${names.length === 0 ? "Ustawienia" : "Imię"}`,
       labelText: "Podaj imię",
       options: names,
     },

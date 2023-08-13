@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
-import SidebarMonthsList from "./monthPanelMonthsLIst/monthPanelMonthsList";
+import SidebarMonthsList from "./monthPanelMonthsLIst/MonthPanelMonthsList";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import useMonthURLToString from "../../hooks/useMonthURLToString";
 import Col from "react-bootstrap/Col";
@@ -24,7 +24,7 @@ const MonthPanelMonthsCollapse = () => {
         aria-controls="example-collapse-text"
         aria-expanded={isOpenCollapseMonths}
         size="sm"
-        className="w-100 text-capitalize text-white bg-transparent text-start fw-medium d-flex justify-content-between align-items-center"
+        className="mx-auto text-capitalize bg-transparent text-start fw-medium d-flex justify-content-between align-items-center border-0"
       >
         {monthURLStringFormat}
         <MdOutlineKeyboardArrowDown

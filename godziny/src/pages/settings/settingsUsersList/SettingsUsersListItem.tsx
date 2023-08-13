@@ -25,7 +25,7 @@ const SettingsUsersListItem = (props: Props) => {
   const { users } = useSelector((state: RootState) => state.users);
 
   const handleDelete = async (id: string) => {
-    Swal.fire(alertHelper("Chcesz usunąć użytkownika?")).then(async result => {
+    Swal.fire(alertHelper("Usunąć użytkownika?")).then(async result => {
       if (result.isConfirmed) {
         const userBodyPUTRequest = users?.filter((user: ModelUser) => {
           return user?.id !== id;
@@ -39,12 +39,12 @@ const SettingsUsersListItem = (props: Props) => {
   return (
     <ListGroup.Item
       onClick={() => handleDelete(props.user.id)}
-      className="border-0 p-0"
-      style={{ color: props.user.userColor }}
+      className="shadow-sm p-0 mb-2 ps-2 pe-0 rounded-1"
+      style={{ backgroundColor: props.user.userColor, overflow:"hidden" }}
     >
       <Button
         disabled={success.isLoading}
-        className="w-100 d-flex justify-content-between align-items-center px-1 bg-primary-subtle text-capitalize border-0 fs-5"
+        className="w-100 d-flex justify-content-between align-items-center px-1 text-capitalize rounded-0 bg-white"
         style={{ color: props.user.userColor }}
       >
         {props.user.userName}

@@ -19,7 +19,7 @@ const SidebarHoursForm = () => {
 
   return (
     <Form onSubmit={formik.handleSubmit} className="">
-      <div className="d-flex">
+      <div className="d-flex align-items-center">
         <Form.Control
           type="number"
           name="allHours"
@@ -30,20 +30,11 @@ const SidebarHoursForm = () => {
           onBlur={formik.handleBlur}
           placeholder="Liczba"
           size="sm"
-          className="p-0 px-1 mb-2 border border-primary"
+          className="p-0 px-1 my-2 border border-primary shadow-sm"
           style={{ minHeight: 0, cursor: "pointer", width: "fit-content" }}
         />
-        <span> &nbsp; h</span>
+        <div className="fw-medium"> &nbsp; h</div>
       </div>
-
-      {/* <div
-        className="text-danger d-block mt-0 fs-8 text-center"
-        style={{ height: "0.7rem" }}
-      >
-        {submittedHours + acceptedHours > +formik.values.allHours
-          ? `Min. ${submittedHours + acceptedHours} h`
-          : ""}
-      </div> */}
 
       <Form.Group className="mt-2 d-flex align-items-center w-100">
         <Form.Range

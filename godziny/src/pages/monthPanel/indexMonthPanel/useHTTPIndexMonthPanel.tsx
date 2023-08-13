@@ -1,15 +1,13 @@
+import { Spinner } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
 import { useSelector } from "react-redux";
 import { currMonthDateToString } from "../../../data/dataCurrentDates";
-import { RootState } from "../../../redux/store";
-import MonthPanelColumns from "../monthPanelColmns/MonthPanelColumns";
-import MonthPanelHeader from "../monthPanelHeader/MonthPanelHeader";
-import { Spinner } from "react-bootstrap";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import "../../../scss/genericClasses/_container.scss";
-import MonthPanelMonthsCollapse from "../MonthPanelMonthsCollapse";
-import MonthHoursSummary from "../monthPanelHeader/MonthPanelHeaderSummary";
 import useWindowWidth from "../../../hooks/useWindowWidth";
+import { RootState } from "../../../redux/store";
+import "../../../scss/utilsClasses/_container.scss";
+import MonthPanelMonthsCollapse from "../MonthPanelMonthsCollapse";
+import MonthPanelColumns from "../monthPanelColmns/MonthPanelColumns";
+import MonthHoursSummary from "../monthPanelHeader/MonthPanelHeaderSummary";
 
 const useHTTPMonthPanel = () => {
   const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
@@ -62,7 +60,7 @@ const useHTTPMonthPanel = () => {
       </div>
     );
   } else {
-    const styles = "col-12 col-xxl-9 me-xxl-auto ps-sm-3";
+    const styles = "col-12 col-xxl-9 me-xxl-auto px-2 px-xxl-4";
 
     panelContent = (
       <>

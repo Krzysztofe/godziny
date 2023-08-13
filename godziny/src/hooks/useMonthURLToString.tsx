@@ -1,7 +1,9 @@
 import { useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const useMonthURLToString = () => {
-  const { monthURL } = useParams();
+  const { pathname } = useLocation();
+  const monthURL = pathname.slice(1);
 
   const isMonthInURL = monthURL && /^\d{4}-\d{2}$/.test(monthURL);
 

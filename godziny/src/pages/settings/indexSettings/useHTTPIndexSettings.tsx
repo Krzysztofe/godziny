@@ -1,11 +1,12 @@
 import { Spinner } from "react-bootstrap";
-import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import SettingsMonthsList from "../settingsMonthsList/SettingsMonthsList";
 import SettingsUserForm from "../settingsUserForm/SettingsUserForm";
 import SettingsUsersList from "../settingsUsersList/SettingsUsersList";
+import SettingsReturnButton from "../SettingsReturnButton";
+import Col from "react-bootstrap/Col";
 
 const useHTTPIndexSettings = () => {
   const { usersError, usersIsLoading } = useSelector(
@@ -45,20 +46,31 @@ const useHTTPIndexSettings = () => {
       );
     }
   } else {
-    const styles = "col-12 bg-white";
+    const rowStyles = "col-12 bg-white px-3";
+    const colStyles =
+      "col-12 col-md-9 col-lg-6 col-xl-5 col-xxl-4  py-4 ps-4 ps-md-5 me-md-auto border-bottom ";
 
     settingsContent = (
       <>
-        <Row className={styles}>
-          <SettingsUserForm />
+        <Row className={rowStyles}>
+          <Col className={colStyles}>
+            <SettingsReturnButton />
+          </Col>
         </Row>
-        <Row className={styles}>
-          <SettingsUsersList />
+        <Row className={rowStyles}>
+          <Col className={colStyles}>
+            <SettingsUserForm />
+          </Col>
         </Row>
-        <Row className={`${styles} flex-grow-1 d-block`}
-        style = {{maxHeight:"20%"}}
-        >
-          <SettingsMonthsList />
+        <Row className={rowStyles}>
+          <Col className={colStyles}>
+            <SettingsUsersList />
+          </Col>
+        </Row>
+        <Row className={`${rowStyles} flex-grow-1`}>
+          <Col className={colStyles}>
+            <SettingsMonthsList />
+          </Col>
         </Row>
       </>
     );

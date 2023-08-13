@@ -33,7 +33,7 @@ const SidebarMonthForm = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               size="sm"
-              className="p-0 px-1 d-block border border-primary text-capitalize"
+              className="p-0 px-1 d-block border border-primary shadow-sm text-capitalize"
               style={{ minHeight: 0, height: "fit-content", cursor: "pointer" }}
             />
             <Button

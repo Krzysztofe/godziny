@@ -16,7 +16,7 @@ const useUserSettingsFormik = () => {
   const { validationSchema } = useValidationSettingsUserForm();
   const { data: dataUsers } = useUsersQuery();
 
-  const users = dataUsers || []
+  const users = dataUsers || [];
 
   const formik = useFormik<ModelUser>({
     initialValues: {
@@ -28,6 +28,8 @@ const useUserSettingsFormik = () => {
     onSubmit: async (values, { resetForm }) => {
       const updatedValues = {
         ...values,
+        userName:
+          values.userName.slice(0, 1).toUpperCase() + values.userName.slice(1),
         id: crypto.randomUUID(),
       };
 

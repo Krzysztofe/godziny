@@ -20,7 +20,7 @@ const MonthPanelDayPrintData = (props: Props) => {
 
     return (
       <>
-        <div className="d-flex justify-content-between fs-7">
+        <div className="d-flex justify-content-between fs-7 ">
           <div>{props.day?.userName}</div>
 
           <div>

@@ -6,7 +6,7 @@ import useURLValues from "../../../hooks/useURLValues";
 import { RootState } from "../../../redux/store";
 import "./_monthList.scss";
 
-const SidebarMonthsList = () => {
+const MonthPanelMonthsList = () => {
   const { sortedInfoMonths, databaseMonthsDatesToString } = useMonthDates();
   const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
   const { monthURL, isMonthInURL } = useURLValues();
@@ -22,7 +22,10 @@ const SidebarMonthsList = () => {
     }).format(monthURLToDateFormat);
 
   return (
-    <ListGroup className="monthListContainer bg-white rounded-0 border border-primary text-capitalize bg-transparent">
+    <ListGroup
+      className="monthListContainer text-center fw-medium border border-white text-capitalize"
+    
+    >
       {!infoMonths || infoMonths.length === 0 ? (
         <p className="py-1 px-2 text-warning text-center">Brak danych</p>
       ) : (
@@ -30,14 +33,17 @@ const SidebarMonthsList = () => {
           return (
             <ListGroup.Item
               key={month}
-              className="bg-transparent  border-0 p-0 px-1"
+              className="border-0 p-0 px-1"
+              style={{
+                backgroundColor: "rgba(255, 255, 255, 0.2)",
+              }}
             >
               <Link
                 to={`/${sortedInfoMonths?.[idx]}`}
                 className={`${
                   curMonthURLStringFormat !== month || !curMonthURLStringFormat
-                    ? "text-white"
-                    : "text-warning"
+                    ? "text-dark"
+                    : "text-white"
                 } text-decoration-none`}
               >
                 {month}
@@ -50,4 +56,4 @@ const SidebarMonthsList = () => {
   );
 };
 
-export default SidebarMonthsList;
+export default MonthPanelMonthsList;

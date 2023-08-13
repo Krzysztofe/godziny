@@ -28,7 +28,7 @@ const MonthPanelDay = (props: Props) => {
   );
 
   const handleDelete = async (idx: number, id: string) => {
-    Swal.fire(alertHelper("Chcesz usunąć dzień")).then(async result => {
+    Swal.fire(alertHelper("Usunąć dzień")).then(async result => {
       if (result.isConfirmed) {
         const daysBodyPUTRequest = month?.columns[idx]?.days?.filter(
           (day: ModelDay) => {
@@ -46,7 +46,6 @@ const MonthPanelDay = (props: Props) => {
     });
   };
 
-
   return (
     <Draggable
       draggableId={props.day && props?.day?.id}
@@ -60,13 +59,11 @@ const MonthPanelDay = (props: Props) => {
             {...provided.dragHandleProps}
             ref={provided.innerRef}
             className={`mb-2 bg-white rounded border ${
-              snapshot.isDragging
-                ? "border-secondary-subtle"
-                : "border-transparent"
+              snapshot.isDragging ? "border-dark" : "border-dark-subtle"
             } `}
           >
             <div
-              className="mb-2 px-1 py-2 py-sm-1"
+              className="px-1 py-2 py-sm-1 rounded"
               style={{
                 borderTop: `8px solid ${props.day?.userColor}`,
                 opacity: snapshot.isDragging ? 0.8 : 1,
@@ -79,10 +76,8 @@ const MonthPanelDay = (props: Props) => {
                 className="d-flex justify-content-between  align-items-center w-100 p-0 bg-transparent border-0"
                 disabled={success.isLoading}
               >
-                <div className="d-flex align-items-center fs-7">
-                  {props.day?.hours} h
-                </div>
-                <div className="d-flex align-items-center">{btnContent}</div>
+                <div>{props.day?.hours} h</div>
+                <div className="">{btnContent}</div>
               </Button>
             </div>
           </div>

@@ -27,7 +27,7 @@ const SettingsMonthsListItem = (props: Props) => {
   );
 
   const handleDelete = async () => {
-    Swal.fire(alertHelper("Chcesz usunąć miesiąc?")).then(async result => {
+    Swal.fire(alertHelper("Usunąć miesiąc?")).then(async result => {
       if (result.isConfirmed) {
         const year = props.monthDate.slice(0, 4);
         const month = props.monthDate.slice(-2);
@@ -43,10 +43,10 @@ const SettingsMonthsListItem = (props: Props) => {
   };
 
   return (
-    <ListGroup.Item onClick={handleDelete} className="border-0 p-0 px-1 ">
+    <ListGroup.Item onClick={handleDelete} className="shadow-sm p-0 mb-2 px-1 rounded">
       <Button
         disabled={success.isLoading}
-        className="w-100 d-flex justify-content-between align-items-center px-1 bg-primary-subtle text-capitalize border-0 fs-5"
+        className="w-100 d-flex justify-content-between align-items-center px-1 bg-white border-0 text-capitalize"
       >
         {props.monthDateToString} {btnContent}
       </Button>
