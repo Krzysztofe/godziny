@@ -56,7 +56,7 @@ react-redux, @reduxjs/toolkit,<br/>
 formik, yup, <br/>
 react-bootstrap, sweetalert2, react-icons
 
-## Production version <a href = "http://godziny.ozzip.pl/"> here --></a>
+## Production version for users tests <a href = "http://godziny.ozzip.pl/"> here --></a>
 ## Demo <a href = "https://krzysztofe.github.io/godziny/"> here --></a>
 
 ## Desktop
