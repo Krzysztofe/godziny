@@ -18,7 +18,7 @@ const IndexSettings = lazy(
 function App() {
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/godziny">
       <Suspense fallback={<LoadingPage />}>
         <IndexSidebar />
         <Routes>
