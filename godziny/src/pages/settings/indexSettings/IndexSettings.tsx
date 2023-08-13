@@ -7,7 +7,7 @@ const IndexSettings = () => {
   const { windowWidth } = useWindowWidth();
 
   return (
-    <main className="backgroundImage" style={{ height: "100dvh" }}>
+    <main className="backgroundImage" style={{ height: "100vh" }}>
       <Container
         className="d-flex align-items-center flex-column pe-0 overflow-y-scroll"
         style={{

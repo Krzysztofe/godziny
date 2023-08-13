@@ -15,7 +15,7 @@ const useLoginFormik = () => {
   const [isLoading, setIsLoading] = useState(false);
  
   const formik = useFormik<ModelFormValues>({
-    initialValues: { password: "wwwwww" },
+    initialValues: { password: "" },
 
     onSubmit: values => {
       setIsLoading(true);

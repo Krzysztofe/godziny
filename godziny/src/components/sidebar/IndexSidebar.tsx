@@ -8,7 +8,7 @@ import useMonthURLToString from "../../hooks/useMonthURLToString";
 import useURLValues from "../../hooks/useURLValues";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import MonthPanelHeaderSummary from "../../pages/monthPanel/monthPanelHeader/MonthPanelHeaderSummary";
-import "./../../pages/monthPanel/indexMonthPanel/_bgImage.scss";
+import "./../../scss/utilsClasses/_bgImage.scss";
 import SidebarList from "./SidebarList";
 import SidebarDayForm from "./sidebarDayForm/SidebarDayForm";
 import SidebarHoursFormCollapse from "./sidebarHoursForm/SidebarHoursFormCollapse";

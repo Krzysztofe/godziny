@@ -1,5 +1,5 @@
 import Container from "react-bootstrap/Container";
-import "./_bgImage.scss";
+import "../../../scss/utilsClasses/_bgImage.scss";
 import useHTTPIndexMonthPanel from "./useHTTPIndexMonthPanel";
 
 const IndexMonthPanel = () => {

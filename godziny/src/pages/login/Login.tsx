@@ -18,8 +18,14 @@ const Login = () => {
   }
 
   return (
-    <main className="d-flex justify-content-center  align-items-center vh-100">
-      <Form onSubmit={formik.handleSubmit} className="w-sm-90 border p-4 ">
+    <main className="d-flex justify-content-center  align-items-center vh-100 backgroundImage">
+      <Form
+        onSubmit={formik.handleSubmit}
+        className="w-sm-90 border p-4 rounded-1"
+        style={{
+          backgroundColor: "rgba(255, 255, 255, 0.6)",
+        }}
+      >
         <Form.Group className="mx-auto">
           <div className="text-center fs-3 fw-medium mb-4">
             <Form.Label htmlFor="password" className="mb-0">
