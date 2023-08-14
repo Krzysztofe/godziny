@@ -62,18 +62,22 @@ react-bootstrap, sweetalert2, react-icons
 ## Demo <a href = "https://krzysztofe.github.io/godziny/"> here --></a>
 
 ## Desktop
-
+ <div align="center">
 <img src="https://github.com/Krzysztofe/godziny/assets/96065197/2298b684-8526-4f44-bc6f-c9bcab1fd152" width="500" alt="Desktop Screenshot" margin="20">
+ </div>
 
+  <div align="center">
 <img src="https://github.com/Krzysztofe/godziny/assets/96065197/b10c0dcb-cc11-464a-9eaa-68f99f7852f8" width="500" alt="Desktop Screenshot">
+</div>
 
 ## Mobile
-
+ <div align="center">
 <img src="https://github.com/Krzysztofe/godziny/assets/96065197/57b05eba-80d4-44b3-948a-3f1e0765c9c4" width="300" alt="Mobile Screenshot">
 
 <img src="https://github.com/Krzysztofe/godziny/assets/96065197/078ee5b1-f099-4d54-b725-6b65daa54530" width="300" alt="Mobile Screenshot">
 
 <img src="https://github.com/Krzysztofe/godziny/assets/96065197/667f762e-4a6e-4b88-9d59-f5f26215dfef" width="300" alt="Mobile Screenshot">
+</div>
 
 ## Do do
 
