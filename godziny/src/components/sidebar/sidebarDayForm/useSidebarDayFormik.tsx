@@ -8,6 +8,7 @@ import {
   useAddDayMutation
 } from "../../../services/apiSliceMonths";
 import { validationSchema } from "./validationSidebarDayFormik";
+import { v4 as UUID } from "uuid";
 
 interface ModelDay {
   id: string;
@@ -49,7 +50,7 @@ const useSidebarDayFormik = () => {
 
       const valuesToDatabase = {
         ...values,
-        id: crypto.randomUUID(),
+        id: UUID(),
         hours: +values.hours,
         userColor: userColor || "",
       };

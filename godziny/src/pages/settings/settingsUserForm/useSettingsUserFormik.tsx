@@ -4,6 +4,7 @@ import {
   useUsersQuery,
 } from "../../../services/apiSliceUsers";
 import useValidationSettingsUserForm from "./useValidationSettingsUserForm";
+import { v4 as UUID } from "uuid";
 
 export interface ModelUser {
   id: string;
@@ -30,7 +31,7 @@ const useUserSettingsFormik = () => {
         ...values,
         userName:
           values.userName.slice(0, 1).toUpperCase() + values.userName.slice(1),
-        id: crypto.randomUUID(),
+        id: UUID(),
       };
 
       if (dataUsers) {

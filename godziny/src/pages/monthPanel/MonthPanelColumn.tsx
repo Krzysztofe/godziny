@@ -21,7 +21,7 @@ const MonthPanelColumn = (props: Props) => {
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className="p-1 h-100 overflow-hidden border border-1"
+              className="p-1 h-100 overflow-hidden border border-1 border border-top-0"
               style={{
                 backgroundColor: snapshot.isDraggingOver
                   ? "rgba(0, 0, 0, 0.1)"

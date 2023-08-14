@@ -44,7 +44,7 @@ const SettingsUsersListItem = (props: Props) => {
     >
       <Button
         disabled={success.isLoading}
-        className="w-100 d-flex justify-content-between align-items-center px-1 text-capitalize rounded-0 bg-white"
+        className="w-100 d-flex justify-content-between align-items-center px-1 text-capitalize rounded-0 bg-white border-0"
         style={{ color: props.user.userColor }}
       >
         {props.user.userName}
