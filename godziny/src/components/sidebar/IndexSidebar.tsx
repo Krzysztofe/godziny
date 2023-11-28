@@ -8,20 +8,22 @@ import useMonthURLToString from "../../hooks/useMonthURLToString";
 import useURLValues from "../../hooks/useURLValues";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import MonthPanelHeaderSummary from "../../pages/monthPanel/monthPanelHeader/MonthPanelHeaderSummary";
-import "./../../scss/utilsClasses/_bgImage.scss";
-import SidebarList from "./SidebarList";
-import SidebarDayForm from "./sidebarDayForm/SidebarDayForm";
+import "./../../scss/utilityClasses/_bgImage.scss"
+import SidebarNav from "./SidebarNav";
 import SidebarHoursFormCollapse from "./sidebarHoursForm/SidebarHoursFormCollapse";
 import SidebarMonthFormColapse from "./sidebarMonthFormCollapse/SidebarMonthFormColapse";
 import useReduxDatabase from "./useReduxDatabase";
+import SidebarMenuButton from "./SidebarMenuButton";
+import MonthsCollapse from "../monthsLIstColapse/MonthPanelMonthsCollapse";
+import SidebarHeader from "./SidebarHeader";
+import FormDayContext from "./formDay/FormDayContext";
 
 const IndexSidebar = () => {
   useReduxDatabase();
   const { isMonthInURL } = useURLValues();
   const { pathname } = useLocation();
-  const [show, setShow] = useState(false);
+  const [isShow, setShow] = useState(false);
   const { windowWidth } = useWindowWidth();
-  const { monthURLStringFormat } = useMonthURLToString();
 
   const handleClose = () => setShow(false);
   const toggleShow = () => setShow(s => !s);
@@ -30,76 +32,52 @@ const IndexSidebar = () => {
     windowWidth > 575 && setShow(true);
   }, [windowWidth]);
 
-  let offCanvasWidth = "100%";
-  if (windowWidth >= 576) {
-    offCanvasWidth = "200px";
-  }
-  if (windowWidth >= 768) {
-    offCanvasWidth = "230px";
-  }
-  if (windowWidth >= 992) {
-    offCanvasWidth = "250px";
-  }
-
   return (
     <>
-      {!["/"].includes(pathname) ? (
-        <aside>
-          <Button
-            variant="info"
-            onClick={toggleShow}
-            className={`rounded-0 p-0 fw-medium ${
-              windowWidth > 575 ? "d-none" : "d-block"
-            }`}
-            style={{
-              position: "absolute",
-              height: "2.5rem",
-              width: "100%",
-              right: 0,
-              bottom: 0,
-            }}
-          >
-           Menu
-          </Button>
-
+      {!["/"].includes(pathname) && (
+        <aside
+          style={{
+            width: windowWidth >= 576 ? "30%" : 0,
+            maxWidth: "250px",
+            height: "100%",
+          }}
+        >
           <Offcanvas
-            show={show}
+            show={isShow}
             onHide={handleClose}
             name="Disable backdrop"
             scroll={true}
             backdrop={false}
-            className={`${windowWidth < 576 && "backgroundImage"} ${
-              windowWidth < 576 && "border-0"
-            } p-1 border-white`}
+            className={`${windowWidth < 576 && "backgroundImage"}`}
             style={{
-              width: offCanvasWidth,
-              backgroundColor:"rgba(255, 255, 255, 0.6)",
+              width: windowWidth >= 576 ? "30%" : "100vw",
+              maxWidth: windowWidth >= 576 && "250px",
+              backgroundColor: "rgba(255, 255, 255, 0)",
             }}
           >
-            {windowWidth < 576 && (
-              <Offcanvas.Header closeButton className="w-100">
-                <div className="text-capitalize fw-medium">
-                  {monthURLStringFormat}
-                </div>
-              </Offcanvas.Header>
-            )}
-            {isMonthInURL && (
+            <div
+              className="p-1 d-flex flex-column"
+              style={{
+                height: "100%",
+                backgroundColor: "rgba(255, 255, 255, 0.5)",
+              }}
+            >
+              <SidebarHeader />
+
               <Offcanvas.Body className="flex-grow-0 p-2 bg-white rounded">
                 <SidebarMonthFormColapse />
+                <MonthsCollapse />
+                {/* <MonthPanelHeaderSummary /> */}
                 <SidebarHoursFormCollapse />
-                {windowWidth < 576 ? (
-                  <Row className="w-100 fw-medium ">
-                    <MonthPanelHeaderSummary />
-                  </Row>
-                ) : null}
 
-                <SidebarDayForm />
+                {isMonthInURL && <FormDayContext />}
               </Offcanvas.Body>
-            )}
-            <SidebarList />
+              <SidebarNav />
+            </div>
           </Offcanvas>
+          <SidebarMenuButton toggleShow={toggleShow} />
         </aside>
-      ) : null}
+      )}
     </>
   );
 };

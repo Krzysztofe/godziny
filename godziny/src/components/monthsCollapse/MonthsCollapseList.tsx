@@ -1,12 +1,12 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import useMonthDates from "../../../hooks/useMonthDates";
-import useURLValues from "../../../hooks/useURLValues";
-import { RootState } from "../../../redux/store";
+import useMonthDates from "../../hooks/useMonthDates";
+import useURLValues from "../../hooks/useURLValues";
+import { RootState } from "../../redux/store";
 import "./_monthList.scss";
 
-const MonthPanelMonthsList = () => {
+const MonthsCollapseList = () => {
   const { sortedInfoMonths, databaseMonthsDatesToString } = useMonthDates();
   const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
   const { monthURL, isMonthInURL } = useURLValues();
@@ -22,10 +22,7 @@ const MonthPanelMonthsList = () => {
     }).format(monthURLToDateFormat);
 
   return (
-    <ListGroup
-      className="monthListContainer text-center fw-medium border border-white text-capitalize"
-    
-    >
+    <ListGroup className="monthListContainer text-center fw-medium border border-white text-capitalize">
       {!infoMonths || infoMonths.length === 0 ? (
         <p className="py-1 px-2 text-warning text-center">Brak danych</p>
       ) : (
@@ -56,4 +53,4 @@ const MonthPanelMonthsList = () => {
   );
 };
 
-export default MonthPanelMonthsList;
+export default MonthsCollapseList;

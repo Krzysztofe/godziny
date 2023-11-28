@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import useMonthURLToString from "../../../hooks/useMonthURLToString";
 import { RootState } from "../../../redux/store";
-import SidebarMonthCollapse from "../MonthPanelMonthsCollapse";
+import SidebarMonthCollapse from "../../../components/monthsCollapse/MonthsCollapse";
 import useWindowWidth from "../../../hooks/useWindowWidth";
 import Col from "react-bootstrap/Col";
 

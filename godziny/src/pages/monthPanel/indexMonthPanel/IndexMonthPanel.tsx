@@ -1,19 +1,11 @@
-import Container from "react-bootstrap/Container";
-import "../../../scss/utilsClasses/_bgImage.scss";
 import useHTTPIndexMonthPanel from "./useHTTPIndexMonthPanel";
+import IndexContainer from "../../../components/IndexContainer";
 
 const IndexMonthPanel = () => {
-  const { panelContent } = useHTTPIndexMonthPanel();
-
+  const { monthContent } = useHTTPIndexMonthPanel();
+  
   return (
-    <main>
-      <Container
-        className=" d-flex align-items-center flex-column backgroundImage"
-        style={{ height: "100vh" }}
-      >
-        {panelContent}
-      </Container>
-    </main>
+    <IndexContainer>{monthContent}</IndexContainer>
   );
 };
 

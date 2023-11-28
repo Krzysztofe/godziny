@@ -1,7 +1,7 @@
 import { useUsersQuery } from "../../../services/apiSliceUsers";
 import { ModelUser } from "../../../pages/settings/settingsUserForm/useSettingsUserFormik";
 
-const useDataSidebarSelects = () => {
+const useDataFormDay = () => {
   const { data: dataUsers } = useUsersQuery();
 
   const users = dataUsers ? dataUsers : [];
@@ -10,28 +10,28 @@ const useDataSidebarSelects = () => {
     return userName;
   });
 
-  const dataSelects = [
+  const dataInputsSelect = [
     {
       name: "userName",
       firstOption: `${names.length === 0 ? "Ustawienia" : "Imię"}`,
-      labelText: "Podaj imię",
+      label: "Podaj imię",
       options: names,
     },
     {
       name: "hours",
       firstOption: "Godziny",
-      labelText: "Podaj liczbę godzin",
+      label: "Podaj liczbę godzin",
       options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     },
 
     {
       name: "place",
       firstOption: "Lokalizacja",
-      labelText: "Podaj lokalizację",
+      label: "Podaj lokalizację",
       options: ["Wewnątrz", "Poza"],
     },
   ];
-
-  return { dataSelects };
+const dataInputsText = [{ value: "date", label: "Podaj dzień", type: "date" }];
+  return { dataInputsSelect, dataInputsText };
 };
-export default useDataSidebarSelects;
+export default useDataFormDay;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
-import SidebarMonthsList from "./monthPanelMonthsLIst/MonthPanelMonthsList";
+import SidebarMonthsList from "./MonthsCollapseList";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import useMonthURLToString from "../../hooks/useMonthURLToString";
 import Col from "react-bootstrap/Col";

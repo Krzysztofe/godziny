@@ -1,8 +1,7 @@
 @import "~bootstrap/scss/functions.scss";
-@import "~bootstrap/scss/mixins.scss";
 @import "~bootstrap/scss/variables.scss";
 
-.formContainer {
+.formContainerBlur {
   position: relative;
   &::before {
     content: "";
@@ -13,7 +12,7 @@
     backdrop-filter: blur(5px);
   }
   &::after {
-    content: "Dodaj godziny \A w miesiącu";
+    content: "Zapisz godziny \A w miesiącu";
     position: absolute;
     color: $danger;
     text-align: center;

@@ -5,6 +5,7 @@ import usersSlice from "./storeFeatures/usersSlice";
 import infoMonthsSlice from "./storeFeatures/infoMonthsSlice";
 import { usersApiSlice } from "../services/apiSliceUsers";
 import monthsListCollapseSlice from "./storeFeatures/monthsListCollapseSlice";
+import formDaySlice from "./storeFeatures/formDaySlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     users: usersSlice,
     infoMonths: infoMonthsSlice,
     monthsListCollapse: monthsListCollapseSlice,
+    formDay: formDaySlice,
     [monthsApiSlice.reducerPath]: monthsApiSlice.reducer,
     [usersApiSlice.reducerPath]: usersApiSlice.reducer,
   },

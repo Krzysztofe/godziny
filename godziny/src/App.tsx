@@ -20,7 +20,7 @@ function App() {
   return (
     <BrowserRouter basename="/godziny">
       <Suspense fallback={<LoadingPage />}>
-        <IndexSidebar />
+        {/* <IndexSidebar /> */}
         <Routes>
           <Route path="/" element={<Login />} />
           <Route element={<PrivateRoutes />}>
