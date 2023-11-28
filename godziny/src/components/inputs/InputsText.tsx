@@ -11,7 +11,8 @@ type Props = {
   inputsData: {
     value: string;
     type: string;
-    label: string;
+    label?: string;
+    isErrorPrint?: boolean;
   }[];
 };
 
@@ -21,16 +22,18 @@ const InputsText = (props: Props) => {
 
   return (
     <>
-      {props.inputsData.map(({ value, label }) => {
+      {props.inputsData.map(({ value, label, type, isErrorPrint }) => {
         return (
           <Form.Group key={label}>
-            <Form.Label htmlFor="date" className="mb-0 fs-6 fw-medium">
-              {label}
-            </Form.Label>
+            {label && (
+              <Form.Label htmlFor="date" className="mb-0 fs-6 fw-medium">
+                {label}
+              </Form.Label>
+            )}
             <Form.Control
-              id="date"
-              type="date"
-              name="date"
+              id={value}
+              type={type}
+              name={value}
               value={values[value as keyof typeof values]}
               onChange={e => setFieldValue(value, e.target.value)}
               onBlur={handleBlur}
@@ -40,7 +43,9 @@ const InputsText = (props: Props) => {
               className="p-0 px-1 border border-primary shadow-sm"
               style={{ minHeight: 0, cursor: "pointer" }}
             />
-            <FormErrors value={value} errors={errors} touched={touched} />
+            {isErrorPrint && (
+              <FormErrors value={value} errors={errors} touched={touched} />
+            )}
           </Form.Group>
         );
       })}

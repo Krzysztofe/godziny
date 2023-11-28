@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import SidebarHoursForm from "./sidebar/SidebarHoursForm";
+import FormHours from "./FormHours";
 
 const CollapseFormHours = () => {
   const [isOpen, setOpen] = useState(false);
@@ -27,8 +27,8 @@ const CollapseFormHours = () => {
         />
       </Button>
       <Collapse in={isOpen}>
-        <div className="bg-white p-0">
-          <SidebarHoursForm />
+        <div className="bg-white p-1">
+          <FormHours />
         </div>
       </Collapse>
     </>
