@@ -1,22 +1,15 @@
 import "firebase/database";
 import { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import Row from "react-bootstrap/Row";
 import { useLocation } from "react-router-dom";
-import useMonthURLToString from "../../hooks/useMonthURLToString";
 import useURLValues from "../../hooks/useURLValues";
 import useWindowWidth from "../../hooks/useWindowWidth";
-import MonthPanelHeaderSummary from "../../pages/monthPanel/monthPanelHeader/MonthPanelHeaderSummary";
-import "./../../scss/utilityClasses/_bgImage.scss"
-import SidebarNav from "./SidebarNav";
-import SidebarHoursFormCollapse from "./sidebarHoursForm/SidebarHoursFormCollapse";
-import SidebarMonthFormColapse from "./sidebarMonthFormCollapse/SidebarMonthFormColapse";
-import useReduxDatabase from "./useReduxDatabase";
-import SidebarMenuButton from "./SidebarMenuButton";
-import MonthsCollapse from "../monthsLIstColapse/MonthPanelMonthsCollapse";
+import "./../../scss/utilityClasses/_bgImage.scss";
+import SidebarBody from "./SidebarBody";
 import SidebarHeader from "./SidebarHeader";
-import FormDayContext from "./formDay/FormDayContext";
+import SidebarMenuButton from "./SidebarMenuButton";
+import SidebarNav from "./SidebarNav";
+import useReduxDatabase from "./useReduxDatabase";
 
 const IndexSidebar = () => {
   useReduxDatabase();
@@ -63,15 +56,7 @@ const IndexSidebar = () => {
               }}
             >
               <SidebarHeader />
-
-              <Offcanvas.Body className="flex-grow-0 p-2 bg-white rounded">
-                <SidebarMonthFormColapse />
-                <MonthsCollapse />
-                {/* <MonthPanelHeaderSummary /> */}
-                <SidebarHoursFormCollapse />
-
-                {isMonthInURL && <FormDayContext />}
-              </Offcanvas.Body>
+              <SidebarBody />
               <SidebarNav />
             </div>
           </Offcanvas>

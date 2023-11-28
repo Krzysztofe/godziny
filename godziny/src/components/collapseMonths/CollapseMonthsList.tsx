@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import useMonthDates from "../../hooks/useMonthDates";
 import useURLValues from "../../hooks/useURLValues";
 import { RootState } from "../../redux/store";
-import "./_monthList.scss";
+import "./_collapseMonthsList.scss";
 
-const MonthsCollapseList = () => {
+const CollapseMonthsList = () => {
   const { sortedInfoMonths, databaseMonthsDatesToString } = useMonthDates();
   const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
   const { monthURL, isMonthInURL } = useURLValues();
@@ -22,25 +22,22 @@ const MonthsCollapseList = () => {
     }).format(monthURLToDateFormat);
 
   return (
-    <ListGroup className="monthListContainer text-center fw-medium border border-white text-capitalize">
+    <ListGroup className="monthListContainer fw-medium border text-capitalize">
       {!infoMonths || infoMonths.length === 0 ? (
-        <p className="py-1 px-2 text-warning text-center">Brak danych</p>
+        <p className="py-1 px-2 text-warning">Brak danych</p>
       ) : (
         databaseMonthsDatesToString?.map((month: string, idx: number) => {
           return (
             <ListGroup.Item
               key={month}
               className="border-0 p-0 px-1"
-              style={{
-                backgroundColor: "rgba(255, 255, 255, 0.2)",
-              }}
             >
               <Link
                 to={`/${sortedInfoMonths?.[idx]}`}
                 className={`${
                   curMonthURLStringFormat !== month || !curMonthURLStringFormat
                     ? "text-dark"
-                    : "text-white"
+                    : "text-info"
                 } text-decoration-none`}
               >
                 {month}
@@ -53,4 +50,4 @@ const MonthsCollapseList = () => {
   );
 };
 
-export default MonthsCollapseList;
+export default CollapseMonthsList;

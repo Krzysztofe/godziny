@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Row from "react-bootstrap/Row";
-import SidebarMonthCollapse from "../../../components/monthsCollapse/MonthsCollapse";
+import SidebarMonthCollapse from "../../../components/collapseMonths/CollapseMonths";
 import MonthPanelHeaderSummary from "./MonthPanelHeaderSummary";
 
 const MonthPanelHeader = () => {
