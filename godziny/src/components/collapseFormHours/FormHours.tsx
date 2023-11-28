@@ -1,36 +1,22 @@
-import React from "react";
-import useHTTPState from "../../hooks/useHTTPState";
-import useMonthPanelHeaderFormik from "./useFormikHours";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
+import { Form, Formik } from "formik";
 import Button from "react-bootstrap/Button";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import InputsText from "../inputs/InputsText";
-import { Form as FormFormik, Formik, useFormikContext } from "formik";
-import useFormikHours from "./useFormikHours";
-import Form from "react-bootstrap/Form";
+import useHTTPState from "../../hooks/useHTTPState";
 import InputsRange from "../inputs/InputsRange";
-import FormHoursTop from "./FormHoursTop";
 import FormHoursError from "./FormHoursError";
+import FormHoursTop from "./FormHoursTop";
+import useFormikHours from "./useFormikHours";
 
 const FormHours = () => {
-  // const { formik, success } = useMonthPanelHeaderFormik();
   const { initialValues, onSubmit, success } = useFormikHours();
   const { btnContent } = useHTTPState(
     success,
     <AiOutlinePlusCircle className="text-info" style={{ fontSize: "1.4rem" }} />
   );
-  const { month } = useSelector((state: RootState) => state.monthsPanel);
-  const submittedHours = month?.calc.submittedHours;
-  const acceptedHours = month?.calc.acceptedHours;
-
-  const dataInputsText = [
-    { value: "allHours", type: "number", isErrorPrint: false },
-  ];
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
-      <FormFormik>
+      <Form className="border p-1">
         <FormHoursTop />
         <InputsRange inputsValues={["allHours"]} />
 
@@ -44,7 +30,7 @@ const FormHours = () => {
             {btnContent}
           </Button>
         </div>
-      </FormFormik>
+      </Form>
     </Formik>
   );
 };

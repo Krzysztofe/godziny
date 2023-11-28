@@ -13,7 +13,6 @@ import useReduxDatabase from "./useReduxDatabase";
 
 const IndexSidebar = () => {
   useReduxDatabase();
-  const { isMonthInURL } = useURLValues();
   const { pathname } = useLocation();
   const [isShow, setShow] = useState(false);
   const { windowWidth } = useWindowWidth();

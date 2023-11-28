@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import FormHours from "./FormHours";
 
-const CollapseFormHours = () => {
+type Props = {
+  children: ReactNode;
+  title: string;
+};
+
+const CollapseComponent = (props: Props) => {
   const [isOpen, setOpen] = useState(false);
-
   return (
     <>
       <Button
@@ -15,9 +18,14 @@ const CollapseFormHours = () => {
         aria-expanded={isOpen}
         aria-controls="example-collapse-text"
         size="sm"
-        className="fw-medium w-100 mt-2 d-flex justify-content-between align-items-center"
+        className={`fw-medium w-100 mt-2 d-flex justify-content-between align-items-center text-capitalize bg-info text-white ${
+          isOpen ? "rounded-bottom-0" : "rounded-bottom-1"
+        }`}
+        style={{
+          transition: "border-radius 420ms",
+        }}
       >
-        Zapisz godziny
+        {props.title}
         <MdOutlineKeyboardArrowDown
           className="fs-3"
           style={{
@@ -27,12 +35,12 @@ const CollapseFormHours = () => {
         />
       </Button>
       <Collapse in={isOpen}>
-        <div className="bg-white p-1">
-          <FormHours />
+        <div className="border border-info rounded-bottom px-1">
+          {props.children}
         </div>
       </Collapse>
     </>
   );
 };
 
-export default CollapseFormHours;
+export default CollapseComponent;
