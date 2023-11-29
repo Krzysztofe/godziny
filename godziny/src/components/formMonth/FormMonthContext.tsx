@@ -7,7 +7,7 @@ import useFormikMonth from "./useFormikMonth";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import InputsText from "../inputs/InputsText";
 
-const MonthForm = () => {
+const FormMonthContext = () => {
   const { initialValues, validation, onSubmit, success } = useFormikMonth();
   const { btnContent } = useHTTPState(
     success,
@@ -27,7 +27,7 @@ const MonthForm = () => {
   return (
     <Formik
       initialValues={initialValues}
-      validation={validation}
+      validationSchema={validation}
       onSubmit={onSubmit}
     >
       <Form className="py-2">
@@ -45,4 +45,4 @@ const MonthForm = () => {
   );
 };
 
-export default MonthForm;
+export default FormMonthContext;

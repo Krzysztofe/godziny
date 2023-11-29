@@ -2,7 +2,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Col from "react-bootstrap/Col";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import { ModelUser } from "../settingsUserForm/useSettingsUserFormik";
+import { ModelUser } from "../../../components/formUser/ModelUser";
 import SettingsUsersListItem from "./SettingsUsersListItem";
 
 const SettingsUsersList = () => {

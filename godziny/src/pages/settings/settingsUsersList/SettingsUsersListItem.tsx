@@ -5,11 +5,9 @@ import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import useHTTPState from "../../../hooks/useHTTPState";
 import { RootState } from "../../../redux/store";
-import {
-  useDeleteUserMutation
-} from "../../../services/apiSliceUsers";
+import { useDeleteUserMutation } from "../../../services/apiSliceUsers";
 import { alertHelper } from "../../../utils/alertHelpers";
-import { ModelUser } from "../settingsUserForm/useSettingsUserFormik";
+import { ModelUser } from "../../../components/formUser/ModelUser";
 
 interface Props {
   user: ModelUser;
@@ -40,7 +38,7 @@ const SettingsUsersListItem = (props: Props) => {
     <ListGroup.Item
       onClick={() => handleDelete(props.user.id)}
       className="shadow-sm p-0 mb-2 ps-2 pe-0 rounded-1"
-      style={{ backgroundColor: props.user.userColor, overflow:"hidden" }}
+      style={{ backgroundColor: props.user.userColor, overflow: "hidden" }}
     >
       <Button
         disabled={success.isLoading}

@@ -1,9 +1,5 @@
 import { useFormikContext } from "formik";
 import Form from "react-bootstrap/Form";
-import {
-  dateInNext14Days,
-  dateInNext60Days,
-} from "../../data/dataCurrentDates";
 import { ModelDay } from "../sidebar/someData/dataSidebarMonthForm";
 import FormErrors from "./FormErrors";
 
@@ -12,6 +8,7 @@ type Props = {
     value: string;
     type: string;
     label?: string;
+    placeholder?: string;
     isErrorPrint?: boolean;
     min?: string;
     max?: string;
@@ -25,7 +22,7 @@ const InputsText = (props: Props) => {
   return (
     <>
       {props.inputsData.map(
-        ({ value, label, type, isErrorPrint, min, max }) => {
+        ({ value, label, type, isErrorPrint, min, max, placeholder }) => {
           return (
             <Form.Group key={value}>
               {label && (
@@ -42,6 +39,7 @@ const InputsText = (props: Props) => {
                 onBlur={handleBlur}
                 min={min}
                 max={max}
+                placeholder={placeholder}
                 size="sm"
                 className="p-0 px-1 border border-primary shadow-sm"
                 style={{ minHeight: 0, cursor: "pointer" }}

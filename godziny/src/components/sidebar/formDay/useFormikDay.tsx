@@ -3,7 +3,7 @@ import { dateInNext14Days } from "../../../data/dataCurrentDates";
 import { validationSchema } from "./validationFormDay";
 import * as yup from "yup";
 import { RootState } from "../../../redux/store";
-import { ModelUser } from "../../../pages/settings/settingsUserForm/useSettingsUserFormik";
+import { ModelUser } from "../../formUser/ModelUser";
 import { v4 as UUID } from "uuid";
 import { useAddDayMutation } from "../../../services/apiSliceMonths";
 import useURLValues from "../../../hooks/useURLValues";

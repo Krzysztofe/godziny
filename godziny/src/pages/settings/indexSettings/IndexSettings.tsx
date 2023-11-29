@@ -1,8 +1,8 @@
 import IndexContainer from "../../../components/IndexContainer";
-import useHTTPIndexSettings from "./useHTTPIndexSettings";
+import useFetchSettings from "./useFetchSettings";
 
 const IndexSettings = () => {
-  const { settingsContent } = useHTTPIndexSettings();
+  const { settingsContent } = useFetchSettings();
 
   return <IndexContainer>{settingsContent}</IndexContainer>;
 };

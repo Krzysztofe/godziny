@@ -7,12 +7,14 @@ import { printPanelContent } from "../../../utils/printPanelContent";
 import MonthPanelColumns from "../monthPanelColmns/MonthPanelColumns";
 import useMonthURLToString from "../../../hooks/useMonthURLToString";
 
-const useHTTPMonthPanel = () => {
+const useFetchMonthPanel = () => {
   const { month, error, isLoading } = useSelector(
     (state: RootState) => state.monthsPanel
   );
 
   const { monthURLStringFormat } = useMonthURLToString();
+
+
 
 
   let monthContent;
@@ -66,4 +68,4 @@ const useHTTPMonthPanel = () => {
   return { monthContent };
 };
 
-export default useHTTPMonthPanel;
+export default useFetchMonthPanel;

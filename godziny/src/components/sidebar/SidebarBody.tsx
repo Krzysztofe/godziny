@@ -2,10 +2,11 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import useMonthURLToString from "../../hooks/useMonthURLToString";
 import useURLValues from "../../hooks/useURLValues";
 import CollapseComponent from "../CollapseComponent";
-import FormHoursContext from "../collapseFormHours/FormHoursContext";
+import FormHoursContext from "../formHours/FormHoursContext";
 import CollapseMonthsList from "../collapseMonths/CollapseMonthsList";
 import FormDayContext from "./formDay/FormDayContext";
-import MonthForm from "../formMonth/MonthForm";
+import FormMonthContext from "../formMonth/FormMonthContext";
+import FormUserContext from "../formUser/FormUserContext";
 
 const SidebarBody = () => {
   const { isMonthInURL } = useURLValues();
@@ -30,8 +31,15 @@ const SidebarBody = () => {
 
       {!isMonthInURL && (
         <CollapseComponent title={"Zapisz miesiąc"}>
-          <MonthForm />
+          <FormMonthContext />
         </CollapseComponent>
+      )}
+      {!isMonthInURL && (
+        <div className="mt-1">
+          <CollapseComponent title={"Zapisz użytkownika"}>
+            <FormUserContext />
+          </CollapseComponent>
+        </div>
       )}
     </Offcanvas.Body>
   );

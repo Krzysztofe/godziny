@@ -1,8 +1,8 @@
-import useHTTPIndexMonthPanel from "./useHTTPIndexMonthPanel";
+import useFetchMonthPanel from "./useFetchMonthPanel";
 import IndexContainer from "../../../components/IndexContainer";
 
 const IndexMonthPanel = () => {
-  const { monthContent } = useHTTPIndexMonthPanel();
+  const { monthContent } = useFetchMonthPanel();
   
   return (
     <IndexContainer>{monthContent}</IndexContainer>

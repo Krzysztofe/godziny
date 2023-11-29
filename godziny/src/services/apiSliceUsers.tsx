@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ModelUser } from "../pages/settings/settingsUserForm/useSettingsUserFormik";
+import { ModelUser } from "../components/formUser/ModelUser";
 import { URL_USERS_DATA } from "../data/URL";
 
 export const usersApiSlice = createApi({
@@ -36,4 +36,5 @@ export const usersApiSlice = createApi({
   }),
 });
 
-export const { useUsersQuery, useAddUserMutation, useDeleteUserMutation } = usersApiSlice;
+export const { useUsersQuery, useAddUserMutation, useDeleteUserMutation } =
+  usersApiSlice;

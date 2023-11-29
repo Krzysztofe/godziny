@@ -1,13 +1,11 @@
 import { Spinner } from "react-bootstrap";
-import Row from "react-bootstrap/Row";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import SettingsMonthsList from "../settingsMonthsList/SettingsMonthsList";
-import SettingsUserForm from "../settingsUserForm/SettingsUserForm";
-import SettingsUsersList from "../settingsUsersList/SettingsUsersList";
-import SettingsReturnButton from "../SettingsReturnButton";
-import Col from "react-bootstrap/Col";
 import { printPanelContent } from "../../../utils/printPanelContent";
+import SettingsReturnButton from "../SettingsReturnButton";
+import FormUserContext from "../../../components/formUser/FormUserContext";
+import SettingsUsersList from "../settingsUsersList/SettingsUsersList";
 
 const useHTTPIndexSettings = () => {
   const { usersError, usersIsLoading } = useSelector(
@@ -47,10 +45,15 @@ const useHTTPIndexSettings = () => {
     }
   } else {
     settingsContent = (
-      <div style={{ height: "100%", overflowY: "auto", overflowX: "hidden" }}>
-        <SettingsReturnButton />
+      <div
+        className="bg-white p-2 p-sm-4 w-100"
+        style={{
+          height: "100%",
+          overflow: "hidden auto",
+          outline: "4px solid white",
+        }}
+      >
         <SettingsMonthsList />
-        <SettingsUserForm />
         <SettingsUsersList />
       </div>
     );
