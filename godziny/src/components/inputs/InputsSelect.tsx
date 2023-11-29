@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormikContext, Formik, Form as FormFormik, Field } from "formik";
-import { ModelDay } from "../sidebar/sidebarMonthForm/dataSidebarMonthForm";
+import { ModelDay } from "../sidebar/someData/dataSidebarMonthForm";
 import useDataSidebarSelects from "../sidebar/formDay/useDataFormDay";
 import Form from "react-bootstrap/Form";
 import FormErrors from "./FormErrors";

@@ -18,7 +18,7 @@ const CollapseComponent = (props: Props) => {
         aria-expanded={isOpen}
         aria-controls="example-collapse-text"
         size="sm"
-        className={`fw-medium w-100 mt-2 d-flex justify-content-between align-items-center text-capitalize bg-info text-white ${
+        className={`fw-medium w-100 d-flex justify-content-between align-items-center text-capitalize bg-info text-white ${
           isOpen ? "rounded-bottom-0" : "rounded-bottom-1"
         }`}
         style={{

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useSelector } from "react-redux";
-import { ModelColumn } from "../../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
+import { ModelColumn } from "../../../components/sidebar/someData/dataSidebarMonthForm";
 import useHoursSum from "../../../hooks/useHoursSum";
 import useURLValues from "../../../hooks/useURLValues";
 import { RootState } from "../../../redux/store";

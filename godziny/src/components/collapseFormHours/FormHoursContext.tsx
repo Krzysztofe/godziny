@@ -7,7 +7,7 @@ import FormHoursError from "./FormHoursError";
 import FormHoursTop from "./FormHoursTop";
 import useFormikHours from "./useFormikHours";
 
-const FormHours = () => {
+const FormHoursContext = () => {
   const { initialValues, onSubmit, success } = useFormikHours();
   const { btnContent } = useHTTPState(
     success,
@@ -16,7 +16,7 @@ const FormHours = () => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
-      <Form className="border p-1">
+      <Form className="py-2">
         <FormHoursTop />
         <InputsRange inputsValues={["allHours"]} />
 
@@ -35,4 +35,4 @@ const FormHours = () => {
   );
 };
 
-export default FormHours;
+export default FormHoursContext;

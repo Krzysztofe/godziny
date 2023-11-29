@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import useMonthDates from "../../hooks/useMonthDates";
 import useURLValues from "../../hooks/useURLValues";
 import { RootState } from "../../redux/store";
-import "./_collapseMonthsList.scss";
 
 const CollapseMonthsList = () => {
   const { sortedInfoMonths, databaseMonthsDatesToString } = useMonthDates();
@@ -22,30 +21,34 @@ const CollapseMonthsList = () => {
     }).format(monthURLToDateFormat);
 
   return (
-    <ListGroup className="monthListContainer fw-medium border text-capitalize">
-      {!infoMonths || infoMonths.length === 0 ? (
-        <p className="py-1 px-2 text-warning">Brak danych</p>
-      ) : (
-        databaseMonthsDatesToString?.map((month: string, idx: number) => {
-          return (
-            <ListGroup.Item
-              key={month}
-              className="border-0 p-0 px-1"
-            >
-              <Link
-                to={`/${sortedInfoMonths?.[idx]}`}
-                className={`${
-                  curMonthURLStringFormat !== month || !curMonthURLStringFormat
-                    ? "text-dark"
-                    : "text-info"
-                } text-decoration-none`}
-              >
-                {month}
-              </Link>
-            </ListGroup.Item>
-          );
-        })
+    <ListGroup
+      className="scrolHidden fs-7 fw-medium text-capitalize"
+      style={{ height: "5rem" }}
+    >
+      {!infoMonths && (
+        <ListGroup.Item className="border-0 p-0 text-warning">
+          Brak danych
+        </ListGroup.Item>
       )}
+
+      {databaseMonthsDatesToString?.map((month: string, idx: number) => {
+        return (
+          <ListGroup.Item key={month} className="border-0 p-0">
+            <Link
+              to={`/${sortedInfoMonths?.[idx]}`}
+              className={`${
+                curMonthURLStringFormat !== month || !curMonthURLStringFormat
+                  ? "text-dark"
+                  : "text-info"
+              } text-decoration-none`}
+            >
+              {month}
+            </Link>
+          </ListGroup.Item>
+        );
+      })}
+
+     
     </ListGroup>
   );
 };

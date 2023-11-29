@@ -3,8 +3,7 @@ import {
   ModelCalc,
   ModelColumn,
   ModelMonthPattern,
-} from "../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
-
+} from "../../components/sidebar/someData/dataSidebarMonthForm";
 
 const columns: ModelColumn[] = [
   { id: "submitted", days: [] },
@@ -43,7 +42,6 @@ export const monthsPanelSlice = createSlice({
   initialState,
   reducers: {
     getMonth: (state, action) => {
-      
       state.month = action.payload;
     },
     getMonthError: (state, action) => {
@@ -56,5 +54,6 @@ export const monthsPanelSlice = createSlice({
   },
 });
 
-export const { getMonth, getMonthError, getMonthIsLoading } = monthsPanelSlice.actions;
+export const { getMonth, getMonthError, getMonthIsLoading } =
+  monthsPanelSlice.actions;
 export default monthsPanelSlice.reducer;

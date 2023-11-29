@@ -9,7 +9,7 @@ import { useAddDayMutation } from "../../../services/apiSliceMonths";
 import useURLValues from "../../../hooks/useURLValues";
 
 const useFormikDay = () => {
-  const [addDay] = useAddDayMutation();
+  const [addDay, success] = useAddDayMutation();
   const { month } = useSelector((state: RootState) => state.monthsPanel);
   const { users } = useSelector((state: RootState) => state.users);
   const firstColumn = month && month?.columns?.[0];
@@ -55,7 +55,7 @@ const useFormikDay = () => {
     });
   };
 
-  return { initialValues, validation, onSubmit };
+  return { initialValues, validation, onSubmit, success };
 };
 
 export default useFormikDay;

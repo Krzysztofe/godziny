@@ -10,9 +10,10 @@ import { RootState } from "../../../redux/store";
 
 const FormDayContext = () => {
   const { dataInputsText, dataInputsSelect } = useDataFormDay();
-  const { initialValues, validation, onSubmit } = useFormikDay();
+  const { initialValues, validation, onSubmit, success } = useFormikDay();
   const { month } = useSelector((state: RootState) => state.monthsPanel);
   const allHours = month?.calc?.allHours;
+
 
   return (
     <Formik
@@ -23,7 +24,7 @@ const FormDayContext = () => {
       <Form className={`${allHours === 0 ? "formContainerBlur" : ""} mt-2`}>
         <InputsSelect inputsData={dataInputsSelect} />
         <InputsText inputsData={dataInputsText} />
-        <FormDayButton />
+        <FormDayButton success = {success} />
       </Form>
     </Formik>
   );

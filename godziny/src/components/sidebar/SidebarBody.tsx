@@ -1,39 +1,38 @@
 import Offcanvas from "react-bootstrap/Offcanvas";
 import useMonthURLToString from "../../hooks/useMonthURLToString";
 import useURLValues from "../../hooks/useURLValues";
-import MonthHoursSummary from "../../pages/monthPanel/monthPanelHeader/MonthPanelHeaderSummary";
 import CollapseComponent from "../CollapseComponent";
-import FormHours from "../collapseFormHours/FormHours";
+import FormHoursContext from "../collapseFormHours/FormHoursContext";
 import CollapseMonthsList from "../collapseMonths/CollapseMonthsList";
 import FormDayContext from "./formDay/FormDayContext";
-import SidebarMonthFormColapse from "./sidebarMonthFormCollapse/SidebarMonthFormColapse";
-import SidebarMonthForm from "./sidebarMonthForm/SidebarMonthForm";
-
+import MonthForm from "../formMonth/MonthForm";
 
 const SidebarBody = () => {
   const { isMonthInURL } = useURLValues();
   const { monthURLStringFormat } = useMonthURLToString();
 
   return (
-    <Offcanvas.Body className="flex-grow-0 p-2 bg-white rounded monthListContainer">
-      {!isMonthInURL && (
-        <CollapseComponent title={"Zapisz miesiąc"}>
-          <SidebarMonthForm />
-        </CollapseComponent>
-      )}
-
+    <Offcanvas.Body className="scrolHidden flex-grow-0 p-0 border border-4 border-white bg-white rounded">
       {isMonthInURL && (
         <CollapseComponent title={monthURLStringFormat}>
           <CollapseMonthsList />
         </CollapseComponent>
       )}
       {isMonthInURL && (
-        <CollapseComponent title={"Zapisz godziny"}>
-          <FormHours />
+        <div className="mt-1">
+          <CollapseComponent title={"Zapisz godziny"}>
+            <FormHoursContext />
+          </CollapseComponent>
+        </div>
+      )}
+      {/* {isMonthInURL && <MonthHoursSummary />} */}
+      {isMonthInURL && <FormDayContext />}
+
+      {!isMonthInURL && (
+        <CollapseComponent title={"Zapisz miesiąc"}>
+          <MonthForm />
         </CollapseComponent>
       )}
-      {isMonthInURL && <MonthHoursSummary />}
-      {isMonthInURL && <FormDayContext />}
     </Offcanvas.Body>
   );
 };

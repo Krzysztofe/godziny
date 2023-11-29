@@ -1,5 +1,6 @@
 import { useUsersQuery } from "../../../services/apiSliceUsers";
 import { ModelUser } from "../../../pages/settings/settingsUserForm/useSettingsUserFormik";
+import { dateInNext14Days, dateInNext60Days } from "../../../data/dataCurrentDates";
 
 const useDataFormDay = () => {
   const { data: dataUsers } = useUsersQuery();
@@ -31,7 +32,16 @@ const useDataFormDay = () => {
       options: ["Wewnątrz", "Poza"],
     },
   ];
-const dataInputsText = [{ value: "date", label: "Podaj dzień", type: "date" }];
+const dataInputsText = [
+  {
+    value: "date",
+    label: "Podaj dzień",
+    type: "date",
+    isErrorPrint: true,
+    min: dateInNext14Days,
+    max: dateInNext60Days
+  },
+];
   return { dataInputsSelect, dataInputsText };
 };
 export default useDataFormDay;

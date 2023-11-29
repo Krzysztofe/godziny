@@ -4,12 +4,16 @@ import { useSelector } from "react-redux";
 import useHTTPState from "../../../hooks/useHTTPState";
 import { RootState } from "../../../redux/store";
 import { useAddDayMutation } from "../../../services/apiSliceMonths";
-import { ModelDay } from "../sidebarMonthForm/dataSidebarMonthForm";
+import { ModelDay } from "../someData/dataSidebarMonthForm";
+import useFormikDay from "./useFormikDay";
 
-const FormDayButton = () => {
+type Props = {
+  success: any;
+};
+
+const FormDayButton = (props: Props) => {
   const { values } = useFormikContext<ModelDay>();
-  const [addDay, success] = useAddDayMutation();
-  const { btnContent } = useHTTPState(success, "Dodaj dzień");
+  const { btnContent } = useHTTPState(props.success, "Dodaj dzień");
   const { month } = useSelector((state: RootState) => state.monthsPanel);
   const currentHours = month?.calc?.currentHours;
 
@@ -17,16 +21,13 @@ const FormDayButton = () => {
     <>
       <Button
         type="submit"
-        disabled={success.isLoading}
+        disabled={props.success.isLoading}
         className="fw-medium w-100 mt-2 bg-info text-white"
       >
         {btnContent}
       </Button>
 
-      <div
-        className="text-danger d-block mt-0 fs-8"
-        style={{ height: "0.7rem" }}
-      >
+      <div className="text-danger d-block mt-0 fs-8" style={{ height: "1rem" }}>
         {currentHours - +values.hours < 0 || currentHours === 0
           ? "Brak dostępnych godzin"
           : ""}

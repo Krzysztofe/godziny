@@ -5,20 +5,15 @@ import useWindowWidth from "../../../hooks/useWindowWidth";
 import { RootState } from "../../../redux/store";
 import { printPanelContent } from "../../../utils/printPanelContent";
 import MonthPanelColumns from "../monthPanelColmns/MonthPanelColumns";
+import useMonthURLToString from "../../../hooks/useMonthURLToString";
 
 const useHTTPMonthPanel = () => {
-  const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
   const { month, error, isLoading } = useSelector(
     (state: RootState) => state.monthsPanel
   );
 
-  const { isOpenCollapseMonths } = useSelector(
-    (state: RootState) => state.monthsListCollapse
-  );
+  const { monthURLStringFormat } = useMonthURLToString();
 
-  const { windowWidth } = useWindowWidth();
-
- 
 
   let monthContent;
 
@@ -38,19 +33,14 @@ const useHTTPMonthPanel = () => {
         </div>
       );
     }
-  } else if (!infoMonths || infoMonths?.length === 0) {
+  } 
+    
+  else if (!month || month?.id === "") {
    monthContent = printPanelContent(
-      <div>
-        Brak miesięcy zapisanych w bazie danych. Zapisz miesiąc w ustawieniach.
-      </div>
-    );
-  } else if (!month || month?.id === "") {
-   monthContent = printPanelContent(
-      <div>
-        Brak danych z miesiąca {currMonthDateToString}. Zapisz miesiąc w
-        ustawieniach.
-      </div>
-    );
+     <div>
+       Brak danych z miesiąca {monthURLStringFormat}. Zapisz miesiąc w ustawieniach.
+     </div>
+   );
   } else {
    monthContent = (
       <>

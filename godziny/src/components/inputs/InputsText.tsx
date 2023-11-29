@@ -4,7 +4,7 @@ import {
   dateInNext14Days,
   dateInNext60Days,
 } from "../../data/dataCurrentDates";
-import { ModelDay } from "../sidebar/sidebarMonthForm/dataSidebarMonthForm";
+import { ModelDay } from "../sidebar/someData/dataSidebarMonthForm";
 import FormErrors from "./FormErrors";
 
 type Props = {
@@ -13,6 +13,8 @@ type Props = {
     type: string;
     label?: string;
     isErrorPrint?: boolean;
+    min?: string;
+    max?: string;
   }[];
 };
 
@@ -22,33 +24,35 @@ const InputsText = (props: Props) => {
 
   return (
     <>
-      {props.inputsData.map(({ value, label, type, isErrorPrint }) => {
-        return (
-          <Form.Group key={label}>
-            {label && (
-              <Form.Label htmlFor="date" className="mb-0 fs-6 fw-medium">
-                {label}
-              </Form.Label>
-            )}
-            <Form.Control
-              id={value}
-              type={type}
-              name={value}
-              value={values[value as keyof typeof values]}
-              onChange={e => setFieldValue(value, e.target.value)}
-              onBlur={handleBlur}
-              min={dateInNext14Days}
-              max={dateInNext60Days}
-              size="sm"
-              className="p-0 px-1 border border-primary shadow-sm"
-              style={{ minHeight: 0, cursor: "pointer" }}
-            />
-            {isErrorPrint && (
-              <FormErrors value={value} errors={errors} touched={touched} />
-            )}
-          </Form.Group>
-        );
-      })}
+      {props.inputsData.map(
+        ({ value, label, type, isErrorPrint, min, max }) => {
+          return (
+            <Form.Group key={value}>
+              {label && (
+                <Form.Label htmlFor="date" className="mb-0 fs-6 fw-medium">
+                  {label}
+                </Form.Label>
+              )}
+              <Form.Control
+                id={value}
+                type={type}
+                name={value}
+                value={values[value as keyof typeof values]}
+                onChange={e => setFieldValue(value, e.target.value)}
+                onBlur={handleBlur}
+                min={min}
+                max={max}
+                size="sm"
+                className="p-0 px-1 border border-primary shadow-sm"
+                style={{ minHeight: 0, cursor: "pointer" }}
+              />
+              {isErrorPrint && (
+                <FormErrors value={value} errors={errors} touched={touched} />
+              )}
+            </Form.Group>
+          );
+        }
+      )}
     </>
   );
 };

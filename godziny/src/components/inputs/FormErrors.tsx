@@ -1,5 +1,5 @@
 import { FormikTouched, FormikErrors } from "formik";
-import { ModelDay } from "../sidebar/sidebarMonthForm/dataSidebarMonthForm";
+import { ModelDay } from "../sidebar/someData/dataSidebarMonthForm";
 
 type Props = {
   value: string;

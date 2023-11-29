@@ -5,11 +5,10 @@ import {
   ModelMonthPattern,
   ModelColumn,
   ModelDay,
-} from "../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
+} from "../components/sidebar/someData/dataSidebarMonthForm";
 
 const createUrl = (year: string, month: string, suffix = "") =>
   `/years/${year}/month_${month}${suffix}.json`;
-
 
 export const monthsApiSlice = createApi({
   reducerPath: "monthsApi",

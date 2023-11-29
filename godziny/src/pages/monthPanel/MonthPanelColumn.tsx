@@ -3,7 +3,7 @@ import Col from "react-bootstrap/Col";
 import {
   ModelColumn,
   ModelDay,
-} from "../../components/sidebar/sidebarMonthForm/dataSidebarMonthForm";
+} from "../../components/sidebar/someData/dataSidebarMonthForm";
 import MonthPanelDay from "./MonthPanelDay";
 import { v4 as UUID } from "uuid";
 

@@ -18,7 +18,7 @@ const Login = () => {
   }
 
   return (
-    <main className="d-flex justify-content-center  align-items-center vh-100 backgroundImage">
+    <main className="backgroundImage d-flex justify-content-center  align-items-center vh-100 backgroundImage">
       <Form
         onSubmit={formik.handleSubmit}
         className="w-sm-90 border p-4 rounded-1"
