@@ -3,10 +3,13 @@ import useFormikLogin from "./useFormikLogin";
 import InputsText from "../../components/inputs/InputsText";
 import Button from "react-bootstrap/Button";
 import { Spinner } from "react-bootstrap";
+import useWindowWidth from "../../hooks/useWindowWidth";
 
 const FormLoginContext = () => {
   const { initialValues, onSubmit, isLoading } = useFormikLogin();
   let btnContent: string | React.ReactNode = "Zaloguj";
+
+  const { windowWidth } = useWindowWidth();
 
   if (isLoading) {
     btnContent = (
@@ -21,9 +24,16 @@ const FormLoginContext = () => {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form
-        className="w-sm-90 border p-4 rounded-1"
+        className="border p-4 rounded-1"
         style={{
-          backgroundColor: "rgba(255, 255, 255, 0.6)",
+          backgroundColor: "rgba(255, 255, 255, 0.5)",
+          scale: "1.3",
+          width: windowWidth <= 500 ? "77%" : "fit-content",
+          height: windowWidth <= 500 ? "77%" : "fit-content",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <div className="text-center fs-5 fw-medium mb-4">Podaj hasło</div>
@@ -33,7 +43,8 @@ const FormLoginContext = () => {
           disabled={isLoading}
           variant="info"
           type="submit"
-          className="fw-medium mt-3 w-100"
+          className="fw-medium btn-sm mt-3 w-100"
+          style={{ maxWidth: "169px" }}
         >
           {btnContent}
         </Button>
