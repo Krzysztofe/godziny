@@ -31,30 +31,30 @@ const MonthPanelColumns = () => {
     setColumns(columnsWithDays);
   }, [month]);
 
-  // useEffect(() => {
-  //   if (columns.length > 0) {
-  //     updateMonth({
-  //       year: yearFromURL,
-  //       month: monthFromURL,
-  //       monthBody: {
-  //         ...month,
-  //         columns: columns,
-  //         calc: {
-  //           ...month?.calc,
-  //           currentHours:
-  //             (month?.calc?.allHours ?? 0) -
-  //             submittedHoursSum -
-  //             acceptedHoursSum -
-  //             rejectedHoursSum +
-  //             rejectedHoursSum,
-  //           submittedHours: submittedHoursSum,
-  //           acceptedHours: acceptedHoursSum,
-  //           rejectedHours: rejectedHoursSum,
-  //         },
-  //       },
-  //     });
-  //   }
-  // }, [columns]);
+  useEffect(() => {
+    if (columns.length > 0) {
+      updateMonth({
+        year: yearFromURL,
+        month: monthFromURL,
+        monthBody: {
+          ...month,
+          columns: columns,
+          calc: {
+            ...month?.calc,
+            currentHours:
+              (month?.calc?.allHours ?? 0) -
+              submittedHoursSum -
+              acceptedHoursSum -
+              rejectedHoursSum +
+              rejectedHoursSum,
+            submittedHours: submittedHoursSum,
+            acceptedHours: acceptedHoursSum,
+            rejectedHours: rejectedHoursSum,
+          },
+        },
+      });
+    }
+  }, [columns]);
 
   const handleDragEnd = (results: DropResult) => {
     handleDragDrop(results, columns, setColumns);

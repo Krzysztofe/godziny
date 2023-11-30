@@ -4,7 +4,7 @@ import MonthPanelColumns from "../monthPanelColmns/MonthPanelColumns";
 const MonthPanelContent = () => {
   return (
     <div
-      className="py-2"
+      className="py-1"
       style={{
         maxWidth: "1000px",
         width: "100%",
