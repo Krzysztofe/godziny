@@ -1,7 +1,6 @@
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
 import { createBrowserHistory } from "history";
-import { RiLogoutBoxLine } from "react-icons/ri";
+import Button from "react-bootstrap/Button";
+import { ImArrowLeft } from "react-icons/im";
 
 const SettingsReturnButton = () => {
   const history = createBrowserHistory();
@@ -10,12 +9,15 @@ const SettingsReturnButton = () => {
   };
   return (
     <Button
-      variant="outline-info"
-      size="sm"
-      className="d-flex align-items-center fw-middle fw-medium"
       onClick={handleGoBack}
+      className="fs-6 fw-medium text-info p-0 bg-transparent border-0 w-100"
+      style={{
+        cursor: "pointer",
+      }}
     >
-      <RiLogoutBoxLine className="fs-6 me-1 fw-middle " /> Wróć
+      <div className="d-flex align-center  d-flex align-items-center text-start w-100">
+        <ImArrowLeft className="fs-6 me-1 " /> Wróć
+      </div>
     </Button>
   );
 };

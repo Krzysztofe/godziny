@@ -29,6 +29,8 @@ const SidebarBody = () => {
       {/* {isMonthInURL && <MonthHoursSummary />} */}
       {isMonthInURL && <FormDayContext />}
 
+
+
       {!isMonthInURL && (
         <CollapseComponent title={"Zapisz miesiąc"}>
           <FormMonthContext />

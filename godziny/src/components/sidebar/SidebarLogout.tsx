@@ -46,10 +46,9 @@ const SidebarLogout = () => {
   return (
     <Button
       onClick={logout}
-      className="fs-6 fw-medium text-info p-0 bg-transparent border-0 w-50"
+      className="fs-6 fw-medium text-info p-0 bg-transparent border-0 w-100"
       style={{
         cursor: "pointer",
-        fontSize: "0.8rem",
       }}
       disabled={isLoading}
     >

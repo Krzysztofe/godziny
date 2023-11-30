@@ -1,5 +1,4 @@
 import ListGroup from "react-bootstrap/ListGroup";
-import Col from "react-bootstrap/Col";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { ModelUser } from "../../../components/formUser/ModelUser";
@@ -10,15 +9,12 @@ const SettingsUsersList = () => {
 
   return (
     <>
-      <h3 className="h6">Usuń użytkownika</h3>
+      <h3 className="h6">Zapisani użytkownicy</h3>
       <ListGroup className="border-0 p-0">
-        {!users ? (
-          <p className="py-1 px-2 text-warning">Brak danych</p>
-        ) : (
-          users?.map((user: ModelUser) => {
-            return <SettingsUsersListItem user={user} key={user.id} />;
-          })
-        )}
+        {!users && <p className="py-1 px-2 text-warning">Brak danych</p>}
+        {users?.map((user: ModelUser) => {
+          return <SettingsUsersListItem user={user} key={user.id} />;
+        })}
       </ListGroup>
     </>
   );

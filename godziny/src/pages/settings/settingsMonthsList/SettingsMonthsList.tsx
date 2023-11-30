@@ -1,9 +1,8 @@
 import ListGroup from "react-bootstrap/ListGroup";
-import Col from "react-bootstrap/Col";
-import useMonthDates from "../../../hooks/useMonthDates";
-import SettingsMonthsListItem from "./SettingsMonthsListItem";
 import { useSelector } from "react-redux";
+import useMonthDates from "../../../hooks/useMonthDates";
 import { RootState } from "../../../redux/store";
+import SettingsMonthsListItem from "./SettingsMonthsListItem";
 
 const SettingsMonthsList = () => {
   const { sortedInfoMonths, databaseMonthsDatesToString } = useMonthDates();
@@ -12,7 +11,7 @@ const SettingsMonthsList = () => {
   return (
     <>
       <h3 className="h6" style={{}}>
-        Usuń miesiąc
+        Zapisane miesiące
       </h3>
       <ListGroup className="border-0 p-0">
         {!infoMonths ? (
