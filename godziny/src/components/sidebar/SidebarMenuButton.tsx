@@ -13,7 +13,7 @@ const SidebarMenuButton = (props: Props) => {
       variant="info"
       onClick={props.toggleShow}
       className={`rounded-0 p-0 fw-medium w-100 ${
-        windowWidth > 500 ? "d-none" : "d-block"
+        windowWidth >= 500 ? "d-none" : "d-block"
       }`}
       style={{
         position: "fixed",
