@@ -1,6 +1,6 @@
 import { useFormikContext } from "formik";
 import Form from "react-bootstrap/Form";
-import { ModelDay } from "../sidebar/someData/dataSidebarMonthForm";
+import { ModelDay } from "../someData/dataSidebarMonthForm";
 import FormErrors from "./FormErrors";
 
 type Props = {
@@ -41,7 +41,7 @@ const InputsText = (props: Props) => {
                 max={max}
                 placeholder={placeholder}
                 size="sm"
-                className="p-0 px-1 border border-primary shadow-sm"
+                className="p-0 px-1 border border-primary shadow-sm w-100"
                 style={{ minHeight: 0, cursor: "pointer" }}
               />
               {isErrorPrint && (

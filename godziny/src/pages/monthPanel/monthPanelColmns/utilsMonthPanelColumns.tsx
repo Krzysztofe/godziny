@@ -1,4 +1,4 @@
-import { ModelColumn } from "../../../components/sidebar/someData/dataSidebarMonthForm";
+import { ModelColumn } from "../../../components/someData/dataSidebarMonthForm";
 
 export const addDaysToColumns = (columns: ModelColumn[]) => {
   if (!Array.isArray(columns)) {

@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
-import { dateInNext14Days } from "../../../data/dataCurrentDates";
+import { dateInNext14Days } from "../../data/dataCurrentDates";
 import { validationSchema } from "./validationFormDay";
 import * as yup from "yup";
-import { RootState } from "../../../redux/store";
-import { ModelUser } from "../../formUser/ModelUser";
+import { RootState } from "../../redux/store";
+import { ModelUser } from "../formUser/ModelUser";
 import { v4 as UUID } from "uuid";
-import { useAddDayMutation } from "../../../services/apiSliceMonths";
-import useURLValues from "../../../hooks/useURLValues";
+import { useAddDayMutation } from "../../services/apiSliceMonths";
+import useURLValues from "../../hooks/useURLValues";
 
 const useFormikDay = () => {
   const [addDay, success] = useAddDayMutation();

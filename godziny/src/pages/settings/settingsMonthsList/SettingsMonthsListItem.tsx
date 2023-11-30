@@ -1,15 +1,15 @@
-import Swal from "sweetalert2";
-import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
+import ListGroup from "react-bootstrap/ListGroup";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 import useHTTPState from "../../../hooks/useHTTPState";
-import { alertHelper } from "../../../utils/alertHelpers";
+import { RootState } from "../../../redux/store";
 import {
   useDeleteMonthMutation,
   useUpdateMonthInfoMutation,
 } from "../../../services/apiSliceMonths";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
+import { alertHelper } from "../../../utils/alertHelpers";
 
 interface Props {
   monthDateToString: string;
@@ -23,7 +23,7 @@ const SettingsMonthsListItem = (props: Props) => {
 
   const { btnContent } = useHTTPState(
     success,
-    <RiDeleteBin6Line className="text-danger fs-5 ms-auto" />
+    <RiDeleteBin6Line className="text-danger fs-6 ms-auto" />
   );
 
   const handleDelete = async () => {
@@ -43,12 +43,15 @@ const SettingsMonthsListItem = (props: Props) => {
   };
 
   return (
-    <ListGroup.Item onClick={handleDelete} className="shadow-sm p-0 mb-2 px-1 rounded">
+    <ListGroup.Item className="d-flex justify-content-between align-items-center shadow-sm p-0 mb-2 px-1 rounded">
+      {" "}
+      {props.monthDateToString}{" "}
       <Button
+        onClick={handleDelete}
         disabled={success.isLoading}
-        className="w-100 d-flex justify-content-between align-items-center px-1 bg-white border-0 text-capitalize"
+        className="d-flex justify-content-between align-items-center px-1 bg-white border-0 text-capitalize"
       >
-        {props.monthDateToString} {btnContent}
+        {btnContent}
       </Button>
     </ListGroup.Item>
   );

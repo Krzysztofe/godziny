@@ -19,7 +19,7 @@ const IndexContainer = (props: Props) => {
       <div
         className="d-flex ps-1 flex-fill"
         style={{
-          width: windowWidth >= 576 ? "70%" : "100%",
+          width: windowWidth >= 500 ? "70%" : "100%",
         }}
       >
         {props.children}

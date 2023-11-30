@@ -16,14 +16,14 @@ const FormUserContext = () => {
     {
       value: "userName",
       type: "text",
-      labelText: "Podaj imię",
+      label: "Podaj imię",
       isErrorPrint: true,
       placeholder: "Imię",
     },
     {
       value: "userColor",
       type: "color",
-      labelText: "Podaj kolor",
+      label: "Podaj kolor",
       isErrorPrint: true,
     },
   ];

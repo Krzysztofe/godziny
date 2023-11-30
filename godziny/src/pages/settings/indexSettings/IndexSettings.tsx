@@ -1,10 +1,10 @@
 import IndexContainer from "../../../components/IndexContainer";
-import useFetchSettings from "./useFetchSettings";
+import useRequestSettings from "./useRequestSettings";
 
 const IndexSettings = () => {
-  const { settingsContent } = useFetchSettings();
+  const { requestState } = useRequestSettings();
 
-  return <IndexContainer>{settingsContent}</IndexContainer>;
+  return <IndexContainer>{requestState}</IndexContainer>;
 };
 
 export default IndexSettings;

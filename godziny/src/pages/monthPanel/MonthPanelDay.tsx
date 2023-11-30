@@ -4,7 +4,7 @@ import { FiClock } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import { ModelDay } from "../../components/sidebar/someData/dataSidebarMonthForm";
+import { ModelDay } from "../../components/someData/dataSidebarMonthForm";
 import useHTTPState from "../../hooks/useHTTPState";
 import useURLValues from "../../hooks/useURLValues";
 import { RootState } from "../../redux/store";

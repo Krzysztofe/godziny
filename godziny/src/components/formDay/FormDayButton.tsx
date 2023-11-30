@@ -1,9 +1,9 @@
 import { useFormikContext } from "formik";
 import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
-import useHTTPState from "../../../hooks/useHTTPState";
-import { RootState } from "../../../redux/store";
-import { useAddDayMutation } from "../../../services/apiSliceMonths";
+import useHTTPState from "../../hooks/useHTTPState";
+import { RootState } from "../../redux/store";
+import { useAddDayMutation } from "../../services/apiSliceMonths";
 import { ModelDay } from "../someData/dataSidebarMonthForm";
 import useFormikDay from "./useFormikDay";
 

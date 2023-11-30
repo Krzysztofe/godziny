@@ -3,7 +3,7 @@ import {
   ModelCalc,
   ModelColumn,
   ModelMonthPattern,
-} from "../../components/sidebar/someData/dataSidebarMonthForm";
+} from "../../components/someData/dataSidebarMonthForm";
 
 const columns: ModelColumn[] = [
   { id: "submitted", days: [] },

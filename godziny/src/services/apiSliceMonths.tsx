@@ -5,7 +5,7 @@ import {
   ModelMonthPattern,
   ModelColumn,
   ModelDay,
-} from "../components/sidebar/someData/dataSidebarMonthForm";
+} from "../components/someData/dataSidebarMonthForm";
 
 const createUrl = (year: string, month: string, suffix = "") =>
   `/years/${year}/month_${month}${suffix}.json`;

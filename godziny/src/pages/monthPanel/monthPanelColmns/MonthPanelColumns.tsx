@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useSelector } from "react-redux";
-import { ModelColumn } from "../../../components/sidebar/someData/dataSidebarMonthForm";
+import { ModelColumn } from "../../../components/someData/dataSidebarMonthForm";
 import useHoursSum from "../../../hooks/useHoursSum";
 import useURLValues from "../../../hooks/useURLValues";
 import { RootState } from "../../../redux/store";
@@ -10,13 +10,14 @@ import MonthPanelColumn from "../MonthPanelColumn";
 import MonthPanelColumnsHeader from "../monthPanelColumnsHeader.tsx/MonthPanelColumnsHeader";
 import useScrollThumbPosition from "./useScrollThumbPosition";
 import { addDaysToColumns, handleDragDrop } from "./utilsMonthPanelColumns";
+import useWindowWidth from "../../../hooks/useWindowWidth";
 
 const MonthPanelColumns = () => {
+  const { windowWidth } = useWindowWidth();
   const { yearFromURL, monthFromURL } = useURLValues();
   const [updateMonth] = useUpdateMonthMutation();
   const { submittedHoursSum, acceptedHoursSum, rejectedHoursSum } =
     useHoursSum();
-
   const { scrollableRef, thumbPosition, handleScroll } =
     useScrollThumbPosition();
 
@@ -66,7 +67,13 @@ const MonthPanelColumns = () => {
       ref={scrollableRef}
       onScroll={handleScroll}
       className="p-0 overflow-y-scroll"
-      style={{ height: "fit-content", maxHeight: "100%" }}
+      style={{
+        height: "fit-content",
+        maxHeight:
+          windowWidth > 500
+            ? "calc(100% - 32px)"
+            : "calc(100% - 32px - 2.5rem)",
+      }}
     >
       <div className={`${rowStyles} sticky-top`}>
         <MonthPanelColumnsHeader thumbPosition={thumbPosition} />

@@ -1,12 +1,10 @@
-import useFetchMonthPanel from "./useFetchMonthPanel";
+import useRequestMonthPanel from "./useRequestMonthPanel";
 import IndexContainer from "../../../components/IndexContainer";
 
 const IndexMonthPanel = () => {
-  const { monthContent } = useFetchMonthPanel();
+  const { requestState } = useRequestMonthPanel();
   
-  return (
-    <IndexContainer>{monthContent}</IndexContainer>
-  );
+  return <IndexContainer>{requestState}</IndexContainer>;
 };
 
 export default IndexMonthPanel;

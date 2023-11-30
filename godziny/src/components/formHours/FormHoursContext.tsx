@@ -2,7 +2,7 @@ import { Form, Formik } from "formik";
 import Button from "react-bootstrap/Button";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import useHTTPState from "../../hooks/useHTTPState";
-import InputsRange from "../inputs/InputsRange";
+import InputsRange from "../inputs/inputsRange/InputsRange";
 import FormHoursError from "./FormHoursError";
 import FormHoursTop from "./FormHoursTop";
 import useFormikHours from "./useFormikHours";

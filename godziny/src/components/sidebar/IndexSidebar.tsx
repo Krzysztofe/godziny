@@ -21,7 +21,7 @@ const IndexSidebar = () => {
   const toggleShow = () => setShow(s => !s);
 
   useEffect(() => {
-    windowWidth > 575 && setShow(true);
+    windowWidth > 500 && setShow(true);
   }, [windowWidth]);
 
   return (
@@ -29,7 +29,7 @@ const IndexSidebar = () => {
       {!["/"].includes(pathname) && (
         <aside
           style={{
-            width: windowWidth >= 576 ? "30%" : 0,
+            width: windowWidth >= 500 ? "30%" : 0,
             maxWidth: "250px",
             height: "100%",
           }}
@@ -40,10 +40,10 @@ const IndexSidebar = () => {
             name="Disable backdrop"
             scroll={true}
             backdrop={false}
-            className={`${windowWidth < 576 && "backgroundImage"}`}
+            className={`${windowWidth < 500 && "backgroundImage"}`}
             style={{
-              width: windowWidth >= 576 ? "30%" : "100vw",
-              maxWidth: windowWidth >= 576 && "250px",
+              width: windowWidth >= 500 ? "30%" : "100vw",
+              maxWidth: windowWidth >= 500 && "250px",
               backgroundColor: "rgba(255, 255, 255, 0)",
             }}
           >

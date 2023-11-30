@@ -1,9 +1,9 @@
-import { useUsersQuery } from "../../../services/apiSliceUsers";
-import { ModelUser } from "../../formUser/ModelUser";
+import { useUsersQuery } from "../../services/apiSliceUsers";
+import { ModelUser } from "../formUser/ModelUser";
 import {
   dateInNext14Days,
   dateInNext60Days,
-} from "../../../data/dataCurrentDates";
+} from "../../data/dataCurrentDates";
 
 const useDataFormDay = () => {
   const { data: dataUsers } = useUsersQuery();
@@ -17,7 +17,7 @@ const useDataFormDay = () => {
   const dataInputsSelect = [
     {
       name: "userName",
-      firstOption: `${names.length === 0 ? "Ustawienia" : "Imię"}`,
+      firstOption: `${names.length === 0 ? "Brak danych" : "Imię"}`,
       label: "Podaj imię",
       options: names,
     },

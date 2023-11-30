@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormikContext, Formik, Form as FormFormik, Field } from "formik";
-import { ModelDay } from "../sidebar/someData/dataSidebarMonthForm";
-import useDataSidebarSelects from "../sidebar/formDay/useDataFormDay";
+import { ModelDay } from "../someData/dataSidebarMonthForm";
+import useDataSidebarSelects from "../formDay/useDataFormDay";
 import Form from "react-bootstrap/Form";
 import FormErrors from "./FormErrors";
 
@@ -34,7 +34,7 @@ const InputsSelect = (props: Props) => {
               onBlur={handleBlur}
               size="sm"
               className={`p-0 px-1 border border-primary shadow-sm text-capitalize ${
-                firstOption === "Ustawienia" ? "text-danger" : ""
+                firstOption === "Brak danych" ? "text-warning" : ""
               }`}
               style={{
                 cursor: "pointer",

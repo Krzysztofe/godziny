@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { ModelDay } from "../components/sidebar/someData/dataSidebarMonthForm";
+import { ModelDay } from "../components/someData/dataSidebarMonthForm";
 import { addDaysToColumns } from "../pages/monthPanel/monthPanelColmns/utilsMonthPanelColumns";
 import { RootState } from "../redux/store";
 

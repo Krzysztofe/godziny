@@ -8,7 +8,7 @@ type Props = {
   title: string;
 };
 
-const CollapseComponent = (props: Props) => {
+const CollapseContainer = (props: Props) => {
   const [isOpen, setOpen] = useState(false);
   return (
     <>
@@ -43,4 +43,4 @@ const CollapseComponent = (props: Props) => {
   );
 };
 
-export default CollapseComponent;
+export default CollapseContainer;
