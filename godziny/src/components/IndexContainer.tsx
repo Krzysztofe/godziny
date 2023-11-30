@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import IndexSidebar from "./sidebar/IndexSidebar";
 import useWindowWidth from "../hooks/useWindowWidth";
 
 type Props = {
@@ -7,15 +6,19 @@ type Props = {
 };
 
 const IndexContainer = (props: Props) => {
-
-   const { windowWidth } = useWindowWidth();
-   
+  const { windowWidth } = useWindowWidth();
   return (
     <main
       className="d-flex backgroundImage m-0"
       style={{ height: "100dvh", overflow: "hidden" }}
     >
-      <IndexSidebar />
+      <aside
+        style={{
+          width: windowWidth >= 500 ? "30%" : 0,
+          maxWidth: "250px",
+          height: "100%",
+        }}
+      ></aside>
       <div
         className="d-flex ps-1 flex-fill"
         style={{

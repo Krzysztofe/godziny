@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoadingPage from "./pages/loadingPage/LoadingPage";
 import "./scss/App.scss";
 
-const Login = lazy(() => import("./pages/login/Login"));
+const IndexLogin = lazy(() => import("./pages/login/IndexLogin"));
 const PrivateRoutes = lazy(() => import("./components/PrivateRoutes"));
 const IndexSidebar = lazy(() => import("./components/sidebar/IndexSidebar"));
 const IndexMonthPanel = lazy(
@@ -17,9 +17,9 @@ function App() {
   return (
     <BrowserRouter basename="/godziny">
       <Suspense fallback={<LoadingPage />}>
-        {/* <IndexSidebar /> */}
+        <IndexSidebar />
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<IndexLogin />} />
           <Route element={<PrivateRoutes />}>
             <Route path="/:monthURL" element={<IndexMonthPanel />} />
             <Route path="/ustawienia" element={<IndexSettings />} />

@@ -2,7 +2,6 @@ import "firebase/database";
 import { useEffect, useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { useLocation } from "react-router-dom";
-import useURLValues from "../../hooks/useURLValues";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import "./../../scss/utilityClasses/_bgImage.scss";
 import SidebarBody from "./SidebarBody";
@@ -21,26 +20,20 @@ const IndexSidebar = () => {
   const toggleShow = () => setShow(s => !s);
 
   useEffect(() => {
-    windowWidth > 500 && setShow(true);
+    windowWidth >= 500 && setShow(true);
   }, [windowWidth]);
 
   return (
     <>
       {!["/"].includes(pathname) && (
-        <aside
-          style={{
-            width: windowWidth >= 500 ? "30%" : 0,
-            maxWidth: "250px",
-            height: "100%",
-          }}
-        >
+      <>
           <Offcanvas
             show={isShow}
             onHide={handleClose}
             name="Disable backdrop"
             scroll={true}
             backdrop={false}
-            className={`${windowWidth < 500 && "backgroundImage"}`}
+            className={`${windowWidth <= 500 && "backgroundImage"}`}
             style={{
               width: windowWidth >= 500 ? "30%" : "100vw",
               maxWidth: windowWidth >= 500 && "250px",
@@ -60,7 +53,7 @@ const IndexSidebar = () => {
             </div>
           </Offcanvas>
           <SidebarMenuButton toggleShow={toggleShow} />
-        </aside>
+        </>
       )}
     </>
   );
