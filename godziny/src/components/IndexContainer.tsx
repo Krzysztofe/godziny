@@ -13,7 +13,7 @@ const IndexContainer = (props: Props) => {
   return (
     <main
       className="d-flex backgroundImage m-0"
-      style={{ height: "100vh", overflow: "hidden" }}
+      style={{ height: "100dvh", overflow: "hidden" }}
     >
       <IndexSidebar />
       <div

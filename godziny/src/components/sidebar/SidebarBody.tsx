@@ -2,7 +2,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import useMonthURLToString from "../../hooks/useMonthURLToString";
 import useURLValues from "../../hooks/useURLValues";
 import FormHoursContext from "../formHours/FormHoursContext";
-import CollapseMonthsList from "../collapseMonths/CollapseMonthsList";
+import CollapseMonthsList from "../CollapseMonthsList";
 import FormDayContext from "../formDay/FormDayContext";
 import FormMonthContext from "../formMonth/FormMonthContext";
 import FormUserContext from "../formUser/FormUserContext";

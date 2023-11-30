@@ -1,9 +1,9 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import useMonthDates from "../../hooks/useMonthDates";
-import useURLValues from "../../hooks/useURLValues";
-import { RootState } from "../../redux/store";
+import useMonthDates from "../hooks/useMonthDates";
+import useURLValues from "../hooks/useURLValues";
+import { RootState } from "../redux/store";
 
 const CollapseMonthsList = () => {
   const { sortedInfoMonths, databaseMonthsDatesToString } = useMonthDates();
@@ -47,8 +47,6 @@ const CollapseMonthsList = () => {
           </ListGroup.Item>
         );
       })}
-
-     
     </ListGroup>
   );
 };
