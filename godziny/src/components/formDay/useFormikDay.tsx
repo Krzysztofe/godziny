@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
-import { dateInNext14Days } from "../../data/dataCurrentDates";
-import { validationSchema } from "./validationFormDay";
-import * as yup from "yup";
-import { RootState } from "../../redux/store";
-import { ModelUser } from "../formUser/ModelUser";
 import { v4 as UUID } from "uuid";
-import { useAddDayMutation } from "../../services/apiSliceMonths";
+import * as yup from "yup";
+import { dateInNext14Days } from "../../data/dataCurrentDates";
 import useURLValues from "../../hooks/useURLValues";
+import { RootState } from "../../redux/store";
+import { useAddDayMutation } from "../../services/apiSliceMonths";
+import { ModelUser } from "../formUser/ModelUser";
+import { validationSchema } from "./validationFormDay";
 
 const useFormikDay = () => {
   const [addDay, success] = useAddDayMutation();
@@ -47,10 +47,22 @@ const useFormikDay = () => {
       year: yearFromURL,
       month: monthFromURL,
       firstColumnBody: {
-        ...firstColumn,
-        days: firstColumn?.days
-          ? [...firstColumn.days, valuesToDatabase]
-          : [valuesToDatabase],
+        ...month,
+        calc: {
+          ...month.calc,
+          currentHours: month.calc.currentHours - valuesToDatabase.hours,
+          submittedHours: month.calc.submittedHours + valuesToDatabase.hours,
+        },
+
+        columns: [
+          {
+            ...month.columns[0],
+            days: month.columns[0].days
+              ? [...month.columns[0].days, valuesToDatabase]
+              : [valuesToDatabase],
+          },
+          ...month.columns.slice(1),
+        ],
       },
     });
   };

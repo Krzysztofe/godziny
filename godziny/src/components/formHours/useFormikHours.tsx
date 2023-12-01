@@ -13,6 +13,7 @@ const useFormikHours = () => {
   const [addAllHours, success] = useAddAllHoursMutation();
   const submittedHours = month?.calc?.submittedHours;
   const acceptedHours = month?.calc?.acceptedHours;
+  const calc = month && month.calc;
 
   const initialValues = { allHours: 0 };
 
@@ -22,7 +23,11 @@ const useFormikHours = () => {
     await addAllHours({
       year: yearFromURL,
       month: monthFromURL,
-      allHours: +values.allHours,
+      calc: {
+        ...calc,
+        allHours: +values.allHours,
+        currentHours: +values.allHours,
+      },
     });
   };
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useSelector } from "react-redux";
 import { ModelColumn } from "../../../components/someData/dataSidebarMonthForm";
-import useHoursSum from "../../../hooks/useHoursSum";
+import useHoursSums from "../../../hooks/useHoursSums";
 import useURLValues from "../../../hooks/useURLValues";
 import { RootState } from "../../../redux/store";
 import { useUpdateMonthMutation } from "../../../services/apiSliceMonths";
@@ -11,13 +11,12 @@ import MonthPanelColumnsHeader from "../monthPanelColumnsHeader.tsx/MonthPanelCo
 import useScrollThumbPosition from "./useScrollThumbPosition";
 import { addDaysToColumns, handleDragDrop } from "./utilsMonthPanelColumns";
 import useWindowWidth from "../../../hooks/useWindowWidth";
+import getHoursFromColumns from "../../../utils/getHoursFromColumns";
 
 const MonthPanelColumns = () => {
   const { windowWidth } = useWindowWidth();
   const { yearFromURL, monthFromURL } = useURLValues();
   const [updateMonth] = useUpdateMonthMutation();
-  const { submittedHoursSum, acceptedHoursSum, rejectedHoursSum } =
-    useHoursSum();
   const { scrollableRef, thumbPosition, handleScroll } =
     useScrollThumbPosition();
 
@@ -26,10 +25,14 @@ const MonthPanelColumns = () => {
   const columnsWithDays = addDaysToColumns(month?.columns);
 
   const [columns, setColumns] = useState<ModelColumn[]>([]);
+  const [executeUpdateMonth, setExecuteUpdateMonth] = useState(false);
+
+  const { submittedHours, acceptedHours, rejectedHours } =
+    getHoursFromColumns(columns);
 
   useEffect(() => {
     setColumns(columnsWithDays);
-  }, [month]);
+  }, [month.columns]);
 
   useEffect(() => {
     if (columns.length > 0) {
@@ -42,22 +45,23 @@ const MonthPanelColumns = () => {
           calc: {
             ...month?.calc,
             currentHours:
-              (month?.calc?.allHours ?? 0) -
-              submittedHoursSum -
-              acceptedHoursSum -
-              rejectedHoursSum +
-              rejectedHoursSum,
-            submittedHours: submittedHoursSum,
-            acceptedHours: acceptedHoursSum,
-            rejectedHours: rejectedHoursSum,
+              month?.calc?.allHours -
+              submittedHours -
+              acceptedHours -
+              rejectedHours +
+              rejectedHours,
+            submittedHours,
+            acceptedHours,
+            rejectedHours,
           },
         },
       });
     }
-  }, [columns]);
+  }, [executeUpdateMonth]);
 
   const handleDragEnd = (results: DropResult) => {
     handleDragDrop(results, columns, setColumns);
+    setExecuteUpdateMonth(prev => !prev);
   };
 
   const rowStyles = "d-flex column-gap-1";

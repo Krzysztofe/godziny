@@ -15,6 +15,7 @@ export const monthsApiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: URL_MONTHS_DATA }),
   tagTypes: ["months"],
   endpoints: builder => ({
+
     // queries
 
     monthData: builder.query<
@@ -29,7 +30,7 @@ export const monthsApiSlice = createApi({
 
     updateMonth: builder.mutation<
       void,
-      { year: string; month: string; monthBody: ModelMonthPattern }
+      { year: string; month: string; monthBody: any }
     >({
       query: ({ year, month, monthBody }) => ({
         url: createUrl(year, month),
@@ -41,10 +42,10 @@ export const monthsApiSlice = createApi({
 
     addDay: builder.mutation<
       void,
-      { year: string; month: string; firstColumnBody: ModelColumn }
+      { year: string; month: string; firstColumnBody: any }
     >({
       query: ({ year, month, firstColumnBody }) => ({
-        url: createUrl(year, month, "/columns/0"),
+        url: createUrl(year, month),
         method: "PUT",
         body: firstColumnBody,
       }),
@@ -92,12 +93,12 @@ export const monthsApiSlice = createApi({
 
     addAllHours: builder.mutation<
       void,
-      { year: string; month: string; allHours: number }
+      { year: string; month: string; calc: any }
     >({
-      query: ({ year, month, allHours }) => ({
-        url: createUrl(year, month, `/calc/allHours`),
+      query: ({ year, month, calc }) => ({
+        url: createUrl(year, month, `/calc`),
         method: "PUT",
-        body: allHours,
+        body: calc,
       }),
       invalidatesTags: ["months"],
     }),

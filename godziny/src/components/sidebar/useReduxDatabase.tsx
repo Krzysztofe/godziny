@@ -25,32 +25,41 @@ import {
 const useReduxDatabase = () => {
   const dispatch = useDispatch();
   const { yearFromURL, monthFromURL } = useURLValues();
-  const { data, error, isLoading } = useMonthDataQuery({
-    year: yearFromURL,
-    month: monthFromURL,
-  });
-  const {
-    data: dataUsers,
-    error: errorUsers,
-    isLoading: isLoadingUsers,
-  } = useUsersQuery();
+
+  // const {
+  //   data: dataMonth,
+  //   error: errorMonth,
+  //   isLoading: isLoadingMonth,
+  // } = useMonthDataQuery({
+  //   year: yearFromURL,
+  //   month: monthFromURL,
+  // });
+
+  // const {
+  //   data: dataUsers,
+  //   error: errorUsers,
+  //   isLoading: isLoadingUsers,
+  // } = useUsersQuery();
+
   const {
     data: dataInfoMonths,
     error: errorInfoMonths,
     isLoading: isLoadingInfoMonths,
   } = useMonthsInfoQuery();
 
-  useEffect(() => {
-    dispatch(getMonth(data));
-    dispatch(getMonthError(error));
-    dispatch(getMonthIsLoading(isLoading));
-  }, [data, error, isLoading, dispatch]);
+  // useEffect(() => {
+  //   dispatch(getMonth(dataMonth));
+  //   dispatch(getMonthError(errorMonth));
+  //   dispatch(getMonthIsLoading(isLoadingMonth));
+  // }, [dataMonth, errorMonth, isLoadingMonth, dispatch]);
 
-  useEffect(() => {
-    dispatch(getUsers(dataUsers));
-    dispatch(getUsersError(errorUsers));
-    dispatch(getUsersIsLoading(isLoadingUsers));
-  }, [dataUsers, errorUsers, isLoadingUsers, dispatch]);
+  // useEffect(() => {
+
+    
+  //   dispatch(getUsers(dataUsers));
+  //   dispatch(getUsersError(errorUsers));
+  //   dispatch(getUsersIsLoading(isLoadingUsers));
+  // }, [dataUsers, errorUsers, isLoadingUsers, dispatch]);
 
   useEffect(() => {
     dispatch(getInfoMonths(dataInfoMonths));

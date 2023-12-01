@@ -3,7 +3,7 @@ import { ModelDay } from "../components/someData/dataSidebarMonthForm";
 import { addDaysToColumns } from "../pages/monthPanel/monthPanelColmns/utilsMonthPanelColumns";
 import { RootState } from "../redux/store";
 
-const useHoursSum = () => {
+const useHoursSums = () => {
   const { month } = useSelector((state: RootState) => state.monthsPanel);
 
   let submittedHoursSum = 0;
@@ -39,4 +39,4 @@ const useHoursSum = () => {
   return { submittedHoursSum, acceptedHoursSum, rejectedHoursSum };
 };
 
-export default useHoursSum;
+export default useHoursSums;

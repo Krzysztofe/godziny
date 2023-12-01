@@ -1,6 +1,7 @@
 import Button from "react-bootstrap/Button";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import useMonthURLToString from "../../hooks/useMonthURLToString";
+import useURLValues from "../../hooks/useURLValues";
 
 type Props = {
   toggleShow: () => void;
@@ -9,6 +10,7 @@ type Props = {
 const SidebarMenuButton = (props: Props) => {
   const { windowWidth } = useWindowWidth();
   const { monthURLStringFormat } = useMonthURLToString();
+  const { isMonthInURL } = useURLValues();
 
   return (
     <Button
@@ -23,7 +25,8 @@ const SidebarMenuButton = (props: Props) => {
         bottom: 0,
       }}
     >
-      <div>Menu:&nbsp; </div> <div> {monthURLStringFormat}</div>
+      <div>Menu:&nbsp;</div>
+      {isMonthInURL ? <div>{monthURLStringFormat}</div> : <div>ustawienia</div>}
     </Button>
   );
 };

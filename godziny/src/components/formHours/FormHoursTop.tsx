@@ -1,6 +1,7 @@
 import InputsText from "../inputs/InputsText";
 
 const FormHoursTop = () => {
+
   const dataInputsText = [
     { value: "allHours", type: "number", isErrorPrint: false },
   ];
@@ -10,7 +11,7 @@ const FormHoursTop = () => {
     <div className="d-flex justify-content-between fw-medium ">
       <div className={styles}>0 h</div>
 
-      <div className="col-3 col-sm-5 d-flex">
+      <div className="col-6 col-sm-5 d-flex" style={{ width: "62px" }}>
         <InputsText inputsData={dataInputsText} /> &nbsp;
         <div>h</div>
       </div>

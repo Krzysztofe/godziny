@@ -9,9 +9,13 @@ import SidebarHeader from "./SidebarHeader";
 import SidebarMenuButton from "./SidebarMenuButton";
 import SidebarNav from "./SidebarNav";
 import useReduxDatabase from "./useReduxDatabase";
+import useReduxMonthData from "./useReduxMonthData";
 
 const IndexSidebar = () => {
-  useReduxDatabase();
+  // useReduxMonthData();
+  // useReduxDatabase();
+
+
   const { pathname } = useLocation();
   const [isShow, setShow] = useState(false);
   const { windowWidth } = useWindowWidth();
@@ -26,7 +30,7 @@ const IndexSidebar = () => {
   return (
     <>
       {!["/"].includes(pathname) && (
-      <>
+        <>
           <Offcanvas
             show={isShow}
             onHide={handleClose}

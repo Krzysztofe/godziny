@@ -3,10 +3,12 @@ import { RootState } from "../redux/store";
 
 const HoursSummary = () => {
   const { month } = useSelector((state: RootState) => state.monthsPanel);
-  const styles = "col-4 col-xxl-3 p-0";
 
   return (
-    <div className="d-flex gap-2 mx-auto fw-medium pb-2" style={{ width: "fit-content" }}>
+    <div
+      className="d-flex gap-2 mx-auto fw-medium pb-2"
+      style={{ width: "fit-content" }}
+    >
       <div>Wszystkie</div>
       <div>
         {month?.calc?.allHours} -{" "}
@@ -16,13 +18,11 @@ const HoursSummary = () => {
           {month?.calc?.currentHours}
         </span>
       </div>
-      <div
-        className={` ${
-          month?.calc?.currentHours <= 0 ? "text-danger" : ""
-        }`}
+      {/* <div
+        className={` ${month?.calc?.currentHours <= 0 ? "text-danger" : ""}`}
       >
         {month?.calc?.currentHours < 0 ? "Brak" : "Dostępne"}
-      </div>
+      </div> */}
     </div>
   );
 };
