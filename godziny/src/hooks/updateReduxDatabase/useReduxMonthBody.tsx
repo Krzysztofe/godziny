@@ -1,28 +1,31 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import useURLValues from "../../hooks/useURLValues";
+import useURLValues from "../useURLValues";
 import {
   getMonth,
   getMonthError,
   getMonthIsLoading,
 } from "../../redux/storeFeatures/monthsPanelSlice";
 import { useMonthDataQuery } from "../../services/apiSliceMonths";
-
-const useReduxMonthBody = () => {
+const useReduxMonthData = () => {
   const dispatch = useDispatch();
   const { yearFromURL, monthFromURL } = useURLValues();
 
-  const { data, error, isLoading } = useMonthDataQuery({
+  const {
+    data: dataMonth,
+    error: errorMonth,
+    isLoading: isLoadingMonth,
+  } = useMonthDataQuery({
     year: yearFromURL,
     month: monthFromURL,
   });
 
   useEffect(() => {
-    dispatch(getMonth(data));
-    dispatch(getMonthError(error));
-    dispatch(getMonthIsLoading(isLoading));
-  }, [data, error, isLoading, dispatch]);
- 
+    dispatch(getMonth(dataMonth));
+    dispatch(getMonthError(errorMonth));
+    dispatch(getMonthIsLoading(isLoadingMonth));
+  }, [dataMonth, errorMonth, isLoadingMonth, dispatch]);
+  return {};
 };
 
-export default useReduxMonthBody;
+export default useReduxMonthData;

@@ -1,8 +1,5 @@
 import { ReactNode } from "react";
 import useWindowWidth from "../hooks/useWindowWidth";
-import useReduxDatabase from "./sidebar/useReduxDatabase";
-import useReduxMonthData from "./sidebar/useReduxMonthData";
-import useURLValues from "../hooks/useURLValues";
 
 type Props = {
   children: ReactNode;
@@ -10,13 +7,6 @@ type Props = {
 
 const IndexContainer = (props: Props) => {
 
-
-
-  // useReduxMonthData();
-
-
-
-  useReduxDatabase();
 
   const { windowWidth } = useWindowWidth();
   return (

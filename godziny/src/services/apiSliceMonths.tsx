@@ -15,7 +15,6 @@ export const monthsApiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: URL_MONTHS_DATA }),
   tagTypes: ["months"],
   endpoints: builder => ({
-
     // queries
 
     monthData: builder.query<
@@ -72,9 +71,9 @@ export const monthsApiSlice = createApi({
       invalidatesTags: ["months"],
     }),
 
-    // info queries
+    // monthsList queries
 
-    monthsInfo: builder.query<ModelMonthsPatern, void>({
+    monthsList: builder.query<ModelMonthsPatern, void>({
       query: () => "info.json",
       providesTags: ["months"],
     }),
@@ -107,7 +106,7 @@ export const monthsApiSlice = createApi({
 
 export const {
   useMonthDataQuery,
-  useMonthsInfoQuery,
+  useMonthsListQuery,
   useUpdateMonthInfoMutation,
   useAddDayMutation,
   useUpdateMonthMutation,

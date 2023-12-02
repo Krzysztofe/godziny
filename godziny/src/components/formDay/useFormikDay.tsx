@@ -12,7 +12,6 @@ const useFormikDay = () => {
   const [addDay, success] = useAddDayMutation();
   const { month } = useSelector((state: RootState) => state.monthsPanel);
   const { users } = useSelector((state: RootState) => state.users);
-  const firstColumn = month && month?.columns?.[0];
   const { yearFromURL, monthFromURL } = useURLValues();
 
   const initialValues = {

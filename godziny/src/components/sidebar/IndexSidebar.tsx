@@ -8,12 +8,9 @@ import SidebarBody from "./SidebarBody";
 import SidebarHeader from "./SidebarHeader";
 import SidebarMenuButton from "./SidebarMenuButton";
 import SidebarNav from "./SidebarNav";
-import useReduxDatabase from "./useReduxDatabase";
-import useReduxMonthData from "./useReduxMonthData";
+
 
 const IndexSidebar = () => {
-  // useReduxMonthData();
-  // useReduxDatabase();
 
 
   const { pathname } = useLocation();

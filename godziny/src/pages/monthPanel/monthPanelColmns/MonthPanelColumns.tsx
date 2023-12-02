@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useSelector } from "react-redux";
 import { ModelColumn } from "../../../components/someData/dataSidebarMonthForm";
-import useHoursSums from "../../../hooks/useHoursSums";
 import useURLValues from "../../../hooks/useURLValues";
 import { RootState } from "../../../redux/store";
 import { useUpdateMonthMutation } from "../../../services/apiSliceMonths";
@@ -74,7 +73,7 @@ const MonthPanelColumns = () => {
       style={{
         height: "fit-content",
         maxHeight:
-          windowWidth > 500
+          windowWidth >= 500
             ? "calc(100% - 32px)"
             : "calc(100% - 32px - 2.5rem)",
       }}
