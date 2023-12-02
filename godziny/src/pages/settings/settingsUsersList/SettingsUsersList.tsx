@@ -7,6 +7,9 @@ import SettingsUsersListItem from "./SettingsUsersListItem";
 const SettingsUsersList = () => {
   const { users } = useSelector((state: RootState) => state.users);
 
+
+console.log('',users)
+
   return (
     <>
       <h3 className="h6">Zapisani użytkownicy</h3>

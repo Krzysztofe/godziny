@@ -29,13 +29,7 @@ const MonthPanelDay = (props: Props) => {
   const handleDelete = async (idx: number, id: string) => {
     Swal.fire(alertHelper("Usunąć dzień")).then(async result => {
       if (result.isConfirmed) {
-        const daysBodyPUTRequest = {
-          ...month?.columns[idx]?.days?.filter((day: ModelDay) => {
-            return day?.id !== id;
-          }),
-        };
-
-        const deleteObjectById = (obj: any, idToDelete: any) => {
+        const deleteDayById = (obj: any, idToDelete: any) => {
           const updatedColumns = obj?.columns?.map((column: any) => {
             const updatedDays = column?.days?.filter(
               (day: any) => day.id !== idToDelete
@@ -47,8 +41,8 @@ const MonthPanelDay = (props: Props) => {
         };
 
         const subtractedHours = {
-          ...month.columns[props.columnIdx].days.find(day => {
-            return day.id === props.day.id;
+          ...month?.columns[props.columnIdx].days.find((day: any) => {
+            return day?.id === props.day.id;
           }),
         }?.hours;
 
@@ -60,11 +54,15 @@ const MonthPanelDay = (props: Props) => {
             ...month,
             calcHours: {
               ...month.calcHours,
-              allHours:
-                subtractedHours && month.calcHours.allHours + subtractedHours,
+              // allHours:
+              //   props.columnIdx !== 2 && subtractedHours
+              //     ? month.calcHours.allHours + subtractedHours
+              //     : month.calcHours.allHours,
+
               currentHours:
-                subtractedHours &&
-                month.calcHours.currentHours - subtractedHours,
+                props.columnIdx !== 2 && subtractedHours
+                  ? month.calcHours.currentHours + subtractedHours
+                  : month.calcHours.currentHours,
               submittedHours:
                 props.columnIdx === 0 && subtractedHours
                   ? month.calcHours.submittedHours - subtractedHours
@@ -78,7 +76,7 @@ const MonthPanelDay = (props: Props) => {
                   ? month.calcHours.rejectedHours - subtractedHours
                   : month.calcHours.rejectedHours,
             },
-            columns: deleteObjectById({ ...month }, id).columns,
+            columns: deleteDayById({ ...month }, id).columns,
           },
         });
       }

@@ -1,12 +1,13 @@
-import { useUsersQuery } from "../../services/apiSliceUsers";
 import { ModelUser } from "../formUser/ModelUser";
 import {
   dateInNext_14_Days,
   dateInNext_60_Days,
 } from "../../data/dataCurrentDates";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 const useDataFormDay = () => {
-  const { data: dataUsers } = useUsersQuery();
+  const { users: dataUsers } = useSelector((state: RootState) => state.users);
 
   const users = dataUsers ? dataUsers : [];
 

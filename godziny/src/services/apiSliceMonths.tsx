@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { URL_MONTHS_DATA } from "../data/URL";
 import {
-  ModelMonthsPatern,
-  ModelMonthPattern,
+  // ModelMonthsPatern,
+  ModelMonth,
   ModelColumn,
   ModelDay,
 } from "../components/someData/dataSidebarMonthForm";
@@ -17,10 +17,7 @@ export const monthsApiSlice = createApi({
   endpoints: builder => ({
     // queries
 
-    monthData: builder.query<
-      ModelMonthPattern,
-      { year: string; month: string }
-    >({
+    monthData: builder.query<ModelMonth, { year: string; month: string }>({
       query: ({ year, month }) => createUrl(year, month),
       providesTags: ["months"],
     }),
@@ -63,7 +60,7 @@ export const monthsApiSlice = createApi({
       invalidatesTags: ["months"],
     }),
 
-    deleteMonth: builder.mutation<ModelMonthPattern, any>({
+    deleteMonth: builder.mutation<ModelMonth, any>({
       query: ({ year, month }) => ({
         url: createUrl(year, month),
         method: "DELETE",
@@ -73,7 +70,7 @@ export const monthsApiSlice = createApi({
 
     // monthsList queries
 
-    monthsList: builder.query<ModelMonthsPatern, void>({
+    monthsList: builder.query<string[], void>({
       query: () => "info.json",
       providesTags: ["months"],
     }),

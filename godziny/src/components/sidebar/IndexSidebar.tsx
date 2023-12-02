@@ -8,10 +8,10 @@ import SidebarBody from "./SidebarBody";
 import SidebarHeader from "./SidebarHeader";
 import SidebarMenuButton from "./SidebarMenuButton";
 import SidebarNav from "./SidebarNav";
-
+import useReduxListUsers from "../../hooks/updateReduxDatabase/useReduxListUsers";
 
 const IndexSidebar = () => {
-
+  useReduxListUsers();
 
   const { pathname } = useLocation();
   const [isShow, setShow] = useState(false);

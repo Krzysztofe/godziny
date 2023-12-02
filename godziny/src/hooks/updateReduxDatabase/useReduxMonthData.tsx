@@ -7,6 +7,7 @@ import {
   getMonthIsLoading,
 } from "../../redux/storeFeatures/monthsPanelSlice";
 import { useMonthDataQuery } from "../../services/apiSliceMonths";
+
 const useReduxMonthData = () => {
   const dispatch = useDispatch();
   const { yearFromURL, monthFromURL } = useURLValues();

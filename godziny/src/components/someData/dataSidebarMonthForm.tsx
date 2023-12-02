@@ -20,17 +20,11 @@ export type ModelCalcHours = {
   rejectedHours: number;
 };
 
-export type ModelMonthPattern = {
+export type ModelMonth = {
   id: string;
   columns: ModelColumn[];
   calcHours: ModelCalcHours;
 };
-
-export type ModelMonthsPatern = {
-  [key: string]: {
-    [key: string]: ModelMonthPattern
-  };
-}
 
 const columns: ModelColumn[] = [
   { id: "submitted", days: [] },
@@ -46,7 +40,7 @@ const calcHours: ModelCalcHours = {
   rejectedHours: 0,
 };
 
-export const monthPattern: ModelMonthPattern = {
+export const monthPattern: ModelMonth = {
   id: "",
   columns,
   calcHours,

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   ModelCalcHours,
   ModelColumn,
-  ModelMonthPattern,
+  ModelMonth,
 } from "../../components/someData/dataSidebarMonthForm";
 
 const columns: ModelColumn[] = [
@@ -19,14 +19,14 @@ const calcHours: ModelCalcHours = {
   rejectedHours: 0,
 };
 
-const monthPattern: ModelMonthPattern = {
+const monthPattern: ModelMonth = {
   id: "",
   columns,
   calcHours,
 };
 
 interface ModelInitialState {
-  month: ModelMonthPattern;
+  month: ModelMonth;
   error: {};
   isLoading: boolean;
 }

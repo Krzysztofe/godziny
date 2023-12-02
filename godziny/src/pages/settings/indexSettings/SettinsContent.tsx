@@ -1,7 +1,10 @@
+import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListMonths";
 import SettingsMonthsList from "../settingsMonthsList/SettingsMonthsList";
 import SettingsUsersList from "../settingsUsersList/SettingsUsersList";
 
 const SettinsContent = () => {
+useReduxListMonths()
+
     return (
       <div
         className="bg-white p-2 py-4 p-sm-4 w-100"
@@ -17,6 +20,7 @@ const SettinsContent = () => {
             width: "100%",
           }}
         >
+          
           <SettingsMonthsList />
           <div className="border my-4"></div>
           <SettingsUsersList />

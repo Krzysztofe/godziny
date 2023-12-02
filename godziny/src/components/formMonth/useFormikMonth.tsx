@@ -10,7 +10,7 @@ import {
 } from "../../services/apiSliceMonths";
 import { alert } from "../../utils/alertHelpers";
 import {
-  ModelMonthPattern,
+  ModelMonth,
   monthPattern,
 } from "../someData/dataSidebarMonthForm";
 import useValidationMonthForm from "./useValidationMonthForm";
@@ -37,7 +37,7 @@ const useFormikMonth = () => {
   const onSubmit = async (values: any) => {
     const year = values.monthDate.slice(0, 4);
     const month = values.monthDate.slice(-2);
-    const monthBody: ModelMonthPattern = {
+    const monthBody: ModelMonth = {
       ...monthPattern,
       id: values.monthDate,
     };

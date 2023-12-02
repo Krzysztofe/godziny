@@ -8,6 +8,8 @@ const SettingsMonthsList = () => {
   const { sortedInfoMonths, databaseMonthsDatesToString } = useMonthDates();
   const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
 
+
+
   return (
     <>
       <h3 className="h6">Zapisane miesiące</h3>

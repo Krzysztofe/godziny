@@ -20,11 +20,11 @@ const HoursSummary = () => {
           {month?.calcHours?.currentHours}
         </span>
       </div>
-      {/* <div
-        className={` ${month?.calc?.currentHours <= 0 ? "text-danger" : ""}`}
+      <div
+        className={` ${month?.calcHours?.currentHours <= 0 ? "text-danger" : ""}`}
       >
-        {month?.calc?.currentHours < 0 ? "Brak" : "Dostępne"}
-      </div> */}
+        {month?.calcHours?.currentHours < 0 ? "Brak" : "Dostępne"}
+      </div>
     </div>
   );
 };

@@ -26,7 +26,7 @@ const useFormikHours = () => {
       calcHours: {
         ...calcHours,
         allHours: +values.allHours,
-        currentHours: +values.allHours,
+        currentHours: +values.allHours - calcHours.acceptedHours - calcHours.submittedHours,
       },
     });
   };
