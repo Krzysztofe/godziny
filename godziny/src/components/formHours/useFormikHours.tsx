@@ -11,9 +11,9 @@ const useFormikHours = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
   const { month } = useSelector((state: RootState) => state.monthsPanel);
   const [addAllHours, success] = useAddAllHoursMutation();
-  const submittedHours = month?.calc?.submittedHours;
-  const acceptedHours = month?.calc?.acceptedHours;
-  const calc = month && month.calc;
+  const submittedHours = month?.calcHours?.submittedHours;
+  const acceptedHours = month?.calcHours?.acceptedHours;
+  const calcHours = month && month.calcHours;
 
   const initialValues = { allHours: 0 };
 
@@ -23,8 +23,8 @@ const useFormikHours = () => {
     await addAllHours({
       year: yearFromURL,
       month: monthFromURL,
-      calc: {
-        ...calc,
+      calcHours: {
+        ...calcHours,
         allHours: +values.allHours,
         currentHours: +values.allHours,
       },

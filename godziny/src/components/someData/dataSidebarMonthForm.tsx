@@ -1,4 +1,4 @@
-export interface ModelDay {
+export type ModelDay = {
   id: string;
   userName: string;
   userColor: string;
@@ -7,26 +7,26 @@ export interface ModelDay {
   place: string;
 }
 
-export interface ModelColumn {
+export type ModelColumn = {
   id: string;
   days: ModelDay[];
 }
 
-export interface ModelCalc {
+export type ModelCalcHours = {
   allHours: number;
   currentHours: number;
   submittedHours: number;
   acceptedHours: number;
   rejectedHours: number;
-}
+};
 
-export interface ModelMonthPattern {
+export type ModelMonthPattern = {
   id: string;
   columns: ModelColumn[];
-  calc: ModelCalc;
-}
+  calcHours: ModelCalcHours;
+};
 
-export interface ModelMonthsPatern {
+export type ModelMonthsPatern = {
   [key: string]: {
     [key: string]: ModelMonthPattern
   };
@@ -38,7 +38,7 @@ const columns: ModelColumn[] = [
   { id: "rejected", days: [] },
 ];
 
-const calc: ModelCalc = {
+const calcHours: ModelCalcHours = {
   allHours: 0,
   currentHours: 0,
   submittedHours: 0,
@@ -49,5 +49,5 @@ const calc: ModelCalc = {
 export const monthPattern: ModelMonthPattern = {
   id: "",
   columns,
-  calc,
+  calcHours,
 };

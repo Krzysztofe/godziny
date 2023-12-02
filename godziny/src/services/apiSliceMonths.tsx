@@ -53,12 +53,12 @@ export const monthsApiSlice = createApi({
 
     deleteDay: builder.mutation<
       void,
-      { year: string; month: string; colIdx: number; daysBody: ModelDay[] }
+      { year: string; month: string; colIdx: number; monthBody: any }
     >({
-      query: ({ year, month, colIdx, daysBody }) => ({
-        url: createUrl(year, month, `/columns/${colIdx}/days`),
+      query: ({ year, month, monthBody }) => ({
+        url: createUrl(year, month),
         method: "PUT",
-        body: daysBody,
+        body: monthBody,
       }),
       invalidatesTags: ["months"],
     }),
@@ -79,6 +79,7 @@ export const monthsApiSlice = createApi({
     }),
 
     // info mutations
+
     updateMonthInfo: builder.mutation<void, string[]>({
       query: monthInfo => ({
         url: "/info.json",
@@ -92,12 +93,12 @@ export const monthsApiSlice = createApi({
 
     addAllHours: builder.mutation<
       void,
-      { year: string; month: string; calc: any }
+      { year: string; month: string; calcHours: any }
     >({
-      query: ({ year, month, calc }) => ({
-        url: createUrl(year, month, `/calc`),
+      query: ({ year, month, calcHours }) => ({
+        url: createUrl(year, month, `/calcHours`),
         method: "PUT",
-        body: calc,
+        body: calcHours,
       }),
       invalidatesTags: ["months"],
     }),

@@ -1,8 +1,8 @@
 import { useUsersQuery } from "../../services/apiSliceUsers";
 import { ModelUser } from "../formUser/ModelUser";
 import {
-  dateInNext14Days,
-  dateInNext60Days,
+  dateInNext_14_Days,
+  dateInNext_60_Days,
 } from "../../data/dataCurrentDates";
 
 const useDataFormDay = () => {
@@ -41,8 +41,8 @@ const useDataFormDay = () => {
       label: "Podaj dzień",
       type: "date",
       isErrorPrint: true,
-      min: dateInNext14Days,
-      max: dateInNext60Days,
+      min: dateInNext_14_Days,
+      max: dateInNext_60_Days,
     },
   ];
   return { dataInputsSelect, dataInputsText };

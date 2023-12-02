@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { v4 as UUID } from "uuid";
 import * as yup from "yup";
-import { dateInNext14Days } from "../../data/dataCurrentDates";
+import { dateInNext_14_Days } from "../../data/dataCurrentDates";
 import useURLValues from "../../hooks/useURLValues";
 import { RootState } from "../../redux/store";
 import { useAddDayMutation } from "../../services/apiSliceMonths";
@@ -16,7 +16,7 @@ const useFormikDay = () => {
 
   const initialValues = {
     id: "",
-    date: dateInNext14Days,
+    date: dateInNext_14_Days,
     hours: "",
     userName: "Imię",
     place: "",
@@ -26,8 +26,8 @@ const useFormikDay = () => {
 
   const onSubmit = async (values: any) => {
     if (
-      month?.calc?.currentHours - +values.hours < 0 ||
-      month?.calc?.currentHours === 0
+      month?.calcHours?.currentHours - +values.hours < 0 ||
+      month?.calcHours?.currentHours === 0
     )
       return;
 
@@ -47,10 +47,11 @@ const useFormikDay = () => {
       month: monthFromURL,
       firstColumnBody: {
         ...month,
-        calc: {
-          ...month.calc,
-          currentHours: month.calc.currentHours - valuesToDatabase.hours,
-          submittedHours: month.calc.submittedHours + valuesToDatabase.hours,
+        calcHours: {
+          ...month.calcHours,
+          currentHours: month.calcHours.currentHours - valuesToDatabase.hours,
+          submittedHours:
+            month.calcHours.submittedHours + valuesToDatabase.hours,
         },
 
         columns: [

@@ -41,10 +41,10 @@ const MonthPanelColumns = () => {
         monthBody: {
           ...month,
           columns: columns,
-          calc: {
-            ...month?.calc,
+          calcHours: {
+            ...month?.calcHours,
             currentHours:
-              month?.calc?.allHours -
+              month?.calcHours?.allHours -
               submittedHours -
               acceptedHours -
               rejectedHours +

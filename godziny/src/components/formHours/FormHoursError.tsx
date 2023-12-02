@@ -9,8 +9,8 @@ type ModelFormValues = {
 const FormHoursError = () => {
   const { values } = useFormikContext<ModelFormValues>();
   const { month } = useSelector((state: RootState) => state.monthsPanel);
-  const submittedHours = month?.calc.submittedHours;
-  const acceptedHours = month?.calc.acceptedHours;
+  const submittedHours = month?.calcHours.submittedHours;
+  const acceptedHours = month?.calcHours.acceptedHours;
 
   return (
     <div className="text-danger fs-8">

@@ -3,9 +3,7 @@ import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
 import useHTTPState from "../../hooks/useHTTPState";
 import { RootState } from "../../redux/store";
-import { useAddDayMutation } from "../../services/apiSliceMonths";
 import { ModelDay } from "../someData/dataSidebarMonthForm";
-import useFormikDay from "./useFormikDay";
 
 type Props = {
   success: any;
@@ -15,7 +13,7 @@ const FormDayButton = (props: Props) => {
   const { values } = useFormikContext<ModelDay>();
   const { btnContent } = useHTTPState(props.success, "Dodaj dzień");
   const { month } = useSelector((state: RootState) => state.monthsPanel);
-  const currentHours = month?.calc?.currentHours;
+  const currentHours = month?.calcHours?.currentHours;
 
   return (
     <>

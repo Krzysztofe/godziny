@@ -18,11 +18,9 @@ const SidebarMenuButton = (props: Props) => {
       onClick={props.toggleShow}
       className={`${
         windowWidth >= 500 ? "d-none" : "d-flex"
-      } justify-content-center align-items-center rounded-0 p-0 fw-medium w-100 px-4`}
+      } justify-content-center align-items-center rounded-0 p-0 fw-medium w-100 px-4 fixed-bottom`}
       style={{
-        position: "fixed",
         height: "2.5rem",
-        bottom: 0,
       }}
     >
       <div>Menu:&nbsp;</div>

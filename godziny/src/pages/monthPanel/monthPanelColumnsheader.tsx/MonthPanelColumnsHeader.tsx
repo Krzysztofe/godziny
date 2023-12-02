@@ -15,15 +15,15 @@ const MonthPanelColumnsHeader = (props: Props) => {
       {[
         {
           headerText: "Złożone:",
-          counter: month?.calc?.submittedHours,
+          counter: month?.calcHours?.submittedHours,
         },
         {
           headerText: "Przyznane:",
-          counter: month?.calc?.acceptedHours,
+          counter: month?.calcHours?.acceptedHours,
         },
         {
           headerText: "Odrzucone:",
-          counter: month?.calc?.rejectedHours,
+          counter: month?.calcHours?.rejectedHours,
         },
       ].map(({ headerText, counter }) => {
         return (

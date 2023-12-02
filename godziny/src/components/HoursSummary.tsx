@@ -11,11 +11,13 @@ const HoursSummary = () => {
     >
       <div>Wszystkie</div>
       <div>
-        {month?.calc?.allHours} -{" "}
+        {month?.calcHours?.allHours} -{" "}
         <span
-          className={`${month?.calc?.currentHours <= 0 ? "text-danger" : ""}`}
+          className={`${
+            month?.calcHours?.currentHours <= 0 ? "text-danger" : ""
+          }`}
         >
-          {month?.calc?.currentHours}
+          {month?.calcHours?.currentHours}
         </span>
       </div>
       {/* <div

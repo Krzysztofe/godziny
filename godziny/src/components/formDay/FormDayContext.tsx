@@ -12,7 +12,7 @@ const FormDayContext = () => {
   const { dataInputsText, dataInputsSelect } = useDataFormDay();
   const { initialValues, validation, onSubmit, success } = useFormikDay();
   const { month } = useSelector((state: RootState) => state.monthsPanel);
-  const allHours = month?.calc?.allHours;
+  const allHours = month?.calcHours?.allHours;
 
   return (
     <Formik

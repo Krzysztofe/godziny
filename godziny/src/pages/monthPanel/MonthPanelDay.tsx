@@ -1,6 +1,5 @@
 import { Draggable } from "react-beautiful-dnd";
 import Button from "react-bootstrap/Button";
-import { FiClock } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
@@ -30,17 +29,57 @@ const MonthPanelDay = (props: Props) => {
   const handleDelete = async (idx: number, id: string) => {
     Swal.fire(alertHelper("Usunąć dzień")).then(async result => {
       if (result.isConfirmed) {
-        const daysBodyPUTRequest = month?.columns[idx]?.days?.filter(
-          (day: ModelDay) => {
+        const daysBodyPUTRequest = {
+          ...month?.columns[idx]?.days?.filter((day: ModelDay) => {
             return day?.id !== id;
-          }
-        );
+          }),
+        };
+
+        const deleteObjectById = (obj: any, idToDelete: any) => {
+          const updatedColumns = obj?.columns?.map((column: any) => {
+            const updatedDays = column?.days?.filter(
+              (day: any) => day.id !== idToDelete
+            );
+            return { ...column, days: updatedDays };
+          });
+
+          return { ...obj, columns: updatedColumns };
+        };
+
+        const subtractedHours = {
+          ...month.columns[props.columnIdx].days.find(day => {
+            return day.id === props.day.id;
+          }),
+        }?.hours;
 
         await deleteDay({
           year: yearFromURL,
           month: monthFromURL,
           colIdx: props.columnIdx,
-          daysBody: daysBodyPUTRequest || [],
+          monthBody: {
+            ...month,
+            calcHours: {
+              ...month.calcHours,
+              allHours:
+                subtractedHours && month.calcHours.allHours + subtractedHours,
+              currentHours:
+                subtractedHours &&
+                month.calcHours.currentHours - subtractedHours,
+              submittedHours:
+                props.columnIdx === 0 && subtractedHours
+                  ? month.calcHours.submittedHours - subtractedHours
+                  : month.calcHours.submittedHours,
+              acceptedHours:
+                props.columnIdx === 1 && subtractedHours
+                  ? month.calcHours.acceptedHours - subtractedHours
+                  : month.calcHours.acceptedHours,
+              rejectedHours:
+                props.columnIdx === 2 && subtractedHours
+                  ? month.calcHours.rejectedHours - subtractedHours
+                  : month.calcHours.rejectedHours,
+            },
+            columns: deleteObjectById({ ...month }, id).columns,
+          },
         });
       }
     });
