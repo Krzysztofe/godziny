@@ -3,13 +3,15 @@ import Button from "react-bootstrap/Button";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import { ModelDay } from "../../components/someData/dataSidebarMonthForm";
 import useHTTPState from "../../hooks/useHTTPState";
 import useURLValues from "../../hooks/useURLValues";
 import { RootState } from "../../redux/store";
 import { useDeleteDayMutation } from "../../services/apiSliceMonths";
 import { alertHelper } from "../../utils/alertHelpers";
 import MonthPanelDayPrintData from "./MonthPanelDayPrintData";
+import { ModelDay } from "../../sharedModels/modelDay";
+import { ModelColumn } from "../../sharedModels/modelColumn";
+import { ModelMonth } from "../../sharedModels/modelMonth";
 
 interface Props {
   day: ModelDay;
@@ -29,10 +31,10 @@ const MonthPanelDay = (props: Props) => {
   const handleDelete = async (idx: number, id: string) => {
     Swal.fire(alertHelper("Usunąć dzień")).then(async result => {
       if (result.isConfirmed) {
-        const deleteDayById = (obj: any, idToDelete: any) => {
-          const updatedColumns = obj?.columns?.map((column: any) => {
+        const deleteDayById = (obj: ModelMonth, idToDelete: string) => {
+          const updatedColumns = obj?.columns?.map((column: ModelColumn) => {
             const updatedDays = column?.days?.filter(
-              (day: any) => day.id !== idToDelete
+              (day) => day.id !== idToDelete
             );
             return { ...column, days: updatedDays };
           });
@@ -41,7 +43,7 @@ const MonthPanelDay = (props: Props) => {
         };
 
         const subtractedHours = {
-          ...month?.columns[props.columnIdx].days.find((day: any) => {
+          ...month?.columns[props.columnIdx].days.find((day) => {
             return day?.id === props.day.id;
           }),
         }?.hours;
@@ -54,10 +56,7 @@ const MonthPanelDay = (props: Props) => {
             ...month,
             calcHours: {
               ...month.calcHours,
-              // allHours:
-              //   props.columnIdx !== 2 && subtractedHours
-              //     ? month.calcHours.allHours + subtractedHours
-              //     : month.calcHours.allHours,
+          
 
               currentHours:
                 props.columnIdx !== 2 && subtractedHours

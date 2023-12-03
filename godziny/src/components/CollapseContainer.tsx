@@ -13,12 +13,12 @@ const CollapseContainer = (props: Props) => {
   return (
     <>
       <Button
-        variant="outline-info"
+        variant="outline-primary"
         onClick={() => setOpen(prev => !prev)}
         aria-expanded={isOpen}
         aria-controls="example-collapse-text"
         size="sm"
-        className={`fw-medium w-100 d-flex justify-content-between align-items-center text-capitalize bg-info text-white ${
+        className={`fw-medium w-100 d-flex justify-content-between align-items-center text-capitalize bg-primary text-white ${
           isOpen ? "rounded-bottom-0" : "rounded-bottom-1"
         }`}
         style={{
@@ -35,7 +35,7 @@ const CollapseContainer = (props: Props) => {
         />
       </Button>
       <Collapse in={isOpen}>
-        <div className="border border-info rounded-bottom px-1">
+        <div className="border border-primary rounded-bottom px-1">
           {props.children}
         </div>
       </Collapse>

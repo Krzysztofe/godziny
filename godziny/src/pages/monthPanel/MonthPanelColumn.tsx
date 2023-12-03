@@ -1,11 +1,10 @@
 import { Droppable } from "react-beautiful-dnd";
 import Col from "react-bootstrap/Col";
-import {
-  ModelColumn,
-  ModelDay,
-} from "../../components/someData/dataSidebarMonthForm";
 import MonthPanelDay from "./MonthPanelDay";
 import { v4 as UUID } from "uuid";
+import { ModelColumn } from "../../sharedModels/modelColumn";
+import { ModelDay } from "../../sharedModels/modelDay";
+
 
 interface Props {
   column: ModelColumn;

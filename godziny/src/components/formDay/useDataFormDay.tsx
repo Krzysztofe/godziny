@@ -1,10 +1,11 @@
-import { ModelUser } from "../formUser/ModelUser";
 import {
   dateInNext_14_Days,
   dateInNext_60_Days,
 } from "../../data/dataCurrentDates";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import { ModelUser } from "../../sharedModels/modelUser";
+
 
 const useDataFormDay = () => {
   const { users: dataUsers } = useSelector((state: RootState) => state.users);

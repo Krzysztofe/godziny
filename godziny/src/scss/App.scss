@@ -6,6 +6,13 @@
 @import "~bootstrap/scss/mixins.scss";
 @import "~bootstrap/scss/variables.scss";
 
+$custom-theme-colors: (
+  // "transparent": rgba(255, 255, 255, 0),
+  // "opacity-white": rgba(255, 255, 255, 0)
+//   "elf": #1d6d3f1a
 
+);
+
+$theme-colors: map-merge($custom-theme-colors, $theme-colors);
 
 @import "~bootstrap/scss/bootstrap.scss";

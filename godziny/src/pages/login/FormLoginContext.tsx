@@ -24,13 +24,12 @@ const FormLoginContext = () => {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form
-        className="border p-5 rounded-1"
+        className="border p-5 rounded-1 bg-opacity-white"
         style={{
-          backgroundColor: "rgba(255, 255, 255, 0.5)",
           width: windowWidth <= 500 ? "100%" : "fit-content",
           height: windowWidth <= 500 ? "100%" : "fit-content",
           display: "grid",
-          placeItems:"center"
+          placeItems: "center",
         }}
       >
         <div style={{ scale: "1.2" }}>
@@ -39,7 +38,7 @@ const FormLoginContext = () => {
 
           <Button
             disabled={isLoading}
-            variant="info"
+            variant="primary"
             type="submit"
             className="fw-medium btn-sm mt-3 w-100"
           >

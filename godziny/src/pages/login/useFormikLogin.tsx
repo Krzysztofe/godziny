@@ -5,13 +5,18 @@ import { currMonthDigits, currYearDigits } from "../../data/dataCurrentDates";
 import { auth } from "../../data/firebaseConfig";
 import { alert } from "../../utils/alertHelpers";
 
+type initialValues = {
+  password: string
+}
+
+
 const useFormikLogin = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
   const initialValues = { password: "wwwwww" };
 
-  const onSubmit = (values: any) => {
+  const onSubmit = (values: initialValues) => {
     setIsLoading(true);
     signInWithEmailAndPassword(auth, "ww@wp.pl", values.password)
       .then(() => {

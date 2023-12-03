@@ -7,7 +7,8 @@ import useHTTPState from "../../../hooks/useHTTPState";
 import { RootState } from "../../../redux/store";
 import { useDeleteUserMutation } from "../../../services/apiSliceUsers";
 import { alertHelper } from "../../../utils/alertHelpers";
-import { ModelUser } from "../../../components/formUser/ModelUser";
+import { ModelUser } from "../../../sharedModels/modelUser";
+
 
 interface Props {
   user: ModelUser;

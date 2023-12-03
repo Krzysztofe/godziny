@@ -1,6 +1,7 @@
 import { MdFactory } from "react-icons/md";
 import { TbArrowBigRightLineFilled } from "react-icons/tb";
-import { ModelDay } from "../../components/someData/dataSidebarMonthForm";
+import { ModelDay } from "../../sharedModels/modelDay";
+
 
 interface Props {
   day: ModelDay;

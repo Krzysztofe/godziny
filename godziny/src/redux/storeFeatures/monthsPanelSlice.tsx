@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  ModelCalcHours,
-  ModelColumn,
-  ModelMonth,
-} from "../../components/someData/dataSidebarMonthForm";
+import { ModelCalcHours } from "../../sharedModels/modelCalcHours";
+import { ModelColumn } from "../../sharedModels/modelColumn";
+import { ModelMonth } from "../../sharedModels/modelMonth";
 
 const columns: ModelColumn[] = [
   { id: "submitted", days: [] },

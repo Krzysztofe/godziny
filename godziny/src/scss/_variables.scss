@@ -1,9 +1,18 @@
-$primary: rgb(228, 229, 233);
-$info: rgb(54,94,255);
-$warning: rgb(255, 181, 9);
+$primary:rgb(73, 155, 190);
+$warning: rgb(255, 124, 9);
 $success: rgba(180,80,255);
-// $success-secondary:  rgb(230, 230, 238);
-$success-secondary:rgba(255, 255, 255, 0.6);
+$success-secondary:hsla(0, 0%, 100%, 0.6);
+$light:  rgb(29, 235, 10);
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 500px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
 
 .fs-7 {
   font-size: 0.8rem;

@@ -5,10 +5,7 @@ const HoursSummary = () => {
   const { month } = useSelector((state: RootState) => state.monthsPanel);
 
   return (
-    <div
-      className="d-flex gap-2 mx-auto fw-medium pb-2"
-      style={{ width: "fit-content" }}
-    >
+    <div className="d-flex gap-2 mx-auto fw-medium pb-2 w-fit-content">
       <div>Wszystkie</div>
       <div>
         {month?.calcHours?.allHours} -{" "}
@@ -21,7 +18,9 @@ const HoursSummary = () => {
         </span>
       </div>
       <div
-        className={` ${month?.calcHours?.currentHours <= 0 ? "text-danger" : ""}`}
+        className={` ${
+          month?.calcHours?.currentHours <= 0 ? "text-danger" : ""
+        }`}
       >
         {month?.calcHours?.currentHours < 0 ? "Brak" : "Dostępne"}
       </div>

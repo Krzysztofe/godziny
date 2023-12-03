@@ -34,20 +34,15 @@ const IndexSidebar = () => {
             name="Disable backdrop"
             scroll={true}
             backdrop={false}
-            className={`${windowWidth <= 500 && "backgroundImage"}`}
+            className={`${
+              windowWidth <= 500 && "backgroundImage"
+            } bg-transparent`}
             style={{
               width: windowWidth >= 500 ? "30%" : "100vw",
               maxWidth: windowWidth >= 500 && "250px",
-              backgroundColor: "rgba(255, 255, 255, 0)",
             }}
           >
-            <div
-              className="p-1 d-flex flex-column"
-              style={{
-                height: "100%",
-                backgroundColor: "rgba(255, 255, 255, 0.5)",
-              }}
-            >
+            <div className="p-1 d-flex flex-column bg-opacity-white h-100">
               <SidebarHeader />
               <SidebarBody />
               <SidebarNav />

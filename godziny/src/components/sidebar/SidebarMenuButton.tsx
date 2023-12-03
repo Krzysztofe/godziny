@@ -1,5 +1,4 @@
 import Button from "react-bootstrap/Button";
-import useWindowWidth from "../../hooks/useWindowWidth";
 import useMonthURLToString from "../../hooks/useMonthURLToString";
 import useURLValues from "../../hooks/useURLValues";
 
@@ -8,17 +7,14 @@ type Props = {
 };
 
 const SidebarMenuButton = (props: Props) => {
-  const { windowWidth } = useWindowWidth();
   const { monthURLStringFormat } = useMonthURLToString();
   const { isMonthInURL } = useURLValues();
 
   return (
     <Button
-      variant="info"
+      variant="primary"
       onClick={props.toggleShow}
-      className={`${
-        windowWidth >= 500 ? "d-none" : "d-flex"
-      } justify-content-center align-items-center rounded-0 p-0 fw-medium w-100 px-4 fixed-bottom`}
+      className= "d-flex d-sm-none justify-content-center align-items-center rounded-0 p-0 fw-medium w-100 px-4 fixed-bottom"
       style={{
         height: "2.5rem",
       }}

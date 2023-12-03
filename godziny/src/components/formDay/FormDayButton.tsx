@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
 import useHTTPState from "../../hooks/useHTTPState";
 import { RootState } from "../../redux/store";
-import { ModelDay } from "../someData/dataSidebarMonthForm";
+import { ModelDay } from "../../sharedModels/modelDay";
 
 type Props = {
   success: any;
@@ -20,7 +20,7 @@ const FormDayButton = (props: Props) => {
       <Button
         type="submit"
         disabled={props.success.isLoading}
-        className="fw-medium w-100 mt-2 bg-info text-white"
+        className="fw-medium w-100 mt-2 bg-primary text-white"
       >
         {btnContent}
       </Button>

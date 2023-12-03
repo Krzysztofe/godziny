@@ -1,6 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState: any = {
+
+type ModelInitialState = {
+  infoMonths: string [];
+  infoMonthsError: {};
+  infoMonthsIsLoading: boolean;
+};
+
+const initialState: ModelInitialState = {
   infoMonths: [],
   infoMonthsError: {},
   infoMonthsIsLoading: false,

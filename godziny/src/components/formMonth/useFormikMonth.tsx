@@ -9,14 +9,14 @@ import {
   useUpdateMonthMutation,
 } from "../../services/apiSliceMonths";
 import { alert } from "../../utils/alertHelpers";
-import {
-  ModelMonth,
-  monthPattern,
-} from "../someData/dataSidebarMonthForm";
 import useValidationMonthForm from "./useValidationMonthForm";
 import * as yup from "yup";
+import { monthPattern } from "./dataFormMonth";
+import { ModelMonth } from "../../sharedModels/modelMonth";
 
-interface ModelFormValues {
+
+
+interface ModelInitialValues {
   monthDate: string;
 }
 
@@ -28,13 +28,13 @@ const useFormikMonth = () => {
   const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
   const { validationSchema } = useValidationMonthForm();
   const [isSuccess, setIsSuccess] = useState(false);
-  const [formValues, setFormValues] = useState({});
+  const [formValues, setFormValues] = useState({ monthDate:"" });
 
   const initialValues = { monthDate: `${currYearDigits}-${currMonthDigits}` };
 
   const validation = validationSchema as yup.ObjectSchema<typeof initialValues>;
 
-  const onSubmit = async (values: any) => {
+  const onSubmit = async (values: ModelInitialValues) => {
     const year = values.monthDate.slice(0, 4);
     const month = values.monthDate.slice(-2);
     const monthBody: ModelMonth = {
@@ -46,7 +46,7 @@ const useFormikMonth = () => {
     setFormValues(values);
   };
 
-  const executeAddMonthInfo = async (values: any) => {
+  const executeAddMonthInfo = async (values: ModelInitialValues) => {
     if (isSuccess) {
       const year = values.monthDate.slice(0, 4);
       const month = values.monthDate.slice(-2);

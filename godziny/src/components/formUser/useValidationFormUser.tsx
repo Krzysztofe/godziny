@@ -1,12 +1,7 @@
 import { useUsersQuery } from "../../services/apiSliceUsers";
-// import { ModelUser } from './useSettingsUserFormik';
 import * as yup from "yup";
 
-export interface ModelUser {
-  id: string;
-  userName: string;
-  userColor: string;
-}
+import { ModelUser } from "../../sharedModels/modelUser";
 
 const useValidationFormUser = () => {
   const { data: dataUsers } = useUsersQuery();

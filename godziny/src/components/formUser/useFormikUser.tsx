@@ -1,4 +1,3 @@
-import React from "react";
 import {
   useAddUserMutation,
   useUsersQuery,
@@ -6,6 +5,8 @@ import {
 import useValidationUserForm from "./useValidationFormUser";
 import { v4 as UUID } from "uuid";
 import * as yup from "yup";
+import { ModelUser } from "../../sharedModels/modelUser";
+import { FormikHelpers } from "formik";
 
 const useFormikUser = () => {
   const [addUser, success] = useAddUserMutation();
@@ -21,7 +22,10 @@ const useFormikUser = () => {
   };
 
   const validation = validationSchema as yup.ObjectSchema<typeof initialValues>;
-  const onSubmit = async (values: any, { resetForm }: any) => {
+  const onSubmit = async (
+    values: ModelUser,
+    { resetForm }: FormikHelpers<ModelUser>
+  ) => {
     const updatedValues = {
       ...values,
       userName:

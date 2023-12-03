@@ -1,9 +1,16 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { ModelUser } from "../../sharedModels/modelUser";
 
-const initialState: any = {
+type ModelInitialState = {
+  users: ModelUser[];
+  usersError: {};
+  usersIsLoading: boolean;
+};
+
+const initialState: ModelInitialState = {
   users: [],
   usersError: {},
-  usersIsLoading: false
+  usersIsLoading: false,
 };
 
 export const usersSlice = createSlice({

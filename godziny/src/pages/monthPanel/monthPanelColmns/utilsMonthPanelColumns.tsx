@@ -1,4 +1,4 @@
-import { ModelColumn } from "../../../components/someData/dataSidebarMonthForm";
+import { ModelColumn } from "../../../sharedModels/modelColumn";
 
 export const addDaysToColumns = (columns: ModelColumn[]) => {
   if (!Array.isArray(columns)) {
@@ -27,11 +27,11 @@ export const handleDragDrop = (
     return;
 
   if (source.droppableId !== destination.droppableId) {
-    const sourceColumnIdx = columns?.findIndex((column: any) => {
+    const sourceColumnIdx = columns?.findIndex((column: ModelColumn) => {
       return column.id === source.droppableId;
     });
 
-    const destinationColumnIdx = columns?.findIndex((column: any) => {
+    const destinationColumnIdx = columns?.findIndex((column: ModelColumn) => {
       return column.id === destination.droppableId;
     });
 
@@ -61,7 +61,7 @@ export const handleDragDrop = (
   } else {
     const destintionIdx = destination.index;
 
-    const sourceColumnIdx = columns.findIndex((column: any) => {
+    const sourceColumnIdx = columns.findIndex((column: ModelColumn) => {
       return column.id === source.droppableId;
     });
 

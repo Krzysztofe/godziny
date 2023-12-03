@@ -1,14 +1,12 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import { ModelUser } from "../../../components/formUser/ModelUser";
 import SettingsUsersListItem from "./SettingsUsersListItem";
+import { ModelUser } from "../../../sharedModels/modelUser";
 
 const SettingsUsersList = () => {
   const { users } = useSelector((state: RootState) => state.users);
 
-
-console.log('',users)
 
   return (
     <>

@@ -1,11 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { URL_MONTHS_DATA } from "../data/URL";
-import {
-  // ModelMonthsPatern,
-  ModelMonth,
-  ModelColumn,
-  ModelDay,
-} from "../components/someData/dataSidebarMonthForm";
+import { ModelMonth } from "../sharedModels/modelMonth";
+import { ModelCalcHours } from "../sharedModels/modelCalcHours";
+
 
 const createUrl = (year: string, month: string, suffix = "") =>
   `/years/${year}/month_${month}${suffix}.json`;
@@ -26,7 +23,7 @@ export const monthsApiSlice = createApi({
 
     updateMonth: builder.mutation<
       void,
-      { year: string; month: string; monthBody: any }
+      { year: string; month: string; monthBody: ModelMonth }
     >({
       query: ({ year, month, monthBody }) => ({
         url: createUrl(year, month),
@@ -38,19 +35,7 @@ export const monthsApiSlice = createApi({
 
     addDay: builder.mutation<
       void,
-      { year: string; month: string; firstColumnBody: any }
-    >({
-      query: ({ year, month, firstColumnBody }) => ({
-        url: createUrl(year, month),
-        method: "PUT",
-        body: firstColumnBody,
-      }),
-      invalidatesTags: ["months"],
-    }),
-
-    deleteDay: builder.mutation<
-      void,
-      { year: string; month: string; colIdx: number; monthBody: any }
+      { year: string; month: string; monthBody: ModelMonth }
     >({
       query: ({ year, month, monthBody }) => ({
         url: createUrl(year, month),
@@ -60,7 +45,19 @@ export const monthsApiSlice = createApi({
       invalidatesTags: ["months"],
     }),
 
-    deleteMonth: builder.mutation<ModelMonth, any>({
+    deleteDay: builder.mutation<
+      void,
+      { year: string; month: string; colIdx: number; monthBody: ModelMonth }
+    >({
+      query: ({ year, month, monthBody }) => ({
+        url: createUrl(year, month),
+        method: "PUT",
+        body: monthBody,
+      }),
+      invalidatesTags: ["months"],
+    }),
+
+    deleteMonth: builder.mutation<ModelMonth, { year: string; month: string }>({
       query: ({ year, month }) => ({
         url: createUrl(year, month),
         method: "DELETE",
@@ -90,7 +87,7 @@ export const monthsApiSlice = createApi({
 
     addAllHours: builder.mutation<
       void,
-      { year: string; month: string; calcHours: any }
+      { year: string; month: string; calcHours: ModelCalcHours }
     >({
       query: ({ year, month, calcHours }) => ({
         url: createUrl(year, month, `/calcHours`),

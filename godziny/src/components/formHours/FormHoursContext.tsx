@@ -11,7 +11,7 @@ const FormHoursContext = () => {
   const { initialValues, onSubmit, success } = useFormikHours();
   const { btnContent } = useHTTPState(
     success,
-    <AiOutlinePlusCircle className="text-info" style={{ fontSize: "1.4rem" }} />
+    <AiOutlinePlusCircle className="text-primary" style={{ fontSize: "1.4rem" }} />
   );
 
   return (

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useSelector } from "react-redux";
-import { ModelColumn } from "../../../components/someData/dataSidebarMonthForm";
+import { ModelColumn } from "../../../sharedModels/modelColumn";
 import useURLValues from "../../../hooks/useURLValues";
 import { RootState } from "../../../redux/store";
 import { useUpdateMonthMutation } from "../../../services/apiSliceMonths";
@@ -57,6 +57,7 @@ const MonthPanelColumns = () => {
       });
     }
   }, [executeUpdateMonth]);
+
 
   const handleDragEnd = (results: DropResult) => {
     handleDragDrop(results, columns, setColumns);

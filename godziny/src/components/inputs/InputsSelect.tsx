@@ -1,9 +1,7 @@
-import React from "react";
-import { useFormikContext, Formik, Form as FormFormik, Field } from "formik";
-import { ModelDay } from "../someData/dataSidebarMonthForm";
-import useDataSidebarSelects from "../formDay/useDataFormDay";
+import { useFormikContext} from "formik";
 import Form from "react-bootstrap/Form";
 import FormErrors from "./FormErrors";
+import { ModelDay } from "../../sharedModels/modelDay";
 
 type Props = {
   inputsData: {
