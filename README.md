@@ -50,7 +50,7 @@ Live recording of the application presentation during the conclusion of the comp
 * Forms / Validations
 * RWD
 
-* React hooks: <br/> useState, useEffect, <br/> useDispatch, useSelector, <br/> useNavigate, useParams, useLocation, <br/> useAuthState, useFormik, custom hooks
+* React hooks: <br/> useState, useEffect, <br/> useDispatch, useSelector, <br/> useNavigate, useParams, useLocation, <br/> useAuthState, useFormikContext, custom hooks
 * Libraries: <br/>
 react-router, react-router-dom, react-router-hash-link, <br/>
 react-firebase-hooks,react-beautiful-dnd<br/>
@@ -82,10 +82,6 @@ react-bootstrap, sweetalert2, react-icons
 ## Do do
 
 * Fast tile movement on dragg and dropp componentscan cause issues with data transmission. To address this, it is necessary to implement JS throttling, which helps regulate the data transfer rate and resolve the problem.
-* Validation on hours input type number in heder month panel
-* Styles
-* Full TypeScript types
-* Error page
 
  ## Comments
 * The Firebase Config keys are not hidden in the .env file to allow access for setting up the project locally.
