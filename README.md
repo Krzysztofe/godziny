@@ -53,7 +53,7 @@ Live recording of the application presentation during the conclusion of the comp
 * React hooks: <br/> useState, useEffect, <br/> useDispatch, useSelector, <br/> useNavigate, useParams, useLocation, <br/> useAuthState, useFormikContext, custom hooks
 * Libraries: <br/>
 react-router, react-router-dom, react-router-hash-link, <br/>
-react-firebase-hooks,react-beautiful-dnd<br/>
+react-firebase-hooks, react-beautiful-dnd<br/>
 react-redux, @reduxjs/toolkit,<br/>
 formik, yup, <br/>
 react-bootstrap, sweetalert2, react-icons
