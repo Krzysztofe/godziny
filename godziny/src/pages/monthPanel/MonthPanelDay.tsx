@@ -28,7 +28,7 @@ const MonthPanelDay = (props: Props) => {
     <RiDeleteBin6Line className="text-danger" />
   );
 
-  console.log('',props.day.hours)
+
 
   const handleDelete = async (idx: number, id: string) => {
     Swal.fire(alertHelper("Usunąć dzień")).then(async result => {

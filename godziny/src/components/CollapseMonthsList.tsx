@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 import useMonthDates from "../hooks/useMonthDates";
 import useURLValues from "../hooks/useURLValues";
 import { RootState } from "../redux/store";
+import { sortListMonths } from "../utils/sortListMonths";
 
 const CollapseMonthsList = () => {
   const { sortedInfoMonths, databaseMonthsDatesToString } = useMonthDates();
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
   const { monthURL, isMonthInURL } = useURLValues();
+
+  const sortedMonths = sortListMonths(listMonths);
 
   const monthURLToDateFormat = isMonthInURL ? new Date(monthURL) : null;
 

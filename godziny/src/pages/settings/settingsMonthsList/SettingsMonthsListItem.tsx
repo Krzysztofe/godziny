@@ -42,8 +42,9 @@ const SettingsMonthsListItem = (props: Props) => {
     });
   };
 
+
   return (
-    <ListGroup.Item className="d-flex justify-content-between align-items-center shadow-sm p-0 mb-2 px-1 rounded">
+    <ListGroup.Item className="d-flex justify-content-between align-items-center shadow-sm p-0 mb-2 px-1 rounded text-capitalize">
       {" "}
       {props.monthDateToString}{" "}
       <Button

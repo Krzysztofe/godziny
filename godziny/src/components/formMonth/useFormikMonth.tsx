@@ -13,8 +13,7 @@ import useValidationMonthForm from "./useValidationMonthForm";
 import * as yup from "yup";
 import { monthPattern } from "./dataFormMonth";
 import { ModelMonth } from "../../sharedModels/modelMonth";
-
-
+import { sortListMonths } from "../../utils/sortListMonths";
 
 interface ModelInitialValues {
   monthDate: string;
@@ -28,7 +27,7 @@ const useFormikMonth = () => {
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
   const { validationSchema } = useValidationMonthForm();
   const [isSuccess, setIsSuccess] = useState(false);
-  const [formValues, setFormValues] = useState({ monthDate:"" });
+  const [formValues, setFormValues] = useState({ monthDate: "" });
 
   const initialValues = { monthDate: `${currYearDigits}-${currMonthDigits}` };
 
@@ -50,8 +49,11 @@ const useFormikMonth = () => {
     if (isSuccess) {
       const year = values.monthDate.slice(0, 4);
       const month = values.monthDate.slice(-2);
-      const months = listMonths ? listMonths : [];
-      await updateListMonths([...months, `${year}-${month}`]);
+      const months = listMonths ? [...listMonths] : [];
+      const updatedList = [...months, `${year}-${month}`];
+      const sortedMonths = sortListMonths(updatedList);
+
+      await updateListMonths(sortedMonths);
       navigate(`/${values.monthDate}`);
     } else if (success.isError) {
       const year = values.monthDate.slice(0, 4);

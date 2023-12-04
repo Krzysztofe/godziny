@@ -8,7 +8,7 @@ const SettingsMonthsList = () => {
   const { sortedInfoMonths, databaseMonthsDatesToString } = useMonthDates();
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
 
-
+// console.log("lst", listMonths);
 
   return (
     <>
@@ -17,8 +17,7 @@ const SettingsMonthsList = () => {
         {!listMonths && <p className="py-1 px-2 text-warning">Brak danych</p>}
 
         {databaseMonthsDatesToString
-          ?.reverse()
-          .map((monthDateToString: string, idx: number) => {
+          ?.map((monthDateToString: string, idx: number) => {
             return (
               <SettingsMonthsListItem
                 monthDateToString={monthDateToString}
