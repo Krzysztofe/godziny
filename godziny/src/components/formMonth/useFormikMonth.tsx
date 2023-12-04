@@ -5,7 +5,7 @@ import { currMonthDigits, currYearDigits } from "../../data/dataCurrentDates";
 import { RootState } from "../../redux/store";
 import {
   useDeleteMonthMutation,
-  useUpdateMonthInfoMutation,
+  useUpdateListMonthsMutation,
   useUpdateMonthMutation,
 } from "../../services/apiSliceMonths";
 import { alert } from "../../utils/alertHelpers";
@@ -23,9 +23,9 @@ interface ModelInitialValues {
 const useFormikMonth = () => {
   const navigate = useNavigate();
   const [updateMonth, success] = useUpdateMonthMutation();
-  const [updateMonthInfo] = useUpdateMonthInfoMutation();
+  const [updateListMonths] = useUpdateListMonthsMutation();
   const [deleteMonth] = useDeleteMonthMutation();
-  const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
+  const { listMonths } = useSelector((state: RootState) => state.listMonths);
   const { validationSchema } = useValidationMonthForm();
   const [isSuccess, setIsSuccess] = useState(false);
   const [formValues, setFormValues] = useState({ monthDate:"" });
@@ -50,8 +50,8 @@ const useFormikMonth = () => {
     if (isSuccess) {
       const year = values.monthDate.slice(0, 4);
       const month = values.monthDate.slice(-2);
-      const months = infoMonths ? infoMonths : [];
-      await updateMonthInfo([...months, `${year}-${month}`]);
+      const months = listMonths ? listMonths : [];
+      await updateListMonths([...months, `${year}-${month}`]);
       navigate(`/${values.monthDate}`);
     } else if (success.isError) {
       const year = values.monthDate.slice(0, 4);
@@ -69,7 +69,7 @@ const useFormikMonth = () => {
 
   useEffect(() => {
     executeAddMonthInfo(formValues);
-  }, [isSuccess, updateMonthInfo]);
+  }, [isSuccess, updateListMonths]);
 
   return { initialValues, validation, onSubmit, success };
 };

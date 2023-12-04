@@ -7,7 +7,7 @@ import { RootState } from "../redux/store";
 
 const CollapseMonthsList = () => {
   const { sortedInfoMonths, databaseMonthsDatesToString } = useMonthDates();
-  const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
+  const { listMonths } = useSelector((state: RootState) => state.listMonths);
   const { monthURL, isMonthInURL } = useURLValues();
 
   const monthURLToDateFormat = isMonthInURL ? new Date(monthURL) : null;
@@ -25,7 +25,7 @@ const CollapseMonthsList = () => {
       className="scrolHidden fs-7 fw-medium text-capitalize"
       style={{ height: "5rem" }}
     >
-      {!infoMonths && (
+      {!listMonths && (
         <ListGroup.Item className="border-0 p-0 text-warning">
           Brak danych
         </ListGroup.Item>

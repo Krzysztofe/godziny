@@ -7,15 +7,15 @@ import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import useHTTPState from "../../hooks/useHTTPState";
 import { RootState } from "../../redux/store";
-import { useDeleteMonthMutation, useUpdateMonthInfoMutation } from "../../services/apiSliceMonths";
+import { useDeleteMonthMutation, useUpdateListMonthsMutation } from "../../services/apiSliceMonths";
 import { alertHelper } from "../../utils/alertHelpers";
 
 
 const ListItemsMonths = () => {
   const { sortedInfoMonths, databaseMonthsDatesToString } = useMonthDates();
  const [deleteMonth, success] = useDeleteMonthMutation();
-  const [updateMonthInfo, successInfo] = useUpdateMonthInfoMutation();
-  const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
+  const [updateListMonths, successInfo] = useUpdateListMonthsMutation();
+  const { listMonths } = useSelector((state: RootState) => state.listMonths);
 
   const { btnContent } = useHTTPState(
     success,

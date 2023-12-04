@@ -28,6 +28,8 @@ const MonthPanelDay = (props: Props) => {
     <RiDeleteBin6Line className="text-danger" />
   );
 
+  console.log('',props.day.hours)
+
   const handleDelete = async (idx: number, id: string) => {
     Swal.fire(alertHelper("Usunąć dzień")).then(async result => {
       if (result.isConfirmed) {
@@ -109,11 +111,11 @@ const MonthPanelDay = (props: Props) => {
 
               <Button
                 onClick={() => handleDelete(props.columnIdx, props.day.id)}
-                className="d-flex justify-content-between  align-items-center w-100 p-0 bg-transparent border-0"
+                className="d-flex justify-content-between  align-items-center w-100 p-0 bg-transparent border-0 fw-medium text-dark"
                 disabled={success.isLoading}
               >
                 <div>{props.day?.hours} h</div>
-                <div className="">{btnContent}</div>
+                <div>{btnContent}</div>
               </Button>
             </div>
           </div>

@@ -1,26 +1,22 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
-    getInfoMonthError,
-    getInfoMonthIsLoading,
-    getInfoMonths,
-} from "../../redux/storeFeatures/infoMonthsSlice";
-import { useMonthsListQuery } from "../../services/apiSliceMonths";
+  getListMonths,
+  getListMonthsError,
+  getListMonthsIsLoading,
+} from "../../redux/storeFeatures/listMonthsSlice";
+import { useListMonthsQuery } from "../../services/apiSliceMonths";
 
 const useReduxListMonths = () => {
   const dispatch = useDispatch();
 
-  const {
-    data: dataInfoMonths,
-    error: errorInfoMonths,
-    isLoading: isLoadingInfoMonths,
-  } = useMonthsListQuery();
+  const { data, error, isLoading } = useListMonthsQuery();
 
   useEffect(() => {
-    dispatch(getInfoMonths(dataInfoMonths));
-    dispatch(getInfoMonthError(errorInfoMonths));
-    dispatch(getInfoMonthIsLoading(isLoadingInfoMonths));
-  }, [dataInfoMonths, errorInfoMonths, isLoadingInfoMonths, dispatch]);
+    dispatch(getListMonths(data));
+    dispatch(getListMonthsError(error));
+    dispatch(getListMonthsIsLoading(isLoading));
+  }, [data, error, isLoading, dispatch]);
 };
 
 export default useReduxListMonths;

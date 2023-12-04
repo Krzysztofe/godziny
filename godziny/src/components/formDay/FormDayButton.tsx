@@ -4,9 +4,11 @@ import { useSelector } from "react-redux";
 import useHTTPState from "../../hooks/useHTTPState";
 import { RootState } from "../../redux/store";
 import { ModelDay } from "../../sharedModels/modelDay";
+import { ModelSuccess } from "../../sharedModels/modelSucces";
+
 
 type Props = {
-  success: any;
+  success: ModelSuccess;
 };
 
 const FormDayButton = (props: Props) => {

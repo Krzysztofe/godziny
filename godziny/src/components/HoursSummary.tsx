@@ -6,24 +6,18 @@ const HoursSummary = () => {
 
   return (
     <div className="d-flex gap-2 mx-auto fw-medium pb-2 w-fit-content">
-      <div>Wszystkie</div>
-      <div>
-        {month?.calcHours?.allHours} -{" "}
-        <span
-          className={`${
-            month?.calcHours?.currentHours <= 0 ? "text-danger" : ""
-          }`}
-        >
-          {month?.calcHours?.currentHours}
-        </span>
-      </div>
+      <div>Wszystkie {month?.calcHours?.allHours} - </div>
+
       <div
-        className={` ${
+        className={`${
           month?.calcHours?.currentHours <= 0 ? "text-danger" : ""
         }`}
       >
+        {month?.calcHours?.currentHours} {""}
         {month?.calcHours?.currentHours < 0 ? "Brak" : "Dostępne"}
       </div>
+
+     
     </div>
   );
 };

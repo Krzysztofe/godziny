@@ -7,7 +7,7 @@ import useHTTPState from "../../../hooks/useHTTPState";
 import { RootState } from "../../../redux/store";
 import {
   useDeleteMonthMutation,
-  useUpdateMonthInfoMutation,
+  useUpdateListMonthsMutation,
 } from "../../../services/apiSliceMonths";
 import { alertHelper } from "../../../utils/alertHelpers";
 
@@ -18,8 +18,8 @@ interface Props {
 
 const SettingsMonthsListItem = (props: Props) => {
   const [deleteMonth, success] = useDeleteMonthMutation();
-  const [updateMonthInfo, successInfo] = useUpdateMonthInfoMutation();
-  const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
+  const [updateListMonths, successInfo] = useUpdateListMonthsMutation();
+  const { listMonths } = useSelector((state: RootState) => state.listMonths);
 
   const { btnContent } = useHTTPState(
     success,
@@ -32,12 +32,12 @@ const SettingsMonthsListItem = (props: Props) => {
         const year = props.monthDate.slice(0, 4);
         const month = props.monthDate.slice(-2);
 
-        const updatedMonthsInfo = infoMonths.filter((infoMonth: string) => {
+        const updatedMonthsInfo = listMonths.filter((infoMonth: string) => {
           return infoMonth !== `${year}-${month}`;
         });
 
         await deleteMonth({ year: year, month: month });
-        await updateMonthInfo(updatedMonthsInfo);
+        await updateListMonths(updatedMonthsInfo);
       }
     });
   };

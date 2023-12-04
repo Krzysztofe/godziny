@@ -2,12 +2,7 @@ import Swal from "sweetalert2";
 import { useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { ReactNode } from "react";
-
-interface ModelSuccess {
-  isLoading: boolean;
-  isError: boolean;
-  error?: any;
-}
+import { ModelSuccess } from "../sharedModels/modelSucces";
 
 const useHTTPState = (success: ModelSuccess, btnText: string | ReactNode) => {
   useEffect(() => {

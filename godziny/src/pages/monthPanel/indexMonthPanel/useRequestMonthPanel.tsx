@@ -3,8 +3,6 @@ import { useSelector } from "react-redux";
 import useMonthURLToString from "../../../hooks/useMonthURLToString";
 import { RootState } from "../../../redux/store";
 import { printPanelContent } from "../../../utils/printPanelContent";
-import MonthPanelColumns from "../monthPanelColmns/MonthPanelColumns";
-import HoursSummary from "../../../components/HoursSummary";
 import MonthPanelContent from "./MonthPanelContent";
 
 const useRequestMonthPanel = () => {
@@ -28,7 +26,8 @@ const useRequestMonthPanel = () => {
 
       requestState = printPanelContent(
         <div className="text-danger text-center ">
-          <> Błąd: {errMsg} </>
+          <> Błąd: {errMsg} </> <br/>
+          <>Odśwież stronę</>
         </div>
       );
     }

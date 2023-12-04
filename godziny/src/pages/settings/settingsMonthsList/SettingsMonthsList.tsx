@@ -6,7 +6,7 @@ import SettingsMonthsListItem from "./SettingsMonthsListItem";
 
 const SettingsMonthsList = () => {
   const { sortedInfoMonths, databaseMonthsDatesToString } = useMonthDates();
-  const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
+  const { listMonths } = useSelector((state: RootState) => state.listMonths);
 
 
 
@@ -14,7 +14,7 @@ const SettingsMonthsList = () => {
     <>
       <h3 className="h6">Zapisane miesiące</h3>
       <ListGroup className="border-0 p-0">
-        {!infoMonths && <p className="py-1 px-2 text-warning">Brak danych</p>}
+        {!listMonths && <p className="py-1 px-2 text-warning">Brak danych</p>}
 
         {databaseMonthsDatesToString
           ?.reverse()

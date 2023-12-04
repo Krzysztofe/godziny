@@ -8,14 +8,13 @@ const useRequestSettings = () => {
   const { usersError, usersIsLoading } = useSelector(
     (state: RootState) => state.users
   );
-  const { infoMonthsError, infoMonthsIsLoading } = useSelector(
-    (state: RootState) => state.infoMonths
+  const { listMonthsError, listMonthsIsLoading } = useSelector(
+    (state: RootState) => state.listMonths
   );
-
 
   let requestState;
 
-  if (usersIsLoading || infoMonthsIsLoading) {
+  if (usersIsLoading || listMonthsIsLoading) {
     requestState = printPanelContent(
       <Spinner animation="border" variant="secondary">
         <span className="visually-hidden">Loading...</span>
@@ -27,17 +26,19 @@ const useRequestSettings = () => {
 
       requestState = printPanelContent(
         <h3 className="text-danger mx-auto ">
-          <> Błąd: {errMsg} </>
+          <> Błąd: {errMsg}</> <br />
+          <>Odśwież stronę</>
         </h3>
       );
     }
-  } else if (infoMonthsError) {
-    if ("status" in infoMonthsError) {
-      const errMsg = "status" in infoMonthsError && infoMonthsError.status;
+  } else if (listMonthsError) {
+    if ("status" in listMonthsError) {
+      const errMsg = "status" in listMonthsError && listMonthsError.status;
 
       requestState = printPanelContent(
         <h3 className="text-danger mx-auto ">
-          <> Błąd: {errMsg} </>
+          <> Błąd: {errMsg}</> <br />
+          <>Odśwież stronę</>
         </h3>
       );
     }

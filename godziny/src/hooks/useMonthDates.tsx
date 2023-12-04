@@ -2,16 +2,16 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 
 const useMonthDates = () => {
-  const { infoMonths } = useSelector((state: RootState) => state.infoMonths);
+  const { listMonths } = useSelector((state: RootState) => state.listMonths);
 
-  const sortedInfoMonths = infoMonths && [...infoMonths]?.sort(
-    (a: string, b: string) => {
+  const sortedInfoMonths =
+    listMonths &&
+    [...listMonths]?.sort((a: string, b: string) => {
       const dateA = new Date(a).getTime();
       const dateB = new Date(b).getTime();
 
       return dateA - dateB;
-    }
-  );
+    });
 
  
 

@@ -26,18 +26,18 @@ const useFormikUser = () => {
     values: ModelUser,
     { resetForm }: FormikHelpers<ModelUser>
   ) => {
-    const updatedValues = {
+    const userValues = {
       ...values,
       userName:
         values.userName.slice(0, 1).toUpperCase() + values.userName.slice(1),
       id: UUID(),
     };
 
-    if (dataUsers) {
-      await addUser([...users, updatedValues]);
-    } else {
-      await addUser([updatedValues]);
-    }
+    const sortedUsers = [...users, userValues].sort((a, b) =>
+      a.userName.localeCompare(b.userName)
+    );
+
+    await addUser(sortedUsers);
     resetForm();
   };
 
@@ -45,3 +45,4 @@ const useFormikUser = () => {
 };
 
 export default useFormikUser;
+

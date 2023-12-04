@@ -67,18 +67,18 @@ export const monthsApiSlice = createApi({
 
     // monthsList queries
 
-    monthsList: builder.query<string[], void>({
-      query: () => "info.json",
+    listMonths: builder.query<string[], void>({
+      query: () => "listMonths.json",
       providesTags: ["months"],
     }),
 
     // info mutations
 
-    updateMonthInfo: builder.mutation<void, string[]>({
-      query: monthInfo => ({
-        url: "/info.json",
+    updateListMonths: builder.mutation<void, string[]>({
+      query: listMonths => ({
+        url: "/listMonths.json",
         method: "PUT",
-        body: monthInfo,
+        body: listMonths,
       }),
       invalidatesTags: ["months"],
     }),
@@ -101,8 +101,8 @@ export const monthsApiSlice = createApi({
 
 export const {
   useMonthDataQuery,
-  useMonthsListQuery,
-  useUpdateMonthInfoMutation,
+  useListMonthsQuery,
+  useUpdateListMonthsMutation,
   useAddDayMutation,
   useUpdateMonthMutation,
   useDeleteDayMutation,
