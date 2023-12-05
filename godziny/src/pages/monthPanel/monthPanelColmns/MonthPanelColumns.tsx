@@ -59,8 +59,9 @@ const MonthPanelColumns = () => {
   }, [executeUpdateMonth]);
 
 
+
   const handleDragEnd = (results: DropResult) => {
-    handleDragDrop(results, columns, setColumns);
+    handleDragDrop(results, month.calcHours.currentHours, columns, setColumns);
     setExecuteUpdateMonth(prev => !prev);
   };
 

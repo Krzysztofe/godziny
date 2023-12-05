@@ -7,11 +7,11 @@ import { RootState } from "../redux/store";
 import { sortListMonths } from "../utils/sortListMonths";
 
 const CollapseMonthsList = () => {
-  const { sortedInfoMonths, databaseMonthsDatesToString } = useMonthDates();
+  const { databaseMonthsDatesToString } = useMonthDates();
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
   const { monthURL, isMonthInURL } = useURLValues();
 
-  const sortedMonths = sortListMonths(listMonths);
+  // const sortedMonths = sortListMonths(listMonths);
 
   const monthURLToDateFormat = isMonthInURL ? new Date(monthURL) : null;
 
@@ -38,7 +38,7 @@ const CollapseMonthsList = () => {
         return (
           <ListGroup.Item key={month} className="border-0 p-0">
             <Link
-              to={`/${sortedInfoMonths?.[idx]}`}
+              to={`/${listMonths?.[idx]}`}
               className={`${
                 curMonthURLStringFormat !== month || !curMonthURLStringFormat
                   ? "text-dark"

@@ -1,4 +1,6 @@
+import { useSelector } from "react-redux";
 import { ModelColumn } from "../../../sharedModels/modelColumn";
+import { RootState } from "../../../redux/store";
 
 export const addDaysToColumns = (columns: ModelColumn[]) => {
   if (!Array.isArray(columns)) {
@@ -12,19 +14,25 @@ export const addDaysToColumns = (columns: ModelColumn[]) => {
   });
 };
 
+
+
 export const handleDragDrop = (
   results: any,
+  currentHours: number,
   columns: ModelColumn[],
   setColumns: React.Dispatch<React.SetStateAction<ModelColumn[]>>
 ) => {
   const { source, destination } = results;
 
+ 
   if (!destination) return;
   if (
     source.draggableId === destination.droppableId &&
     source.index !== destination.index
   )
     return;
+
+  if (source.droppableId === "rejected" && currentHours <= 0) return;
 
   if (source.droppableId !== destination.droppableId) {
     const sourceColumnIdx = columns?.findIndex((column: ModelColumn) => {

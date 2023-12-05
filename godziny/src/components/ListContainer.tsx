@@ -1,5 +1,4 @@
 import ListGroup from "react-bootstrap/ListGroup";
-import ListMonths from "../pages/settings/ListMonths";
 import { ReactNode } from "react";
 
 type Props = {

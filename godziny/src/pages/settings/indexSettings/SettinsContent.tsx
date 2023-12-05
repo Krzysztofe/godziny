@@ -1,14 +1,14 @@
-import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListMonths";
-import SettingsMonthsList from "../settingsMonthsList/SettingsMonthsList";
-import SettingsUsersList from "../settingsUsersList/SettingsUsersList";
-import ListContainer from "../../../components/ListContainer";
 import { useSelector } from "react-redux";
+import ListContainer from "../../../components/ListContainer";
+import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListMonths";
 import { RootState } from "../../../redux/store";
-import ListMonths from "../ListMonths";
+import ListMonths from "../settingsLists/ListMonths";
+import ListUsers from "../settingsLists/ListUsers";
 
 const SettinsContent = () => {
   useReduxListMonths();
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
+  const { users } = useSelector((state: RootState) => state.users);
 
   return (
     <div
@@ -29,7 +29,10 @@ const SettinsContent = () => {
           <ListMonths />
         </ListContainer>
         <div className="border my-4"></div>
-        <SettingsUsersList />
+
+        <ListContainer header={"Zapisani użytkownicy"} listContent={users}>
+          <ListUsers />
+        </ListContainer>
       </div>
     </div>
   );

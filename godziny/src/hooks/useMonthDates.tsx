@@ -1,18 +1,8 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { sortListMonths } from "../utils/sortListMonths";
 
 const useMonthDates = () => {
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
-
-  const sortedInfoMonths =
-    listMonths &&
-    [...listMonths]?.sort((a: string, b: string) => {
-      const dateA = new Date(a).getTime();
-      const dateB = new Date(b).getTime();
-
-      return dateA - dateB;
-    });
 
   const databaseMonthsDatesToString = listMonths && [...listMonths]?.map(
     (monthDate: string) => {
@@ -25,7 +15,7 @@ const useMonthDates = () => {
     }
   );
 
-  return { sortedInfoMonths, databaseMonthsDatesToString };
+  return { databaseMonthsDatesToString };
 };
 
 export default useMonthDates;
