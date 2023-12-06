@@ -7,7 +7,7 @@ import MonthPanelContent from "./MonthPanelContent";
 
 const useRequestMonthPanel = () => {
   const { month, error, isLoading } = useSelector(
-    (state: RootState) => state.monthsPanel
+    (state: RootState) => state.monthPanel
   );
 
   const { monthURLStringFormat } = useMonthURLToString();
@@ -26,7 +26,7 @@ const useRequestMonthPanel = () => {
 
       requestState = printPanelContent(
         <div className="text-danger text-center ">
-          <> Błąd: {errMsg} </> <br/>
+          <> Błąd: {errMsg} </> <br />
           <>Odśwież stronę</>
         </div>
       );
@@ -38,7 +38,8 @@ const useRequestMonthPanel = () => {
         ustawieniach.
       </div>
     );
-  } else {
+  }
+  else {
     requestState = (
       <>
         <MonthPanelContent />

@@ -19,9 +19,9 @@ const MonthPanelColumns = () => {
   const { scrollableRef, thumbPosition, handleScroll } =
     useScrollThumbPosition();
 
-  const { month } = useSelector((state: RootState) => state.monthsPanel);
+  const { month } = useSelector((state: RootState) => state.monthPanel);
 
-  const columnsWithDays = addDaysToColumns(month?.columns);
+  const columnsWithDays = month && addDaysToColumns(month?.columns);
 
   const [columns, setColumns] = useState<ModelColumn[]>([]);
   const [executeUpdateMonth, setExecuteUpdateMonth] = useState(false);
@@ -30,11 +30,13 @@ const MonthPanelColumns = () => {
     getHoursFromColumns(columns);
 
   useEffect(() => {
-    setColumns(columnsWithDays);
-  }, [month.columns]);
+    if (columnsWithDays) {
+      setColumns(columnsWithDays);
+    }
+  }, [month?.columns]);
 
   useEffect(() => {
-    if (columns.length > 0) {
+    if (columns.length > 0 && month) {
       updateMonth({
         year: yearFromURL,
         month: monthFromURL,
@@ -58,10 +60,14 @@ const MonthPanelColumns = () => {
     }
   }, [executeUpdateMonth]);
 
-
-
   const handleDragEnd = (results: DropResult) => {
-    handleDragDrop(results, month.calcHours.currentHours, columns, setColumns);
+    month &&
+      handleDragDrop(
+        results,
+        month?.calcHours.currentHours,
+        columns,
+        setColumns
+      );
     setExecuteUpdateMonth(prev => !prev);
   };
 

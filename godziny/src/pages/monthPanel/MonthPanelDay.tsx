@@ -21,14 +21,12 @@ interface Props {
 
 const MonthPanelDay = (props: Props) => {
   const { yearFromURL, monthFromURL } = useURLValues();
-  const { month } = useSelector((state: RootState) => state.monthsPanel);
+  const { month } = useSelector((state: RootState) => state.monthPanel);
   const [deleteDay, success] = useDeleteDayMutation();
   const { btnContent } = useHTTPState(
     success,
     <RiDeleteBin6Line className="text-danger" />
   );
-
-
 
   const handleDelete = async (idx: number, id: string) => {
     Swal.fire(alertHelper("Usunąć dzień")).then(async result => {
@@ -36,7 +34,7 @@ const MonthPanelDay = (props: Props) => {
         const deleteDayById = (obj: ModelMonth, idToDelete: string) => {
           const updatedColumns = obj?.columns?.map((column: ModelColumn) => {
             const updatedDays = column?.days?.filter(
-              (day) => day.id !== idToDelete
+              day => day.id !== idToDelete
             );
             return { ...column, days: updatedDays };
           });
@@ -45,41 +43,41 @@ const MonthPanelDay = (props: Props) => {
         };
 
         const subtractedHours = {
-          ...month?.columns[props.columnIdx].days.find((day) => {
+          ...month?.columns[props.columnIdx].days.find(day => {
             return day?.id === props.day.id;
           }),
         }?.hours;
 
-        await deleteDay({
-          year: yearFromURL,
-          month: monthFromURL,
-          colIdx: props.columnIdx,
-          monthBody: {
-            ...month,
-            calcHours: {
-              ...month.calcHours,
-          
+        month &&
+          (await deleteDay({
+            year: yearFromURL,
+            month: monthFromURL,
+            colIdx: props.columnIdx,
+            monthBody: {
+              ...month,
+              calcHours: {
+                ...month.calcHours,
 
-              currentHours:
-                props.columnIdx !== 2 && subtractedHours
-                  ? month.calcHours.currentHours + subtractedHours
-                  : month.calcHours.currentHours,
-              submittedHours:
-                props.columnIdx === 0 && subtractedHours
-                  ? month.calcHours.submittedHours - subtractedHours
-                  : month.calcHours.submittedHours,
-              acceptedHours:
-                props.columnIdx === 1 && subtractedHours
-                  ? month.calcHours.acceptedHours - subtractedHours
-                  : month.calcHours.acceptedHours,
-              rejectedHours:
-                props.columnIdx === 2 && subtractedHours
-                  ? month.calcHours.rejectedHours - subtractedHours
-                  : month.calcHours.rejectedHours,
+                currentHours:
+                  props.columnIdx !== 2 && subtractedHours
+                    ? month.calcHours.currentHours + subtractedHours
+                    : month.calcHours.currentHours,
+                submittedHours:
+                  props.columnIdx === 0 && subtractedHours
+                    ? month.calcHours.submittedHours - subtractedHours
+                    : month.calcHours.submittedHours,
+                acceptedHours:
+                  props.columnIdx === 1 && subtractedHours
+                    ? month.calcHours.acceptedHours - subtractedHours
+                    : month.calcHours.acceptedHours,
+                rejectedHours:
+                  props.columnIdx === 2 && subtractedHours
+                    ? month.calcHours.rejectedHours - subtractedHours
+                    : month.calcHours.rejectedHours,
+              },
+              columns: deleteDayById({ ...month }, id).columns,
             },
-            columns: deleteDayById({ ...month }, id).columns,
-          },
-        });
+          }));
       }
     });
   };

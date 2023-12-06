@@ -14,7 +14,9 @@ const useReduxListMonths = () => {
 
   useEffect(() => {
     dispatch(getListMonths(data));
+
     dispatch(getListMonthsError(error));
+
     dispatch(getListMonthsIsLoading(isLoading));
   }, [data, error, isLoading, dispatch]);
 };

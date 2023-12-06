@@ -1,15 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
-
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
+import { SerializedError } from "@reduxjs/toolkit";
 
 type ModelInitialState = {
-  listMonths: string [];
-  listMonthsError: {};
+  listMonths: string[] | undefined | null;
+  listMonthsError: FetchBaseQueryError | SerializedError | undefined;
   listMonthsIsLoading: boolean;
 };
 
 const initialState: ModelInitialState = {
-  listMonths: [],
-  listMonthsError: {},
+  listMonths: null,
+  listMonthsError: undefined,
   listMonthsIsLoading: false,
 };
 
@@ -17,14 +18,20 @@ export const listMonthsSlice = createSlice({
   name: "listMonths",
   initialState,
   reducers: {
-    getListMonths: (state, action) => {
+    getListMonths: (
+      state,
+      action: PayloadAction<string[] | null | undefined>
+    ) => {
       state.listMonths = action.payload;
     },
-    getListMonthsError: (state, action) => {
+    getListMonthsError: (
+      state,
+      action: PayloadAction<FetchBaseQueryError | SerializedError | undefined>
+    ) => {
       state.listMonthsError = action.payload;
     },
 
-    getListMonthsIsLoading: (state, action) => {
+    getListMonthsIsLoading: (state, action: PayloadAction<boolean>) => {
       state.listMonthsIsLoading = action.payload;
     },
   },

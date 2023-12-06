@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 
 const HoursSummary = () => {
-  const { month } = useSelector((state: RootState) => state.monthsPanel);
+  const { month } = useSelector((state: RootState) => state.monthPanel);
 
   return (
     <div className="d-flex gap-2 mx-auto fw-medium pb-2 w-fit-content">
@@ -10,14 +10,12 @@ const HoursSummary = () => {
 
       <div
         className={`${
-          month?.calcHours?.currentHours <= 0 ? "text-danger" : ""
+          month && month?.calcHours?.currentHours <= 0 ? "text-danger" : ""
         }`}
       >
-        {month?.calcHours?.currentHours} {""}
-        {month?.calcHours?.currentHours < 0 ? "Brak" : "Dostępne"}
+        {month && month?.calcHours?.currentHours} {""}
+        {month && month?.calcHours?.currentHours < 0 ? "Brak" : "Dostępne"}
       </div>
-
-     
     </div>
   );
 };

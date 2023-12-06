@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 
 type Props = {
   header: string;
-  listContent: any[];
+  listContent: any[] | undefined | null;
   children: ReactNode;
 };
 

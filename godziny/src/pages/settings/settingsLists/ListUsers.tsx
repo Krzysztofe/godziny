@@ -14,7 +14,6 @@ import {
   dataStylesListGroupItem,
 } from "./dataStylesSettingsLists";
 
-
 const ListUsers = () => {
   const [deleteUser, success] = useDeleteUserMutation();
   const { btnContent } = useHTTPState(
@@ -32,7 +31,7 @@ const ListUsers = () => {
           (user: ModelUser) => user?.userName !== userName
         );
 
-        await deleteUser(userBodyPUTRequest);
+        userBodyPUTRequest && (await deleteUser(userBodyPUTRequest));
       }
     });
   };

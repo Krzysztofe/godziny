@@ -16,7 +16,7 @@ const InputsRange = (props: Props) => {
   const { values, handleBlur, setFieldValue } =
     useFormikContext<ModelFormValues>();
 
-  // const { month } = useSelector((state: RootState) => state.monthsPanel);
+  // const { month } = useSelector((state: RootState) => state.monthPanel);
   // const submittedHours = month?.calcHours.submittedHours;
   // const acceptedHours = month?.calcHours.acceptedHours;
 

@@ -11,17 +11,15 @@ import { useDispatch } from "react-redux";
 const useReduxListUsers = () => {
   const dispatch = useDispatch();
 
-  const {
-    data: dataUsers,
-    error: errorUsers,
-    isLoading: isLoadingUsers,
-  } = useUsersQuery();
+  const { data, error, isLoading } = useUsersQuery();
 
   useEffect(() => {
-    dispatch(getUsers(dataUsers));
-    dispatch(getUsersError(errorUsers));
-    dispatch(getUsersIsLoading(isLoadingUsers));
-  }, [dataUsers, errorUsers, isLoadingUsers, dispatch]);
+    dispatch(getUsers(data));
+
+    dispatch(getUsersError(error));
+
+    dispatch(getUsersIsLoading(isLoading));
+  }, [data, error, isLoading, dispatch]);
 };
 
 export default useReduxListUsers;

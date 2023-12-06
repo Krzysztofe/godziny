@@ -40,7 +40,7 @@ const ListMonths = () => {
         const year = monthDate.slice(0, 4);
         const month = monthDate.slice(-2);
         await deleteMonth({ year: year, month: month });
-        await updateListMonths(updatedListMonths);
+        updatedListMonths && (await updateListMonths(updatedListMonths));
       }
     });
   };
@@ -56,14 +56,15 @@ const ListMonths = () => {
             >
               <Button
                 disabled={
-                  monthDate === listMonths[idx] ? success.isLoading : false
+                  listMonths && monthDate === listMonths[idx]
+                    ? success.isLoading
+                    : false
                 }
-                id={listMonths[idx]}
-                onClick={() => handleDelete(listMonths[idx])}
+                onClick={() => listMonths && handleDelete(listMonths[idx])}
                 className={`${dataStylesButton} text-dark`}
               >
                 {monthDateToString}
-                {monthDate === listMonths[idx] ? (
+                {listMonths && monthDate === listMonths[idx] ? (
                   btnContent
                 ) : (
                   <RiDeleteBin6Line className="text-danger fs-5 ms-auto" />

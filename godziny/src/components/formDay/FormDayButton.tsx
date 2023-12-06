@@ -14,8 +14,8 @@ type Props = {
 const FormDayButton = (props: Props) => {
   const { values } = useFormikContext<ModelDay>();
   const { btnContent } = useHTTPState(props.success, "Dodaj dzień");
-  const { month } = useSelector((state: RootState) => state.monthsPanel);
-  const currentHours = month?.calcHours?.currentHours;
+  const { month } = useSelector((state: RootState) => state.monthPanel);
+  const currentHours = month?.calcHours?.currentHours || 0
 
   return (
     <>

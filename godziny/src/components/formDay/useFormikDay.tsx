@@ -19,7 +19,7 @@ type ModelInitialValues = {
 
 const useFormikDay = () => {
   const [addDay, success] = useAddDayMutation();
-  const { month } = useSelector((state: RootState) => state.monthsPanel);
+  const { month } = useSelector((state: RootState) => state.monthPanel);
   const { users } = useSelector((state: RootState) => state.users);
   const { yearFromURL, monthFromURL } = useURLValues();
 
@@ -36,8 +36,9 @@ const useFormikDay = () => {
 
   const onSubmit = async (values: ModelInitialValues) => {
     if (
-      month?.calcHours?.currentHours - +values.hours < 0 ||
-      month?.calcHours?.currentHours === 0
+      month &&
+      (month?.calcHours?.currentHours - +values.hours < 0 ||
+        month?.calcHours?.currentHours === 0)
     )
       return;
 
@@ -54,29 +55,30 @@ const useFormikDay = () => {
       userColor: userColor || "",
     };
 
-    await addDay({
-      year: yearFromURL,
-      month: monthFromURL,
-      monthBody: {
-        ...month,
-        calcHours: {
-          ...month.calcHours,
-          currentHours: month.calcHours.currentHours - valuesToDatabase.hours,
-          submittedHours:
-            month.calcHours.submittedHours + valuesToDatabase.hours,
-        },
-
-        columns: [
-          {
-            ...month.columns[0],
-            days: month.columns[0].days
-              ? [...month.columns[0].days, valuesToDatabase]
-              : [valuesToDatabase],
+    month &&
+      (await addDay({
+        year: yearFromURL,
+        month: monthFromURL,
+        monthBody: {
+          ...month,
+          calcHours: {
+            ...month?.calcHours,
+            currentHours: month.calcHours.currentHours - valuesToDatabase.hours,
+            submittedHours:
+              month.calcHours.submittedHours + valuesToDatabase.hours,
           },
-          ...month.columns.slice(1),
-        ],
-      },
-    });
+
+          columns: [
+            {
+              ...month.columns[0],
+              days: month.columns[0].days
+                ? [...month.columns[0].days, valuesToDatabase]
+                : [valuesToDatabase],
+            },
+            ...month.columns.slice(1),
+          ],
+        },
+      }));
   };
 
   return { initialValues, validation, onSubmit, success };

@@ -9,7 +9,7 @@ type ModelFormValues = {
 
 const useFormikHours = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
-  const { month } = useSelector((state: RootState) => state.monthsPanel);
+  const { month } = useSelector((state: RootState) => state.monthPanel);
   const [addAllHours, success] = useAddAllHoursMutation();
   const submittedHours = month?.calcHours?.submittedHours;
   const acceptedHours = month?.calcHours?.acceptedHours;
@@ -18,17 +18,26 @@ const useFormikHours = () => {
   const initialValues = { allHours: 0 };
 
   const onSubmit = async (values: ModelFormValues) => {
-    if (submittedHours + acceptedHours > +values.allHours) return;
+    if (
+      submittedHours &&
+      acceptedHours &&
+      submittedHours + acceptedHours > +values.allHours
+    )
+      return;
 
-    await addAllHours({
-      year: yearFromURL,
-      month: monthFromURL,
-      calcHours: {
-        ...calcHours,
-        allHours: +values.allHours,
-        currentHours: +values.allHours - calcHours.acceptedHours - calcHours.submittedHours,
-      },
-    });
+    calcHours &&
+      (await addAllHours({
+        year: yearFromURL,
+        month: monthFromURL,
+        calcHours: {
+          ...calcHours,
+          allHours: +values.allHours,
+          currentHours:
+            +values.allHours -
+            calcHours.acceptedHours -
+            calcHours.submittedHours,
+        },
+      }));
   };
 
   return { initialValues, onSubmit, success };

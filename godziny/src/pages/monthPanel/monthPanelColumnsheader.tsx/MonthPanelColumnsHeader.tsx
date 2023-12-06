@@ -7,7 +7,7 @@ interface Props {
 }
 
 const MonthPanelColumnsHeader = (props: Props) => {
-  const { month } = useSelector((state: RootState) => state.monthsPanel);
+  const { month } = useSelector((state: RootState) => state.monthPanel);
 
   return (
     <>
@@ -24,11 +24,11 @@ const MonthPanelColumnsHeader = (props: Props) => {
           headerText: "Odrzucone:",
           counter: month?.calcHours?.rejectedHours,
         },
-      ].map(({ headerText, counter }) => {
+      ].map(({ headerText, counter }, idx) => {
         return (
           <>
             <Col
-              key={headerText}
+              key={idx}
               className={`text-dark-emphasis bg-white fw-medium p-1 ${
                 props.thumbPosition === 0
                   ? "border-bottom border-3 border-white"
@@ -40,9 +40,7 @@ const MonthPanelColumnsHeader = (props: Props) => {
             >
               {headerText} {""}
               {counter}
-           {/* <div className="bg-primary" style={{ height: "5px" }}></div> */}
             </Col>
-           
           </>
         );
       })}

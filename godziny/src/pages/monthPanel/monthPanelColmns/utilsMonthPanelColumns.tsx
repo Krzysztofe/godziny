@@ -1,8 +1,6 @@
-import { useSelector } from "react-redux";
 import { ModelColumn } from "../../../sharedModels/modelColumn";
-import { RootState } from "../../../redux/store";
 
-export const addDaysToColumns = (columns: ModelColumn[]) => {
+export const addDaysToColumns = (columns:  ModelColumn[]) => {
   if (!Array.isArray(columns)) {
     return [];
   }

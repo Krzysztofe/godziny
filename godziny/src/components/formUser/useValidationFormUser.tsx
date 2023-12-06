@@ -17,7 +17,9 @@ const useValidationFormUser = () => {
       .test(
         "is-in-database",
         "Imię zajęte",
-        value => value !== undefined && !usersNames?.includes(value)
+        value =>
+          value !== undefined &&
+          !usersNames?.includes(value[0].toUpperCase() + value.slice(1))
       )
       .required("Imię wymagane"),
     userColor: yup

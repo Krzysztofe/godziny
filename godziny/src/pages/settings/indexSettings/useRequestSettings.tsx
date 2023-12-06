@@ -5,10 +5,10 @@ import { printPanelContent } from "../../../utils/printPanelContent";
 import SettinsContent from "./SettinsContent";
 
 const useRequestSettings = () => {
-  const { usersError, usersIsLoading } = useSelector(
+  const {users, usersError, usersIsLoading } = useSelector(
     (state: RootState) => state.users
   );
-  const { listMonthsError, listMonthsIsLoading } = useSelector(
+  const { listMonths, listMonthsError, listMonthsIsLoading } = useSelector(
     (state: RootState) => state.listMonths
   );
 
@@ -42,7 +42,7 @@ const useRequestSettings = () => {
         </h3>
       );
     }
-  } else {
+  } else  {
     requestState = <SettinsContent />;
   }
 
