@@ -3,15 +3,15 @@ import Button from "react-bootstrap/Button";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import useHTTPState from "../../hooks/useHTTPState";
-import useURLValues from "../../hooks/useURLValues";
-import { RootState } from "../../redux/store";
-import { useDeleteDayMutation } from "../../services/apiSliceMonths";
-import { alertHelper } from "../../utils/alertHelpers";
-import MonthPanelDayPrintData from "./MonthPanelDayPrintData";
-import { ModelDay } from "../../sharedModels/modelDay";
-import { ModelColumn } from "../../sharedModels/modelColumn";
-import { ModelMonth } from "../../sharedModels/modelMonth";
+import useHTTPState from "../../../hooks/useHTTPState";
+import useURLValues from "../../../hooks/useURLValues";
+import { RootState } from "../../../redux/store";
+import { useDeleteDayMutation } from "../../../services/apiSliceMonths";
+import { ModelDay } from "../../../sharedModels/modelDay";
+import { alertHelper } from "../../../utils/alertHelpers";
+import MonthPanelDayPrintData from "../MonthPanelDayPrintData";
+import { calculateUpdatedCalcHours, deleteDayById } from "./utilsMonthPanelDay";
+
 
 interface Props {
   day: ModelDay;
@@ -31,16 +31,6 @@ const MonthPanelDay = (props: Props) => {
   const handleDelete = async (idx: number, id: string) => {
     Swal.fire(alertHelper("Usunąć dzień")).then(async result => {
       if (result.isConfirmed) {
-        const deleteDayById = (obj: ModelMonth, idToDelete: string) => {
-          const updatedColumns = obj?.columns?.map((column: ModelColumn) => {
-            const updatedDays = column?.days?.filter(
-              day => day.id !== idToDelete
-            );
-            return { ...column, days: updatedDays };
-          });
-
-          return { ...obj, columns: updatedColumns };
-        };
 
         const subtractedHours = {
           ...month?.columns[props.columnIdx].days.find(day => {
@@ -48,33 +38,19 @@ const MonthPanelDay = (props: Props) => {
           }),
         }?.hours;
 
-        month &&
+        month && 
           (await deleteDay({
             year: yearFromURL,
             month: monthFromURL,
             colIdx: props.columnIdx,
             monthBody: {
               ...month,
-              calcHours: {
-                ...month.calcHours,
+              calcHours: calculateUpdatedCalcHours(
+                month,
+                idx,
+                subtractedHours
+              ),
 
-                currentHours:
-                  props.columnIdx !== 2 && subtractedHours
-                    ? month.calcHours.currentHours + subtractedHours
-                    : month.calcHours.currentHours,
-                submittedHours:
-                  props.columnIdx === 0 && subtractedHours
-                    ? month.calcHours.submittedHours - subtractedHours
-                    : month.calcHours.submittedHours,
-                acceptedHours:
-                  props.columnIdx === 1 && subtractedHours
-                    ? month.calcHours.acceptedHours - subtractedHours
-                    : month.calcHours.acceptedHours,
-                rejectedHours:
-                  props.columnIdx === 2 && subtractedHours
-                    ? month.calcHours.rejectedHours - subtractedHours
-                    : month.calcHours.rejectedHours,
-              },
               columns: deleteDayById({ ...month }, id).columns,
             },
           }));

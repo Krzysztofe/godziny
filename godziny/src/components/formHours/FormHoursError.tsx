@@ -8,18 +8,21 @@ type ModelFormValues = {
 const FormHoursError = () => {
   const { values } = useFormikContext<ModelFormValues>();
   const { month } = useSelector((state: RootState) => state.monthPanel);
-  const submittedHours = month?.calcHours.submittedHours;
-  const acceptedHours = month?.calcHours.acceptedHours;
 
-  return (
-    <div className="text-danger fs-8">
-      {submittedHours &&
-        acceptedHours &&
-        (submittedHours + acceptedHours > +values.allHours
-          ? `Min. ${submittedHours + acceptedHours} h`
-          : "")}
-    </div>
-  );
+  var content = "";
+
+  if (month) {
+    if (
+      month?.calcHours?.submittedHours + month?.calcHours?.acceptedHours >
+      +values?.allHours
+    ) {
+      content = `Min. ${
+        month?.calcHours?.submittedHours + month?.calcHours?.acceptedHours
+      } h`;
+    }
+  }
+
+  return <div className="text-danger fs-8">{content}</div>;
 };
 
 export default FormHoursError;

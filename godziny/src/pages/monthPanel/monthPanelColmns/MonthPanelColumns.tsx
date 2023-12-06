@@ -13,21 +13,17 @@ import useWindowWidth from "../../../hooks/useWindowWidth";
 import getHoursFromColumns from "../../../utils/getHoursFromColumns";
 
 const MonthPanelColumns = () => {
-  const { windowWidth } = useWindowWidth();
   const { yearFromURL, monthFromURL } = useURLValues();
   const [updateMonth] = useUpdateMonthMutation();
-  const { scrollableRef, thumbPosition, handleScroll } =
-    useScrollThumbPosition();
-
   const { month } = useSelector((state: RootState) => state.monthPanel);
-
   const columnsWithDays = month && addDaysToColumns(month?.columns);
-
   const [columns, setColumns] = useState<ModelColumn[]>([]);
   const [executeUpdateMonth, setExecuteUpdateMonth] = useState(false);
-
   const { submittedHours, acceptedHours, rejectedHours } =
     getHoursFromColumns(columns);
+  const { scrollableRef, thumbPosition, handleScroll } =
+    useScrollThumbPosition();
+  const { windowWidth } = useWindowWidth();
 
   useEffect(() => {
     if (columnsWithDays) {
@@ -77,9 +73,8 @@ const MonthPanelColumns = () => {
     <div
       ref={scrollableRef}
       onScroll={handleScroll}
-      className="p-0 overflow-y-scroll"
+      className="p-0 overflow-y-scroll h-100"
       style={{
-        height: "fit-content",
         maxHeight:
           windowWidth >= 500
             ? "calc(100% - 32px)"
@@ -90,7 +85,7 @@ const MonthPanelColumns = () => {
         <MonthPanelColumnsHeader thumbPosition={thumbPosition} />
       </div>
 
-      <div className={`${rowStyles}`}>
+      <div className={`${rowStyles}`} style={{ minHeight: "calc(100% - 35px)" }}>
         <DragDropContext onDragEnd={handleDragEnd}>
           {columns?.map((column: ModelColumn, idx: number) => {
             return (

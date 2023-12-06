@@ -5,24 +5,24 @@ import { printPanelContent } from "../../../utils/printPanelContent";
 import SettinsContent from "./SettinsContent";
 
 const useRequestSettings = () => {
-  const {users, usersError, usersIsLoading } = useSelector(
-    (state: RootState) => state.users
+  const { listUsersError, listUsersIsLoading } = useSelector(
+    (state: RootState) => state.listUsers
   );
-  const { listMonths, listMonthsError, listMonthsIsLoading } = useSelector(
+  const { listMonthsError, listMonthsIsLoading } = useSelector(
     (state: RootState) => state.listMonths
   );
 
   let requestState;
 
-  if (usersIsLoading || listMonthsIsLoading) {
+  if (listUsersIsLoading || listMonthsIsLoading) {
     requestState = printPanelContent(
       <Spinner animation="border" variant="secondary">
         <span className="visually-hidden">Loading...</span>
       </Spinner>
     );
-  } else if (usersError) {
-    if ("status" in usersError) {
-      const errMsg = "status" in usersError && usersError.status;
+  } else if (listUsersError) {
+    if ("status" in listUsersError) {
+      const errMsg = "status" in listUsersError && listUsersError.status;
 
       requestState = printPanelContent(
         <h3 className="text-danger mx-auto ">
@@ -42,7 +42,7 @@ const useRequestSettings = () => {
         </h3>
       );
     }
-  } else  {
+  } else {
     requestState = <SettinsContent />;
   }
 

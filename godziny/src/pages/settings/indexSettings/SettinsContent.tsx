@@ -8,7 +8,7 @@ import ListUsers from "../settingsLists/ListUsers";
 const SettinsContent = () => {
   useReduxListMonths();
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
-  const { users } = useSelector((state: RootState) => state.users);
+  const { listUsers } = useSelector((state: RootState) => state.listUsers);
 
   return (
     <div
@@ -30,7 +30,7 @@ const SettinsContent = () => {
         </ListContainer>
         <div className="border my-4"></div>
 
-        <ListContainer header={"Zapisani użytkownicy"} listContent={users}>
+        <ListContainer header={"Zapisani użytkownicy"} listContent={listUsers}>
           <ListUsers />
         </ListContainer>
       </div>

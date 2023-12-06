@@ -11,21 +11,25 @@ const useFormikHours = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const [addAllHours, success] = useAddAllHoursMutation();
-  const submittedHours = month?.calcHours?.submittedHours;
-  const acceptedHours = month?.calcHours?.acceptedHours;
+
   const calcHours = month && month.calcHours;
+
+  // const { submittedHours, acceptedHours } = month && month?.calcHours;
 
   const initialValues = { allHours: 0 };
 
   const onSubmit = async (values: ModelFormValues) => {
-    if (
-      submittedHours &&
-      acceptedHours &&
-      submittedHours + acceptedHours > +values.allHours
-    )
-      return;
+   
+    if (month) {
+      if (
+        month?.calcHours?.submittedHours + month?.calcHours?.acceptedHours >
+        +values?.allHours
+      )
+        return;
+    }
 
     calcHours &&
+      values.allHours &&
       (await addAllHours({
         year: yearFromURL,
         month: monthFromURL,

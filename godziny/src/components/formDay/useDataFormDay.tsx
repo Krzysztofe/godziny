@@ -8,7 +8,7 @@ import { ModelUser } from "../../sharedModels/modelUser";
 
 
 const useDataFormDay = () => {
-  const { users: dataUsers } = useSelector((state: RootState) => state.users);
+  const { listUsers: dataUsers } = useSelector((state: RootState) => state.listUsers);
 
   const users = dataUsers ? dataUsers : [];
 

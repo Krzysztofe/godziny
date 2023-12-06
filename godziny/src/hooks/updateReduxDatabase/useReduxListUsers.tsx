@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { useUsersQuery } from "../../services/apiSliceUsers";
 
 import {
-  getUsers,
-  getUsersIsLoading,
-  getUsersError,
-} from "../../redux/storeFeatures/usersSlice";
+  geListtUsers,
+  getListUsersError,
+  getListUsersIsLoading,
+} from "../../redux/storeFeatures/listUsersSlice";
 import { useDispatch } from "react-redux";
 
 const useReduxListUsers = () => {
@@ -14,11 +14,11 @@ const useReduxListUsers = () => {
   const { data, error, isLoading } = useUsersQuery();
 
   useEffect(() => {
-    dispatch(getUsers(data));
+    dispatch(geListtUsers(data));
 
-    dispatch(getUsersError(error));
+    dispatch(getListUsersError(error));
 
-    dispatch(getUsersIsLoading(isLoading));
+    dispatch(getListUsersIsLoading(isLoading));
   }, [data, error, isLoading, dispatch]);
 };
 

@@ -1,6 +1,6 @@
 import { Droppable } from "react-beautiful-dnd";
 import Col from "react-bootstrap/Col";
-import MonthPanelDay from "./MonthPanelDay";
+import MonthPanelDay from "./monthPanelDay/MonthPanelDay";
 import { v4 as UUID } from "uuid";
 import { ModelColumn } from "../../sharedModels/modelColumn";
 import { ModelDay } from "../../sharedModels/modelDay";

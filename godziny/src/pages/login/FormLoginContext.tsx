@@ -7,9 +7,8 @@ import useWindowWidth from "../../hooks/useWindowWidth";
 
 const FormLoginContext = () => {
   const { initialValues, onSubmit, isLoading } = useFormikLogin();
-  let btnContent: string | React.ReactNode = "Zaloguj";
-
   const { windowWidth } = useWindowWidth();
+  let btnContent: string | React.ReactNode = "Zaloguj";
 
   if (isLoading) {
     btnContent = (

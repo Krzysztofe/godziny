@@ -1,6 +1,6 @@
 import { ModelColumn } from "../../../sharedModels/modelColumn";
 
-export const addDaysToColumns = (columns:  ModelColumn[]) => {
+export const addDaysToColumns = (columns: ModelColumn[]) => {
   if (!Array.isArray(columns)) {
     return [];
   }
@@ -12,8 +12,6 @@ export const addDaysToColumns = (columns:  ModelColumn[]) => {
   });
 };
 
-
-
 export const handleDragDrop = (
   results: any,
   currentHours: number,
@@ -22,7 +20,8 @@ export const handleDragDrop = (
 ) => {
   const { source, destination } = results;
 
- 
+  const hoursInDay = columns[2].days[source.index].hours;
+
   if (!destination) return;
   if (
     source.draggableId === destination.droppableId &&
@@ -30,7 +29,7 @@ export const handleDragDrop = (
   )
     return;
 
-  if (source.droppableId === "rejected" && currentHours <= 0) return;
+  if (source.droppableId === "rejected" && currentHours < hoursInDay) return;
 
   if (source.droppableId !== destination.droppableId) {
     const sourceColumnIdx = columns?.findIndex((column: ModelColumn) => {

@@ -20,7 +20,7 @@ type ModelInitialValues = {
 const useFormikDay = () => {
   const [addDay, success] = useAddDayMutation();
   const { month } = useSelector((state: RootState) => state.monthPanel);
-  const { users } = useSelector((state: RootState) => state.users);
+  const { listUsers } = useSelector((state: RootState) => state.listUsers);
   const { yearFromURL, monthFromURL } = useURLValues();
 
   const initialValues = {
@@ -43,8 +43,8 @@ const useFormikDay = () => {
       return;
 
     const userColor =
-      users &&
-      users?.find((user: ModelUser) => {
+      listUsers &&
+      listUsers?.find((user: ModelUser) => {
         return user.userName === values.userName;
       })?.userColor;
 

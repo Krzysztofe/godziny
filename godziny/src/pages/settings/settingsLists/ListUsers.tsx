@@ -20,14 +20,14 @@ const ListUsers = () => {
     success,
     <RiDeleteBin6Line className="text-danger fs-5 ms-auto" />
   );
-  const { users } = useSelector((state: RootState) => state.users);
+  const { listUsers } = useSelector((state: RootState) => state.listUsers);
   const [userName, setUserName] = useState("");
 
   const handleDelete = async (userName: string) => {
     Swal.fire(alertHelper("Usunąć użytkownika?")).then(async result => {
       if (result.isConfirmed) {
         setUserName(userName);
-        const userBodyPUTRequest = users?.filter(
+        const userBodyPUTRequest = listUsers?.filter(
           (user: ModelUser) => user?.userName !== userName
         );
 
@@ -38,7 +38,7 @@ const ListUsers = () => {
 
   return (
     <>
-      {users?.map(user => {
+      {listUsers?.map(user => {
         return (
           <ListGroup.Item
             key={user.userName}

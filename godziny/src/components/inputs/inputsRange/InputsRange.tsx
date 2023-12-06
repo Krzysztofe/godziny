@@ -16,10 +16,6 @@ const InputsRange = (props: Props) => {
   const { values, handleBlur, setFieldValue } =
     useFormikContext<ModelFormValues>();
 
-  // const { month } = useSelector((state: RootState) => state.monthPanel);
-  // const submittedHours = month?.calcHours.submittedHours;
-  // const acceptedHours = month?.calcHours.acceptedHours;
-
   const gradientValue = values.allHours / 3.2;
   const gradientBackground: string = `linear-gradient(to right, rgba(180,120,255) ${gradientValue}%, rgba(180,180,255) ${gradientValue}%)`;
 
