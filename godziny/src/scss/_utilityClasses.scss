@@ -6,16 +6,30 @@
   }
 }
 
-.bg-opacity-white{
+.bg-opacity-white {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.w-fit-content{
-  width: fit-content
+.w-fit-content {
+  width: fit-content;
 }
 
-.h-fit-content{
+.h-fit-content {
   height: fit-content;
+}
+
+.opacityAnimation {
+  opacity: 0;
+  animation: opacity 2s forwards ease-out
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .backgroundImage {

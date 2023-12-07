@@ -10,7 +10,7 @@ type Props = {
 const ListContainer = (props: Props) => {
   return (
     <>
-      <h3 className="h6">{props.header}</h3>
+      <h3 className="h6">{props.header}: {props.listContent?.length}</h3>
 
       <ListGroup className="border-0 p-0">
         {!props.listContent && (

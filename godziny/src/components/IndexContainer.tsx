@@ -6,12 +6,10 @@ type Props = {
 };
 
 const IndexContainer = (props: Props) => {
-
-
   const { windowWidth } = useWindowWidth();
   return (
     <main
-      className="d-flex backgroundImage m-0"
+      className="d-flex backgroundImage m-0 opacityAnimation"
       style={{ height: "100dvh", overflow: "hidden" }}
     >
       <aside

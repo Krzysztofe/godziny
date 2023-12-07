@@ -5,8 +5,8 @@ import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListM
 import useReduxListUsers from "../../../hooks/updateReduxDatabase/useReduxListUsers";
 
 const IndexMonthPanel = () => {
-  useReduxMonthBody();
-  useReduxListMonths();
+  // useReduxMonthBody();
+  // useReduxListMonths();
 
   const { requestState } = useRequestMonthPanel();
 
