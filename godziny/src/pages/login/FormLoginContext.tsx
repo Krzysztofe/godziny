@@ -4,6 +4,7 @@ import InputsText from "../../components/inputs/InputsText";
 import Button from "react-bootstrap/Button";
 import { Spinner } from "react-bootstrap";
 import useWindowWidth from "../../hooks/useWindowWidth";
+import "./_login.scss";
 
 const FormLoginContext = () => {
   const { initialValues, onSubmit, isLoading } = useFormikLogin();
@@ -23,7 +24,9 @@ const FormLoginContext = () => {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form
-        className="border p-5 rounded-1 bg-opacity-white"
+        className={`border p-5 rounded-1 bg-opacity-white ${
+          windowWidth > 500 && "rollInAnimation"
+        }`}
         style={{
           width: windowWidth <= 500 ? "100%" : "fit-content",
           height: windowWidth <= 500 ? "100%" : "fit-content",

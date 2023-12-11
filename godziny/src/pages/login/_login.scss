@@ -1,0 +1,25 @@
+.rollInAnimation  {
+  -webkit-animation: rollIn 1s cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation: rollIn 1s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+@-webkit-keyframes rollIn {
+  0% {
+    -webkit-transform: translateY(-800px) rotate(-720deg);
+    transform: translateY(-800px) rotate(-720deg);
+  }
+  100% {
+    -webkit-transform: translateY(0) rotate(0deg);
+    transform: translateY(0) rotate(0deg);
+  }
+}
+@keyframes rollIn {
+  0% {
+    -webkit-transform: translateY(-800px) rotate(-720deg);
+    transform: translateY(-800px) rotate(-720deg);
+  }
+  100% {
+    -webkit-transform: translateY(0) rotate(0deg);
+    transform: translateY(0) rotate(0deg);
+  }
+}
