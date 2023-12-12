@@ -32,6 +32,7 @@ Live recording of the application presentation during the conclusion of the comp
 * Dynamic routing
 * HTTP requests state messages for user
 * RWD
+* Animations
 
 
 ## Technologies
