@@ -1,17 +1,20 @@
+import { useEffect, useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import Button from "react-bootstrap/Button";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useSelector } from "react-redux";
-import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
 import useHTTPState from "../../../hooks/useHTTPState";
 import useURLValues from "../../../hooks/useURLValues";
 import { RootState } from "../../../redux/store";
+import {
+  agreeAlert,
+  closeAlert,
+  printAlert,
+} from "../../../redux/storeFeatures/alertSlice";
 import { useDeleteDayMutation } from "../../../services/apiSliceMonths";
 import { ModelDay } from "../../../sharedModels/modelDay";
-import { alertHelper } from "../../../utils/alertHelpers";
 import MonthPanelDayPrintData from "../MonthPanelDayPrintData";
 import { calculateUpdatedCalcHours, deleteDayById } from "./utilsMonthPanelDay";
-
 
 interface Props {
   day: ModelDay;
@@ -20,6 +23,7 @@ interface Props {
 }
 
 const MonthPanelDay = (props: Props) => {
+  const dispatch = useDispatch();
   const { yearFromURL, monthFromURL } = useURLValues();
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const [deleteDay, success] = useDeleteDayMutation();
@@ -27,36 +31,56 @@ const MonthPanelDay = (props: Props) => {
     success,
     <RiDeleteBin6Line className="text-danger" />
   );
+  const { agree } = useSelector((state: RootState) => state.alert);
+  const [columnIdx, setColumnIdx] = useState("");
+  const [dayId, setDayId] = useState("");
 
-  const handleDelete = async (idx: number, id: string) => {
-    Swal.fire(alertHelper("Usunąć dzień")).then(async result => {
-      if (result.isConfirmed) {
+ ;
 
-        const subtractedHours = {
-          ...month?.columns[props.columnIdx].days.find(day => {
-            return day?.id === props.day.id;
-          }),
-        }?.hours;
+  const findDeletedDayId = {
+    ...month?.columns[props.columnIdx].days?.find(day => {
+      return day?.id === props.day.id;
+    }),
+  }.id;
 
-        month && 
-          (await deleteDay({
-            year: yearFromURL,
-            month: monthFromURL,
-            colIdx: props.columnIdx,
-            monthBody: {
-              ...month,
-              calcHours: calculateUpdatedCalcHours(
-                month,
-                idx,
-                subtractedHours
-              ),
-
-              columns: deleteDayById({ ...month }, id).columns,
-            },
-          }));
-      }
-    });
+  const handleAlert = (idx: string, id: string) => {
+    setColumnIdx(idx);
+    setDayId(id);
+    dispatch(printAlert("Usunąć dzień?"));
   };
+
+  const deleteDayAsync = async () => {
+    if (agree && findDeletedDayId === dayId) {
+      const subtractedHours = {
+        ...month?.columns[props.columnIdx].days?.find(day => {
+          return day?.id === props.day.id;
+        }),
+      }?.hours;
+
+      month &&
+        (await deleteDay({
+          year: yearFromURL,
+          month: monthFromURL,
+          colIdx: props.columnIdx,
+          monthBody: {
+            ...month,
+            calcHours: calculateUpdatedCalcHours(
+              month,
+              +columnIdx,
+              subtractedHours
+            ),
+
+            columns: deleteDayById({ ...month }, dayId).columns,
+          },
+        }));
+    }
+  };
+
+  useEffect(() => {
+    deleteDayAsync();
+    dispatch(agreeAlert(false));
+    dispatch(closeAlert());
+  }, [agree]);
 
   return (
     <Draggable
@@ -84,7 +108,9 @@ const MonthPanelDay = (props: Props) => {
               <MonthPanelDayPrintData day={props.day} />
 
               <Button
-                onClick={() => handleDelete(props.columnIdx, props.day.id)}
+                onClick={() =>
+                  handleAlert(props.columnIdx.toString(), props.day.id)
+                }
                 className="d-flex justify-content-between  align-items-center w-100 p-0 bg-transparent border-0 fw-medium text-dark"
                 disabled={success.isLoading}
               >

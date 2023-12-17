@@ -23,19 +23,25 @@
   animation: opacity 2s forwards ease-out;
 }
 
- .fs-responsive {
-    font-size: 1rem !important
+.fs-responsive {
+  font-size: 0.78rem !important;
+}
+
+@media (min-width: 400px) {
+  .fs-responsive {
+    font-size: 1rem !important;
   }
+}
 
 @media (min-width: 500px) {
   .fs-responsive {
-    font-size: 0.8rem !important
+    font-size: 0.8rem !important;
   }
 }
 
 @media (min-width: 560px) {
   .fs-responsive {
-    font-size: 1rem !important
+    font-size: 1rem !important;
   }
 }
 

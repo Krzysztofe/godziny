@@ -10,7 +10,7 @@ import SidebarNav from "./SidebarNav";
 import useReduxListUsers from "../../hooks/updateReduxDatabase/useReduxListUsers";
 import useReduxListMonths from "../../hooks/updateReduxDatabase/useReduxListMonths";
 import useReduxMonthData from "../../hooks/updateReduxDatabase/useReduxMonthData";
-import Alert from "../Alert";
+import Alert from "../alert/Alert";
 
 const IndexSidebar = () => {
   useReduxListUsers();

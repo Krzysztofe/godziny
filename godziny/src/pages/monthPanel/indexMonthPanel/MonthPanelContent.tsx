@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import HoursSummary from "../../../components/HoursSummary";
 import MonthPanelColumns from "../monthPanelColmns/MonthPanelColumns";
-import Alert from "../../../components/Alert";
+import Alert from "../../../components/alert/Alert";
 
 const MonthPanelContent = () => {
   const { pathname } = useLocation();

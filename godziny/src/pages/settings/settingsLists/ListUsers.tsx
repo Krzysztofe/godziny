@@ -16,6 +16,8 @@ import {
   dataStylesButton,
   dataStylesListGroupItem,
 } from "./dataStylesSettingsLists";
+import Swal from "sweetalert2";
+import { alertHelper } from "../../../utils/alertHelpers";
 
 const ListUsers = () => {
   const dispatch = useDispatch();
@@ -50,7 +52,7 @@ const ListUsers = () => {
   useEffect(() => {
     deleteUserAsync();
     dispatch(agreeAlert(false));
-    dispatch(closeAlert());
+    success.isSuccess && dispatch(closeAlert());
   }, [agree]);
 
   return (
@@ -67,7 +69,7 @@ const ListUsers = () => {
           >
             <Button
               onClick={() => handleAlert(user.userName)}
-              disabled={userName === user.userName ? success.isLoading : false}
+              disabled={success.isLoading}
               className={dataStylesButton}
               style={{ color: user.userColor }}
             >

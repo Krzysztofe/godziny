@@ -8,7 +8,8 @@ import useMonthDates from "../../../hooks/useMonthDates";
 import { RootState } from "../../../redux/store";
 import {
   agreeAlert,
-  closeAlert, printAlert
+  closeAlert,
+  printAlert,
 } from "../../../redux/storeFeatures/alertSlice";
 import {
   useDeleteMonthMutation,
@@ -66,11 +67,7 @@ const ListMonths = () => {
               className={dataStylesListGroupItem}
             >
               <Button
-                disabled={
-                  listMonths && monthDate === listMonths[idx]
-                    ? success.isLoading
-                    : false
-                }
+                disabled={success.isLoading}
                 onClick={() => listMonths && handleAlert(listMonths[idx])}
                 className={`${dataStylesButton} text-dark`}
               >
