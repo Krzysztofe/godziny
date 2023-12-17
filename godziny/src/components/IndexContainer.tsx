@@ -9,14 +9,20 @@ const IndexContainer = (props: Props) => {
   const { windowWidth } = useWindowWidth();
   return (
     <main
-      className="d-flex backgroundImage m-0 opacityAnimation"
-      style={{ height: "100dvh", overflow: "hidden" }}
+      className="d-flex backgroundImage m-0"
+      style={{
+        height: "100vh",
+        overflow: "hidden",
+        position: "relative",
+      
+      }}
     >
       <aside
         style={{
           width: windowWidth >= 500 ? "30%" : 0,
           maxWidth: "250px",
           height: "100%",
+          
         }}
       ></aside>
       <div

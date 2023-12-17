@@ -6,9 +6,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { ModelUser } from "../../sharedModels/modelUser";
 
-
 const useDataFormDay = () => {
-  const { listUsers: dataUsers } = useSelector((state: RootState) => state.listUsers);
+  const { listUsers: dataUsers } = useSelector(
+    (state: RootState) => state.listUsers
+  );
 
   const users = dataUsers ? dataUsers : [];
 
@@ -19,7 +20,7 @@ const useDataFormDay = () => {
   const dataInputsSelect = [
     {
       name: "userName",
-      firstOption: `${names.length === 0 ? "Brak danych" : "Imię"}`,
+      firstOption: `${names.length === 0 ? "Zapisz użytkownika" : "Imię"}`,
       label: "Podaj imię",
       options: names,
     },

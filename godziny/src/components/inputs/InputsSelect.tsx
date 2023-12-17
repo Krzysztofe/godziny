@@ -1,4 +1,4 @@
-import { useFormikContext} from "formik";
+import { useFormikContext } from "formik";
 import Form from "react-bootstrap/Form";
 import FormErrors from "./FormErrors";
 import { ModelDay } from "../../sharedModels/modelDay";
@@ -21,7 +21,10 @@ const InputsSelect = (props: Props) => {
       {props.inputsData.map(({ name, firstOption, label, options }) => {
         return (
           <Form.Group key={label}>
-            <Form.Label htmlFor={name} className="mb-0 fs-6 fw-medium">
+            <Form.Label
+              htmlFor={name}
+              className="mb-0 fw-medium  fs-responsive"
+            >
               {label}
             </Form.Label>
 
@@ -32,13 +35,21 @@ const InputsSelect = (props: Props) => {
               onBlur={handleBlur}
               size="sm"
               className={`p-0 px-1 border border-primary shadow-sm text-capitalize ${
-                firstOption === "Brak danych" ? "text-warning" : ""
+                firstOption === "Zapisz użytkownika" ? "text-warning" : ""
               }`}
               style={{
                 cursor: "pointer",
               }}
             >
-              <option>{firstOption}</option>
+              <option
+                className={` ${
+                  firstOption === "Zapisz użytkownika"
+                    ? "text-warning"
+                    : "text-placeholder"
+                }`}
+              >
+                {firstOption}
+              </option>
 
               {options?.map((option: string | number) => {
                 return (

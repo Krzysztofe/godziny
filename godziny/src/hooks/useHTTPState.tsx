@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 import { ModelSuccess } from "../sharedModels/modelSucces";
 
 const useHTTPState = (success: ModelSuccess, btnText: string | ReactNode) => {
+  
   useEffect(() => {
     if (success.isError) {
       const error = success.error;

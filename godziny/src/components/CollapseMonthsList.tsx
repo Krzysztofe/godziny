@@ -11,8 +11,6 @@ const CollapseMonthsList = () => {
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
   const { monthURL, isMonthInURL } = useURLValues();
 
-  // const sortedMonths = sortListMonths(listMonths);
-
   const monthURLToDateFormat = isMonthInURL ? new Date(monthURL) : null;
 
   const curMonthURLStringFormat =

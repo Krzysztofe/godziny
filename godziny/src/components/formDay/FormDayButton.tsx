@@ -6,7 +6,6 @@ import { RootState } from "../../redux/store";
 import { ModelDay } from "../../sharedModels/modelDay";
 import { ModelSuccess } from "../../sharedModels/modelSucces";
 
-
 type Props = {
   success: ModelSuccess;
 };
@@ -15,14 +14,14 @@ const FormDayButton = (props: Props) => {
   const { values } = useFormikContext<ModelDay>();
   const { btnContent } = useHTTPState(props.success, "Dodaj dzień");
   const { month } = useSelector((state: RootState) => state.monthPanel);
-  const currentHours = month?.calcHours?.currentHours || 0
+  const currentHours = month?.calcHours?.currentHours || 0;
 
   return (
     <>
       <Button
         type="submit"
         disabled={props.success.isLoading}
-        className="fw-medium w-100 mt-2 bg-primary text-white"
+        className="fw-medium w-100 mt-2 ms-auto bg-primary text-white fs-responsive"
       >
         {btnContent}
       </Button>

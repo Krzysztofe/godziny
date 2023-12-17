@@ -10,6 +10,7 @@ import SidebarNav from "./SidebarNav";
 import useReduxListUsers from "../../hooks/updateReduxDatabase/useReduxListUsers";
 import useReduxListMonths from "../../hooks/updateReduxDatabase/useReduxListMonths";
 import useReduxMonthData from "../../hooks/updateReduxDatabase/useReduxMonthData";
+import Alert from "../Alert";
 
 const IndexSidebar = () => {
   useReduxListUsers();
@@ -19,21 +20,9 @@ const IndexSidebar = () => {
   const { pathname } = useLocation();
   const [isShow, setShow] = useState(false);
   const { windowWidth } = useWindowWidth();
-  const [animate, setAnimate] = useState(false);
 
   const handleClose = () => setShow(false);
   const toggleShow = () => setShow(prev => !prev);
-
-  useEffect(() => {
-    setAnimate(false);
-    const timeoutId = setTimeout(() => {
-      setAnimate(true);
-    });
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [pathname]);
 
   useEffect(() => {
     windowWidth >= 500 && setShow(true);
@@ -43,14 +32,15 @@ const IndexSidebar = () => {
     <>
       {!["/"].includes(pathname) && (
         <>
+          <Alert />
           <Offcanvas
             show={isShow}
             onHide={handleClose}
             name="Disable backdrop"
             scroll={true}
             backdrop={false}
-            className={`${windowWidth <= 500 && "backgroundImage"} ${
-              windowWidth >= 500 && animate ? "opacityAnimation" : ""
+            className={`${
+              windowWidth <= 500 && "backgroundImage"
             } bg-transparent`}
             style={{
               width: windowWidth >= 500 ? "30%" : "100vw",

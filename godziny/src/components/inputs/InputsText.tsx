@@ -27,7 +27,10 @@ const InputsText = (props: Props) => {
           return (
             <Form.Group key={value}>
               {label && (
-                <Form.Label htmlFor="date" className="mb-0 fs-6 fw-medium">
+                <Form.Label
+                  htmlFor="date"
+                  className="mb-0 fs-responsive fw-medium"
+                >
                   {label}
                 </Form.Label>
               )}
@@ -42,8 +45,8 @@ const InputsText = (props: Props) => {
                 max={max}
                 placeholder={placeholder}
                 size="sm"
-                className="p-0 px-1 border border-primary shadow-sm w-100"
-                style={{ minHeight: 0, cursor: "pointer" }}
+                className="p-0 px-1 border border-primary shadow-sm w-100 "
+                style={{ minHeight: 0  }}
               />
               {isErrorPrint && (
                 <FormErrors value={value} errors={errors} touched={touched} />
