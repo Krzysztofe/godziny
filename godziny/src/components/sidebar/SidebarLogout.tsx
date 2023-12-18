@@ -3,10 +3,12 @@ import { Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../data/firebaseConfig";
-
+import { printAlert } from "../../redux/storeFeatures/alertSlice";
 import { RiLogoutBoxLine } from "react-icons/ri";
+import { useDispatch } from "react-redux";
 
 const SidebarLogout = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -15,9 +17,10 @@ const SidebarLogout = () => {
     auth
       .signOut()
       .then(() => {
-        navigate("/");
+        navigate("/godziny");
       })
-      // .catch(error => alert(error))
+
+      .catch(error => dispatch(printAlert(error.message)))
       .finally(() => {
         setIsLoading(false);
       });

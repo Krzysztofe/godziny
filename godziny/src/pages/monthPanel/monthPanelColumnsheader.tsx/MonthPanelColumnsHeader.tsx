@@ -1,7 +1,6 @@
 import Col from "react-bootstrap/Col";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import { v4 as UUID } from "uuid";
 
 interface Props {
   thumbPosition: number;

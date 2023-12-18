@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import LoadingPage from "./pages/loadingPage/LoadingPage";
 import "./scss/App.scss";
 
@@ -12,21 +12,25 @@ const IndexMonthPanel = lazy(
 const IndexSettings = lazy(
   () => import("./pages/settings/indexSettings/IndexSettings")
 );
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
+  const location = useLocation();
+
   return (
-    <BrowserRouter basename="/godziny">
-      <Suspense fallback={<LoadingPage />}>
-        <IndexSidebar />
-        <Routes>
-          <Route path="/" element={<IndexLogin />} />
-          <Route element={<PrivateRoutes />}>
-            <Route path="/:monthURL" element={<IndexMonthPanel />} />
-            <Route path="/ustawienia" element={<IndexSettings />} />
-          </Route>
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+    <Suspense fallback={<LoadingPage />}>
+      <IndexSidebar />
+      {/* <Routes> */}
+      <Routes>
+        <Route path="/godziny" element={<IndexLogin />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="/godziny/:monthURL" element={<IndexMonthPanel />} />
+          <Route path="/godziny/ustawienia" element={<IndexSettings />} />
+          {/* <Route path="/godziny/*" element={<NotFound />} /> */}
+          <Route path="/*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 

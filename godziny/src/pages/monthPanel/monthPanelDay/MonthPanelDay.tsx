@@ -37,11 +37,11 @@ const MonthPanelDay = (props: Props) => {
 
  ;
 
-  const findDeletedDayId = {
+  const findDay = {
     ...month?.columns[props.columnIdx].days?.find(day => {
       return day?.id === props.day.id;
     }),
-  }.id;
+  }
 
   const handleAlert = (idx: string, id: string) => {
     setColumnIdx(idx);
@@ -50,12 +50,8 @@ const MonthPanelDay = (props: Props) => {
   };
 
   const deleteDayAsync = async () => {
-    if (agree && findDeletedDayId === dayId) {
-      const subtractedHours = {
-        ...month?.columns[props.columnIdx].days?.find(day => {
-          return day?.id === props.day.id;
-        }),
-      }?.hours;
+    if (agree && findDay?.id === dayId) {
+      const subtractedHours = findDay?.hours;
 
       month &&
         (await deleteDay({

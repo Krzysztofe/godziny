@@ -4,7 +4,8 @@ import { auth } from "../data/firebaseConfig";
 
 const PrivateRoutes = () => {
   const [user] = useAuthState(auth);
-  return user ? <Outlet /> : <Navigate to="/" />;
+ 
+  return user ? <Outlet /> : <Navigate to="/godziny" />;
 };
 
 export default PrivateRoutes;

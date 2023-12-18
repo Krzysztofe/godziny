@@ -24,36 +24,45 @@ const Alert = () => {
   };
 
   return (
-    <div
-      id="opacityContainer"
-      className="fixed-top d-flex justify-content-center align-items-center "
-      onClick={e => handleClose(e)}
-      style={{
-        height: "100vh",
-        zIndex: isPrinted ? "1060" : "-1",
-        backgroundColor: "rgba(0,0,0,0.4)",
-      }}
-    >
-      <div
-        className={`p-4 bg-white rounded-1 fs-3 fw-medium ${
-          isPrinted ? "alertAnimationDown" : "alertAnimationUp"
-        }`}
-      >
-        {header}
-        <div className="w-fit-content m-auto">
-          {header.includes("Usunąć") ? (
-            <>
-              <Button id="noButton">Nie</Button>
-              <Button onClick={handleAgree} className="bg-danger ms-4 border ">
-                Tak
-              </Button>
-            </>
-          ) : (
-            <Button id="noButton">Ok</Button>
-          )}
+    <>
+      {isPrinted ? (
+        <div
+          id="opacityContainer"
+          className="fixed-top d-flex justify-content-center align-items-center "
+          onClick={e => handleClose(e)}
+          style={{
+            height: "100vh",
+            zIndex:"1060" ,
+            backgroundColor: "rgba(0,0,0,0.4)",
+          }}
+        >
+          <div
+            className={`p-4 bg-white rounded-1 fs-3 fw-medium ${
+              isPrinted ? "alertAnimationDown" : "alertAnimationUp"
+            }`}
+          >
+            {header}
+            <div className="w-fit-content m-auto">
+              {header.includes("Usunąć") ? (
+                <>
+                  <Button id="noButton">Nie</Button>
+                  <Button
+                    onClick={handleAgree}
+                    className="bg-danger ms-4 border "
+                  >
+                    Tak
+                  </Button>
+                </>
+              ) : (
+                <Button id="noButton">Ok</Button>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      ) : (
+        <></>
+      )}
+    </>
   );
 };
 

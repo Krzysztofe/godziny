@@ -1,7 +1,7 @@
 import "firebase/database";
 import { useEffect, useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import SidebarBody from "./SidebarBody";
 import SidebarHeader from "./SidebarHeader";
@@ -11,11 +11,13 @@ import useReduxListUsers from "../../hooks/updateReduxDatabase/useReduxListUsers
 import useReduxListMonths from "../../hooks/updateReduxDatabase/useReduxListMonths";
 import useReduxMonthData from "../../hooks/updateReduxDatabase/useReduxMonthData";
 import Alert from "../alert/Alert";
+import { auth } from "../../data/firebaseConfig";
 
 const IndexSidebar = () => {
   useReduxListUsers();
   useReduxListMonths();
   useReduxMonthData();
+  // const { param1 } = useParams();
 
   const { pathname } = useLocation();
   const [isShow, setShow] = useState(false);
@@ -28,9 +30,12 @@ const IndexSidebar = () => {
     windowWidth >= 500 && setShow(true);
   }, [windowWidth]);
 
+
+
+
   return (
     <>
-      {!["/"].includes(pathname) && (
+      {pathname !== "/godziny"   && (
         <>
           <Alert />
           <Offcanvas
