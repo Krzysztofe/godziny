@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgodziny=self.webpackChunkgodziny||[]).push([[949],{4949:function(n,e,r){r.r(e);r(2791);var t=r(184);e.default=function(){return(0,t.jsx)("div",{style:{height:"100vh",backgroundColor:"red"},children:"not"})}}}]);
+//# sourceMappingURL=949.f098b373.chunk.js.map
