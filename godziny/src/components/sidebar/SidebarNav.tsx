@@ -18,7 +18,7 @@ const SidebarNav = () => {
           </ListGroup.Item>
         )}
         <ListGroup.Item className={styles}>
-          <Link to="/ustawienia" className="text-primary text-decoration-none">
+          <Link to="/godziny/ustawienia" className="text-primary text-decoration-none">
             <AiTwotoneSetting /> Ustawienia
           </Link>
         </ListGroup.Item>

@@ -36,7 +36,7 @@ const CollapseMonthsList = () => {
         return (
           <ListGroup.Item key={month} className="border-0 p-0">
             <Link
-              to={`/${listMonths?.[idx]}`}
+              to={`/godziny/${listMonths?.[idx]}`}
               className={`${
                 curMonthURLStringFormat !== month || !curMonthURLStringFormat
                   ? "text-dark"

@@ -17,7 +17,6 @@ const IndexSidebar = () => {
   useReduxListUsers();
   useReduxListMonths();
   useReduxMonthData();
-  // const { param1 } = useParams();
 
   const { pathname } = useLocation();
   const [isShow, setShow] = useState(false);
@@ -30,12 +29,15 @@ const IndexSidebar = () => {
     windowWidth >= 500 && setShow(true);
   }, [windowWidth]);
 
+  const printSidebar =
+    pathname.includes("/godziny/ustawienia") ||
+    pathname.includes("/godziny/202");
 
-
+ 
 
   return (
     <>
-      {pathname !== "/godziny"   && (
+      {printSidebar && auth.currentUser && (
         <>
           <Alert />
           <Offcanvas
