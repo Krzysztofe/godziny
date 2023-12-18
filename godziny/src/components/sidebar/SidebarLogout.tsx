@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../data/firebaseConfig";
-import { alert } from "../../utils/alertHelpers";
+
 import { RiLogoutBoxLine } from "react-icons/ri";
 
 const SidebarLogout = () => {
@@ -17,7 +17,7 @@ const SidebarLogout = () => {
       .then(() => {
         navigate("/");
       })
-      .catch(error => alert(error))
+      // .catch(error => alert(error))
       .finally(() => {
         setIsLoading(false);
       });

@@ -2,7 +2,7 @@ import { Spinner } from "react-bootstrap";
 import React from "react";
 import FormLoginContext from "./FormLoginContext";
 import useFormikLogin from "./useFormikLogin";
-
+import Alert from "../../components/alert/Alert";
 const IndexLogin = () => {
   const { isLoading } = useFormikLogin();
 
@@ -18,9 +18,8 @@ const IndexLogin = () => {
 
   return (
     <main className="backgroundImage d-flex justify-content-center  align-items-center vh-100 vw-100">
-     
-        <FormLoginContext />
-      
+      <Alert />
+      <FormLoginContext />
     </main>
   );
 };

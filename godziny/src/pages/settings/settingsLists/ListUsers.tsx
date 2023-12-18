@@ -16,8 +16,6 @@ import {
   dataStylesButton,
   dataStylesListGroupItem,
 } from "./dataStylesSettingsLists";
-import Swal from "sweetalert2";
-import { alertHelper } from "../../../utils/alertHelpers";
 
 const ListUsers = () => {
   const dispatch = useDispatch();

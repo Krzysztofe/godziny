@@ -8,7 +8,7 @@ import {
   useUpdateListMonthsMutation,
   useUpdateMonthMutation,
 } from "../../services/apiSliceMonths";
-import { alert } from "../../utils/alertHelpers";
+
 import useValidationMonthForm from "./useValidationMonthForm";
 import * as yup from "yup";
 import { monthPattern } from "./dataFormMonth";
@@ -59,7 +59,6 @@ const useFormikMonth = () => {
       const year = values.monthDate.slice(0, 4);
       const month = values.monthDate.slice(-2);
       await deleteMonth({ year, month });
-      alert("");
     }
   };
 
