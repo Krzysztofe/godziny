@@ -33,6 +33,7 @@ Live recording of the application presentation during the conclusion of the comp
 * HTTP requests state messages for user
 * RWD
 * Animations
+* Custom alerts
 
 
 ## Technologies
@@ -57,7 +58,7 @@ react-router, react-router-dom, react-router-hash-link, <br/>
 react-firebase-hooks, react-beautiful-dnd<br/>
 react-redux, @reduxjs/toolkit,<br/>
 formik, yup, <br/>
-react-bootstrap, sweetalert2, react-icons
+react-bootstrap, react-icons
 
 ## Production version for users tests deployed on home.pl <a href = "https://godziny.ozzip.pl/"> here --></a>
 ## Demo <a href = "https://krzysztofe.github.io/godziny/"> here --></a>
