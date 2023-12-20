@@ -8,7 +8,7 @@ type ModelFormValues = {
 };
 
 const useFormikHours = () => {
-  // const { yearFromURL, monthFromURL } = useURLValues();
+  const { yearFromURL, monthFromURL } = useURLValues();
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const [addAllHours, success] = useAddAllHoursMutation();
 
@@ -29,8 +29,8 @@ const useFormikHours = () => {
     calcHours &&
       values.allHours &&
       (await addAllHours({
-        year: "2023",
-        month: "12",
+        year: yearFromURL,
+        month: monthFromURL,
         calcHours: {
           ...calcHours,
           allHours: +values.allHours,
