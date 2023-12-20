@@ -87,16 +87,23 @@ react-bootstrap, react-icons
 
  ## Comments
 * The Firebase Config keys are not hidden in the .env file to allow access for setting up the project locally.
+ 
+* The data structure in the Firebase Realtime Database follows a pattern where each year contains multiple months, and each month holds detailed information. For example:
+
+![Zrzut ekranu (277)](https://github.com/Krzysztofe/godziny/assets/96065197/5c8be24d-f17e-4fb1-8bbb-888da3dbb2d8)
+
+
+* To optimize data retrieval from the database and at the same have access to a list of dates of all saved months in database, a snapshot from the Realtime Database is utilized. This snapshot relies on a WebSocket connection, which, when functioning correctly, results in an HTTP 101 response code. The snapshot listener retrieves keys from the database, encompassing recorded years and months. Subsequently, these keys are transferred to an array, forming a list of months stored in the database. This approach limits HTTP requests to the database to individual month requests and lists of users.
+
 
 * On the mobile version of aplication, the drag and drop functionality is not well supported on touch events. It works in the following way: when you press on a tile with information about a day, a black border appears around the tile and its background becomes transparent. To make a change, you need to release your finger and then touch the tile again to drag it to the desired column.
- 
-* To optimize data retrieval from the database and at the same have access to a list of dates of all saved months, the data structure has been divided into an object with the key "years" and an object with the key "listMonths". The "years" object contains all the data related to the months, while the "listMonths" object holds an array with the collection of dates of all the months saved under the "years" key. The application fetches only data from a single month and the entire array of dates from the saved months in real-time. The dates of all the months from the "listMonths" key are rendered in the sidebar and settings panel without the need to fetch all the data from the database. However, this approach presents a challenge related to performing two requests at the same time: one for the month data to the "years" key and another for the month date to the "listMonths" array. The duplication of PUT and DELETE requests needs to be limited to one in the future.
 
 ## Prerequisites
 * Before getting started, make sure you have the Node.js and npm or yarn
+* Node version: **Node.js v18.16.1**
 * Clone this repository to your local machine
-* Navigate to the project directory
-* Install the project dependencies by running npm install or yarn install
-* Start the development server npm start or yarn start
+* Navigate to the project directory: **cd .\godziny**
+* Install the project dependencies by running **npm install** or **yarn install**
+* Start the development server: **cd .\godziny\godziny\ npm start** or **yarn start**
 * Open your browser and visit your localhost:3000 to see the running application.
 
