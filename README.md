@@ -89,19 +89,10 @@ react-bootstrap, react-icons
 * The Firebase Config keys are not hidden in the .env file to allow access for setting up the project locally.
  
 * The data structure in the Firebase Realtime Database follows a pattern where each year contains multiple months, and each month holds detailed information. For example:
-{ 
-2023: {
-  month_01: { /* rest of the month data */ },
-  month_02: { /* rest of the month data */ },
-  // ... other months
-}
-2024: {
-  month_01: { /* rest of the month data */ },
-  month_02: { /* rest of the month data */ },
-  // ... other months
- }
 
-}
+![Zrzut ekranu (277)](https://github.com/Krzysztofe/godziny/assets/96065197/5c8be24d-f17e-4fb1-8bbb-888da3dbb2d8)
+
+
 To optimize data retrieval from the database and at the same have access to a list of dates of all saved months in database, a snapshot from the Realtime Database is utilized. This snapshot relies on a WebSocket connection, which, when functioning correctly, results in an HTTP 101 response code.
 
 The snapshot listener retrieves keys from the database, encompassing recorded years and months. Subsequently, these keys are transferred to an array, forming a list of months stored in the database. This approach strategically limits HTTP requests to the database to individual month requests and lists of users.
