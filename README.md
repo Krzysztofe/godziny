@@ -102,7 +102,7 @@ react-bootstrap, react-icons
 * Before getting started, make sure you have the Node.js and npm or yarn
 * Node version: **Node.js v18.16.1**
 * Clone this repository to your local machine
-* Navigate to the project directory: **cd .\godziny\**
+* Navigate to the project directory: **cd .\godziny**
 * Install the project dependencies by running **npm install** or **yarn install**
 * Start the development server: **cd .\godziny\godziny\ npm start** or **yarn start**
 * Open your browser and visit your localhost:3000 to see the running application.
