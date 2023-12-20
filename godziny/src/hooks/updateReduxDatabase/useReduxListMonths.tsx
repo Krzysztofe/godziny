@@ -12,9 +12,7 @@ const useReduxListMonths = () => {
   const dispatch = useDispatch();
   const { databaseKeysYears, isError } = useDatabaseListMonths();
 
-  // const { data, error, isLoading } = useListMonthsQuery();
 
-  // console.log("", databaseKeysYears);
 
   useEffect(() => {
     dispatch(getListMonths(databaseKeysYears));

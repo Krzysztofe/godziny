@@ -5,7 +5,7 @@ import { ModelCalcHours } from "../sharedModels/modelCalcHours";
 
 
 const createUrl = (year: string, month: string, suffix = "") =>
-  `/years/${year}/month_${month}${suffix}.json`;
+  `/${year}/month_${month}${suffix}.json`;
 
 export const monthsApiSlice = createApi({
   reducerPath: "monthsApi",
