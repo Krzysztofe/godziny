@@ -91,12 +91,15 @@ react-bootstrap, react-icons
 * On the mobile version of aplication, the drag and drop functionality is not well supported on touch events. It works in the following way: when you press on a tile with information about a day, a black border appears around the tile and its background becomes transparent. To make a change, you need to release your finger and then touch the tile again to drag it to the desired column.
  
 * To optimize data retrieval from the database and at the same have access to a list of dates of all saved months, the data structure has been divided into an object with the key "years" and an object with the key "listMonths". The "years" object contains all the data related to the months, while the "listMonths" object holds an array with the collection of dates of all the months saved under the "years" key. The application fetches only data from a single month and the entire array of dates from the saved months in real-time. The dates of all the months from the "listMonths" key are rendered in the sidebar and settings panel without the need to fetch all the data from the database. However, this approach presents a challenge related to performing two requests at the same time: one for the month data to the "years" key and another for the month date to the "listMonths" array. The duplication of PUT and DELETE requests needs to be limited to one in the future.
+  
+* On the mobile version of aplication, the drag and drop functionality is not well supported on touch events. It works in the following way: when you press on a tile with information about a day, a black border appears around the tile and its background becomes transparent. To make a change, you need to release your finger and then touch the tile again to drag it to the desired column.
 
 ## Prerequisites
 * Before getting started, make sure you have the Node.js and npm or yarn
+* Node version: Node.js v18.16.1
 * Clone this repository to your local machine
-* Navigate to the project directory
+* Navigate to the project directory: cd .\godziny\
 * Install the project dependencies by running npm install or yarn install
-* Start the development server npm start or yarn start
+* Start the development server: cd .\godziny\godiny\ npm start or yarn start
 * Open your browser and visit your localhost:3000 to see the running application.
 
