@@ -4,19 +4,16 @@ import { RootState } from "../redux/store";
 const useMonthDates = () => {
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
 
-
-  console.log('',listMonths)
-
-  const databaseMonthsDatesToString = listMonths && [...listMonths]?.map(
-    (monthDate: string) => {
+  const databaseMonthsDatesToString =
+    listMonths &&
+    [...listMonths]?.map((monthDate: string) => {
       const monthToDateFormat = new Date(monthDate);
       return new Intl.DateTimeFormat("pl-PL", {
         year: "numeric",
         month: "long",
         timeZone: "UTC",
       }).format(monthToDateFormat);
-    }
-  );
+    });
 
   return { databaseMonthsDatesToString };
 };

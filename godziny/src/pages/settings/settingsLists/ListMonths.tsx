@@ -19,8 +19,8 @@ import {
   dataStylesButton,
   dataStylesListGroupItem,
 } from "./dataStylesSettingsLists";
-
-
+import CollapseContainer from "../../../components/CollapseContainer";
+import FormHoursContext from "../../../components/formHours/FormHoursContext";
 
 const ListMonths = () => {
   const dispatch = useDispatch();
@@ -34,9 +34,6 @@ const ListMonths = () => {
   );
   const { agree } = useSelector((state: RootState) => state.alert);
   const [monthDate, setMonthDate] = useState("");
-
-
-
 
   const handleAlert = (monthDate: string) => {
     dispatch(printAlert("Usunąć miesiąc?"));
@@ -70,6 +67,10 @@ const ListMonths = () => {
               key={monthDateToString}
               className={dataStylesListGroupItem}
             >
+              {/* <CollapseContainer title={monthDateToString}>
+                <FormHoursContext />
+              </CollapseContainer> */}
+
               <Button
                 disabled={success.isLoading}
                 onClick={() => listMonths && handleAlert(listMonths[idx])}

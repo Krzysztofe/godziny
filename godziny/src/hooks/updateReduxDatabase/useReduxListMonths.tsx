@@ -10,17 +10,22 @@ import useDatabaseListMonths from "../useDatabaseListMonths";
 
 const useReduxListMonths = () => {
   const dispatch = useDispatch();
-  const { databaseKeysYears, isError } = useDatabaseListMonths();
+  const { databaseListMonths, error } = useDatabaseListMonths();
 
 
 
   useEffect(() => {
-    dispatch(getListMonths(databaseKeysYears));
+    dispatch(getListMonths(databaseListMonths));
     // dispatch(getListMonths(data));
     // dispatch(getListMonthsError(error));
 
     // dispatch(getListMonthsIsLoading(isLoading));
-  }, [databaseKeysYears, dispatch]);
+  }, [databaseListMonths, dispatch]);
 };
 
 export default useReduxListMonths;
+
+
+
+
+
