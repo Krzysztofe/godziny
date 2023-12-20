@@ -87,11 +87,26 @@ react-bootstrap, react-icons
 
  ## Comments
 * The Firebase Config keys are not hidden in the .env file to allow access for setting up the project locally.
-
-* On the mobile version of aplication, the drag and drop functionality is not well supported on touch events. It works in the following way: when you press on a tile with information about a day, a black border appears around the tile and its background becomes transparent. To make a change, you need to release your finger and then touch the tile again to drag it to the desired column.
  
-* To optimize data retrieval from the database and at the same have access to a list of dates of all saved months, the data structure has been divided into an object with the key "years" and an object with the key "listMonths". The "years" object contains all the data related to the months, while the "listMonths" object holds an array with the collection of dates of all the months saved under the "years" key. The application fetches only data from a single month and the entire array of dates from the saved months in real-time. The dates of all the months from the "listMonths" key are rendered in the sidebar and settings panel without the need to fetch all the data from the database. However, this approach presents a challenge related to performing two requests at the same time: one for the month data to the "years" key and another for the month date to the "listMonths" array. The duplication of PUT and DELETE requests needs to be limited to one in the future.
-  
+* The data structure in the Firebase Realtime Database follows a pattern where each year contains multiple months, and each month holds detailed information. For example:
+{ 
+2023: {
+  month_01: { /* rest of the month data */ },
+  month_02: { /* rest of the month data */ },
+  // ... other months
+}
+2024: {
+  month_01: { /* rest of the month data */ },
+  month_02: { /* rest of the month data */ },
+  // ... other months
+ }
+
+}
+To optimize data retrieval from the database and at the same have access to a list of dates of all saved months in database, a snapshot from the Realtime Database is utilized. This snapshot relies on a WebSocket connection, which, when functioning correctly, results in an HTTP 101 response code.
+
+The snapshot listener retrieves keys from the database, encompassing recorded years and months. Subsequently, these keys are transferred to an array, forming a list of months stored in the database. This approach strategically limits HTTP requests to the database to individual month requests and lists of users.
+
+
 * On the mobile version of aplication, the drag and drop functionality is not well supported on touch events. It works in the following way: when you press on a tile with information about a day, a black border appears around the tile and its background becomes transparent. To make a change, you need to release your finger and then touch the tile again to drag it to the desired column.
 
 ## Prerequisites
