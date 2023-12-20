@@ -8,7 +8,7 @@ import { useAddDayMutation } from "../../services/apiSliceMonths";
 import { validationSchema } from "./validationFormDay";
 import { ModelUser } from "../../sharedModels/modelUser";
 
-type ModelInitialValues = {
+export type ModelInitialValuesFormikDay = {
   id: string;
   date: string;
   hours: string;
@@ -34,7 +34,7 @@ const useFormikDay = () => {
 
   const validation = validationSchema as yup.ObjectSchema<typeof initialValues>;
 
-  const onSubmit = async (values: ModelInitialValues) => {
+  const onSubmit = async (values: ModelInitialValuesFormikDay) => {
     if (
       month &&
       (month?.calcHours?.currentHours - +values.hours < 0 ||

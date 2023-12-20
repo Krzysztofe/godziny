@@ -9,6 +9,7 @@ type Props = {
     firstOption: string;
     label: string;
     options: string[] | number[];
+   
   }[];
 };
 
@@ -35,7 +36,7 @@ const InputsSelect = (props: Props) => {
               onBlur={handleBlur}
               size="sm"
               className={`p-0 px-1 border border-primary shadow-sm text-capitalize ${
-                firstOption === "Zapisz użytkownika" ? "text-warning" : ""
+                firstOption === "Zapisz imię" ? "text-warning" : ""
               }`}
               style={{
                 cursor: "pointer",
@@ -43,7 +44,7 @@ const InputsSelect = (props: Props) => {
             >
               <option
                 className={` ${
-                  firstOption === "Zapisz użytkownika"
+                  firstOption === "Zapisz imię"
                     ? "text-warning"
                     : "text-placeholder"
                 }`}

@@ -11,13 +11,17 @@ const FormHoursContext = () => {
   const { initialValues, onSubmit, success } = useFormikHours();
   const { btnContent } = useHTTPState(
     success,
-    <AiOutlinePlusCircle className="text-primary" style={{ fontSize: "1.4rem" }} />
+    <AiOutlinePlusCircle
+      className="text-primary"
+      style={{ fontSize: "1.4rem" }}
+    />
   );
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form className="py-2">
         <FormHoursTop />
+
         <InputsRange inputsValues={["allHours"]} />
 
         <div className="d-flex justify-content-between align-items-center mt-2">

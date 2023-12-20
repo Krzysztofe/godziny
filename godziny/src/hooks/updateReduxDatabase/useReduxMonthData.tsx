@@ -7,22 +7,31 @@ import {
 } from "../../redux/storeFeatures/monthPanelSlice";
 import { useMonthDataQuery } from "../../services/apiSliceMonths";
 import useURLValues from "../useURLValues";
+import { auth } from "../../data/firebaseConfig";
 
 const useReduxMonthData = () => {
   const dispatch = useDispatch();
   const { yearFromURL, monthFromURL } = useURLValues();
+  const { isMonthInURL } = useURLValues();
+
+  const yearx = isMonthInURL ? yearFromURL : "";
+  const monthx = isMonthInURL ? monthFromURL : "";
 
   const { data, error, isLoading } = useMonthDataQuery({
-    year: yearFromURL,
-    month: monthFromURL,
+    year: yearx,
+    month: monthx,
   });
 
+
+
   useEffect(() => {
+   
     dispatch(getMonth(data));
 
     dispatch(getMonthError(error));
 
     dispatch(getMonthIsLoading(isLoading));
+    
   }, [data, error, isLoading, dispatch]);
 };
 

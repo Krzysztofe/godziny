@@ -28,11 +28,12 @@ const MonthPanelColumnsHeader = (props: Props) => {
         return (
           <Col
             key={headerText}
-            className={`text-dark-emphasis fs-responsive bg-white fw-medium p-1 ${
+            className={`text-dark-emphasis fs-responsive bg-white fw-medium p-1 d-flex align-items-center ${
               props.thumbPosition === 0
                 ? "border-bottom border-3 border-white"
                 : "border-bottom border-3"
             }`}
+            style ={{height: "35px"}}
           >
             {headerText} {""}
             {counter}

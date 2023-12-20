@@ -1,4 +1,4 @@
-import { Form, Formik } from "formik";
+import { Form, Formik, FormikConfig } from "formik";
 import InputsSelect from "../inputs/InputsSelect";
 import InputsText from "../inputs/InputsText";
 import FormDayButton from "./FormDayButton";
@@ -7,6 +7,20 @@ import useFormikDay from "./useFormikDay";
 import "./_formDay.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import { ModelInitialValuesFormikDay } from "./useFormikDay";
+
+
+type FormData = {
+  id: string;
+  date: string;
+  hours: string;
+  userName: string;
+  place: string;
+  userColor: string;
+};
+
+const asFormikConfig = <Values extends FormData>(props: FormikConfig<Values>) =>
+  props;
 
 const FormDayContext = () => {
   const { dataInputsText, dataInputsSelect } = useDataFormDay();

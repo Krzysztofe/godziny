@@ -1,16 +1,13 @@
-import useRequestMonthPanel from "./useRequestMonthPanel";
 import IndexContainer from "../../../components/IndexContainer";
-import useReduxMonthBody from "../../../hooks/updateReduxDatabase/useReduxMonthData";
-import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListMonths";
-import useReduxListUsers from "../../../hooks/updateReduxDatabase/useReduxListUsers";
+import useReduxMonthData from "../../../hooks/updateReduxDatabase/useReduxMonthData";
+import useRequestMonthPanel from "./useRequestMonthPanel";
 
 const IndexMonthPanel = () => {
-  // useReduxMonthBody();
-  // useReduxListMonths();
+  useReduxMonthData();
 
   const { requestState } = useRequestMonthPanel();
 
-  return <IndexContainer>{requestState}</IndexContainer>;
+  return <IndexContainer>{requestState} </IndexContainer>;
 };
 
 export default IndexMonthPanel;

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useUsersQuery } from "../../services/apiSliceUsers";
-
 import {
   geListtUsers,
   getListUsersError,

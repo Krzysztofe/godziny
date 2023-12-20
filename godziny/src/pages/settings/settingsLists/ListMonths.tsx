@@ -20,6 +20,8 @@ import {
   dataStylesListGroupItem,
 } from "./dataStylesSettingsLists";
 
+
+
 const ListMonths = () => {
   const dispatch = useDispatch();
   const { databaseMonthsDatesToString } = useMonthDates();
@@ -32,6 +34,9 @@ const ListMonths = () => {
   );
   const { agree } = useSelector((state: RootState) => state.alert);
   const [monthDate, setMonthDate] = useState("");
+
+
+
 
   const handleAlert = (monthDate: string) => {
     dispatch(printAlert("Usunąć miesiąc?"));
@@ -47,7 +52,6 @@ const ListMonths = () => {
       const year = monthDate.slice(0, 4);
       const month = monthDate.slice(-2);
       await deleteMonth({ year: year, month: month });
-      updatedListMonths && (await updateListMonths(updatedListMonths));
     }
   };
 

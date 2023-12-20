@@ -1,22 +1,18 @@
-import "firebase/database";
 import { useEffect, useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import useReduxListMonths from "../../hooks/updateReduxDatabase/useReduxListMonths";
+import useReduxListUsers from "../../hooks/updateReduxDatabase/useReduxListUsers";
 import useWindowWidth from "../../hooks/useWindowWidth";
+import Alert from "../alert/Alert";
 import SidebarBody from "./SidebarBody";
 import SidebarHeader from "./SidebarHeader";
 import SidebarMenuButton from "./SidebarMenuButton";
 import SidebarNav from "./SidebarNav";
-import useReduxListUsers from "../../hooks/updateReduxDatabase/useReduxListUsers";
-import useReduxListMonths from "../../hooks/updateReduxDatabase/useReduxListMonths";
-import useReduxMonthData from "../../hooks/updateReduxDatabase/useReduxMonthData";
-import Alert from "../alert/Alert";
-import { auth } from "../../data/firebaseConfig";
 
 const IndexSidebar = () => {
   useReduxListUsers();
   useReduxListMonths();
-  useReduxMonthData();
 
   const { pathname } = useLocation();
   const [isShow, setShow] = useState(false);
@@ -33,11 +29,9 @@ const IndexSidebar = () => {
     pathname.includes("/godziny/ustawienia") ||
     pathname.includes("/godziny/202");
 
- 
-
   return (
     <>
-      {printSidebar && auth.currentUser && (
+      {printSidebar && (
         <>
           <Alert />
           <Offcanvas

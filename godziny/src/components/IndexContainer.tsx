@@ -7,6 +7,8 @@ type Props = {
 
 const IndexContainer = (props: Props) => {
   const { windowWidth } = useWindowWidth();
+
+
   return (
     <main
       className="d-flex backgroundImage m-0"
@@ -14,7 +16,6 @@ const IndexContainer = (props: Props) => {
         height: "100vh",
         overflow: "hidden",
         position: "relative",
-      
       }}
     >
       <aside
@@ -22,7 +23,6 @@ const IndexContainer = (props: Props) => {
           width: windowWidth >= 500 ? "30%" : 0,
           maxWidth: "250px",
           height: "100%",
-          
         }}
       ></aside>
       <div

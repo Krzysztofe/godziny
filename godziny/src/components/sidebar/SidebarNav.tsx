@@ -2,7 +2,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { AiTwotoneSetting } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import SidebarLogout from "./SidebarLogout";
-import SettingsReturnButton from "../../pages/settings/SettingsReturnButton";
+import SettingsReturnButton from "./SettingsReturnButton";
 import useURLValues from "../../hooks/useURLValues";
 
 const SidebarNav = () => {

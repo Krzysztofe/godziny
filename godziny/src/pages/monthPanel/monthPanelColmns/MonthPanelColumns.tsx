@@ -73,7 +73,7 @@ const MonthPanelColumns = () => {
     <div
       ref={scrollableRef}
       onScroll={handleScroll}
-      className="p-0 overflow-y-scroll h-100"
+      className="overflow-y-scroll h-100"
       style={{
         maxHeight:
           windowWidth >= 500
