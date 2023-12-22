@@ -7,6 +7,7 @@ import CollapseContainer from "../CollapseContainer";
 import useMonthURLToString from "../../hooks/useMonthURLToString";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import ToastsSettingsContainer from "../ToastsSettingsContainer";
 
 const useDataSidebar = () => {
   const { monthURLStringFormat } = useMonthURLToString();
@@ -15,20 +16,13 @@ const useDataSidebar = () => {
   const monthStringCapitalize =
     monthURLStringFormat[0]?.toUpperCase() + monthURLStringFormat.slice(1);
 
-  const printFormHours = month && (
-    <div className="mt-1">
-      <CollapseContainer title={"Zapisz godziny"}>
-        <FormHoursContext />
-      </CollapseContainer>
-    </div>
-  );
   const printFormDay = month && <FormDayContext />;
 
   const dataMonthPanel = [
     <CollapseContainer title={monthStringCapitalize}>
       <CollapseMonthsList />
     </CollapseContainer>,
-    // printFormHours,
+
     printFormDay,
   ];
 
@@ -41,6 +35,7 @@ const useDataSidebar = () => {
         <FormUserContext />
       </CollapseContainer>
     </div>,
+    <ToastsSettingsContainer />,
   ];
 
   return { dataMonthPanel, dataSettings };

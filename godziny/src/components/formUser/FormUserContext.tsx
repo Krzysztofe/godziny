@@ -4,13 +4,24 @@ import InputsText from "../inputs/InputsText";
 import useHTTPState from "../../hooks/useHTTPState";
 import useFormikUser from "./useFormikUser";
 import { AiOutlinePlusCircle } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { getUserSuccess } from "../../redux/storeFeatures/requestSuccessSlice";
+import { useEffect } from "react";
 
 const FormUserContext = () => {
+  const dispatch = useDispatch();
   const { initialValues, validation, onSubmit, success } = useFormikUser();
   const { btnContent } = useHTTPState(
     success,
-    <AiOutlinePlusCircle className="text-primary" style={{ fontSize: "1.4rem" }} />
+    <AiOutlinePlusCircle
+      className="text-primary"
+      style={{ fontSize: "1.4rem" }}
+    />
   );
+
+  useEffect(() => {
+    dispatch(getUserSuccess(success.isSuccess));
+  }, [success.isSuccess]);
 
   const dataInputs = [
     {

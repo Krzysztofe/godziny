@@ -3,6 +3,7 @@ import monthPanelSlice from "./storeFeatures/monthPanelSlice";
 import listUsersSlice from "./storeFeatures/listUsersSlice";
 import listMonthsSlice from "./storeFeatures/listMonthsSlice";
 import alertSlice from "./storeFeatures/alertSlice";
+import requestSuccessSlice from "./storeFeatures/requestSuccessSlice";
 import { usersApiSlice } from "../services/apiSliceUsers";
 import { monthsApiSlice } from "../services/apiSliceMonths";
 
@@ -12,6 +13,7 @@ export const store = configureStore({
     listUsers: listUsersSlice,
     listMonths: listMonthsSlice,
     alert: alertSlice,
+    requestSuccess: requestSuccessSlice,
     [monthsApiSlice.reducerPath]: monthsApiSlice.reducer,
     [usersApiSlice.reducerPath]: usersApiSlice.reducer,
   },

@@ -40,7 +40,7 @@ const FormHoursContext = (props: Props) => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
-      <Form className="py-2">
+      <Form className="py-2 pe-2">
         <FormHoursTop calcHours={calcHours} />
 
         <InputsRange inputsValues={["allHours"]} />

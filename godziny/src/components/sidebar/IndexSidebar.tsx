@@ -33,7 +33,7 @@ const IndexSidebar = () => {
     <>
       {printSidebar && (
         <>
-          {/* <Alert /> */}
+         
           <Offcanvas
             show={isShow}
             onHide={handleClose}
@@ -42,7 +42,7 @@ const IndexSidebar = () => {
             backdrop={false}
             className={`${
               windowWidth <= 500 && "backgroundImage"
-            } bg-transparent`}
+            } bg-transparent border-0`}
             style={{
               width: windowWidth >= 500 ? "30%" : "100vw",
               maxWidth: windowWidth >= 500 && "250px",

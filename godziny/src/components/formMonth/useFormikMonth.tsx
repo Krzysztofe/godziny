@@ -5,7 +5,6 @@ import { currMonthDigits, currYearDigits } from "../../data/dataCurrentDates";
 import { RootState } from "../../redux/store";
 import {
   useDeleteMonthMutation,
-  // useUpdateListMonthsMutation,
   useUpdateMonthMutation,
 } from "../../services/apiSliceMonths";
 
@@ -23,7 +22,6 @@ interface ModelInitialValues {
 const useFormikMonth = () => {
   const navigate = useNavigate();
   const [updateMonth, success] = useUpdateMonthMutation();
-  // const [updateListMonths] = useUpdateListMonthsMutation();
   const [deleteMonth] = useDeleteMonthMutation();
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
   const { validationSchema } = useValidationMonthForm();
@@ -44,7 +42,7 @@ const useFormikMonth = () => {
 
     await updateMonth({ year, month, monthBody });
     setFormValues(values);
-        // navigate(`/godziny/${values.monthDate}`);
+    
   };
 
   // const executeAddMonthInfo = async (values: ModelInitialValues) => {
