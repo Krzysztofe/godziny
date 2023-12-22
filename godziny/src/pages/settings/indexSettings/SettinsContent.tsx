@@ -2,8 +2,8 @@ import { useSelector } from "react-redux";
 import ListContainer from "../../../components/ListContainer";
 import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListMonths";
 import { RootState } from "../../../redux/store";
-import ListMonths from "../settingsLists/ListMonths";
-import ListUsers from "../settingsLists/ListUsers";
+import ListMonths from "../listMonths/ListMonths";
+import ListUsers from "../ListUsers";
 
 const SettinsContent = () => {
   useReduxListMonths();

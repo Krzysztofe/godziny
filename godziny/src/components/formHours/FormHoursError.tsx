@@ -1,23 +1,29 @@
 import { useFormikContext } from "formik";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import { ModelCalcHours } from "../../sharedModels/modelCalcHours";
 
 type ModelFormValues = {
   allHours: number;
 };
-const FormHoursError = () => {
+
+type Props = {
+  calcHours?: ModelCalcHours;
+};
+
+const FormHoursError = (props:Props) => {
   const { values } = useFormikContext<ModelFormValues>();
   const { month } = useSelector((state: RootState) => state.monthPanel);
 
   var content = "";
 
-  if (month) {
+  if (props.calcHours) {
     if (
-      month?.calcHours?.submittedHours + month?.calcHours?.acceptedHours >
+      props?.calcHours?.submittedHours + props?.calcHours?.acceptedHours >
       +values?.allHours
     ) {
       content = `Min. ${
-        month?.calcHours?.submittedHours + month?.calcHours?.acceptedHours
+        props?.calcHours?.submittedHours + props?.calcHours?.acceptedHours
       } h`;
     }
   }

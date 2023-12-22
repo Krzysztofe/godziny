@@ -6,9 +6,30 @@ import InputsRange from "../inputs/inputsRange/InputsRange";
 import FormHoursError from "./FormHoursError";
 import FormHoursTop from "./FormHoursTop";
 import useFormikHours from "./useFormikHours";
+import {
+  useAllHoursQuery,
+  useMonthDataQuery,
+} from "../../services/apiSliceMonths";
 
-const FormHoursContext = () => {
-  const { initialValues, onSubmit, success } = useFormikHours();
+type Props = {
+  monthDate?: string | null;
+};
+
+const FormHoursContext = (props: Props) => {
+  const yearValue = props.monthDate?.slice(0, 4) ?? "";
+  const monthValue = props.monthDate?.slice(5) ?? "";
+
+  const { data: calcHours } = useAllHoursQuery({
+    year: yearValue ?? "",
+    month: monthValue ?? "",
+  });
+
+  const { initialValues, onSubmit, success } = useFormikHours(
+    calcHours,
+    yearValue,
+    monthValue
+  );
+
   const { btnContent } = useHTTPState(
     success,
     <AiOutlinePlusCircle
@@ -20,12 +41,12 @@ const FormHoursContext = () => {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form className="py-2">
-        <FormHoursTop />
+        <FormHoursTop calcHours={calcHours} />
 
         <InputsRange inputsValues={["allHours"]} />
 
         <div className="d-flex justify-content-between align-items-center mt-2">
-          <FormHoursError />
+          <FormHoursError calcHours={calcHours} />
           <Button
             type="submit"
             disabled={success.isLoading}

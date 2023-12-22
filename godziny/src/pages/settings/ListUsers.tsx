@@ -3,15 +3,15 @@ import { ListGroup } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import useHTTPState from "../../../hooks/useHTTPState";
-import { RootState } from "../../../redux/store";
+import useHTTPState from "../../hooks/useHTTPState";
+import { RootState } from "../../redux/store";
 import {
   agreeAlert,
   closeAlert,
   printAlert,
-} from "../../../redux/storeFeatures/alertSlice";
-import { useDeleteUserMutation } from "../../../services/apiSliceUsers";
-import { ModelUser } from "../../../sharedModels/modelUser";
+} from "../../redux/storeFeatures/alertSlice";
+import { useDeleteUserMutation } from "../../services/apiSliceUsers";
+import { ModelUser } from "../../sharedModels/modelUser";
 import {
   dataStylesButton,
   dataStylesListGroupItem,

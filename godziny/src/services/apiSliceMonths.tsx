@@ -18,6 +18,10 @@ export const monthsApiSlice = createApi({
       query: ({ year, month }) => createUrl(year, month),
       providesTags: ["months"],
     }),
+    allHours: builder.query<ModelCalcHours, { year: string; month: string }>({
+      query: ({ year, month }) => createUrl(year, month, "/calcHours"),
+      providesTags: ["months"],
+    }),
 
     // mutations
 
@@ -65,25 +69,7 @@ export const monthsApiSlice = createApi({
       invalidatesTags: ["months"],
     }),
 
-    // monthsList queries
-
-    listMonths: builder.query<string[], void>({
-      query: () => "listMonths.json",
-      providesTags: ["months"],
-    }),
-
-    // info mutations
-
-    updateListMonths: builder.mutation<void, string[]>({
-      query: listMonths => ({
-        url: "/listMonths.json",
-        method: "PUT",
-        body: listMonths,
-      }),
-      invalidatesTags: ["months"],
-    }),
-
-    // calc mutations
+    // allHours mutations
 
     addAllHours: builder.mutation<
       void,
@@ -101,8 +87,7 @@ export const monthsApiSlice = createApi({
 
 export const {
   useMonthDataQuery,
-  useListMonthsQuery,
-  useUpdateListMonthsMutation,
+  useAllHoursQuery,
   useAddDayMutation,
   useUpdateMonthMutation,
   useDeleteDayMutation,

@@ -28,7 +28,7 @@ const useDataSidebar = () => {
     <CollapseContainer title={monthStringCapitalize}>
       <CollapseMonthsList />
     </CollapseContainer>,
-    printFormHours,
+    // printFormHours,
     printFormDay,
   ];
 

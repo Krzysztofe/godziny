@@ -14,12 +14,12 @@ const useReduxMonthData = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
   const { isMonthInURL } = useURLValues();
 
-  const yearx = isMonthInURL ? yearFromURL : "";
-  const monthx = isMonthInURL ? monthFromURL : "";
+  const year = isMonthInURL ? yearFromURL : "";
+  const month = isMonthInURL ? monthFromURL : "";
 
   const { data, error, isLoading } = useMonthDataQuery({
-    year: yearx,
-    month: monthx,
+    year,
+    month
   });
 
 
