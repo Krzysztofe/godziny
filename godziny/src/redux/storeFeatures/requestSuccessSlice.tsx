@@ -1,15 +1,15 @@
-import { PayloadAction, SerializedError, createSlice } from "@reduxjs/toolkit";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
-import { ModelMonth } from "../../sharedModels/modelMonth";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 type ModelInitialState = {
   isMonthSuccess: boolean;
   isUserSuccess: boolean;
+  isDaySuccess: boolean;
 };
 
 const initialState: ModelInitialState = {
   isMonthSuccess: false,
   isUserSuccess: false,
+  isDaySuccess: false,
 };
 
 export const requestSuccessSlice = createSlice({
@@ -22,8 +22,12 @@ export const requestSuccessSlice = createSlice({
     getUserSuccess: (state, action: PayloadAction<boolean>) => {
       state.isUserSuccess = action.payload;
     },
+    getDaySuccess: (state, action: PayloadAction<boolean>) => {
+      state.isDaySuccess = action.payload;
+    },
   },
 });
 
-export const { getMonthSuccess, getUserSuccess } = requestSuccessSlice.actions;
+export const { getMonthSuccess, getUserSuccess, getDaySuccess } =
+  requestSuccessSlice.actions;
 export default requestSuccessSlice.reducer;

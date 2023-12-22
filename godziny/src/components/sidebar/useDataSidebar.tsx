@@ -7,7 +7,8 @@ import CollapseContainer from "../CollapseContainer";
 import useMonthURLToString from "../../hooks/useMonthURLToString";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import ToastsSettingsContainer from "../ToastsSettingsContainer";
+import ToastsSettingsContainer from "./ToastsSettingsContainer";
+
 
 const useDataSidebar = () => {
   const { monthURLStringFormat } = useMonthURLToString();
@@ -22,7 +23,6 @@ const useDataSidebar = () => {
     <CollapseContainer title={monthStringCapitalize}>
       <CollapseMonthsList />
     </CollapseContainer>,
-
     printFormDay,
   ];
 

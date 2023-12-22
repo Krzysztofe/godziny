@@ -4,11 +4,11 @@ import { useLocation } from "react-router-dom";
 import useReduxListMonths from "../../hooks/updateReduxDatabase/useReduxListMonths";
 import useReduxListUsers from "../../hooks/updateReduxDatabase/useReduxListUsers";
 import useWindowWidth from "../../hooks/useWindowWidth";
-import Alert from "../alert/Alert";
 import SidebarBody from "./SidebarBody";
 import SidebarHeader from "./SidebarHeader";
 import SidebarMenuButton from "./SidebarMenuButton";
 import SidebarNav from "./SidebarNav";
+import ToastsMonthPanelContainer from "./ToastsMonthPanelContainer";
 
 const IndexSidebar = () => {
   useReduxListUsers();
@@ -33,7 +33,6 @@ const IndexSidebar = () => {
     <>
       {printSidebar && (
         <>
-         
           <Offcanvas
             show={isShow}
             onHide={handleClose}
@@ -51,6 +50,9 @@ const IndexSidebar = () => {
             <div className="p-1 d-flex flex-column bg-opacity-white h-100">
               <SidebarHeader />
               <SidebarBody />
+              {pathname.includes("/godziny/202") && (
+                <ToastsMonthPanelContainer />
+              )}
               <SidebarNav />
             </div>
           </Offcanvas>

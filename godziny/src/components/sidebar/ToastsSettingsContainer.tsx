@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
-import Toast from "./toast/Toast";
+import { RootState } from "../../redux/store";
+import Toast from "../toast/Toast";
 
 const ToastsSettingsContainer = () => {
   const { isMonthSuccess, isUserSuccess } = useSelector(

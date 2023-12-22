@@ -4,6 +4,7 @@ import useURLValues from "../../hooks/useURLValues";
 import useDataSidebar from "./useDataSidebar";
 import { useLocation } from "react-router-dom";
 
+
 const SidebarBody = () => {
   const { pathname } = useLocation();
   const { isMonthInURL } = useURLValues();
@@ -15,7 +16,7 @@ const SidebarBody = () => {
         dataMonthPanel.map((component, idx) => {
           return <React.Fragment key={idx}>{component}</React.Fragment>;
         })}
-
+  
       {pathname === "/godziny/ustawienia" &&
         dataSettings.map((component, idx) => {
           return <React.Fragment key={idx}>{component}</React.Fragment>;

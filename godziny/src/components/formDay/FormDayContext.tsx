@@ -1,4 +1,4 @@
-import { Form, Formik, FormikConfig } from "formik";
+import { Form, Formik } from "formik";
 import InputsSelect from "../inputs/InputsSelect";
 import InputsText from "../inputs/InputsText";
 import FormDayButton from "./FormDayButton";
@@ -7,26 +7,22 @@ import useFormikDay from "./useFormikDay";
 import "./_formDay.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { ModelInitialValuesFormikDay } from "./useFormikDay";
-
-
-type FormData = {
-  id: string;
-  date: string;
-  hours: string;
-  userName: string;
-  place: string;
-  userColor: string;
-};
-
-const asFormikConfig = <Values extends FormData>(props: FormikConfig<Values>) =>
-  props;
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getDaySuccess } from "../../redux/storeFeatures/requestSuccessSlice";
 
 const FormDayContext = () => {
+   const dispatch = useDispatch();
   const { dataInputsText, dataInputsSelect } = useDataFormDay();
   const { initialValues, validation, onSubmit, success } = useFormikDay();
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const allHours = month?.calcHours?.allHours;
+
+   useEffect(() => {
+     dispatch(getDaySuccess(success.isSuccess));
+   }, [success.isSuccess]);
+
+  
 
   return (
     <Formik
