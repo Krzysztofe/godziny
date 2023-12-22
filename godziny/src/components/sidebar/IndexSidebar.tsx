@@ -33,7 +33,7 @@ const IndexSidebar = () => {
     <>
       {printSidebar && (
         <>
-          <Alert />
+          {/* <Alert /> */}
           <Offcanvas
             show={isShow}
             onHide={handleClose}

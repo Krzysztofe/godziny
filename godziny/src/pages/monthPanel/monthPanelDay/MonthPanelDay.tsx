@@ -15,6 +15,7 @@ import { useDeleteDayMutation } from "../../../services/apiSliceMonths";
 import { ModelDay } from "../../../sharedModels/modelDay";
 import MonthPanelDayPrintData from "../MonthPanelDayPrintData";
 import { calculateUpdatedCalcHours, deleteDayById } from "./utilsMonthPanelDay";
+import Alert from "../../../components/alert/Alert";
 
 interface Props {
   day: ModelDay;
@@ -34,23 +35,23 @@ const MonthPanelDay = (props: Props) => {
   const { agree } = useSelector((state: RootState) => state.alert);
   const [columnIdx, setColumnIdx] = useState("");
   const [dayId, setDayId] = useState("");
-
- ;
+  const [isAlertPrinted, setIsAlertPrinted] = useState(false);
 
   const findDay = {
     ...month?.columns[props.columnIdx].days?.find(day => {
       return day?.id === props.day.id;
     }),
-  }
+  };
 
   const handleAlert = (idx: string, id: string) => {
     setColumnIdx(idx);
     setDayId(id);
-    dispatch(printAlert("Usunąć dzień?"));
+
+    setIsAlertPrinted(true);
   };
 
   const deleteDayAsync = async () => {
-    if (agree && findDay?.id === dayId) {
+    if (findDay?.id === dayId) {
       const subtractedHours = findDay?.hours;
 
       month &&
@@ -72,11 +73,7 @@ const MonthPanelDay = (props: Props) => {
     }
   };
 
-  useEffect(() => {
-    deleteDayAsync();
-    dispatch(agreeAlert(false));
-    dispatch(closeAlert());
-  }, [agree]);
+
 
   return (
     <Draggable
@@ -94,6 +91,12 @@ const MonthPanelDay = (props: Props) => {
               snapshot.isDragging ? "border-dark" : "border-dark-subtle"
             } `}
           >
+            <Alert
+              action={deleteDayAsync}
+              isPrinted={isAlertPrinted}
+              setIsPrinted={setIsAlertPrinted}
+              header={"Usunąć dzień?"}
+            />
             <div
               className="px-1 py-2 py-sm-1 rounded"
               style={{

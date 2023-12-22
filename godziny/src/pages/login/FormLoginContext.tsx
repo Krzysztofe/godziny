@@ -1,14 +1,15 @@
 import { Form, Formik } from "formik";
-import useFormikLogin from "./useFormikLogin";
-import InputsText from "../../components/inputs/InputsText";
-import Button from "react-bootstrap/Button";
 import { Spinner } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import InputsText from "../../components/inputs/InputsText";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import "./_login.scss";
+import useFormikLogin from "./useFormikLogin";
 
 const FormLoginContext = () => {
   const { initialValues, onSubmit, isLoading } = useFormikLogin();
   const { windowWidth } = useWindowWidth();
+
   let btnContent: string | React.ReactNode = "Zaloguj";
 
   if (isLoading) {

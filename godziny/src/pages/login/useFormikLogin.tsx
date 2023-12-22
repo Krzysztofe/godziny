@@ -6,7 +6,8 @@ import { currMonthDigits, currYearDigits } from "../../data/dataCurrentDates";
 import { auth } from "../../data/firebaseConfig";
 import { printAlert } from "../../redux/storeFeatures/alertSlice";
 
-type initialValues = {
+
+type InitialValues = {
   password: string;
 };
 
@@ -17,7 +18,7 @@ const useFormikLogin = () => {
 
   const initialValues = { password: "wwwwww" };
 
-  const onSubmit = (values: initialValues) => {
+  const onSubmit = (values: InitialValues) => {
     setIsLoading(true);
     signInWithEmailAndPassword(auth, "ww@wp.pl", values.password)
       .then(() => {

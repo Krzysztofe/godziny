@@ -2,6 +2,7 @@ import { ImArrowLeft } from "react-icons/im";
 import { Link } from "react-router-dom";
 import { RootState } from "../../../redux/store";
 import { useSelector } from "react-redux";
+
 type Props = {
   title?: string | null;
   idx: number;
@@ -19,8 +20,7 @@ const MonthTitle = (props: Props) => {
         className="text-decoration-none fs-responsive text-dark fw-medium"
       >
         <ImArrowLeft
-          className="fs-6 me-1 text-primary "
-     
+          className="fs-6 me-1 text-primary"
         />
         {title}
       </Link>

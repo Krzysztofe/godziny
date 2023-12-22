@@ -6,6 +6,7 @@ import { auth } from "../../data/firebaseConfig";
 import { printAlert } from "../../redux/storeFeatures/alertSlice";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
+import AlertErrors from "../AlertErrors";
 
 const SidebarLogout = () => {
   const dispatch = useDispatch();
@@ -47,16 +48,19 @@ const SidebarLogout = () => {
   }
 
   return (
-    <Button
-      onClick={logout}
-      className="fs-6 fw-medium text-info p-0 bg-transparent border-0 w-100"
-      style={{
-        cursor: "pointer",
-      }}
-      disabled={isLoading}
-    >
-      {btnContent}
-    </Button>
+    <>
+      <AlertErrors />
+      <Button
+        onClick={logout}
+        className="fs-6 fw-medium text-info p-0 bg-transparent border-0 w-100"
+        style={{
+          cursor: "pointer",
+        }}
+        disabled={isLoading}
+      >
+        {btnContent}
+      </Button>
+    </>
   );
 };
 

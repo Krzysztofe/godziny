@@ -1,55 +1,24 @@
-import { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
+import { useState } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { useDispatch, useSelector } from "react-redux";
-import useHTTPState from "../../../hooks/useHTTPState";
+import { useSelector } from "react-redux";
+import FormHoursContext from "../../../components/formHours/FormHoursContext";
 import useMonthDates from "../../../hooks/useMonthDates";
 import { RootState } from "../../../redux/store";
 import {
-  agreeAlert,
-  closeAlert,
-  printAlert,
-} from "../../../redux/storeFeatures/alertSlice";
-import {
-  useDeleteMonthMutation,
-  // useUpdateListMonthsMutation,
-} from "../../../services/apiSliceMonths";
-import {
-  dataStylesButton,
-  dataStylesListGroupItem,
+  dataStylesListGroupItem
 } from "../dataStylesSettingsLists";
-import CollapseContainer from "../../../components/CollapseContainer";
-import FormHoursContext from "../../../components/formHours/FormHoursContext";
 import CollapseInMonth from "./CollapseInMonth";
-import { ImArrowLeft } from "react-icons/im";
-import ListMonthsTitle from "./MonthTitle";
-import DeleteButton from "./DeleteButton";
 
 const ListMonths = () => {
-  const dispatch = useDispatch();
   const { databaseMonthsDatesToString } = useMonthDates();
-  const [deleteMonth, success] = useDeleteMonthMutation();
-  const { btnContent } = useHTTPState(
-    success,
-    <RiDeleteBin6Line className="text-danger fs-5 ms-auto" />
-  );
-  // const [updateListMonths, successInfo] = useUpdateListMonthsMutation();
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
-  const { agree } = useSelector((state: RootState) => state.alert);
   const [openCollapseIndex, setOpenCollapseIndex] = useState<number | null>(
     null
   );
-
   const [isOpenCollapse, setCollapseOpen] = useState(false);
-
   const [monthDate, setMonthDate] = useState("");
 
-  const handleAlert = (monthDate: string, idx: number) => {
-    dispatch(printAlert("Usunąć miesiąc?"));
-    setMonthDate(monthDate);
-  };
-
+ 
   const handleTogle = (monthDate: string, idx: number) => {
     setMonthDate(monthDate);
     setOpenCollapseIndex(idx);
@@ -58,20 +27,7 @@ const ListMonths = () => {
       setCollapseOpen(prev => !prev);
   };
 
-  const deleteMonthAsync = async () => {
-    if (agree && monthDate && listMonths?.includes(monthDate)) {
-      const year = monthDate.slice(0, 4);
-      const month = monthDate.slice(-2);
-      await deleteMonth({ year: year, month: month });
-    }
-  };
-
-  useEffect(() => {
-    deleteMonthAsync();
-    dispatch(agreeAlert(false));
-    dispatch(closeAlert());
-  }, [agree]);
-
+ 
   return (
     <>
       {databaseMonthsDatesToString?.map(
@@ -84,7 +40,7 @@ const ListMonths = () => {
               <div>
                 <CollapseInMonth
                   monthDateToString={monthDateToString}
-                  monthDate={listMonths && listMonths[idx]}
+                  monthDate={monthDate}
                   isOpen={idx === openCollapseIndex}
                   setOpenCollapseIndex={setOpenCollapseIndex}
                   isOpenCollapse={isOpenCollapse}
