@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import useWindowWidth from "../hooks/useWindowWidth";
-import AutoLogout from "./autoLogout/Autologout";
+import AutoLogout from "./autoLogout/AutoLogout";
 
 type Props = {
   children: ReactNode;
