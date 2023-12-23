@@ -13,7 +13,7 @@ const useValidationFormUser = () => {
     userName: yup
       .string()
       .min(3, "Min. 3 litery")
-      .max(10, "Max. 10 liter")
+      .max(20, "Max. 20 liter")
       .test(
         "is-in-database",
         "Imię zajęte",

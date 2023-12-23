@@ -35,8 +35,8 @@ const InputsSelect = (props: Props) => {
               onChange={e => setFieldValue(name, e.target.value)}
               onBlur={handleBlur}
               size="sm"
-              className={`p-0 px-1 border border-primary shadow-sm text-capitalize ${
-                firstOption === "Zapisz imię" ? "text-warning" : ""
+              className={`p-0 px-1 border border-primary shadow-sm ${
+                firstOption === "Brak danych" ? "text-warning" : ""
               }`}
               style={{
                 cursor: "pointer",
@@ -44,7 +44,7 @@ const InputsSelect = (props: Props) => {
             >
               <option
                 className={` ${
-                  firstOption === "Zapisz imię"
+                  firstOption === "Brak danych"
                     ? "text-warning"
                     : "text-placeholder"
                 }`}

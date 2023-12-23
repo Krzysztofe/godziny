@@ -17,7 +17,7 @@ type Props = {
   setMonthDate: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const CollapseInMonth = (props: Props) => {
+const CollapseFormHours = (props: Props) => {
   const [isOpen, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -63,4 +63,4 @@ const CollapseInMonth = (props: Props) => {
   );
 };
 
-export default CollapseInMonth;
+export default CollapseFormHours;

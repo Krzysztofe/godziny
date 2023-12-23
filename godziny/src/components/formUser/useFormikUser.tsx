@@ -7,6 +7,7 @@ import { v4 as UUID } from "uuid";
 import * as yup from "yup";
 import { ModelUser } from "../../sharedModels/modelUser";
 import { FormikHelpers } from "formik";
+import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 
 const useFormikUser = () => {
   const [addUser, success] = useAddUserMutation();
@@ -26,10 +27,10 @@ const useFormikUser = () => {
     values: ModelUser,
     { resetForm }: FormikHelpers<ModelUser>
   ) => {
+
     const userValues = {
       ...values,
-      userName:
-        values.userName.slice(0, 1).toUpperCase() + values.userName.slice(1),
+      userName: capitalizeFirstLetter(values.userName),
       id: UUID(),
     };
 
@@ -45,4 +46,3 @@ const useFormikUser = () => {
 };
 
 export default useFormikUser;
-

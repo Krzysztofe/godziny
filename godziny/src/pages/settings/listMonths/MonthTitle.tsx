@@ -2,6 +2,7 @@ import { ImArrowLeft } from "react-icons/im";
 import { Link } from "react-router-dom";
 import { RootState } from "../../../redux/store";
 import { useSelector } from "react-redux";
+import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
 
 type Props = {
   title?: string | null;
@@ -10,9 +11,8 @@ type Props = {
 const MonthTitle = (props: Props) => {
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
 
-  const title =
-    props.title?.charAt(0)?.toLocaleUpperCase() + (props.title?.slice(1) ?? "");
-
+  const title = props?.title && capitalizeFirstLetter(props?.title)
+  
   return (
     <div style={{ width: "45%" }}>
       <Link

@@ -2,6 +2,7 @@ import { useFormikContext } from "formik";
 import Form from "react-bootstrap/Form";
 import FormErrors from "./FormErrors";
 import { ModelDay } from "../../sharedModels/modelDay";
+import { useLocation } from "react-router-dom";
 
 
 type Props = {
@@ -19,6 +20,9 @@ type Props = {
 const InputsText = (props: Props) => {
   const { values, handleBlur, setFieldValue, errors, touched } =
     useFormikContext<ModelDay>();
+
+ const { pathname } = useLocation();
+ 
 
   return (
     <>
@@ -45,7 +49,7 @@ const InputsText = (props: Props) => {
                 max={max}
                 placeholder={placeholder}
                 size="sm"
-                className="p-0 px-1 border border-primary shadow-sm w-100 "
+                className="p-0 px-1 border border-primary shadow-sm w-100 text-capitalize"
                 style={{ minHeight: 0  }}
               />
               {isErrorPrint && (

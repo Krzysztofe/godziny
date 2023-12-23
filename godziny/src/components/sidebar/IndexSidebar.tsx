@@ -25,6 +25,7 @@ const IndexSidebar = () => {
     windowWidth >= 500 && setShow(true);
   }, [windowWidth]);
 
+
   const printSidebar =
     pathname.includes("/godziny/ustawienia") ||
     pathname.includes("/godziny/202");

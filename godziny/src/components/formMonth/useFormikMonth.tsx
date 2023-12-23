@@ -14,7 +14,6 @@ import { monthPattern } from "./dataFormMonth";
 import { ModelMonth } from "../../sharedModels/modelMonth";
 import { sortListMonths } from "../../utils/sortListMonths";
 
-
 interface ModelInitialValues {
   monthDate: string;
 }
@@ -42,35 +41,13 @@ const useFormikMonth = () => {
 
     await updateMonth({ year, month, monthBody });
     setFormValues(values);
-    
   };
-
-  // const executeAddMonthInfo = async (values: ModelInitialValues) => {
-  //   if (isSuccess) {
-  //     const year = values.monthDate.slice(0, 4);
-  //     const month = values.monthDate.slice(-2);
-  //     const months = listMonths ? [...listMonths] : [];
-  //     const updatedList = [...months, `${year}-${month}`];
-  //     const sortedMonths = sortListMonths(updatedList);
-
-  //     await updateListMonths(sortedMonths);
-  //     navigate(`/godziny/${values.monthDate}`);
-  //   } else if (success.isError) {
-  //     const year = values.monthDate.slice(0, 4);
-  //     const month = values.monthDate.slice(-2);
-  //     await deleteMonth({ year, month });
-  //   }
-  // };
 
   useEffect(() => {
     if (success.isSuccess) {
       setIsSuccess(true);
     } else setIsSuccess(false);
   }, [success.isSuccess]);
-
-  // useEffect(() => {
-  //   executeAddMonthInfo(formValues);
-  // }, [isSuccess, updateListMonths]);
 
   return { initialValues, validation, onSubmit, success };
 };

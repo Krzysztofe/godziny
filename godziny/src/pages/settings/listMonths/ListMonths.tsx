@@ -4,10 +4,8 @@ import { useSelector } from "react-redux";
 import FormHoursContext from "../../../components/formHours/FormHoursContext";
 import useMonthDates from "../../../hooks/useMonthDates";
 import { RootState } from "../../../redux/store";
-import {
-  dataStylesListGroupItem
-} from "../dataStylesSettingsLists";
-import CollapseInMonth from "./CollapseInMonth";
+import { dataStylesListGroupItem } from "../dataStylesSettingsLists";
+import CollapseFormHours from "./CollapseFormHours";
 
 const ListMonths = () => {
   const { databaseMonthsDatesToString } = useMonthDates();
@@ -18,7 +16,6 @@ const ListMonths = () => {
   const [isOpenCollapse, setCollapseOpen] = useState(false);
   const [monthDate, setMonthDate] = useState("");
 
- 
   const handleTogle = (monthDate: string, idx: number) => {
     setMonthDate(monthDate);
     setOpenCollapseIndex(idx);
@@ -27,7 +24,6 @@ const ListMonths = () => {
       setCollapseOpen(prev => !prev);
   };
 
- 
   return (
     <>
       {databaseMonthsDatesToString?.map(
@@ -38,7 +34,7 @@ const ListMonths = () => {
               className={dataStylesListGroupItem}
             >
               <div>
-                <CollapseInMonth
+                <CollapseFormHours
                   monthDateToString={monthDateToString}
                   monthDate={monthDate}
                   isOpen={idx === openCollapseIndex}
@@ -51,7 +47,7 @@ const ListMonths = () => {
                   setMonthDate={setMonthDate}
                 >
                   <FormHoursContext monthDate={listMonths && listMonths[idx]} />
-                </CollapseInMonth>
+                </CollapseFormHours>
               </div>
             </ListGroup.Item>
           );

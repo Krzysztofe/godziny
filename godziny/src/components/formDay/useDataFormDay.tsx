@@ -20,7 +20,7 @@ const useDataFormDay = () => {
   const dataInputsSelect = [
     {
       name: "userName",
-      firstOption: `${names.length === 0 ? "Zapisz imię" : "Imię"}`,
+      firstOption: `${names.length === 0 ? "Brak danych" : "Imię"}`,
       label: "Podaj imię",
       options: names,
     },
