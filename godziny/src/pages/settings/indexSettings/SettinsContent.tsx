@@ -4,19 +4,22 @@ import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListM
 import { RootState } from "../../../redux/store";
 import ListMonths from "../listMonths/ListMonths";
 import ListUsers from "../ListUsers";
+import useWindowWidth from "../../../hooks/useWindowWidth";
 
 const SettinsContent = () => {
   useReduxListMonths();
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
   const { listUsers } = useSelector((state: RootState) => state.listUsers);
+  const { windowWidth } = useWindowWidth();
 
   return (
     <div
       className="bg-white p-2 py-4 p-sm-4 w-100"
       style={{
-        height: "100%",
+        height: windowWidth >= 500 ? "calc(100%)" : "calc(100% - 2.5rem)",
         overflow: "hidden auto",
         outline: "4px solid white",
+        scrollbarGutter: "stable"
       }}
     >
       <div

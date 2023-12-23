@@ -7,8 +7,6 @@ const MonthPanelContent = () => {
   const { pathname } = useLocation();
   const [isAnimate, setAnimate] = useState(false);
 
-
-
   useEffect(() => {
     setAnimate(false);
     const timeoutId = setTimeout(() => {
@@ -24,7 +22,7 @@ const MonthPanelContent = () => {
     <>
       {isAnimate && (
         <div
-          className="py-1 opacityAnimation"
+          className="pe-1 pb-1 opacityAnimation"
           style={{
             maxWidth: "1000px",
             width: "100%",

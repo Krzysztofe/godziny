@@ -1,31 +1,20 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { currMonthDigits, currYearDigits } from "../../data/dataCurrentDates";
-import { RootState } from "../../redux/store";
 import {
-  useDeleteMonthMutation,
-  useUpdateMonthMutation,
+  useUpdateMonthMutation
 } from "../../services/apiSliceMonths";
-
-import useValidationMonthForm from "./useValidationMonthForm";
 import * as yup from "yup";
-import { monthPattern } from "./dataFormMonth";
 import { ModelMonth } from "../../sharedModels/modelMonth";
-import { sortListMonths } from "../../utils/sortListMonths";
+import { monthPattern } from "./dataFormMonth";
+import useValidationMonthForm from "./useValidationMonthForm";
 
 interface ModelInitialValues {
   monthDate: string;
 }
 
 const useFormikMonth = () => {
-  const navigate = useNavigate();
   const [updateMonth, success] = useUpdateMonthMutation();
-  const [deleteMonth] = useDeleteMonthMutation();
-  const { listMonths } = useSelector((state: RootState) => state.listMonths);
+
   const { validationSchema } = useValidationMonthForm();
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [formValues, setFormValues] = useState({ monthDate: "" });
 
   const initialValues = { monthDate: `${currYearDigits}-${currMonthDigits}` };
 
@@ -40,14 +29,7 @@ const useFormikMonth = () => {
     };
 
     await updateMonth({ year, month, monthBody });
-    setFormValues(values);
   };
-
-  useEffect(() => {
-    if (success.isSuccess) {
-      setIsSuccess(true);
-    } else setIsSuccess(false);
-  }, [success.isSuccess]);
 
   return { initialValues, validation, onSubmit, success };
 };

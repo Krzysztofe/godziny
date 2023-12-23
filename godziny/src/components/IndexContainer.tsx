@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import useWindowWidth from "../hooks/useWindowWidth";
+import AutoLogout from "./autoLogout/Autologout";
 
 type Props = {
   children: ReactNode;
@@ -31,6 +32,7 @@ const IndexContainer = (props: Props) => {
           width: windowWidth >= 500 ? "70%" : "100%",
         }}
       >
+        <AutoLogout />
         {props.children}
       </div>
     </main>

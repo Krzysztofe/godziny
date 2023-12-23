@@ -33,7 +33,7 @@ const ListMonths = () => {
               key={monthDateToString}
               className={dataStylesListGroupItem}
             >
-              <div>
+             
                 <CollapseFormHours
                   monthDateToString={monthDateToString}
                   monthDate={monthDate}
@@ -48,8 +48,8 @@ const ListMonths = () => {
                 >
                   <FormHoursContext monthDate={listMonths && listMonths[idx]} />
                 </CollapseFormHours>
-              </div>
-            </ListGroup.Item>
+            
+             </ListGroup.Item>
           );
         }
       )}

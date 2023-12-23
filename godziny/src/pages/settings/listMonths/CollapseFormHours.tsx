@@ -22,16 +22,18 @@ const CollapseFormHours = (props: Props) => {
 
   const handleOpen = () => {
     props.setOpenCollapseIndex(-1);
+    setOpen(prev => !prev);
   };
 
   return (
-    <div>
+    <>
       <div className="d-flex align-items-center">
         <MonthTitle title={props.monthDateToString} idx = {props.idx}/>
         <Button
           onClick={() => {
             props.onToggle();
             props.isOpen && handleOpen();
+      
           }}
           aria-expanded={isOpen}
           aria-controls="example-collapse-text"
@@ -57,9 +59,15 @@ const CollapseFormHours = (props: Props) => {
         />
       </div>
       <Collapse in={props.isOpen}>
-        <div className=" pe-1">{props.isOpen && props.children}</div>
+        <div className=" pe-1">
+          {props.isOpen ? (
+            props.children
+          ) : (
+            <div style={{ height: "88px" }}></div>
+          )}
+        </div>
       </Collapse>
-    </div>
+    </>
   );
 };
 
