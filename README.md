@@ -31,6 +31,7 @@ Live recording of the application presentation during the conclusion of the comp
 * Forms validations 
 * Dynamic routing
 * HTTP requests state messages for user
+* Automatic logout after 5 minutes of inactivity
 * RWD
 * Animations
 * Custom alerts
