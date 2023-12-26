@@ -1,13 +1,11 @@
 import { useSelector } from "react-redux";
 import ListContainer from "../../../components/ListContainer";
-import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListMonths";
-import { RootState } from "../../../redux/store";
-import ListMonths from "../listMonths/ListMonths";
-import ListUsers from "../ListUsers";
 import useWindowWidth from "../../../hooks/useWindowWidth";
+import { RootState } from "../../../redux/store";
+import ListUsers from "../ListUsers";
+import ListMonths from "../listMonths/ListMonths";
 
 const SettinsContent = () => {
-  useReduxListMonths();
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
   const { listUsers } = useSelector((state: RootState) => state.listUsers);
   const { windowWidth } = useWindowWidth();

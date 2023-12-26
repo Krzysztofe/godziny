@@ -6,7 +6,7 @@ import useURLValues from "../hooks/useURLValues";
 import { RootState } from "../redux/store";
 
 
-const CollapseMonthsList = () => {
+const ListMonthsInCollapse = () => {
   const { databaseMonthsDatesToString } = useMonthDates();
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
   const { monthURL, isMonthInURL } = useURLValues();
@@ -52,4 +52,4 @@ const CollapseMonthsList = () => {
   );
 };
 
-export default CollapseMonthsList;
+export default ListMonthsInCollapse;

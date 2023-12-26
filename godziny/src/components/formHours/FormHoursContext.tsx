@@ -6,10 +6,7 @@ import InputsRange from "../inputs/inputsRange/InputsRange";
 import FormHoursError from "./FormHoursError";
 import FormHoursTop from "./FormHoursTop";
 import useFormikHours from "./useFormikHours";
-import {
-  useAllHoursQuery,
-  useMonthDataQuery,
-} from "../../services/apiSliceMonths";
+import { useAllHoursQuery } from "../../services/apiSliceMonths";
 
 type Props = {
   monthDate?: string | null;
@@ -19,7 +16,7 @@ const FormHoursContext = (props: Props) => {
   const yearValue = props.monthDate?.slice(0, 4) ?? "";
   const monthValue = props.monthDate?.slice(5) ?? "";
 
-  const { data: calcHours } = useAllHoursQuery({
+  const { data: calcHours, isLoading } = useAllHoursQuery({
     year: yearValue ?? "",
     month: monthValue ?? "",
   });
@@ -29,6 +26,8 @@ const FormHoursContext = (props: Props) => {
     yearValue,
     monthValue
   );
+
+  console.log('', isLoading)
 
   const { btnContent } = useHTTPState(
     success,
@@ -41,7 +40,7 @@ const FormHoursContext = (props: Props) => {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form className="py-2 pe-2">
-        <FormHoursTop calcHours={calcHours} />
+        <FormHoursTop calcHours={calcHours} isLoading = {isLoading} />
 
         <InputsRange inputsValues={["allHours"]} />
 

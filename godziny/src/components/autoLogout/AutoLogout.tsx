@@ -2,8 +2,8 @@ import useAutoLogout from "./useAutoLogout";
 
 const AutoLogout = () => {
   const { secondsRemaining } = useAutoLogout();
-
   useAutoLogout();
+
   return (
     <div>
       {secondsRemaining + 1 <= 60 && (
@@ -16,18 +16,13 @@ const AutoLogout = () => {
             backgroundColor: "rgba(0,0,0,0.4)",
           }}
         >
-          <div className="p-4 bg-white rounded-1 fs-3 fw-medium alertAnimationDown d-flex">
-            Wylogowanie nastąpi za
+          <div className="p-4 bg-white rounded-1 fs-3 fw-medium alertAnimationDown">
+            Wylogowanie nastąpi za:
             <div
-              style={{
-                width: "2rem",
-                display: "flex",
-                justifyContent: "center",
-              }}
+             className="d-flex mx-auto w-fit-content"
             >
-              {secondsRemaining + 1}
+              {secondsRemaining + 1} <div>&nbsp;s.</div>
             </div>
-            s.
             <div className="w-fit-content m-auto"></div>
           </div>
         </div>

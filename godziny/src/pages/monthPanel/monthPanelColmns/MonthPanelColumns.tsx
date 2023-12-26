@@ -85,7 +85,10 @@ const MonthPanelColumns = () => {
         <MonthPanelColumnsHeader thumbPosition={thumbPosition} />
       </div>
 
-      <div className={`${rowStyles}`} style={{ minHeight: "calc(100% - 35px)" }}>
+      <div
+        className={`${rowStyles}`}
+        style={{ minHeight: "calc(100% - 35px)" }}
+      >
         <DragDropContext onDragEnd={handleDragEnd}>
           {columns?.map((column: ModelColumn, idx: number) => {
             return (

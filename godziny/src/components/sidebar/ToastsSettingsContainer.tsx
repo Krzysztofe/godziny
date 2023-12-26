@@ -8,10 +8,10 @@ const ToastsSettingsContainer = () => {
   );
 
   return (
-    <>
+    <div className="position-absolute mt-4">
       <Toast text={"Miesiąc zapisany"} isSuccess={isMonthSuccess} />
       <Toast text={"Użytkownik zapisany"} isSuccess={isUserSuccess} />
-    </>
+    </div>
   );
 };
 

@@ -1,6 +1,7 @@
 import Col from "react-bootstrap/Col";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
+import Counter from "../../../components/counter/Counter";
 
 interface Props {
   thumbPosition: number;
@@ -28,15 +29,15 @@ const MonthPanelColumnsHeader = (props: Props) => {
         return (
           <Col
             key={headerText}
-            className={`text-dark-emphasis fs-responsive bg-white fw-medium p-1 d-flex align-items-center ${
+            className={`text-dark-emphasis fs-responsive bg-white fw-medium p-1 d-flex align-items-center  ${
               props.thumbPosition === 0
                 ? "border-bottom border-3 border-white"
                 : "border-bottom border-3"
             }`}
-            style ={{height: "35px"}}
+            style={{ height: "35px" }}
           >
             {headerText} {""}
-            {counter}
+            {counter ? <Counter counter={counter} /> : <Counter counter={0} />}
           </Col>
         );
       })}

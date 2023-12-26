@@ -9,11 +9,11 @@ import SidebarHeader from "./SidebarHeader";
 import SidebarMenuButton from "./SidebarMenuButton";
 import SidebarNav from "./SidebarNav";
 import ToastsMonthPanelContainer from "./ToastsMonthPanelContainer";
+import ToastsSettingsContainer from "./ToastsSettingsContainer";
 
 const IndexSidebar = () => {
   useReduxListUsers();
   useReduxListMonths();
-
   const { pathname } = useLocation();
   const [isShow, setShow] = useState(false);
   const { windowWidth } = useWindowWidth();
@@ -48,12 +48,11 @@ const IndexSidebar = () => {
             }}
           >
             <div className="p-1 d-flex flex-column bg-opacity-white h-100">
+            
               <SidebarHeader />
               <SidebarBody />
-              {pathname.includes("/godziny/202") && (
-                <ToastsMonthPanelContainer />
-              )}
-              <SidebarNav />
+             
+              <SidebarNav handleClose={handleClose} />
             </div>
           </Offcanvas>
           <SidebarMenuButton toggleShow={toggleShow} />

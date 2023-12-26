@@ -1,17 +1,11 @@
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import useHTTPState from "../../../hooks/useHTTPState";
-import { useDeleteMonthMutation } from "../../../services/apiSliceMonths";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
-import { useDispatch } from "react-redux";
-import { printAlert } from "../../../redux/storeFeatures/alertSlice";
-import { useEffect, useState } from "react";
-import {
-  agreeAlert,
-  closeAlert,
-} from "../../../redux/storeFeatures/alertSlice";
 import Alert from "../../../components/alert/Alert";
+import useHTTPState from "../../../hooks/useHTTPState";
+import { RootState } from "../../../redux/store";
+import { useDeleteMonthMutation } from "../../../services/apiSliceMonths";
 
 type Props = {
   idx: number;
@@ -20,14 +14,12 @@ type Props = {
 };
 
 const DeleteButton = (props: Props) => {
-  const dispatch = useDispatch();
   const [deleteMonth, success] = useDeleteMonthMutation();
   const { btnContent } = useHTTPState(
     success,
     <RiDeleteBin6Line className="text-danger fs-5 ms-auto" />
   );
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
-  const { agree } = useSelector((state: RootState) => state.alert);
   const [isAlertPrinted, setIsAlertPrinted] = useState(false);
 
   const handleAlert = (monthDate: string, idx: number) => {
@@ -42,14 +34,6 @@ const DeleteButton = (props: Props) => {
       await deleteMonth({ year: year, month: month });
     }
   };
-
-  // console.log("button", agree);
-
-  // useEffect(() => {
-  //   deleteMonthAsync();
-  //   dispatch(agreeAlert(false));
-  //   dispatch(closeAlert());
-  // }, [agree]);
 
   return (
     <>

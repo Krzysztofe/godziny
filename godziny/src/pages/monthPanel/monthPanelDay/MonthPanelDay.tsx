@@ -1,21 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import Button from "react-bootstrap/Button";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import Alert from "../../../components/alert/Alert";
 import useHTTPState from "../../../hooks/useHTTPState";
 import useURLValues from "../../../hooks/useURLValues";
 import { RootState } from "../../../redux/store";
-import {
-  agreeAlert,
-  closeAlert,
-  printAlert,
-} from "../../../redux/storeFeatures/alertSlice";
 import { useDeleteDayMutation } from "../../../services/apiSliceMonths";
 import { ModelDay } from "../../../sharedModels/modelDay";
 import MonthPanelDayPrintData from "../MonthPanelDayPrintData";
 import { calculateUpdatedCalcHours, deleteDayById } from "./utilsMonthPanelDay";
-import Alert from "../../../components/alert/Alert";
 
 interface Props {
   day: ModelDay;
@@ -24,7 +19,6 @@ interface Props {
 }
 
 const MonthPanelDay = (props: Props) => {
-  const dispatch = useDispatch();
   const { yearFromURL, monthFromURL } = useURLValues();
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const [deleteDay, success] = useDeleteDayMutation();
@@ -32,7 +26,7 @@ const MonthPanelDay = (props: Props) => {
     success,
     <RiDeleteBin6Line className="text-danger" />
   );
-  const { agree } = useSelector((state: RootState) => state.alert);
+
   const [columnIdx, setColumnIdx] = useState("");
   const [dayId, setDayId] = useState("");
   const [isAlertPrinted, setIsAlertPrinted] = useState(false);

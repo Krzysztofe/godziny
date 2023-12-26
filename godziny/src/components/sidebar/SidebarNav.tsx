@@ -4,27 +4,44 @@ import { Link } from "react-router-dom";
 import SidebarLogout from "./SidebarLogout";
 import SettingsReturnButton from "./SettingsReturnButton";
 import useURLValues from "../../hooks/useURLValues";
+import useWindowWidth from "../../hooks/useWindowWidth";
 
-const SidebarNav = () => {
+type Props = {
+  handleClose: () => void;
+};
+
+const SidebarNav = (props: Props) => {
+  const { windowWidth } = useWindowWidth();
   const { isMonthInURL } = useURLValues();
   const styles = "bg-transparent border-0 p-0 ps-2";
+
+  const closeSidebar = () => {
+    windowWidth < 500 && props.handleClose();
+  };
+
+  const returnButton = !isMonthInURL && <SettingsReturnButton />;
+
+  const dataSidebarNavItems = [
+    returnButton,
+    <Link
+      to="/godziny/ustawienia"
+      className="text-primary text-decoration-none"
+    >
+      <AiTwotoneSetting /> Ustawienia
+    </Link>,
+    <SidebarLogout />,
+  ];
 
   return (
     <nav className="mt-auto mb-2 fw-medium">
       <ListGroup>
-        {!isMonthInURL && (
-          <ListGroup.Item className={styles}>
-            <SettingsReturnButton />
-          </ListGroup.Item>
-        )}
-        <ListGroup.Item className={styles}>
-          <Link to="/godziny/ustawienia" className="text-primary text-decoration-none">
-            <AiTwotoneSetting /> Ustawienia
-          </Link>
-        </ListGroup.Item>
-        <ListGroup.Item className={styles}>
-          <SidebarLogout />
-        </ListGroup.Item>
+        {dataSidebarNavItems.map((item, idx) => {
+          return (
+            <ListGroup.Item key={idx} className={styles} onClick={closeSidebar}>
+              {item}
+            </ListGroup.Item>
+          );
+        })}
       </ListGroup>
     </nav>
   );

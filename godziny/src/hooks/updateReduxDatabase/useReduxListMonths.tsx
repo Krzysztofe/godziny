@@ -5,14 +5,11 @@ import {
   getListMonthsError,
   getListMonthsIsLoading,
 } from "../../redux/storeFeatures/listMonthsSlice";
-// import { useListMonthsQuery } from "../../services/apiSliceMonths";
 import useDatabaseListMonths from "../useDatabaseListMonths";
 
 const useReduxListMonths = () => {
   const dispatch = useDispatch();
   const { databaseListMonths, error } = useDatabaseListMonths();
-
-
 
   useEffect(() => {
     dispatch(getListMonths(databaseListMonths));
@@ -24,8 +21,3 @@ const useReduxListMonths = () => {
 };
 
 export default useReduxListMonths;
-
-
-
-
-

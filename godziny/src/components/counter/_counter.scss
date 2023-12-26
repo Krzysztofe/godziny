@@ -1,0 +1,24 @@
+.counter {
+  height: 20px;
+  overflow: hidden;
+  margin-bottom: -2px;
+ 
+}
+
+@media (min-width: 400px) {
+  .counter {
+    margin-bottom: 3px;
+  }
+}
+
+@media (min-width: 500px) {
+  .counter {
+    margin-bottom: 0px;
+  }
+}
+
+@media (min-width: 560px) {
+  .counter {
+    margin-bottom: 3px;
+  }
+}
