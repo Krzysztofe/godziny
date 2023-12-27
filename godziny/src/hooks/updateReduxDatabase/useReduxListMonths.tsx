@@ -5,7 +5,7 @@ import {
   getListMonthsError,
   getListMonthsIsLoading,
 } from "../../redux/storeFeatures/listMonthsSlice";
-import useDatabaseListMonths from "../useDatabaseListMonths";
+import useDatabaseListMonths from "../../services/useDatabaseListMonths";
 
 const useReduxListMonths = () => {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import Col from "react-bootstrap/Col";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import Counter from "../../../components/counter/Counter";
+import Counter from "../columnsHeaderCounter/ColumnsHeaderCounter";
 
 interface Props {
   thumbPosition: number;
@@ -14,15 +14,15 @@ const MonthPanelColumnsHeader = (props: Props) => {
     <>
       {[
         {
-          headerText: "Złożone:",
+          headerText: "Złożone",
           counter: month?.calcHours?.submittedHours,
         },
         {
-          headerText: "Przyznane:",
+          headerText: "Przyznane",
           counter: month?.calcHours?.acceptedHours,
         },
         {
-          headerText: "Odrzucone:",
+          headerText: "Odrzucone",
           counter: month?.calcHours?.rejectedHours,
         },
       ].map(({ headerText, counter }) => {
@@ -36,8 +36,8 @@ const MonthPanelColumnsHeader = (props: Props) => {
             }`}
             style={{ height: "35px" }}
           >
-            {headerText} {""}
-            {counter ? <Counter counter={counter} /> : <Counter counter={0} />}
+            {headerText}
+            {counter ? <Counter counter={counter} text={headerText} /> : <></>}
           </Col>
         );
       })}

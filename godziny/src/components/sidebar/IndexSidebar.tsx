@@ -8,8 +8,6 @@ import SidebarBody from "./SidebarBody";
 import SidebarHeader from "./SidebarHeader";
 import SidebarMenuButton from "./SidebarMenuButton";
 import SidebarNav from "./SidebarNav";
-import ToastsMonthPanelContainer from "./ToastsMonthPanelContainer";
-import ToastsSettingsContainer from "./ToastsSettingsContainer";
 
 const IndexSidebar = () => {
   useReduxListUsers();

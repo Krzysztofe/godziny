@@ -17,7 +17,7 @@ const AutoLogout = () => {
           }}
         >
           <div className="p-4 bg-white rounded-1 fs-3 fw-medium alertAnimationDown">
-            Wylogowanie nastąpi za:
+            Wylogowanie nastąpi za
             <div
              className="d-flex mx-auto w-fit-content"
             >
