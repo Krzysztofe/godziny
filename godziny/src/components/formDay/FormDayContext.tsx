@@ -12,17 +12,16 @@ import { useEffect } from "react";
 import { getDaySuccess } from "../../redux/storeFeatures/requestSuccessSlice";
 
 const FormDayContext = () => {
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { dataInputsText, dataInputsSelect } = useDataFormDay();
-  const { initialValues, validation, onSubmit, success } = useFormikDay();
+  const { initialValues, validation, onSubmit, success, clearForm } =
+    useFormikDay();
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const allHours = month?.calcHours?.allHours;
 
-   useEffect(() => {
-     dispatch(getDaySuccess(success.isSuccess));
-   }, [success.isSuccess]);
-
-  
+  useEffect(() => {
+    dispatch(getDaySuccess(success.isSuccess));
+  }, [success.isSuccess]);
 
   return (
     <Formik

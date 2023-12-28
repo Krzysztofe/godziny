@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import {
   getListMonths,
   getListMonthsError,
-  getListMonthsIsLoading,
 } from "../../redux/storeFeatures/listMonthsSlice";
 import useDatabaseListMonths from "../../services/useDatabaseListMonths";
 
@@ -13,10 +12,7 @@ const useReduxListMonths = () => {
 
   useEffect(() => {
     dispatch(getListMonths(databaseListMonths));
-    // dispatch(getListMonths(data));
-    // dispatch(getListMonthsError(error));
-
-    // dispatch(getListMonthsIsLoading(isLoading));
+    dispatch(getListMonthsError(error));
   }, [databaseListMonths, dispatch]);
 };
 

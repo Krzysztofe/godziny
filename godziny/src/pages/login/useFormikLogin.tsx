@@ -6,7 +6,6 @@ import { currMonthDigits, currYearDigits } from "../../data/dataCurrentDates";
 import { auth } from "../../data/firebaseConfig";
 import { printAlert } from "../../redux/storeFeatures/alertSlice";
 
-
 type InitialValues = {
   password: string;
 };

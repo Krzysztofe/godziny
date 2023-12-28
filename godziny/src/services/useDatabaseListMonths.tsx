@@ -33,7 +33,7 @@ const useDatabaseListMonths = () => {
             },
 
             nestedError => {
-              setError("Błąd");
+               setError("Błąd. Odśwież stronę");
             }
           );
         });
@@ -50,7 +50,7 @@ const useDatabaseListMonths = () => {
         setDatabaseListMonths(months);
       },
       error => {
-        setError("Błąd");
+        setError("Błąd. Odśwież stronę");
       }
     );
 

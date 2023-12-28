@@ -7,6 +7,8 @@ import { RootState } from "../../redux/store";
 import { useAddDayMutation } from "../../services/apiSliceMonths";
 import { validationSchema } from "./validationFormDay";
 import { ModelUser } from "../../sharedModels/modelUser";
+import { FormikHelpers } from "formik";
+import { useState } from "react";
 
 export type ModelInitialValuesFormikDay = {
   id: string;
@@ -22,19 +24,25 @@ const useFormikDay = () => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const { listUsers } = useSelector((state: RootState) => state.listUsers);
   const { yearFromURL, monthFromURL } = useURLValues();
+  const [clearForm,setClearForm] = useState(false)
+
+
 
   const initialValues = {
     id: "",
     date: dateInNext_14_Days,
     hours: "",
-    userName: "Imię",
+    userName: "",
     place: "",
     userColor: "",
   };
 
   const validation = validationSchema as yup.ObjectSchema<typeof initialValues>;
 
-  const onSubmit = async (values: ModelInitialValuesFormikDay) => {
+  const onSubmit = async (
+    values: ModelInitialValuesFormikDay,
+    { resetForm }: FormikHelpers<ModelInitialValuesFormikDay>
+  ) => {
     if (
       month &&
       (month?.calcHours?.currentHours - +values.hours < 0 ||
@@ -79,9 +87,11 @@ const useFormikDay = () => {
           ],
         },
       }));
+      
+ 
   };
 
-  return { initialValues, validation, onSubmit, success };
+  return { initialValues, validation, onSubmit, success, clearForm };
 };
 
 export default useFormikDay;

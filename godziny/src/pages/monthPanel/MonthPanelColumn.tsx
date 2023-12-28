@@ -1,5 +1,4 @@
 import { Droppable } from "react-beautiful-dnd";
-import Col from "react-bootstrap/Col";
 import MonthPanelDay from "./monthPanelDay/MonthPanelDay";
 import { v4 as UUID } from "uuid";
 import { ModelColumn } from "../../sharedModels/modelColumn";
@@ -12,7 +11,7 @@ interface Props {
 
 const MonthPanelColumn = (props: Props) => {
   return (
-    <Col>
+    <div style={{ width: "33%" }}>
       <Droppable droppableId={props.column.id}>
         {(provided, snapshot) => {
           return (
@@ -44,7 +43,7 @@ const MonthPanelColumn = (props: Props) => {
           );
         }}
       </Droppable>
-    </Col>
+    </div>
   );
 };
 

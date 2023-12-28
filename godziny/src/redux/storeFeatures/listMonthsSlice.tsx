@@ -4,14 +4,12 @@ import { SerializedError } from "@reduxjs/toolkit";
 
 type ModelInitialState = {
   listMonths: string[] | undefined | null;
-  listMonthsError: FetchBaseQueryError | SerializedError | undefined;
-  listMonthsIsLoading: boolean;
+  listMonthsError: string | null;
 };
 
 const initialState: ModelInitialState = {
   listMonths: null,
-  listMonthsError: undefined,
-  listMonthsIsLoading: false,
+  listMonthsError: null,
 };
 
 export const listMonthsSlice = createSlice({
@@ -24,19 +22,11 @@ export const listMonthsSlice = createSlice({
     ) => {
       state.listMonths = action.payload;
     },
-    getListMonthsError: (
-      state,
-      action: PayloadAction<FetchBaseQueryError | SerializedError | undefined>
-    ) => {
+    getListMonthsError: (state, action: PayloadAction<string | null>) => {
       state.listMonthsError = action.payload;
-    },
-
-    getListMonthsIsLoading: (state, action: PayloadAction<boolean>) => {
-      state.listMonthsIsLoading = action.payload;
     },
   },
 });
 
-export const { getListMonths, getListMonthsError, getListMonthsIsLoading } =
-  listMonthsSlice.actions;
+export const { getListMonths, getListMonthsError } = listMonthsSlice.actions;
 export default listMonthsSlice.reducer;

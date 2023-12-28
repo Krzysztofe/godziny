@@ -67,7 +67,7 @@ const MonthPanelColumns = () => {
     setExecuteUpdateMonth(prev => !prev);
   };
 
-  const rowStyles = "d-flex column-gap-1";
+  const rowStyles = "d-flex justify-content-between";
 
   return (
     <div
