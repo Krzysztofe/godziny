@@ -53,7 +53,7 @@ Live recording of the application presentation during the conclusion of the comp
 * Forms / Validations
 * RWD
 
-* React hooks: <br/> useState, useEffect, <br/> useDispatch, useSelector, <br/> useNavigate, useParams, useLocation, <br/> useAuthState, useFormikContext, custom hooks
+* React hooks: <br/> useState, useEffect, useRef <br/> useDispatch, useSelector, <br/> useNavigate, useParams, useLocation, <br/> useAuthState, useFormikContext, custom hooks
 * Libraries: <br/>
 react-router, react-router-dom, react-router-hash-link, <br/>
 react-firebase-hooks, react-beautiful-dnd<br/>
