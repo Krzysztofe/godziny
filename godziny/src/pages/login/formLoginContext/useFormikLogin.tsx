@@ -2,9 +2,12 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { currMonthDigits, currYearDigits } from "../../data/dataCurrentDates";
-import { auth } from "../../data/firebaseConfig";
-import { printAlert } from "../../redux/storeFeatures/alertSlice";
+import {
+  currMonthDigits,
+  currYearDigits,
+} from "../../../data/dataCurrentDates";
+import { auth } from "../../../data/firebaseConfig";
+import { printAlert } from "../../../redux/storeFeatures/alertSlice";
 
 type InitialValues = {
   password: string;

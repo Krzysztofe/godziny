@@ -53,20 +53,20 @@ const InputsSelect = (props: Props) => {
                 }}
               >
                 <option
-                  selected
+                  value={firstOption}
                   className={` ${
                     firstOption === "Brak danych"
                       ? "text-warning"
                       : "text-placeholder"
                   }`}
                 >
-                  {firstOption} 
+                  {firstOption}
                 </option>
 
-                {options?.map((option: string | number, idx) => {
+                {options?.map((option: string | number) => {
                   return (
                     <option key={option} value={option}>
-                    { option}
+                      {option}
                     </option>
                   );
                 })}

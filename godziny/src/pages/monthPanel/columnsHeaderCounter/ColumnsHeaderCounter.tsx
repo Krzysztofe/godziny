@@ -13,6 +13,18 @@ const ColumnsHeaderCounter = (props: Props) => {
   const [counter, setCounter] = useState<number[]>([props.counter]);
 
   const didMountRef = useRef(true);
+  const counterRef = useRef<number[]>();
+
+  useEffect(() => {
+    counterRef.current = counter;
+    if (
+      counterRef.current &&
+      counterRef.current.length > 0 &&
+      counterRef.current[counterRef.current.length - 1] === 0
+    ) {
+      didMountRef.current = true;
+    }
+  }, [counter]);
 
   useEffect(() => {
     setCounter([props.counter]);

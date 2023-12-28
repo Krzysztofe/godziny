@@ -4,9 +4,10 @@ import { RootState } from "../redux/store";
 const HoursSummary = () => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
 
+
   return (
-    <div className="d-flex gap-2 mx-auto fw-medium pb-2 w-fit-content">
-      <div>Wszystkie {month?.calcHours?.allHours} - </div>
+    <div className="d-flex mx-auto fw-medium pb-2 w-fit-content">
+      <div>Wszystkie {month?.calcHours?.allHours}&nbsp;-&nbsp;</div>
 
       <div
         className={`${

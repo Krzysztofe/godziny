@@ -14,15 +14,15 @@ const MonthPanelColumnsHeader = (props: Props) => {
     <>
       {[
         {
-          headerText: "Złożone",
+          headerText: "Złożone:",
           counter: month?.calcHours?.submittedHours,
         },
         {
-          headerText: "Przyznane",
+          headerText: "Przyznane:",
           counter: month?.calcHours?.acceptedHours,
         },
         {
-          headerText: "Odrzucone",
+          headerText: "Odrzucone:",
           counter: month?.calcHours?.rejectedHours,
         },
       ].map(({ headerText, counter }) => {
@@ -37,7 +37,7 @@ const MonthPanelColumnsHeader = (props: Props) => {
             style={{ height: "35px", width: "33%" }}
           >
             {headerText}
-            {counter ? <Counter counter={counter} text={headerText} /> : <></>}
+            {counter ? <Counter counter={counter} text={headerText} /> : <Counter counter={0} text={headerText} />}
           </div>
         );
       })}

@@ -24,9 +24,6 @@ const useFormikDay = () => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const { listUsers } = useSelector((state: RootState) => state.listUsers);
   const { yearFromURL, monthFromURL } = useURLValues();
-  const [clearForm,setClearForm] = useState(false)
-
-
 
   const initialValues = {
     id: "",
@@ -87,11 +84,9 @@ const useFormikDay = () => {
           ],
         },
       }));
-      
- 
   };
 
-  return { initialValues, validation, onSubmit, success, clearForm };
+  return { initialValues, validation, onSubmit, success };
 };
 
 export default useFormikDay;

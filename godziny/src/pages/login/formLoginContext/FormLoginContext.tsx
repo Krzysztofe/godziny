@@ -1,8 +1,8 @@
 import { Form, Formik } from "formik";
 import { Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import InputsText from "../../components/inputs/InputsText";
-import useWindowWidth from "../../hooks/useWindowWidth";
+import InputsText from "../../../components/inputs/InputsText";
+import useWindowWidth from "../../../hooks/useWindowWidth";
 import "./_login.scss";
 import useFormikLogin from "./useFormikLogin";
 
