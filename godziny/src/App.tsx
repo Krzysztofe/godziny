@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import LoadingPage from "./pages/loadingPage/LoadingPage";
 import "./scss/App.scss";
 import { auth } from "./data/firebaseConfig";
@@ -15,7 +15,7 @@ const IndexSettings = lazy(
 );
 
 function App() {
-  const [isLoged, setLoged] = useState<any>("");
+  const [isLoged, setLoged] = useState<string | undefined>("");
   const { pathname } = useLocation();
 
   useEffect(() => {

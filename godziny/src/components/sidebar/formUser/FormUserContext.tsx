@@ -1,11 +1,11 @@
 import { Form, Formik } from "formik";
 import Button from "react-bootstrap/Button";
-import InputsText from "../inputs/InputsText";
-import useHTTPState from "../../hooks/useHTTPState";
+import InputsText from "../../inputs/InputsText";
+import useHTTPState from "../../../hooks/useHTTPState";
 import useFormikUser from "./useFormikUser";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { getUserSuccess } from "../../redux/storeFeatures/requestSuccessSlice";
+import { getUserSuccess } from "../../../redux/storeFeatures/requestSuccessSlice";
 import { useEffect } from "react";
 
 const FormUserContext = () => {
@@ -38,8 +38,6 @@ const FormUserContext = () => {
       isErrorPrint: true,
     },
   ];
-
-
 
   return (
     <Formik

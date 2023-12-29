@@ -1,7 +1,5 @@
-import {
-  useAddAllHoursMutation
-} from "../../services/apiSliceMonths";
-import { ModelCalcHours } from "../../sharedModels/modelCalcHours";
+import { useAddAllHoursMutation } from "../../../../services/apiSliceMonths";
+import { ModelCalcHours } from "../../../../sharedModels/modelCalcHours";
 
 type ModelFormValues = {
   allHours: number;

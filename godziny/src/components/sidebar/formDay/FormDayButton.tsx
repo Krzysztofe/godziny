@@ -1,10 +1,10 @@
 import { useFormikContext } from "formik";
 import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
-import useHTTPState from "../../hooks/useHTTPState";
-import { RootState } from "../../redux/store";
-import { ModelDay } from "../../sharedModels/modelDay";
-import { ModelSuccess } from "../../sharedModels/modelSucces";
+import useHTTPState from "../../../hooks/useHTTPState";
+import { RootState } from "../../../redux/store";
+import { ModelDay } from "../../../sharedModels/modelDay";
+import { ModelSuccess } from "../../../sharedModels/modelSucces";
 
 type Props = {
   success: ModelSuccess;

@@ -1,6 +1,6 @@
-import { ModelColumn } from "../../sharedModels/modelColumn";
-import { ModelCalcHours } from "../../sharedModels/modelCalcHours";
-import { ModelMonth } from "../../sharedModels/modelMonth";
+import { ModelColumn } from "../../../sharedModels/modelColumn";
+import { ModelCalcHours } from "../../../sharedModels/modelCalcHours";
+import { ModelMonth } from "../../../sharedModels/modelMonth";
 
 const columns: ModelColumn[] = [
   { id: "submitted", days: [] },
@@ -8,7 +8,7 @@ const columns: ModelColumn[] = [
   { id: "rejected", days: [] },
 ];
 
- const calcHours: ModelCalcHours = {
+const calcHours: ModelCalcHours = {
   allHours: 0,
   currentHours: 0,
   submittedHours: 0,

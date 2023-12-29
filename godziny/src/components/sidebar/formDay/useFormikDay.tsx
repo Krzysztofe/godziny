@@ -1,14 +1,15 @@
 import { useSelector } from "react-redux";
 import { v4 as UUID } from "uuid";
 import * as yup from "yup";
-import { dateInNext_14_Days } from "../../data/dataCurrentDates";
-import useURLValues from "../../hooks/useURLValues";
-import { RootState } from "../../redux/store";
-import { useAddDayMutation } from "../../services/apiSliceMonths";
+import { dateInNext_14_Days } from "../../../data/dataCurrentDates";
+import useURLValues from "../../../hooks/useURLValues";
+import { RootState } from "../../../redux/store";
+import { useAddDayMutation } from "../../../services/apiSliceMonths";
 import { validationSchema } from "./validationFormDay";
-import { ModelUser } from "../../sharedModels/modelUser";
+import { ModelUser } from "../../../sharedModels/modelUser";
 import { FormikHelpers } from "formik";
 import { useState } from "react";
+import { validationFormDayDate } from "./utilsFormDay";
 
 export type ModelInitialValuesFormikDay = {
   id: string;
@@ -24,6 +25,8 @@ const useFormikDay = () => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const { listUsers } = useSelector((state: RootState) => state.listUsers);
   const { yearFromURL, monthFromURL } = useURLValues();
+ 
+  const [dateError, setDateError] = useState("");
 
   const initialValues = {
     id: "",
@@ -40,6 +43,14 @@ const useFormikDay = () => {
     values: ModelInitialValuesFormikDay,
     { resetForm }: FormikHelpers<ModelInitialValuesFormikDay>
   ) => {
+    const error =
+      month && validationFormDayDate(month, values.userName, values.date);
+
+    if (month && error) {
+      setDateError(error);
+      return;
+    }
+
     if (
       month &&
       (month?.calcHours?.currentHours - +values.hours < 0 ||
@@ -84,9 +95,10 @@ const useFormikDay = () => {
           ],
         },
       }));
+    setDateError("");
   };
 
-  return { initialValues, validation, onSubmit, success };
+  return { initialValues, validation, onSubmit, success, dateError };
 };
 
 export default useFormikDay;

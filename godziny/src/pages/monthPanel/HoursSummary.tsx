@@ -1,9 +1,8 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { RootState } from "../../redux/store";
 
 const HoursSummary = () => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
-
 
   return (
     <div className="d-flex mx-auto fw-medium pb-2 w-fit-content">

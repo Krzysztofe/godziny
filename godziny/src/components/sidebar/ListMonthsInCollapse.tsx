@@ -1,10 +1,10 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import useMonthDates from "../hooks/useMonthDates";
-import useURLValues from "../hooks/useURLValues";
-import { RootState } from "../redux/store";
-
+import useMonthDates from "../../hooks/useMonthDates";
+import useURLValues from "../../hooks/useURLValues";
+import { RootState } from "../../redux/store";
+import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 
 const ListMonthsInCollapse = () => {
   const { databaseMonthsDatesToString } = useMonthDates();
@@ -26,7 +26,7 @@ const ListMonthsInCollapse = () => {
       className="scrolHidden fs-7 fw-medium text-capitalize"
       style={{ height: "5rem" }}
     >
-      {!listMonths && (
+      {listMonths?.length === 0 && (
         <ListGroup.Item className="border-0 p-0 text-warning">
           Brak danych
         </ListGroup.Item>

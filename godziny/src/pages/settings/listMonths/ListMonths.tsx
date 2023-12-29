@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useSelector } from "react-redux";
-import FormHoursContext from "../../../components/formHours/FormHoursContext";
+import FormHoursContext from "./formHours/FormHoursContext";
 import useMonthDates from "../../../hooks/useMonthDates";
 import { RootState } from "../../../redux/store";
 import { dataStylesListGroupItem } from "../dataStylesSettingsLists";
@@ -33,23 +33,19 @@ const ListMonths = () => {
               key={monthDateToString}
               className={dataStylesListGroupItem}
             >
-             
-                <CollapseFormHours
-                  monthDateToString={monthDateToString}
-                  monthDate={monthDate}
-                  isOpen={idx === openCollapseIndex}
-                  setOpenCollapseIndex={setOpenCollapseIndex}
-                  isOpenCollapse={isOpenCollapse}
-                  onToggle={() =>
-                    listMonths && handleTogle(listMonths[idx], idx)
-                  }
-                  idx={idx}
-                  setMonthDate={setMonthDate}
-                >
-                  <FormHoursContext monthDate={listMonths && listMonths[idx]} />
-                </CollapseFormHours>
-            
-             </ListGroup.Item>
+              <CollapseFormHours
+                monthDateToString={monthDateToString}
+                monthDate={monthDate}
+                isOpen={idx === openCollapseIndex}
+                setOpenCollapseIndex={setOpenCollapseIndex}
+                isOpenCollapse={isOpenCollapse}
+                onToggle={() => listMonths && handleTogle(listMonths[idx], idx)}
+                idx={idx}
+                setMonthDate={setMonthDate}
+              >
+                <FormHoursContext monthDate={listMonths && listMonths[idx]} />
+              </CollapseFormHours>
+            </ListGroup.Item>
           );
         }
       )}

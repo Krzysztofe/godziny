@@ -1,10 +1,10 @@
 import {
   dateInNext_14_Days,
   dateInNext_60_Days,
-} from "../../data/dataCurrentDates";
+} from "../../../data/dataCurrentDates";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-import { ModelUser } from "../../sharedModels/modelUser";
+import { RootState } from "../../../redux/store";
+import { ModelUser } from "../../../sharedModels/modelUser";
 
 const useDataFormDay = () => {
   const { listUsers: dataUsers } = useSelector(
@@ -41,7 +41,7 @@ const useDataFormDay = () => {
   const dataInputsText = [
     {
       value: "date",
-      label: "Podaj dzień",
+      label: "Podaj datę",
       type: "date",
       isErrorPrint: true,
       min: dateInNext_14_Days,

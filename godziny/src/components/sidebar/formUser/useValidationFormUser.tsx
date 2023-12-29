@@ -1,7 +1,7 @@
-import { useUsersQuery } from "../../services/apiSliceUsers";
+import { useUsersQuery } from "../../../services/apiSliceUsers";
 import * as yup from "yup";
 
-import { ModelUser } from "../../sharedModels/modelUser";
+import { ModelUser } from "../../../sharedModels/modelUser";
 
 const useValidationFormUser = () => {
   const { data: dataUsers } = useUsersQuery();

@@ -27,8 +27,8 @@ export const handleDragDrop = (
   )
     return;
 
-  const hoursInDay = columns[2]?.days[source.index]?.hours;
-  if (source.droppableId === "rejected" && currentHours < hoursInDay) return;
+
+  if (source.droppableId === "rejected") return;
 
   if (source.droppableId !== destination.droppableId) {
     const sourceColumnIdx = columns?.findIndex((column: ModelColumn) => {

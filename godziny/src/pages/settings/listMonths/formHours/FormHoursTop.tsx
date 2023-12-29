@@ -1,5 +1,5 @@
-import InputsText from "../inputs/InputsText";
-import { ModelCalcHours } from "../../sharedModels/modelCalcHours";
+import InputsText from "../../../../components/inputs/InputsText";
+import { ModelCalcHours } from "../../../../sharedModels/modelCalcHours";
 import { Spinner } from "react-bootstrap";
 
 type Props = {
@@ -12,8 +12,6 @@ const FormHoursTop = (props: Props) => {
     { value: "allHours", type: "number", isErrorPrint: false },
   ];
 
-
-    
   let printAllours;
 
   if (props.isLoading) {

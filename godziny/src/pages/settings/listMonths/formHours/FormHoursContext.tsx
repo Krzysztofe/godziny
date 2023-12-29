@@ -1,12 +1,12 @@
 import { Form, Formik } from "formik";
 import Button from "react-bootstrap/Button";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import useHTTPState from "../../hooks/useHTTPState";
-import InputsRange from "../inputs/inputsRange/InputsRange";
+import useHTTPState from "../../../../hooks/useHTTPState";
+import InputsRange from "../../../../components/inputs/inputsRange/InputsRange";
 import FormHoursError from "./FormHoursError";
 import FormHoursTop from "./FormHoursTop";
 import useFormikHours from "./useFormikHours";
-import { useAllHoursQuery } from "../../services/apiSliceMonths";
+import { useAllHoursQuery } from "../../../../services/apiSliceMonths";
 
 type Props = {
   monthDate?: string | null;
@@ -27,7 +27,7 @@ const FormHoursContext = (props: Props) => {
     monthValue
   );
 
-  console.log('', isLoading)
+  console.log("", isLoading);
 
   const { btnContent } = useHTTPState(
     success,
@@ -40,7 +40,7 @@ const FormHoursContext = (props: Props) => {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form className="py-2 pe-2">
-        <FormHoursTop calcHours={calcHours} isLoading = {isLoading} />
+        <FormHoursTop calcHours={calcHours} isLoading={isLoading} />
 
         <InputsRange inputsValues={["allHours"]} />
 

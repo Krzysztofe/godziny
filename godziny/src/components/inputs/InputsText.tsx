@@ -2,7 +2,6 @@ import { useFormikContext } from "formik";
 import Form from "react-bootstrap/Form";
 import FormErrors from "./FormErrors";
 import { ModelDay } from "../../sharedModels/modelDay";
-import { useLocation } from "react-router-dom";
 
 type Props = {
   inputsData: {
@@ -19,7 +18,6 @@ type Props = {
 const InputsText = (props: Props) => {
   const { values, handleBlur, setFieldValue, errors, touched } =
     useFormikContext<ModelDay>();
-
 
   return (
     <>
