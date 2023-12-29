@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/godziny/static/css/main.8350ace7.css",
-    "main.js": "/godziny/static/js/main.fab72e11.js",
+    "main.js": "/godziny/static/js/main.c7eb5122.js",
     "static/css/745.2f126f97.chunk.css": "/godziny/static/css/745.2f126f97.chunk.css",
     "static/js/745.254ac90d.chunk.js": "/godziny/static/js/745.254ac90d.chunk.js",
     "static/js/442.8c719040.chunk.js": "/godziny/static/js/442.8c719040.chunk.js",
-    "static/css/256.6e9256ae.chunk.css": "/godziny/static/css/256.6e9256ae.chunk.css",
-    "static/js/256.d478f398.chunk.js": "/godziny/static/js/256.d478f398.chunk.js",
+    "static/css/256.b8d05e84.chunk.css": "/godziny/static/css/256.b8d05e84.chunk.css",
+    "static/js/256.a14b93ef.chunk.js": "/godziny/static/js/256.a14b93ef.chunk.js",
     "static/css/673.8a4d62b6.chunk.css": "/godziny/static/css/673.8a4d62b6.chunk.css",
     "static/js/673.fcf974ea.chunk.js": "/godziny/static/js/673.fcf974ea.chunk.js",
     "static/css/804.f9683cda.chunk.css": "/godziny/static/css/804.f9683cda.chunk.css",
@@ -18,12 +18,12 @@
     "static/js/70.c7d2cc19.chunk.js": "/godziny/static/js/70.c7d2cc19.chunk.js",
     "index.html": "/godziny/index.html",
     "main.8350ace7.css.map": "/godziny/static/css/main.8350ace7.css.map",
-    "main.fab72e11.js.map": "/godziny/static/js/main.fab72e11.js.map",
+    "main.c7eb5122.js.map": "/godziny/static/js/main.c7eb5122.js.map",
     "745.2f126f97.chunk.css.map": "/godziny/static/css/745.2f126f97.chunk.css.map",
     "745.254ac90d.chunk.js.map": "/godziny/static/js/745.254ac90d.chunk.js.map",
     "442.8c719040.chunk.js.map": "/godziny/static/js/442.8c719040.chunk.js.map",
-    "256.6e9256ae.chunk.css.map": "/godziny/static/css/256.6e9256ae.chunk.css.map",
-    "256.d478f398.chunk.js.map": "/godziny/static/js/256.d478f398.chunk.js.map",
+    "256.b8d05e84.chunk.css.map": "/godziny/static/css/256.b8d05e84.chunk.css.map",
+    "256.a14b93ef.chunk.js.map": "/godziny/static/js/256.a14b93ef.chunk.js.map",
     "673.8a4d62b6.chunk.css.map": "/godziny/static/css/673.8a4d62b6.chunk.css.map",
     "673.fcf974ea.chunk.js.map": "/godziny/static/js/673.fcf974ea.chunk.js.map",
     "804.f9683cda.chunk.css.map": "/godziny/static/css/804.f9683cda.chunk.css.map",
@@ -36,6 +36,6 @@
   },
   "entrypoints": [
     "static/css/main.8350ace7.css",
-    "static/js/main.fab72e11.js"
+    "static/js/main.c7eb5122.js"
   ]
 }
