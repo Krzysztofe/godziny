@@ -7,9 +7,10 @@
     content: "";
     position: absolute;
     width: 106%;
-    height: 102%;
-    left:-5%;
+    height: 100%;
+    left: -5%;
     background-color: rgba(255, 255, 255, 0.9);
+    z-index: 1;
   }
   &::after {
     content: "Zapisz godziny \A w miesiącu";
@@ -21,5 +22,6 @@
     top: 15%;
     width: 100%;
     white-space: pre-line;
+    z-index: 1;
   }
 }

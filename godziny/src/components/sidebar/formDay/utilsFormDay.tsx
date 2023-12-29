@@ -6,7 +6,7 @@ const findDayInColumn = (
   findName: string,
   findDate: string
 ) => {
-  return monthColumn.days.find(({ userName, date }) => {
+  return monthColumn?.days?.find(({ userName, date }) => {
     return userName === findName && date === findDate;
   });
 };
