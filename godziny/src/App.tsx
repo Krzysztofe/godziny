@@ -22,18 +22,17 @@ function App() {
     setLoged(auth.currentUser?.providerId);
   }, [pathname]);
 
-  // O10NKxvgyJVMbWDu8uFfbKmdyFv1;
   return (
     <Suspense fallback={<LoadingPage />}>
-      {/* {isLoged && <IndexSidebar />} */}
+      {isLoged && <IndexSidebar />}
       <IndexSidebar />
       <Routes>
-        {/* <Route path="/godziny" element={<IndexLogin />} /> */}
-        {/* <Route element={<PrivateRoutes />}> */}
+        <Route path="/godziny" element={<IndexLogin />} />
+        <Route element={<PrivateRoutes />}>
         <Route path="/godziny/:monthURL" element={<IndexMonthPanel />} />
         <Route path="/godziny/ustawienia" element={<IndexSettings />} />
         <Route path="/*" element={<IndexLogin />} />
-        {/* </Route> */}
+        </Route>
       </Routes>
     </Suspense>
   );
