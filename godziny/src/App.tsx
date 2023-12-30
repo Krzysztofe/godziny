@@ -16,22 +16,24 @@ const IndexSettings = lazy(
 
 function App() {
   const [isLoged, setLoged] = useState<string | undefined>("");
-  const { pathname } = useLocation();
+  const { pathname } = useLocation(); 
 
   useEffect(() => {
     setLoged(auth.currentUser?.providerId);
   }, [pathname]);
 
+  // O10NKxvgyJVMbWDu8uFfbKmdyFv1;
   return (
     <Suspense fallback={<LoadingPage />}>
-      {isLoged && <IndexSidebar />}
+      {/* {isLoged && <IndexSidebar />} */}
+      <IndexSidebar />
       <Routes>
-        <Route path="/godziny" element={<IndexLogin />} />
-        <Route element={<PrivateRoutes />}>
-          <Route path="/godziny/:monthURL" element={<IndexMonthPanel />} />
-          <Route path="/godziny/ustawienia" element={<IndexSettings />} />
-          <Route path="/*" element={<IndexLogin />} />
-        </Route>
+        {/* <Route path="/godziny" element={<IndexLogin />} /> */}
+        {/* <Route element={<PrivateRoutes />}> */}
+        <Route path="/godziny/:monthURL" element={<IndexMonthPanel />} />
+        <Route path="/godziny/ustawienia" element={<IndexSettings />} />
+        <Route path="/*" element={<IndexLogin />} />
+        {/* </Route> */}
       </Routes>
     </Suspense>
   );

@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { useLocation } from "react-router-dom";
-import useReduxListMonths from "../../hooks/updateReduxDatabase/useReduxListMonths";
-import useReduxListUsers from "../../hooks/updateReduxDatabase/useReduxListUsers";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import SidebarBody from "./SidebarBody";
 import SidebarHeader from "./SidebarHeader";
@@ -10,8 +8,8 @@ import SidebarMenuButton from "./SidebarMenuButton";
 import SidebarNav from "./SidebarNav";
 
 const IndexSidebar = () => {
-  useReduxListUsers();
-  useReduxListMonths();
+
+
   const { pathname } = useLocation();
   const [isShow, setShow] = useState(false);
   const { windowWidth } = useWindowWidth();
@@ -46,10 +44,9 @@ const IndexSidebar = () => {
             }}
           >
             <div className="p-1 d-flex flex-column bg-opacity-white h-100">
-            
               <SidebarHeader />
               <SidebarBody />
-             
+
               <SidebarNav handleClose={handleClose} />
             </div>
           </Offcanvas>

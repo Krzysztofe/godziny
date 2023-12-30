@@ -33,7 +33,7 @@ const useDatabaseListMonths = () => {
             },
 
             nestedError => {
-               setError("Błąd. Odśwież stronę");
+              setError("Błąd. Odśwież stronę");
             }
           );
         });
@@ -58,7 +58,6 @@ const useDatabaseListMonths = () => {
       unsubscribe();
     };
   }, []);
-
 
   return {
     databaseListMonths,

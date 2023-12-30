@@ -31,7 +31,7 @@ const FormDayContext = () => {
     >
       <Form className={`${allHours === 0 ? "formContainerBlur" : ""} mt-2`}>
         <InputsSelect inputsData={dataInputsSelect} />
-        <div className="position-relative" style={{ zIndex: "0" }}>
+        <div className="position-relative">
           <InputsText inputsData={dataInputsText} />
           <FormDayError dateError={dateError} />
         </div>

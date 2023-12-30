@@ -8,6 +8,7 @@ import {
 import { useMonthDataQuery } from "../../services/apiSliceMonths";
 import useURLValues from "../useURLValues";
 import { auth } from "../../data/firebaseConfig";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const useReduxMonthData = () => {
   const dispatch = useDispatch();
@@ -19,19 +20,13 @@ const useReduxMonthData = () => {
 
   const { data, error, isLoading } = useMonthDataQuery({
     year,
-    month
+    month,
   });
 
-
-
   useEffect(() => {
-   
     dispatch(getMonth(data));
-
     dispatch(getMonthError(error));
-
     dispatch(getMonthIsLoading(isLoading));
-    
   }, [data, error, isLoading, dispatch]);
 };
 
