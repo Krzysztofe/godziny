@@ -5,7 +5,6 @@ import { auth } from "../data/firebaseConfig";
 const PrivateRoutes = () => {
   const [user] = useAuthState(auth);
 
-
   return user ? <Outlet /> : <Navigate to="/godziny" />;
 };
 

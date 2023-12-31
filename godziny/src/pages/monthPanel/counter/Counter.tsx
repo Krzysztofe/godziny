@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import "./_columnsHeaderCounter.scss";
+import "./_counter.scss";
 
 type Props = {
   counter: any;
   text: string;
 };
 
-const ColumnsHeaderCounter = (props: Props) => {
+const Counter = (props: Props) => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const [counter, setCounter] = useState<number[]>([props.counter]);
 
@@ -40,7 +40,7 @@ const ColumnsHeaderCounter = (props: Props) => {
   }, [props.counter]);
 
   return (
-    <div className="columnsHeaderCounter">
+    <div className="counter">
       <div
         style={{
           transform: `translateY(-${(counter.length - 1) * 20}px)`,
@@ -65,4 +65,4 @@ const ColumnsHeaderCounter = (props: Props) => {
   );
 };
 
-export default ColumnsHeaderCounter;
+export default Counter;

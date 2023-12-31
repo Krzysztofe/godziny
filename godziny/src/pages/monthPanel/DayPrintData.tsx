@@ -7,7 +7,7 @@ interface Props {
   day: ModelDay;
 }
 
-const MonthPanelDayPrintData = (props: Props) => {
+const DayPrintData = (props: Props) => {
   let dateToPrint;
 
   if (!props?.day?.date) {
@@ -41,4 +41,4 @@ const MonthPanelDayPrintData = (props: Props) => {
   }
 };
 
-export default MonthPanelDayPrintData;
+export default DayPrintData;

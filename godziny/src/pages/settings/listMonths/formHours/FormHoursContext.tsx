@@ -7,14 +7,17 @@ import FormHoursError from "./FormHoursError";
 import FormHoursTop from "./FormHoursTop";
 import useFormikHours from "./useFormikHours";
 import { useAllHoursQuery } from "../../../../services/apiSliceMonths";
+import useMonthDate from "../useMonthDate";
 
 type Props = {
-  monthDate?: string | null;
+  idx: number;
 };
 
 const FormHoursContext = (props: Props) => {
-  const yearValue = props.monthDate?.slice(0, 4) ?? "";
-  const monthValue = props.monthDate?.slice(5) ?? "";
+  const { monthDate } = useMonthDate(props.idx);
+
+  const yearValue = monthDate?.slice(0, 4) ?? "";
+  const monthValue = monthDate?.slice(5) ?? "";
 
   const { data: calcHours, isLoading } = useAllHoursQuery({
     year: yearValue ?? "",
@@ -26,8 +29,6 @@ const FormHoursContext = (props: Props) => {
     yearValue,
     monthValue
   );
-
-  console.log("", isLoading);
 
   const { btnContent } = useHTTPState(
     success,

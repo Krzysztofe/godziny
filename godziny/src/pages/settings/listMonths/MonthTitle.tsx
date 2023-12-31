@@ -3,15 +3,19 @@ import { Link } from "react-router-dom";
 import { RootState } from "../../../redux/store";
 import { useSelector } from "react-redux";
 import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
+import useMonthDates from "../../../hooks/useMonthDates";
 
 type Props = {
-  title?: string | null;
   idx: number;
 };
 const MonthTitle = (props: Props) => {
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
+    const { databaseMonthsDatesToString } = useMonthDates();
+    
 
-  const title = props?.title && capitalizeFirstLetter(props?.title)
+  const title =
+    databaseMonthsDatesToString &&
+    capitalizeFirstLetter(databaseMonthsDatesToString[props.idx]);
   
   return (
     <div style={{ width: "45%" }}>

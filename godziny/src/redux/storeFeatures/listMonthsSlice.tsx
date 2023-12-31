@@ -5,11 +5,13 @@ import { SerializedError } from "@reduxjs/toolkit";
 type ModelInitialState = {
   listMonths: string[] | undefined | null;
   listMonthsError: string | null;
+  UID: string;
 };
 
 const initialState: ModelInitialState = {
   listMonths: null,
   listMonthsError: null,
+  UID:""
 };
 
 export const listMonthsSlice = createSlice({
@@ -25,8 +27,11 @@ export const listMonthsSlice = createSlice({
     getListMonthsError: (state, action: PayloadAction<string | null>) => {
       state.listMonthsError = action.payload;
     },
+    getID: (state, action: PayloadAction<any>) => {
+      state.UID = action.payload;
+    },
   },
 });
 
-export const { getListMonths, getListMonthsError } = listMonthsSlice.actions;
+export const { getListMonths, getListMonthsError, getID } = listMonthsSlice.actions;
 export default listMonthsSlice.reducer;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import HoursSummary from "../HoursSummary";
-import MonthPanelColumns from "../monthPanelColmns/MonthPanelColumns";
+import Columns from "../columns/Columns";
 
 const MonthPanelContent = () => {
   const { pathname } = useLocation();
@@ -29,7 +29,7 @@ const MonthPanelContent = () => {
           }}
         >
           <HoursSummary />
-          <MonthPanelColumns />
+          <Columns />
         </div>
       )}
     </>

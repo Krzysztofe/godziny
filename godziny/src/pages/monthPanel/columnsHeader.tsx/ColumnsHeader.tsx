@@ -1,13 +1,13 @@
 import Col from "react-bootstrap/Col";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import Counter from "../columnsHeaderCounter/ColumnsHeaderCounter";
+import Counter from "../counter/Counter";
 
 interface Props {
   thumbPosition: number;
 }
 
-const MonthPanelColumnsHeader = (props: Props) => {
+const ColumnsHeader = (props: Props) => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
 
   return (
@@ -45,4 +45,4 @@ const MonthPanelColumnsHeader = (props: Props) => {
   );
 };
 
-export default MonthPanelColumnsHeader;
+export default ColumnsHeader;

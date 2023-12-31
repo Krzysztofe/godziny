@@ -5,18 +5,18 @@ import { ModelColumn } from "../../../sharedModels/modelColumn";
 import useURLValues from "../../../hooks/useURLValues";
 import { RootState } from "../../../redux/store";
 import { useUpdateMonthMutation } from "../../../services/apiSliceMonths";
-import MonthPanelColumn from "../MonthPanelColumn";
-import MonthPanelColumnsHeader from "../monthPanelColumnsHeader.tsx/MonthPanelColumnsHeader";
+import Column from "../Column";
+import ColumnsHeader from "../columnsHeader.tsx/ColumnsHeader";
 import useScrollThumbPosition from "./useScrollThumbPosition";
-import { addDaysToColumns, handleDragDrop } from "./utilsMonthPanelColumns";
+import { handleDragDrop } from "./utilsHandleDragDrop";
 import useWindowWidth from "../../../hooks/useWindowWidth";
 import getHoursFromColumns from "../../../utils/getHoursFromColumns";
+import { addDaysToColumns } from "./utilsAddDaysToColumns";
 
-const MonthPanelColumns = () => {
+const Columns = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
   const [updateMonth] = useUpdateMonthMutation();
   const { month } = useSelector((state: RootState) => state.monthPanel);
-  const columnsWithDays = month && addDaysToColumns(month?.columns);
   const [columns, setColumns] = useState<ModelColumn[]>([]);
   const [executeUpdateMonth, setExecuteUpdateMonth] = useState(false);
   const { submittedHours, acceptedHours, rejectedHours } =
@@ -24,7 +24,7 @@ const MonthPanelColumns = () => {
   const { scrollableRef, thumbPosition, handleScroll } =
     useScrollThumbPosition();
   const { windowWidth } = useWindowWidth();
-
+  const columnsWithDays = month && addDaysToColumns(month?.columns);
   useEffect(() => {
     if (columnsWithDays) {
       setColumns(columnsWithDays);
@@ -57,13 +57,7 @@ const MonthPanelColumns = () => {
   }, [executeUpdateMonth]);
 
   const handleDragEnd = (results: DropResult) => {
-    month &&
-      handleDragDrop(
-        results,
-        month?.calcHours.currentHours,
-        columns,
-        setColumns
-      );
+    month && handleDragDrop(results, columns, setColumns);
     setExecuteUpdateMonth(prev => !prev);
   };
 
@@ -82,7 +76,7 @@ const MonthPanelColumns = () => {
       }}
     >
       <div className={`${rowStyles} sticky-top`}>
-        <MonthPanelColumnsHeader thumbPosition={thumbPosition} />
+        <ColumnsHeader thumbPosition={thumbPosition} />
       </div>
 
       <div
@@ -91,13 +85,7 @@ const MonthPanelColumns = () => {
       >
         <DragDropContext onDragEnd={handleDragEnd}>
           {columns?.map((column: ModelColumn, idx: number) => {
-            return (
-              <MonthPanelColumn
-                key={column.id}
-                column={column}
-                columnIdx={idx}
-              />
-            );
+            return <Column key={column.id} column={column} columnIdx={idx} />;
           })}
         </DragDropContext>
       </div>
@@ -105,4 +93,4 @@ const MonthPanelColumns = () => {
   );
 };
 
-export default MonthPanelColumns;
+export default Columns;

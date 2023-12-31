@@ -6,11 +6,10 @@ import Alert from "../../../components/alert/Alert";
 import useHTTPState from "../../../hooks/useHTTPState";
 import { RootState } from "../../../redux/store";
 import { useDeleteMonthMutation } from "../../../services/apiSliceMonths";
+import useMonthDate from "./useMonthDate";
 
 type Props = {
   idx: number;
-  monthDate?: string | null;
-  setMonthDate: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const DeleteButton = (props: Props) => {
@@ -19,18 +18,18 @@ const DeleteButton = (props: Props) => {
     success,
     <RiDeleteBin6Line className="text-danger fs-5 ms-auto" />
   );
+  const { monthDate } = useMonthDate(props.idx);
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
   const [isAlertPrinted, setIsAlertPrinted] = useState(false);
 
-  const handleAlert = (monthDate: string, idx: number) => {
-    props.setMonthDate(monthDate);
+  const handleAlert = () => {
     setIsAlertPrinted(true);
   };
 
   const deleteMonthAsync = async () => {
-    if (props?.monthDate && listMonths?.includes(props.monthDate)) {
-      const year = props.monthDate.slice(0, 4);
-      const month = props.monthDate.slice(-2);
+    if (monthDate && listMonths?.includes(monthDate)) {
+      const year = monthDate.slice(0, 4);
+      const month = monthDate.slice(-2);
       await deleteMonth({ year: year, month: month });
     }
   };
@@ -45,12 +44,10 @@ const DeleteButton = (props: Props) => {
       />
       <Button
         disabled={success.isLoading}
-        onClick={() =>
-          listMonths && handleAlert(listMonths[props.idx], props.idx)
-        }
+        onClick={handleAlert}
         className="ms-auto bg-transparent border-0 p-1"
       >
-        {listMonths && props.monthDate === listMonths[props.idx] ? (
+        {listMonths && monthDate === listMonths[props.idx] ? (
           btnContent
         ) : (
           <RiDeleteBin6Line className="text-danger fs-5 ms-auto" />

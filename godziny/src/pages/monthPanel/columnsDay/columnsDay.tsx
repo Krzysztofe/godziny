@@ -9,8 +9,8 @@ import useURLValues from "../../../hooks/useURLValues";
 import { RootState } from "../../../redux/store";
 import { useDeleteDayMutation } from "../../../services/apiSliceMonths";
 import { ModelDay } from "../../../sharedModels/modelDay";
-import MonthPanelDayPrintData from "../MonthPanelDayPrintData";
-import { calculateUpdatedCalcHours, deleteDayById } from "./utilsMonthPanelDay";
+import DayPrintData from "../DayPrintData";
+import { calculateUpdatedCalcHours, deleteDayById } from "./utilsClumnsDay";
 
 interface Props {
   day: ModelDay;
@@ -18,7 +18,7 @@ interface Props {
   dayIdx: number;
 }
 
-const MonthPanelDay = (props: Props) => {
+const ColumnsDay = (props: Props) => {
   const { yearFromURL, monthFromURL } = useURLValues();
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const [deleteDay, success] = useDeleteDayMutation();
@@ -98,7 +98,7 @@ const MonthPanelDay = (props: Props) => {
                 opacity: snapshot.isDragging ? 0.8 : 1,
               }}
             >
-              <MonthPanelDayPrintData day={props.day} />
+              <DayPrintData day={props.day} />
 
               <Button
                 onClick={() =>
@@ -118,4 +118,4 @@ const MonthPanelDay = (props: Props) => {
   );
 };
 
-export default MonthPanelDay;
+export default ColumnsDay;

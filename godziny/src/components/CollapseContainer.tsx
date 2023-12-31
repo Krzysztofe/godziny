@@ -2,6 +2,7 @@ import { ReactNode, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import CollapseArrow from "./CollapseArrow";
 
 type Props = {
   children: ReactNode;
@@ -26,13 +27,7 @@ const CollapseContainer = (props: Props) => {
         }}
       >
         {props.title}
-        <MdOutlineKeyboardArrowDown
-          className="fs-3"
-          style={{
-            transform: `${isOpen ? "rotate(180deg)" : ""} `,
-            transitionDuration: "320ms",
-          }}
-        />
+        <CollapseArrow isOpen={isOpen} />
       </Button>
       <Collapse in={isOpen}>
         <div className="border border-primary rounded-bottom px-1">

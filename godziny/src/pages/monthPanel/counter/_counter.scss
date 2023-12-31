@@ -1,23 +1,23 @@
-.columnsHeaderCounter {
+.counter {
   height: 20px;
   overflow: hidden;
   margin-bottom: -2px;
 }
 
 @media (min-width: 400px) {
-  .columnsHeaderCounter {
+  .counter {
     margin-bottom: 4px;
   }
 }
 
 @media (min-width: 500px) {
-  .columnsHeaderCounter {
+  .counter {
     margin-bottom: 0px;
   }
 }
 
 @media (min-width: 560px) {
-  .columnsHeaderCounter {
+  .counter {
     margin-bottom: 4px;
   }
 }
