@@ -1,7 +1,6 @@
 import { ReactNode, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import CollapseArrow from "./CollapseArrow";
 
 type Props = {

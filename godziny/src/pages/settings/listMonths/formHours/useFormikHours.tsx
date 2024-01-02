@@ -1,16 +1,19 @@
+import { useSelector } from "react-redux";
 import { useAddAllHoursMutation } from "../../../../services/apiSliceMonths";
 import { ModelCalcHours } from "../../../../sharedModels/modelCalcHours";
+import { RootState } from "../../../../redux/store";
 
 type ModelFormValues = {
   allHours: number;
 };
 
 const useFormikHours = (
-  calcHours: ModelCalcHours | null | undefined,
+ 
   yearValue: string,
   monthValue: string
 ) => {
   const [addAllHours, success] = useAddAllHoursMutation();
+  const {calcHours} = useSelector((state:RootState) => state.calcHours);
 
   const initialValues = { allHours: 0 };
 

@@ -1,22 +1,16 @@
 import { useState } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
-import { useSelector } from "react-redux";
-import FormHoursContext from "./formHours/FormHoursContext";
 import useMonthDates from "../../../hooks/useMonthDates";
-import { RootState } from "../../../redux/store";
 import { dataStylesListGroupItem } from "../dataStylesSettingsLists";
 import CollapseFormHours from "./CollapseFormHours";
+import FormHoursContainer from "./formHours/FormHoursContainer";
 
 const ListMonths = () => {
   const { databaseMonthsDatesToString } = useMonthDates();
- 
+
   const [openCollapseIndex, setOpenCollapseIndex] = useState<number | null>(
     null
   );
-
-  const handleTogle = (idx: number) => {
-    setOpenCollapseIndex(idx);
-  };
 
   return (
     <>
@@ -30,10 +24,9 @@ const ListMonths = () => {
               <CollapseFormHours
                 isOpen={idx === openCollapseIndex}
                 setOpenCollapseIndex={setOpenCollapseIndex}
-                handleTogle={() => handleTogle(idx)}
                 idx={idx}
               >
-                <FormHoursContext idx={idx} />
+                <FormHoursContainer idx={idx} />
               </CollapseFormHours>
             </ListGroup.Item>
           );

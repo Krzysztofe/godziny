@@ -2,7 +2,7 @@ import ListMonthsInCollapse from "./ListMonthsInCollapse";
 import FormDayContext from "./formDay/FormDayContext";
 import FormMonthContext from "./formMonth/FormMonthContext";
 import FormUserContext from "./formUser/FormUserContext";
-import CollapseContainer from "../CollapseContainer";
+import CollapseContainer from "../collapseContainer/CollapseContainer";
 import useMonthURLToString from "../../hooks/useMonthURLToString";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";

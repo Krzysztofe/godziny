@@ -37,7 +37,7 @@ export const monthsApiSlice = createApi({
       query: ({ year, month }) => createUrl(year, month),
       providesTags: ["months"],
     }),
-    allHours: builder.query<ModelCalcHours, { year: string; month: string }>({
+    calcHours: builder.query<ModelCalcHours, { year: string; month: string }>({
       query: ({ year, month }) => createUrl(year, month, "/calcHours"),
       providesTags: ["months"],
     }),
@@ -106,7 +106,7 @@ export const monthsApiSlice = createApi({
 
 export const {
   useMonthDataQuery,
-  useAllHoursQuery,
+  useCalcHoursQuery,
   useAddDayMutation,
   useUpdateMonthMutation,
   useDeleteDayMutation,

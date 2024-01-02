@@ -6,8 +6,11 @@ import InputsRange from "../../../../components/inputs/inputsRange/InputsRange";
 import FormHoursError from "./FormHoursError";
 import FormHoursTop from "./FormHoursTop";
 import useFormikHours from "./useFormikHours";
-import { useAllHoursQuery } from "../../../../services/apiSliceMonths";
+import { useCalcHoursQuery } from "../../../../services/apiSliceMonths";
 import useMonthDate from "../useMonthDate";
+import useReduxCalcHours from "../../../../hooks/updateReduxDatabase/useReduxCalcHours";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../redux/store";
 
 type Props = {
   idx: number;
@@ -18,14 +21,7 @@ const FormHoursContext = (props: Props) => {
 
   const yearValue = monthDate?.slice(0, 4) ?? "";
   const monthValue = monthDate?.slice(5) ?? "";
-
-  const { data: calcHours, isLoading } = useAllHoursQuery({
-    year: yearValue ?? "",
-    month: monthValue ?? "",
-  });
-
   const { initialValues, onSubmit, success } = useFormikHours(
-    calcHours,
     yearValue,
     monthValue
   );
@@ -41,12 +37,12 @@ const FormHoursContext = (props: Props) => {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form className="py-2 pe-2">
-        <FormHoursTop calcHours={calcHours} isLoading={isLoading} />
+        <FormHoursTop />
 
         <InputsRange inputsValues={["allHours"]} />
 
         <div className="d-flex justify-content-between align-items-center mt-2">
-          <FormHoursError calcHours={calcHours} />
+          <FormHoursError />
           <Button
             type="submit"
             disabled={success.isLoading}
