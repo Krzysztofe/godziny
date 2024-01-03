@@ -1,4 +1,4 @@
-import { ModelColumn } from "../../../sharedModels/modelColumn";
+import { ModelColumn } from "../../../../sharedModels/modelColumn";
 
 export const addDaysToColumns = (columns: ModelColumn[]) => {
   if (!Array.isArray(columns)) {

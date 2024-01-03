@@ -1,5 +1,5 @@
-import { ModelColumn } from "../../../sharedModels/modelColumn";
-import { ModelDay } from "../../../sharedModels/modelDay";
+import { ModelColumn } from "../../../../sharedModels/modelColumn";
+import { ModelDay } from "../../../../sharedModels/modelDay";
 
 const findSourceColumnIdx = (columns: ModelColumn[], source: any) => {
   return columns?.findIndex((column: ModelColumn) => {

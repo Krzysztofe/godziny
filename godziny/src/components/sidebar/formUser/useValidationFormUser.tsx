@@ -12,6 +12,9 @@ const useValidationFormUser = () => {
   const validationSchema = yup.object({
     userName: yup
       .string()
+      .transform((value, originalValue) =>
+        typeof originalValue === "string" ? originalValue.trim() : originalValue
+      )
       .min(3, "Min. 3 litery")
       .max(20, "Max. 20 liter")
       .test(
@@ -19,7 +22,7 @@ const useValidationFormUser = () => {
         "Imię zajęte",
         value =>
           value !== undefined &&
-          !usersNames?.includes(value[0].toUpperCase() + value.slice(1))
+          !usersNames?.includes(value.charAt(0).toUpperCase() + value.slice(1))
       )
       .required("Imię wymagane"),
     userColor: yup

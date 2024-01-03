@@ -6,8 +6,15 @@ import SidebarBody from "./SidebarBody";
 import SidebarHeader from "./SidebarHeader";
 import SidebarMenuButton from "./SidebarMenuButton";
 import SidebarNav from "./SidebarNav";
+import useReduxMonthData from "../../hooks/updateReduxDatabase/useReduxMonthData";
+import useReduxListUsers from "../../hooks/updateReduxDatabase/useReduxListUsers";
+import useReduxListMonths from "../../hooks/updateReduxDatabase/useReduxListMonths";
 
 const IndexSidebar = () => {
+  useReduxMonthData();
+  useReduxListUsers();
+  useReduxListMonths();
+
 
 
   const { pathname } = useLocation();

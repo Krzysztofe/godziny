@@ -7,14 +7,16 @@ import * as yup from "yup";
 import { ModelMonth } from "../../../sharedModels/modelMonth";
 import { monthPattern } from "./dataFormMonth";
 import useValidationMonthForm from "./useValidationMonthForm";
+import { useDispatch } from "react-redux";
+import { setCollapseIndex } from "../../../redux/storeFeatures/listMonthsSlice";
 
 interface ModelInitialValues {
   monthDate: string;
 }
 
 const useFormikMonth = () => {
+  const dispatch = useDispatch();
   const [updateMonth, success] = useUpdateMonthMutation();
-
   const { validationSchema } = useValidationMonthForm();
 
   const initialValues = { monthDate: `${currYearDigits}-${currMonthDigits}` };
@@ -22,6 +24,7 @@ const useFormikMonth = () => {
   const validation = validationSchema as yup.ObjectSchema<typeof initialValues>;
 
   const onSubmit = async (values: ModelInitialValues) => {
+    dispatch(setCollapseIndex(-1));
     const year = values.monthDate.slice(0, 4);
     const month = values.monthDate.slice(-2);
     const monthBody: ModelMonth = {

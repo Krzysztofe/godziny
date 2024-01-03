@@ -1,60 +1,31 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useSelector } from "react-redux";
-import { ModelColumn } from "../../../sharedModels/modelColumn";
-import useURLValues from "../../../hooks/useURLValues";
+import useWindowWidth from "../../../hooks/useWindowWidth";
 import { RootState } from "../../../redux/store";
-import { useUpdateMonthMutation } from "../../../services/apiSliceMonths";
+import { ModelColumn } from "../../../sharedModels/modelColumn";
 import Column from "../Column";
 import ColumnsHeader from "../columnsHeader.tsx/ColumnsHeader";
-import useScrollThumbPosition from "./useScrollThumbPosition";
-import { handleDragDrop } from "./utilsHandleDragDrop";
-import useWindowWidth from "../../../hooks/useWindowWidth";
-import getHoursFromColumns from "../../../utils/getHoursFromColumns";
-import { addDaysToColumns } from "./utilsAddDaysToColumns";
+import useScrollThumbPosition from "./hooks/useScrollThumbPosition";
+import useUpdateColumns from "./hooks/useUpdateColumns";
+import useUpdateMonth from "./hooks/useUpdateMonth";
+import { handleDragDrop } from "./utils/utilsHandleDragDrop";
+
+
+const yyy = (height: String) =>{
+
+return `height: ${height}`
+}
 
 const Columns = () => {
-  const { yearFromURL, monthFromURL } = useURLValues();
-  const [updateMonth] = useUpdateMonthMutation();
-  const { month } = useSelector((state: RootState) => state.monthPanel);
-  const [columns, setColumns] = useState<ModelColumn[]>([]);
-  const [executeUpdateMonth, setExecuteUpdateMonth] = useState(false);
-  const { submittedHours, acceptedHours, rejectedHours } =
-    getHoursFromColumns(columns);
   const { scrollableRef, thumbPosition, handleScroll } =
     useScrollThumbPosition();
   const { windowWidth } = useWindowWidth();
-  const columnsWithDays = month && addDaysToColumns(month?.columns);
-  useEffect(() => {
-    if (columnsWithDays) {
-      setColumns(columnsWithDays);
-    }
-  }, [month?.columns]);
-
-  useEffect(() => {
-    if (columns.length > 0 && month) {
-      updateMonth({
-        year: yearFromURL,
-        month: monthFromURL,
-        monthBody: {
-          ...month,
-          columns: columns,
-          calcHours: {
-            ...month?.calcHours,
-            currentHours:
-              month?.calcHours?.allHours -
-              submittedHours -
-              acceptedHours -
-              rejectedHours +
-              rejectedHours,
-            submittedHours,
-            acceptedHours,
-            rejectedHours,
-          },
-        },
-      });
-    }
-  }, [executeUpdateMonth]);
+  const { month } = useSelector((state: RootState) => state.monthPanel);
+  const [columns, setColumns] = useState<ModelColumn[]>([]);
+  const [executeUpdateMonth, setExecuteUpdateMonth] = useState(false);
+  useUpdateColumns(setColumns);
+  useUpdateMonth(columns, executeUpdateMonth);
 
   const handleDragEnd = (results: DropResult) => {
     month && handleDragDrop(results, columns, setColumns);

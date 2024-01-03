@@ -1,16 +1,12 @@
 import { Form, Formik } from "formik";
 import Button from "react-bootstrap/Button";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import useHTTPState from "../../../../hooks/useHTTPState";
 import InputsRange from "../../../../components/inputs/inputsRange/InputsRange";
+import useHTTPState from "../../../../hooks/useHTTPState";
+import useMonthDate from "../useMonthDate";
 import FormHoursError from "./FormHoursError";
 import FormHoursTop from "./FormHoursTop";
 import useFormikHours from "./useFormikHours";
-import { useCalcHoursQuery } from "../../../../services/apiSliceMonths";
-import useMonthDate from "../useMonthDate";
-import useReduxCalcHours from "../../../../hooks/updateReduxDatabase/useReduxCalcHours";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../redux/store";
 
 type Props = {
   idx: number;

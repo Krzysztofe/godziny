@@ -4,20 +4,27 @@ import Collapse from "react-bootstrap/Collapse";
 import DeleteButton from "./DeleteButton";
 import MonthTitle from "./MonthTitle";
 import CollapseArrow from "../../../components/collapseContainer/CollapseArrow";
+import { useDispatch } from "react-redux";
+import { setCollapseIndex } from "../../../redux/storeFeatures/listMonthsSlice";
+import { RootState } from "../../../redux/store";
+import { useSelector } from "react-redux";
+import FormHoursContainer from "./formHours/FormHoursContainer";
 
 type Props = {
-  children: ReactNode;
-  isOpen: boolean;
-  setOpenCollapseIndex: React.Dispatch<React.SetStateAction<number | null>>;
   idx: number;
 };
 
 const CollapseFormHours = (props: Props) => {
+  const dispatch = useDispatch();
+  const { openCollapseIndex } = useSelector(
+    (state: RootState) => state.listMonths
+  );
+
+  const isOpen = props.idx === openCollapseIndex;
+
   const handleTogle = (idx: number) => {
-    props.setOpenCollapseIndex(idx);
-  };
-  const handleClose = () => {
-    props.setOpenCollapseIndex(-1);
+    dispatch(setCollapseIndex(idx));
+    isOpen && dispatch(setCollapseIndex(-1));
   };
 
   return (
@@ -27,22 +34,21 @@ const CollapseFormHours = (props: Props) => {
         <Button
           onClick={() => {
             handleTogle(props.idx);
-            props.isOpen && handleClose();
           }}
-          aria-expanded={props.isOpen}
+          aria-expanded={isOpen}
           aria-controls="example-collapse-text"
           size="sm"
           className={`fw-medium fs-responsive d-flex justify-content-between align-items-center p-0 ps-1`}
         >
           Zapisz godziny
-          <CollapseArrow isOpen={props.isOpen} />
+          <CollapseArrow isOpen={isOpen} />
         </Button>
         <DeleteButton idx={props.idx} />
       </div>
-      <Collapse in={props.isOpen}>
+      <Collapse in={isOpen}>
         <div className="pe-1">
-          {props.isOpen ? (
-            props.children
+          {isOpen ? (
+            <FormHoursContainer idx={props.idx} />
           ) : (
             <div style={{ height: "88px" }}></div>
           )}
