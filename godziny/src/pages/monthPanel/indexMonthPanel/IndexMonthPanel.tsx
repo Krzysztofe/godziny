@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import IndexContainer from "../../../components/IndexContainer";
 import useReduxMonthData from "../../../hooks/updateReduxDatabase/useReduxMonthData";
 import { RootState } from "../../../redux/store";
-import EmptyMonthRecord from "../EmptyMonthRecord";
-import RequestError from "../RequestError";
-import RequestLoading from "../RequestLoading";
+import EmptyMonthRecord from "./EmptyMonthRecord";
+import RequestError from "../../../components/requestStates/RequestError";
+import RequestLoading from "../../../components/requestStates/RequestLoading";
 import MonthPanelContent from "./MonthPanelContent";
 
 const IndexMonthPanel = () => {

@@ -1,7 +1,7 @@
 import { Spinner } from "react-bootstrap";
 import { printPanelLoadingContent } from "../../utils/printPanelContent";
 
-;
+
 
 const RequestLoading = () => {
   return (

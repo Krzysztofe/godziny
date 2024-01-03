@@ -1,16 +1,32 @@
-
+import { useSelector } from "react-redux";
 import IndexContainer from "../../../components/IndexContainer";
-import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListMonths";
-import useRequestSettings from "./useRequestSettings";
+import RequestError from "../../../components/requestStates/RequestError";
+import RequestLoading from "../../../components/requestStates/RequestLoading";
+import { RootState } from "../../../redux/store";
+import SettinsContent from "./SettinsContent";
 
 const IndexSettings = () => {
-  const { requestState } = useRequestSettings();
+  const { listUsersError, listUsersIsLoading } = useSelector(
+    (state: RootState) => state.listUsers
+  );
+  const { listMonthsError } = useSelector(
+    (state: RootState) => state.listMonths
+  );
+  const { updateMonthError } = useSelector(
+    (state: RootState) => state.monthPanel
+  );
 
+  let content;
 
-  useReduxListMonths();
+  if (listUsersIsLoading) {
+    content = <RequestLoading />;
+  } else if (updateMonthError || listMonthsError || listUsersError) {
+    content = <RequestError />;
+  } else {
+    content = <SettinsContent />;
+  }
 
-
-  return <IndexContainer>{requestState}</IndexContainer>;
+  return <IndexContainer>{content}</IndexContainer>;
 };
 
 export default IndexSettings;
