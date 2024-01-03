@@ -11,7 +11,7 @@ import useReduxListUsers from "../../hooks/updateReduxDatabase/useReduxListUsers
 import useReduxListMonths from "../../hooks/updateReduxDatabase/useReduxListMonths";
 
 const IndexSidebar = () => {
-  useReduxMonthData();
+  // useReduxMonthData();
   useReduxListUsers();
   useReduxListMonths();
 

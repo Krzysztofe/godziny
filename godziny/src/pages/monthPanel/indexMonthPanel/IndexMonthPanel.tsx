@@ -1,33 +1,56 @@
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useSelector } from "react-redux";
 import IndexContainer from "../../../components/IndexContainer";
-import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListMonths";
-import useReduxListUsers from "../../../hooks/updateReduxDatabase/useReduxListUsers";
 import useReduxMonthData from "../../../hooks/updateReduxDatabase/useReduxMonthData";
-import useRequestMonthPanel from "./useRequestMonthPanel";
+import { RootState } from "../../../redux/store";
+import EmptyMonthRecord from "../EmptyMonthRecord";
+import RequestError from "../RequestError";
+import RequestLoading from "../RequestLoading";
+import MonthPanelContent from "./MonthPanelContent";
 
 const IndexMonthPanel = () => {
-  // useReduxMonthData();
-  // useReduxListUsers();
-  // useReduxListMonths();
+  useReduxMonthData();
 
+  const { month, monthErrorGet, monthIsLoading } = useSelector(
+    (state: RootState) => state.monthPanel
+  );
+  const { listUsersError, listUsersIsLoading } = useSelector(
+    (state: RootState) => state.listUsers
+  );
+  const { listMonthsError } = useSelector(
+    (state: RootState) => state.listMonths
+  );
 
-  const auth = getAuth();
-  onAuthStateChanged(auth, user => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/auth.user
-      const uid = user.uid;
+  let content;
 
-      // ...
-    } else {
-      // User is signed out
-      // ...
-    }
-  });
+  if (monthIsLoading || listUsersIsLoading) {
+    content = <RequestLoading />;
+  } else if (monthErrorGet || listUsersError || listMonthsError) {
+    content = <RequestError />;
+  } else if (!month || month?.id === "") {
+    content = <EmptyMonthRecord />;
+  } else {
+    content = <MonthPanelContent />;
+  }
 
-  const { requestState } = useRequestMonthPanel();
-
-  return <IndexContainer>{requestState} </IndexContainer>;
+  return (
+    <>
+      <IndexContainer>{content}</IndexContainer>
+    </>
+  );
 };
 
 export default IndexMonthPanel;
+
+// const auth = getAuth();
+// onAuthStateChanged(auth, user => {
+//   if (user) {
+//     // User is signed in, see docs for a list of available properties
+//     // https://firebase.google.com/docs/reference/js/auth.user
+//     const uid = user.uid;
+
+//     // ...
+//   } else {
+//     // User is signed out
+//     // ...
+//   }
+// });

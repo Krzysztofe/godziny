@@ -7,12 +7,15 @@ import useHTTPState from "../../../hooks/useHTTPState";
 import { RootState } from "../../../redux/store";
 import { useDeleteMonthMutation } from "../../../services/apiSliceMonths";
 import useMonthDate from "./useMonthDate";
+import { useDispatch } from "react-redux";
+import { setCollapseIndex } from "../../../redux/storeFeatures/listMonthsSlice";
 
 type Props = {
   idx: number;
 };
 
 const DeleteButton = (props: Props) => {
+  const dispatch = useDispatch();
   const [deleteMonth, success] = useDeleteMonthMutation();
   const { btnContent } = useHTTPState(
     success,
@@ -28,6 +31,7 @@ const DeleteButton = (props: Props) => {
 
   const deleteMonthAsync = async () => {
     if (monthDate && listMonths?.includes(monthDate)) {
+      dispatch(setCollapseIndex(-1));
       const year = monthDate.slice(0, 4);
       const month = monthDate.slice(-2);
       await deleteMonth({ year: year, month: month });

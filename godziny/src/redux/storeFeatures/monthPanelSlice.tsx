@@ -4,14 +4,16 @@ import { ModelMonth } from "../../sharedModels/modelMonth";
 
 type ModelInitialState = {
   month: null | undefined | ModelMonth;
-  error: FetchBaseQueryError | SerializedError | undefined;
-  isLoading: boolean;
+  monthErrorGet: FetchBaseQueryError | SerializedError | undefined;
+  updateMonthError: any;
+  monthIsLoading: boolean;
 };
 
 const initialState: ModelInitialState = {
   month: null,
-  error: {},
-  isLoading: false,
+  monthErrorGet: {},
+  updateMonthError: "",
+  monthIsLoading: false,
 };
 
 export const monthPanelSlice = createSlice({
@@ -25,14 +27,20 @@ export const monthPanelSlice = createSlice({
       state,
       action: PayloadAction<FetchBaseQueryError | SerializedError | undefined>
     ) => {
-      state.error = action.payload;
+      state.monthErrorGet = action.payload;
+    },
+    getUpdateMonthError: (
+      state,
+      action: PayloadAction<any>
+    ) => {
+      state.updateMonthError = action.payload;
     },
     getMonthIsLoading: (state, action: PayloadAction<boolean>) => {
-      state.isLoading = action.payload;
+      state.monthIsLoading = action.payload;
     },
   },
 });
 
-export const { getMonth, getMonthError, getMonthIsLoading } =
+export const { getMonth, getMonthError, getUpdateMonthError, getMonthIsLoading } =
   monthPanelSlice.actions;
 export default monthPanelSlice.reducer;

@@ -7,8 +7,7 @@ import {
 } from "../../redux/storeFeatures/monthPanelSlice";
 import { useMonthDataQuery } from "../../services/apiSliceMonths";
 import useURLValues from "../useURLValues";
-import { auth } from "../../data/firebaseConfig";
-import { useAuthState } from "react-firebase-hooks/auth";
+
 
 const useReduxMonthData = () => {
   const dispatch = useDispatch();

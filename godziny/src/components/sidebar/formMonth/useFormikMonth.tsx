@@ -9,6 +9,8 @@ import { monthPattern } from "./dataFormMonth";
 import useValidationMonthForm from "./useValidationMonthForm";
 import { useDispatch } from "react-redux";
 import { setCollapseIndex } from "../../../redux/storeFeatures/listMonthsSlice";
+import { getUpdateMonthError } from "../../../redux/storeFeatures/monthPanelSlice";
+import { useEffect } from "react";
 
 interface ModelInitialValues {
   monthDate: string;
@@ -24,6 +26,7 @@ const useFormikMonth = () => {
   const validation = validationSchema as yup.ObjectSchema<typeof initialValues>;
 
   const onSubmit = async (values: ModelInitialValues) => {
+    dispatch(getUpdateMonthError(success.isError));
     dispatch(setCollapseIndex(-1));
     const year = values.monthDate.slice(0, 4);
     const month = values.monthDate.slice(-2);
@@ -34,6 +37,10 @@ const useFormikMonth = () => {
 
     await updateMonth({ year, month, monthBody });
   };
+
+  useEffect(() => {
+    dispatch(getUpdateMonthError(success.isError));
+  }, [success.isError]);
 
   return { initialValues, validation, onSubmit, success };
 };
