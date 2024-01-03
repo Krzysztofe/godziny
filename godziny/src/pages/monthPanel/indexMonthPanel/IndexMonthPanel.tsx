@@ -32,11 +32,7 @@ const IndexMonthPanel = () => {
     content = <MonthPanelContent />;
   }
 
-  return (
-    <>
-      <IndexContainer>{content}</IndexContainer>
-    </>
-  );
+  return <IndexContainer>{content}</IndexContainer>;
 };
 
 export default IndexMonthPanel;

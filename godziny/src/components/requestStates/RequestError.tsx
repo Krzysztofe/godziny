@@ -1,9 +1,9 @@
-import { printPanelLoadingContent } from "../../utils/printPanelContent";
+import { printContentContainer } from "./utilsPrintContent";
 
 const RequestError = () => {
   return (
     <>
-      {printPanelLoadingContent(
+      {printContentContainer(
         <div className="text-danger text-center fs-4 ">
           Błąd. Odśwież stronę
         </div>

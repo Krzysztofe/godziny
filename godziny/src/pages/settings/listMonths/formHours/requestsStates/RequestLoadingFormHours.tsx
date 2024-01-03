@@ -1,12 +1,10 @@
+import { printFormHoursContent } from "./utilsPrintContent";
 import { Spinner } from "react-bootstrap";
-import { printContentContainer } from "./utilsPrintContent";
 
-
-
-const RequestLoading = () => {
+const RequestLoadingFormHours = () => {
   return (
     <>
-      {printContentContainer(
+      {printFormHoursContent(
         <Spinner animation="border" variant="secondary" className="fs-6">
           <span className="visually-hidden">Loading...</span>
         </Spinner>
@@ -15,4 +13,4 @@ const RequestLoading = () => {
   );
 };
 
-export default RequestLoading;
+export default RequestLoadingFormHours;

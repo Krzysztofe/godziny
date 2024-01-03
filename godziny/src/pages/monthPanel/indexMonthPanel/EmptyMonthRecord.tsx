@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import { printPanelContent } from "../../../utils/printPanelContent";
 import useMonthURLToString from "../../../hooks/useMonthURLToString";
 
 const EmptyMonthRecord = () => {
@@ -9,14 +8,17 @@ const EmptyMonthRecord = () => {
 
   if (!month || month?.id === "") {
     return (
-      <>
-        {printPanelContent(
-          <div>
-            Brak danych z miesiąca {monthURLStringFormat}. Zapisz miesiąc w
-            ustawieniach.
-          </div>
-        )}
-      </>
+      <div
+        className="d-flex justify-content-center align-items-center fs-3 text-warning text-center"
+        style={{
+          maxWidth: "1000px",
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        Brak danych z miesiąca {monthURLStringFormat}. Zapisz miesiąc w
+        ustawieniach.
+      </div>
     );
   } else return null;
 };
