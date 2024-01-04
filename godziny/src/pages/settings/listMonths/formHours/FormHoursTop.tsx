@@ -9,6 +9,9 @@ const FormHoursTop = () => {
     { value: "allHours", type: "number", isErrorPrint: false },
   ];
 
+  
+  console.log("", calcHours);
+
   const styles = "fs-7 d-flex align-items-end";
   return (
     <div className="d-flex justify-content-between fw-medium ">

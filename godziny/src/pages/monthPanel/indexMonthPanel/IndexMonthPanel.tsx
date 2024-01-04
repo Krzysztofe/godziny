@@ -6,6 +6,7 @@ import EmptyMonthRecord from "./EmptyMonthRecord";
 import RequestError from "../../../components/requestStates/RequestError";
 import RequestLoading from "../../../components/requestStates/RequestLoading";
 import MonthPanelContent from "./MonthPanelContent";
+import { requestContainer } from "../../../utils/utilsRequestContainer";
 
 const IndexMonthPanel = () => {
   useReduxMonthData();
@@ -23,9 +24,9 @@ const IndexMonthPanel = () => {
   let content;
 
   if (monthIsLoading || listUsersIsLoading) {
-    content = <RequestLoading />;
+    content = <RequestLoading styles={requestContainer} />;
   } else if (monthErrorGet || listUsersError || listMonthsError) {
-    content = <RequestError />;
+    content = <RequestError styles={requestContainer} />;
   } else if (!month || month?.id === "") {
     content = <EmptyMonthRecord />;
   } else {

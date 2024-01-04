@@ -1,10 +1,14 @@
-import { printContentContainer } from "./utilsPrintContent";
 
-const RequestError = () => {
+type Props = {
+  styles: (contentJSX: React.ReactNode) => JSX.Element;
+};
+
+
+const RequestError = (props:Props) => {
   return (
     <>
-      {printContentContainer(
-        <div className="text-danger text-center fs-4 ">
+      {props.styles(
+        <div className="text-danger text-center">
           Błąd. Odśwież stronę
         </div>
       )}

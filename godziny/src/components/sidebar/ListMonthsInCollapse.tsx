@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import useMonthDates from "../../hooks/useMonthDates";
 import useURLValues from "../../hooks/useURLValues";
 import { RootState } from "../../redux/store";
-import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
+import { capitalizeFirstLetter } from "../../utils/utilsCapitalizeFirstLetter";
 
 const ListMonthsInCollapse = () => {
   const { databaseMonthsDatesToString } = useMonthDates();

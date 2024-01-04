@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
-import useReduxCalcHours from "../../../../hooks/updateReduxDatabase/useReduxCalcHours";
-import useMonthDate from "../useMonthDate";
-import { RootState } from "../../../../redux/store";
 import RequestError from "../../../../components/requestStates/RequestError";
 import RequestLoading from "../../../../components/requestStates/RequestLoading";
+import useReduxCalcHours from "../../../../hooks/updateReduxDatabase/useReduxCalcHours";
+import { RootState } from "../../../../redux/store";
+import useMonthDate from "../useMonthDate";
 import FormHoursContext from "./FormHoursContext";
-import RequestLoadingFormHours from "./requestsStates/RequestLoadingFormHours";
+import { requestContainer } from "./utilsRequestContainer";
 
 type Props = {
   idx: number;
@@ -23,9 +23,9 @@ const FormHoursContainer = (props: Props) => {
   let content;
 
   if (calcHoursIsLoading) {
-    content = <RequestLoadingFormHours />;
+    content = <RequestLoading styles={requestContainer} />;
   } else if (calcHoursError) {
-    content = <RequestError />;
+    content = <RequestError styles={requestContainer} />;
   } else {
     content = <FormHoursContext idx={props.idx} />;
   }

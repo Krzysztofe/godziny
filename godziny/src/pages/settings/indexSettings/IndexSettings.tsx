@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import IndexContainer from "../../../components/IndexContainer";
 import RequestError from "../../../components/requestStates/RequestError";
 import RequestLoading from "../../../components/requestStates/RequestLoading";
+import { requestContainer } from "../../../utils/utilsRequestContainer";
 import { RootState } from "../../../redux/store";
 import SettinsContent from "./SettinsContent";
 
@@ -19,9 +20,9 @@ const IndexSettings = () => {
   let content;
 
   if (listUsersIsLoading) {
-    content = <RequestLoading />;
+    content = <RequestLoading styles={requestContainer} />;
   } else if (updateMonthError || listMonthsError || listUsersError) {
-    content = <RequestError />;
+    content = <RequestError styles={requestContainer} />;
   } else {
     content = <SettinsContent />;
   }

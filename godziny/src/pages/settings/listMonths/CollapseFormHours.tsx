@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
 import DeleteButton from "./DeleteButton";

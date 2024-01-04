@@ -1,9 +1,9 @@
 
 
 
-export const printContentContainer = (contentJSX: React.ReactNode) => (
+export const requestContainer = (contentJSX: React.ReactNode) => (
   <div
-    className="fixed-top d-flex justify-content-center align-items-center"
+    className="fixed-top d-flex justify-content-center align-items-center fs-4"
     style={{
       width: "100vw",
       height: "100vh",

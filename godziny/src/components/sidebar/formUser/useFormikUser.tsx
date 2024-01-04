@@ -7,7 +7,7 @@ import { v4 as UUID } from "uuid";
 import * as yup from "yup";
 import { ModelUser } from "../../../sharedModels/modelUser";
 import { FormikHelpers } from "formik";
-import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
+import { capitalizeFirstLetter } from "../../../utils/utilsCapitalizeFirstLetter";
 
 const useFormikUser = () => {
   const [addUser, success] = useAddUserMutation();

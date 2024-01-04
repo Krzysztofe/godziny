@@ -1,12 +1,13 @@
 import { Spinner } from "react-bootstrap";
-import { printContentContainer } from "./utilsPrintContent";
 
+type Props = {
+  styles: (contentJSX: React.ReactNode) => JSX.Element;
+};
 
-
-const RequestLoading = () => {
+const RequestLoading = (props: Props) => {
   return (
     <>
-      {printContentContainer(
+      {props.styles(
         <Spinner animation="border" variant="secondary" className="fs-6">
           <span className="visually-hidden">Loading...</span>
         </Spinner>

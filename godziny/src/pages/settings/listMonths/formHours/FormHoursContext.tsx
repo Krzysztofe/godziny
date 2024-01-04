@@ -14,7 +14,6 @@ type Props = {
 
 const FormHoursContext = (props: Props) => {
   const { monthDate } = useMonthDate(props.idx);
-
   const yearValue = monthDate?.slice(0, 4) ?? "";
   const monthValue = monthDate?.slice(5) ?? "";
   const { initialValues, onSubmit, success } = useFormikHours(
