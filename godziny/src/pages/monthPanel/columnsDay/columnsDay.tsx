@@ -11,6 +11,7 @@ import { useDeleteDayMutation } from "../../../services/apiSliceMonths";
 import { ModelDay } from "../../../sharedModels/modelDay";
 import DayPrintData from "../DayPrintData";
 import { calculateUpdatedCalcHours, deleteDayById } from "./utilsClumnsDay";
+import ButtonDay from "../ButtonDay";
 
 interface Props {
   day: ModelDay;
@@ -40,7 +41,6 @@ const ColumnsDay = (props: Props) => {
   const handleAlert = (idx: string, id: string) => {
     setColumnIdx(idx);
     setDayId(id);
-
     setIsAlertPrinted(true);
   };
 
@@ -99,6 +99,8 @@ const ColumnsDay = (props: Props) => {
               }}
             >
               <DayPrintData day={props.day} />
+
+              <ButtonDay />
 
               <Button
                 onClick={() =>

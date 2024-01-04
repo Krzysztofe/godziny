@@ -11,11 +11,7 @@ import useUpdateColumns from "./hooks/useUpdateColumns";
 import useUpdateMonth from "./hooks/useUpdateMonth";
 import { handleDragDrop } from "./utils/utilsHandleDragDrop";
 
-
-const yyy = (height: String) =>{
-
-return `height: ${height}`
-}
+const rowStyles = "d-flex justify-content-between";
 
 const Columns = () => {
   const { scrollableRef, thumbPosition, handleScroll } =
@@ -32,8 +28,6 @@ const Columns = () => {
     setExecuteUpdateMonth(prev => !prev);
   };
 
-  const rowStyles = "d-flex justify-content-between";
-
   return (
     <div
       ref={scrollableRef}
@@ -46,7 +40,7 @@ const Columns = () => {
             : "calc(100% - 32px - 2.5rem)",
       }}
     >
-      <div className={`${rowStyles} sticky-top`}>
+      <div className={`display-between sticky-top`}>
         <ColumnsHeader thumbPosition={thumbPosition} />
       </div>
 
@@ -56,7 +50,7 @@ const Columns = () => {
       >
         <DragDropContext onDragEnd={handleDragEnd}>
           {columns?.map((column: ModelColumn, idx: number) => {
-            return <Column key={column.id} column={column} columnIdx={idx} />;
+            return <Column key={column.id} columnIdx={idx} />;
           })}
         </DragDropContext>
       </div>

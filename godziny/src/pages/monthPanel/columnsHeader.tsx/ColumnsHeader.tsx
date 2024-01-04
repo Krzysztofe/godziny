@@ -1,31 +1,16 @@
-import Col from "react-bootstrap/Col";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
 import Counter from "../counter/Counter";
+import useDataCoumnsHeader from "./useDataCoumnsHeader";
 
 interface Props {
   thumbPosition: number;
 }
 
 const ColumnsHeader = (props: Props) => {
-  const { month } = useSelector((state: RootState) => state.monthPanel);
+  const { dataColumnsHeader } = useDataCoumnsHeader();
 
   return (
     <>
-      {[
-        {
-          headerText: "Złożone:",
-          counter: month?.calcHours?.submittedHours,
-        },
-        {
-          headerText: "Przyznane:",
-          counter: month?.calcHours?.acceptedHours,
-        },
-        {
-          headerText: "Odrzucone:",
-          counter: month?.calcHours?.rejectedHours,
-        },
-      ].map(({ headerText, counter }) => {
+      {dataColumnsHeader.map(({ headerText, counter }) => {
         return (
           <div
             key={headerText}
@@ -37,7 +22,11 @@ const ColumnsHeader = (props: Props) => {
             style={{ height: "35px", width: "33%" }}
           >
             {headerText}
-            {counter ? <Counter counter={counter} text={headerText} /> : <Counter counter={0} text={headerText} />}
+            {counter ? (
+              <Counter counter={counter} text={headerText} />
+            ) : (
+              <Counter counter={0} text={headerText} />
+            )}
           </div>
         );
       })}

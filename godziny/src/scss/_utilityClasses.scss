@@ -27,6 +27,16 @@
   font-size: 0.78rem !important;
 }
 
+.display-center {
+  display: grid;
+  place-items: center;
+}
+
+.display-between {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media (min-width: 400px) {
   .fs-responsive {
     font-size: 1rem !important;
