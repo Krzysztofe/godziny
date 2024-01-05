@@ -7,6 +7,7 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { getUserSuccess } from "../../../redux/storeFeatures/requestSuccessSlice";
 import { useEffect } from "react";
+import { dataInputs } from "./dataFormUser";
 
 const FormUserContext = () => {
   const dispatch = useDispatch();
@@ -23,22 +24,6 @@ const FormUserContext = () => {
     dispatch(getUserSuccess(success.isSuccess));
   }, [success.isSuccess]);
 
-  const dataInputs = [
-    {
-      value: "userName",
-      type: "text",
-      label: "Podaj imię",
-      isErrorPrint: true,
-      placeholder: "Imię",
-    },
-    {
-      value: "userColor",
-      type: "color",
-      label: "Podaj kolor",
-      isErrorPrint: true,
-    },
-  ];
-
   return (
     <Formik
       initialValues={initialValues}
@@ -51,7 +36,7 @@ const FormUserContext = () => {
         <Button
           type="submit"
           disabled={success.isLoading}
-          className="col-2 d-center p-0 m-0 ms-auto  text-info-emphasis border-0 bg-transparent"
+          className="d-flex p-0 m-0 ms-auto text-info-emphasis border-0 bg-transparent"
         >
           {btnContent}
         </Button>

@@ -33,9 +33,7 @@ const FormHoursContext = (props: Props) => {
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form className="py-2 pe-2">
         <FormHoursTop />
-
         <InputsRange inputsValues={["allHours"]} />
-
         <div className="d-between align-items-center mt-2">
           <FormHoursError />
           <Button

@@ -1,4 +1,3 @@
-import React from "react";
 import useMonthDate from "../useMonthDate";
 import { RootState } from "../../../../redux/store";
 import { useSelector } from "react-redux";

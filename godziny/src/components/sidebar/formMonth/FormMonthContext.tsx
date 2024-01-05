@@ -1,9 +1,5 @@
 import { Form, Formik } from "formik";
 import Button from "react-bootstrap/Button";
-import {
-  currMonthDigits,
-  currYearDigits,
-} from "../../../data/dataCurrentDates";
 import useHTTPState from "../../../hooks/useHTTPState";
 import useFormikMonth from "./useFormikMonth";
 import { AiOutlinePlusCircle } from "react-icons/ai";
@@ -11,6 +7,7 @@ import InputsText from "../../inputs/InputsText";
 import { useDispatch } from "react-redux";
 import { getMonthSuccess } from "../../../redux/storeFeatures/requestSuccessSlice";
 import { useEffect } from "react";
+import { dataInputs } from "./dataFormMonth";
 
 const FormMonthContext = () => {
   const dispatch = useDispatch();
@@ -27,17 +24,6 @@ const FormMonthContext = () => {
     dispatch(getMonthSuccess(success.isSuccess));
   }, [success.isSuccess]);
 
-  const dataInputs = [
-    {
-      value: "monthDate",
-      type: "month",
-      label: "Podaj miesiąc",
-      isErrorPrint: true,
-      min: `${currYearDigits}-${currMonthDigits}`,
-      max: "2025-12",
-    },
-  ];
-
   return (
     <Formik
       initialValues={initialValues}
@@ -50,7 +36,7 @@ const FormMonthContext = () => {
         <Button
           type="submit"
           disabled={success.isLoading}
-          className="col-2 d-center p-0 m-0 ms-auto  text-info-emphasis border-0 bg-transparent"
+          className="d-flex p-0 m-0 ms-auto  text-info-emphasis border-0 bg-transparent"
         >
           {btnContent}
         </Button>

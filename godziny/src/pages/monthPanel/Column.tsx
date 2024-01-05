@@ -2,7 +2,7 @@ import { Droppable } from "react-beautiful-dnd";
 import { v4 as UUID } from "uuid";
 import { ModelColumn } from "../../sharedModels/modelColumn";
 import { ModelDay } from "../../sharedModels/modelDay";
-import ColumnsDay from "./columnsDay/ColumnsDay";
+import Day from "./Day";
 
 interface Props {
   column: ModelColumn;
@@ -28,7 +28,7 @@ const Column = (props: Props) => {
               {Array.isArray(props.column.days)
                 ? props.column.days.map((day: ModelDay, idx: number) => {
                     return (
-                      <ColumnsDay
+                      <Day
                         key={UUID()}
                         day={day}
                         columnIdx={props.columnIdx}

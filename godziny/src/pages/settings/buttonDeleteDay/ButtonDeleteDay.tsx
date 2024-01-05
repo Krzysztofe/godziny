@@ -20,7 +20,6 @@ const ButtonDeleteUser = (props: Props) => {
   );
   const { alert, handleAlert } = useAlertDelete(deleteUserAsync); 
   
-  
   const getUserName = (userName: string) => {
     setUserName(userName);
   };

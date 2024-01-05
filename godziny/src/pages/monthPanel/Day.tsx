@@ -1,7 +1,7 @@
 import { Draggable } from "react-beautiful-dnd";
-import { ModelDay } from "../../../sharedModels/modelDay";
-import ButtonDeleteDay from "../buttonDeleteDay/ButtonDeleteDay";
-import DayPrintData from "../DayPrintData";
+import { ModelDay } from "../../sharedModels/modelDay";
+import ButtonDeleteDay from "./buttonDeleteDay/ButtonDeleteDay";
+import DayDetails from "./dayDetails/DayDetails";
 
 interface Props {
   day: ModelDay;
@@ -9,7 +9,7 @@ interface Props {
   dayIdx: number;
 }
 
-const ColumnsDay = (props: Props) => {
+const Day = (props: Props) => {
   return (
     <Draggable
       draggableId={props.day && props?.day?.id}
@@ -33,7 +33,7 @@ const ColumnsDay = (props: Props) => {
                 opacity: snapshot.isDragging ? 0.8 : 1,
               }}
             >
-              <DayPrintData day={props.day} />
+              <DayDetails day={props.day} />
 
               <ButtonDeleteDay columnIdx={props.columnIdx} day={props.day} />
             </div>
@@ -44,4 +44,4 @@ const ColumnsDay = (props: Props) => {
   );
 };
 
-export default ColumnsDay;
+export default Day;

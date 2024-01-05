@@ -1,6 +1,10 @@
 import { ModelColumn } from "../../../sharedModels/modelColumn";
 import { ModelCalcHours } from "../../../sharedModels/modelCalcHours";
 import { ModelMonth } from "../../../sharedModels/modelMonth";
+import {
+  currMonthDigits,
+  currYearDigits,
+} from "../../../data/dataCurrentDates";
 
 const columns: ModelColumn[] = [
   { id: "submitted", days: [] },
@@ -21,3 +25,15 @@ export const monthPattern: ModelMonth = {
   columns,
   calcHours,
 };
+
+
+export const dataInputs = [
+  {
+    value: "monthDate",
+    type: "month",
+    label: "Podaj miesiąc",
+    isErrorPrint: true,
+    min: `${currYearDigits}-${currMonthDigits}`,
+    max: "2025-12",
+  },
+];
