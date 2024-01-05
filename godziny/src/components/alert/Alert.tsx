@@ -2,16 +2,18 @@ import Button from "react-bootstrap/Button";
 import { useDispatch } from "react-redux";
 import { printAlert } from "../../redux/storeFeatures/alertSlice";
 import "./_alert.scss";
+import { useState } from "react";
 
 type Props = {
   action: () => void;
   isPrinted: boolean;
-  setIsPrinted?: React.Dispatch<React.SetStateAction<boolean>>;
   header: string;
+  setIsPrinted?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const Alert = (props: Props) => {
   const dispatch = useDispatch();
+  const [isColosed, setIsColosed] = useState<boolean | null>(true);
 
   const handleClose = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (
@@ -25,7 +27,7 @@ const Alert = (props: Props) => {
 
   return (
     <>
-      {props.isPrinted ? (
+      {props.isPrinted === isColosed ? (
         <div
           id="opacityContainer"
           className="fixed-top d-center "
