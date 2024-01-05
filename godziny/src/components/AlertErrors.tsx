@@ -9,15 +9,13 @@ const AlertErrors = () => {
 
   const { header } = useSelector((state: RootState) => state.alert);
 
-  const handleAlert = () => {
+  const closeAlert = () => {
     dispatch(printAlert(""));
   };
 
   return (
     <>
-      {header && (
-        <Alert action={handleAlert} isPrinted={true} header={header} />
-      )}
+      {header && <Alert action={closeAlert} isPrinted={true} header={header} />}
     </>
   );
 };

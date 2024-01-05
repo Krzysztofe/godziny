@@ -17,7 +17,7 @@ const SettinsContent = () => {
         height: windowWidth >= 500 ? "calc(100%)" : "calc(100% - 2.5rem)",
         overflow: "hidden auto",
         outline: "4px solid white",
-        scrollbarGutter: "stable"
+        scrollbarGutter: "stable",
       }}
     >
       <div

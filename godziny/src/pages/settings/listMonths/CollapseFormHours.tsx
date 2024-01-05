@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
-import DeleteButton from "./DeleteButton";
+import ButtonDeleteMonth from "./buttonDeleteMonth/ButtonDeleteMonth";
 import MonthTitle from "./MonthTitle";
 import CollapseArrow from "../../../components/collapseContainer/CollapseArrow";
 import { useDispatch } from "react-redux";
@@ -42,7 +42,7 @@ const CollapseFormHours = (props: Props) => {
           Zapisz godziny
           <CollapseArrow isOpen={isOpen} />
         </Button>
-        <DeleteButton idx={props.idx} />
+        <ButtonDeleteMonth idx={props.idx} />
       </div>
       <Collapse in={isOpen}>
         <div className="pe-1">
