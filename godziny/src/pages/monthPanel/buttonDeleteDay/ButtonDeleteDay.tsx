@@ -15,7 +15,10 @@ const ButtonDeleteDay = (props: Props) => {
     props.day,
     props.columnIdx
   );
-  const { handleAlert, alert } = useAlertDelete(deleteDayAsync);
+  const { handleAlert, alert } = useAlertDelete(
+    deleteDayAsync,
+    "Usunąć dzień?"
+  );
   const { btnContent } = useHTTPState(
     success,
     <RiDeleteBin6Line className="text-danger" />

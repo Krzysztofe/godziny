@@ -20,7 +20,10 @@ const ButtonDeleteMonth = (props: Props) => {
   const { monthDate } = useMonthDate(props.idx);
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
 
-  const { handleAlert, alert } = useAlertDelete(deleteMonthAsync);
+  const { handleAlert, alert } = useAlertDelete(
+    deleteMonthAsync,
+    "Usunąć miesiąc?"
+  );
 
   return (
     <>

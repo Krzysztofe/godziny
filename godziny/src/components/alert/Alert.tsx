@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
-import { useDispatch } from "react-redux";
 import { printAlert } from "../../redux/storeFeatures/alertSlice";
 import "./_alert.scss";
+import { useDispatch } from "react-redux";
 
 type Props = {
   action: () => void;
@@ -12,7 +12,6 @@ type Props = {
 
 const Alert = (props: Props) => {
   const dispatch = useDispatch();
-
   const handleClose = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (
       (e.target as HTMLElement)?.id !== "opacityContainer" &&
