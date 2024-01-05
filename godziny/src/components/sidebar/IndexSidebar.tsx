@@ -53,7 +53,6 @@ const IndexSidebar = () => {
             <div className="p-1 d-flex flex-column bg-opacity-white h-100">
               <SidebarHeader />
               <SidebarBody />
-
               <SidebarNav handleClose={handleClose} />
             </div>
           </Offcanvas>

@@ -40,17 +40,12 @@ const Columns = () => {
             : "calc(100% - 32px - 2.5rem)",
       }}
     >
-      <div className={`display-between sticky-top`}>
-        <ColumnsHeader thumbPosition={thumbPosition} />
-      </div>
+      <ColumnsHeader thumbPosition={thumbPosition} />
 
-      <div
-        className={`${rowStyles}`}
-        style={{ minHeight: "calc(100% - 35px)" }}
-      >
+      <div className="d-between" style={{ minHeight: "calc(100% - 35px)" }}>
         <DragDropContext onDragEnd={handleDragEnd}>
           {columns?.map((column: ModelColumn, idx: number) => {
-            return <Column key={column.id} columnIdx={idx} />;
+            return <Column key={column.id} columnIdx={idx} column={column} />;
           })}
         </DragDropContext>
       </div>

@@ -1,8 +1,5 @@
 export const requestContainer = (contentJSX: React.ReactNode) => (
-  <div
-    className="d-flex justify-content-center fs-6 align-items-center"
-    style={{ height: "88px" }}
-  >
+  <div className="d-center fs-6" style={{ height: "88px" }}>
     {contentJSX}
   </div>
 );

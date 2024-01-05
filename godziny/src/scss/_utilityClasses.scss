@@ -27,12 +27,13 @@
   font-size: 0.78rem !important;
 }
 
-.display-center {
-  display: grid;
-  place-items: center;
+.d-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.display-between {
+.d-between {
   display: flex;
   justify-content: space-between;
 }

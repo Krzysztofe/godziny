@@ -3,7 +3,7 @@
 
 export const requestContainer = (contentJSX: React.ReactNode) => (
   <div
-    className="fixed-top d-flex justify-content-center align-items-center fs-4"
+    className="fixed-top d-center fs-4"
     style={{
       width: "100vw",
       height: "100vh",

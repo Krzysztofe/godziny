@@ -28,7 +28,7 @@ const Alert = (props: Props) => {
       {props.isPrinted ? (
         <div
           id="opacityContainer"
-          className="fixed-top d-flex justify-content-center align-items-center "
+          className="fixed-top d-center "
           onClick={e => handleClose(e)}
           style={{
             height: "100vh",

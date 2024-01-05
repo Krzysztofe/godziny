@@ -9,7 +9,7 @@ const AutoLogout = () => {
       {secondsRemaining + 1 <= 60 && (
         <div
           id="opacityContainer"
-          className="fixed-top d-flex justify-content-center align-items-center "
+          className="fixed-top d-flex d-center"
           style={{
             height: "100vh",
             zIndex: "1060",
@@ -18,9 +18,7 @@ const AutoLogout = () => {
         >
           <div className="p-4 bg-white rounded-1 fs-3 fw-medium alertAnimationDown">
             Wylogowanie nastąpi za
-            <div
-             className="d-flex mx-auto w-fit-content"
-            >
+            <div className="d-flex mx-auto w-fit-content">
               {secondsRemaining + 1} <div>&nbsp;s.</div>
             </div>
             <div className="w-fit-content m-auto"></div>

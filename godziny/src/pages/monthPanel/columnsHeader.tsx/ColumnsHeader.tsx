@@ -9,7 +9,7 @@ const ColumnsHeader = (props: Props) => {
   const { dataColumnsHeader } = useDataCoumnsHeader();
 
   return (
-    <>
+    <div className="d-between sticky-top">
       {dataColumnsHeader.map(({ headerText, counter }) => {
         return (
           <div
@@ -22,15 +22,12 @@ const ColumnsHeader = (props: Props) => {
             style={{ height: "35px", width: "33%" }}
           >
             {headerText}
-            {counter ? (
-              <Counter counter={counter} text={headerText} />
-            ) : (
-              <Counter counter={0} text={headerText} />
-            )}
+
+            <Counter counter={counter} text={headerText} />
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 

@@ -36,12 +36,12 @@ const FormHoursContext = (props: Props) => {
 
         <InputsRange inputsValues={["allHours"]} />
 
-        <div className="d-flex justify-content-between align-items-center mt-2">
+        <div className="d-between align-items-center mt-2">
           <FormHoursError />
           <Button
             type="submit"
             disabled={success.isLoading}
-            className="col-2 d-flex justify-content-center align-items-center m-0 justify-content-center p-0 m-0 ms-1  text-info-emphasis border-0 bg-transparent"
+            className="col-2 d-center m-0 p-0 m-0 ms-1  text-info-emphasis border-0 bg-transparent"
           >
             {btnContent}
           </Button>

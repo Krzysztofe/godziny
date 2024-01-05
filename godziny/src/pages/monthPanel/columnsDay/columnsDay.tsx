@@ -67,8 +67,6 @@ const ColumnsDay = (props: Props) => {
     }
   };
 
-
-
   return (
     <Draggable
       draggableId={props.day && props?.day?.id}
@@ -100,7 +98,11 @@ const ColumnsDay = (props: Props) => {
             >
               <DayPrintData day={props.day} />
 
-              <ButtonDay />
+              {/* <ButtonDay
+                columnIdx={props.columnIdx}
+                dayId={props.day.id}
+                day={props.day}
+              /> */}
 
               <Button
                 onClick={() =>

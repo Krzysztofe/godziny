@@ -50,7 +50,7 @@ const FormMonthContext = () => {
         <Button
           type="submit"
           disabled={success.isLoading}
-          className="col-2 d-flex justify-content-center align-items-center justify-content-center p-0 m-0 ms-auto  text-info-emphasis border-0 bg-transparent"
+          className="col-2 d-center p-0 m-0 ms-auto  text-info-emphasis border-0 bg-transparent"
         >
           {btnContent}
         </Button>
