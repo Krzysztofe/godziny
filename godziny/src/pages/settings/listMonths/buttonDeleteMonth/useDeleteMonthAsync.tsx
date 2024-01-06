@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { setCollapseIndex } from "../../../../redux/storeFeatures/listMonthsSlice";
 import { useDispatch } from "react-redux";
 import { useDeleteMonthMutation } from "../../../../services/apiSliceMonths";
+import { useEffect } from "react";
+import { getUpdateMonthError } from "../../../../redux/storeFeatures/monthPanelSlice";
 
 const useDeleteMonthAsync = (monthIdx: number) => {
   const dispatch = useDispatch();
@@ -19,6 +21,11 @@ const useDeleteMonthAsync = (monthIdx: number) => {
       await deleteMonth({ year: year, month: month });
     }
   };
+  useEffect(() => {
+    dispatch(getUpdateMonthError(success.isError));
+  }, [success.isError]);
+
+
   return { deleteMonthAsync, success };
 };
 

@@ -26,7 +26,6 @@ const useFormikMonth = () => {
   const validation = validationSchema as yup.ObjectSchema<typeof initialValues>;
 
   const onSubmit = async (values: ModelInitialValues) => {
-    dispatch(getUpdateMonthError(success.isError));
     dispatch(setCollapseIndex(-1));
     const year = values.monthDate.slice(0, 4);
     const month = values.monthDate.slice(-2);

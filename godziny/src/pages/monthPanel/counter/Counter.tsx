@@ -11,7 +11,6 @@ type Props = {
 const Counter = (props: Props) => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const [counter, setCounter] = useState<number[]>([props.counter]);
-
   const didMountRef = useRef(true);
 
   useEffect(() => {
@@ -32,7 +31,7 @@ const Counter = (props: Props) => {
       <div
         style={{
           transform: `translateY(-${(counter.length - 1) * 20}px)`,
-          transition: "transform 0.3s ease",
+          transition: "transform 0.3s",
         }}
       >
         {counter.map((item, idx) => {

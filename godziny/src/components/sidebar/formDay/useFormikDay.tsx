@@ -5,11 +5,9 @@ import { dateInNext_14_Days } from "../../../data/dataCurrentDates";
 import useURLValues from "../../../hooks/useURLValues";
 import { RootState } from "../../../redux/store";
 import { useAddDayMutation } from "../../../services/apiSliceMonths";
-import { validationSchema } from "./validationFormDay";
 import { ModelUser } from "../../../sharedModels/modelUser";
-import { FormikHelpers } from "formik";
-import { useState } from "react";
 import { validationFormDayDate } from "./formDateError/utilsFormDateError";
+import { validationSchema } from "./validationFormDay";
 
 export type ModelInitialValuesFormikDay = {
   id: string;
@@ -41,7 +39,6 @@ const useFormikDay = () => {
 
   const onSubmit = async (
     values: ModelInitialValuesFormikDay,
-    { resetForm }: FormikHelpers<ModelInitialValuesFormikDay>
   ) => {
     const error =
       month && validationFormDayDate(month, values.userName, values.date);

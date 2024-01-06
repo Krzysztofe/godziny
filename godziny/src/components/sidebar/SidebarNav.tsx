@@ -1,10 +1,11 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import { AiTwotoneSetting } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import SidebarLogout from "./SidebarLogout";
 import SettingsReturnButton from "./SettingsReturnButton";
 import useURLValues from "../../hooks/useURLValues";
 import useWindowWidth from "../../hooks/useWindowWidth";
+
 
 type Props = {
   handleClose: () => void;
@@ -13,7 +14,6 @@ type Props = {
 const SidebarNav = (props: Props) => {
   const { windowWidth } = useWindowWidth();
   const { isMonthInURL } = useURLValues();
-  const styles = "bg-transparent border-0 p-0 ps-2";
 
   const closeSidebar = () => {
     windowWidth < 500 && props.handleClose();
@@ -23,12 +23,19 @@ const SidebarNav = (props: Props) => {
 
   const dataSidebarNavItems = [
     returnButton,
-    <Link
+    <NavLink
       to="/godziny/ustawienia"
-      className="text-primary text-decoration-none"
+      className={({ isActive }) =>
+        isActive
+          ? "text-dark text-decoration-none"
+          : "text-primary text-decoration-none"
+      }
+      end
     >
-      <AiTwotoneSetting /> Ustawienia
-    </Link>,
+      <>
+        <AiTwotoneSetting /> Ustawienia
+      </>
+    </NavLink>,
     <SidebarLogout />,
   ];
 
@@ -37,7 +44,11 @@ const SidebarNav = (props: Props) => {
       <ListGroup>
         {dataSidebarNavItems.map((item, idx) => {
           return (
-            <ListGroup.Item key={idx} className={styles} onClick={closeSidebar}>
+            <ListGroup.Item
+              key={idx}
+              className="bg-transparent border-0 text-dark p-0 ps-2"
+              onClick={closeSidebar}
+            >
               {item}
             </ListGroup.Item>
           );
