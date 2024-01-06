@@ -4,15 +4,15 @@
 
 - The application have only a login function as it is intended for a predetermined number of council members, ranging from 5 to 20 individuals.
 - After logging in, the user is redirected to the URL corresponding to the current month.
-- Next, the user need to submit the basic month structure.
+- Next, the user need to submit the basic month structure in settings panel.
 - Then, the user provides the number of all hours available for utilization in the given month for all presidium of a council.
-- Subsequently, the user can fill in the details about the days on which will use the union hours. The data for each day will be saved on a tile within the respective "submited hours" column.
+- Subsequently in month panel, the user can fill in the details about the days on which will use the union hours. The data for each day will be saved on a tile within the respective "submited hours" column.
 - Once the hours are approved or rejected by the management of the workplace, the user can move the tile to the appropriate column.
 - If necessary, the user can delete tiles from a column.
-- The total hours, submited hours, remaining hours available for all uses... are calculated in real-time.
+- The total hours, submited hours, remaining hours available for all uses are calculated in real-time.
 - If multiple months are created, the user can view the records specific to a particular month.
-- To record hours for a specific month, the user must submit their name and specify their color whch represent color of the tile in the settings panel. Then user's name will automatically appear in the select input field within the form for specifying the number of hours.
-- In the settings menu, users and months can also be deleted.
+- To record hours for a specific month, the user must submit their name and specify their color whch represent color of the tile in the settings panel. Then user's name will automatically appear in the select input field within the form for specifying the number of hours in mnthpanel.
+- In the settings panel, users and months can also be deleted.
 
 The application was developed in consultation with trade union workers council members and is ultimately intended for their use. Aplication was created as part of the "Zaprogramuj Życie" competition, completed in July 2023. 
 
