@@ -55,9 +55,9 @@ Live recording of the application presentation during the conclusion of the comp
 
 * React hooks: <br/> useState, useEffect, useRef, <br/> useDispatch, useSelector, <br/> useNavigate, useParams, useLocation, <br/> useAuthState, useFormikContext, custom hooks
 * Libraries: <br/>
-react-router, react-router-dom, react-router-hash-link, history <br/>
-react-firebase-hooks, react-beautiful-dnd<br/>
-react-redux, @reduxjs/toolkit,<br/>
+react-router, react-router-dom, react-router-hash-link, history, <br/>
+react-firebase-hooks, react-beautiful-dnd, <br/>
+react-redux, @reduxjs/toolkit, <br/>
 formik, yup, <br/>
 react-bootstrap, react-icons
 
@@ -84,7 +84,7 @@ react-bootstrap, react-icons
 
 ## Do do
 
-* Fast tile movement on dragg and dropp componentscan cause issues with data transmission. To address this, it is necessary to implement JS throttling, which helps regulate the data transfer rate and resolve the problem.
+* Fast tile movement on dragg and dropp componentscan cause issues with data transmission. To address this, it is necessary to implement JS throttling, which helps regulate the data transfer.
 
  ## Comments
 * The Firebase Config keys are not hidden in the .env file to allow access for setting up the project locally.
