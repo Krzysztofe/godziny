@@ -1,5 +1,5 @@
-import { ModelColumn } from "../../../sharedModels/modelColumn";
-import { ModelMonth } from "../../../sharedModels/modelMonth";
+import { ModelColumn } from "../../../../sharedModels/modelColumn";
+import { ModelMonth } from "../../../../sharedModels/modelMonth";
 
 const findDayInColumn = (
   monthColumn: ModelColumn,

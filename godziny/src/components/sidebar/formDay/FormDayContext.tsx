@@ -3,18 +3,19 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { getDaySuccess } from "../../../redux/storeFeatures/requestSuccessSlice";
-import FormDayError from "./FormDayError";
+import FormDateError from "./formDateError/FormDateError";
 import InputsSelect from "../../inputs/InputsSelect";
 import InputsText from "../../inputs/InputsText";
-import FormDayButton from "./FormDayButton";
+import FormHoursError from "./FormHoursError";
 import "./_formDay.scss";
 import useDataFormDay from "./useDataFormDay";
 import useFormikDay from "./useFormikDay";
+import ButtonForm from "../../ButtonForm";
 
 const FormDayContext = () => {
   const dispatch = useDispatch();
   const { dataInputsText, dataInputsSelect } = useDataFormDay();
-  const { initialValues, validation, onSubmit, success, dateError } =
+  const { initialValues, validation, onSubmit, success } =
     useFormikDay();
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const allHours = month?.calcHours?.allHours;
@@ -33,10 +34,10 @@ const FormDayContext = () => {
         <InputsSelect inputsData={dataInputsSelect} />
         <div className="position-relative">
           <InputsText inputsData={dataInputsText} />
-          <FormDayError dateError={dateError} />
+          <FormDateError />
         </div>
-
-        <FormDayButton success={success} />
+        <ButtonForm success={success} />
+        <FormHoursError />
       </Form>
     </Formik>
   );

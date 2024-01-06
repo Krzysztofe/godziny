@@ -14,10 +14,10 @@ const Alert = (props: Props) => {
   const dispatch = useDispatch();
   const handleClose = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (
-      (e.target as HTMLElement)?.id !== "opacityContainer" &&
-      (e.target as HTMLElement)?.id !== "noButton"
+      !["opacityContainer", "noButton"].includes((e.target as HTMLElement)?.id)
     )
       return;
+
     if (props?.setIsPrinted) props?.setIsPrinted(false);
     dispatch(printAlert(""));
   };

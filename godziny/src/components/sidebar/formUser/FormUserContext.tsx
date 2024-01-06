@@ -1,5 +1,4 @@
 import { Form, Formik } from "formik";
-import Button from "react-bootstrap/Button";
 import InputsText from "../../inputs/InputsText";
 import useHTTPState from "../../../hooks/useHTTPState";
 import useFormikUser from "./useFormikUser";
@@ -8,17 +7,11 @@ import { useDispatch } from "react-redux";
 import { getUserSuccess } from "../../../redux/storeFeatures/requestSuccessSlice";
 import { useEffect } from "react";
 import { dataInputs } from "./dataFormUser";
+import ButtonForm from "../../ButtonForm";
 
 const FormUserContext = () => {
   const dispatch = useDispatch();
   const { initialValues, validation, onSubmit, success } = useFormikUser();
-  const { btnContent } = useHTTPState(
-    success,
-    <AiOutlinePlusCircle
-      className="text-primary"
-      style={{ fontSize: "1.4rem" }}
-    />
-  );
 
   useEffect(() => {
     dispatch(getUserSuccess(success.isSuccess));
@@ -32,14 +25,7 @@ const FormUserContext = () => {
     >
       <Form className="py-2">
         <InputsText inputsData={dataInputs} />
-
-        <Button
-          type="submit"
-          disabled={success.isLoading}
-          className="d-flex p-0 m-0 ms-auto text-info-emphasis border-0 bg-transparent"
-        >
-          {btnContent}
-        </Button>
+        <ButtonForm success={success} />
       </Form>
     </Formik>
   );

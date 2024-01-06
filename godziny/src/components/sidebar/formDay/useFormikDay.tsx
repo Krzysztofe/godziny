@@ -9,7 +9,7 @@ import { validationSchema } from "./validationFormDay";
 import { ModelUser } from "../../../sharedModels/modelUser";
 import { FormikHelpers } from "formik";
 import { useState } from "react";
-import { validationFormDayDate } from "./utilsFormDay";
+import { validationFormDayDate } from "./formDateError/utilsFormDateError";
 
 export type ModelInitialValuesFormikDay = {
   id: string;
@@ -25,8 +25,8 @@ const useFormikDay = () => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const { listUsers } = useSelector((state: RootState) => state.listUsers);
   const { yearFromURL, monthFromURL } = useURLValues();
- 
-  const [dateError, setDateError] = useState("");
+
+
 
   const initialValues = {
     id: "",
@@ -47,7 +47,6 @@ const useFormikDay = () => {
       month && validationFormDayDate(month, values.userName, values.date);
 
     if (month && error) {
-      setDateError(error);
       return;
     }
 
@@ -95,10 +94,10 @@ const useFormikDay = () => {
           ],
         },
       }));
-    setDateError("");
+  
   };
 
-  return { initialValues, validation, onSubmit, success, dateError };
+  return { initialValues, validation, onSubmit, success };
 };
 
 export default useFormikDay;
