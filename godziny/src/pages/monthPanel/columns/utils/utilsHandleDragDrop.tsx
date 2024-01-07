@@ -18,6 +18,16 @@ const findDeletedDay = (newSourceDays: ModelDay[], source: any) => {
   return deletedDay;
 };
 
+const updateColumnDays = (
+  columns: ModelColumn[],
+  columnIndex: number,
+  newDays: ModelDay[]
+): ModelColumn[] => {
+  const newColumns = [...columns];
+  newColumns[columnIndex] = { ...columns[columnIndex], days: newDays };
+  return newColumns;
+};
+
 const moveItemFromColumn = (
   columns: ModelColumn[],
   source: any,
@@ -35,19 +45,10 @@ const moveItemFromColumn = (
   const deletedDay = findDeletedDay(newSourceDays, source);
   newDestinationDays.splice(destination.index, 0, deletedDay);
 
-  const newColumns = [...columns];
-
-  newColumns[sourceColumnIdx] = {
-    ...columns[sourceColumnIdx],
-    days: newSourceDays,
-  };
-
-  newColumns[destinationColumnIdx] = {
-    ...columns[destinationColumnIdx],
-    days: newDestinationDays,
-  };
-
-  setColumns(newColumns);
+  const newColumns = updateColumnDays(columns, sourceColumnIdx, newSourceDays);
+  setColumns(
+    updateColumnDays(newColumns, destinationColumnIdx, newDestinationDays)
+  );
 };
 
 const moveItemInColumn = (
@@ -60,17 +61,11 @@ const moveItemInColumn = (
   const sourceColumnIdx = findSourceColumnIdx(columns, source);
 
   const days = [...columns[sourceColumnIdx].days];
-
   const deletedDay = findDeletedDay(days, source);
+
   days.splice(destintionIdx, 0, deletedDay);
 
-  const newColumns = [...columns];
-
-  newColumns[sourceColumnIdx] = {
-    ...columns[sourceColumnIdx],
-    days: days,
-  };
-
+  const newColumns = updateColumnDays(columns, sourceColumnIdx, days);
   setColumns(newColumns);
 };
 

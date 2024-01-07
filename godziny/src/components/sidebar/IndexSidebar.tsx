@@ -1,21 +1,18 @@
 import { useEffect, useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { useLocation } from "react-router-dom";
+import useReduxListMonths from "../../hooks/updateReduxDatabase/useReduxListMonths";
+import useReduxListUsers from "../../hooks/updateReduxDatabase/useReduxListUsers";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import SidebarBody from "./SidebarBody";
 import SidebarHeader from "./SidebarHeader";
 import SidebarMenuButton from "./SidebarMenuButton";
-import SidebarNav from "./SidebarNav";
-import useReduxMonthData from "../../hooks/updateReduxDatabase/useReduxMonthData";
-import useReduxListUsers from "../../hooks/updateReduxDatabase/useReduxListUsers";
-import useReduxListMonths from "../../hooks/updateReduxDatabase/useReduxListMonths";
+import SidebarNav from "./sidebarNav/SidebarNav";
 
 const IndexSidebar = () => {
-  // useReduxMonthData();
+
   useReduxListUsers();
   useReduxListMonths();
-
-
 
   const { pathname } = useLocation();
   const [isShow, setShow] = useState(false);

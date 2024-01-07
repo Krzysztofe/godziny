@@ -11,8 +11,6 @@ import useUpdateColumns from "./hooks/useUpdateColumns";
 import useUpdateMonth from "./hooks/useUpdateMonth";
 import { handleDragDrop } from "./utils/utilsHandleDragDrop";
 
-const rowStyles = "d-flex justify-content-between";
-
 const Columns = () => {
   const { scrollableRef, thumbPosition, handleScroll } =
     useScrollThumbPosition();

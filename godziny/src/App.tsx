@@ -28,7 +28,7 @@ function App() {
       <Routes>
         <Route path="/godziny" element={<IndexLogin />} />
         <Route element={<PrivateRoutes />}>
-          <Route path="/godziny/:monthURL" element={<IndexMonthPanel />} />
+          <Route path="/godziny/:month" element={<IndexMonthPanel />} />
           <Route path="/godziny/ustawienia" element={<IndexSettings />} />
           <Route path="/*" element={<IndexLogin />} />
         </Route>
