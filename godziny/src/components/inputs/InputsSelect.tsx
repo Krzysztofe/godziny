@@ -7,7 +7,7 @@ type Props = {
   inputsData: {
     name: string;
     firstOption: string;
-    label: string;
+    label?: string;
     options: string[] | number[];
 
   }[];
@@ -16,15 +16,6 @@ type Props = {
 const InputsSelect = (props: Props) => {
   const { errors, touched, handleBlur, setFieldValue } =
     useFormikContext<ModelDay>();
-
-
-  //  useEffect(() => {
-  //    if (props.clearForm) {
-  //      props.inputsData.forEach(({ name, firstOption }) => {
-  //        setFieldValue(name, firstOption);
-  //      });
-  //    }
-  //  }, [props.clearForm, props.inputsData, setFieldValue]);
 
   return (
     <>

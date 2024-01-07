@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import FilterColumns from "../../components/filterColumns/FilterColumns";
 import { RootState } from "../../redux/store";
 
 const HoursSummary = () => {
@@ -6,6 +7,8 @@ const HoursSummary = () => {
 
   return (
     <div className="d-flex mx-auto fw-medium pb-2 w-fit-content">
+      
+      {/* <FilterColumns /> */}
       <div>Wszystkie {month?.calcHours?.allHours}&nbsp;-&nbsp;</div>
 
       <div

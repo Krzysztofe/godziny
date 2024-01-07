@@ -1,13 +1,11 @@
 import { Form, Formik } from "formik";
-import InputsText from "../../inputs/InputsText";
-import useHTTPState from "../../../hooks/useHTTPState";
-import useFormikUser from "./useFormikUser";
-import { AiOutlinePlusCircle } from "react-icons/ai";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getUserSuccess } from "../../../redux/storeFeatures/requestSuccessSlice";
-import { useEffect } from "react";
-import { dataInputs } from "./dataFormUser";
 import ButtonForm from "../../ButtonForm";
+import InputsText from "../../inputs/InputsText";
+import { dataInputs } from "./dataFormUser";
+import useFormikUser from "./useFormikUser";
 
 const FormUserContext = () => {
   const dispatch = useDispatch();

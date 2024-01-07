@@ -1,7 +1,7 @@
 import { ModelColumn } from "../../../../sharedModels/modelColumn";
 import { ModelMonth } from "../../../../sharedModels/modelMonth";
 
-const findDayInColumn = (
+export const findDayInColumn = (
   monthColumn: ModelColumn,
   findName: string,
   findDate: string

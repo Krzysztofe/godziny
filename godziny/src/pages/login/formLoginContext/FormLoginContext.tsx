@@ -3,7 +3,6 @@ import { Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import InputsText from "../../../components/inputs/InputsText";
 import useWindowWidth from "../../../hooks/useWindowWidth";
-import "./_login.scss";
 import useFormikLogin from "./useFormikLogin";
 
 const FormLoginContext = () => {
@@ -26,7 +25,7 @@ const FormLoginContext = () => {
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form
         className={`border p-5 rounded-1 bg-opacity-white ${
-          windowWidth > 500 && "rollInAnimation"
+          windowWidth > 500 && "anim-dropDown"
         }`}
         style={{
           width: windowWidth <= 500 ? "100%" : "fit-content",

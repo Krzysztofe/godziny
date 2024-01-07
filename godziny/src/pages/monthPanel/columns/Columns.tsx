@@ -4,17 +4,17 @@ import { useSelector } from "react-redux";
 import useWindowWidth from "../../../hooks/useWindowWidth";
 import { RootState } from "../../../redux/store";
 import { ModelColumn } from "../../../sharedModels/modelColumn";
-import Column from "../Column";
+import Column from "../column/Column";
 import ColumnsHeader from "../columnsHeader.tsx/ColumnsHeader";
 import useScrollThumbPosition from "./hooks/useScrollThumbPosition";
 import useUpdateColumns from "./hooks/useUpdateColumns";
 import useUpdateMonth from "./hooks/useUpdateMonth";
 import { handleDragDrop } from "./utils/utilsHandleDragDrop";
+import "./_columns.scss";
 
 const Columns = () => {
   const { scrollableRef, thumbPosition, handleScroll } =
     useScrollThumbPosition();
-  const { windowWidth } = useWindowWidth();
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const [columns, setColumns] = useState<ModelColumn[]>([]);
   const [executeUpdateMonth, setExecuteUpdateMonth] = useState(false);
@@ -30,13 +30,7 @@ const Columns = () => {
     <div
       ref={scrollableRef}
       onScroll={handleScroll}
-      className="overflow-y-scroll h-100"
-      style={{
-        maxHeight:
-          windowWidth >= 500
-            ? "calc(100% - 32px)"
-            : "calc(100% - 32px - 2.5rem)",
-      }}
+      className="overflow-y-scroll h-100 columnsContainer"
     >
       <ColumnsHeader thumbPosition={thumbPosition} />
 

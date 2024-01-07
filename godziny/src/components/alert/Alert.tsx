@@ -1,6 +1,5 @@
 import Button from "react-bootstrap/Button";
 import { printAlert } from "../../redux/storeFeatures/alertSlice";
-import "./_alert.scss";
 import { useDispatch } from "react-redux";
 
 type Props = {
@@ -36,7 +35,7 @@ const Alert = (props: Props) => {
           }}
         >
           <div
-            className={`p-4 bg-white rounded-1 fs-3 fw-medium alertAnimationDown`}
+            className={`p-4 bg-white rounded-1 fs-3 fw-medium anim-dropDown`}
           >
             {props.header}
             <div className="w-fit-content m-auto">
