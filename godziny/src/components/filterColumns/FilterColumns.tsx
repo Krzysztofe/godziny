@@ -2,7 +2,7 @@ import { Form, Formik } from "formik";
 import useFormikFilterColumns from "./useFormikFilterColumns";
 import EEE from "./EEE";
 import useDataFilterColumns from "./useDataFilterColumns";
-import InputsSelect from "../inputs/InputsSelect";
+import InputsSelect from "../inputs/inputsSelect/InputsSelect";
 
 const FilterColumns = () => {
   const { dataInputsSelect } = useDataFilterColumns();

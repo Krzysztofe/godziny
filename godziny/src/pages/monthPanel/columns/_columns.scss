@@ -1,8 +1,12 @@
 @import "../../../scss/mixins";
 
-.columnsContainer {
+._columnsContainer {
   max-height: calc(100% - 32px - 2.5rem);
   @include sm {
     max-height: calc(100% - 32px);
   }
+}
+
+._dragDropContex {
+  min-height: calc(100% - 35px);
 }

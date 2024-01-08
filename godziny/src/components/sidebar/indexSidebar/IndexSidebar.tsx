@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { useLocation } from "react-router-dom";
-import useReduxListMonths from "../../hooks/updateReduxDatabase/useReduxListMonths";
-import useReduxListUsers from "../../hooks/updateReduxDatabase/useReduxListUsers";
-import useWindowWidth from "../../hooks/useWindowWidth";
-import SidebarBody from "./SidebarBody";
-import SidebarHeader from "./SidebarHeader";
-import SidebarMenuButton from "./SidebarMenuButton";
-import SidebarNav from "./sidebarNav/SidebarNav";
+import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListMonths";
+import useReduxListUsers from "../../../hooks/updateReduxDatabase/useReduxListUsers";
+import useWindowWidth from "../../../hooks/useWindowWidth";
+import SidebarBody from "../SidebarBody";
+import SidebarHeader from "../SidebarHeader";
+import SidebarMenuButton from "../sidebarMenuButton/SidebarMenuButton";
+import SidebarNav from "../sidebarNav/SidebarNav";
+import "./_indexSidebar.scss";
+import FilterColumns from "../../filterColumns/FilterColumns";
 
 const IndexSidebar = () => {
-
   useReduxListUsers();
   useReduxListMonths();
 
@@ -40,16 +41,13 @@ const IndexSidebar = () => {
             scroll={true}
             backdrop={false}
             className={`${
-              windowWidth <= 500 && "backgroundImage"
-            } bg-transparent border-0`}
-            style={{
-              width: windowWidth >= 500 ? "30%" : "100vw",
-              maxWidth: windowWidth >= 500 && "250px",
-            }}
+              windowWidth <= 500 && "_backgroundImage"
+            } bg-transparent border-0 _offcanvas`}
           >
-            <div className="p-1 d-flex flex-column bg-opacity-white h-100">
+            <div className="p-1 d-flex flex-column _bg-opacity-white h-100">
               <SidebarHeader />
               <SidebarBody />
+              {/* <FilterColumns /> */}
               <SidebarNav handleClose={handleClose} />
             </div>
           </Offcanvas>

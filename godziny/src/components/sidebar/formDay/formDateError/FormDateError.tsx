@@ -3,8 +3,7 @@ import { ModelDay } from "../../../../sharedModels/modelDay";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/store";
 import { validationFormDayDate } from "./utilsFormDateError";
-
-
+import "./_formDateError.scss";
 
 const FormDateError = () => {
   const { values } = useFormikContext<ModelDay>();
@@ -14,12 +13,7 @@ const FormDateError = () => {
     month && validationFormDayDate(month, values.userName, values.date);
 
   return (
-    <div
-      className="text-danger d-block mt-0 fs-8"
-      style={{ height: "0.7rem", position: "absolute", bottom: "0px" }}
-    >
-      {error}
-    </div>
+    <div className="text-danger d-block mt-0 fs-8 _formDateError">{error}</div>
   );
 };
 

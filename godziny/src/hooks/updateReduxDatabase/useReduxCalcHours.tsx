@@ -24,8 +24,6 @@ const useReduxCalcHours = (yearValue: string, monthValue: string) => {
 
     dispatch(getCalcHoursIsLoading(isLoading));
   }, [calcHours, error, isLoading, dispatch]);
-
-  return <div></div>;
 };
 
 export default useReduxCalcHours;

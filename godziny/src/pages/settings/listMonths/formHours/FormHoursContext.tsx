@@ -34,12 +34,12 @@ const FormHoursContext = (props: Props) => {
       <Form className="py-2 pe-2">
         <FormHoursTop />
         <InputsRange inputsValues={["allHours"]} />
-        <div className="d-between align-items-center mt-2">
+        <div className="_d-between align-items-center mt-2">
           <FormHoursError />
           <Button
             type="submit"
             disabled={success.isLoading}
-            className="col-2 d-center m-0 p-0 m-0 ms-1  text-info-emphasis border-0 bg-transparent"
+            className="col-2 _d-center m-0 p-0 m-0 ms-1  text-info-emphasis border-0 bg-transparent"
           >
             {btnContent}
           </Button>

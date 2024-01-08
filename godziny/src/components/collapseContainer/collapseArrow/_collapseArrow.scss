@@ -1,0 +1,8 @@
+._collapseArrow {
+  transition-duration: 320ms;
+  &--rotate{
+    transform: rotate(180deg);
+  }
+}
+
+

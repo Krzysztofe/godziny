@@ -16,7 +16,7 @@ const useDataFilterColumns = () => {
   const dataInputsSelect = [
     {
       name: "searchedName",
-      firstOption: `${names.length === 0 ? "Brak danych" : "Imię"}`,
+      firstOption: `${names.length === 0 ? "Brak danych" : ""}`,
       options: names,
     },
   ];

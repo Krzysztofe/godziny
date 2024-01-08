@@ -1,0 +1,13 @@
+@import "../../../scss/mixins";
+
+._formLoginContext {
+  width: 100%;
+  height: 100%;
+  @include sm {
+    width: fit-content;
+    height: fit-content;
+  }
+  &__inputs{
+    scale: 1.2
+  }
+}

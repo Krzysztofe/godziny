@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import InputsText from "../../../../components/inputs/InputsText";
+import InputsText from "../../../../components/inputs/inputsText/InputsText";
 import { RootState } from "../../../../redux/store";
 
 const FormHoursTop = () => {
@@ -9,7 +9,6 @@ const FormHoursTop = () => {
     { value: "allHours", type: "number", isErrorPrint: false },
   ];
 
-  
   console.log("", calcHours);
 
   const styles = "fs-7 d-flex align-items-end";

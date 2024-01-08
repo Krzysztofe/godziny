@@ -16,7 +16,7 @@ const Column = (props: Props) => {
   const { searchedName } = useSelector((state: RootState) => state.filterDays);
 
   return (
-    <div style={{ width: "33%" }}>
+    <div className="_column position-relative">
       <Droppable droppableId={props.column.id}>
         {(provided, snapshot) => {
           return (
@@ -24,29 +24,20 @@ const Column = (props: Props) => {
               {...provided.droppableProps}
               ref={provided.innerRef}
               className={`p-1 h-100 overflow-hidden border border-1 border border-top-0 ${
-                snapshot.isDraggingOver ? "isDragging" : "noDragging"
-              }`}
+                snapshot.isDraggingOver ? "_isDragging" : "_noDragging"
+              } ${searchedName ? "_filtered" : ""}`}
             >
               {Array.isArray(props.column.days)
-                ? props.column.days
-                    .filter((day: ModelDay) => {
-                      return searchedName.toUpperCase() === "" ||
-                        searchedName.toUpperCase() === "IMIĘ"
-                        ? day
-                        : day.userName
-                            ?.toUpperCase()
-                            .includes(searchedName.toUpperCase());
-                    })
-                    .map((day: ModelDay, idx: number) => {
-                      return (
-                        <Day
-                          key={UUID()}
-                          day={day}
-                          columnIdx={props.columnIdx}
-                          dayIdx={idx}
-                        />
-                      );
-                    })
+                ? props.column.days.map((day: ModelDay, idx: number) => {
+                    return (
+                      <Day
+                        key={UUID()}
+                        day={day}
+                        columnIdx={props.columnIdx}
+                        dayIdx={idx}
+                      />
+                    );
+                  })
                 : []}
               {provided.placeholder}
             </div>

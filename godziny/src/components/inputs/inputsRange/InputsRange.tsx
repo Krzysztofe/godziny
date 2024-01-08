@@ -1,8 +1,5 @@
-import React from "react";
-import Form from "react-bootstrap/Form";
 import { useFormikContext } from "formik";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
+import Form from "react-bootstrap/Form";
 
 type ModelFormValues = {
   allHours: number;

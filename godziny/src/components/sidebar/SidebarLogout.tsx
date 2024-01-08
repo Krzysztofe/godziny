@@ -52,10 +52,7 @@ const SidebarLogout = () => {
       <AlertErrors />
       <Button
         onClick={logout}
-        className="fs-6 fw-medium text-info p-0 bg-transparent border-0 w-100"
-        style={{
-          cursor: "pointer",
-        }}
+        className="fs-6 fw-medium text-info p-0 bg-transparent border-0 w-100 _cursor-pointer"
         disabled={isLoading}
       >
         {btnContent}

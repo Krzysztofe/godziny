@@ -1,9 +1,8 @@
 import { useFormikContext } from "formik";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
-import { ModelDay } from "../../../sharedModels/modelDay";
-
-
+import { RootState } from "../../../../redux/store";
+import { ModelDay } from "../../../../sharedModels/modelDay";
+import "./_formHoursError.scss";
 
 const FormHoursError = () => {
   const { values } = useFormikContext<ModelDay>();
@@ -11,7 +10,7 @@ const FormHoursError = () => {
   const currentHours = month?.calcHours?.currentHours || 0;
 
   return (
-    <div className="text-danger d-block mt-0 fs-8" style={{ height: "1rem" }}>
+    <div className="text-danger d-block mt-0 fs-8 _formHoursError">
       {currentHours - +values.hours < 0 || currentHours === 0
         ? "Brak dostępnych godzin"
         : ""}

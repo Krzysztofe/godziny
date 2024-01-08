@@ -9,9 +9,7 @@ const ToastsMonthPanelContainer = () => {
   );
 
   return (
-    <div className="d-sm-none" 
-    // style={{ position:"absolute", top:"-18px" }}
-    >
+    <div className="d-sm-none">
       <Toast text={"Dzień zapisany"} isSuccess={isDaySuccess} />
     </div>
   );

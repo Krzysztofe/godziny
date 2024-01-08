@@ -1,4 +1,4 @@
-.scrolHidden {
+._scrolHidden {
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
@@ -6,70 +6,55 @@
   }
 }
 
-.bg-opacity-white {
+._bg-opacity-white {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.w-fit-content {
+._w-fit-content {
   width: fit-content;
 }
 
-.h-fit-content {
-  height: fit-content;
+._cursor-pointer {
+  cursor: pointer;
 }
-
-.fs-responsive {
+._fs-responsive {
   font-size: 0.78rem !important;
 }
 
-// positioning
-
-.d-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.d-between {
-  display: flex;
-  justify-content: space-between;
-}
-
 @media (min-width: 400px) {
-  .fs-responsive {
+  ._fs-responsive {
     font-size: 1rem !important;
   }
 }
 
 @media (min-width: 500px) {
-  .fs-responsive {
+  ._fs-responsive {
     font-size: 0.8rem !important;
   }
 }
 
 @media (min-width: 560px) {
-  .fs-responsive {
+  ._fs-responsive {
     font-size: 1rem !important;
   }
 }
 
+// positioning
+
+._d-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+._d-between {
+  display: flex;
+  justify-content: space-between;
+}
+
 // animations
 
-.opacityAnimation {
-  opacity: 0;
-  animation: opacity 2s forwards ease-out;
-}
-
-@keyframes opacity {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.anim-dropDown {
+._anim-dropDown {
   -webkit-animation: dropDown 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   animation: dropDown 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
@@ -87,7 +72,7 @@
   }
 }
 
-.backgroundImage {
+._backgroundImage {
   background-image: linear-gradient(
       135deg,
       rgba(19, 176, 223, 0.26) 0%,

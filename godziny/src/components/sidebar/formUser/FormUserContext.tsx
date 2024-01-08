@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getUserSuccess } from "../../../redux/storeFeatures/requestSuccessSlice";
 import ButtonForm from "../../ButtonForm";
-import InputsText from "../../inputs/InputsText";
+import InputsText from "../../inputs/inputsText/InputsText";
 import { dataInputs } from "./dataFormUser";
 import useFormikUser from "./useFormikUser";
 

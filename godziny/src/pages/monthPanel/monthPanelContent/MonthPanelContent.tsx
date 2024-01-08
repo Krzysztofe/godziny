@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import HoursSummary from "../HoursSummary";
 import Columns from "../columns/Columns";
+import "./_monthPanelContent.scss";
 
 const MonthPanelContent = () => {
   const { pathname } = useLocation();
@@ -21,13 +22,7 @@ const MonthPanelContent = () => {
   return (
     <>
       {isAnimate && (
-        <div
-          className="pe-1 pb-1 opacityAnimation"
-          style={{
-            maxWidth: "1000px",
-            width: "100%",
-          }}
-        >
+        <div className="pe-1 pb-1 _anim-opacity _monthPanelContent">
           <HoursSummary />
           <Columns />
         </div>

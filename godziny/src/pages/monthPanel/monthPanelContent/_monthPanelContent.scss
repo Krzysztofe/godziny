@@ -1,0 +1,19 @@
+._monthPanelContent{
+    max-width: 1000px;
+    width: 100%;
+}
+
+
+._anim-opacity {
+  opacity: 0;
+  animation: opacity 2s forwards ease-out;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

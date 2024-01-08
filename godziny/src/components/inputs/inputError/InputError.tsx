@@ -1,5 +1,6 @@
 import { FormikTouched, FormikErrors } from "formik";
-import { ModelDay } from "../../sharedModels/modelDay";
+import { ModelDay } from "../../../sharedModels/modelDay";
+import "./_inputError.scss"
 
 type Props = {
   value: string;
@@ -7,9 +8,9 @@ type Props = {
   touched: FormikTouched<ModelDay>;
 };
 
-const FormErrors = (props: Props) => {
+const InputError = (props: Props) => {
   return (
-    <div className="text-danger d-block mt-0 fs-8" style={{ height: "0.7rem" }}>
+    <div className="text-danger d-block mt-0 fs-8 _inputError">
       {props.touched[props.value as keyof typeof props.touched] &&
         props.errors[props.value as keyof typeof props.touched] &&
         props.errors[props.value as keyof typeof props.touched]}
@@ -17,4 +18,4 @@ const FormErrors = (props: Props) => {
   );
 };
 
-export default FormErrors;
+export default InputError;

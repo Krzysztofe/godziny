@@ -2,6 +2,8 @@ import { Draggable } from "react-beautiful-dnd";
 import { ModelDay } from "../../sharedModels/modelDay";
 import ButtonDeleteDay from "./buttonDeleteDay/ButtonDeleteDay";
 import DayDetails from "./dayDetails/DayDetails";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 interface Props {
   day: ModelDay;
@@ -10,6 +12,16 @@ interface Props {
 }
 
 const Day = (props: Props) => {
+  const { searchedName } = useSelector((state: RootState) => state.filterDays);
+
+  let printDay: string;
+
+  if (!searchedName) {
+    printDay = "d-block";
+  } else if (searchedName !== props.day.userName) {
+    printDay = "d-none";
+  }
+
   return (
     <Draggable
       draggableId={props.day && props?.day?.id}
@@ -24,7 +36,7 @@ const Day = (props: Props) => {
             ref={provided.innerRef}
             className={`mb-2 bg-white rounded border ${
               snapshot.isDragging ? "border-dark" : "border-dark-subtle"
-            } `}
+            } ${printDay}`}
           >
             <div
               className="px-1 py-2 py-sm-1 rounded"

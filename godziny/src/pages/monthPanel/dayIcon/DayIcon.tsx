@@ -1,5 +1,6 @@
 import { MdFactory } from "react-icons/md";
 import { TbArrowBigRightLineFilled } from "react-icons/tb";
+import "./_dayIcon.scss"
 
 type Props = {
     place: string
@@ -10,9 +11,9 @@ const DayIcon = (props:Props) => {
   return (
     <div>
       {props.place === "Poza" ? (
-        <TbArrowBigRightLineFilled style={{ color: "rgb(80,173,150)" }} />
+        <TbArrowBigRightLineFilled className="_dayIcon__arrow" />
       ) : (
-        <MdFactory style={{ color: "rgb(255, 181, 9)" }} />
+        <MdFactory className="_dayIcon__factory " />
       )}
     </div>
   );

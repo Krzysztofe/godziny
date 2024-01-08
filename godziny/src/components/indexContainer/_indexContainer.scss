@@ -1,0 +1,20 @@
+@import "../../scss/mixins";
+
+._indexContainer {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  &__aside {
+    max-width: 250px;
+    height: 100%;
+    @include sm {
+      width: 30%;
+    }
+  }
+  &__rightSide {
+    width: 100%;
+    @include sm {
+      width: 70%;
+    }
+  }
+}

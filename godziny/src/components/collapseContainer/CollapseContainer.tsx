@@ -1,7 +1,8 @@
 import { ReactNode, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
-import CollapseArrow from "./CollapseArrow";
+import CollapseArrow from "./collapseArrow/CollapseArrow";
+import "./_collapseContainer.scss";
 
 type Props = {
   children: ReactNode;
@@ -18,12 +19,9 @@ const CollapseContainer = (props: Props) => {
         aria-expanded={isOpen}
         aria-controls="example-collapse-text"
         size="sm"
-        className={`fw-medium fs-responsive d-flex justify-content-between align-items-center bg-primary text-white w-100 ${
+        className={`fw-medium _fs-responsive d-flex justify-content-between align-items-center bg-primary text-white w-100 _collapseContainer ${
           isOpen ? "rounded-bottom-0" : "rounded-bottom-1"
         }`}
-        style={{
-          transition: "border-radius 420ms",
-        }}
       >
         {props.title}
         <CollapseArrow isOpen={isOpen} />

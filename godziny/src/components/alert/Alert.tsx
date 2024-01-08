@@ -1,6 +1,7 @@
 import Button from "react-bootstrap/Button";
 import { printAlert } from "../../redux/storeFeatures/alertSlice";
 import { useDispatch } from "react-redux";
+import "./_alert.scss";
 
 type Props = {
   action: () => void;
@@ -26,19 +27,14 @@ const Alert = (props: Props) => {
       {props.isPrinted ? (
         <div
           id="opacityContainer"
-          className="fixed-top d-center "
+          className="fixed-top _d-center _alert"
           onClick={e => handleClose(e)}
-          style={{
-            height: "100vh",
-            zIndex: "1060",
-            backgroundColor: "rgba(0,0,0,0.4)",
-          }}
         >
           <div
-            className={`p-4 bg-white rounded-1 fs-3 fw-medium anim-dropDown`}
+            className={`p-4 bg-white rounded-1 fs-3 fw-medium _anim-dropDown`}
           >
             {props.header}
-            <div className="w-fit-content m-auto">
+            <div className="_w-fit-content m-auto">
               {props.header.includes("Usunąć") ? (
                 <>
                   <Button id="noButton">Nie</Button>

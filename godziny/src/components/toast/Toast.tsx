@@ -9,14 +9,7 @@ const Toast = (props: Props) => {
   return (
     <>
       {props.isSuccess && (
-        <div
-          className="rounded-1 p-2 fw-medium text-white toastAnimation"
-          style={{
-            position: "absolute",
-            backgroundColor: "rgba(0, 0, 0, 0.4)",
-            width: "200px",
-          }}
-        >
+        <div className="rounded-1 p-2 fw-medium text-white _anim-toast _toast">
           {props.text}
         </div>
       )}

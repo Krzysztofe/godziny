@@ -27,7 +27,7 @@ const Counter = (props: Props) => {
   }, [props.counter]);
 
   return (
-    <div className="counter">
+    <div className="_counter">
       <div
         style={{
           transform: `translateY(-${(counter.length - 1) * 20}px)`,
@@ -36,13 +36,7 @@ const Counter = (props: Props) => {
       >
         {counter.map((item, idx) => {
           return (
-            <div
-              key={idx}
-              style={{
-                height: "20px",
-                marginLeft: "3px",
-              }}
-            >
+            <div key={idx} className="_counter__dygit">
               {item}
             </div>
           );

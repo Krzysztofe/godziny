@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
-import IndexContainer from "../../../components/IndexContainer";
+import IndexContainer from "../../../components/indexContainer/IndexContainer";
 import useReduxMonthData from "../../../hooks/updateReduxDatabase/useReduxMonthData";
 import { RootState } from "../../../redux/store";
-import EmptyMonthRecord from "./EmptyMonthRecord";
+import MonthPanelEmpty from "../monthPanelEmpty/MonthPanelEmpty";
 import RequestError from "../../../components/requestStates/RequestError";
 import RequestLoading from "../../../components/requestStates/RequestLoading";
-import MonthPanelContent from "./MonthPanelContent";
+import MonthPanelContent from "../monthPanelContent/MonthPanelContent";
 import { requestContainer } from "../../../utils/utilsRequestContainer";
 
 const IndexMonthPanel = () => {
@@ -28,7 +28,7 @@ const IndexMonthPanel = () => {
   } else if (monthErrorGet || listUsersError || listMonthsError) {
     content = <RequestError styles={requestContainer} />;
   } else if (!month || month?.id === "") {
-    content = <EmptyMonthRecord />;
+    content = <MonthPanelEmpty />;
   } else {
     content = <MonthPanelContent />;
   }

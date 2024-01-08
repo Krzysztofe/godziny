@@ -1,8 +1,8 @@
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
 import ButtonDeleteMonth from "./buttonDeleteMonth/ButtonDeleteMonth";
-import MonthTitle from "./MonthTitle";
-import CollapseArrow from "../../../components/collapseContainer/CollapseArrow";
+import MonthTitle from "./monthTitle/MonthTitle";
+import CollapseArrow from "../../../components/collapseContainer/collapseArrow/CollapseArrow";
 import { useDispatch } from "react-redux";
 import { setCollapseIndex } from "../../../redux/storeFeatures/listMonthsSlice";
 import { RootState } from "../../../redux/store";
@@ -37,7 +37,7 @@ const CollapseFormHours = (props: Props) => {
           aria-expanded={isOpen}
           aria-controls="example-collapse-text"
           size="sm"
-          className={`fw-medium fs-responsive d-flex justify-content-between align-items-center p-0 ps-1`}
+          className={`fw-medium _fs-responsive d-flex justify-content-between align-items-center p-0 ps-1`}
         >
           Zapisz godziny
           <CollapseArrow isOpen={isOpen} />

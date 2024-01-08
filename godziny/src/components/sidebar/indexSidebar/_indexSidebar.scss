@@ -1,0 +1,9 @@
+@import "../../../scss/mixins";
+
+._offcanvas {
+  width: 100vw !important;
+  @include sm {
+    width: 30%  !important;;
+    max-width: 250px;
+  }
+}

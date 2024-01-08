@@ -1,9 +1,10 @@
 import { Form, Formik } from "formik";
 import { Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import InputsText from "../../../components/inputs/InputsText";
+import InputsText from "../../../components/inputs/inputsText/InputsText";
 import useWindowWidth from "../../../hooks/useWindowWidth";
 import useFormikLogin from "./useFormikLogin";
+import "./_formLoginContext.scss";
 
 const FormLoginContext = () => {
   const { initialValues, onSubmit, isLoading } = useFormikLogin();
@@ -24,18 +25,12 @@ const FormLoginContext = () => {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form
-        className={`border p-5 rounded-1 bg-opacity-white ${
-          windowWidth > 500 && "anim-dropDown"
+        className={`border p-5 rounded-1 _bg-opacity-white _d-center _formLoginContext ${
+          windowWidth > 500 && "_anim-dropDown"
         }`}
-        style={{
-          width: windowWidth <= 500 ? "100%" : "fit-content",
-          height: windowWidth <= 500 ? "100%" : "fit-content",
-          display: "grid",
-          placeItems: "center",
-        }}
       >
-        <div style={{ scale: "1.2" }}>
-          <div className="text-center fs-5 fw-medium mb-4">Podaj hasło</div>
+        <div className="_formLoginContext__inputs">
+          <div className="text-center fs-5 fw-medium mb-4 ">Podaj hasło</div>
           <InputsText inputsData={dataInputs} />
 
           <Button

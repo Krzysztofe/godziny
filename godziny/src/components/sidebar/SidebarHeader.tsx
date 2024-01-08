@@ -8,7 +8,7 @@ const SidebarHeader = () => {
     <div>
       {pathname.includes("/godziny/202") && <ToastsMonthPanelContainer />}
       <Offcanvas.Header
-        className="d-flex d-sm-none w-fit-content ms-auto"
+        className="d-flex d-sm-none _w-fit-content ms-auto"
         closeButton={true}
       ></Offcanvas.Header>
     </div>

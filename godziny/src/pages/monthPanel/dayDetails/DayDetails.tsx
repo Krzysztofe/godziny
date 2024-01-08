@@ -1,6 +1,6 @@
 import { ModelDay } from "../../../sharedModels/modelDay";
 import { dateShort } from "./utilsDayDetails";
-import DayIcon from "../DayIcon";
+import DayIcon from "../dayIcon/DayIcon";
 
 interface Props {
   day: ModelDay;

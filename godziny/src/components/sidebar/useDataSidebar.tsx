@@ -1,4 +1,4 @@
-import ListMonthsInCollapse from "./ListMonthsInCollapse";
+import ListMonthsInCollapse from "./listMonthsInCollapse/ListMonthsInCollapse";
 import FormDayContext from "./formDay/FormDayContext";
 import FormMonthContext from "./formMonth/FormMonthContext";
 import FormUserContext from "./formUser/FormUserContext";

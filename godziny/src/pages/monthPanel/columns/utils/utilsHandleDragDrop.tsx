@@ -72,10 +72,12 @@ const moveItemInColumn = (
 export const handleDragDrop = (
   results: any,
   columns: ModelColumn[],
-  setColumns: React.Dispatch<React.SetStateAction<ModelColumn[]>>
+  setColumns: React.Dispatch<React.SetStateAction<ModelColumn[]>>,
+  searchedName: string
 ) => {
   const { source, destination } = results;
 
+  // if (searchedName) return;
   if (!destination) return;
   if (
     source.draggableId === destination.droppableId &&

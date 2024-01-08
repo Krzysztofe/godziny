@@ -1,7 +1,8 @@
 import { useFormikContext } from "formik";
 import Form from "react-bootstrap/Form";
-import FormErrors from "./FormErrors";
-import { ModelDay } from "../../sharedModels/modelDay";
+import InputError from "../inputError/InputError";
+import { ModelDay } from "../../../sharedModels/modelDay";
+import "./_inputsText.scss"
 
 type Props = {
   inputsData: {
@@ -28,7 +29,7 @@ const InputsText = (props: Props) => {
               {label && (
                 <Form.Label
                   htmlFor="date"
-                  className="mb-0 fs-responsive fw-medium"
+                  className="mb-0 _fs-responsive fw-medium"
                 >
                   {label}
                 </Form.Label>
@@ -44,13 +45,12 @@ const InputsText = (props: Props) => {
                 max={max}
                 placeholder={placeholder}
                 size="sm"
-                className={`p-0 border border-primary shadow-sm w-100 text-capitalize ${
+                className={`p-0 border border-primary shadow-sm w-100 text-capitalize _inputsText _cursor-pointer ${
                   type === "color" ? "px-0" : "px-1"
                 }`}
-                style={{ minHeight: 0 }}
               />
               {isErrorPrint && (
-                <FormErrors value={value} errors={errors} touched={touched} />
+                <InputError value={value} errors={errors} touched={touched} />
               )}
             </Form.Group>
           );

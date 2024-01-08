@@ -3,7 +3,7 @@ import FormLoginContext from "./formLoginContext/FormLoginContext";
 
 const IndexLogin = () => {
   return (
-    <main className="backgroundImage d-center vh-100 vw-100">
+    <main className="_backgroundImage _d-center vh-100 vw-100">
       <AlertErrors />
       <FormLoginContext />
     </main>

@@ -1,0 +1,15 @@
+@import "../../../scss/mixins";
+
+._settinsContent {
+  height: calc(100% - 2.5rem);
+  overflow: hidden auto;
+  outline: 4px solid rgb(255, 255, 255);
+  scrollbar-gutter: stable;
+  @include sm {
+    height: 100%;
+  }
+  &__wrapper {
+    max-width: 480px;
+    width: 100%;
+  }
+}

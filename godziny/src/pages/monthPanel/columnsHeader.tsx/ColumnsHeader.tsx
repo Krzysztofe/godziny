@@ -1,5 +1,6 @@
 import Counter from "../counter/Counter";
 import useDataCoumnsHeader from "./useDataCoumnsHeader";
+import "./_columnsHeader.scss";
 
 interface Props {
   thumbPosition: number;
@@ -9,17 +10,16 @@ const ColumnsHeader = (props: Props) => {
   const { dataColumnsHeader } = useDataCoumnsHeader();
 
   return (
-    <div className="d-between sticky-top">
+    <div className="_d-between sticky-top">
       {dataColumnsHeader.map(({ headerText, counter }) => {
         return (
           <div
             key={headerText}
-            className={`text-dark-emphasis fs-responsive bg-white fw-medium p-1 d-flex align-items-center  ${
+            className={`text-dark-emphasis _fs-responsive bg-white fw-medium p-1 d-flex align-items-center _columnsHeader  ${
               props.thumbPosition === 0
                 ? "border-bottom border-3 border-white"
                 : "border-bottom border-3"
             }`}
-            style={{ height: "35px", width: "33%" }}
           >
             {headerText}
 

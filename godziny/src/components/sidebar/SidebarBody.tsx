@@ -11,7 +11,7 @@ const SidebarBody = () => {
   const { dataMonthPanel, dataSettings } = useDataSidebar();
 
   return (
-    <Offcanvas.Body className="scrolHidden flex-grow-0 p-0 border border-4 border-white bg-white rounded ">
+    <Offcanvas.Body className="_scrolHidden flex-grow-0 p-0 border border-4 border-white bg-white rounded ">
       {isMonthInURL &&
         dataMonthPanel.map((component, idx) => {
           return <React.Fragment key={idx}>{component}</React.Fragment>;
