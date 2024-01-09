@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 
 const useMonthURLToString = () => {
   const { pathname } = useLocation();
-  const monthURL = pathname.slice(9);
+  const monthURL = pathname.slice(1);
 
   const isMonthInURL = monthURL && /^\d{4}-\d{2}$/.test(monthURL);
 

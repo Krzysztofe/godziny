@@ -20,7 +20,7 @@ const MonthTitle = (props: Props) => {
   return (
     <div className="_monthTitle">
       <Link
-        to={`/godziny/${listMonths?.[props.idx]}`}
+        to={`/${listMonths?.[props.idx]}`}
         className="text-decoration-none _fs-responsive text-dark fw-medium"
       >
         <ImArrowLeft className="fs-6 me-1 text-primary" />

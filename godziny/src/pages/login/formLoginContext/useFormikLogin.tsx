@@ -24,7 +24,7 @@ const useFormikLogin = () => {
     setIsLoading(true);
     signInWithEmailAndPassword(auth, "ww@wp.pl", values.password)
       .then(() => {
-        navigate(`/godziny/${currYearDigits}-${currMonthDigits}`);
+        navigate(`/${currYearDigits}-${currMonthDigits}`);
         setIsLoading(false);
       })
 

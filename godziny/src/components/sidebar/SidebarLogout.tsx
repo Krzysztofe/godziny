@@ -18,7 +18,7 @@ const SidebarLogout = () => {
     auth
       .signOut()
       .then(() => {
-        navigate("/godziny");
+        navigate("/");
       })
 
       .catch(error => dispatch(printAlert(error.message)))

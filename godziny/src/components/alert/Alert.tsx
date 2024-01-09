@@ -28,7 +28,7 @@ const Alert = (props: Props) => {
         <div
           id="opacityContainer"
           className="fixed-top _d-center _alert"
-          onClick={e => handleClose(e)}
+          onClick={handleClose}
         >
           <div
             className={`p-4 bg-white rounded-1 fs-3 fw-medium _anim-dropDown`}

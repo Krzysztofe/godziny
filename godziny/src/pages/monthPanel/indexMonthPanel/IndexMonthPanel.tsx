@@ -6,7 +6,7 @@ import MonthPanelEmpty from "../monthPanelEmpty/MonthPanelEmpty";
 import RequestError from "../../../components/requestStates/RequestError";
 import RequestLoading from "../../../components/requestStates/RequestLoading";
 import MonthPanelContent from "../monthPanelContent/MonthPanelContent";
-import { requestContainer } from "../../../utils/utilsRequestContainer";
+import { requestContainer } from "../../../utils/utilsRequestContainer/utilsRequestContainer";
 
 const IndexMonthPanel = () => {
   useReduxMonthData();

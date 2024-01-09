@@ -29,10 +29,10 @@ function App() {
     <Suspense fallback={<LoadingPage />}>
       {isLoged && <IndexSidebar />}
       <Routes>
-        <Route path="/godziny" element={<IndexLogin />} />
+        <Route path="/" element={<IndexLogin />} />
         <Route element={<PrivateRoutes />}>
-          <Route path="/godziny/:month" element={<IndexMonthPanel />} />
-          <Route path="/godziny/ustawienia" element={<IndexSettings />} />
+          <Route path="/:month" element={<IndexMonthPanel />} />
+          <Route path="/ustawienia" element={<IndexSettings />} />
           <Route path="/*" element={<IndexLogin />} />
         </Route>
       </Routes>

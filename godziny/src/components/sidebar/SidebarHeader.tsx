@@ -6,7 +6,7 @@ const SidebarHeader = () => {
   const { pathname } = useLocation();
   return (
     <div>
-      {pathname.includes("/godziny/202") && <ToastsMonthPanelContainer />}
+      {pathname.includes("/202") && <ToastsMonthPanelContainer />}
       <Offcanvas.Header
         className="d-flex d-sm-none _w-fit-content ms-auto"
         closeButton={true}

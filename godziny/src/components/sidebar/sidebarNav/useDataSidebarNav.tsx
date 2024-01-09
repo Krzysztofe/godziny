@@ -12,7 +12,7 @@ const useDataSidebarNav = () => {
   const dataSidebarNavItems = [
     returnButton,
     <NavLink
-      to="/godziny/ustawienia"
+      to="/ustawienia"
       className={({ isActive }) =>
         isActive
           ? "text-primary-emphasis text-decoration-none"

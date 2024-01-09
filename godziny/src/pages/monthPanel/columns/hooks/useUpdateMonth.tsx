@@ -5,6 +5,7 @@ import useURLValues from "../../../../hooks/useURLValues";
 import { useUpdateMonthMutation } from "../../../../services/apiSliceMonths";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/store";
+import { throttle } from "lodash";
 
 const useUpdateMonth = (
   columns: ModelColumn[],
@@ -18,26 +19,36 @@ const useUpdateMonth = (
 
   useEffect(() => {
     if (columns.length > 0 && month) {
-      updateMonth({
-        year: yearFromURL,
-        month: monthFromURL,
-        monthBody: {
-          ...month,
-          columns: columns,
-          calcHours: {
-            ...month?.calcHours,
-            currentHours:
-              month?.calcHours?.allHours -
-              submittedHours -
-              acceptedHours -
-              rejectedHours +
-              rejectedHours,
-            submittedHours,
-            acceptedHours,
-            rejectedHours,
-          },
+      const throttledUpdate = throttle(
+        () => {
+          updateMonth({
+            year: yearFromURL,
+            month: monthFromURL,
+            monthBody: {
+              ...month,
+              columns: columns,
+              calcHours: {
+                ...month?.calcHours,
+                currentHours:
+                  month?.calcHours?.allHours -
+                  submittedHours -
+                  acceptedHours -
+                  rejectedHours +
+                  rejectedHours,
+                submittedHours,
+                acceptedHours,
+                rejectedHours,
+              },
+            },
+          });
         },
-      });
+        1500,
+        {
+          leading: false,
+          trailing: true,
+        }
+      );
+      throttledUpdate();
     }
   }, [executeUpdateMonth]);
 };

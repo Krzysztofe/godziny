@@ -10,6 +10,7 @@ import SidebarMenuButton from "../sidebarMenuButton/SidebarMenuButton";
 import SidebarNav from "../sidebarNav/SidebarNav";
 import "./_indexSidebar.scss";
 import FilterColumns from "../../filterColumns/FilterColumns";
+import Debounce from "../Debounce";
 
 const IndexSidebar = () => {
   useReduxListUsers();
@@ -27,8 +28,8 @@ const IndexSidebar = () => {
   }, [windowWidth]);
 
   const printSidebar =
-    pathname.includes("/godziny/ustawienia") ||
-    pathname.includes("/godziny/202");
+    pathname.includes("/ustawienia") ||
+    pathname.includes("/202");
 
   return (
     <>
@@ -48,6 +49,7 @@ const IndexSidebar = () => {
               <SidebarHeader />
               <SidebarBody />
               {/* <FilterColumns /> */}
+              <Debounce/>
               <SidebarNav handleClose={handleClose} />
             </div>
           </Offcanvas>
