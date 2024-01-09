@@ -10,7 +10,7 @@ import SidebarMenuButton from "../sidebarMenuButton/SidebarMenuButton";
 import SidebarNav from "../sidebarNav/SidebarNav";
 import "./_indexSidebar.scss";
 import FilterColumns from "../../filterColumns/FilterColumns";
-import Debounce from "../Debounce";
+
 
 const IndexSidebar = () => {
   useReduxListUsers();
