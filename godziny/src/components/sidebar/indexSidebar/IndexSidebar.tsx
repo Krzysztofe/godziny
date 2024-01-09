@@ -11,7 +11,6 @@ import SidebarNav from "../sidebarNav/SidebarNav";
 import "./_indexSidebar.scss";
 import FilterColumns from "../../filterColumns/FilterColumns";
 
-
 const IndexSidebar = () => {
   useReduxListUsers();
   useReduxListMonths();
@@ -28,8 +27,7 @@ const IndexSidebar = () => {
   }, [windowWidth]);
 
   const printSidebar =
-    pathname.includes("/ustawienia") ||
-    pathname.includes("/202");
+    pathname.includes("/ustawienia") || pathname.includes("/202");
 
   return (
     <>
@@ -49,7 +47,7 @@ const IndexSidebar = () => {
               <SidebarHeader />
               <SidebarBody />
               {/* <FilterColumns /> */}
-              <Debounce/>
+
               <SidebarNav handleClose={handleClose} />
             </div>
           </Offcanvas>
