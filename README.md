@@ -57,7 +57,7 @@ Live recording of the application presentation during the conclusion of the comp
 * React hooks: <br/> useState, useEffect, useRef, <br/> useDispatch, useSelector, <br/> useNavigate, useParams, useLocation, <br/> useAuthState, useFormikContext, custom hooks
 * Libraries: <br/>
 react-router, react-router-dom, react-router-hash-link, history, <br/>
-react-firebase-hooks, react-beautiful-dnd, lodash, <br/>
+react-firebase-hooks, react-beautiful-dnd, <br/>
 react-redux, @reduxjs/toolkit, <br/>
 formik, yup, <br/>
 react-bootstrap, react-icons
@@ -89,8 +89,6 @@ react-bootstrap, react-icons
 
  ## Comments
 * The Firebase Config keys are not hidden in the .env file to allow access for setting up the project locally.
-* Rapid movement of tiles during drag-and-drop interactions with components may lead to potential issues in data transmission. To adress this, throttling has been implemented with a repeating function, ensuring that a PUT HTTP request is made every 1.5 seconds. This approach helps regulate the pace of data transfer.
-
  
 * The data structure in the Firebase Realtime Database follows a pattern where each year contains multiple months, and each month holds detailed information. For example:
 
