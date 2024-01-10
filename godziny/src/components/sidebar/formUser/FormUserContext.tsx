@@ -6,6 +6,7 @@ import ButtonForm from "../../ButtonForm";
 import InputsText from "../../inputs/inputsText/InputsText";
 import { dataInputs } from "./dataFormUser";
 import useFormikUser from "./useFormikUser";
+import InputsTextCover from "../../inputs/inputsText/inputsTextCover/InputsTextCover";
 
 const FormUserContext = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,11 @@ const FormUserContext = () => {
       onSubmit={onSubmit}
     >
       <Form className="py-2">
-        <InputsText inputsData={dataInputs} />
+        <div className="position-relative">
+          <InputsText inputsData={dataInputs} />
+          <InputsTextCover text={"Kolor"} />
+        </div>
+
         <ButtonForm success={success} />
       </Form>
     </Formik>

@@ -1,15 +1,14 @@
- export const dataInputs = [
-    {
-      value: "userName",
-      type: "text",
-      label: "Podaj imię",
-      isErrorPrint: true,
-      placeholder: "Imię",
-    },
-    {
-      value: "userColor",
-      type: "color",
-      label: "Podaj kolor",
-      isErrorPrint: true,
-    },
-  ];
+export const dataInputs = [
+  {
+    value: "userColor",
+    type: "color",
+    isErrorPrint: true,
+  },
+
+  {
+    value: "userName",
+    type: "text",
+    isErrorPrint: true,
+    placeholder: "Imię",
+  },
+];

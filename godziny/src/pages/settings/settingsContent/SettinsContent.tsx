@@ -10,7 +10,7 @@ const SettinsContent = () => {
   const { listUsers } = useSelector((state: RootState) => state.listUsers);
 
   return (
-    <div className="bg-white p-2 py-4 p-sm-4 w-100 _settinsContent">
+    <div className="p-2 py-4 p-sm-4 w-100 _settinsContent">
       <div className="_settinsContent__wrapper">
         <ListContainer header={"Zapisane miesiące"} listContent={listMonths}>
           <ListMonths />

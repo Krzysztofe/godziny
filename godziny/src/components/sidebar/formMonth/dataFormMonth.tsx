@@ -31,7 +31,6 @@ export const dataInputs = [
   {
     value: "monthDate",
     type: "month",
-    label: "Podaj miesiąc",
     isErrorPrint: true,
     min: `${currYearDigits}-${currMonthDigits}`,
     max: "2025-12",

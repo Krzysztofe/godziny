@@ -28,7 +28,7 @@ const SidebarLogout = () => {
   };
 
   let btnContent = (
-    <div className="_fs-3 _fw-semiBold d-flex align-center  d-flex align-items-center text-primary w-100">
+    <div className="_fs-3 d-flex align-items-center text-light-emphasis w-100">
       <RiLogoutBoxLine className="_fs-2 me-1 " />
       Wyloguj
     </div>

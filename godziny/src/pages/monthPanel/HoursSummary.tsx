@@ -5,8 +5,7 @@ const HoursSummary = () => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
 
   return (
-    <div className="d-flex mx-auto fw-medium pb-2 _w-fit-content">
-    
+    <div className="d-flex mx-auto fw-medium pb-2 _w-fitContent">
       <div>Wszystkie {month?.calcHours?.allHours}&nbsp;-&nbsp;</div>
 
       <div
@@ -14,7 +13,7 @@ const HoursSummary = () => {
           month && month?.calcHours?.currentHours <= 0 ? "text-danger" : ""
         }`}
       >
-        {month && month?.calcHours?.currentHours} {""}
+        <strong>{month && month?.calcHours?.currentHours}</strong> {""}
         {month && month?.calcHours?.currentHours < 0 ? "Brak" : "Dostępne"}
       </div>
     </div>

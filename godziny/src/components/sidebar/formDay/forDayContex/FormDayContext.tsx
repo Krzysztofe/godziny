@@ -11,6 +11,7 @@ import "./_formDayContext.scss";
 import useDataFormDay from "../useDataFormDay";
 import useFormikDay from "../useFormikDay";
 import ButtonForm from "../../../ButtonForm";
+import InputsTextCover from "../../../inputs/inputsText/inputsTextCover/InputsTextCover";
 
 const FormDayContext = () => {
   const dispatch = useDispatch();
@@ -18,11 +19,6 @@ const FormDayContext = () => {
   const { initialValues, validation, onSubmit, success } = useFormikDay();
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const allHours = month?.calcHours?.allHours;
-  const [isPrinted, setPrinted] = useState(true);
-
-  const handleDelete = () => {
-    setPrinted(false);
-  };
 
   useEffect(() => {
     dispatch(getDaySuccess(success.isSuccess));
@@ -38,18 +34,9 @@ const FormDayContext = () => {
         <InputsSelect inputsData={dataInputsSelect} />
         <div className="position-relative mb-3">
           <InputsText inputsData={dataInputsText} />
-
-          {isPrinted && (
-            <div
-              onClick={handleDelete}
-              className="div w-100 ps-2 _fs-3 d-flex align-items-center bg-secondary text-light-emphasis _radius border position-absolute"
-            >
-              Data
-            </div>
-          )}
-
-          <FormDateError />
+          <InputsTextCover text={"Data"} />
         </div>
+        <FormDateError />
         <ButtonForm success={success} />
         <FormHoursError />
       </Form>

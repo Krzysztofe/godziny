@@ -1,14 +1,12 @@
 import { Form, Formik } from "formik";
-import Button from "react-bootstrap/Button";
-import useHTTPState from "../../../hooks/useHTTPState";
-import useFormikMonth from "./useFormikMonth";
-import { AiOutlinePlusCircle } from "react-icons/ai";
-import InputsText from "../../inputs/inputsText/InputsText";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getMonthSuccess } from "../../../redux/storeFeatures/requestSuccessSlice";
-import { useEffect } from "react";
-import { dataInputs } from "./dataFormMonth";
 import ButtonForm from "../../ButtonForm";
+import InputsText from "../../inputs/inputsText/InputsText";
+import { dataInputs } from "./dataFormMonth";
+import useFormikMonth from "./useFormikMonth";
+
 
 const FormMonthContext = () => {
   const dispatch = useDispatch();
@@ -24,7 +22,7 @@ const FormMonthContext = () => {
       validationSchema={validation}
       onSubmit={onSubmit}
     >
-      <Form className="py-2">
+      <Form className="">
         <InputsText inputsData={dataInputs} />
         <ButtonForm success={success} />
       </Form>

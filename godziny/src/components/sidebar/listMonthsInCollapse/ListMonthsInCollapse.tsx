@@ -37,7 +37,7 @@ const ListMonthsInCollapse = () => {
               className={`${
                 curMonthURLStringFormat !== month || !curMonthURLStringFormat
                   ? "text-dark"
-                  : "text-info"
+                  : "text-primary"
               } text-decoration-none`}
             >
               {month}

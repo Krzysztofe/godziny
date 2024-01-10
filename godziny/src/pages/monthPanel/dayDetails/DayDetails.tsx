@@ -13,12 +13,12 @@ const DayDetails = (props: Props) => {
 
   return (
     <>
-      <div className="d-flex justify-content-between fs-7 ">
+      <div className="d-flex justify-content-between text-light-emphasis fs-4 ">
         <div>{props.day?.userName}</div>
         <DayIcon place={props.day.place} />
       </div>
 
-      <div className="d-flex fw-medium justify-content-between">
+      <div className="d-flex justify-content-between text-light-emphasis fs-4 _fw-semiBold">
         <div>{printDate ? printDate : ""}</div>
       </div>
     </>

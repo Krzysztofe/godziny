@@ -31,22 +31,31 @@ const Alert = (props: Props) => {
           onClick={handleClose}
         >
           <div
-            className={`p-4 bg-white rounded-1 fs-3 fw-medium _anim-dropDown`}
+            className={`p-5 bg-white _radius text-center fs-3 fw-medium _anim-dropDown`}
           >
             {props.header}
-            <div className="_w-fit-content m-auto">
+            <div className="_w-fitContent m-auto mt-4">
               {props.header.includes("Usunąć") ? (
                 <>
-                  <Button id="noButton">Nie</Button>
+                  <Button
+                    id="noButton"
+                    className="_radius _fs-3 bg-dark border-0 px-5"
+                  >
+                    Nie
+                  </Button>
                   <Button
                     onClick={props.action}
-                    className="bg-danger ms-4 border "
+                    className="_radius _fs-3 bg-primary border-0 px-5 ms-4 border "
                   >
                     Tak
                   </Button>
                 </>
               ) : (
-                <Button id="noButton" onClick={props.action}>
+                <Button
+                  id="noButton"
+                  className="_radius _fs-3 bg-primary border-0 px-5 ms-4 border "
+                  onClick={props.action}
+                >
                   Ok
                 </Button>
               )}

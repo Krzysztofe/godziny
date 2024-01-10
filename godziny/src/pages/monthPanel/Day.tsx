@@ -34,12 +34,12 @@ const Day = (props: Props) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
-            className={`mb-2 bg-white rounded border ${
+            className={`mb-2 bg-white _radius border ${
               snapshot.isDragging ? "border-dark" : "border-dark-subtle"
             } ${printDay}`}
           >
             <div
-              className="px-1 py-2 py-sm-1 rounded"
+              className="ps-2 pe-1 py-2 py-sm-1 _radius"
               style={{
                 borderTop: `8px solid ${props.day?.userColor}`,
                 opacity: snapshot.isDragging ? 0.8 : 1,

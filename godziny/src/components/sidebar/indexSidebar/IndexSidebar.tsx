@@ -39,9 +39,9 @@ const IndexSidebar = () => {
           name="Disable backdrop"
           scroll={true}
           backdrop={false}
-          className=" bg-transparent border-0 _offcanvas"
+          className="bg-white border-0 _offcanvas"
         >
-          <div className="p-1 d-flex flex-column _bg-opacity-white h-100">
+          <div className="p-3 d-flex flex-column h-100">
             <SidebarHeader />
             <SidebarBody />
             {/* <FilterColumns /> */}

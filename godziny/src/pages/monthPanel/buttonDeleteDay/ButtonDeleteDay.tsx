@@ -21,7 +21,7 @@ const ButtonDeleteDay = (props: Props) => {
   );
   const { btnContent } = useHTTPState(
     success,
-    <RiDeleteBin6Line className="text-danger" />
+    <RiDeleteBin6Line className="text-light-emphasis fs-2" />
   );
 
   return (
@@ -29,7 +29,7 @@ const ButtonDeleteDay = (props: Props) => {
       {alert}
       <Button
         onClick={handleAlert}
-        className="d-flex justify-content-between  align-items-center w-100 p-0 bg-transparent border-0 fw-medium text-dark"
+        className="d-flex justify-content-between fs-4 _fw-semiBold align-items-center w-100 p-0 bg-transparent border-0 text-dark"
         disabled={success.isLoading}
       >
         <div>{props.day?.hours} h</div>
