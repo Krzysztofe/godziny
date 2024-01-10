@@ -1,16 +1,16 @@
 import { Form, Formik } from "formik";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
-import { getDaySuccess } from "../../../redux/storeFeatures/requestSuccessSlice";
-import FormDateError from "./formDateError/FormDateError";
-import InputsSelect from "../../inputs/inputsSelect/InputsSelect";
-import InputsText from "../../inputs/inputsText/InputsText";
-import FormHoursError from "./formHoursError/FormHoursError";
-import "./_formDay.scss";
-import useDataFormDay from "./useDataFormDay";
-import useFormikDay from "./useFormikDay";
-import ButtonForm from "../../ButtonForm";
+import { RootState } from "../../../../redux/store";
+import { getDaySuccess } from "../../../../redux/storeFeatures/requestSuccessSlice";
+import FormDateError from "../formDateError/FormDateError";
+import InputsSelect from "../../../inputs/inputsSelect/InputsSelect";
+import InputsText from "../../../inputs/inputsText/InputsText";
+import FormHoursError from "../formHoursError/FormHoursError";
+import "./_formDayContext.scss"
+import useDataFormDay from "../useDataFormDay";
+import useFormikDay from "../useFormikDay";
+import ButtonForm from "../../../ButtonForm";
 
 const FormDayContext = () => {
   const dispatch = useDispatch();
@@ -29,10 +29,11 @@ const FormDayContext = () => {
       validationSchema={validation}
       onSubmit={onSubmit}
     >
-      <Form className={`${allHours === 0 ? "formContainerBlur" : ""} mt-2`}>
+      <Form className={`${allHours === 0 ? "_formDayContext" : ""} mt-2`}>
         <InputsSelect inputsData={dataInputsSelect} />
         <div className="position-relative">
           <InputsText inputsData={dataInputsText} />
+          <div className="div"></div>
           <FormDateError />
         </div>
         <ButtonForm success={success} />

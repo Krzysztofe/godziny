@@ -2,17 +2,22 @@ import { ModelColumn } from "../../../../sharedModels/modelColumn";
 import { ModelMonth } from "../../../../sharedModels/modelMonth";
 
 export const findDayInColumn = (
-  monthColumn: ModelColumn,
+  monthColumn: ModelColumn | undefined,
   findName: string,
   findDate: string
 ) => {
-  return monthColumn?.days?.find(({ userName, date }) => {
-    return userName === findName && date === findDate;
-  });
+  return (
+    monthColumn?.days &&
+    monthColumn?.days?.find(day => {
+      const { userName, date } = day || {};
+
+      return (userName || "") === findName && date === findDate;
+    })
+  );
 };
 
 export const validationFormDayDate = (
-  month: ModelMonth,
+  month: ModelMonth | undefined,
   findName: string,
   findDate: string
 ) => {

@@ -8,7 +8,7 @@ type Props = {
 const CollapseArrow = (props: Props) => {
   return (
     <MdOutlineKeyboardArrowDown
-      className={`fs-3 _collapseArrow ${
+      className={`fs-1 _fw-light _collapseArrow h-100 ${
         props.isOpen ? "_collapseArrow--rotate" : ""
       }`}
     />

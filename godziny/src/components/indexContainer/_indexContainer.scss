@@ -7,13 +7,13 @@
   &__aside {
     max-width: 250px;
     height: 100%;
-    @include sm {
+    @include md {
       width: 30%;
     }
   }
   &__rightSide {
     width: 100%;
-    @include sm {
+    @include md {
       width: 70%;
     }
   }

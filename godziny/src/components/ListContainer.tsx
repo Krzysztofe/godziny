@@ -15,7 +15,7 @@ const ListContainer = (props: Props) => {
 
   return (
     <>
-      <h3 className="h6">
+      <h3 className="_fs-2 _fw-regular">
         {props.header}: {props.listContent?.length}
       </h3>
 

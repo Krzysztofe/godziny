@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import IndexContainer from "../../../components/indexContainer/IndexContainer";
 import RequestError from "../../../components/requestStates/RequestError";
 import RequestLoading from "../../../components/requestStates/RequestLoading";
-import { requestContainer } from "../../../utils/utilsRequestContainer/utilsRequestContainer";
+import { requestContainer } from "../../../utils/utilsRequestContainer";
 import { RootState } from "../../../redux/store";
 import SettinsContent from "../settingsContent/SettinsContent";
 

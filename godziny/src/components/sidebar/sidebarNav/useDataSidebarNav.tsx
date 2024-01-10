@@ -15,8 +15,8 @@ const useDataSidebarNav = () => {
       to="/ustawienia"
       className={({ isActive }) =>
         isActive
-          ? "text-primary-emphasis text-decoration-none"
-          : "text-primary text-decoration-none"
+          ? "text-primary-emphasis text-decoration-none _fs-3 _fw-semiBold"
+          : "text-primary text-decoration-none _fs-3 _fw-semiBold"
       }
       end
     >

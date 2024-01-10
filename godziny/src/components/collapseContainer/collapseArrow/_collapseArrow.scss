@@ -1,8 +1,9 @@
 ._collapseArrow {
   transition-duration: 320ms;
-  &--rotate{
+  position: absolute;
+  top: 0;
+  right: 4px;
+  &--rotate {
     transform: rotate(180deg);
   }
 }
-
-

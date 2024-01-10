@@ -10,9 +10,9 @@ const SidebarNav = (props: Props) => {
   const { windowWidth } = useWindowWidth();
   const { dataSidebarNavItems } = useDataSidebarNav();
 
-  const closeSidebar = () => {
-    windowWidth < 500 && props.handleClose();
-  };
+  // const closeSidebar = () => {
+  //   windowWidth < 650 && props.handleClose();
+  // };
 
   return (
     <nav className="mt-auto mb-2 fw-medium">
@@ -22,7 +22,7 @@ const SidebarNav = (props: Props) => {
             <ListGroup.Item
               key={idx}
               className="bg-transparent border-0 text-dark p-0 ps-2"
-              onClick={closeSidebar}
+              // onClick={closeSidebar}
             >
               {item}
             </ListGroup.Item>

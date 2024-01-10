@@ -4,7 +4,7 @@ import { RootState } from "../../../../redux/store";
 import { useSelector } from "react-redux";
 import { capitalizeFirstLetter } from "../../../../utils/utilsCapitalizeFirstLetter";
 import useMonthDates from "../../../../hooks/useMonthDates";
-import "./_monthTitle.scss"
+import "./_monthTitle.scss";
 
 type Props = {
   idx: number;
@@ -21,9 +21,9 @@ const MonthTitle = (props: Props) => {
     <div className="_monthTitle">
       <Link
         to={`/${listMonths?.[props.idx]}`}
-        className="text-decoration-none _fs-responsive text-dark fw-medium"
+        className="text-decoration-none _fs-3 _fw-regular text-dark"
       >
-        <ImArrowLeft className="fs-6 me-1 text-primary" />
+        <ImArrowLeft className="_fs-3 me-1 text-primary" />
         {title}
       </Link>
     </div>

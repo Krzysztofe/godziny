@@ -1,3 +1,6 @@
+@import "./variables";
+@import "./mixins";
+
 ._scrolHidden {
   overflow-y: scroll;
 
@@ -17,6 +20,55 @@
 ._cursor-pointer {
   cursor: pointer;
 }
+
+._radius {
+  border-radius: 3px !important;
+}
+
+._radius_bottom {
+  border-radius: 0 0 3px 3px !important;
+}
+
+// fonts
+
+// 16
+._fs-2 {
+  // font-size: $h4-font-size !important;
+  // @include md {
+  //   font-size: $h2-font-size !important;
+  // }
+  font-size: $h2-font-size !important;
+}
+
+// 14
+._fs-3 {
+  // font-size: $h4-font-size !important;
+  // @include md {
+  //   font-size: $h3-font-size !important;
+  // }
+  font-size: $h3-font-size !important;
+}
+
+// 10
+._fs-5 {
+  font-size: $h6-font-size !important;
+  @include md {
+    font-size: $h5-font-size !important;
+  }
+}
+
+._fw-light {
+  font-weight: 100 !important;
+}
+
+._fw-regular {
+  font-weight: 400 !important;
+}
+
+._fw-semiBold {
+  font-weight: 600 !important;
+}
+
 ._fs-responsive {
   font-size: 0.78rem !important;
 }
@@ -29,7 +81,7 @@
 
 @media (min-width: 500px) {
   ._fs-responsive {
-    font-size: 0.8rem !important;
+    font-size: 0.75rem !important;
   }
 }
 

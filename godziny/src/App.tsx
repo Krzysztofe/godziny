@@ -27,14 +27,14 @@ function App() {
 
   return (
     <Suspense fallback={<LoadingPage />}>
-      {isLoged && <IndexSidebar />}
+      {true && <IndexSidebar />}
       <Routes>
-        <Route path="/" element={<IndexLogin />} />
-        <Route element={<PrivateRoutes />}>
+        {/* <Route path="/" element={<IndexLogin />} />
+        <Route element={<PrivateRoutes />}> */}
           <Route path="/:month" element={<IndexMonthPanel />} />
           <Route path="/ustawienia" element={<IndexSettings />} />
           <Route path="/*" element={<IndexLogin />} />
-        </Route>
+        {/* </Route> */}
       </Routes>
     </Suspense>
   );

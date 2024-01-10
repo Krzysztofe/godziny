@@ -15,7 +15,7 @@ const ColumnsHeader = (props: Props) => {
         return (
           <div
             key={headerText}
-            className={`text-dark-emphasis _fs-responsive bg-white fw-medium p-1 d-flex align-items-center _columnsHeader  ${
+            className={`text-primary _fs-2 bg-white _fw-semiBold p-1 d-flex align-items-center _columnsHeader  ${
               props.thumbPosition === 0
                 ? "border-bottom border-3 border-white"
                 : "border-bottom border-3"

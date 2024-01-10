@@ -3,7 +3,11 @@ import { ModelColumn } from "../../../sharedModels/modelColumn";
 
 export const deleteDayById = (obj: ModelMonth, idToDelete: string) => {
   const updatedColumns = obj.columns.map((column: ModelColumn) => {
-    const updatedDays = column?.days?.filter(day => day.id !== idToDelete);
+    const updatedDays = column?.days?.filter(day => {
+      console.log('',day?.id)
+       if (day && day.id) return day.id !== idToDelete;
+       return false;
+    });
     return { ...column, days: updatedDays };
   });
   return { ...obj, columns: updatedColumns };
@@ -15,13 +19,13 @@ export const calculateUpdatedCalcHours = (
   subtractedHours: number | undefined
 ) => {
   if (!month || !month.calcHours) {
-     return {
-       currentHours: 0,
-       submittedHours: 0,
-       acceptedHours: 0,
-       rejectedHours: 0,
-       allHours: 0,
-     };
+    return {
+      currentHours: 0,
+      submittedHours: 0,
+      acceptedHours: 0,
+      rejectedHours: 0,
+      allHours: 0,
+    };
   }
 
   const { calcHours } = month;

@@ -2,7 +2,7 @@ import { useFormikContext } from "formik";
 import Form from "react-bootstrap/Form";
 import InputError from "../inputError/InputError";
 import { ModelDay } from "../../../sharedModels/modelDay";
-import "./_inputsText.scss"
+import "./_inputsText.scss";
 
 type Props = {
   inputsData: {

@@ -16,7 +16,7 @@ const ButtonDeleteUser = (props: Props) => {
   const { deleteUserAsync, success } = useDeleteUserAsync(userName);
   const { btnContent } = useHTTPState(
     success,
-    <RiDeleteBin6Line className="text-danger fs-5 ms-auto" />
+    <RiDeleteBin6Line className="text-danger _fs-2 ms-auto" />
   );
   const { alert, handleAlert } = useAlertDelete(
     deleteUserAsync,
@@ -44,7 +44,7 @@ const ButtonDeleteUser = (props: Props) => {
         {userName === props.user.userName ? (
           btnContent
         ) : (
-          <RiDeleteBin6Line className="text-danger fs-5 ms-auto" />
+          <RiDeleteBin6Line className="text-danger _fs-2 ms-auto" />
         )}
       </Button>
     </>

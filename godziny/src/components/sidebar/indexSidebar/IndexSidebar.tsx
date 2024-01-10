@@ -23,7 +23,7 @@ const IndexSidebar = () => {
   const toggleShow = () => setShow(prev => !prev);
 
   useEffect(() => {
-    windowWidth >= 500 && setShow(true);
+    windowWidth >= 650 && setShow(true);
   }, [windowWidth]);
 
   const printSidebar =
@@ -31,29 +31,27 @@ const IndexSidebar = () => {
 
   return (
     <>
-      {printSidebar && (
-        <>
-          <Offcanvas
-            show={isShow}
-            onHide={handleClose}
-            name="Disable backdrop"
-            scroll={true}
-            backdrop={false}
-            className={`${
-              windowWidth <= 500 && "_backgroundImage"
-            } bg-transparent border-0 _offcanvas`}
-          >
-            <div className="p-1 d-flex flex-column _bg-opacity-white h-100">
-              <SidebarHeader />
-              <SidebarBody />
-              {/* <FilterColumns /> */}
+      {/* {printSidebar && ( */}
+      <>
+        <Offcanvas
+          show={isShow}
+          onHide={handleClose}
+          name="Disable backdrop"
+          scroll={true}
+          backdrop={false}
+          className=" bg-transparent border-0 _offcanvas"
+        >
+          <div className="p-1 d-flex flex-column _bg-opacity-white h-100">
+            <SidebarHeader />
+            <SidebarBody />
+            {/* <FilterColumns /> */}
 
-              <SidebarNav handleClose={handleClose} />
-            </div>
-          </Offcanvas>
-          <SidebarMenuButton toggleShow={toggleShow} />
-        </>
-      )}
+            <SidebarNav handleClose={handleClose} />
+          </div>
+        </Offcanvas>
+        <SidebarMenuButton toggleShow={toggleShow} />
+      </>
+      {/* )} */}
     </>
   );
 };

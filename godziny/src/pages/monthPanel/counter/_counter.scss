@@ -1,27 +1,15 @@
+@import "../../../scss/mixins";
+
 ._counter {
   height: 20px;
   overflow: hidden;
   margin-bottom: -2px;
+  @include md {
+    margin-bottom: 3px;
+  }
+
   &__dygit {
     height: 20px;
     margin-left: 3px;
-  }
-}
-
-@media (min-width: 400px) {
-  ._counter {
-    margin-bottom: 4px;
-  }
-}
-
-@media (min-width: 500px) {
-  ._counter {
-    margin-bottom: 0px;
-  }
-}
-
-@media (min-width: 560px) {
-  ._counter {
-    margin-bottom: 4px;
   }
 }

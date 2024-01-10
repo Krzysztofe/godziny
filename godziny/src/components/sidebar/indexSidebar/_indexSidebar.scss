@@ -2,7 +2,7 @@
 
 ._offcanvas {
   width: 100vw !important;
-  @include sm {
+  @include md {
     width: 30%  !important;;
     max-width: 250px;
   }

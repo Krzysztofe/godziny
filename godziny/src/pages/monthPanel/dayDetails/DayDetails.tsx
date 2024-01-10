@@ -7,7 +7,7 @@ interface Props {
 }
 
 const DayDetails = (props: Props) => {
-  if (!props?.day?.date) return <div>Brak danych</div>;
+  if (!props?.day) return <div>Brak danych</div>;
 
   const printDate = dateShort(props?.day?.date);
 

@@ -37,7 +37,7 @@ const CollapseFormHours = (props: Props) => {
           aria-expanded={isOpen}
           aria-controls="example-collapse-text"
           size="sm"
-          className={`fw-medium _fs-responsive d-flex justify-content-between align-items-center p-0 ps-1`}
+          className={`_fw-semiBold _fs-3 w-50 d-flex justify-content-between align-items-center p-0 ps-1 position-relative`}
         >
           Zapisz godziny
           <CollapseArrow isOpen={isOpen} />

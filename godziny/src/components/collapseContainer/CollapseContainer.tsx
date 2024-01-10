@@ -19,15 +19,17 @@ const CollapseContainer = (props: Props) => {
         aria-expanded={isOpen}
         aria-controls="example-collapse-text"
         size="sm"
-        className={`fw-medium _fs-responsive d-flex justify-content-between align-items-center bg-primary text-white w-100 _collapseContainer ${
-          isOpen ? "rounded-bottom-0" : "rounded-bottom-1"
-        }`}
+        className={`_fw-semiBold _fs-3 text-center _radius bg-primary py-2 text-white w-100 _collapseContainer position-relative 
+        
+        ${isOpen ? "rounded-bottom-0" : "_radius"}
+        
+        `}
       >
         {props.title}
         <CollapseArrow isOpen={isOpen} />
       </Button>
       <Collapse in={isOpen}>
-        <div className="border border-primary rounded-bottom px-1">
+        <div className="border border-primary _radius_bottom px-1">
           {props.children}
         </div>
       </Collapse>

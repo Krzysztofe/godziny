@@ -13,6 +13,7 @@ const useDeleteDayAsync = (day: ModelDay, columnIndex: number) => {
   const deleteDayAsync = async () => {
     const subtractedHours = day?.hours;
 
+    console.log("async", day.id);
     month &&
       (await deleteDay({
         year: yearFromURL,
@@ -25,8 +26,7 @@ const useDeleteDayAsync = (day: ModelDay, columnIndex: number) => {
             +columnIndex,
             subtractedHours
           ),
-
-          columns: deleteDayById({ ...month }, day.id).columns,
+          columns: deleteDayById({ ...month }, day?.id).columns,
         },
       }));
   };
