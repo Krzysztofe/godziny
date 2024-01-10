@@ -29,6 +29,10 @@
   border-radius: 0 0 3px 3px !important;
 }
 
+._h-fitContent{
+  height: fit-content !important;
+}
+
 // fonts
 
 // 16
@@ -37,6 +41,8 @@
   // @include md {
   //   font-size: $h2-font-size !important;
   // }
+  font-family: "Poppins", sans-serif;
+
   font-size: $h2-font-size !important;
 }
 

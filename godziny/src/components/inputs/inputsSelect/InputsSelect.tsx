@@ -3,7 +3,6 @@ import Form from "react-bootstrap/Form";
 import InputError from "../inputError/InputError";
 import { ModelDay } from "../../../sharedModels/modelDay";
 
-
 type Props = {
   inputsData: {
     name: string;
@@ -21,13 +20,8 @@ const InputsSelect = (props: Props) => {
     <>
       {props.inputsData.map(({ name, firstOption, label, options }) => {
         return (
-          <Form.Group key={label}>
-            <Form.Label
-              htmlFor={name}
-              className="mb-0 fw-medium  _fs-responsive"
-            >
-              {label}
-            </Form.Label>
+          <Form.Group key={label} className="mt-2">
+            {/* <Form.Label htmlFor={name}>{label}</Form.Label> */}
 
             <Form.Select
               id={name}
@@ -35,7 +29,7 @@ const InputsSelect = (props: Props) => {
               onChange={e => setFieldValue(name, e.target.value)}
               onBlur={handleBlur}
               size="sm"
-              className={`p-0 px-1 border border-primary shadow-sm _cursor-pointer ${
+              className={`py-2 _fs-3 text-light-emphasis border bg-secondary shadow-sm _cursor-pointer ${
                 firstOption === "Brak danych" ? "text-warning" : ""
               }`}
             >

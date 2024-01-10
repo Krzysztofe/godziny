@@ -21,27 +21,23 @@ const useDataFormDay = () => {
     {
       name: "userName",
       firstOption: `${names.length === 0 ? "Brak danych" : "Imię"}`,
-      label: "Podaj imię",
       options: names,
     },
     {
       name: "hours",
-      firstOption: "Godziny",
-      label: "Podaj liczbę godzin",
+      firstOption: "Liczba godzin",
       options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     },
 
     {
       name: "place",
       firstOption: "Lokalizacja",
-      label: "Podaj lokalizację",
       options: ["Wewnątrz", "Poza"],
     },
   ];
   const dataInputsText = [
     {
       value: "date",
-      label: "Podaj datę",
       type: "date",
       isErrorPrint: true,
       min: dateInNext_14_Days,
