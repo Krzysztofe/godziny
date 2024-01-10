@@ -46,6 +46,7 @@ Live recording of the application presentation during the conclusion of the comp
 * Firebase: Authentication, Realtime Database 
 * Formik / Yup 
 * Lazy loading
+* Throttling
 * Protected routes
 * Dynamic Routing
 * Login
