@@ -2,7 +2,7 @@ $primary: rgb(37, 105, 244);
 $secondary: rgb(239, 239, 239);
 $warning: rgb(255, 124, 9);
 $success: rgba(180, 80, 255);
-$success-secondary:rgb(62, 62, 62);
+$success-secondary: rgb(62, 62, 62);
 $dark: rgb(62, 62, 62);
 
 $light-text-emphasis: rgb(110, 110, 110);
@@ -12,6 +12,11 @@ $border-color: rgb(226, 226, 226);
 
 $font-family-base: "Poppins", sans-serif;
 
+$space-100: 0.312rem;
+$space-200: 0.625rem;
+
+$font-size-base: 0.875rem;
+$input-font-size: 0.875rem;
 $h1-font-size: 1.5rem;
 $h2-font-size: 1rem;
 $h3-font-size: 0.875rem;
@@ -21,7 +26,7 @@ $h6-font-size: 0.5rem;
 
 $grid-breakpoints: (
   xs: 0,
-  sm: 400px,
+  sm: 460px,
   md: 650px,
   lg: 992px,
   xl: 1200px,

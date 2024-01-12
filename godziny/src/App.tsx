@@ -3,6 +3,9 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { auth } from "./data/firebaseConfig";
 import LoadingPage from "./pages/loadingPage/LoadingPage";
 import "./scss/App.scss";
+import IndexX from "./components/x/IndexX";
+import Header from "./components/header/Header";
+
 
 const IndexLogin = lazy(() => import("./pages/login/IndexLogin"));
 const PrivateRoutes = lazy(() => import("./components/PrivateRoutes"));
@@ -17,7 +20,6 @@ const IndexSettings = lazy(
 );
 
 function App() {
-
   const [isLoged, setLoged] = useState<string | undefined>("");
   const { pathname } = useLocation();
 
@@ -27,13 +29,15 @@ function App() {
 
   return (
     <Suspense fallback={<LoadingPage />}>
-      {true && <IndexSidebar />}
+      {/* {true && <IndexSidebar />} */}
+      <Header />
+      <IndexX /> 
       <Routes>
         {/* <Route path="/" element={<IndexLogin />} />
         <Route element={<PrivateRoutes />}> */}
-          <Route path="/:month" element={<IndexMonthPanel />} />
-          <Route path="/ustawienia" element={<IndexSettings />} />
-          <Route path="/*" element={<IndexLogin />} />
+        <Route path="/:month" element={<IndexMonthPanel />} />
+        <Route path="/ustawienia" element={<IndexSettings />} />
+        <Route path="/*" element={<IndexLogin />} />
         {/* </Route> */}
       </Routes>
     </Suspense>

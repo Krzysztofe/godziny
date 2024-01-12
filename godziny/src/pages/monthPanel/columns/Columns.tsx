@@ -31,9 +31,9 @@ const Columns = () => {
     <div
       ref={scrollableRef}
       onScroll={handleScroll}
-      className="overflow-y-scroll h-100 _columnsContainer"
+      className="_columnsContainer mb-1"
     >
-      <ColumnsHeader thumbPosition={thumbPosition} />
+      {/* <ColumnsHeader thumbPosition={thumbPosition} /> */}
 
       <div className="_d-between _dragDropContex">
         <DragDropContext onDragEnd={handleDragEnd}>

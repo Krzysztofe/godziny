@@ -53,7 +53,7 @@ const InputsText = (props: Props) => {
                 max={max}
                 placeholder={placeholder}
                 size="sm"
-                className={`py-2 _fs-3 text-light-emphasis bg-secondary _radium shadow-sm w-100 text-capitalize _inputsText _cursor-pointer ${
+                className={`py-2 _fs-3 text-light-emphasis bg-secondary-light _radium shadow-sm w-100 text-capitalize _inputsText _cursor-pointer ${
                   type === "color" ? "px-0" : "px-2"
                 }`}
               />

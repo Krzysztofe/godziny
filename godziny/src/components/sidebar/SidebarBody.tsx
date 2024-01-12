@@ -17,6 +17,8 @@ const SidebarBody = () => {
           return <React.Fragment key={idx}>{component}</React.Fragment>;
         })}
 
+        
+
       {pathname === "/ustawienia" &&
         dataSettings.map((component, idx) => {
           return <React.Fragment key={idx}>{component}</React.Fragment>;

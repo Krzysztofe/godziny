@@ -22,16 +22,16 @@ const ListMonthsInCollapse = () => {
     }).format(monthURLToDateFormat);
 
   return (
-    <ListGroup className="_scrolHidden _ListMonthsInCollapse _fs-3 text-capitalize">
+    <ListGroup className="_scrolHidden _ListMonthsInCollapse _fs-3 text-capitalize bg-secondary">
       {listMonths?.length === 0 && (
-        <ListGroup.Item className="border-0 p-0 text-warning">
+        <ListGroup.Item className="border-0 p-0 text-warning bg-transparent">
           Brak danych
         </ListGroup.Item>
       )}
 
       {databaseMonthsDatesToString?.map((month: string, idx: number) => {
         return (
-          <ListGroup.Item key={month} className="border-0 p-0">
+          <ListGroup.Item key={month} className="border-0 p-0 bg-transparent">
             <Link
               to={`/${listMonths?.[idx]}`}
               className={`${

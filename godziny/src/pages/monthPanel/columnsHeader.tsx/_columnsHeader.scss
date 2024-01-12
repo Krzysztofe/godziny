@@ -1,4 +1,9 @@
 ._columnsHeader {
-  height: 35px;
-  width: 33%;
+  position: sticky;
+  top: 98px;
+  z-index: 100;
+  &__item {
+    height: 35px;
+    width: 33%;
+  }
 }

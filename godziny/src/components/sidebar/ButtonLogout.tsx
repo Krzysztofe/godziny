@@ -1,17 +1,21 @@
 import { useState } from "react";
 import { Spinner } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
+import { TbUser } from "react-icons/tb";
+import { useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../../data/firebaseConfig";
 import { printAlert } from "../../redux/storeFeatures/alertSlice";
-import { RiLogoutBoxLine } from "react-icons/ri";
+
 import { useDispatch } from "react-redux";
 import AlertErrors from "../AlertErrors";
 
-const SidebarLogout = () => {
+const ButtonLogout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const { pathname } = useLocation();
+
+  const printLogout = pathname !== "/";
 
   const logout = () => {
     setIsLoading(true);
@@ -28,9 +32,9 @@ const SidebarLogout = () => {
   };
 
   let btnContent = (
-    <div className="_fs-3 d-flex align-items-center text-light-emphasis w-100">
-      <RiLogoutBoxLine className="_fs-2 me-1 " />
-      Wyloguj
+    <div className=" d-flex align-items-center text-light-emphasis w-100">
+      <TbUser className="fs-2 " />
+      <span className="d-none d-sm-block"> Wyloguj </span>
     </div>
   );
 
@@ -52,7 +56,9 @@ const SidebarLogout = () => {
       <AlertErrors />
       <Button
         onClick={logout}
-        className="fs-6 fw-medium text-info p-0 bg-transparent border-0 w-100 _cursor-pointer"
+        className={`bg-transparent border-0 p-0 ms-2 me-3 ${
+          printLogout ? "visible" : "invisible"
+        }`}
         disabled={isLoading}
       >
         {btnContent}
@@ -61,4 +67,4 @@ const SidebarLogout = () => {
   );
 };
 
-export default SidebarLogout;
+export default ButtonLogout;

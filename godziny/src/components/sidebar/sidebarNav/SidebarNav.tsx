@@ -1,12 +1,13 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import useWindowWidth from "../../../hooks/useWindowWidth";
 import useDataSidebarNav from "./useDataSidebarNav";
+import { ReactNode } from "react";
 
 type Props = {
-  handleClose: () => void;
+  display?: string
 };
 
-const SidebarNav = (props: Props) => {
+const SidebarNav = (props:Props) => {
   const { windowWidth } = useWindowWidth();
   const { dataSidebarNavItems } = useDataSidebarNav();
 
@@ -15,13 +16,13 @@ const SidebarNav = (props: Props) => {
   // };
 
   return (
-    <nav className="mt-auto mb-2 fw-medium">
-      <ListGroup>
+    <nav>
+      <ListGroup className={props.display}>
         {dataSidebarNavItems.map((item, idx) => {
           return (
             <ListGroup.Item
               key={idx}
-              className="bg-transparent border-0 text-dark p-0 ps-2"
+              className="bg-transparent border-0 text-dark p-0 ms-2"
               // onClick={closeSidebar}
             >
               {item}

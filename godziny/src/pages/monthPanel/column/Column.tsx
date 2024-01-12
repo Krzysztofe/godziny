@@ -16,7 +16,7 @@ const Column = (props: Props) => {
   const { searchedName } = useSelector((state: RootState) => state.filterDays);
 
   return (
-    <div className="_column position-relative">
+    <div className="_column position-relative mt-3 ">
       <Droppable droppableId={props.column.id}>
         {(provided, snapshot) => {
           return (
@@ -25,7 +25,9 @@ const Column = (props: Props) => {
               ref={provided.innerRef}
               className={`p-1 h-100 overflow-hidden border border-1 border border-top-0 ${
                 snapshot.isDraggingOver ? "_isDragging" : "_noDragging"
-              } ${searchedName ? "_filtered" : ""}`}
+              } ${
+                searchedName && searchedName !== "Szukaj" ? "_filtered" : ""
+              }`}
             >
               {Array.isArray(props.column.days)
                 ? props.column.days.map((day: ModelDay, idx: number) => {

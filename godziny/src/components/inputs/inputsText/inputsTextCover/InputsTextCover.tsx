@@ -17,7 +17,7 @@ const InputsTextCover = (props: Props) => {
       {isPrinted && (
         <div
           onClick={handleDelete}
-          className="_inputsTextCover w-100 ps-2 _fs-3 d-flex align-items-center bg-secondary text-light-emphasis _radius border position-absolute"
+          className="_inputsTextCover w-100 ps-2 d-flex align-items-center bg-secondary-light text-light-emphasis _radius border position-absolute"
         >
           {props.text}
         </div>

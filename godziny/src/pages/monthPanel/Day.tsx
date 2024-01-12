@@ -16,7 +16,7 @@ const Day = (props: Props) => {
 
   let printDay: string;
 
-  if (!searchedName) {
+  if (!searchedName || searchedName === "Szukaj") {
     printDay = "d-block";
   } else if (searchedName !== props.day.userName) {
     printDay = "d-none";

@@ -1,7 +1,10 @@
 import { useFormikContext } from "formik";
 import Form from "react-bootstrap/Form";
-import InputError from "../inputError/InputError";
 import { ModelDay } from "../../../sharedModels/modelDay";
+import InputError from "../inputError/InputError";
+import InputSearchIcon from "./InputSearchIcon";
+import "./_inputSelect.scss";
+
 
 type Props = {
   inputsData: {
@@ -10,6 +13,8 @@ type Props = {
     label?: string;
     options: string[] | number[];
   }[];
+  padding: string;
+  inputIcon?: boolean
 };
 
 const InputsSelect = (props: Props) => {
@@ -17,21 +22,21 @@ const InputsSelect = (props: Props) => {
     useFormikContext<ModelDay>();
 
   return (
-    <>
+    <div className="position-relative">
+    { props.inputIcon && <InputSearchIcon /> }  
       {props.inputsData.map(({ name, firstOption, label, options }) => {
         return (
-          <Form.Group key={label} className="mt-2">
+          <Form.Group key={label} className="mt-2  _inputSelect">
             {/* <Form.Label htmlFor={name}>{label}</Form.Label> */}
-
             <Form.Select
               id={name}
               name={name}
               onChange={e => setFieldValue(name, e.target.value)}
               onBlur={handleBlur}
               size="sm"
-              className={`py-2 _fs-3 text-light-emphasis border bg-secondary shadow-sm _cursor-pointer ${
+              className={`p-0 fs-3 text-light-emphasis border bg-secondary-light shadow-sm _cursor-pointer _inputSelect position-relative ${
                 firstOption === "Brak danych" ? "text-warning" : ""
-              }`}
+              } ${props.padding}`}
             >
               <option
                 value={firstOption}
@@ -43,7 +48,6 @@ const InputsSelect = (props: Props) => {
               >
                 {firstOption}
               </option>
-
               {options?.map((option: string | number) => {
                 return (
                   <option key={option} value={option}>
@@ -52,11 +56,12 @@ const InputsSelect = (props: Props) => {
                 );
               })}
             </Form.Select>
+
             <InputError value={name} errors={errors} touched={touched} />
           </Form.Group>
         );
       })}
-    </>
+    </div>
   );
 };
 

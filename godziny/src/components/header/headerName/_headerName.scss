@@ -1,0 +1,13 @@
+@import "../../../scss/mixins";
+
+._headerName {
+  font-size: 0.75rem;
+
+  @include md {
+    width: 30%;
+    max-width: 250px;
+  }
+  @include lg {
+    font-size: 0.875rem;
+  }
+}

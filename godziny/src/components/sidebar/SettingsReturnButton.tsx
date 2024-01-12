@@ -10,7 +10,7 @@ const SettingsReturnButton = () => {
   return (
     <Button
       onClick={handleGoBack}
-      className="_fs-3 text-light-emphasis p-0 bg-transparent border-0 w-100 d-flex align-items-center_cursor-pointer"
+      className="text-light-emphasis p-0 bg-transparent border-0 w-100 d-flex align-items-center_cursor-pointer"
     >
       <ImArrowLeft className=" me-1 align-self-center " /> Wróć
     </Button>

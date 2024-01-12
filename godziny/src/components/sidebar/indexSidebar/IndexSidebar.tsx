@@ -9,7 +9,7 @@ import SidebarHeader from "../SidebarHeader";
 import SidebarMenuButton from "../sidebarMenuButton/SidebarMenuButton";
 import SidebarNav from "../sidebarNav/SidebarNav";
 import "./_indexSidebar.scss";
-import FilterColumns from "../../filterColumns/FilterColumns";
+import FilterColumns from "../../header/filterColumns/FilterColumns";
 
 const IndexSidebar = () => {
   useReduxListUsers();
@@ -46,10 +46,10 @@ const IndexSidebar = () => {
             <SidebarBody />
             {/* <FilterColumns /> */}
 
-            <SidebarNav handleClose={handleClose} />
+            {/* <SidebarNav /> */}
           </div>
         </Offcanvas>
-        <SidebarMenuButton toggleShow={toggleShow} />
+        {/* <SidebarMenuButton toggleShow={toggleShow} /> */}
       </>
       {/* )} */}
     </>

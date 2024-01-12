@@ -1,8 +1,6 @@
-import { NavLink } from "react-router-dom";
-import { AiTwotoneSetting } from "react-icons/ai";
 import useURLValues from "../../../hooks/useURLValues";
 import SettingsReturnButton from "../SettingsReturnButton";
-import SidebarLogout from "../SidebarLogout";
+import ListLink from "./ListLink";
 
 const useDataSidebarNav = () => {
   const { isMonthInURL } = useURLValues();
@@ -11,20 +9,7 @@ const useDataSidebarNav = () => {
 
   const dataSidebarNavItems = [
     returnButton,
-    <NavLink
-      to="/ustawienia"
-      className={({ isActive }) =>
-        isActive
-          ? "text-dark text-decoration-none _fs-3"
-          : "text-light-emphasis text-decoration-none _fs-3"
-      }
-      end
-    >
-      <>
-        <AiTwotoneSetting /> Ustawienia
-      </>
-    </NavLink>,
-    <SidebarLogout />,
+    <ListLink/>
   ];
 
   return { dataSidebarNavItems };

@@ -10,7 +10,7 @@
 
 $custom-theme-colors: (
   placeholder: rgb(210, 203, 203),
-  primary-light: rgb(70, 131, 255),
+  secondary-light: rgb(250, 250, 250),
 );
 
 $theme-colors: map-merge($custom-theme-colors, $theme-colors);

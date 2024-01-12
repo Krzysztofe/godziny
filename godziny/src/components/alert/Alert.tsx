@@ -31,7 +31,7 @@ const Alert = (props: Props) => {
           onClick={handleClose}
         >
           <div
-            className={`p-5 bg-white _radius text-center fs-3 fw-medium _anim-dropDown`}
+            className={`p-5 bg-white _radius text-center fs-2 fw-medium _anim-dropDown`}
           >
             {props.header}
             <div className="_w-fitContent m-auto mt-4">
@@ -39,13 +39,13 @@ const Alert = (props: Props) => {
                 <>
                   <Button
                     id="noButton"
-                    className="_radius _fs-3 bg-dark border-0 px-5"
+                    className="_radius bg-dark border-0 px-5"
                   >
                     Nie
                   </Button>
                   <Button
                     onClick={props.action}
-                    className="_radius _fs-3 bg-primary border-0 px-5 ms-4 border "
+                    className="_radius bg-primary border-0 px-5 ms-4 border "
                   >
                     Tak
                   </Button>

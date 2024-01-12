@@ -12,6 +12,7 @@ import useDataFormDay from "../useDataFormDay";
 import useFormikDay from "../useFormikDay";
 import ButtonForm from "../../../ButtonForm";
 import InputsTextCover from "../../../inputs/inputsText/inputsTextCover/InputsTextCover";
+import FilterColumns from "../../../header/filterColumns/FilterColumns";
 
 const FormDayContext = () => {
   const dispatch = useDispatch();
@@ -31,12 +32,13 @@ const FormDayContext = () => {
       onSubmit={onSubmit}
     >
       <Form className={`${allHours === 0 ? "_formDayContext" : ""} mt-4`}>
-        <InputsSelect inputsData={dataInputsSelect} />
+        <InputsSelect inputsData={dataInputsSelect} padding={"py-2 ps-2"} />
+
         <div className="position-relative mb-3">
           <InputsText inputsData={dataInputsText} />
           <InputsTextCover text={"Data"} />
         </div>
-        <FormDateError />
+
         <ButtonForm success={success} />
         <FormHoursError />
       </Form>
