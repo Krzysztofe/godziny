@@ -16,14 +16,14 @@ const Column = (props: Props) => {
   const { searchedName } = useSelector((state: RootState) => state.filterDays);
 
   return (
-    <div className="_column position-relative mt-3 ">
+    <div className="_column position-relative">
       <Droppable droppableId={props.column.id}>
         {(provided, snapshot) => {
           return (
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className={`p-1 h-100 overflow-hidden border border-1 border border-top-0 ${
+              className={`p-1 h-100 overflow-hidden border border-1 border border-top-0 pt-3 ${
                 snapshot.isDraggingOver ? "_isDragging" : "_noDragging"
               } ${
                 searchedName && searchedName !== "Szukaj" ? "_filtered" : ""

@@ -1,3 +1,5 @@
+@import "../../../scss/variables";
+
 ._column {
   width: 33%;
 }
@@ -16,5 +18,5 @@
 }
 
 ._noDragging {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: $secondary;
 }

@@ -9,7 +9,6 @@ import useDataSidebar from "../sidebar/useDataSidebar";
 import "./_indexX.scss";
 import BorderInline from "../BorderInline";
 
-
 const IndexX = () => {
   useReduxListUsers();
   useReduxListMonths();
@@ -36,7 +35,6 @@ const IndexX = () => {
           </div>
         </div>
       </div>
-      <BorderInline />
     </>
   );
 };

@@ -4,6 +4,7 @@ import { RootState } from "../../../redux/store";
 import ListMonths from "../listMonths/ListMonths";
 import ListUsers from "../listUsers/ListUsers";
 import "./_settingsContent.scss";
+import BorderInline from "../../../components/BorderInline";
 
 const SettinsContent = () => {
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
@@ -11,7 +12,8 @@ const SettinsContent = () => {
 
   return (
     <>
-      <div className="_settinsContent">
+      <div className="_settinsContent pb-3">
+        <BorderInline />
         <ListContainer header={"Zapisane miesiące"} listContent={listMonths}>
           <ListMonths />
         </ListContainer>

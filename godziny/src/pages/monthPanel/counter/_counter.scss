@@ -4,7 +4,7 @@
   height: 20px;
   overflow: hidden;
   margin-bottom: -2px;
-  @include md {
+  @include sm {
     margin-bottom: 3px;
   }
 

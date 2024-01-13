@@ -31,7 +31,7 @@ const Columns = () => {
     <div
       ref={scrollableRef}
       onScroll={handleScroll}
-      className="_columnsContainer mb-1"
+      className="_columnsContainer"
     >
       {/* <ColumnsHeader thumbPosition={thumbPosition} /> */}
 

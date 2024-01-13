@@ -34,15 +34,16 @@ const MonthPanelContent = () => {
   }, [pathname]);
 
   return (
-    <div className="d-flex flex-column w-100">
+    <>
       {isAnimate && (
-        <>
+        <div className="px-2 pb-2">
+          <BorderInline />
           <HoursSummary />
           <ColumnsHeader thumbPosition={thumbPosition} />
           <Columns />
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

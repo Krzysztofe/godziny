@@ -3,13 +3,10 @@ import { RootState } from "../../redux/store";
 import CollapseContainer from "../../components/collapseContainer/CollapseContainer";
 import ListMonthsInCollapse from "../../components/sidebar/listMonthsInCollapse/ListMonthsInCollapse";
 import useMonthURLToString from "../../hooks/useMonthURLToString";
+import CurrentMonth from "./CurrentMonth";
 
 const HoursSummary = () => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
-
-  const { monthURLStringFormat } = useMonthURLToString();
-  const monthStringCapitalize =
-    monthURLStringFormat[0]?.toUpperCase() + monthURLStringFormat.slice(1);
 
   return (
     <div className="position-sticky z-3 fs-2 top-0 py-2 bg-secondary">
@@ -25,10 +22,7 @@ const HoursSummary = () => {
           {month && month?.calcHours?.currentHours <= 0 ? "Brak" : "Dostępne"}
         </div>
       </div>
-      <div className="text-center fs-4 d-md-none">
-        {" "}
-        {monthStringCapitalize}{" "}
-      </div>
+      <CurrentMonth />
     </div>
   );
 };

@@ -1,7 +1,19 @@
+@import "../../../scss/mixins";
+@import "../../../scss/variables";
+
 ._columnsHeader {
   position: sticky;
-  top: 40px;
+  top: 56px;
+  font-size: $h4-font-size;
   z-index: 100;
+
+  @include sm {
+    font-size: $h2-font-size;
+  }
+
+  @include md {
+    top: 39px;
+  }
   &__item {
     height: 35px;
     width: 33%;

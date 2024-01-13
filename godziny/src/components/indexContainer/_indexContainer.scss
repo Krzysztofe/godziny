@@ -2,8 +2,9 @@
 @import "../../scss/variables";
 
 ._indexContainer {
-  min-height: 100vh;
+  // min-height: calc(100vh - 43px);
   // overflow-x: hidden;
+  //  border: 1px solid red;
   
   position: relative;
   &__aside {
