@@ -1,10 +1,9 @@
 @import "../../../../scss/variables";
 @import "../../../../scss/mixins";
 
-._monthTitle {
-  width: 45%;
+._collapseFormHours {
   font-size: $h5-font-size;
   @include sm {
-    font-size: $h3-font-size;
+    font-size: $h4-font-size;
   }
 }

@@ -6,6 +6,7 @@
   height: 100%;
   padding-inline: 20%;
   padding-block: 10%;
+  background-color: $secondary;
 
   @include md {
     height: 0;

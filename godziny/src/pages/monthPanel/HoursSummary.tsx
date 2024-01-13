@@ -12,8 +12,8 @@ const HoursSummary = () => {
     monthURLStringFormat[0]?.toUpperCase() + monthURLStringFormat.slice(1);
 
   return (
-    <div className="position-sticky z-3 fs-2 top-0 py-4 bg-secondary">
-      <div className="d-flex mx-auto fw-medium pb-2 _w-fitContent">
+    <div className="position-sticky z-3 fs-2 top-0 py-2 bg-secondary">
+      <div className="d-flex mx-auto fw-medium _w-fitContent">
         <div>Wszystkie {month?.calcHours?.allHours}&nbsp;-&nbsp;</div>
 
         <div

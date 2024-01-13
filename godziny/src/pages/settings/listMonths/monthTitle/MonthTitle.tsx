@@ -21,9 +21,9 @@ const MonthTitle = (props: Props) => {
     <div className="_monthTitle">
       <Link
         to={`/${listMonths?.[props.idx]}`}
-        className="text-decoration-none _fs-3 _fw-regular text-dark"
+        className="text-decoration-none _fw-regular text-dark _align-center"
       >
-        <ImArrowLeft className="_fs-3 me-1 text-primary" />
+        <ImArrowLeft className=" text-light-emphasis me-1" />
         {title}
       </Link>
     </div>

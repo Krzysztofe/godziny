@@ -36,7 +36,7 @@ const ButtonDeleteUser = (props: Props) => {
           handleAlert();
         }}
         disabled={success.isLoading}
-        className={dataStylesButton}
+        className={`${dataStylesButton} _radius`}
         style={{ color: props.user.userColor }}
       >
         {props.user.userName}

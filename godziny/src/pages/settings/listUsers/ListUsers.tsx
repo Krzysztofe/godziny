@@ -13,11 +13,12 @@ const ListUsers = () => {
         return (
           <ListGroup.Item
             key={user.userName}
-            className={`${dataStylesListGroupItem} _overflow-hidden`}
+            className={`${dataStylesListGroupItem} _overflow-hidden _radius`}
             style={{
-              backgroundColor: user.userColor,
+              borderLeft: `8px solid ${user.userColor}`,
             }}
           >
+            
             <ButtonDeleteUser user={user} />
           </ListGroup.Item>
         );

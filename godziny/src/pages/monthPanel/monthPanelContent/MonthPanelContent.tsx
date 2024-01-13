@@ -10,6 +10,7 @@ import ColumnsHeader from "../columnsHeader.tsx/ColumnsHeader";
 import CollapseContainer from "../../../components/collapseContainer/CollapseContainer";
 import ListMonthsInCollapse from "../../../components/sidebar/listMonthsInCollapse/ListMonthsInCollapse";
 import useMonthURLToString from "../../../hooks/useMonthURLToString";
+import BorderInline from "../../../components/BorderInline";
 
 const MonthPanelContent = () => {
   const { pathname } = useLocation();

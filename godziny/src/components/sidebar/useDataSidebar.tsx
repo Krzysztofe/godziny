@@ -28,7 +28,7 @@ const useDataSidebar = () => {
     <CollapseContainer title={"Zapisz miesiąc"}>
       <FormMonthContext />
     </CollapseContainer>,
-    <div className="mt-1">
+    <div className="mt-4">
       <CollapseContainer title={"Zapisz użytkownika"}>
         <FormUserContext />
       </CollapseContainer>

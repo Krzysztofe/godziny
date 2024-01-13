@@ -7,6 +7,8 @@ import useURLValues from "../../hooks/useURLValues";
 import SidebarNav from "../sidebar/sidebarNav/SidebarNav";
 import useDataSidebar from "../sidebar/useDataSidebar";
 import "./_indexX.scss";
+import BorderInline from "../BorderInline";
+
 
 const IndexX = () => {
   useReduxListUsers();
@@ -34,6 +36,7 @@ const IndexX = () => {
           </div>
         </div>
       </div>
+      <BorderInline />
     </>
   );
 };
