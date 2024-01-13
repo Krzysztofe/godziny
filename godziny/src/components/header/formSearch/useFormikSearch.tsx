@@ -1,6 +1,6 @@
 
 
-const useFormikFilterColumns = () => {
+const useFormikSearch = () => {
   const initialValues = {
     searchedName: "",
   };
@@ -10,4 +10,4 @@ const useFormikFilterColumns = () => {
   return { initialValues, onSubmit };
 };
 
-export default useFormikFilterColumns;
+export default useFormikSearch;

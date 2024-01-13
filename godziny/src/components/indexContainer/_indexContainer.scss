@@ -1,9 +1,9 @@
 @import "../../scss/mixins";
 
 ._indexContainer {
-  // height: 100vh;
+  height: 100vh;
 
-  // overflow: hidden;
+  overflow: hidden;
   position: relative;
   &__aside {
     max-width: 250px;

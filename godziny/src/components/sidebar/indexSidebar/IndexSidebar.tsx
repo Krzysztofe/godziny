@@ -9,7 +9,7 @@ import SidebarHeader from "../SidebarHeader";
 import SidebarMenuButton from "../sidebarMenuButton/SidebarMenuButton";
 import SidebarNav from "../sidebarNav/SidebarNav";
 import "./_indexSidebar.scss";
-import FilterColumns from "../../header/filterColumns/FilterColumns";
+import FilterColumns from "../../header/formSearch/formSearchContext/FormSearchContext";
 
 const IndexSidebar = () => {
   useReduxListUsers();

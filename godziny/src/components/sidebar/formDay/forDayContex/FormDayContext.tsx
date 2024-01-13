@@ -12,7 +12,7 @@ import useDataFormDay from "../useDataFormDay";
 import useFormikDay from "../useFormikDay";
 import ButtonForm from "../../../ButtonForm";
 import InputsTextCover from "../../../inputs/inputsText/inputsTextCover/InputsTextCover";
-import FilterColumns from "../../../header/filterColumns/FilterColumns";
+import FilterColumns from "../../../header/formSearch/formSearchContext/FormSearchContext";
 
 const FormDayContext = () => {
   const dispatch = useDispatch();

@@ -1,0 +1,9 @@
+@import "../../../../scss/mixins";
+
+._formSearchContext {
+  width: 50%;
+  max-width: 200px;
+  @include md {
+    width: 25%;
+  }
+}

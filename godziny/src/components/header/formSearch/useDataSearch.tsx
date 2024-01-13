@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { ModelUser } from "../../../sharedModels/modelUser";
 
-const useDataFilterColumns = () => {
+const useDataSearch = () => {
   const { listUsers: dataUsers } = useSelector(
     (state: RootState) => state.listUsers
   );
@@ -23,4 +23,4 @@ const useDataFilterColumns = () => {
 
   return { dataInputsSelect };
 };
-export default useDataFilterColumns;
+export default useDataSearch;

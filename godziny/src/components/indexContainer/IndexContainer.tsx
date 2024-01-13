@@ -11,7 +11,7 @@ const IndexContainer = (props: Props) => {
     <main className="d-flex m-0 bg-secondary _indexContainer ">
       <aside className="_indexContainer__aside"></aside>
       <div className="d-flex ps-1 flex-fill _indexContainer__rightSide">
-        <AutoLogout />
+        {/* <AutoLogout /> */}
         {props.children}
       </div>
     </main>

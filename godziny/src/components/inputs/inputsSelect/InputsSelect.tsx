@@ -5,7 +5,6 @@ import InputError from "../inputError/InputError";
 import InputSearchIcon from "./InputSearchIcon";
 import "./_inputSelect.scss";
 
-
 type Props = {
   inputsData: {
     name: string;
@@ -14,7 +13,7 @@ type Props = {
     options: string[] | number[];
   }[];
   padding: string;
-  inputIcon?: boolean
+  inputIcon?: boolean;
 };
 
 const InputsSelect = (props: Props) => {
@@ -23,10 +22,10 @@ const InputsSelect = (props: Props) => {
 
   return (
     <div className="position-relative">
-    { props.inputIcon && <InputSearchIcon /> }  
+      {props.inputIcon && <InputSearchIcon />}
       {props.inputsData.map(({ name, firstOption, label, options }) => {
         return (
-          <Form.Group key={label} className="mt-2  _inputSelect">
+          <Form.Group key={name} className="mt-2  _inputSelect">
             {/* <Form.Label htmlFor={name}>{label}</Form.Label> */}
             <Form.Select
               id={name}

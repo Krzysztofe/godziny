@@ -5,7 +5,7 @@ import { TbUser } from "react-icons/tb";
 import { useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../../data/firebaseConfig";
 import { printAlert } from "../../redux/storeFeatures/alertSlice";
-
+import { FaUserCircle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import AlertErrors from "../AlertErrors";
 
@@ -16,6 +16,7 @@ const ButtonLogout = () => {
   const { pathname } = useLocation();
 
   const printLogout = pathname !== "/";
+  const printInMonth = pathname.includes("202");
 
   const logout = () => {
     setIsLoading(true);
@@ -33,8 +34,10 @@ const ButtonLogout = () => {
 
   let btnContent = (
     <div className=" d-flex align-items-center text-light-emphasis w-100">
-      <TbUser className="fs-2 " />
-      <span className="d-none d-sm-block"> Wyloguj </span>
+      <FaUserCircle className="fs-2 " />
+      <span className={`${printInMonth && "d-none"} d-sm-block ms-1`}>
+        Wyloguj
+      </span>
     </div>
   );
 

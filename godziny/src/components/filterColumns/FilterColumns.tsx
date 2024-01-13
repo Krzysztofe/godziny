@@ -1,9 +1,9 @@
 import { Form, Formik } from "formik";
 import InputsSelect from "../inputs/inputsSelect/InputsSelect";
 import { useLocation } from "react-router-dom";
-import useDataFilterColumns from "../header/filterColumns/useDataFilterColumns";
-import EEE from "../header/filterColumns/EEE";
-import useFormikFilterColumns from "../header/filterColumns/useFormikFilterColumns";
+import useDataFilterColumns from "../header/formSearch/useDataSearch";
+import EEE from "../header/formSearch/EEE";
+import useFormikFilterColumns from "../header/formSearch/useFormikSearch";
 
 const FilterColumns = () => {
   const { dataInputsSelect } = useDataFilterColumns();
@@ -13,7 +13,11 @@ const FilterColumns = () => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
-      <Form className={`w-25 ms-3 m-md-auto ${printFilter ? "visible" : "invisible"}`}>
+      <Form
+        className={`w-25 ms-3 m-md-auto ${
+          printFilter ? "visible" : "invisible"
+        }`}
+      >
         <InputsSelect inputsData={dataInputsSelect} padding={"ps-2"} />
         <EEE />
       </Form>

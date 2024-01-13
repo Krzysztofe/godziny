@@ -2,14 +2,14 @@ import "../../scss/_variables.scss";
 import ButtonLogout from "../sidebar/ButtonLogout";
 import SidebarNav from "../sidebar/sidebarNav/SidebarNav";
 import "./_header.scss";
-import FilterColumns from "./filterColumns/FilterColumns";
+import FormSearchContext from "./formSearch/formSearchContext/FormSearchContext";
 import HeaderName from "./headerName/HeaderName";
 
 const Header = () => {
   return (
     <header className="w-100 d-flex align-items-center border-bottom fs-3 position-relative">
       <HeaderName />
-      <FilterColumns />
+      <FormSearchContext />
       <div className="position-absolute top-0 d-flex h-100 end-0">
         <SidebarNav
           display={"d-flex align-items-center flex-row h-100 d-md-none"}
