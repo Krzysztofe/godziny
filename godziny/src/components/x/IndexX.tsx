@@ -11,34 +11,29 @@ import "./_indexX.scss";
 const IndexX = () => {
   useReduxListUsers();
   useReduxListMonths();
-  const { monthURLStringFormat } = useMonthURLToString();
-  const monthStringCapitalize =
-    monthURLStringFormat[0]?.toUpperCase() + monthURLStringFormat.slice(1);
 
   const { pathname } = useLocation();
-  const { isMonthInURL } = useURLValues();
   const { dataMonthPanel, dataSettings } = useDataSidebar();
-
-  const [isShow, setShow] = useState(false);
-  const handleClose = () => setShow(false);
 
   return (
     <>
-      <div className="div">
-        {isMonthInURL &&
-          dataMonthPanel.map((component, idx) => {
-            return <React.Fragment key={idx}>{component}</React.Fragment>;
-          })}
+      <div className="div p-md-0">
+        <div className="_sidebar__wrapper">
+          {pathname.includes("202") &&
+            dataMonthPanel.map((component, idx) => {
+              return <React.Fragment key={idx}>{component}</React.Fragment>;
+            })}
 
-        {pathname === "/ustawienia" &&
-          dataSettings.map((component, idx) => {
-            return <React.Fragment key={idx}>{component}</React.Fragment>;
-          })}
-        <div className="d-none d-md-block">
-          <SidebarNav />
+          {pathname.includes("ustawienia") &&
+            dataSettings.map((component, idx) => {
+              return <React.Fragment key={idx}>{component}</React.Fragment>;
+            })}
+          <div className="d-none d-md-block">
+            <div className="border my-2"></div>
+            <SidebarNav />
+          </div>
         </div>
       </div>
-      {/* <div style={{ height: 30 }}></div>/ */}
     </>
   );
 };

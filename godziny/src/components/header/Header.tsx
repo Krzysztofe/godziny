@@ -1,7 +1,6 @@
 import "../../scss/_variables.scss";
 import ButtonLogout from "../sidebar/ButtonLogout";
 import SidebarNav from "../sidebar/sidebarNav/SidebarNav";
-import "./_header.scss";
 import FormSearchContext from "./formSearch/formSearchContext/FormSearchContext";
 import HeaderName from "./headerName/HeaderName";
 

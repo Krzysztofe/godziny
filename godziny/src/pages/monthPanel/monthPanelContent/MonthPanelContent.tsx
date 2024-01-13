@@ -17,10 +17,9 @@ const MonthPanelContent = () => {
   const { scrollableRef, thumbPosition, handleScroll } =
     useScrollThumbPosition();
 
-      const { monthURLStringFormat } = useMonthURLToString();
-      const monthStringCapitalize =
-        monthURLStringFormat[0]?.toUpperCase() + monthURLStringFormat.slice(1);
-      
+  const { monthURLStringFormat } = useMonthURLToString();
+  const monthStringCapitalize =
+    monthURLStringFormat[0]?.toUpperCase() + monthURLStringFormat.slice(1);
 
   useEffect(() => {
     setAnimate(false);
@@ -35,8 +34,6 @@ const MonthPanelContent = () => {
 
   return (
     <div className="d-flex flex-column w-100">
-      
-
       {isAnimate && (
         <>
           <HoursSummary />

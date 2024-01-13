@@ -19,7 +19,7 @@ const CollapseContainer = (props: Props) => {
         aria-expanded={isOpen}
         aria-controls="example-collapse-text"
         size="sm"
-        className={`_fw-semiBold _fs-3 text-center _radius bg-primary py-2 text-white w-100 _collapseContainer d-block
+        className={` text-center d-block bg-primary py-2 pe-3 text-white w-100 position-relative _collapseContainer  _fs-collapse-header _fw-semiBold _radius
         
         ${isOpen ? "rounded-bottom-0" : "_radius"}
         

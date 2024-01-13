@@ -8,35 +8,24 @@ import CollapseContainer from "../../../components/collapseContainer/CollapseCon
 import FormMonthContext from "../../../components/sidebar/formMonth/FormMonthContext";
 import FormUserContext from "../../../components/sidebar/formUser/FormUserContext";
 
-
 const SettinsContent = () => {
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
   const { listUsers } = useSelector((state: RootState) => state.listUsers);
-  
 
   return (
-    <div className="p-2 py-4 p-sm-4 w-100 _settinsContent">
-      {/* <CollapseContainer title={"Zapisz miesiąc"}>
-        <FormMonthContext />
-      </CollapseContainer>
-      
-      <div className="mt-1">
-        <CollapseContainer title={"Zapisz użytkownika"}>
-          <FormUserContext />
-        </CollapseContainer>
-      </div> */}
-      
-      <div className="_settinsContent__wrapper">
+    <>
+      <div className="border d-md-none"></div>
+
+      <div className="_settinsContent">
         <ListContainer header={"Zapisane miesiące"} listContent={listMonths}>
           <ListMonths />
         </ListContainer>
-        <div className="border my-4"></div>
 
         <ListContainer header={"Zapisani użytkownicy"} listContent={listUsers}>
           <ListUsers />
         </ListContainer>
       </div>
-    </div>
+    </>
   );
 };
 

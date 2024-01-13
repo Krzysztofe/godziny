@@ -4,8 +4,8 @@
 .div {
   width: 100%;
   height: 100%;
-  padding-inline: 85px;
-  padding-block: 40px;
+  padding-inline: 20%;
+  padding-block: 10%;
 
   @include md {
     height: 0;
@@ -14,7 +14,18 @@
     position: sticky;
     top: 0px;
     left: 0;
-    padding: 0;
     z-index: 100;
+  }
+}
+
+._sidebar__wrapper {
+  max-width: 210px;
+  margin: auto;
+  @include md {
+    padding-block: 10%;
+    padding-inline: 5%;
+  }
+  @include lg {
+    // padding: 15%;
   }
 }

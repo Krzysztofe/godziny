@@ -22,7 +22,7 @@ const HoursSummary = () => {
           }`}
         >
           <strong>{month && month?.calcHours?.currentHours}</strong> {""}
-          {month && month?.calcHours?.currentHours < 0 ? "Brak" : "Dostępne"}
+          {month && month?.calcHours?.currentHours <= 0 ? "Brak" : "Dostępne"}
         </div>
       </div>
       <div className="text-center fs-4 d-md-none">

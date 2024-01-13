@@ -1,21 +1,24 @@
 @import "../../scss/mixins";
+@import "../../scss/variables";
 
 ._indexContainer {
-  height: 100vh;
-
-  overflow: hidden;
+  min-height: 100vh;
+  // overflow-x: hidden;
+  
   position: relative;
   &__aside {
     max-width: 250px;
-    height: 100%;
+    // height: 100%;
     @include md {
       width: 30%;
+      background-color: $white;
     }
   }
   &__rightSide {
     width: 100%;
     @include md {
       width: 70%;
+      max-width: 800px;
     }
   }
 }
