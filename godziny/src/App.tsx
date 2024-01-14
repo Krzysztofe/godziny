@@ -3,10 +3,15 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { auth } from "./data/firebaseConfig";
 import LoadingPage from "./pages/loadingPage/LoadingPage";
 import "./scss/App.scss";
-import Header from "./components/header/Header";
-import IndexSidebar from "./components/sidebar/indexSidebar/IndexSidebar";
+import { useAuthState } from "react-firebase-hooks/auth";
 
-const IndexLogin = lazy(() => import("./pages/login/IndexLogin"));
+const Header = lazy(() => import("./components/header/Header"));
+
+const IndexSidebar = lazy(
+  () => import("./components/sidebar/indexSidebar/IndexSidebar")
+);
+
+const IndexLogin = lazy(() => import("./pages/login/indexLogin/IndexLogin"));
 const PrivateRoutes = lazy(() => import("./components/PrivateRoutes"));
 
 const IndexMonthPanel = lazy(
@@ -17,26 +22,19 @@ const IndexSettings = lazy(
 );
 
 function App() {
-  const [isLoged, setLoged] = useState<string | undefined>("");
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    setLoged(auth.currentUser?.providerId);
-  }, [pathname]);
+  const [user] = useAuthState(auth);
 
   return (
     <Suspense fallback={<LoadingPage />}>
-      {/* {true && <IndexSidebar />} */}
       <Header />
-      {/* { isLoged && <IndexX /> }   */}
-      <IndexSidebar />
+      {user && <IndexSidebar />}
       <Routes>
-        {/* <Route path="/" element={<IndexLogin />} /> */}
-        {/* <Route element={<PrivateRoutes />}> */}
-        <Route path="/:month" element={<IndexMonthPanel />} />
-        <Route path="/ustawienia" element={<IndexSettings />} />
+        <Route path="/" element={<IndexLogin />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="/:month" element={<IndexMonthPanel />} />
+          <Route path="/ustawienia" element={<IndexSettings />} />
+        </Route>
         <Route path="/*" element={<IndexLogin />} />
-        {/* </Route> */}
       </Routes>
     </Suspense>
   );

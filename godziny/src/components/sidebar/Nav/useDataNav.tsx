@@ -1,15 +1,15 @@
 import useURLValues from "../../../hooks/useURLValues";
-import SettingsReturnButton from "./SettingsReturnButton";
+import ReturnButton from "./ReturnButton";
 import ListLink from "./ListLink";
 
-const useDataSidebarNav = () => {
+const useDataNav = () => {
   const { isMonthInURL } = useURLValues();
 
-  const returnButton = !isMonthInURL && <SettingsReturnButton />;
+  const returnButton = !isMonthInURL && <ReturnButton />;
 
   const dataSidebarNavItems = [returnButton, <ListLink />];
 
   return { dataSidebarNavItems };
 };
 
-export default useDataSidebarNav;
+export default useDataNav;

@@ -30,14 +30,14 @@ const FormLoginContext = () => {
         }`}
       >
         <div className="_formLoginContext__inputs">
-          <div className="text-center fs-5 fw-medium mb-4 ">Podaj hasło</div>
+          <div className="text-center fs-2 fw-medium mb-4 ">Podaj hasło</div>
           <InputsText inputsData={dataInputs} />
 
           <Button
             disabled={isLoading}
             variant="primary"
             type="submit"
-            className="fw-medium btn-sm mt-3 w-100"
+            className="fw-medium btn-sm mt-3 w-100 _radius"
           >
             {btnContent}
           </Button>

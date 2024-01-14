@@ -2,6 +2,7 @@
   position: absolute;
   background-color: rgba(0, 0, 0, 0.4);
   width: 200px;
+  z-index: 1;
 }
 
 ._anim-toast {
@@ -15,12 +16,12 @@
     transform: translateX(-150%);
   }
   20% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
+    -webkit-transform: translateX(10px);
+    transform: translateX(10px);
   }
   80% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
+    -webkit-transform: translateX(10px);
+    transform: translateX(10px);
   }
   100% {
     -webkit-transform: translateX(-150%);

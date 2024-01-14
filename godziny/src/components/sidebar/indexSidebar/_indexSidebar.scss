@@ -18,14 +18,32 @@
   &__wrapper {
     max-width: 210px;
     margin: auto;
+
     @include md {
-      height: calc(100vh - 100px);
+      height: calc(70vh);
       overflow: auto;
       padding-block: 10%;
       padding-inline: 5%;
+      padding-top: 40px;
     }
   }
   &__body {
-    height: 300px;
+    @include md {
+      height: 300px;
+    }
+  }
+  &__navContainer {
+    @include md {
+      max-width: 210px;
+      margin: auto;
+      &::before {
+        content: "";
+        display: block;
+        height: 1px;
+        background-color: $border-color;
+        margin-bottom: 8px;
+        margin-inline: 5%;
+      }
+    }
   }
 }

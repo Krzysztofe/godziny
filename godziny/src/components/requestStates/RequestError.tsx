@@ -8,7 +8,7 @@ const RequestError = (props:Props) => {
   return (
     <>
       {props.styles(
-        <div className="text-danger text-centerh">
+        <div className="text-danger fs-1 text-center">
           Błąd. Odśwież stronę
         </div>
       )}

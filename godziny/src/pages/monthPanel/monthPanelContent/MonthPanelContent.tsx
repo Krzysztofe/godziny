@@ -14,10 +14,6 @@ const MonthPanelContent = () => {
   const { scrollableRef, thumbPosition, handleScroll } =
     useScrollThumbPosition();
 
-  const { monthURLStringFormat } = useMonthURLToString();
-  const monthStringCapitalize =
-    monthURLStringFormat[0]?.toUpperCase() + monthURLStringFormat.slice(1);
-
   useEffect(() => {
     setAnimate(false);
     const timeoutId = setTimeout(() => {
@@ -32,7 +28,7 @@ const MonthPanelContent = () => {
   return (
     <>
       {isAnimate && (
-        <div className="px-2 px-sm-5 px-md-3 pb-3">
+        <div className="px-2 px-sm-5 px-md-3 pb-3 _anim-opacity">
           <BorderInline />
           <HoursSummary />
           <ColumnsHeader />

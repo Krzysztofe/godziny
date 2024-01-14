@@ -2,14 +2,12 @@
 @import "../../scss/variables";
 
 ._indexContainer {
-  // min-height: calc(100vh - 43px);
-  // overflow-x: hidden;
-  //  border: 1px solid red;
-  
+  min-height: calc(100vh - 43px);
   position: relative;
+
   &__aside {
     max-width: 250px;
-    // height: 100%;
+
     @include md {
       width: 30%;
       background-color: $white;

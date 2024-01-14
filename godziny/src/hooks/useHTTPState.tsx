@@ -7,7 +7,7 @@ const useHTTPState = (success: ModelSuccess, btnText: string | ReactNode) => {
 
   if (success.isLoading) {
     btnContent = (
-      <Spinner animation="border" size="sm" variant="secondary">
+      <Spinner animation="border" size="sm" variant="primary">
         <span className="visually-hidden">Loading...</span>
       </Spinner>
     );

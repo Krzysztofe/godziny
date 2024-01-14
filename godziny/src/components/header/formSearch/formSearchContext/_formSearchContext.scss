@@ -9,8 +9,5 @@
   &__select {
     margin: auto;
     width: 180px;
-    @include md {
-      width: 25%;
-    }
   }
 }

@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 import AutoLogout from "../autoLogout/AutoLogout";
 import "./_indexContainer.scss";
 
-
 type Props = {
   children: ReactNode;
 };
@@ -13,8 +12,7 @@ const IndexContainer = (props: Props) => {
       <aside className="_indexContainer__aside"></aside>
 
       <div className="_indexContainer__rightSide">
-       
-        {/* <AutoLogout /> */}
+        <AutoLogout />
         {props.children}
       </div>
     </main>

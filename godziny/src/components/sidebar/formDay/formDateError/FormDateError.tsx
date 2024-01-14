@@ -13,7 +13,7 @@ const FormDateError = () => {
     month && validationFormDayDate(month, values.userName, values.date);
 
   return (
-    <div className="text-danger d-block mt-0 _fs-5 _formDateError">{error}</div>
+    <div className="text-danger d-block mt-0 fs-5 _formDateError">{error}</div>
   );
 };
 

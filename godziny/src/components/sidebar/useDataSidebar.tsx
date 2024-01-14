@@ -6,7 +6,7 @@ import CollapseContainer from "../collapseContainer/CollapseContainer";
 import useMonthURLToString from "../../hooks/useMonthURLToString";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import ToastsSettingsContainer from "./ToastsSettingsContainer";
+import ToastsSettingsContainer from "./ToastsContainer";
 
 const useDataSidebar = () => {
   const { monthURLStringFormat } = useMonthURLToString();
@@ -33,8 +33,6 @@ const useDataSidebar = () => {
         <FormUserContext />
       </CollapseContainer>
     </div>,
-
-    <ToastsSettingsContainer />,
   ];
 
   return { dataMonthPanel, dataSettings };

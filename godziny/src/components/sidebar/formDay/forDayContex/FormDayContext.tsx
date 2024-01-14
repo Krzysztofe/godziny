@@ -1,18 +1,17 @@
 import { Form, Formik } from "formik";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../redux/store";
 import { getDaySuccess } from "../../../../redux/storeFeatures/requestSuccessSlice";
-import FormDateError from "../formDateError/FormDateError";
+import ButtonForm from "../../../ButtonForm";
 import InputsSelect from "../../../inputs/inputsSelect/InputsSelect";
 import InputsText from "../../../inputs/inputsText/InputsText";
+import InputsTextCover from "../../../inputs/inputsText/inputsTextCover/InputsTextCover";
 import FormHoursError from "../formHoursError/FormHoursError";
-import "./_formDayContext.scss";
 import useDataFormDay from "../useDataFormDay";
 import useFormikDay from "../useFormikDay";
-import ButtonForm from "../../../ButtonForm";
-import InputsTextCover from "../../../inputs/inputsText/inputsTextCover/InputsTextCover";
-import FilterColumns from "../../../header/formSearch/formSearchContext/FormSearchContext";
+import "./_formDayContext.scss";
+import FormDateError from "../formDateError/FormDateError";
 
 const FormDayContext = () => {
   const dispatch = useDispatch();
@@ -37,6 +36,7 @@ const FormDayContext = () => {
         <div className="position-relative mb-3">
           <InputsText inputsData={dataInputsText} />
           <InputsTextCover text={"Data"} />
+          <FormDateError />
         </div>
 
         <ButtonForm success={success} />

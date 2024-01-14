@@ -1,5 +1,6 @@
 ._monthPanelEmpty {
   max-width: 1000px;
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 43px);
+  padding-inline: 10%;
 }

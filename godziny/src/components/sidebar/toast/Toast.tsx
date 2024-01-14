@@ -9,7 +9,7 @@ const Toast = (props: Props) => {
   return (
     <>
       {props.isSuccess && (
-        <div className="rounded-1 p-2 fw-medium text-white _anim-toast _toast">
+        <div className="_radius p-1 fs-3 fw-medium text-center text-white _anim-toast _toast">
           {props.text}
         </div>
       )}

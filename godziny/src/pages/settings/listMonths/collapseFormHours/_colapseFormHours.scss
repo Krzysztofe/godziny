@@ -2,8 +2,8 @@
 @import "../../../../scss/mixins";
 
 ._collapseFormHours {
-  font-size: $h5-font-size;
+  font-size: $h4-font-size;
   @include sm {
-    font-size: $h4-font-size;
+    font-size: $h3-font-size;
   }
 }

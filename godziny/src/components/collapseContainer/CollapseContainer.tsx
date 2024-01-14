@@ -29,7 +29,7 @@ const CollapseContainer = (props: Props) => {
         <CollapseArrow isOpen={isOpen} />
       </Button>
       <Collapse in={isOpen}>
-        <div className="border border-primary _radius_bottom px-1">
+        <div className="border border-primary _radius_bottom bg-white px-3">
           {props.children}
         </div>
       </Collapse>

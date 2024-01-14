@@ -2,7 +2,7 @@ import { createBrowserHistory } from "history";
 import Button from "react-bootstrap/Button";
 import { ImArrowLeft } from "react-icons/im";
 
-const SettingsReturnButton = () => {
+const ReturnButton = () => {
   const history = createBrowserHistory();
   const handleGoBack = () => {
     history.back();
@@ -17,4 +17,4 @@ const SettingsReturnButton = () => {
   );
 };
 
-export default SettingsReturnButton;
+export default ReturnButton;

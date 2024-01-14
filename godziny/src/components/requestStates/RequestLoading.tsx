@@ -8,7 +8,7 @@ const RequestLoading = (props: Props) => {
   return (
     <>
       {props.styles(
-        <Spinner animation="border" variant="secondary" className="fs-6">
+        <Spinner animation="border" variant="primary" className="fs-5">
           <span className="visually-hidden">Loading...</span>
         </Spinner>
       )}
