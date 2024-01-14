@@ -4,7 +4,7 @@ import EEE from "../EEE";
 import useDataSearch from "../useDataSearch";
 import InputsSelect from "../../../inputs/inputsSelect/InputsSelect";
 import { useLocation } from "react-router-dom";
-import "./_formSearchContext.scss"
+import "./_formSearchContext.scss";
 
 const FormSearchContext = () => {
   const { dataInputsSelect } = useDataSearch();
@@ -15,15 +15,18 @@ const FormSearchContext = () => {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form
-        className={`_formSearchContext ms-3 m-md-auto ${
+        className={`_formSearchContext ${
           printFilter ? "visible" : "invisible"
         }`}
       >
-        <InputsSelect
-          inputsData={dataInputsSelect}
-          padding={"ps-4"}
-          inputIcon={true}
-        />
+        <div className="_formSearchContext__select ms-3 m-md-auto">
+          <InputsSelect
+            inputsData={dataInputsSelect}
+            padding={"ps-4"}
+            inputIcon={true}
+          />
+        </div>
+
         <EEE />
       </Form>
     </Formik>

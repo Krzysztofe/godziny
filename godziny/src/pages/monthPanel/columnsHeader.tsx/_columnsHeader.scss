@@ -17,5 +17,8 @@
   &__item {
     height: 35px;
     width: 33%;
+    @include sm {
+      width: 30%;
+    }
   }
 }

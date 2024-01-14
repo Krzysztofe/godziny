@@ -1,57 +1,39 @@
-import { useEffect, useState } from "react";
-import Offcanvas from "react-bootstrap/Offcanvas";
+import React from "react";
 import { useLocation } from "react-router-dom";
 import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListMonths";
 import useReduxListUsers from "../../../hooks/updateReduxDatabase/useReduxListUsers";
-import useWindowWidth from "../../../hooks/useWindowWidth";
-import SidebarBody from "../SidebarBody";
-import SidebarHeader from "../SidebarHeader";
-import SidebarMenuButton from "../sidebarMenuButton/SidebarMenuButton";
 import SidebarNav from "../sidebarNav/SidebarNav";
+import useDataSidebar from "../useDataSidebar";
 import "./_indexSidebar.scss";
-import FilterColumns from "../../header/formSearch/formSearchContext/FormSearchContext";
+import BorderInline from "../../BorderInline";
 
 const IndexSidebar = () => {
   useReduxListUsers();
   useReduxListMonths();
 
   const { pathname } = useLocation();
-  const [isShow, setShow] = useState(false);
-  const { windowWidth } = useWindowWidth();
-
-  const handleClose = () => setShow(false);
-  const toggleShow = () => setShow(prev => !prev);
-
-  useEffect(() => {
-    windowWidth >= 650 && setShow(true);
-  }, [windowWidth]);
-
-  const printSidebar =
-    pathname.includes("/ustawienia") || pathname.includes("/202");
+  const { dataMonthPanel, dataSettings } = useDataSidebar();
 
   return (
     <>
-      {/* {printSidebar && ( */}
-      <>
-        <Offcanvas
-          show={isShow}
-          onHide={handleClose}
-          name="Disable backdrop"
-          scroll={true}
-          backdrop={false}
-          className="bg-white border-0 _offcanvas"
-        >
-          <div className="p-3 d-flex flex-column h-100">
-            <SidebarHeader />
-            <SidebarBody />
-            {/* <FilterColumns /> */}
+      <div className="_sidebar p-md-0">
+        <div className="_sidebar__wrapper _scrolHidden">
+          <div className="_sidebar__body">
+            {pathname.includes("202") &&
+              dataMonthPanel.map((component, idx) => {
+                return <React.Fragment key={idx}>{component}</React.Fragment>;
+              })}
 
-            {/* <SidebarNav /> */}
+            {pathname.includes("ustawienia") &&
+              dataSettings.map((component, idx) => {
+                return <React.Fragment key={idx}>{component}</React.Fragment>;
+              })}
           </div>
-        </Offcanvas>
-        {/* <SidebarMenuButton toggleShow={toggleShow} /> */}
-      </>
-      {/* )} */}
+        </div>{" "}
+        <div className="d-none d-md-block border-top pt-2">
+          <SidebarNav />
+        </div>
+      </div>
     </>
   );
 };

@@ -22,9 +22,9 @@ const ListMonthsInCollapse = () => {
     }).format(monthURLToDateFormat);
 
   return (
-    <ListGroup className="_scrolHidden _ListMonthsInCollapse _fs-3 text-capitalize bg-secondary">
+    <ListGroup className="_scrolHidden _ListMonthsInCollapse fs-3 text-capitalize ">
       {listMonths?.length === 0 && (
-        <ListGroup.Item className="border-0 p-0 text-warning bg-transparent">
+        <ListGroup.Item className="border-0 p-0 text-warning ">
           Brak danych
         </ListGroup.Item>
       )}

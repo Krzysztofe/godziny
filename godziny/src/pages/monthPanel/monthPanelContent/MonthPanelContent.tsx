@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import BorderInline from "../../../components/BorderInline";
+import useMonthURLToString from "../../../hooks/useMonthURLToString";
 import HoursSummary from "../HoursSummary";
 import Columns from "../columns/Columns";
-import "./_monthPanelContent.scss";
-import SidebarBody from "../../../components/sidebar/SidebarBody";
-import IndexX from "../../../components/x/IndexX";
 import useScrollThumbPosition from "../columns/hooks/useScrollThumbPosition";
 import ColumnsHeader from "../columnsHeader.tsx/ColumnsHeader";
-import CollapseContainer from "../../../components/collapseContainer/CollapseContainer";
-import ListMonthsInCollapse from "../../../components/sidebar/listMonthsInCollapse/ListMonthsInCollapse";
-import useMonthURLToString from "../../../hooks/useMonthURLToString";
-import BorderInline from "../../../components/BorderInline";
+import "./_monthPanelContent.scss";
 
 const MonthPanelContent = () => {
   const { pathname } = useLocation();
@@ -36,10 +32,10 @@ const MonthPanelContent = () => {
   return (
     <>
       {isAnimate && (
-        <div className="px-2 pb-2">
+        <div className="px-2 px-sm-5 px-md-3 pb-3">
           <BorderInline />
           <HoursSummary />
-          <ColumnsHeader thumbPosition={thumbPosition} />
+          <ColumnsHeader />
           <Columns />
         </div>
       )}

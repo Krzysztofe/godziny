@@ -1,17 +1,13 @@
 @import "../../../scss/mixins";
 
 ._columnsContainer {
-  min-height: calc(100vh - 43px - 40px);
+  min-height: calc(100vh - 43px - 40px - 8px);
 
   @include md {
-    min-height: calc(100vh - 43px - 40px - 35px);
+    min-height: calc(100vh - 43px - 40px - 35px - 12px);
   }
 }
 
 ._dragDropContex {
-  min-height: calc(100vh - 43px - 40px);
-
-  @include md {
-    min-height: calc(100vh - 43px - 40px - 35px);
-  }
+  min-height: calc(100vh - 43px - 40px - 8px);
 }

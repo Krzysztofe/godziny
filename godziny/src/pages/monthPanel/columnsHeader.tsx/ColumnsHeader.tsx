@@ -3,7 +3,7 @@ import useDataCoumnsHeader from "./useDataCoumnsHeader";
 import "./_columnsHeader.scss";
 
 interface Props {
-  thumbPosition: number;
+  thumbPosition?: number;
 }
 
 const ColumnsHeader = (props: Props) => {

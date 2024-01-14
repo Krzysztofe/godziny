@@ -2,8 +2,8 @@
 @import "../../../../scss/mixins";
 
 ._monthTitle {
-  width: 45%;
-  font-size: $h5-font-size;
+  width: 55%;
+  font-size: $h3-font-size;
   @include sm {
     font-size: $h3-font-size;
   }

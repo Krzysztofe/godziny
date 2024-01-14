@@ -1,8 +1,5 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import CollapseContainer from "../../components/collapseContainer/CollapseContainer";
-import ListMonthsInCollapse from "../../components/sidebar/listMonthsInCollapse/ListMonthsInCollapse";
-import useMonthURLToString from "../../hooks/useMonthURLToString";
 import CurrentMonth from "./CurrentMonth";
 
 const HoursSummary = () => {

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 
-import Toast from "../toast/Toast";
+import Toast from "./toast/Toast";
 
 const ToastsMonthPanelContainer = () => {
   const { isDaySuccess } = useSelector(

@@ -23,7 +23,7 @@ const Column = (props: Props) => {
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className={`p-1 h-100 overflow-hidden border border-1 border border-top-0 pt-3 ${
+              className={`p-1 pt-3 px-lg-3 h-100 overflow-hidden border border-1 border border-top-0  ${
                 snapshot.isDraggingOver ? "_isDragging" : "_noDragging"
               } ${
                 searchedName && searchedName !== "Szukaj" ? "_filtered" : ""

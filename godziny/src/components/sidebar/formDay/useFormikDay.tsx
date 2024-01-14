@@ -24,8 +24,6 @@ const useFormikDay = () => {
   const { listUsers } = useSelector((state: RootState) => state.listUsers);
   const { yearFromURL, monthFromURL } = useURLValues();
 
-
-
   const initialValues = {
     id: "",
     date: dateInNext_14_Days,
@@ -37,9 +35,7 @@ const useFormikDay = () => {
 
   const validation = validationSchema as yup.ObjectSchema<typeof initialValues>;
 
-  const onSubmit = async (
-    values: ModelInitialValuesFormikDay,
-  ) => {
+  const onSubmit = async (values: ModelInitialValuesFormikDay) => {
     const error =
       month && validationFormDayDate(month, values.userName, values.date);
 
@@ -91,7 +87,6 @@ const useFormikDay = () => {
           ],
         },
       }));
-  
   };
 
   return { initialValues, validation, onSubmit, success };

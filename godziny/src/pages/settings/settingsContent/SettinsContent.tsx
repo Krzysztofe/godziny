@@ -12,7 +12,7 @@ const SettinsContent = () => {
 
   return (
     <>
-      <div className="_settinsContent pb-3">
+      <div className="_settingsContent pb-4">
         <BorderInline />
         <ListContainer header={"Zapisane miesiące"} listContent={listMonths}>
           <ListMonths />

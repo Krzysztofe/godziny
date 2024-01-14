@@ -1,7 +1,11 @@
 @import "../../../scss/variables";
+@import "../../../scss/mixins";
 
 ._column {
   width: 33%;
+  @include sm {
+    width: 30%;
+  }
 }
 
 ._filtered::before {
