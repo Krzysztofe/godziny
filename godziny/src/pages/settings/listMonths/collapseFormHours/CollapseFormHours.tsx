@@ -31,7 +31,7 @@ const CollapseFormHours = (props: Props) => {
     <>
       <div className="d-flex align-items-center">
         <MonthTitle idx={props.idx} />
-        <Button
+        {/* <Button
           onClick={() => {
             handleTogle(props.idx);
           }}
@@ -42,7 +42,7 @@ const CollapseFormHours = (props: Props) => {
         >
           Zapisz godziny
           <CollapseArrow isOpen={isOpen} />
-        </Button>
+        </Button> */}
         <ButtonDeleteMonth idx={props.idx} />
       </div>
       <Collapse in={isOpen}>

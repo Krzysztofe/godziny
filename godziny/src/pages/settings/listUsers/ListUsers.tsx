@@ -13,7 +13,7 @@ const ListUsers = () => {
         return (
           <ListGroup.Item
             key={user.userName}
-            className={`${dataStylesListGroupItem} _overflow-hidden _radius`}
+            className={`${dataStylesListGroupItem}  _radius`}
             style={{
               borderLeft: `8px solid ${user.userColor}`,
             }}

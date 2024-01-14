@@ -33,7 +33,7 @@ const FormDayContext = () => {
       <Form className={`${allHours === 0 ? "_formDayContext" : ""} mt-4`}>
         <InputsSelect inputsData={dataInputsSelect} padding={"py-2 ps-2"} />
 
-        <div className="position-relative mb-3">
+        <div className="position-relative mb-3 _formDayContext__inputTetx">
           <InputsText inputsData={dataInputsText} />
           <InputsTextCover text={"Data"} />
           <FormDateError />

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import useInPathname from "../../hooks/useIsPathname";
+import useInPathname from "../../hooks/useInPathname";
 import { RootState } from "../../redux/store";
 import Toast from "./toast/Toast";
 

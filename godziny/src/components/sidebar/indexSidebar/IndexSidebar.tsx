@@ -6,12 +6,13 @@ import Nav from "../Nav/Nav";
 import useDataSidebar from "../useDataSidebar";
 import "./_indexSidebar.scss";
 import ToastsContainer from "../ToastsContainer";
+import useInPathname from "../../../hooks/useInPathname";
 
 const IndexSidebar = () => {
   useReduxListUsers();
   useReduxListMonths();
-
-  const { pathname } = useLocation();
+  const { inPathname: isMonthPanel } = useInPathname("202");
+  const { inPathname: isSettings } = useInPathname("ustawienia");
   const { dataMonthPanel, dataSettings } = useDataSidebar();
 
   return (
@@ -20,12 +21,12 @@ const IndexSidebar = () => {
       <div className="_sidebar p-md-0">
         <div className="_sidebar__wrapper _scrolHidden">
           <div className="_sidebar__body">
-            {pathname.includes("202") &&
+            {isMonthPanel &&
               dataMonthPanel.map((component, idx) => {
                 return <React.Fragment key={idx}>{component}</React.Fragment>;
               })}
 
-            {pathname.includes("ustawienia") &&
+            {isSettings &&
               dataSettings.map((component, idx) => {
                 return <React.Fragment key={idx}>{component}</React.Fragment>;
               })}

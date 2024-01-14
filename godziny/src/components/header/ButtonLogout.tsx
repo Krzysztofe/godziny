@@ -8,15 +8,17 @@ import { printAlert } from "../../redux/storeFeatures/alertSlice";
 import { FaUserCircle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import AlertErrors from "../AlertErrors";
+import useInPathname from "../../hooks/useInPathname";
 
 const ButtonLogout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const { pathname } = useLocation();
+  const { inPathname: isMonthPanel } = useInPathname("202");
 
+  const { pathname } = useLocation();
   const printLogout = pathname !== "/";
-  const printInMonth = pathname.includes("202");
+
 
   const logout = () => {
     setIsLoading(true);
@@ -35,7 +37,7 @@ const ButtonLogout = () => {
   let btnContent = (
     <div className=" d-flex align-items-center text-light-emphasis w-100">
       <FaUserCircle className="fs-2 " />
-      <span className={`${printInMonth && "d-none"} d-sm-block ms-1`}>
+      <span className={`${isMonthPanel && "d-none"} d-sm-block ms-1`}>
         Wyloguj
       </span>
     </div>

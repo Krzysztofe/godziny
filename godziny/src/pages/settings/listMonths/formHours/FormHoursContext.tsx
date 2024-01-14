@@ -5,8 +5,8 @@ import InputsRange from "../../../../components/inputs/inputsRange/InputsRange";
 import useHTTPState from "../../../../hooks/useHTTPState";
 import useMonthDate from "../useMonthDate";
 import FormHoursError from "./FormHoursError";
-import FormHoursTop from "./FormHoursTop";
 import useFormikHours from "./useFormikHours";
+import FormHoursTop from "./formHoursTop/FormHoursTop";
 
 type Props = {
   idx: number;

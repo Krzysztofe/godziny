@@ -1,9 +1,10 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { AiTwotoneSetting } from "react-icons/ai";
+import useInPathname from "../../../hooks/useInPathname";
 
 const ListLink = () => {
-  const { pathname } = useLocation();
-  const printInMonth = pathname.includes("202");
+
+  const { inPathname } = useInPathname("202");
 
   return (
     <NavLink
@@ -16,8 +17,8 @@ const ListLink = () => {
       end
     >
       <div className="_align-center">
-        <AiTwotoneSetting className={`fs-2 ${printInMonth && "me-3"} me-sm-0`} />
-        <div className={`ms-1 ${printInMonth && "d-none"} d-sm-block`}>
+        <AiTwotoneSetting className={`fs-2 ${inPathname && "me-3"} me-sm-0`} />
+        <div className={`ms-1 ${inPathname && "d-none"} d-sm-block`}>
           Ustawienia
         </div>
       </div>
