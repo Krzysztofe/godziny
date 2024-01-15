@@ -1,14 +1,19 @@
+@import "../../../scss/variables";
+
 ._toast {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.4);
-  width: 200px;
+  left: 0;
+  // background-color: rgba(37, 105, 244, 0.4);
+  background-color:  rgba(110, 110, 110, 0.5);
+  width: 40%;
   z-index: 1;
+  height: 31px;
 }
 
-._anim-toast {
-  -webkit-animation: toast 3s forwards;
-  animation: toast 3s forwards;
-}
+// ._anim-toast {
+//   -webkit-animation: toast 3s forwards;
+//   animation: toast 3s forwards;
+// }
 
 @keyframes toast {
   0% {
@@ -16,12 +21,12 @@
     transform: translateX(-150%);
   }
   20% {
-    -webkit-transform: translateX(10px);
-    transform: translateX(10px);
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
   }
   80% {
-    -webkit-transform: translateX(10px);
-    transform: translateX(10px);
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
   }
   100% {
     -webkit-transform: translateX(-150%);

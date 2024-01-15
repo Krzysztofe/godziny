@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import useInPathname from "../../hooks/useInPathname";
+import useInPathname from "../../hooks/useIsPathname";
 import { RootState } from "../../redux/store";
 import Toast from "./toast/Toast";
 
@@ -10,7 +10,7 @@ const ToastsContainer = () => {
 
   const { inPathname: inMonthPanel } = useInPathname("202");
   const { inPathname: inSettings } = useInPathname("ustawienia");
-  
+
   return (
     <>
       {inMonthPanel && (

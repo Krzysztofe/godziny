@@ -3,15 +3,16 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../redux/store";
 import { getDaySuccess } from "../../../../redux/storeFeatures/requestSuccessSlice";
-import ButtonForm from "../../../ButtonForm";
+import ButtonForm from "../../../buttonForm/ButtonForm";
 import InputsSelect from "../../../inputs/inputsSelect/InputsSelect";
 import InputsText from "../../../inputs/inputsText/InputsText";
-import InputsTextCover from "../../../inputs/inputsText/inputsTextCover/InputsTextCover";
+import InputsTextCover from "../../../inputs/inputsText/labelCover/InputsCover";
 import FormHoursError from "../formHoursError/FormHoursError";
 import useDataFormDay from "../useDataFormDay";
 import useFormikDay from "../useFormikDay";
 import "./_formDayContext.scss";
 import FormDateError from "../formDateError/FormDateError";
+import Toast from "../../toast/Toast";
 
 const FormDayContext = () => {
   const dispatch = useDispatch();
@@ -30,15 +31,19 @@ const FormDayContext = () => {
       validationSchema={validation}
       onSubmit={onSubmit}
     >
-      <Form className={`${allHours === 0 ? "_formDayContext" : ""} mt-4`}>
+      <Form
+        className={`${
+          allHours === 0 ? "_formDayContext" : ""
+        } mt-4 position-relative`}
+      >
         <InputsSelect inputsData={dataInputsSelect} padding={"py-2 ps-2"} />
 
         <div className="position-relative mb-3 _formDayContext__inputTetx">
           <InputsText inputsData={dataInputsText} />
-          <InputsTextCover text={"Data"} />
+          {/* <InputsTextCover text={"Data"} /> */}
           <FormDateError />
         </div>
-
+        <Toast text={"Zapisano"} isSuccess={success.isSuccess} />
         <ButtonForm success={success} />
         <FormHoursError />
       </Form>

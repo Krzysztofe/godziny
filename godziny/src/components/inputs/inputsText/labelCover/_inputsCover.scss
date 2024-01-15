@@ -1,8 +1,8 @@
-@import "../../../scss/mixins";
+@import "../../../../scss/mixins";
 
-._inputsColor {
+._inputsCover {
   height: 35.7px !important;
-
+  top: 0;
   @include lg {
     height: 38.7px !important;
   }

@@ -66,11 +66,9 @@ body {
   }
 }
 
-._fs-collapse-header {
-  font-size: $h3-font-size !important;
-  @include md {
-    font-size: $h4-font-size !important;
-  }
+._fs-primary {
+  font-size: $h4-font-size !important;
+
   @include lg {
     font-size: $h3-font-size !important;
   }
@@ -126,6 +124,13 @@ body {
 ._align-center {
   display: flex;
   align-items: center;
+}
+
+// components
+
+._formInCollapse {
+  padding-inline: 0.5rem;
+  padding-top: 0.25rem;
 }
 
 // animations

@@ -1,9 +1,8 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { AiTwotoneSetting } from "react-icons/ai";
-import useInPathname from "../../../hooks/useInPathname";
+import useInPathname from "../../../hooks/useIsPathname";
 
 const ListLink = () => {
-
   const { inPathname } = useInPathname("202");
 
   return (

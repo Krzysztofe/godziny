@@ -1,11 +1,11 @@
 import { useState } from "react";
-import "./_inputsTextCover.scss";
+import "./_inputsCover.scss";
 
 type Props = {
-  text: string;
+  text?: string;
 };
 
-const InputsTextCover = (props: Props) => {
+const InputsCover = (props: Props) => {
   const [isPrinted, setPrinted] = useState(true);
 
   const handleDelete = () => {
@@ -17,7 +17,7 @@ const InputsTextCover = (props: Props) => {
       {isPrinted && (
         <div
           onClick={handleDelete}
-          className="_inputsTextCover w-100 ps-2 d-flex align-items-center bg-secondary-light text-light-emphasis _radius border position-absolute"
+          className="_inputsCover w-100 ps-2 d-flex align-items-center bg-secondary-light _fs-primary text-light-emphasis _radius border"
         >
           {props.text}
         </div>
@@ -26,4 +26,4 @@ const InputsTextCover = (props: Props) => {
   );
 };
 
-export default InputsTextCover;
+export default InputsCover;

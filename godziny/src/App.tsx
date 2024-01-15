@@ -23,11 +23,14 @@ const IndexSettings = lazy(
 
 function App() {
   const [user] = useAuthState(auth);
+  const { pathname } = useLocation();
+
+  const notLogin = pathname !== "/";
 
   return (
     <Suspense fallback={<LoadingPage />}>
       <Header />
-      {user && <IndexSidebar />}
+      {user && notLogin && <IndexSidebar />}
       <Routes>
         <Route path="/" element={<IndexLogin />} />
         <Route element={<PrivateRoutes />}>

@@ -7,6 +7,7 @@ import useMonthDate from "../useMonthDate";
 import FormHoursError from "./FormHoursError";
 import useFormikHours from "./useFormikHours";
 import FormHoursTop from "./formHoursTop/FormHoursTop";
+import ButtonForm from "../../../../components/buttonForm/ButtonForm";
 
 type Props = {
   idx: number;
@@ -36,13 +37,14 @@ const FormHoursContext = (props: Props) => {
         <InputsRange inputsValues={["allHours"]} />
         <div className="_d-between align-items-center mt-2">
           <FormHoursError />
-          <Button
+          <ButtonForm success={success} />
+          {/* <Button
             type="submit"
             disabled={success.isLoading}
             className="col-2 _d-center m-0 p-0 m-0 ms-1  text-info-emphasis border-0 bg-transparent"
           >
             {btnContent}
-          </Button>
+          </Button> */}
         </div>
       </Form>
     </Formik>

@@ -39,6 +39,7 @@ const useDataFormDay = () => {
     {
       value: "date",
       type: "date",
+      labelCover: "Data",
       isErrorPrint: true,
       min: dateInNext_14_Days,
       max: dateInNext_60_Days,

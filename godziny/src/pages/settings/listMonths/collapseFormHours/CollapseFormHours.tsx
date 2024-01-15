@@ -31,18 +31,18 @@ const CollapseFormHours = (props: Props) => {
     <>
       <div className="d-flex align-items-center">
         <MonthTitle idx={props.idx} />
-        {/* <Button
-          onClick={() => {
-            handleTogle(props.idx);
-          }}
+        <Button
           aria-expanded={isOpen}
           aria-controls="example-collapse-text"
           size="sm"
+          onClick={() => {
+            handleTogle(props.idx);
+          }}
           className={`_radius _collapseFormHours p-0 ps-1 pe-4 position-relative`}
         >
           Zapisz godziny
           <CollapseArrow isOpen={isOpen} />
-        </Button> */}
+        </Button>
         <ButtonDeleteMonth idx={props.idx} />
       </div>
       <Collapse in={isOpen}>

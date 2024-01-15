@@ -8,7 +8,7 @@ import { printAlert } from "../../redux/storeFeatures/alertSlice";
 import { FaUserCircle } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import AlertErrors from "../AlertErrors";
-import useInPathname from "../../hooks/useInPathname";
+import useInPathname from "../../hooks/useIsPathname";
 
 const ButtonLogout = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,6 @@ const ButtonLogout = () => {
 
   const { pathname } = useLocation();
   const printLogout = pathname !== "/";
-
 
   const logout = () => {
     setIsLoading(true);

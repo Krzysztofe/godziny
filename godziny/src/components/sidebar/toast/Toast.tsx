@@ -1,4 +1,6 @@
 import "./_toast.scss";
+import useIsSucces from "./useIsSucces";
+import { RiMailSendLine } from "react-icons/ri";
 
 type Props = {
   text: string;
@@ -6,13 +8,14 @@ type Props = {
 };
 
 const Toast = (props: Props) => {
+  const { isSuccess } = useIsSucces(props.isSuccess);
+
+  // if (!isSuccess) return <></>;
   return (
     <>
-      {props.isSuccess && (
-        <div className="_radius p-1 fs-3 fw-medium text-center text-white _anim-toast _toast">
-          {props.text}
-        </div>
-      )}
+      <div className="_radius p-1 text-center   text-white _anim-toast _toast">
+        <RiMailSendLine className="fs-2"/>
+      </div>
     </>
   );
 };

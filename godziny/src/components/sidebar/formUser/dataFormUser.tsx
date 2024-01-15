@@ -2,6 +2,7 @@ export const dataInputs = [
   {
     value: "userColor",
     type: "color",
+    labelCover: "Kolor",
     isErrorPrint: true,
   },
 

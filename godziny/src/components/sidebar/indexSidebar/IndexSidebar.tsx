@@ -6,7 +6,7 @@ import Nav from "../Nav/Nav";
 import useDataSidebar from "../useDataSidebar";
 import "./_indexSidebar.scss";
 import ToastsContainer from "../ToastsContainer";
-import useInPathname from "../../../hooks/useInPathname";
+import useInPathname from "../../../hooks/useIsPathname";
 
 const IndexSidebar = () => {
   useReduxListUsers();
@@ -17,7 +17,7 @@ const IndexSidebar = () => {
 
   return (
     <>
-      <ToastsContainer />
+      {/* <ToastsContainer /> */}
       <div className="_sidebar p-md-0">
         <div className="_sidebar__wrapper _scrolHidden">
           <div className="_sidebar__body">

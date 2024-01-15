@@ -5,7 +5,7 @@ import useDataSearch from "../useDataSearch";
 import InputsSelect from "../../../inputs/inputsSelect/InputsSelect";
 import { useLocation } from "react-router-dom";
 import "./_formSearchContext.scss";
-import useInPathname from "../../../../hooks/useInPathname";
+import useInPathname from "../../../../hooks/useIsPathname";
 
 const FormSearchContext = () => {
   const { dataInputsSelect } = useDataSearch();

@@ -33,7 +33,7 @@ const InputsSelect = (props: Props) => {
               onChange={e => setFieldValue(name, e.target.value)}
               onBlur={handleBlur}
               size="sm"
-              className={`p-0 fs-3 text-light-emphasis border bg-secondary-light shadow-sm _cursor-pointer _inputSelect position-relative ${
+              className={`p-0 _fs-primary text-light-emphasis border bg-secondary-light shadow-sm _cursor-pointer _inputSelect position-relative ${
                 firstOption === "Brak danych" ? "text-warning" : ""
               } ${props.padding}`}
             >

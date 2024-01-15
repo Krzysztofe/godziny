@@ -2,11 +2,11 @@ import { Form, Formik } from "formik";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getMonthSuccess } from "../../../redux/storeFeatures/requestSuccessSlice";
-import ButtonForm from "../../ButtonForm";
+import ButtonForm from "../../buttonForm/ButtonForm";
 import InputsText from "../../inputs/inputsText/InputsText";
 import { dataInputs } from "./dataFormMonth";
 import useFormikMonth from "./useFormikMonth";
-
+import Toast from "../toast/Toast";
 
 const FormMonthContext = () => {
   const dispatch = useDispatch();
@@ -22,8 +22,9 @@ const FormMonthContext = () => {
       validationSchema={validation}
       onSubmit={onSubmit}
     >
-      <Form className="">
+      <Form className="position-relative _formInCollapse">
         <InputsText inputsData={dataInputs} />
+        <Toast text={"Zapisano"} isSuccess={success.isSuccess} />
         <ButtonForm success={success} />
       </Form>
     </Formik>

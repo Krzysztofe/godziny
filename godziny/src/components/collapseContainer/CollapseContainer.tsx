@@ -14,12 +14,13 @@ const CollapseContainer = (props: Props) => {
   return (
     <>
       <Button
+        type="submit"
         variant="outline-primary"
         onClick={() => setOpen(prev => !prev)}
         aria-expanded={isOpen}
         aria-controls="example-collapse-text"
         size="sm"
-        className={` text-center d-block bg-primary py-2 pe-3 text-white w-100 position-relative _collapseContainer  _fs-collapse-header _fw-semiBold _radius
+        className={` text-center d-block bg-primary py-2 pe-3 text-white w-100 position-relative _collapseContainer  _fs-primary _fw-semiBold _radius
         
         ${isOpen ? "rounded-bottom-0" : "_radius"}
         
@@ -29,7 +30,10 @@ const CollapseContainer = (props: Props) => {
         <CollapseArrow isOpen={isOpen} />
       </Button>
       <Collapse in={isOpen}>
-        <div className="border border-primary _radius_bottom bg-white px-3">
+        <div
+          className="border border-primary _radius_bottom bg-white p-2"
+          style={{ overflow: "hidden" }}
+        >
           {props.children}
         </div>
       </Collapse>
