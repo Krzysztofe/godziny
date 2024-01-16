@@ -2,10 +2,10 @@ import { ReactNode } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { ModelSuccess } from "../sharedModels/modelSucces";
 
-const useHTTPState = (success: ModelSuccess, btnText: string | ReactNode) => {
+const useHTTPState = (isLoading: boolean, btnText: string | ReactNode) => {
   let btnContent: string | ReactNode = btnText;
 
-  if (success.isLoading) {
+  if (isLoading) {
     btnContent = (
       <Spinner
         animation="border"

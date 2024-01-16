@@ -7,7 +7,9 @@
     width: fit-content;
     height: fit-content;
   }
-  &__inputs{
-    scale: 1.2
+  &__button {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 }

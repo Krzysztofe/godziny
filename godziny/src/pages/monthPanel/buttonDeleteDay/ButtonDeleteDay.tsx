@@ -20,7 +20,7 @@ const ButtonDeleteDay = (props: Props) => {
     "Usunąć dzień?"
   );
   const { btnContent } = useHTTPState(
-    success,
+    success.isLoading,
     <RiDeleteBin6Line className="text-light-emphasis fs-2" />
   );
 

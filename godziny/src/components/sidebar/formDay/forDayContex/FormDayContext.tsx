@@ -36,7 +36,7 @@ const FormDayContext = () => {
         </div>
         <div className="position-relative">
           <Toast isSuccess={success.isSuccess} />
-          <ButtonForm success={success} />
+          <ButtonForm isLoading={success.isLoading} />
         </div>
 
         <FormHoursError />

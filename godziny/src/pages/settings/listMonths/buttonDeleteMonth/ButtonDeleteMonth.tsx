@@ -14,7 +14,7 @@ type Props = {
 const ButtonDeleteMonth = (props: Props) => {
   const { deleteMonthAsync, success } = useDeleteMonthAsync(props.idx);
   const { btnContent } = useHTTPState(
-    success,
+    success.isLoading,
     <RiDeleteBin6Line className="text-light-emphasis fs-2 ms-auto" />
   );
   const { monthDate } = useMonthDate(props.idx);

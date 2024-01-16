@@ -28,11 +28,9 @@ const FormHoursContext = (props: Props) => {
         <InputsRange inputsValues={["allHours"]} />
         <div className="_d-between align-items-center mt-2 ">
           <div className="mt-2">
-          <FormHoursError />
+            <FormHoursError />
           </div>
-          <ButtonForm success={success} />
-          
-          
+          <ButtonForm isLoading={success.isLoading} />
         </div>
       </Form>
     </Formik>
