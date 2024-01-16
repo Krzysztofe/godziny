@@ -10,7 +10,7 @@ const FormHoursError = () => {
   const currentHours = month?.calcHours?.currentHours || 0;
 
   return (
-    <div className="text-danger d-block mt-0 _fs-5 _formHoursError">
+    <div className="text-danger d-block mt-0 fs-5 _formHoursError">
       {currentHours - +values.hours < 0 || currentHours === 0
         ? "Brak dostępnych godzin"
         : ""}

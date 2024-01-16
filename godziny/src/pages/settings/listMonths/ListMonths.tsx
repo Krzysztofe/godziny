@@ -1,7 +1,8 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import useMonthDates from "../../../hooks/useMonthDates";
-import { dataStylesListGroupItem } from "../dataStylesSettingsLists";
 import CollapseFormHours from "./collapseFormHours/CollapseFormHours";
+import { dataStylesListItem } from "../../../components/listContainer/dataListContainerStyles";
+
 
 const ListMonths = () => {
   const { databaseMonthsDatesToString } = useMonthDates();
@@ -13,7 +14,7 @@ const ListMonths = () => {
           return (
             <ListGroup.Item
               key={monthDateToString}
-              className={dataStylesListGroupItem}
+              className={dataStylesListItem}
             >
               <CollapseFormHours idx={idx} />
             </ListGroup.Item>

@@ -21,13 +21,17 @@ const ListMonthsInCollapse = () => {
       timeZone: "UTC",
     }).format(monthURLToDateFormat);
 
+  const noDataMessage = (listlength: number | undefined) => {
+    return listlength === 0 ? (
+      <ListGroup.Item className="border-0 p-0 text-warning ">
+        Brak danych
+      </ListGroup.Item>
+    ) : null;
+  };
+
   return (
     <ListGroup className="_scrolHidden _ListMonthsInCollapse fs-3 text-capitalize ">
-      {listMonths?.length === 0 && (
-        <ListGroup.Item className="border-0 p-0 text-warning ">
-          Brak danych
-        </ListGroup.Item>
-      )}
+      {noDataMessage(listMonths?.length)}
 
       {databaseMonthsDatesToString?.map((month: string, idx: number) => {
         return (

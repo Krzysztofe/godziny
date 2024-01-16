@@ -10,7 +10,7 @@ type Props = {
 
 const InputError = (props: Props) => {
   return (
-    <div className="text-danger d-block mt-0 _fs-5 _inputError">
+    <div className="text-danger d-block mt-0 fs-5 _inputError">
       {props.touched[props.value as keyof typeof props.touched] &&
         props.errors[props.value as keyof typeof props.touched] &&
         props.errors[props.value as keyof typeof props.touched]}

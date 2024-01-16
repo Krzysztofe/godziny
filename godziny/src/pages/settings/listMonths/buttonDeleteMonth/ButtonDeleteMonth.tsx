@@ -15,7 +15,7 @@ const ButtonDeleteMonth = (props: Props) => {
   const { deleteMonthAsync, success } = useDeleteMonthAsync(props.idx);
   const { btnContent } = useHTTPState(
     success,
-    <RiDeleteBin6Line className="text-light-emphasis fs-1 ms-auto" />
+    <RiDeleteBin6Line className="text-light-emphasis fs-2 ms-auto" />
   );
   const { monthDate } = useMonthDate(props.idx);
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
@@ -25,19 +25,20 @@ const ButtonDeleteMonth = (props: Props) => {
     "Usunąć miesiąc?"
   );
 
+  const print = listMonths && monthDate === listMonths[props.idx];
+  const icon = (
+    <RiDeleteBin6Line className="text-light-emphasis fs-2 ms-auto" />
+  );
+
   return (
     <>
       {alert}
       <Button
         disabled={success.isLoading}
         onClick={handleAlert}
-        className="ms-auto bg-transparent border-0 p-1"
+        className="py-0 _d-center ms-auto bg-transparent border-0"
       >
-        {listMonths && monthDate === listMonths[props.idx] ? (
-          btnContent
-        ) : (
-          <RiDeleteBin6Line className="text-light fs-1 ms-auto" />
-        )}
+        {print ? btnContent : icon}
       </Button>
     </>
   );

@@ -1,35 +1,33 @@
 import { useSelector } from "react-redux";
 import InputsText from "../../../../../components/inputs/inputsText/InputsText";
 import { RootState } from "../../../../../redux/store";
-// import "./_formHoursTop.scss"
+import "./_formHoursTop.scss";
 
 const FormHoursTop = () => {
   const { calcHours } = useSelector((state: RootState) => state.calcHours);
 
   const dataInputsText = [
-    { value: "allHours", type: "number", isErrorPrint: false },
+    {
+      value: "allHours",
+      type: "number",
+      isErrorPrint: false,
+      styles: "ps-1 pt-0 pb-0 pl-0 fs-4 mt-0 _fw-semiBold",
+    },
   ];
 
-  const styles = "fs-4 d-flex align-items-end";
+
   return (
     <>
-      {/* <InputsText inputsData={dataInputsText} /> */}
-      <div className="_d-between fw-medium position-relative">
-        <div className={styles}>
-          0 h{" "}
-          <div className="ms-4 ps-4 position-absolute">
-            Zapisane: {calcHours?.allHours} h
-          </div>
+      <div className="_d-between align-items-center fs-4 mb-3 position-relative">
+        <div className="">0 h </div>
+        <div className="_formHoursTop__summary">
+          Zapisane: {calcHours?.allHours} h
         </div>
-
-        <div
-          className="col-6 col-sm-5 d-flex _formHoursTop__input"
-          // style={{ width: "62px" }}
-        >
+        <div className="d-flex align-items-center ms-sm-4 _formHoursTop__input">
           <InputsText inputsData={dataInputsText} /> &nbsp;
-          <div>h</div>
+          <div className="align-self-center mt-2">h</div>
         </div>
-        <div className={styles}>320 h</div>
+        <div>320 h</div>
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import { useFormikContext } from "formik";
 import Form from "react-bootstrap/Form";
-import "./_formHeaderMonthPanel.scss";
+import "./_inputsRange..scss";
 
 type ModelFormValues = {
   allHours: number;
@@ -15,7 +15,7 @@ const InputsRange = (props: Props) => {
     useFormikContext<ModelFormValues>();
 
   const gradientValue = values.allHours / 3.2;
-  const gradientBackground: string = `linear-gradient(to right,  rgb(135, 136, 143)${gradientValue}%, rgb(222, 226, 230) ${gradientValue}%)`;
+  const gradientBackground: string = `linear-gradient(to right,  rgb(110, 110, 110)${gradientValue}%, rgb(239, 239, 239) ${gradientValue}%)`;
 
   return (
     <>
@@ -32,7 +32,7 @@ const InputsRange = (props: Props) => {
               value={values[value as keyof typeof values]}
               onChange={e => setFieldValue(value, e.target.value)}
               onBlur={handleBlur}
-              className="form-range _custom-range medium position-relative"
+              className="form-range _inputsRange medium position-relative"
               style={{
                 background: gradientBackground,
               }}

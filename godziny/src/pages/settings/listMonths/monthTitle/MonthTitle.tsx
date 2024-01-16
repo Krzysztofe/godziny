@@ -18,13 +18,13 @@ const MonthTitle = (props: Props) => {
     capitalizeFirstLetter(databaseMonthsDatesToString[props.idx]);
 
   return (
-    <div className="_monthTitle">
+    <div className="_monthTitle _fs-primary">
       <Link
         to={`/${listMonths?.[props.idx]}`}
         className="text-decoration-none _fw-regular text-dark _align-center"
       >
         <ImArrowLeft className=" text-light-emphasis me-1" />
-        {title}
+        <div className="_text-noWrap">{title}</div>
       </Link>
     </div>
   );

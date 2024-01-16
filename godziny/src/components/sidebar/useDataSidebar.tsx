@@ -1,12 +1,11 @@
-import ListMonthsInCollapse from "./listMonthsInCollapse/ListMonthsInCollapse";
+import { useSelector } from "react-redux";
+import useMonthURLToString from "../../hooks/useMonthURLToString";
+import { RootState } from "../../redux/store";
+import CollapseContainer from "../collapseContainer/CollapseContainer";
 import FormDayContext from "./formDay/forDayContex/FormDayContext";
 import FormMonthContext from "./formMonth/FormMonthContext";
 import FormUserContext from "./formUser/FormUserContext";
-import CollapseContainer from "../collapseContainer/CollapseContainer";
-import useMonthURLToString from "../../hooks/useMonthURLToString";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-import ToastsSettingsContainer from "./ToastsContainer";
+import ListMonthsInCollapse from "./listMonthsInCollapse/ListMonthsInCollapse";
 
 const useDataSidebar = () => {
   const { monthURLStringFormat } = useMonthURLToString();

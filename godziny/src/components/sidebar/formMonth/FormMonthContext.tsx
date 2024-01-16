@@ -24,8 +24,10 @@ const FormMonthContext = () => {
     >
       <Form className="position-relative _formInCollapse">
         <InputsText inputsData={dataInputs} />
-        <Toast text={"Zapisano"} isSuccess={success.isSuccess} />
-        <ButtonForm success={success} />
+        <div className="position-relative">
+          <Toast isSuccess={success.isSuccess} />
+          <ButtonForm success={success} />
+        </div>
       </Form>
     </Formik>
   );

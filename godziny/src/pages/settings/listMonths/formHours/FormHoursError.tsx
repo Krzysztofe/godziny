@@ -31,7 +31,7 @@ const FormHoursError = (props: Props) => {
     }
   }
 
-  return <div className="text-danger fs-8">{content}</div>;
+  return <div className="text-danger fs-5">{content}</div>;
 };
 
 export default FormHoursError;

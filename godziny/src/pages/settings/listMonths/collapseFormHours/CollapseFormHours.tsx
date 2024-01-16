@@ -38,7 +38,7 @@ const CollapseFormHours = (props: Props) => {
           onClick={() => {
             handleTogle(props.idx);
           }}
-          className={`_radius _collapseFormHours p-0 ps-1 pe-4 position-relative`}
+          className={`_radius _text-noWrap _fs-primary _fw-semiBold border-0 p-0 ps-1 pe-4 position-relative`}
         >
           Zapisz godziny
           <CollapseArrow isOpen={isOpen} />

@@ -1,3 +1,9 @@
 ._buttonForm {
   max-width: 120px;
 }
+
+._buttonForm__content{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}

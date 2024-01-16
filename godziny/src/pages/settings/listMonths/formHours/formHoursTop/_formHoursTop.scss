@@ -1,0 +1,14 @@
+@import "../../../../../scss/mixins";
+
+._formHoursTop__summary {
+ 
+
+  @include sm { position: absolute;
+    left: 10%;
+  }
+}
+
+._formHoursTop__input {
+  width: 4rem;
+  margin-top: -0.5rem;
+}

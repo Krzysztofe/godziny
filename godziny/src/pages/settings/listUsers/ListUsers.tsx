@@ -1,7 +1,7 @@
 import { ListGroup } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import { dataStylesListGroupItem } from "../dataStylesSettingsLists";
+import { dataStylesListItem } from "../../../components/listContainer/dataListContainerStyles";
 import ButtonDeleteUser from "../buttonDeleteUser/ButtonDeleteUser";
 
 const ListUsers = () => {
@@ -13,12 +13,13 @@ const ListUsers = () => {
         return (
           <ListGroup.Item
             key={user.userName}
-            className={`${dataStylesListGroupItem}  _radius`}
+            className={`${dataStylesListItem} d-flex`}
             style={{
               borderLeft: `8px solid ${user.userColor}`,
+              color: user.userColor,
             }}
           >
-            
+            <div className="ms-2">{user.userName}</div>
             <ButtonDeleteUser user={user} />
           </ListGroup.Item>
         );

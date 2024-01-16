@@ -2,18 +2,15 @@
 
 ._toast {
   position: absolute;
-  left: 0;
-  // background-color: rgba(37, 105, 244, 0.4);
-  background-color:  rgba(110, 110, 110, 0.5);
+  background-color: rgba(110, 110, 110, 0.5);
   width: 40%;
   z-index: 1;
-  height: 31px;
 }
 
-// ._anim-toast {
-//   -webkit-animation: toast 3s forwards;
-//   animation: toast 3s forwards;
-// }
+._anim-toast {
+  -webkit-animation: toast 3s forwards;
+  animation: toast 3s forwards;
+}
 
 @keyframes toast {
   0% {

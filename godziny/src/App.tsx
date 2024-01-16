@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useState } from "react";
+import { Suspense, lazy } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { auth } from "./data/firebaseConfig";
 import LoadingPage from "./pages/loadingPage/LoadingPage";

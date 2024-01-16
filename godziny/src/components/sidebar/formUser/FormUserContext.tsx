@@ -18,8 +18,11 @@ const FormUserContext = () => {
         <div className="position-relative">
           <InputsText inputsData={dataInputs} />
         </div>
-        <Toast text={"Dodano"} isSuccess={success.isSuccess} />
-        <ButtonForm success={success} />
+
+        <div className="position-relative">
+          <Toast isSuccess={success.isSuccess} />
+          <ButtonForm success={success} />
+        </div>
       </Form>
     </Formik>
   );

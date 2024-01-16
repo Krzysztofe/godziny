@@ -1,6 +1,6 @@
-import ListGroup from "react-bootstrap/ListGroup";
 import { ReactNode } from "react";
-import { dataStylesListGroupItem } from "../pages/settings/dataStylesSettingsLists";
+import ListGroup from "react-bootstrap/ListGroup";
+import ListItemNoData from "./ListItemNoData";
 
 type Props = {
   header: string;
@@ -9,7 +9,7 @@ type Props = {
 };
 
 const ListContainer = (props: Props) => {
-  const listContent = !props.listContent || props.listContent?.length === 0;
+  const noData = !props.listContent || props.listContent?.length === 0;
 
   return (
     <>
@@ -18,13 +18,7 @@ const ListContainer = (props: Props) => {
       </h3>
 
       <ListGroup className="border-0 p-0">
-        {listContent && (
-          <ListGroup.Item
-            className={`${dataStylesListGroupItem} text-warning py-1`}
-          >
-            Brak danych
-          </ListGroup.Item>
-        )}
+        <ListItemNoData noData={noData} />
 
         {props.children}
       </ListGroup>

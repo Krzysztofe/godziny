@@ -3,7 +3,6 @@ import Button from "react-bootstrap/Button";
 import useHTTPState from "../../../hooks/useHTTPState";
 import useAlertDelete from "../../../hooks/useAlertDelete";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { dataStylesButton } from "../dataStylesSettingsLists";
 import { ModelUser } from "../../../sharedModels/modelUser";
 import useDeleteUserAsync from "../buttonDeleteUser/useDeleteUserAsync";
 
@@ -16,16 +15,19 @@ const ButtonDeleteUser = (props: Props) => {
   const { deleteUserAsync, success } = useDeleteUserAsync(userName);
   const { btnContent } = useHTTPState(
     success,
-    <RiDeleteBin6Line className="text-light-emphasis fs-1  ms-auto" />
+    <RiDeleteBin6Line className="text-light-emphasis fs-2  ms-auto" />
   );
   const { alert, handleAlert } = useAlertDelete(
     deleteUserAsync,
-    "Usunąć użytkownika?"
+    `Usunąć użytkownika ?`
   );
 
-  const getUserName = (userName: string) => {
-    setUserName(userName);
-  };
+  const getUserName = (name: string) => setUserName(name);
+
+  const print = userName === props.user.userName;
+  const icon = (
+    <RiDeleteBin6Line className="text-light-emphasis fs-2 ms-auto" />
+  );
 
   return (
     <>
@@ -36,16 +38,9 @@ const ButtonDeleteUser = (props: Props) => {
           handleAlert();
         }}
         disabled={success.isLoading}
-        className={`${dataStylesButton} _radius`}
-        style={{ color: props.user.userColor }}
+        className="py-0 _d-center ms-auto bg-transparent border-0"
       >
-        {props.user.userName}
-
-        {userName === props.user.userName ? (
-          btnContent
-        ) : (
-          <RiDeleteBin6Line className="text-light-emphasis fs-1 ms-auto" />
-        )}
+        {print ? btnContent : icon}
       </Button>
     </>
   );

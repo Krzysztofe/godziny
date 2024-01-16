@@ -1,11 +1,9 @@
 import { useFormikContext } from "formik";
 import Form from "react-bootstrap/Form";
-import InputError from "../inputError/InputError";
 import { ModelDay } from "../../../sharedModels/modelDay";
-import "./_inputsText.scss";
-import { useEffect, useRef } from "react";
-import InputsTextCover from "./labelCover/InputsCover";
+import InputError from "../inputError/InputError";
 import InputsTextLabel from "./InputsTextLabel";
+import "./_inputsText.scss";
 
 type Props = {
   inputsData: {
@@ -17,6 +15,7 @@ type Props = {
     isErrorPrint?: boolean;
     min?: string;
     max?: string;
+    styles?: string;
   }[];
 };
 
@@ -29,18 +28,17 @@ const InputsText = (props: Props) => {
       {props.inputsData.map(
         ({
           value,
-          label,
           labelCover,
           type,
           isErrorPrint,
           min,
           max,
           placeholder,
+          styles,
         }) => {
           return (
-            <Form.Group key={value} className="mt-2 position-relative">
+            <Form.Group key={value} className=" mt-2 position-relative">
               <InputsTextLabel value={value} labelCover={labelCover} />
-
               <Form.Control
                 id={value}
                 type={type}
@@ -52,10 +50,11 @@ const InputsText = (props: Props) => {
                 max={max}
                 placeholder={placeholder}
                 size="sm"
-                className={`text-light-emphasis bg-secondary-light _radius shadow-sm w-100 text-capitalize _cursor-pointer _fs-primary
-                ${type === "color" ? "_inputsColor p-0" : "py-2"}
+                className={` text-light-emphasis bg-secondary-light _radius shadow-sm w-100 text-capitalize _cursor-pointer _fs-primary
+                   ${type === "color" ? "_inputsColor p-0" : "py-2"} ${styles}
                 `}
               />
+
               {isErrorPrint && (
                 <InputError value={value} errors={errors} touched={touched} />
               )}

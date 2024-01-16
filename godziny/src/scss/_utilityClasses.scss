@@ -12,6 +12,11 @@ body {
     display: none;
   }
 }
+._text-noWrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 ._bg-opacity-white {
   background-color: rgba(255, 255, 255, 0.5);
@@ -39,36 +44,8 @@ body {
 
 // fonts
 
-// 16
-._fs-2 {
-  font-size: $h4-font-size !important;
-  @include md {
-    font-size: $h2-font-size !important;
-  }
-
-  // font-size: $h2-font-size !important;
-}
-
-// 14
-._fs-3 {
-  font-size: $h4-font-size !important;
-  @include md {
-    font-size: $h3-font-size !important;
-  }
-  // font-size: $h3-font-size !important;
-}
-
-// 10
-._fs-5 {
-  font-size: $h6-font-size !important;
-  @include md {
-    font-size: $h5-font-size !important;
-  }
-}
-
 ._fs-primary {
   font-size: $h4-font-size !important;
-
   @include lg {
     font-size: $h3-font-size !important;
   }
@@ -86,39 +63,17 @@ body {
   font-weight: 600 !important;
 }
 
-._fs-responsive {
-  font-size: 0.78rem !important;
-}
-
-@media (min-width: 400px) {
-  ._fs-responsive {
-    font-size: 1rem !important;
-  }
-}
-
-@media (min-width: 500px) {
-  ._fs-responsive {
-    font-size: 0.75rem !important;
-  }
-}
-
-@media (min-width: 560px) {
-  ._fs-responsive {
-    font-size: 1rem !important;
-  }
-}
-
 // positioning
 
 ._d-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
 ._d-between {
-  display: flex;
-  justify-content: space-between;
+  display: flex !important;
+  justify-content: space-between !important;
 }
 
 ._align-center {
