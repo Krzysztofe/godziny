@@ -15,6 +15,13 @@ interface Props {
 const Column = (props: Props) => {
   const { searchedName } = useSelector((state: RootState) => state.filterDays);
 
+  const isDraging = (stapshot: boolean) => {
+    return stapshot ? "_isDragging" : "_noDragging";
+  };
+
+  const isSearching =
+    searchedName && searchedName !== "Szukaj" ? "_isSearching" : "";
+
   return (
     <div className="_column position-relative">
       <Droppable droppableId={props.column.id}>
@@ -23,11 +30,9 @@ const Column = (props: Props) => {
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className={`p-1 pt-3 px-lg-3 h-100 overflow-hidden border border-1 border border-top-0  ${
-                snapshot.isDraggingOver ? "_isDragging" : "_noDragging"
-              } ${
-                searchedName && searchedName !== "Szukaj" ? "_filtered" : ""
-              }`}
+              className={`p-1 pt-3 px-lg-3 h-100 overflow-hidden border border-1 border border-top-0  ${isDraging(
+                snapshot.isDraggingOver
+              )} ${isSearching}`}
             >
               {Array.isArray(props.column.days)
                 ? props.column.days.map((day: ModelDay, idx: number) => {

@@ -15,7 +15,12 @@ const FormDayContext = () => {
   const { dataInputsText, dataInputsSelect } = useDataFormDay();
   const { initialValues, validation, onSubmit, success } = useFormikDay();
   const { month } = useSelector((state: RootState) => state.monthPanel);
-  const allHours = month?.calcHours?.allHours;
+  const { searchedName } = useSelector((state: RootState) => state.filterDays);
+
+ const isSearching =
+   searchedName && searchedName !== "Szukaj" ? "_isSearching" : "";
+   
+  const isAllHours = month?.calcHours?.allHours === 0 ? "_formDayContext" : "";
 
   return (
     <Formik
@@ -23,11 +28,7 @@ const FormDayContext = () => {
       validationSchema={validation}
       onSubmit={onSubmit}
     >
-      <Form
-        className={`${
-          allHours === 0 ? "_formDayContext" : ""
-        } mt-4 position-relative`}
-      >
+      <Form className={`${isAllHours} ${isSearching} mt-4 position-relative`}>
         <InputsSelect inputsData={dataInputsSelect} padding={"py-2 ps-2"} />
 
         <div className="position-relative _formDayContext__inputTetx">
