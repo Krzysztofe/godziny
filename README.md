@@ -47,8 +47,7 @@ Live recording of the application presentation during the conclusion of the comp
 * Formik / Yup 
 * Lazy loading
 * Protected routes
-* Dynamic Routing
-* Login
+* Router
 * Dragg and Dropp
 * Forms / Validations
 * RWD
