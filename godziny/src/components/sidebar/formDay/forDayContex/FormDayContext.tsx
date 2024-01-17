@@ -19,7 +19,7 @@ const FormDayContext = () => {
 
  const isSearching =
    searchedName && searchedName !== "Szukaj" ? "_isSearching" : "";
-   
+
   const isAllHours = month?.calcHours?.allHours === 0 ? "_formDayContext" : "";
 
   return (
@@ -30,7 +30,6 @@ const FormDayContext = () => {
     >
       <Form className={`${isAllHours} ${isSearching} mt-4 position-relative`}>
         <InputsSelect inputsData={dataInputsSelect} padding={"py-2 ps-2"} />
-
         <div className="position-relative _formDayContext__inputTetx">
           <InputsText inputsData={dataInputsText} />
           <FormDateError />
@@ -39,7 +38,6 @@ const FormDayContext = () => {
           <Toast isSuccess={success.isSuccess} />
           <ButtonForm isLoading={success.isLoading} />
         </div>
-
         <FormHoursError />
       </Form>
     </Formik>

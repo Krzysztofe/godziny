@@ -3,6 +3,7 @@ import { dataStylesListItem } from "./dataListContainerStyles";
 
 type Props = {
   noData: boolean;
+  styles?: string
 };
 
 const ListItemNoData = (props: Props) => {
@@ -11,7 +12,9 @@ const ListItemNoData = (props: Props) => {
 
   return (
     <div>
-      <ListGroup.Item className={`${dataStylesListItem} text-warning`}>
+      <ListGroup.Item
+        className={`${dataStylesListItem} ${props.styles} text-warning`}
+      >
         Brak danych
       </ListGroup.Item>
     </div>

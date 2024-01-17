@@ -5,6 +5,7 @@ import useMonthDates from "../../../hooks/useMonthDates";
 import useURLValues from "../../../hooks/useURLValues";
 import { RootState } from "../../../redux/store";
 import "./_listMonthsInCollapse.scss";
+import ListItemNoData from "../../listContainer/ListItemNoData";
 
 const ListMonthsInCollapse = () => {
   const { databaseMonthsDatesToString } = useMonthDates();
@@ -21,17 +22,11 @@ const ListMonthsInCollapse = () => {
       timeZone: "UTC",
     }).format(monthURLToDateFormat);
 
-  const noDataMessage = (listlength: number | undefined) => {
-    return listlength === 0 ? (
-      <ListGroup.Item className="border-0 p-0 text-warning ">
-        Brak danych
-      </ListGroup.Item>
-    ) : null;
-  };
+  const noData = listMonths?.length === 0;
 
   return (
-    <ListGroup className="_scrolHidden _ListMonthsInCollapse fs-3 text-capitalize ">
-      {noDataMessage(listMonths?.length)}
+    <ListGroup className="_scrolHidden _ListMonthsInCollapse _fs-primary text-capitalize ">
+      <ListItemNoData noData={noData} styles={"_noDataStyles"} />
 
       {databaseMonthsDatesToString?.map((month: string, idx: number) => {
         return (
