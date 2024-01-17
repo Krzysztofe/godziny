@@ -1,9 +1,7 @@
-import { ReactNode } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import { ModelSuccess } from "../sharedModels/modelSucces";
 
-const useHTTPState = (isLoading: boolean, btnText: string | ReactNode) => {
-  let btnContent: string | ReactNode = btnText;
+const useBtnContent = (isLoading: boolean, btn:  JSX.Element) => {
+  let btnContent: JSX.Element = btn;
 
   if (isLoading) {
     btnContent = (
@@ -21,4 +19,4 @@ const useHTTPState = (isLoading: boolean, btnText: string | ReactNode) => {
   return { btnContent };
 };
 
-export default useHTTPState;
+export default useBtnContent;

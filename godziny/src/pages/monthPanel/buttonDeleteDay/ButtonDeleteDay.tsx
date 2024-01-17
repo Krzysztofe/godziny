@@ -1,9 +1,10 @@
 import Button from "react-bootstrap/Button";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import useHTTPState from "../../../hooks/useHTTPState";
+import useBtnContent from "../../../hooks/useBtnContent";
 import { ModelDay } from "../../../sharedModels/modelDay";
 import useAlertDelete from "../../../hooks/useAlertDelete";
 import useDeleteDayAsync from "./useDeleteDayAsync";
+import IconTrash from "../../../components/icons/IconTrash";
 
 type Props = {
   day: ModelDay;
@@ -19,10 +20,8 @@ const ButtonDeleteDay = (props: Props) => {
     deleteDayAsync,
     "Usunąć dzień?"
   );
-  const { btnContent } = useHTTPState(
-    success.isLoading,
-    <RiDeleteBin6Line className="text-light-emphasis fs-2" />
-  );
+
+  const { btnContent } = useBtnContent(success.isLoading, <IconTrash />);
 
   return (
     <>

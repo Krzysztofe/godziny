@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import "./_buttonForm.scss";
-import useHTTPState from "../../hooks/useHTTPState";
+import useBtnContent from "../../hooks/useBtnContent";
 import "./_buttonForm.scss";
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 
 const ButtonForm = (props: Props) => {
   const buttonText = props.text ? <div>{props.text}</div> : <div>Zapisz</div>;
-  const { btnContent } = useHTTPState(props?.isLoading, buttonText);
+  const { btnContent } = useBtnContent(props?.isLoading, buttonText);
 
   return (
     <Button

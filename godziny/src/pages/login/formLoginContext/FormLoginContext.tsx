@@ -1,11 +1,9 @@
 import { Form, Formik } from "formik";
-import { Spinner } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
+import ButtonForm from "../../../components/buttonForm/ButtonForm";
 import InputsText from "../../../components/inputs/inputsText/InputsText";
 import useWindowWidth from "../../../hooks/useWindowWidth";
-import useFormikLogin from "./useFormikLogin";
 import "./_formLoginContext.scss";
-import ButtonForm from "../../../components/buttonForm/ButtonForm";
+import useFormikLogin from "./useFormikLogin";
 
 const dataInputs = [
   { value: "password", type: "password", isErrorPrint: true },

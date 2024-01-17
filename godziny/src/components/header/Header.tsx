@@ -1,5 +1,5 @@
 import Nav from "../sidebar/Nav/Nav";
-import ButtonLogout from "./ButtonLogout";
+import ButtonLogout from "./buttonLogout/ButtonLogout";
 import FormSearchContext from "./formSearch/formSearchContext/FormSearchContext";
 import HeaderName from "./headerName/HeaderName";
 

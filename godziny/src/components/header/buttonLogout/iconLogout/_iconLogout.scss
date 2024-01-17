@@ -1,0 +1,8 @@
+@import "../../../../scss/mixins";
+
+._iconLogout {
+  display: none;
+  @include sm {
+    display: block;
+  }
+}

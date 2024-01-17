@@ -1,17 +1,12 @@
 import Button from "react-bootstrap/Button";
-import Collapse from "react-bootstrap/Collapse";
+import { useDispatch, useSelector } from "react-redux";
+import CollapseArrow from "../../../../components/collapseContainer/collapseArrow/CollapseArrow";
+import { RootState } from "../../../../redux/store";
+import { setCollapseIndex } from "../../../../redux/storeFeatures/listMonthsSlice";
 import ButtonDeleteMonth from "../buttonDeleteMonth/ButtonDeleteMonth";
 import MonthTitle from "../monthTitle/MonthTitle";
-import CollapseArrow from "../../../../components/collapseContainer/collapseArrow/CollapseArrow";
-import { useDispatch } from "react-redux";
-import { setCollapseIndex } from "../../../../redux/storeFeatures/listMonthsSlice";
-import { RootState } from "../../../../redux/store";
-import { useSelector } from "react-redux";
-import FormHoursContainer from "../formHours/FormHoursContainer";
-import "./_colapseFormHours.scss";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import CollapseContent from "./CollapseContent";
+import "./_colapseFormHours.scss";
 
 type Props = {
   idx: number;
@@ -23,18 +18,12 @@ const CollapseFormHours = (props: Props) => {
     (state: RootState) => state.listMonths
   );
 
-  const { pathname } = useLocation();
-
   const isOpen = props.idx === openCollapseIndex;
 
   const handleTogle = (idx: number) => {
     dispatch(setCollapseIndex(idx));
     isOpen && dispatch(setCollapseIndex(-1));
   };
-
-  useEffect(() => {
-    dispatch(setCollapseIndex(-1));
-  }, [pathname]);
 
   return (
     <>
@@ -54,7 +43,6 @@ const CollapseFormHours = (props: Props) => {
         </Button>
         <ButtonDeleteMonth idx={props.idx} />
       </div>
-
       <CollapseContent idx={props.idx} />
     </>
   );

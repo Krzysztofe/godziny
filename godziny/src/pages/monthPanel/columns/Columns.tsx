@@ -6,14 +6,14 @@ import { ModelColumn } from "../../../sharedModels/modelColumn";
 import Column from "../column/Column";
 import ColumnsHeader from "../columnsHeader.tsx/ColumnsHeader";
 import "./_columns.scss";
-import useScrollThumbPosition from "./hooks/useScrollThumbPosition";
+
 import useUpdateColumns from "./hooks/useUpdateColumns";
 import useUpdateMonth from "./hooks/useUpdateMonth";
 import { handleDragDrop } from "./utils/utilsHandleDragDrop";
 
 const Columns = () => {
-  const { scrollableRef, thumbPosition, handleScroll } =
-    useScrollThumbPosition();
+  // const { scrollableRef, thumbPosition, handleScroll } =
+  //   useScrollThumbPosition();
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const { searchedName } = useSelector((state: RootState) => state.filterDays);
 
@@ -28,13 +28,8 @@ const Columns = () => {
   };
 
   return (
-    <div
-      ref={scrollableRef}
-      onScroll={handleScroll}
-      className="_columnsContainer"
-    >
-      {/* <ColumnsHeader thumbPosition={thumbPosition} /> */}
-
+    <div className="_columnsContainer">
+      <ColumnsHeader />
       <div className="_d-between _dragDropContex">
         <DragDropContext onDragEnd={handleDragEnd}>
           {columns?.map((column: ModelColumn, idx: number) => {
