@@ -22,18 +22,18 @@ const InputsSelect = (props: Props) => {
 
   return (
     <div className="position-relative">
-      {props.inputIcon && <InputSearchIcon />}
+      {props.inputIcon && <InputSearchIcon/>}
       {props.inputsData.map(({ name, firstOption, label, options }) => {
         return (
           <Form.Group key={name} className="mt-2  _inputSelect">
-            {/* <Form.Label htmlFor={name}>{label}</Form.Label> */}
+          
             <Form.Select
               id={name}
               name={name}
               onChange={e => setFieldValue(name, e.target.value)}
               onBlur={handleBlur}
               size="sm"
-              className={`p-0 _fs-primary text-light-emphasis border bg-secondary-light shadow-sm _cursor-pointer _inputSelect position-relative ${
+              className={` _fs-primary text-light-emphasis text-center border bg-secondary-light _cursor-pointer _inputSelect position-relative ${
                 firstOption === "Brak danych" ? "text-warning" : ""
               } ${props.padding}`}
             >

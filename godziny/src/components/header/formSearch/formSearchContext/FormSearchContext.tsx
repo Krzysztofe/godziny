@@ -1,11 +1,10 @@
 import { Form, Formik } from "formik";
-import useFormikSearch from "../useFormikSearch";
+import useInPathname from "../../../../hooks/useIsPathname";
+import InputsSelect from "../../../inputs/inputsSelect/InputsSelect";
 import EEE from "../EEE";
 import useDataSearch from "../useDataSearch";
-import InputsSelect from "../../../inputs/inputsSelect/InputsSelect";
-import { useLocation } from "react-router-dom";
+import useFormikSearch from "../useFormikSearch";
 import "./_formSearchContext.scss";
-import useInPathname from "../../../../hooks/useIsPathname";
 
 const FormSearchContext = () => {
   const { dataInputsSelect } = useDataSearch();
@@ -20,7 +19,7 @@ const FormSearchContext = () => {
         <div className="_formSearchContext__select ms-3 m-md-auto">
           <InputsSelect
             inputsData={dataInputsSelect}
-            padding={"ps-4"}
+            padding={"ps-4 text-start"}
             inputIcon={true}
           />
         </div>
