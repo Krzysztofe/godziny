@@ -25,7 +25,7 @@ const ListMonthsInCollapse = () => {
   const noData = listMonths?.length === 0;
 
   return (
-    <ListGroup className="_scrolHidden _ListMonthsInCollapse _fs-primary text-capitalize ">
+    <ListGroup className="_scrolHidden _ListMonthsInCollapse _fs-primary">
       <ListItemNoData noData={noData} styles={"_noDataStyles"} />
 
       {databaseMonthsDatesToString?.map((month: string, idx: number) => {
@@ -37,7 +37,7 @@ const ListMonthsInCollapse = () => {
                 curMonthURLStringFormat !== month || !curMonthURLStringFormat
                   ? "text-dark"
                   : "text-primary"
-              } text-decoration-none`}
+              } text-decoration-none text-capitalize`}
             >
               {month}
             </Link>

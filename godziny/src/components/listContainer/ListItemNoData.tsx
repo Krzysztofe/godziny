@@ -1,5 +1,5 @@
 import ListGroup from "react-bootstrap/ListGroup";
-import { dataStylesListItem } from "./dataListContainerStyles";
+import { dataStylesListItem } from "./stylesListContainer";
 
 type Props = {
   noData: boolean;

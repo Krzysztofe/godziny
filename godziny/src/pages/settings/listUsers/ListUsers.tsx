@@ -1,7 +1,7 @@
 import { ListGroup } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import { dataStylesListItem } from "../../../components/listContainer/dataListContainerStyles";
+import { dataStylesListItem } from "../../../components/listContainer/stylesListContainer";
 import ButtonDeleteUser from "../buttonDeleteUser/ButtonDeleteUser";
 
 const ListUsers = () => {

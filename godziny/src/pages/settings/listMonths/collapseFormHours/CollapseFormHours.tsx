@@ -8,7 +8,10 @@ import { setCollapseIndex } from "../../../../redux/storeFeatures/listMonthsSlic
 import { RootState } from "../../../../redux/store";
 import { useSelector } from "react-redux";
 import FormHoursContainer from "../formHours/FormHoursContainer";
-import "./_colapseFormHours.scss"
+import "./_colapseFormHours.scss";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import CollapseContent from "./CollapseContent";
 
 type Props = {
   idx: number;
@@ -20,6 +23,8 @@ const CollapseFormHours = (props: Props) => {
     (state: RootState) => state.listMonths
   );
 
+  const { pathname } = useLocation();
+
   const isOpen = props.idx === openCollapseIndex;
 
   const handleTogle = (idx: number) => {
@@ -27,17 +32,21 @@ const CollapseFormHours = (props: Props) => {
     isOpen && dispatch(setCollapseIndex(-1));
   };
 
+  useEffect(() => {
+    dispatch(setCollapseIndex(-1));
+  }, [pathname]);
+
   return (
     <>
       <div className="d-flex align-items-center">
         <MonthTitle idx={props.idx} />
         <Button
-          aria-expanded={isOpen}
-          aria-controls="example-collapse-text"
-          size="sm"
           onClick={() => {
             handleTogle(props.idx);
           }}
+          aria-expanded={isOpen}
+          aria-controls="example-collapse-text"
+          size="sm"
           className={`_radius _text-noWrap _fs-primary _fw-semiBold border-0 p-0 ps-1 pe-4 position-relative`}
         >
           Zapisz godziny
@@ -45,15 +54,8 @@ const CollapseFormHours = (props: Props) => {
         </Button>
         <ButtonDeleteMonth idx={props.idx} />
       </div>
-      <Collapse in={isOpen}>
-        <div className="pe-1">
-          {isOpen ? (
-            <FormHoursContainer idx={props.idx} />
-          ) : (
-            <div style={{ height: "88px" }}></div>
-          )}
-        </div>
-      </Collapse>
+
+      <CollapseContent idx={props.idx} />
     </>
   );
 };

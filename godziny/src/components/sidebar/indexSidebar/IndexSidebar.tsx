@@ -1,18 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListMonths";
 import useReduxListUsers from "../../../hooks/updateReduxDatabase/useReduxListUsers";
 import useInPathname from "../../../hooks/useIsPathname";
 import Nav from "../Nav/Nav";
 import useDataSidebar from "../useDataSidebar";
 import "./_indexSidebar.scss";
-
+import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { setCollapseIndex } from "../../../redux/storeFeatures/listMonthsSlice";
 
 const IndexSidebar = () => {
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
+
   useReduxListUsers();
   useReduxListMonths();
   const { inPathname: isMonthPanel } = useInPathname("202");
   const { inPathname: isSettings } = useInPathname("ustawienia");
   const { dataMonthPanel, dataSettings } = useDataSidebar();
+
+  useEffect(() => {
+    dispatch(setCollapseIndex(-1));
+  }, [pathname]);
 
   return (
     <>

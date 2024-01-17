@@ -11,18 +11,16 @@ const InputsCover = (props: Props) => {
   const handleDelete = () => {
     setPrinted(false);
   };
+  
+  if (!isPrinted) return null;
 
   return (
-    <>
-      {isPrinted && (
-        <div
-          onClick={handleDelete}
-          className="_inputsCover w-100 _d-center  bg-secondary-light _fs-primary text-light-emphasis  _radius border"
-        >
-          {props.text}
-        </div>
-      )}
-    </>
+    <div
+      onClick={handleDelete}
+      className="_inputsCover w-100 _d-center  bg-secondary-light _fs-primary text-light-emphasis  _radius border"
+    >
+      {props.text}
+    </div>
   );
 };
 
