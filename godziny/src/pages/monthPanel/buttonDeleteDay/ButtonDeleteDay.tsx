@@ -1,10 +1,9 @@
 import Button from "react-bootstrap/Button";
-import { RiDeleteBin6Line } from "react-icons/ri";
+import IconTrash from "../../../components/icons/IconTrash";
+import useAlertDelete from "../../../hooks/useAlertDelete";
 import useBtnContent from "../../../hooks/useBtnContent";
 import { ModelDay } from "../../../sharedModels/modelDay";
-import useAlertDelete from "../../../hooks/useAlertDelete";
 import useDeleteDayAsync from "./useDeleteDayAsync";
-import IconTrash from "../../../components/icons/IconTrash";
 
 type Props = {
   day: ModelDay;

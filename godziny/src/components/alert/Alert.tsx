@@ -1,7 +1,8 @@
-import Button from "react-bootstrap/Button";
 import { printAlert } from "../../redux/storeFeatures/alertSlice";
 import { useDispatch } from "react-redux";
 import "./_alert.scss";
+import ButtonAlertAccept from "./buttonsAlert/ButtonAlertAccept";
+import ButtonAlertDelete from "./buttonsAlert/ButtonAlertDelete";
 
 type Props = {
   action: () => void;
@@ -24,7 +25,7 @@ const Alert = (props: Props) => {
   };
 
   if (!props.isPrinted) return null;
-  
+
   return (
     <>
       <div
@@ -38,28 +39,9 @@ const Alert = (props: Props) => {
           {props.header}
           <div className="_w-fitContent m-auto mt-4">
             {props.header.includes("Usunąć") ? (
-              <>
-                <Button
-                  id="noButton"
-                  className="_radius bg-dark border-0 px-4 px-sm-5"
-                >
-                  Nie
-                </Button>
-                <Button
-                  onClick={props.action}
-                  className="_radius bg-primary border-0 px-4 px-sm-5 ms-4 border "
-                >
-                  Tak
-                </Button>
-              </>
+              <ButtonAlertDelete action={props.action} />
             ) : (
-              <Button
-                id="noButton"
-                className="_radius _fs-3 bg-primary border-0 px-5 ms-4 border "
-                onClick={props.action}
-              >
-                Ok
-              </Button>
+              <ButtonAlertAccept action={props.action} />
             )}
           </div>
         </div>
