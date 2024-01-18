@@ -46,10 +46,8 @@ Live recording of the application presentation during the conclusion of the comp
 * Firebase: Authentication, Realtime Database 
 * Formik / Yup 
 * Lazy loading
-* Throttling
 * Protected routes
-* Dynamic Routing
-* Login
+* Router
 * Dragg and Dropp
 * Forms / Validations
 * RWD
@@ -90,7 +88,7 @@ react-bootstrap, react-icons
  ## Comments
 * The Firebase Config keys are not hidden in the .env file to allow access for setting up the project locally.
  
-* The data structure in the Firebase Realtime Database follows a pattern where each year contains multiple months, and each month holds detailed information. For example:
+* The data structure written in JSON and and stored in the Firebase Realtime Database follows a pattern where each year contains multiple months, and each month holds detailed information. For example:
 
 ![Zrzut ekranu (277)](https://github.com/Krzysztofe/godziny/assets/96065197/5c8be24d-f17e-4fb1-8bbb-888da3dbb2d8)
 
