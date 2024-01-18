@@ -4,18 +4,18 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../../data/firebaseConfig";
 
 type Props = {
-  display?: string;
+  styles?: string;
 };
 
 const Nav = (props: Props) => {
   const { dataSidebarNavItems } = useDataNav();
   const [user] = useAuthState(auth);
 
-  if (!user) return <></>;
+  if (!user) return null;
 
   return (
     <nav>
-      <ListGroup className={props.display}>
+      <ListGroup className={props.styles}>
         {dataSidebarNavItems.map((item, idx) => {
           return (
             <ListGroup.Item

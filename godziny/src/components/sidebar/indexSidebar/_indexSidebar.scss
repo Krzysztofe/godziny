@@ -4,8 +4,7 @@
 ._sidebar {
   width: 100%;
   height: 100%;
-  padding-inline: 20%;
-  padding-block: 10%;
+  padding: 10% 20%;
   background-color: $secondary;
   @include md {
     height: 0;
@@ -22,8 +21,7 @@
     @include md {
       height: calc(100vh - 200px);
       overflow: auto;
-      padding-block: 10%;
-      padding-inline: 5%;
+      padding: 10% 5%;
     }
   }
   &__body {

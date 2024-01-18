@@ -11,6 +11,7 @@ type Props = {
 
 const CollapseContainer = (props: Props) => {
   const [isOpen, setOpen] = useState(false);
+
   return (
     <>
       <Button
@@ -25,10 +26,7 @@ const CollapseContainer = (props: Props) => {
         <CollapseArrow isOpen={isOpen} />
       </Button>
       <Collapse in={isOpen}>
-        <div
-          className="border border-primary _radius_bottom bg-white p-2"
-          style={{ overflow: "hidden" }}
-        >
+        <div className="border border-primary _radius_bottom _collapseContainer__wrapper bg-white p-2">
           {props.children}
         </div>
       </Collapse>

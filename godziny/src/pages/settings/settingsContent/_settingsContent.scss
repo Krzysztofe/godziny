@@ -6,10 +6,9 @@
   width: 100%;
   max-width: 600px;
   margin: auto;
-  padding-inline: 5%;
-  // scrollbar-gutter: stable;
+  padding: 0 5%;
   @include sm {
-    padding-inline: 10%;
+    padding: 0 10%;
   }
   &__wrapper {
     max-width: 480px;
