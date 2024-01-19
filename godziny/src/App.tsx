@@ -36,6 +36,7 @@ function App() {
         <Route element={<PrivateRoutes />}>
           <Route path="/:month" element={<IndexMonthPanel />} />
           <Route path="/ustawienia" element={<IndexSettings />} />
+          <Route path="/*" element={<IndexLogin />} />
         </Route>
         <Route path="/*" element={<IndexLogin />} />
       </Routes>

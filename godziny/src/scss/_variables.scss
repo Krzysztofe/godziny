@@ -1,3 +1,5 @@
+@import "./_mixins.scss";
+
 $primary: rgb(37, 105, 244);
 $secondary: rgb(239, 239, 239);
 $warning: rgb(255, 124, 9);
@@ -24,6 +26,12 @@ $h3-font-size: 0.875rem;
 $h4-font-size: 0.75rem;
 $h5-font-size: 0.625rem;
 $h6-font-size: 0.5rem;
+
+$header-height-sm: 37px;
+$header-height-lg: 40px;
+
+$summary-height-sm: 58px;
+$summary-height-lg: 40px;
 
 $grid-breakpoints: (
   xs: 0,

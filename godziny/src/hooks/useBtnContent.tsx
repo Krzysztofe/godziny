@@ -1,6 +1,6 @@
 import Spinner from "react-bootstrap/Spinner";
 
-const useBtnContent = (isLoading: boolean, btn:  JSX.Element) => {
+const useBtnContent = (isLoading: boolean, btn: JSX.Element) => {
   let btnContent: JSX.Element = btn;
 
   if (isLoading) {
