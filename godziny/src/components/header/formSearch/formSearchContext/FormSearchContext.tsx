@@ -1,7 +1,7 @@
 import { Form, Formik } from "formik";
 import useInPathname from "../../../../hooks/useIsPathname";
 import InputsSelect from "../../../inputs/inputsSelect/InputsSelect";
-import EEE from "../EEE";
+import GetOnChangeValues from "../GetOnChangeValues";
 import useDataSearch from "../useDataSearch";
 import useFormikSearch from "../useFormikSearch";
 import "./_formSearchContext.scss";
@@ -23,8 +23,7 @@ const FormSearchContext = () => {
             inputIcon={true}
           />
         </div>
-
-        <EEE />
+        <GetOnChangeValues />
       </Form>
     </Formik>
   );

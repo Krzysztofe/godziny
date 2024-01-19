@@ -2,6 +2,7 @@
 
 ._formSearchContext {
   width: 100%;
+  margin-top: -0.5rem;
   @include md {
     width: 70%;
     max-width: 800px;
@@ -11,4 +12,3 @@
     width: 180px;
   }
 }
-

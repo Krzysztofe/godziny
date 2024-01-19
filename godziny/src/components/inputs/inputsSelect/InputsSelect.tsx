@@ -9,8 +9,8 @@ type Props = {
   inputsData: {
     name: string;
     firstOption: string;
-    label?: string;
     options: string[] | number[];
+    isErrorPrint?: boolean;
   }[];
   padding: string;
   inputIcon?: boolean;
@@ -18,35 +18,28 @@ type Props = {
 
 const InputsSelect = (props: Props) => {
   const { errors, touched, handleBlur, setFieldValue } =
-    useFormikContext<ModelDay>();
+    useFormikContext<any>();
+
+  const isFirstOption = (firstOption: string) =>
+    firstOption === "Brak danych" ? "text-warning" : "text-light-emphasis ";
 
   return (
     <div className="position-relative">
-      {props.inputIcon && <InputSearchIcon/>}
-      {props.inputsData.map(({ name, firstOption, label, options }) => {
+      {props.inputIcon && <InputSearchIcon />}
+      {props.inputsData.map(({ name, firstOption, isErrorPrint, options }) => {
         return (
-          <Form.Group key={name} className="mt-2  _inputSelect">
-          
+          <Form.Group key={name} className="mt-2 _inputSelect">
             <Form.Select
               id={name}
               name={name}
               onChange={e => setFieldValue(name, e.target.value)}
               onBlur={handleBlur}
               size="sm"
-              className={` _fs-primary text-light-emphasis text-center border bg-secondary-light _cursor-pointer _inputSelect position-relative ${
-                firstOption === "Brak danych" ? "text-warning" : ""
-              } ${props.padding}`}
+              className={` _fs-primary border bg-secondary-light _cursor-pointer _inputSelect position-relative  ${isFirstOption(
+                firstOption
+              )} ${props.padding}`}
             >
-              <option
-                value={firstOption}
-                className={` ${
-                  firstOption === "Brak danych"
-                    ? "text-warning"
-                    : "text-placeholder"
-                }`}
-              >
-                {firstOption}
-              </option>
+              <option value={firstOption}>{firstOption}</option>
               {options?.map((option: string | number) => {
                 return (
                   <option key={option} value={option}>
@@ -55,7 +48,9 @@ const InputsSelect = (props: Props) => {
                 );
               })}
             </Form.Select>
-            <InputError value={name} errors={errors} touched={touched} />
+            {isErrorPrint && (
+              <InputError value={name} errors={errors} touched={touched} />
+            )}
           </Form.Group>
         );
       })}

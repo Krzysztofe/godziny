@@ -2,8 +2,12 @@
 @import "../../scss/variables";
 
 ._indexContainer {
-  min-height: calc(100vh - 43px);
+  min-height: calc(100vh - 37px);
   position: relative;
+
+  @include lg {
+    min-height: calc(100vh - 40px);
+  }
 
   &__aside {
     max-width: 250px;

@@ -1,8 +1,9 @@
 @import "../../../scss/mixins";
 
 ._indexLogin {
-  height: calc(100vh - 49px);
+  height: calc(100vh - 37px);
+  overflow: hidden;
   @include lg {
-    height: calc(100vh - 51px);
+    height: calc(100vh - 40px);
   }
 }

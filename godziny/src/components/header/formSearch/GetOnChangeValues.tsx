@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getSearchedName } from "../../../redux/storeFeatures/filterDaysSlice";
 
-const EEE = () => {
+const GetOnChangeValues = () => {
   const dispatch = useDispatch();
   const { values } = useFormikContext<any>();
 
@@ -11,7 +11,7 @@ const EEE = () => {
     dispatch(getSearchedName(values.searchedName));
   }, [values.searchedName]);
 
-  return <></>;
+  return null;
 };
 
-export default EEE;
+export default GetOnChangeValues;

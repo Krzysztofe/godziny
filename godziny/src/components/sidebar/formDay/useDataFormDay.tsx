@@ -22,17 +22,20 @@ const useDataFormDay = () => {
       name: "userName",
       firstOption: `${names.length === 0 ? "Brak danych" : "Imię"}`,
       options: names,
+      isErrorPrint: true,
     },
     {
       name: "hours",
       firstOption: "Liczba godzin",
       options: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      isErrorPrint: true,
     },
 
     {
       name: "place",
       firstOption: "Lokalizacja",
       options: ["Wewnątrz", "Poza"],
+      isErrorPrint: true,
     },
   ];
   const dataInputsText = [

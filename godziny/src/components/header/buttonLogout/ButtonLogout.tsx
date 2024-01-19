@@ -1,12 +1,11 @@
 import Button from "react-bootstrap/Button";
-import { useLocation } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../../data/firebaseConfig";
 import useBtnContent from "../../../hooks/useBtnContent";
+import useInPathname from "../../../hooks/useIsPathname";
 import AlertErrors from "../../AlertErrors";
 import IconLogout from "./iconLogout/IconLogout";
 import useLogout from "./useLogout";
-import { useAuthState } from "react-firebase-hooks/auth";
-import useInPathname from "../../../hooks/useIsPathname";
-import { auth } from "../../../data/firebaseConfig";
 
 const ButtonLogout = () => {
   const { isLoading, logout } = useLogout();
