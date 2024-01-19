@@ -1,9 +1,10 @@
 import { Suspense, lazy } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { auth } from "./data/firebaseConfig";
 import LoadingPage from "./pages/loadingPage/LoadingPage";
 import "./scss/App.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
+import useInPathname from "./hooks/useIsPathname";
 
 const Header = lazy(() => import("./components/header/Header"));
 
@@ -23,14 +24,13 @@ const IndexSettings = lazy(
 
 function App() {
   const [user] = useAuthState(auth);
-  const { pathname } = useLocation();
-
-  const notLogin = pathname !== "/";
+  const { inPathname: isMonthPanel } = useInPathname("202");
+  const { inPathname: isSettings } = useInPathname("ustawienia");
 
   return (
     <Suspense fallback={<LoadingPage />}>
       <Header />
-      {user && notLogin && <IndexSidebar />}
+      {user && (isMonthPanel || isSettings) && <IndexSidebar />}
       <Routes>
         <Route path="/" element={<IndexLogin />} />
         <Route element={<PrivateRoutes />}>

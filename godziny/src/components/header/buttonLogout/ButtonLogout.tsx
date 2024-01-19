@@ -4,15 +4,18 @@ import useBtnContent from "../../../hooks/useBtnContent";
 import AlertErrors from "../../AlertErrors";
 import IconLogout from "./iconLogout/IconLogout";
 import useLogout from "./useLogout";
-
+import { useAuthState } from "react-firebase-hooks/auth";
+import useInPathname from "../../../hooks/useIsPathname";
+import { auth } from "../../../data/firebaseConfig";
 
 const ButtonLogout = () => {
   const { isLoading, logout } = useLogout();
   const { btnContent } = useBtnContent(isLoading, <IconLogout />);
-  const { pathname } = useLocation();
+  const [user] = useAuthState(auth);
+  const { inPathname: isMonthPanel } = useInPathname("202");
+  const { inPathname: isSettings } = useInPathname("ustawienia");
 
-  const notPrint = pathname === "/";
-  if (notPrint) return null;
+  if (!user || (!isMonthPanel && !isSettings)) return null;
 
   return (
     <>

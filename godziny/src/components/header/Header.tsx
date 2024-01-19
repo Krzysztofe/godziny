@@ -4,8 +4,12 @@ import FormSearchContext from "./formSearch/formSearchContext/FormSearchContext"
 import HeaderName from "./headerName/HeaderName";
 
 const Header = () => {
+
+
+
+  
   return (
-    <header className="w-100 d-flex align-items-center border-bottom fs-3 position-relative">
+    <header className="w-100 d-flex align-items-center border-bottom fs-3 position-relative" style = {{zIndex: "100"}}>
       <HeaderName />
       <FormSearchContext />
       <div className="position-absolute top-0 d-flex h-100 end-0">

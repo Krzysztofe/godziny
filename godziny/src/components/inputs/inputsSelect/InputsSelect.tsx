@@ -55,7 +55,6 @@ const InputsSelect = (props: Props) => {
                 );
               })}
             </Form.Select>
-
             <InputError value={name} errors={errors} touched={touched} />
           </Form.Group>
         );

@@ -1,6 +1,8 @@
-@import "../../../scss/variables";
+@import "../../../scss/mixins";
 
 ._indexLogin {
-//   background-color: primary-light;
-height: calc(100vh - 43px);
+  height: calc(100vh - 49px);
+  @include lg {
+    height: calc(100vh - 51px);
+  }
 }

@@ -17,7 +17,7 @@ const FormLoginContext = () => {
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form
         className={`border p-5 rounded-1 _bg-opacity-white _formLoginContext _d-center ${
-          windowWidth > 500 && "_anim-dropDown"
+          windowWidth >= 460 && "_anim-dropDown"
         }`}
       >
         <div>

@@ -19,9 +19,13 @@
     margin: auto;
 
     @include md {
-      height: calc(100vh - 200px);
+      height: calc(60vh);
       overflow: auto;
       padding: 10% 5%;
+    }
+
+    @include sm-height {
+      height: calc(70vh);
     }
   }
   &__body {

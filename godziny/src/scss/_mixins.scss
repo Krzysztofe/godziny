@@ -27,3 +27,10 @@
     @content;
   }
 }
+
+
+@mixin sm-height {
+ @media (min-height: 400px) and (min-width: 650px) {
+    @content;
+  }
+}

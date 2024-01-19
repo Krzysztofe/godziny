@@ -11,10 +11,9 @@ import { setCollapseIndex } from "../../../redux/storeFeatures/listMonthsSlice";
 
 const IndexSidebar = () => {
   const dispatch = useDispatch();
-  const { pathname } = useLocation();
-
   useReduxListUsers();
   useReduxListMonths();
+  const { pathname } = useLocation();
   const { inPathname: isMonthPanel } = useInPathname("202");
   const { inPathname: isSettings } = useInPathname("ustawienia");
   const { dataMonthPanel, dataSettings } = useDataSidebar();
