@@ -1,6 +1,8 @@
+@import "../../../scss/variables";
+
 ._monthPanelEmpty {
   max-width: 1000px;
   width: 100%;
-  height: calc(100vh - 43px);
+  height: calc(100vh - $header-height);
   padding: 0 10%;
 }

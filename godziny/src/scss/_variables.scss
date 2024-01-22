@@ -2,14 +2,10 @@
 
 $primary: rgb(37, 105, 244);
 $secondary: rgb(239, 239, 239);
-$warning: rgb(255, 124, 9);
-$success: rgba(180, 80, 255);
-$success-secondary: rgb(62, 62, 62);
+$danger: rgb(255, 0, 0);
 $dark: rgb(62, 62, 62);
 $white: rgb(255, 255, 255);
-
 $light-text-emphasis: rgb(110, 110, 110);
-
 $input-border-color: rgb(226, 226, 226);
 $border-color: rgb(226, 226, 226);
 
@@ -27,11 +23,10 @@ $h4-font-size: 0.75rem;
 $h5-font-size: 0.625rem;
 $h6-font-size: 0.5rem;
 
-$header-height-sm: 37px;
-$header-height-lg: 40px;
+$header-height: 54px;
 
-$summary-height-sm: 58px;
-$summary-height-lg: 40px;
+$summary-height-sm: 87px;
+$summary-height-lg: 69px;
 
 $grid-breakpoints: (
   xs: 0,

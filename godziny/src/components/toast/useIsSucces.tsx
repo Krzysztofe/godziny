@@ -7,7 +7,7 @@ const useIsSucces = (isHTTPSuccess: boolean) => {
     setSucces(isHTTPSuccess);
     const timeOutId = setTimeout(() => {
       setSucces(false);
-    }, 6000);
+    }, 3000);
 
     return () => {
       clearTimeout(timeOutId);

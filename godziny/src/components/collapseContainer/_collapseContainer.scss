@@ -1,5 +1,6 @@
 ._collapseContainer {
   transition: border-radius 420ms;
+  overflow: hidden;
   &__wrapper {
     overflow: hidden;
   }

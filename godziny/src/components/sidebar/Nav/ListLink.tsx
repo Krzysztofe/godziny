@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import useInPathname from "../../../hooks/useIsPathname";
-import IconSettings from "../../icons/IconSettings";
+import IconSettings from "./IconSettings";
 
 const ListLink = () => {
   const { inPathname } = useInPathname("202");
@@ -16,7 +16,7 @@ const ListLink = () => {
       end
     >
       <div className="_align-center">
-        <IconSettings styles={`fs-2 ${inPathname && "me-3"} me-sm-0`} />
+        <IconSettings />
         <div className={`ms-1 ${inPathname && "d-none"} d-sm-block`}>
           Ustawienia
         </div>

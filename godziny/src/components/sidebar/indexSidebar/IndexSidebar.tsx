@@ -3,7 +3,7 @@ import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListM
 import useReduxListUsers from "../../../hooks/updateReduxDatabase/useReduxListUsers";
 import useInPathname from "../../../hooks/useIsPathname";
 import Nav from "../Nav/Nav";
-import useDataSidebar from "../useDataSidebar";
+import useDataSidebar from "./useDataSidebar";
 import "./_indexSidebar.scss";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";

@@ -11,7 +11,7 @@ const ListItemNoData = (props: Props) => {
 
   return (
     <ListGroup.Item
-      className={`${dataStylesListItem} ${props.styles} text-warning`}
+      className={`${dataStylesListItem} ${props.styles} text-danger`}
     >
       Brak danych
     </ListGroup.Item>

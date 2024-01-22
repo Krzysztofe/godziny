@@ -18,10 +18,10 @@ type Props = {
 
 const InputsSelect = (props: Props) => {
   const { errors, touched, handleBlur, setFieldValue } =
-    useFormikContext<any>();
+    useFormikContext<ModelDay>();
 
   const isFirstOption = (firstOption: string) =>
-    firstOption === "Brak danych" ? "text-warning" : "text-light-emphasis ";
+    firstOption === "Brak danych" ? "text-danger" : "text-light-emphasis ";
 
   return (
     <div className="position-relative">

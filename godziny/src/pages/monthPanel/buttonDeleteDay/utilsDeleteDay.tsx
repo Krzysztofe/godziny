@@ -4,9 +4,8 @@ import { ModelColumn } from "../../../sharedModels/modelColumn";
 export const deleteDayById = (obj: ModelMonth, idToDelete: string) => {
   const updatedColumns = obj.columns.map((column: ModelColumn) => {
     const updatedDays = column?.days?.filter(day => {
-      console.log('',day?.id)
-       if (day && day.id) return day.id !== idToDelete;
-       return false;
+      if (day && day.id) return day.id !== idToDelete;
+      return false;
     });
     return { ...column, days: updatedDays };
   });

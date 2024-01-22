@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import BorderInline from "../../../components/BorderInline";
-import HoursSummary from "../HoursSummary";
+import HoursSummary from "../hoursSummary/HoursSummary";
 import Columns from "../columns/Columns";
 import ColumnsHeader from "../columnsHeader.tsx/ColumnsHeader";
 import "./_monthPanelContent.scss";

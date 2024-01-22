@@ -3,7 +3,7 @@
 
 ._columnsHeader {
   position: sticky;
-  top: 56px;
+  top: $summary-height-sm;
   font-size: $h4-font-size;
   z-index: 100;
 
@@ -12,7 +12,7 @@
   }
 
   @include md {
-    top: 39px;
+    top: $summary-height-lg
   }
   &__item {
     height: 35px;

@@ -11,7 +11,7 @@ const ListMonthsInCollapse = () => {
   const noData = listMonths?.length === 0;
 
   return (
-    <ListGroup className="_scrolHidden _ListMonthsInCollapse _fs-primary">
+    <ListGroup className="_scrolHidden _ListMonthsInCollapse _fs-primary py-1 ">
       <ListItemNoData noData={noData} styles={"_noDataStyles"} />
       <ListMonthsItems />
     </ListGroup>

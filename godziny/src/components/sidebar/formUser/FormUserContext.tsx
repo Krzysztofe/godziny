@@ -1,7 +1,7 @@
 import { Form, Formik } from "formik";
 import ButtonForm from "../../buttonForm/ButtonForm";
 import InputsText from "../../inputs/inputsText/InputsText";
-import Toast from "../toast/Toast";
+import Toast from "../../toast/Toast";
 import { dataInputs } from "./dataFormUser";
 import useFormikUser from "./useFormikUser";
 

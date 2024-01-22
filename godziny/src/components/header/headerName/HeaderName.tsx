@@ -4,6 +4,7 @@ import { auth } from "../../../data/firebaseConfig";
 
 const HeaderName = () => {
   const [user] = useAuthState(auth);
+  
 
   return (
     <div

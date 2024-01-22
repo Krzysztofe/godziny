@@ -2,9 +2,6 @@
 @import "../../../scss/variables";
 
 ._indexLogin {
-  height: calc(100vh - $header-height-sm);
+  height: calc(100vh - $header-height);
   overflow: hidden;
-  @include lg {
-    height: calc(100vh - $header-height-lg);
-  }
 }

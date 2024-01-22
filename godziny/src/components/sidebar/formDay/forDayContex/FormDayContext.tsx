@@ -4,7 +4,7 @@ import { RootState } from "../../../../redux/store";
 import ButtonForm from "../../../buttonForm/ButtonForm";
 import InputsSelect from "../../../inputs/inputsSelect/InputsSelect";
 import InputsText from "../../../inputs/inputsText/InputsText";
-import Toast from "../../toast/Toast";
+import Toast from "../../../toast/Toast";
 import FormDateError from "../formDateError/FormDateError";
 import FormHoursError from "../formHoursError/FormHoursError";
 import useDataFormDay from "../useDataFormDay";
@@ -17,8 +17,8 @@ const FormDayContext = () => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const { searchedName } = useSelector((state: RootState) => state.filterDays);
 
- const isSearching =
-   searchedName && searchedName !== "Szukaj" ? "_isSearching" : "";
+  const isSearching =
+    searchedName && searchedName !== "Szukaj" ? "_isSearching" : "";
 
   const isAllHours = month?.calcHours?.allHours === 0 ? "_formDayContext" : "";
 

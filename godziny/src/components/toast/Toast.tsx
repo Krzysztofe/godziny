@@ -9,7 +9,7 @@ type Props = {
 const Toast = (props: Props) => {
   const { isSuccess } = useIsSucces(props.isSuccess);
 
-  if (!isSuccess) return <></>;
+  if (!isSuccess) return null;
   return (
     <>
       <div className="_radius text-center h-100 text-white _anim-toast _toast">
