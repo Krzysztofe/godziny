@@ -32,13 +32,14 @@ Live recording of the application presentation during the conclusion of the comp
 * Comunication with database
 * Login form 
 * Dragg and dropp
-* Forms validations 
+* Forms / validations 
 * Dynamic routing
 * HTTP requests state messages for user
 * Automatic logout after 5 minutes of inactivity
 * RWD
 * Animations
 * Custom alerts
+* Protected routes
 
 
 ## Technologies
@@ -50,11 +51,7 @@ Live recording of the application presentation during the conclusion of the comp
 * Firebase: Authentication, Realtime Database 
 * Formik / Yup 
 * Lazy loading
-* Protected routes
 * Router
-* Dragg and Dropp
-* Forms / Validations
-* RWD
 
 * React hooks: <br/> useState, useEffect, useRef, <br/> useDispatch, useSelector, <br/> useNavigate, useParams, useLocation, <br/> useAuthState, useFormikContext, custom hooks
 * Libraries: <br/>
