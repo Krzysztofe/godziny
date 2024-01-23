@@ -2,7 +2,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import useDataNav from "./useDataNav";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../../data/firebaseConfig";
-import useInPathname from "../../../hooks/useIsPathname";
+import useIsPath from "../../../hooks/useIsPath";
 
 type Props = {
   styles?: string;
@@ -11,10 +11,9 @@ type Props = {
 const Nav = (props: Props) => {
   const { dataSidebarNavItems } = useDataNav();
   const [user] = useAuthState(auth);
-  const { inPathname: isMonthPanel } = useInPathname("202");
-  const { inPathname: isSettings } = useInPathname("ustawienia");
+  const { isPath } = useIsPath(["202", "ustawienia"]);
 
-  if (!user || (!isMonthPanel && !isSettings)) return null;
+  if (!user || !isPath) return null;
 
   return (
     <nav>

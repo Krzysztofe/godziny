@@ -1,21 +1,24 @@
 import { Form, Formik } from "formik";
-import useInPathname from "../../../../hooks/useIsPathname";
 import InputsSelect from "../../../inputs/inputsSelect/InputsSelect";
 import GetOnChangeValues from "../GetOnChangeValues";
 import useDataSearch from "../useDataSearch";
 import useFormikSearch from "../useFormikSearch";
 import "./_formSearchContext.scss";
+import useIsPath from "../../../../hooks/useIsPath";
+import { auth } from "../../../../data/firebaseConfig";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const FormSearchContext = () => {
   const { dataInputsSelect } = useDataSearch();
   const { initialValues, onSubmit } = useFormikSearch();
-  const { inPathname } = useInPathname("202");
+  const [user] = useAuthState(auth);
+  const { isPath } = useIsPath(["202"]);
+
+  if (!user || !isPath) return null;
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
-      <Form
-        className={`_formSearchContext ${inPathname ? "visible" : "invisible"}`}
-      >
+      <Form className={`_formSearchContext`}>
         <div className="_formSearchContext__select ms-3 m-md-auto">
           <InputsSelect
             inputsData={dataInputsSelect}

@@ -3,38 +3,33 @@ import { Route, Routes } from "react-router-dom";
 
 const IndexLogin = lazy(() => import("../pages/login/indexLogin/IndexLogin"));
 const PrivateRoutes = lazy(() => import("../components/PrivateRoutes"));
-
 const IndexMonthPanel = lazy(
   () => import("../pages/monthPanel/indexMonthPanel/IndexMonthPanel")
 );
 const IndexSettings = lazy(
   () => import("../pages/settings/indexSettings/IndexSettings")
 );
+const publicRoutes = [
+  { path: "/", element: <IndexLogin /> },
+  { path: "/*", element: <IndexLogin /> },
+];
 
-const routes = [
-  { path: "/", element: <IndexLogin />, privateRoute: false },
-  { path: "/:month", element: <IndexMonthPanel />, privateRoute: true },
-  { path: "/ustawienia", element: <IndexSettings />, privateRoute: true },
-  { path: "/*", element: <IndexLogin />, privateRoute: false },
+const privateRoutes = [
+  { path: "/:month", element: <IndexMonthPanel /> },
+  { path: "/ustawienia", element: <IndexSettings /> },
 ];
 
 const AppRoutes = () => {
   return (
     <Routes>
-      {routes.map(({ path, element, privateRoute }) => {
-        return (
-          <>
-            {privateRoute ? (
-              <Route key={path} element={<PrivateRoutes />}>
-                <Route path={path} element={element} />
-              </Route>
-            ) : (
-              <Route key={path} path={path} element={element} />
-            )}
-            ;
-          </>
-        );
+      {publicRoutes.map(({ path, element }) => {
+        return <Route key={path} path={path} element={element} />;
       })}
+      <Route element={<PrivateRoutes />}>
+        {privateRoutes.map(({ path, element }) => {
+          return <Route key={path} path={path} element={element} />;
+        })}
+      </Route>
     </Routes>
   );
 };
