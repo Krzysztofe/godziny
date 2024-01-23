@@ -83,9 +83,7 @@ react-bootstrap, react-icons
 
 </div>
 
-## Do do
 
-* Fast tile movement on dragg and dropp componentscan cause issues with data transmission. To address this, it is necessary to implement JS throttling, which helps regulate the data transfer.
 
  ## Comments
 * The Firebase Config keys are not hidden in the .env file to allow access for setting up the project locally.
@@ -95,7 +93,7 @@ react-bootstrap, react-icons
 ![Zrzut ekranu (277)](https://github.com/Krzysztofe/godziny/assets/96065197/5c8be24d-f17e-4fb1-8bbb-888da3dbb2d8)
 
 
-* To optimize data retrieval from the database and at the same have access to a list of dates of all saved months in database, a snapshot from the Realtime Database is utilized. This snapshot relies on a WebSocket connection, which, when functioning correctly, results in an HTTP 101 response code. The snapshot listener retrieves keys from the database, encompassing recorded years and months. Subsequently, these keys are transferred to an array, forming a list of months stored in the database. This approach limits HTTP requests to the database to individual month requests and lists of users.
+* To optimize data retrieval from the database and at the same have access to a list of dates of all saved months in database, a snapshot from the Realtime Database is utilized. This snapshot relies on a WebSocket connection, which, when functioning correctly, results in an HTTP 101 response code. The snapshot listener retrieves keys from the database, encompassing only data of recorded years and months. Subsequently, these keys are transferred to an array, forming a list of months printed in settings panel. This approach restricts HTTP requests to the database to all years and months, without fetching the rest of the data recorded for each month.
 
 
 * On the mobile version of aplication, the drag and drop functionality is not well supported on touch events. It works in the following way: when you press on a tile with information about a day, a black border appears around the tile and its background becomes transparent. To make a change, you need to release your finger and then touch the tile again to drag it to the desired column.
