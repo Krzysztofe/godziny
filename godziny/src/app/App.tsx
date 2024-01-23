@@ -7,7 +7,6 @@ import AppRoutes from "./AppRoutes";
 import useIsPath from "../hooks/useIsPath";
 
 const Header = lazy(() => import("../components/header/header/Header"));
-
 const IndexSidebar = lazy(
   () => import("../components/sidebar/indexSidebar/IndexSidebar")
 );

@@ -13,7 +13,7 @@ const ButtonLogout = () => {
   const [user] = useAuthState(auth);
   const { isPath } = useIsPath(["ustawienia", "202"]);
 
-  if (!user && !isPath) return null;
+  if (!user || !isPath) return null;
 
   return (
     <>
