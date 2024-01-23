@@ -1,13 +1,15 @@
 # Godziny
 
-"Godziny" is an react app designed for the presidium of a trade union's workers council to plan the so-called union hours. In Poland, the presidium of the trade union's council is entitled to use hours for union activities. The allocation of these union hours is determined monthly and depends on the number of days in the month and the number of council members. Once the number of hours for the month is determined, the members of the presidium provide the employer with data on the number of hours taken on specific days of the month. Subsequently, the employer can either accept or reject the request for union hours.
+"Godziny" is an react app designed for the presidium of a trade union's workers council to plan the so-called union hours. In Poland, the presidium of the trade union's council is entitled to use hours for union activities. The allocation of these union hours is determined monthly, depends on the number of days in the month and the number of council members. Once the number of hours for the month is determined, the members of the presidium provide the employer with data on the number of hours taken on specific days of the month. Subsequently, the employer can either accept or reject the request for union hours.
+
+## Application functionality
 
 - The application have only a login function as it is intended for a predetermined number of council members, ranging from 5 to 20 individuals.
 - After logging in, the user is redirected to the URL corresponding to the current month.
 - Next, the user need to submit the basic month structure in settings panel.
 - Then, the user provides the number of all hours available for utilization in the given month for all presidium of a council.
-- Subsequently in month panel, the user can fill in the details about the days on which will use the union hours. The data for each day will be saved on a tile within the respective "submited hours" column.
-- Once the hours are approved or rejected by the management of the workplace, the user can move the tile to the appropriate column.
+- Subsequently in month panel, the users can fill in the details form about the days on which will use the union hours. The data for each day will be saved on a tile within the respective "submited hours" column.
+- Once the hours are approved or rejected by the management of the workplace, the users can move the tile to the appropriate column.
 - If necessary, the user can delete tiles from a column.
 - The total hours, submited hours, remaining hours available for all uses are calculated in real-time.
 - If multiple months are created, the user can view the records specific to a particular month.
