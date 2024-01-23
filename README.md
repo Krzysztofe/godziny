@@ -65,20 +65,20 @@ react-bootstrap, react-icons
 
 ## Desktop
  <div align="center">
-<img src="https://github.com/Krzysztofe/godziny/assets/96065197/2298b684-8526-4f44-bc6f-c9bcab1fd152" width="500" alt="Desktop Screenshot" margin="20">
+<img src="https://github.com/Krzysztofe/godziny/assets/96065197/ad5cd548-dc55-4bb8-81ed-6a4b737f0166" width="500" alt="Desktop Screenshot" margin="20">
  </div>
 
   <div align="center">
-<img src="https://github.com/Krzysztofe/godziny/assets/96065197/b10c0dcb-cc11-464a-9eaa-68f99f7852f8" width="500" alt="Desktop Screenshot">
+<img src="https://github.com/Krzysztofe/godziny/assets/96065197/7999bf9f-56ed-4d15-bdd9-3d7a5ea650c5" width="500" alt="Desktop Screenshot">
 </div>
 
 ## Mobile
  <div align="center">
-<img src="https://github.com/Krzysztofe/godziny/assets/96065197/57b05eba-80d4-44b3-948a-3f1e0765c9c4" width="300" alt="Mobile Screenshot">
+<img src="https://github.com/Krzysztofe/godziny/assets/96065197/037d656d-59f6-4a97-a8c8-0da13b37e4fd" width="300" alt="Mobile Screenshot">
 
-<img src="https://github.com/Krzysztofe/godziny/assets/96065197/078ee5b1-f099-4d54-b725-6b65daa54530" width="300" alt="Mobile Screenshot">
+<img src="https://github.com/Krzysztofe/godziny/assets/96065197/661f61e0-7fa7-4f5b-be20-f4516dd88087" width="300" alt="Mobile Screenshot">
 
-<img src="https://github.com/Krzysztofe/godziny/assets/96065197/667f762e-4a6e-4b88-9d59-f5f26215dfef" width="300" alt="Mobile Screenshot">
+
 </div>
 
 ## Do do
