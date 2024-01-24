@@ -96,7 +96,7 @@ react-bootstrap, react-icons
 * To optimize data retrieval from the database and at the same have access to a list of dates of all saved months in database, a snapshot from the Realtime Database is utilized. This snapshot relies on a WebSocket connection, which, when functioning correctly, results in an HTTP 101 response code. The snapshot listener retrieves keys from the database, encompassing only data of recorded years and months. Subsequently, these keys are transferred to an array, forming a list of months printed in settings panel. This approach restricts HTTP requests to the database to all years and months, without fetching the rest of the data recorded for each month.
 
 
-* To achieve global access to variables and functions, Redux Toolkit was implemented. However, to obtain local access to variables within lists in arrays iterated by the map() method, Context was utilized.
+* To achieve global access to variables and functions, Redux Toolkit was implemented. However, to avoid prop drilling within lists iterated by the map() method, Context was utilized.
 
 * On the mobile version of aplication, the drag and drop functionality is not well supported on touch events. It works in the following way: when you press on a tile with information about a day, a black border appears around the tile and its background becomes transparent. To make a change, you need to release your finger and then touch the tile again to drag it to the desired column.
 
