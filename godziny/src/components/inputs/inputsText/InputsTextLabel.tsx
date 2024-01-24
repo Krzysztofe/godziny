@@ -1,17 +1,16 @@
 import Form from "react-bootstrap/Form";
 import InputsCover from "./labelCover/InputsCover";
+import { useContext } from "react";
+import { LabelContext } from "./InputsText";
 
-type Props = {
-  value: string;
-  labelCover?: string;
-};
+const InputsTextLabel = () => {
+  const { labelCover, value } = useContext(LabelContext);
 
-const InputsTextLabel = (props: Props) => {
-  if (props.labelCover === undefined) return <></>;
+  if (labelCover === undefined) return null;
 
   return (
-    <Form.Label htmlFor={props.value} className="position-absolute w-100">
-      <InputsCover text={props.labelCover} />
+    <Form.Label htmlFor={value} className="position-absolute w-100">
+      <InputsCover />
     </Form.Label>
   );
 };

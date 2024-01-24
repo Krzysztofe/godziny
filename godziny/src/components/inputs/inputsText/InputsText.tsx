@@ -4,6 +4,14 @@ import { ModelDay } from "../../../sharedModels/modelDay";
 import InputError from "../inputError/InputError";
 import InputsTextLabel from "./InputsTextLabel";
 import "./_inputsText.scss";
+import { createContext } from "react";
+
+type ContextType = {
+  value: string;
+  labelCover?: string;
+};
+
+export const LabelContext = createContext<ContextType>({} as ContextType);
 
 type Props = {
   inputsData: {
@@ -38,7 +46,10 @@ const InputsText = (props: Props) => {
         }) => {
           return (
             <Form.Group key={value} className=" mt-2 position-relative">
-              <InputsTextLabel value={value} labelCover={labelCover} />
+              <LabelContext.Provider value={{ value, labelCover }}>
+                <InputsTextLabel />
+              </LabelContext.Provider>
+
               <Form.Control
                 id={value}
                 type={type}

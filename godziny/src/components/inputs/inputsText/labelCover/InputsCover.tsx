@@ -1,17 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./_inputsCover.scss";
+import { LabelContext } from "../InputsText";
 
-type Props = {
-  text?: string;
-};
-
-const InputsCover = (props: Props) => {
+const InputsCover = () => {
   const [isPrinted, setPrinted] = useState(true);
+  const { labelCover } = useContext(LabelContext);
 
   const handleDelete = () => {
     setPrinted(false);
   };
-  
+
   if (!isPrinted) return null;
 
   return (
@@ -19,7 +17,7 @@ const InputsCover = (props: Props) => {
       onClick={handleDelete}
       className="_inputsCover w-100 p-2  bg-secondary-light _fs-primary text-light-emphasis  _radius border"
     >
-      {props.text}
+      {labelCover}
     </div>
   );
 };
