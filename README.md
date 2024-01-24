@@ -54,7 +54,7 @@ Live recording of the application presentation during the conclusion of the comp
 * Lazy loading
 * Router
 
-* React hooks: <br/> useState, useEffect, useRef, <br/> useDispatch, useSelector, useContext<br/> useNavigate, useParams, useLocation, <br/> useAuthState, useFormikContext, custom hooks
+* React hooks: <br/> useState, useEffect, useRef, <br/> useDispatch, useSelector, useContext,<br/> useNavigate, useParams, useLocation, <br/> useAuthState, useFormikContext, custom hooks
 * Libraries: <br/>
 react-router, react-router-dom, react-router-hash-link, history, <br/>
 react-firebase-hooks, react-beautiful-dnd, <br/>
