@@ -6,13 +6,12 @@ import { RootState } from "../../../../redux/store";
 import useMonthDate from "../useMonthDate";
 import FormHoursContext from "./FormHoursContext";
 import { requestContainer } from "./utilsRequestContainer.scss/utilsRequestContainer";
+import { useContext } from "react";
+import { MonthItemContext } from "../ListMonths";
 
-type Props = {
-  idx: number;
-};
-
-const FormHoursContainer = (props: Props) => {
-  const { monthDate } = useMonthDate(props.idx);
+const FormHoursContainer = () => {
+  const monthIdx = useContext(MonthItemContext);
+  const { monthDate } = useMonthDate(monthIdx);
   const yearValue = monthDate?.slice(0, 4) ?? "";
   const monthValue = monthDate?.slice(5) ?? "";
   useReduxCalcHours(yearValue, monthValue);
@@ -27,7 +26,7 @@ const FormHoursContainer = (props: Props) => {
   } else if (calcHoursError) {
     content = <RequestError styles={requestContainer} />;
   } else {
-    content = <FormHoursContext idx={props.idx} />;
+    content = <FormHoursContext />;
   }
 
   return <> {content} </>;

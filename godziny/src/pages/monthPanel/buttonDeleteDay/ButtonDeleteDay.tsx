@@ -22,6 +22,8 @@ const ButtonDeleteDay = (props: Props) => {
 
   const { btnContent } = useBtnContent(success.isLoading, <IconTrash />);
 
+  // console.log("button");
+
   return (
     <>
       {alert}

@@ -23,5 +23,13 @@
     white-space: pre-line;
     z-index: 1;
   }
+  &__isSearching::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $opacity-dark;
+    z-index: 1;
+  }
 }
-

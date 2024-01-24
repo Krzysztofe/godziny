@@ -5,7 +5,7 @@ import { SerializedError } from "@reduxjs/toolkit";
 type ModelInitialState = {
   listMonths: string[] | undefined | null;
   listMonthsError: string | null;
-  openCollapseIndex: number | null
+  openCollapseIndex: number | null;
   UID: string;
 };
 
@@ -13,7 +13,7 @@ const initialState: ModelInitialState = {
   listMonths: null,
   listMonthsError: null,
   openCollapseIndex: null,
-  UID:""
+  UID: "",
 };
 
 export const listMonthsSlice = createSlice({
@@ -29,7 +29,7 @@ export const listMonthsSlice = createSlice({
     getListMonthsError: (state, action: PayloadAction<string | null>) => {
       state.listMonthsError = action.payload;
     },
-    setCollapseIndex: (state, action: PayloadAction<number>) => {
+    setCollapseIndex: (state, action: PayloadAction<number | null>) => {
       state.openCollapseIndex = action.payload;
     },
     getID: (state, action: PayloadAction<any>) => {

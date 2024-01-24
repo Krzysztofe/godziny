@@ -17,10 +17,13 @@ const Column = (props: Props) => {
 
   const isDraging = (stapshot: boolean) => {
     return stapshot ? "_isDragging" : "_noDragging";
+  
   };
 
   const isSearching =
-    searchedName && searchedName !== "Szukaj" ? "_isSearching" : "";
+    searchedName && searchedName !== "Szukaj"
+      ? "_isSearching _bg-opacity-dark"
+      : "";
 
   return (
     <div className="_column position-relative">

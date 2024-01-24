@@ -7,31 +7,29 @@ import ButtonDeleteMonth from "../buttonDeleteMonth/ButtonDeleteMonth";
 import MonthTitle from "../monthTitle/MonthTitle";
 import CollapseContent from "./CollapseContent";
 import "./_colapseFormHours.scss";
+import { useContext } from "react";
+import { MonthItemContext } from "../ListMonths";
 
-type Props = {
-  idx: number;
-};
-
-const CollapseFormHours = (props: Props) => {
+const CollapseFormHours = () => {
   const dispatch = useDispatch();
   const { openCollapseIndex } = useSelector(
     (state: RootState) => state.listMonths
   );
+  const monthIdx = useContext(MonthItemContext);
 
-  const isOpen = props.idx === openCollapseIndex;
+  const isOpen = monthIdx === openCollapseIndex;
 
   const handleTogle = (idx: number) => {
-    dispatch(setCollapseIndex(idx));
-    isOpen && dispatch(setCollapseIndex(-1));
+    dispatch(setCollapseIndex(isOpen ? null : idx));
   };
 
   return (
     <>
       <div className="d-flex align-items-center">
-        <MonthTitle idx={props.idx} />
+        <MonthTitle />
         <Button
           onClick={() => {
-            handleTogle(props.idx);
+            handleTogle(monthIdx);
           }}
           aria-expanded={isOpen}
           aria-controls="example-collapse-text"
@@ -41,9 +39,9 @@ const CollapseFormHours = (props: Props) => {
           Zapisz godziny
           <CollapseArrow isOpen={isOpen} />
         </Button>
-        <ButtonDeleteMonth idx={props.idx} />
+        <ButtonDeleteMonth />
       </div>
-      <CollapseContent idx={props.idx} />
+      <CollapseContent />
     </>
   );
 };

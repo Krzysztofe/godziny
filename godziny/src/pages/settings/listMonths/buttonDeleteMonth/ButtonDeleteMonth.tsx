@@ -6,15 +6,14 @@ import useAlertDelete from "../../../../hooks/useAlertDelete";
 import useMonthDate from "../useMonthDate";
 import useDeleteMonthAsync from "./useDeleteMonthAsync";
 import IconTrash from "../../../../components/icons/IconTrash";
+import { useContext } from "react";
+import { MonthItemContext } from "../ListMonths";
 
-type Props = {
-  idx: number;
-};
-
-const ButtonDeleteMonth = (props: Props) => {
-  const { deleteMonthAsync, success } = useDeleteMonthAsync(props.idx);
+const ButtonDeleteMonth = () => {
+  const monthIdx = useContext(MonthItemContext);
+  const { deleteMonthAsync, success } = useDeleteMonthAsync(monthIdx);
   const { btnContent } = useBtnContent(success.isLoading, <IconTrash />);
-  const { monthDate } = useMonthDate(props.idx);
+  const { monthDate } = useMonthDate(monthIdx);
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
 
   const { handleAlert, alert } = useAlertDelete(
@@ -22,7 +21,7 @@ const ButtonDeleteMonth = (props: Props) => {
     "Usunąć miesiąc?"
   );
 
-  const print = listMonths && monthDate === listMonths[props.idx];
+  const print = listMonths && monthDate === listMonths[monthIdx];
 
   return (
     <>

@@ -24,6 +24,8 @@ const Alert = (props: Props) => {
     dispatch(printAlert(""));
   };
 
+  // console.log('alert',props.isPrinted)
+
   if (!props.isPrinted) return null;
 
   return (

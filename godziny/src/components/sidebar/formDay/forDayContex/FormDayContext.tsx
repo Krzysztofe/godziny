@@ -18,7 +18,9 @@ const FormDayContext = () => {
   const { searchedName } = useSelector((state: RootState) => state.filterDays);
 
   const isSearching =
-    searchedName && searchedName !== "Szukaj" ? "_isSearching" : "";
+    searchedName && searchedName !== "Szukaj"
+      ? "_formDayContext__isSearching"
+      : "";
 
   const isAllHours = month?.calcHours?.allHours === 0 ? "_formDayContext" : "";
 

@@ -5,21 +5,18 @@ import useMonthDate from "../useMonthDate";
 import FormHoursError from "./FormHoursError";
 import FormHoursTop from "./formHoursTop/FormHoursTop";
 import useFormikHours from "./useFormikHours";
+import { useContext } from "react";
+import { MonthItemContext } from "../ListMonths";
 
-type Props = {
-  idx: number;
-};
-
-const FormHoursContext = (props: Props) => {
-  const { monthDate } = useMonthDate(props.idx);
+const FormHoursContext = () => {
+  const monthIdx = useContext(MonthItemContext);
+  const { monthDate } = useMonthDate(monthIdx);
   const yearValue = monthDate?.slice(0, 4) ?? "";
   const monthValue = monthDate?.slice(5) ?? "";
   const { initialValues, onSubmit, success } = useFormikHours(
     yearValue,
     monthValue
   );
-
-
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
