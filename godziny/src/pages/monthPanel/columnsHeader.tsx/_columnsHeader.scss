@@ -8,11 +8,11 @@
   z-index: 100;
 
   @include sm {
-    font-size: $h2-font-size;
+    font-size: $h3-font-size;
   }
 
   @include md {
-    top: $summary-height-lg
+    top: $summary-height-lg;
   }
   &__item {
     height: 35px;

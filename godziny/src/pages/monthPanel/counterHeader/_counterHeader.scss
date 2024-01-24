@@ -1,11 +1,12 @@
 @import "../../../scss/mixins";
 
-._counter {
+._counterHeader {
   height: 20px;
   overflow: hidden;
   margin-bottom: -2px;
+
   @include sm {
-    margin-bottom: 3px;
+    margin-bottom: 0px;
   }
 
   &__dygit {

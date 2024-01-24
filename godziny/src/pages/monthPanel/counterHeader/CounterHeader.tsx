@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import "./_counter.scss";
+import "./_counterHeader.scss"
 
 type Props = {
   counter: any;
   text: string;
 };
 
-const Counter = (props: Props) => {
+const CounterHeader = (props: Props) => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const [counter, setCounter] = useState<number[]>([props.counter]);
   const didMountRef = useRef(true);
@@ -27,7 +27,7 @@ const Counter = (props: Props) => {
   }, [props.counter]);
 
   return (
-    <div className="_counter">
+    <div className="_counterHeader">
       <div
         style={{
           transform: `translateY(-${(counter.length - 1) * 20}px)`,
@@ -36,7 +36,7 @@ const Counter = (props: Props) => {
       >
         {counter.map((item, idx) => {
           return (
-            <div key={idx} className="_counter__dygit">
+            <div key={idx} className="_counterHeader__dygit">
               {item}
             </div>
           );
@@ -46,4 +46,4 @@ const Counter = (props: Props) => {
   );
 };
 
-export default Counter;
+export default CounterHeader;

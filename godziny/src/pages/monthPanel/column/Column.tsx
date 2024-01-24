@@ -6,6 +6,15 @@ import Day from "../Day";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import "./_column.scss";
+import { createContext } from "react";
+
+type ContextType = {
+  day: ModelDay;
+  columnIdx: number;
+  dayIdx: number;
+};
+
+export const DayItemContext = createContext<ContextType>({} as ContextType);
 
 interface Props {
   column: ModelColumn;
@@ -17,7 +26,6 @@ const Column = (props: Props) => {
 
   const isDraging = (stapshot: boolean) => {
     return stapshot ? "_isDragging" : "_noDragging";
-  
   };
 
   const isSearching =
@@ -40,12 +48,11 @@ const Column = (props: Props) => {
               {Array.isArray(props.column.days)
                 ? props.column.days.map((day: ModelDay, idx: number) => {
                     return (
-                      <Day
-                        key={UUID()}
-                        day={day}
-                        columnIdx={props.columnIdx}
-                        dayIdx={idx}
-                      />
+                      <DayItemContext.Provider
+                        value={{ day, columnIdx: props.columnIdx, dayIdx: idx }}
+                      >
+                        <Day key={UUID()} />
+                      </DayItemContext.Provider>
                     );
                   })
                 : []}

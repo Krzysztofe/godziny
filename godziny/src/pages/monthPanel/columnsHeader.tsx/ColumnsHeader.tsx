@@ -1,4 +1,4 @@
-import Counter from "../counter/Counter";
+import Counter from "../counterHeader/CounterHeader";
 import useDataCoumnsHeader from "./useDataCoumnsHeader";
 import "./_columnsHeader.scss";
 

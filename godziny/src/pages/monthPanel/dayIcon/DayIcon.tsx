@@ -1,12 +1,12 @@
+import { useContext } from "react";
 import { MdFactory } from "react-icons/md";
 import { TbArrowBigRightLineFilled } from "react-icons/tb";
+import { DayItemContext } from "../column/Column";
 
-type Props = {
-  place: string;
-};
+const DayIcon = () => {
+  const { day } = useContext(DayItemContext);
 
-const DayIcon = (props: Props) => {
-  if (props.place === "Poza")
+  if (day.place === "Poza")
     return <TbArrowBigRightLineFilled className="text-light-emphasis" />;
 
   return <MdFactory className="text-light-emphasis" />;
