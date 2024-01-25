@@ -7,6 +7,7 @@ import RequestError from "../../../components/requestStates/RequestError";
 import RequestLoading from "../../../components/requestStates/RequestLoading";
 import MonthPanelContent from "../monthPanelContent/MonthPanelContent";
 import { requestContainer } from "../../../utils/utilsRequestContainer";
+import { useEffect } from "react";
 
 const IndexMonthPanel = () => {
   useReduxMonthData();
@@ -20,6 +21,14 @@ const IndexMonthPanel = () => {
   const { listMonthsError } = useSelector(
     (state: RootState) => state.listMonths
   );
+
+
+//  useEffect(() => {
+
+//    console.log("Component was rendered after some action");
+//  }, []);
+
+ 
 
   let content;
 

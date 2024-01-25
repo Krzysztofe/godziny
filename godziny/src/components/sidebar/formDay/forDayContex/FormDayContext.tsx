@@ -30,7 +30,7 @@ const FormDayContext = () => {
       validationSchema={validation}
       onSubmit={onSubmit}
     >
-      <Form className={`${isAllHours} ${isSearching} mt-4 position-relative`}>
+      <Form className={` ${isSearching} ${isAllHours} mt-4 position-relative`}>
         <InputsSelect inputsData={dataInputsSelect} padding={"py-2 ps-2"} />
         <div className="position-relative _formDayContext__inputTetx">
           <InputsText inputsData={dataInputsText} />

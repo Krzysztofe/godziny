@@ -4,7 +4,7 @@ import RequestError from "../../../components/requestStates/RequestError";
 import RequestLoading from "../../../components/requestStates/RequestLoading";
 import { requestContainer } from "../../../utils/utilsRequestContainer";
 import { RootState } from "../../../redux/store";
-import SettinsContent from "../settingsContent/SettinsContent";
+import SettingsContent from "../settingsContent/SettingsContent";
 
 const IndexSettings = () => {
   const { listUsersError, listUsersIsLoading } = useSelector(
@@ -24,7 +24,7 @@ const IndexSettings = () => {
   } else if (updateMonthError || listMonthsError || listUsersError) {
     content = <RequestError styles={requestContainer} />;
   } else {
-    content = <SettinsContent />;
+    content = <SettingsContent />;
   }
 
   return <IndexContainer>{content}</IndexContainer>;

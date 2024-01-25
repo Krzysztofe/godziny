@@ -49,9 +49,10 @@ const Column = (props: Props) => {
                 ? props.column.days.map((day: ModelDay, idx: number) => {
                     return (
                       <DayItemContext.Provider
+                        key={UUID()}
                         value={{ day, columnIdx: props.columnIdx, dayIdx: idx }}
                       >
-                        <Day key={UUID()} />
+                        <Day />
                       </DayItemContext.Provider>
                     );
                   })

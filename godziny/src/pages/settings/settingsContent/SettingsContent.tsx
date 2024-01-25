@@ -7,7 +7,7 @@ import "./_settingsContent.scss";
 import BorderInline from "../../../components/BorderInline";
 
 
-const SettinsContent = () => {
+const SettingsContent = () => {
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
   const { listUsers } = useSelector((state: RootState) => state.listUsers);
 
@@ -27,4 +27,4 @@ const SettinsContent = () => {
   );
 };
 
-export default SettinsContent;
+export default SettingsContent;

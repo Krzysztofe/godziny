@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import "./_alert.scss";
 import ButtonAlertAccept from "./buttonsAlert/ButtonAlertAccept";
 import ButtonAlertDelete from "./buttonsAlert/ButtonAlertDelete";
+import { memo, useEffect } from "react";
 
 type Props = {
   action: () => void;
@@ -11,7 +12,7 @@ type Props = {
   setIsPrinted?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Alert = (props: Props) => {
+const Alert = memo((props: Props) => {
   const dispatch = useDispatch();
 
   const handleClose = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -24,7 +25,7 @@ const Alert = (props: Props) => {
     dispatch(printAlert(""));
   };
 
-  // console.log('alert',props.isPrinted)
+  // console.log("alert", props.isPrinted);
 
   if (!props.isPrinted) return null;
 
@@ -50,6 +51,6 @@ const Alert = (props: Props) => {
       </div>
     </>
   );
-};
+});
 
 export default Alert;

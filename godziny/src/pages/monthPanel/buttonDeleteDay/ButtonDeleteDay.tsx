@@ -2,9 +2,8 @@ import Button from "react-bootstrap/Button";
 import IconTrash from "../../../components/icons/IconTrash";
 import useAlertDelete from "../../../hooks/useAlertDelete";
 import useBtnContent from "../../../hooks/useBtnContent";
-import { ModelDay } from "../../../sharedModels/modelDay";
 import useDeleteDayAsync from "./useDeleteDayAsync";
-import { useContext } from "react";
+import { memo, useCallback, useContext, useMemo } from "react";
 import { DayItemContext } from "../column/Column";
 
 const ButtonDeleteDay = () => {
@@ -16,6 +15,9 @@ const ButtonDeleteDay = () => {
   );
 
   const { btnContent } = useBtnContent(success.isLoading, <IconTrash />);
+
+// console.log('aaaa',)
+
 
   return (
     <>

@@ -1,6 +1,7 @@
 import { FormikTouched, FormikErrors } from "formik";
 import { ModelDay } from "../../../sharedModels/modelDay";
-import "./_inputError.scss"
+import "./_inputError.scss";
+import { memo, useEffect } from "react";
 
 type Props = {
   value: string;
@@ -8,7 +9,9 @@ type Props = {
   touched: FormikTouched<ModelDay>;
 };
 
+
 const InputError = (props: Props) => {
+
   return (
     <div className="text-danger d-block mt-0 fs-5 ps-2 _inputError">
       {props.touched[props.value as keyof typeof props.touched] &&

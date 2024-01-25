@@ -1,21 +1,13 @@
 import { useMemo, useState } from "react";
 import Alert from "../components/alert/Alert";
 
+
 const useAlertDelete = (action: any, header: string) => {
   const [isAlertPrinted, setIsAlertPrinted] = useState(false);
 
   const handleAlert = () => {
     setIsAlertPrinted(true);
   };
-
-  // const alert = useMemo(() => {
-  //   <Alert
-  //     action={action}
-  //     isPrinted={isAlertPrinted}
-  //     setIsPrinted={setIsAlertPrinted}
-  //     header={header}
-  //   />;
-  // }, [action, isAlertPrinted, setIsAlertPrinted, header]);
 
   const alert = (
     <Alert

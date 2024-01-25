@@ -9,6 +9,7 @@ const useDeleteDayAsync = (day: ModelDay, columnIndex: number) => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const [deleteDay, success] = useDeleteDayMutation();
   const { yearFromURL, monthFromURL } = useURLValues();
+  
 
   const deleteDayAsync = async () => {
     const subtractedHours = day?.hours;

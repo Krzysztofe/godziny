@@ -9,6 +9,10 @@
     margin-bottom: 0px;
   }
 
+   @include lg {
+    margin-bottom: 3px;
+  }
+
   &__dygit {
     height: 20px;
     margin-left: 3px;

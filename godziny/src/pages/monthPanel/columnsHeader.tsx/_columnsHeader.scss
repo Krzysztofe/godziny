@@ -14,6 +14,10 @@
   @include md {
     top: $summary-height-lg;
   }
+
+  @include lg {
+    font-size: $h2-font-size;
+  }
   &__item {
     height: 35px;
     width: 33%;

@@ -4,6 +4,6 @@
 ._dragDropContex {
   min-height: calc(100vh - $header-height - $summary-height-sm);
   @include md {
-    min-height: calc(100vh - $header-height - $summary-height-lg);
+    min-height: calc(100vh - $header-height - $summary-height-lg + 3px);
   }
 }
