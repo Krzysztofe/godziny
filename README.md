@@ -53,6 +53,7 @@ Live recording of the application presentation during the conclusion of the comp
 * Formik / Yup 
 * Lazy loading
 * Router
+* Million.js
 
 * React hooks: <br/> useState, useEffect, useRef, <br/> useDispatch, useSelector, useContext,<br/> useNavigate, useParams, useLocation, <br/> useAuthState, useFormikContext, custom hooks
 * Libraries: <br/>
