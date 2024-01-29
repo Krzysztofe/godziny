@@ -71,15 +71,11 @@ react-bootstrap, react-icons
 <img src="https://github.com/Krzysztofe/godziny/assets/96065197/ad5cd548-dc55-4bb8-81ed-6a4b737f0166" width="500" alt="Desktop Screenshot" margin="20">
  </div>
 
-  <div align="center">
-<img src="https://github.com/Krzysztofe/godziny/assets/96065197/7999bf9f-56ed-4d15-bdd9-3d7a5ea650c5" width="500" alt="Desktop Screenshot">
-</div>
 
 ## Mobile
  <div align="center">
 <img src="https://github.com/Krzysztofe/godziny/assets/96065197/037d656d-59f6-4a97-a8c8-0da13b37e4fd" width="300" alt="Mobile Screenshot">
 
-<img src="https://github.com/Krzysztofe/godziny/assets/96065197/661f61e0-7fa7-4f5b-be20-f4516dd88087" width="300" alt="Mobile Screenshot">
 
 
 </div>
