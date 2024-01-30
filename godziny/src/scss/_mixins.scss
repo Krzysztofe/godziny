@@ -22,15 +22,8 @@
   }
 }
 
-@mixin xxl {
-  @media (min-width: 1400px) {
-    @content;
-  }
-}
-
-
 @mixin sm-height {
- @media (min-height: 400px) and (min-width: 650px) {
+  @media (min-height: 400px) and (min-width: 650px) {
     @content;
   }
 }

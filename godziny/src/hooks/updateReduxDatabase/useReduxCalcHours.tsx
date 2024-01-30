@@ -17,11 +17,10 @@ const useReduxCalcHours = (yearValue: string, monthValue: string) => {
     year: yearValue ?? "",
     month: monthValue ?? "",
   });
+  
   useEffect(() => {
     dispatch(getCalcHours(calcHours));
-
     dispatch(getCalcHoursError(error));
-
     dispatch(getCalcHoursIsLoading(isLoading));
   }, [calcHours, error, isLoading, dispatch]);
 };

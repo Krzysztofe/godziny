@@ -7,8 +7,8 @@ import InputsText from "../../../inputs/inputsText/InputsText";
 import Toast from "../../../toast/Toast";
 import FormDateError from "../formDateError/FormDateError";
 import FormHoursError from "../formHoursError/FormHoursError";
-import useDataFormDay from "../useDataFormDay";
-import useFormikDay from "../useFormikDay";
+import useDataFormDay from "./useDataFormDay";
+import useFormikDay from "./useFormikDay";
 import "./_formDayContext.scss";
 
 const FormDayContext = () => {

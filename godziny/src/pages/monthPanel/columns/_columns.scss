@@ -2,7 +2,7 @@
 @import "../../../scss/variables";
 
 ._dragDropContex {
-  min-height: calc(100vh - $header-height - $summary-height-sm);
+  min-height: calc(100vh - $header-height - $summary-height-sm + 3px);
   @include md {
     min-height: calc(100vh - $header-height - $summary-height-lg + 3px);
   }

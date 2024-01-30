@@ -27,6 +27,7 @@ const MonthPanelContent = () => {
         <div className="px-2 px-sm-5 px-md-3 pb-3 _anim-opacity">
           <BorderInline />
           <HoursSummary />
+          <ColumnsHeader />
           <Columns />
         </div>
       )}

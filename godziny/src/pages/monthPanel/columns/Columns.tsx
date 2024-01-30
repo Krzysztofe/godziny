@@ -20,13 +20,12 @@ const Columns = () => {
   useUpdateMonth(columns, executeUpdateMonth);
 
   const handleDragEnd = (results: DropResult) => {
-    month && handleDragDrop(results, columns, setColumns, searchedName);
+    month && handleDragDrop(results, columns, setColumns);
     setExecuteUpdateMonth(prev => !prev);
   };
 
   return (
     <>
-      <ColumnsHeader />
       <div className="_d-between _dragDropContex">
         <DragDropContext onDragEnd={handleDragEnd}>
           {columns?.map((column: ModelColumn, idx: number) => {

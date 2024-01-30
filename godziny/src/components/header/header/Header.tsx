@@ -1,10 +1,15 @@
+import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListMonths";
+import useReduxListUsers from "../../../hooks/updateReduxDatabase/useReduxListUsers";
 import Nav from "../../sidebar/Nav/Nav";
 import ButtonLogout from "../buttonLogout/ButtonLogout";
 import FormSearchContext from "../formSearch/formSearchContext/FormSearchContext";
 import HeaderName from "../headerName/HeaderName";
-import "./_header.scss"
+import "./_header.scss";
 
 const Header = () => {
+  useReduxListUsers();
+  useReduxListMonths();
+
   return (
     <header className="w-100 d-flex align-items-center border-bottom fs-3 position-relative _header">
       <HeaderName />

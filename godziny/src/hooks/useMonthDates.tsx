@@ -6,7 +6,7 @@ const useMonthDates = () => {
 
   const databaseMonthsDatesToString =
     listMonths &&
-    [...listMonths]?.map((monthDate: string) => {
+    listMonths?.map((monthDate: string) => {
       const monthToDateFormat = new Date(monthDate);
       return new Intl.DateTimeFormat("pl-PL", {
         year: "numeric",

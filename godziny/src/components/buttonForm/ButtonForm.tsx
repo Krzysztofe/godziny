@@ -22,7 +22,7 @@ const ButtonForm = (props: Props) => {
       className={`_d-center w-50 p-0 py-1 mt-2 ms-auto _radius  _fw-semiBold _fs-primary _buttonForm position-relative ${props.styles}`}
     >
       <div className="invisible">Z</div>
-      <div className="_buttonForm__content">{btnContent}</div>
+      <div className="_buttonForm__content _d-center">{btnContent}</div>
     </Button>
   );
 };

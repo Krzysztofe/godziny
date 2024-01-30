@@ -20,7 +20,6 @@ const ListContainer = (props: Props) => {
 
       <ListGroup className="border-0 p-0">
         <ListItemNoData noData={noData} />
-
         {props.children}
       </ListGroup>
     </>

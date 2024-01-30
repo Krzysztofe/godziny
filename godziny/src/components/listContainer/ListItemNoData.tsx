@@ -7,6 +7,7 @@ type Props = {
 };
 
 const ListItemNoData = (props: Props) => {
+  
   if (!props.noData) return null;
 
   return (

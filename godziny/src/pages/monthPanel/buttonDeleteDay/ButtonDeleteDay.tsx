@@ -5,6 +5,7 @@ import useBtnContent from "../../../hooks/useBtnContent";
 import useDeleteDayAsync from "./useDeleteDayAsync";
 import { memo, useCallback, useContext, useMemo } from "react";
 import { DayItemContext } from "../column/Column";
+import "./_buttonDeleteDay.scss"
 
 const ButtonDeleteDay = () => {
   const { day, columnIdx } = useContext(DayItemContext);
@@ -16,7 +17,6 @@ const ButtonDeleteDay = () => {
 
   const { btnContent } = useBtnContent(success.isLoading, <IconTrash />);
 
-// console.log('aaaa',)
 
 
   return (
@@ -24,7 +24,7 @@ const ButtonDeleteDay = () => {
       {alert}
       <Button
         onClick={handleAlert}
-        className="d-flex justify-content-between fs-4 _fw-semiBold align-items-center w-100 p-0 bg-transparent border-0 text-dark"
+        className="d-flex justify-content-between fs-4 _fw-semiBold align-items-center w-100 p-0 bg-transparent border-0 text-dark _buttonDeleteDay"
         disabled={success.isLoading}
       >
         <div>{day?.hours} h</div>

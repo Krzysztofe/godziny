@@ -15,7 +15,7 @@ const useDeleteMonthAsync = (monthIdx: number) => {
 
   const deleteMonthAsync = async () => {
     if (monthDate && listMonths?.includes(monthDate)) {
-      dispatch(setCollapseIndex(-1));
+      dispatch(setCollapseIndex(null));
       const year = monthDate.slice(0, 4);
       const month = monthDate.slice(-2);
       await deleteMonth({ year: year, month: month });
