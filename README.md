@@ -1,6 +1,6 @@
 # Godziny
 
-"Godziny" is an react app designed for the presidium of a trade union's workers council to plan the so-called union hours. In Poland, the presidium of the trade union's council is entitled to use hours for union activities. The allocation of these union hours is determined monthly, depends on the number of days in the month and the number of council members. Once the number of hours for the month is determined, the members of the presidium provide the employer with data on the number of hours taken on specific days of the month. Subsequently, the employer can either accept or reject the request for union hours.
+"Godziny" is an react app designed for the presidium of a trade union's workers council to plan the so-called union hours. In Poland, the presidium of the trade union's council is entitled to use hours for union activities. Once the number of hours for the month is determined, the members of the presidium provide the employer with data on the number of hours taken on specific days of the month. Subsequently, the employer can either accept or reject the request for union hours.
 
 ## Application functionality
 
@@ -53,6 +53,7 @@ Live recording of the application presentation during the conclusion of the comp
 * Formik / Yup 
 * Lazy loading
 * Router
+* Million.js
 
 * React hooks: <br/> useState, useEffect, useRef, <br/> useDispatch, useSelector, useContext,<br/> useNavigate, useParams, useLocation, <br/> useAuthState, useFormikContext, custom hooks
 * Libraries: <br/>
@@ -70,15 +71,11 @@ react-bootstrap, react-icons
 <img src="https://github.com/Krzysztofe/godziny/assets/96065197/ad5cd548-dc55-4bb8-81ed-6a4b737f0166" width="500" alt="Desktop Screenshot" margin="20">
  </div>
 
-  <div align="center">
-<img src="https://github.com/Krzysztofe/godziny/assets/96065197/7999bf9f-56ed-4d15-bdd9-3d7a5ea650c5" width="500" alt="Desktop Screenshot">
-</div>
 
 ## Mobile
  <div align="center">
 <img src="https://github.com/Krzysztofe/godziny/assets/96065197/037d656d-59f6-4a97-a8c8-0da13b37e4fd" width="300" alt="Mobile Screenshot">
 
-<img src="https://github.com/Krzysztofe/godziny/assets/96065197/661f61e0-7fa7-4f5b-be20-f4516dd88087" width="300" alt="Mobile Screenshot">
 
 
 </div>
@@ -96,7 +93,7 @@ react-bootstrap, react-icons
 * To optimize data retrieval from the database and at the same have access to a list of dates of all saved months in database, a snapshot from the Realtime Database is utilized. This snapshot relies on a WebSocket connection, which, when functioning correctly, results in an HTTP 101 response code. The snapshot listener retrieves keys from the database, encompassing only data of recorded years and months. Subsequently, these keys are transferred to an array, forming a list of months printed in settings panel. This approach restricts HTTP requests to the database to all years and months, without fetching the rest of the data recorded for each month.
 
 
-* To achieve global access to variables and functions, Redux Toolkit was implemented. However, to avoid prop drilling within lists iterated by the map() method, Context was utilized.
+* To achieve global access to variables and functions, Redux Toolkit was implemented. However, to avoid prop drilling within components in lists iterated by the map() method, local Context was utilized.
 
 * On the mobile version of aplication, the drag and drop functionality is not well supported on touch events. It works in the following way: when you press on a tile with information about a day, a black border appears around the tile and its background becomes transparent. To make a change, you need to release your finger and then touch the tile again to drag it to the desired column.
 
