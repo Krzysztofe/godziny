@@ -24,6 +24,8 @@ const FormDayContext = () => {
 
   const isAllHours = month?.calcHours?.allHours === 0 ? "_formDayContext" : "";
 
+  if (!month || month?.id === "") return null;
+
   return (
     <Formik
       initialValues={initialValues}
