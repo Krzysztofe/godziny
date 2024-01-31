@@ -5,6 +5,7 @@ import HoursSummary from "../hoursSummary/HoursSummary";
 import Columns from "../columns/Columns";
 import ColumnsHeader from "../columnsHeader.tsx/ColumnsHeader";
 import "./_monthPanelContent.scss";
+import CurrentMonthPrint from "../hoursSummary/CurrentMonthPrint";
 
 const MonthPanelContent = () => {
   const { pathname } = useLocation();
@@ -12,6 +13,7 @@ const MonthPanelContent = () => {
 
   useEffect(() => {
     setAnimate(false);
+
     const timeoutId = setTimeout(() => {
       setAnimate(true);
     });

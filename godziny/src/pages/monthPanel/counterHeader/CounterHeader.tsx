@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import "./_counterHeader.scss"
+import "./_counterHeader.scss";
 
 type Props = {
   counter: any;
@@ -25,6 +25,7 @@ const CounterHeader = (props: Props) => {
       didMountRef.current = true;
     }
   }, [props.counter]);
+  
 
   return (
     <div className="_counterHeader">

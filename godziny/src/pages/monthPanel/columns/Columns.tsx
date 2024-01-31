@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { ModelColumn } from "../../../sharedModels/modelColumn";
 import Column from "../column/Column";
-import ColumnsHeader from "../columnsHeader.tsx/ColumnsHeader";
 import "./_columns.scss";
 import useUpdateColumns from "./hooks/useUpdateColumns";
 import useUpdateMonth from "./hooks/useUpdateMonth";
@@ -12,8 +11,6 @@ import { handleDragDrop } from "./utils/utilsHandleDragDrop";
 
 const Columns = () => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
-  const { searchedName } = useSelector((state: RootState) => state.filterDays);
-
   const [columns, setColumns] = useState<ModelColumn[]>([]);
   const [executeUpdateMonth, setExecuteUpdateMonth] = useState(false);
   useUpdateColumns(setColumns);

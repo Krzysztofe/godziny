@@ -4,18 +4,20 @@ import { RootState } from "../../../redux/store";
 const useDataCoumnsHeader = () => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
 
+  const { calcHours } = month || {};
+
   const dataColumnsHeader = [
     {
       headerText: "Złożone:",
-      counter: month?.calcHours?.submittedHours,
+      counter: calcHours?.submittedHours,
     },
     {
       headerText: "Przyznane:",
-      counter: month?.calcHours?.acceptedHours,
+      counter: calcHours?.acceptedHours,
     },
     {
       headerText: "Odrzucone:",
-      counter: month?.calcHours?.rejectedHours,
+      counter: calcHours?.rejectedHours,
     },
   ];
 

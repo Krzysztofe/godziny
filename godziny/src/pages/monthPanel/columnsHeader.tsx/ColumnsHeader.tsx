@@ -1,4 +1,4 @@
-import Counter from "../counterHeader/CounterHeader";
+import CounterHeader from "../counterHeader/CounterHeader";
 import useDataCoumnsHeader from "./useDataCoumnsHeader";
 import "./_columnsHeader.scss";
 
@@ -15,7 +15,7 @@ const ColumnsHeader = () => {
             `}
           >
             {headerText}
-            <Counter counter={counter} text={headerText} />
+            <CounterHeader counter={counter} text={headerText} />
           </div>
         );
       })}
