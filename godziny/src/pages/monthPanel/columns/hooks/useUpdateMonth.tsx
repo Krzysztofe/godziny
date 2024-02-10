@@ -6,7 +6,6 @@ import { useUpdateMonthMutation } from "../../../../services/apiSliceMonths";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/store";
 
-
 const useUpdateMonth = (
   columns: ModelColumn[],
   executeUpdateMonth: boolean
@@ -19,26 +18,26 @@ const useUpdateMonth = (
 
   useEffect(() => {
     if (columns.length > 0 && month) {
-     updateMonth({
-      year: yearFromURL,
-      month: monthFromURL,
-      monthBody: {
-        ...month,
-        columns: columns,
-        calcHours: {
-          ...month?.calcHours,
-          currentHours:
-            month?.calcHours?.allHours -
-            submittedHours -
-            acceptedHours -
-            rejectedHours +
+      updateMonth({
+        year: yearFromURL,
+        month: monthFromURL,
+        monthBody: {
+          ...month,
+          columns: columns,
+          calcHours: {
+            ...month?.calcHours,
+            currentHours:
+              month?.calcHours?.allHours -
+              submittedHours -
+              acceptedHours -
+              rejectedHours +
+              rejectedHours,
+            submittedHours,
+            acceptedHours,
             rejectedHours,
-          submittedHours,
-          acceptedHours,
-          rejectedHours,
+          },
         },
-      },
-    });
+      });
     }
   }, [executeUpdateMonth]);
 };
