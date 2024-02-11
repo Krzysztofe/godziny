@@ -1,7 +1,7 @@
-import { dateShort } from "./utilsDayDetails";
-import DayIcon from "../dayIcon/DayIcon";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { DayItemContext } from "../column/Column";
+import DayIcon from "../dayIcon/DayIcon";
+import { dateShort } from "./utilsDayDetails";
 
 const DayDetails = () => {
   const { day } = useContext(DayItemContext);

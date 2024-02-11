@@ -1,10 +1,10 @@
+import { useContext } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import ButtonDeleteDay from "./buttonDeleteDay/ButtonDeleteDay";
-import DayDetails from "./dayDetails/DayDetails";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { useContext } from "react";
+import ButtonDeleteDay from "./buttonDeleteDay/ButtonDeleteDay";
 import { DayItemContext } from "./column/Column";
+import DayDetails from "./dayDetails/DayDetails";
 
 const Day = () => {
   const { searchedName } = useSelector((state: RootState) => state.filterDays);
