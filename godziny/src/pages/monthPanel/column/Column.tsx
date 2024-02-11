@@ -16,17 +16,17 @@ type ContextType = {
 
 export const DayItemContext = createContext<ContextType>({} as ContextType);
 
-interface Props {
+type Props = {
   column: ModelColumn;
   columnIdx: number;
-}
+};
+
+const isDraging = (stapshot: boolean) => {
+  return stapshot ? "_isDragging" : "_noDragging";
+};
 
 const Column = (props: Props) => {
   const { searchedName } = useSelector((state: RootState) => state.filterDays);
-
-  const isDraging = (stapshot: boolean) => {
-    return stapshot ? "_isDragging" : "_noDragging";
-  };
 
   const isSearching =
     searchedName && searchedName !== "Szukaj"

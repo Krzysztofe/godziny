@@ -5,11 +5,11 @@ import { RootState } from "../../../redux/store";
 import { ModelColumn } from "../../../sharedModels/modelColumn";
 import Column from "../column/Column";
 import "./_columns.scss";
+import usePlaySound from "./hooks/usePlaySound";
 import useUpdateColumns from "./hooks/useUpdateColumns";
 import useUpdateMonth from "./hooks/useUpdateMonth";
 import { handleDragDrop } from "./utils/utilsHandleDragDrop";
-import { playClickSound } from "./utils/utilsPlayClickedSound";
-const click = require("../../../asets/mixkit-cool-interface-click-tone-2568.wav");
+const click = require("../../../asets/dragSound.wav");
 
 const Columns = () => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
@@ -18,11 +18,13 @@ const Columns = () => {
   const audioElem = useRef<HTMLAudioElement>(null);
   useUpdateColumns(setColumns);
   useUpdateMonth(columns, executeUpdateMonth);
+  usePlaySound(audioElem, columns[0]?.days.length, month?.id);
+
+  
 
   const handleDragEnd = (e: DropResult) => {
     month && handleDragDrop(e, columns, setColumns);
     setExecuteUpdateMonth(prev => !prev);
-    playClickSound(e, audioElem);
   };
 
   return (
