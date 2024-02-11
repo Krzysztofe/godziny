@@ -8,10 +8,10 @@ const HeaderName = () => {
   const { isPath } = useIsPath(["ustawienia", "202"]);
 
   const printTitle =
-    user && isPath ? "d-none d-md-block text-end" : "_headerName__outLoged";
+    user && isPath ? "d-none d-md-block" : "_headerName__outLoged";
 
   return (
-    <div className={`_headerName ${printTitle}`}>
+    <div className={`_headerName ${printTitle} ps-3 ps-lg-4 `}>
       OZZ Inicjatywa Pracownicza
     </div>
   );

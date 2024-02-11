@@ -13,7 +13,8 @@ const ReturnButton = () => {
       onClick={handleGoBack}
       className="text-light-emphasis p-0 bg-transparent border-0 w-100 d-flex align-items-center_cursor-pointer"
     >
-      <ImArrowLeft className=" me-1 align-self-center " /> Wróć
+      <ImArrowLeft className=" text-icons-primary  me-1 align-self-center " />{" "}
+      Wróć
     </Button>
   );
 };

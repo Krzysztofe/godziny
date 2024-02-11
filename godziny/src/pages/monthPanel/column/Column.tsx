@@ -21,13 +21,12 @@ type Props = {
   columnIdx: number;
 };
 
-const isDraging = (stapshot: boolean) => {
-  return stapshot ? "_isDragging" : "_noDragging";
-};
-
 const Column = (props: Props) => {
   const { searchedName } = useSelector((state: RootState) => state.filterDays);
 
+  const isDraging = (stapshot: boolean) => {
+    return stapshot ? "_isDragging" : "_noDragging";
+  };
   const isSearching =
     searchedName && searchedName !== "Szukaj"
       ? "_isSearching _bg-opacity-dark"
@@ -41,7 +40,7 @@ const Column = (props: Props) => {
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className={`p-1 pt-3 px-lg-3 h-100 overflow-hidden border border-1 border border-top-0  ${isDraging(
+              className={`p-1 pt-3 px-lg-3 h-100 overflow-hidden border border-1 border border-top-0   ${isDraging(
                 snapshot.isDraggingOver
               )} ${isSearching}`}
             >

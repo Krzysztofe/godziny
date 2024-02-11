@@ -56,6 +56,14 @@ body {
   }
 }
 
+
+._fs-small {
+  font-size: $h5-font-size !important;
+  @include lg {
+    font-size: $h4-font-size !important;
+  }
+}
+
 ._fw-light {
   font-weight: 100 !important;
 }

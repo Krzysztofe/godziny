@@ -24,7 +24,7 @@ const MonthTitle = () => {
         className="text-decoration-none _fw-regular text-dark _align-center"
       >
         <IconArrowLeft />
-        <div className="_text-noWrap">{title}</div>
+        <div className="_text-noWrap ps-sm-3">{title}</div>
       </Link>
     </div>
   );

@@ -7,9 +7,9 @@ const DayIcon = () => {
   const { day } = useContext(DayItemContext);
 
   if (day.place === "Poza")
-    return <TbArrowBigRightLineFilled className="text-light-emphasis" />;
+    return <TbArrowBigRightLineFilled className="text-icons-primary " />;
 
-  return <MdFactory className="text-light-emphasis" />;
+  return <MdFactory className="text-icons-primary " />;
 };
 
 export default DayIcon;

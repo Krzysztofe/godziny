@@ -5,8 +5,6 @@ import { DayItemContext } from "../column/Column";
 
 const DayDetails = () => {
   const { day } = useContext(DayItemContext);
-
-      // console.log("Component was rendered after some action");
   
   if (!day) return <div>Brak danych</div>;
 

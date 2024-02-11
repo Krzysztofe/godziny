@@ -7,7 +7,7 @@ const IconLogout = () => {
 
   return (
     <div className=" d-flex align-items-center text-light-emphasis w-100">
-      <FaUserCircle className="fs-2 " />
+      <FaUserCircle className="fs-2 text-icons-primary " />
       <span className={`ms-1 ${isPath ? "_iconLogout" : ""}`}>Wyloguj</span>
     </div>
   );

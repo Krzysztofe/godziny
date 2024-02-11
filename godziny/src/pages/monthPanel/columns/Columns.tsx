@@ -9,22 +9,25 @@ import usePlaySound from "./hooks/usePlaySound";
 import useUpdateColumns from "./hooks/useUpdateColumns";
 import useUpdateMonth from "./hooks/useUpdateMonth";
 import { handleDragDrop } from "./utils/utilsHandleDragDrop";
+import { playClickSound } from "./hooks/usePlaySound";
 const click = require("../../../asets/dragSound.wav");
 
 const Columns = () => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const [columns, setColumns] = useState<ModelColumn[]>([]);
   const [executeUpdateMonth, setExecuteUpdateMonth] = useState(false);
+  const [event, setEvent] = useState<DropResult | null>(null);
   const audioElem = useRef<HTMLAudioElement>(null);
+  // usePlaySound(audioElem, columns[1]?.days.length, month?.id, event);
   useUpdateColumns(setColumns);
   useUpdateMonth(columns, executeUpdateMonth);
-  usePlaySound(audioElem, columns[0]?.days.length, month?.id);
-
-  
 
   const handleDragEnd = (e: DropResult) => {
     month && handleDragDrop(e, columns, setColumns);
     setExecuteUpdateMonth(prev => !prev);
+     playClickSound(e, audioElem);
+     setEvent(e);
+     console.log('',e)
   };
 
   return (

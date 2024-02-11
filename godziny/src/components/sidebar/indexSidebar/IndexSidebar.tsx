@@ -21,7 +21,7 @@ const IndexSidebar = () => {
   return (
     <>
       <div className="_sidebar p-md-0">
-        <div className="_sidebar__wrapper _scrolHidden">
+        <div className="_sidebar__wrapper _scrolHidden p-md-3 p-lg-4">
           <div className="_sidebar__body">
             {isMonthPanel &&
               dataMonthPanel.map((component, idx) => {

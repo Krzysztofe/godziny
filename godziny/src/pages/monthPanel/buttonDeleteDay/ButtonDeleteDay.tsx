@@ -24,7 +24,7 @@ const ButtonDeleteDay = () => {
       {alert}
       <Button
         onClick={handleAlert}
-        className="d-flex justify-content-between fs-4 _fw-semiBold align-items-center w-100 p-0 bg-transparent border-0 text-dark _buttonDeleteDay"
+        className="d-flex justify-content-between fs-4 _fw-semiBold align-items-center w-100 p-0 bg-transparent border-0 text-dark _buttonDeleteDay  text-light-emphasis"
         disabled={success.isLoading}
       >
         <div>{day?.hours} h</div>

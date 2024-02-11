@@ -6,7 +6,6 @@ import { setCollapseIndex } from "../../../../redux/storeFeatures/listMonthsSlic
 import ButtonDeleteMonth from "../buttonDeleteMonth/ButtonDeleteMonth";
 import MonthTitle from "../monthTitle/MonthTitle";
 import CollapseContent from "./CollapseContent";
-import "./_colapseFormHours.scss";
 import { useContext } from "react";
 import { MonthItemContext } from "../ListMonths";
 
@@ -28,13 +27,14 @@ const CollapseFormHours = () => {
       <div className="d-flex align-items-center">
         <MonthTitle />
         <Button
+    
           onClick={() => {
             handleTogle(monthIdx);
           }}
           aria-expanded={isOpen}
           aria-controls="example-collapse-text"
           size="sm"
-          className={`_radius _text-noWrap _fs-primary  border-0 p-0 ps-1 pe-4 position-relative`}
+          className={`_radius _text-noWrap _fs-small border-0  ps-2 pe-4 position-relative p-1`}
         >
           Zapisz godziny
           <CollapseArrow isOpen={isOpen} />

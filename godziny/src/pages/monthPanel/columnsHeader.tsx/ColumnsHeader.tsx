@@ -11,7 +11,7 @@ const ColumnsHeader = () => {
         return (
           <div
             key={headerText}
-            className={`text-primary _d-center _fw-semiBold p-1 _columnsHeader__item bg-secondary  border border-bottom-0            
+            className={`text-primary _d-center _fw-semiBold p-1 _columnsHeader__item bg-secondary-light  border border-bottom-0            
             `}
           >
             {headerText}

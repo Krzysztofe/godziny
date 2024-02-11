@@ -1,6 +1,7 @@
 @import "../../../scss/variables";
 @import "../../../scss/mixins";
 
+
 ._column {
   width: 33%;
   @include md {
@@ -13,5 +14,5 @@
 }
 
 ._noDragging {
-  background-color: $secondary;
+  background-color: $secondary-light
 }

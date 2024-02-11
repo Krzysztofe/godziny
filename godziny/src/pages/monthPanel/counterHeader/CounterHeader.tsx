@@ -26,7 +26,7 @@ const CounterHeader = (props: Props) => {
     } else {
       didMountRef.current = true;
     }
-  }, [month?.columns, props.counter]);
+  }, [props.counter, month?.id]);
 
   return (
     <div className="_counterHeader">
