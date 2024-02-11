@@ -12,7 +12,7 @@
     max-width: 250px;
     position: sticky;
     top: 0px;
-    z-index: 1;
+     background-color: $white;
   }
   &__wrapper {
     @include md {

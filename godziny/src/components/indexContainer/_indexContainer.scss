@@ -3,14 +3,12 @@
 
 ._indexContainer {
   min-height: calc(100vh - $header-height);
-  position: relative;
 
   &__aside {
     max-width: 250px;
 
     @include md {
       width: 30%;
-      background-color: $white;
     }
   }
   &__rightSide {

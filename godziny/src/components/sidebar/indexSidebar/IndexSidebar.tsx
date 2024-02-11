@@ -19,26 +19,24 @@ const IndexSidebar = () => {
   }, [pathname, dispatch]);
 
   return (
-    <>
-      <div className="_sidebar p-md-0">
-        <div className="_sidebar__wrapper _scrolHidden p-md-3 p-lg-4">
-          <div className="_sidebar__body">
-            {isMonthPanel &&
-              dataMonthPanel.map((component, idx) => {
-                return <React.Fragment key={idx}>{component}</React.Fragment>;
-              })}
+    <div className="_sidebar p-md-0">
+      <div className="_sidebar__wrapper _scrolHidden p-md-3 p-lg-4">
+        <div className="_sidebar__body">
+          {isMonthPanel &&
+            dataMonthPanel.map((component, idx) => {
+              return <React.Fragment key={idx}>{component}</React.Fragment>;
+            })}
 
-            {isSettings &&
-              dataSettings.map((component, idx) => {
-                return <React.Fragment key={idx}>{component}</React.Fragment>;
-              })}
-          </div>
-        </div>
-        <div className="d-none d-md-block pt-2 ps-1 _sidebar__navContainer">
-          <Nav />
+          {isSettings &&
+            dataSettings.map((component, idx) => {
+              return <React.Fragment key={idx}>{component}</React.Fragment>;
+            })}
         </div>
       </div>
-    </>
+      <div className="d-none d-md-block pt-2 ps-1 _sidebar__navContainer">
+        <Nav />
+      </div>
+    </div>
   );
 };
 

@@ -10,11 +10,11 @@ import useDeleteDayAsync from "./useDeleteDayAsync";
 const ButtonDeleteDay = () => {
   const { day, columnIdx } = useContext(DayItemContext);
   const { deleteDayAsync, success } = useDeleteDayAsync(day, columnIdx);
+
   const { handleAlert, alert } = useAlertDelete(
     deleteDayAsync,
     "Usunąć dzień?"
   );
-
   const { btnContent } = useBtnContent(success.isLoading, <IconTrash />);
 
   if (!day) return null;

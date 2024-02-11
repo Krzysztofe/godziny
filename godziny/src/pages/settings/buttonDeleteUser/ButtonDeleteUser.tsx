@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
-import useBtnContent from "../../../hooks/useBtnContent";
+import IconTrash from "../../../components/icons/IconTrash";
 import useAlertDelete from "../../../hooks/useAlertDelete";
+import useBtnContent from "../../../hooks/useBtnContent";
 import { ModelUser } from "../../../sharedModels/modelUser";
 import useDeleteUserAsync from "../buttonDeleteUser/useDeleteUserAsync";
-import IconTrash from "../../../components/icons/IconTrash";
 
 type Props = {
   user: ModelUser;
