@@ -6,6 +6,7 @@
 
   &__aside {
     max-width: 250px;
+    background-color: $white;
 
     @include md {
       width: 30%;

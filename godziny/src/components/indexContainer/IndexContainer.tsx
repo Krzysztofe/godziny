@@ -8,7 +8,7 @@ type Props = {
 
 const IndexContainer = (props: Props) => {
   return (
-    <main className="d-flex m-0 _indexContainer ">
+    <main className="d-flex m-0  bg-secondary _indexContainer ">
       <aside className="_indexContainer__aside"></aside>
 
       <div className="_indexContainer__rightSide bg-secondary">
