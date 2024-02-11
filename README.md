@@ -33,7 +33,7 @@ Live recording of the application presentation during the conclusion of the comp
 
 * Comunication with database
 * Login form 
-* Dragg and dropp
+* Drag and drop
 * Forms / validations 
 * Dynamic routing
 * HTTP requests state messages for user
