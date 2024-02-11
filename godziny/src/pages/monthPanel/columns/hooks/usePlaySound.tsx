@@ -16,7 +16,7 @@ export const playClickSound = (
   ) {
     const audio = audioElem.current;
     if (audio) {
-      audio.volume = 0.05;
+       audio.volume = window.innerWidth <= 650 ? 0.8 : 0.05;
       audio.play();
     }
   }

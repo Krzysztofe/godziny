@@ -27,7 +27,7 @@ const Columns = () => {
     setExecuteUpdateMonth(prev => !prev);
      playClickSound(e, audioElem);
      setEvent(e);
-     console.log('',e)
+  
   };
 
   return (
