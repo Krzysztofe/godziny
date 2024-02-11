@@ -40,6 +40,7 @@ Live recording of the application presentation during the conclusion of the comp
 * Automatic logout after 5 minutes of inactivity
 * RWD
 * Animations
+* Sound on drag event
 * Custom alerts
 * Protected routes
 
