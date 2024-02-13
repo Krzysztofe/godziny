@@ -1,4 +1,4 @@
-import { onValue, ref, onDisconnect } from "firebase/database";
+import { onValue, ref } from "firebase/database";
 import { useEffect, useState } from "react";
 import { database } from "../data/firebaseConfig";
 
@@ -7,20 +7,7 @@ const useDatabaseListMonths = () => {
   const [error, setError] = useState("");
   const [databaseListMonths, setDatabaseListMonths] = useState<any>([]);
 
-
-
-  
-
   useEffect(() => {
-    // const disconnectRef = onDisconnect(reference);
-    // disconnectRef.cancel();
-
-    // disconnectRef.remove(err => {
-    //   if (err) {
-    //     setError("Błąd połączenia. Sprawdź swoje połączenie internetowe.");
-    //   }
-    // });
-
     const unsubscribe = onValue(
       reference,
       snapshot => {
@@ -46,7 +33,6 @@ const useDatabaseListMonths = () => {
             },
 
             nestedError => {
-              console.log("pierwszy");
               setError("Błąd. Odśwież stronę");
             }
           );

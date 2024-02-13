@@ -1,7 +1,6 @@
 import { FormikTouched, FormikErrors } from "formik";
 import { ModelDay } from "../../../sharedModels/modelDay";
 import "./_inputError.scss";
-import { memo, useEffect } from "react";
 
 type Props = {
   value: string;

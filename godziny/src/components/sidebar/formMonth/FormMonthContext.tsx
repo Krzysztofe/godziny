@@ -25,9 +25,9 @@ const FormMonthContext = () => {
   const dispatch = useDispatch();
   const { initialValues, validation, onSubmit, success } = useFormikMonth();
 
-  useEffect(() => {
-    dispatch(getMonthSuccess(success.isSuccess));
-  }, [success.isSuccess, dispatch]);
+  // useEffect(() => {
+  //   dispatch(getMonthSuccess(success.isSuccess));
+  // }, [success.isSuccess, dispatch]);
 
   return (
     <Formik

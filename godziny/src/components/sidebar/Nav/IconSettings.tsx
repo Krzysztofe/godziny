@@ -6,7 +6,7 @@ const IconSettings = () => {
 
   return (
     <AiTwotoneSetting
-      className={`fs-2 text-icons-primary ${!isPath && "me-3"} me-sm-0`}
+      className={`fs-2  ${!isPath && "me-3"} me-sm-0`}
     />
   );
 };

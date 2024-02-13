@@ -9,19 +9,17 @@ const useLogout = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const logout = () => {
+  const logout = async () => {
     setIsLoading(true);
-    auth
-      .signOut()
-      .then(() => {
-        navigate("/");
-      })
-      .catch(error => {
-        dispatch(printAlert(error.message));
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+
+    try {
+      await auth.signOut();
+      navigate("/");
+    } catch (error: any) {
+      dispatch(printAlert(error.message));
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return { isLoading, logout };

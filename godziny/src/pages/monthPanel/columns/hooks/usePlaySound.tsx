@@ -4,19 +4,13 @@ export const playClickSound = (
   e: any,
   audioElem: React.RefObject<HTMLAudioElement>
 ) => {
-  // const audio = audioElem.current;
-  // if (audio) {
-  //   audio.volume = window.innerWidth <= 650 ? 0.8 : 0.05;
-  //   audio.play();
-  // }
-
   if (
     e.source.droppableId !== "rejected" &&
     e.source.droppableId !== e.destination?.droppableId
   ) {
     const audio = audioElem.current;
     if (audio) {
-       audio.volume = window.innerWidth <= 650 ? 0.8 : 0.05;
+      audio.volume = window.innerWidth <= 650 ? 0.8 : 0.05;
       audio.play();
     }
   }

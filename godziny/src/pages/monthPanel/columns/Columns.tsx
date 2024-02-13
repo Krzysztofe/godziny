@@ -5,7 +5,6 @@ import { RootState } from "../../../redux/store";
 import { ModelColumn } from "../../../sharedModels/modelColumn";
 import Column from "../column/Column";
 import "./_columns.scss";
-import usePlaySound from "./hooks/usePlaySound";
 import useUpdateColumns from "./hooks/useUpdateColumns";
 import useUpdateMonth from "./hooks/useUpdateMonth";
 import { handleDragDrop } from "./utils/utilsHandleDragDrop";
@@ -16,18 +15,14 @@ const Columns = () => {
   const { month } = useSelector((state: RootState) => state.monthPanel);
   const [columns, setColumns] = useState<ModelColumn[]>([]);
   const [executeUpdateMonth, setExecuteUpdateMonth] = useState(false);
-  const [event, setEvent] = useState<DropResult | null>(null);
   const audioElem = useRef<HTMLAudioElement>(null);
-  // usePlaySound(audioElem, columns[1]?.days.length, month?.id, event);
   useUpdateColumns(setColumns);
   useUpdateMonth(columns, executeUpdateMonth);
 
   const handleDragEnd = (e: DropResult) => {
     month && handleDragDrop(e, columns, setColumns);
     setExecuteUpdateMonth(prev => !prev);
-     playClickSound(e, audioElem);
-     setEvent(e);
-  
+    playClickSound(e, audioElem);
   };
 
   return (

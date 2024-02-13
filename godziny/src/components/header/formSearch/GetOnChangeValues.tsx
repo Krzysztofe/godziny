@@ -1,5 +1,5 @@
 import { useFormikContext } from "formik";
-import { useEffect } from "react";
+import { useEffect, memo } from "react";
 import { useDispatch } from "react-redux";
 import { getSearchedName } from "../../../redux/storeFeatures/filterDaysSlice";
 

@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import "./_buttonForm.scss";
 import useBtnContent from "../../hooks/useBtnContent";
 import "./_buttonForm.scss";
-import { memo, useEffect } from "react";
+
 
 type Props = {
   isLoading: boolean;
