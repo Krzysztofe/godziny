@@ -22,7 +22,7 @@ type Props = {
 };
 
 const Column = (props: Props) => {
-  const { searchedName } = useSelector((state: RootState) => state.filterDays);
+  const { searchedName } = useSelector((state: RootState) => state.searchName);
 
   const isDraging = (stapshot: boolean) => {
     return stapshot ? "_isDragging" : "_noDragging";

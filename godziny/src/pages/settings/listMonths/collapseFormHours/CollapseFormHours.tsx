@@ -27,7 +27,6 @@ const CollapseFormHours = () => {
       <div className="d-flex align-items-center">
         <MonthTitle />
         <Button
-    
           onClick={() => {
             handleTogle(monthIdx);
           }}

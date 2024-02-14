@@ -7,7 +7,7 @@ import { DayItemContext } from "./column/Column";
 import DayDetails from "./dayDetails/DayDetails";
 
 const Day = () => {
-  const { searchedName } = useSelector((state: RootState) => state.filterDays);
+  const { searchedName } = useSelector((state: RootState) => state.searchName);
   const { day, dayIdx } = useContext(DayItemContext);
 
   let printDay: string;

@@ -1,31 +1,39 @@
-import { onValue, ref } from "firebase/database";
+import {
+  onValue,
+  ref,
+  DataSnapshot,
+  DatabaseReference,
+} from "firebase/database";
 import { useEffect, useState } from "react";
 import { database } from "../data/firebaseConfig";
 
 const useDatabaseListMonths = () => {
-  const reference = ref(database);
-  const [error, setError] = useState("");
-  const [databaseListMonths, setDatabaseListMonths] = useState<any>([]);
+  const reference: DatabaseReference = ref(database);
+  const [error, setError] = useState<string>("");
+  const [databaseListMonths, setDatabaseListMonths] = useState<string[]>([]);
 
   useEffect(() => {
     const unsubscribe = onValue(
       reference,
-      snapshot => {
+      (snapshot: DataSnapshot) => {
         let keysYears: string[] = [];
-        let monthsCollection: any = [];
+        let monthsCollection: string[][] = [];
 
-        snapshot?.forEach((firstLevelSnapshot: any) => {
-          const firstLevelKey = firstLevelSnapshot.key;
+        snapshot.forEach((firstLevelSnapshot: DataSnapshot) => {
+          const firstLevelKey: string = firstLevelSnapshot.key || "";
           keysYears.push(firstLevelKey);
 
-          const nestedKeysRef = ref(database, `${firstLevelKey}`);
+          const nestedKeysRef: DatabaseReference = ref(
+            database,
+            `${firstLevelKey}`
+          );
           onValue(
             nestedKeysRef,
-            nestedSnapshot => {
+            (nestedSnapshot: DataSnapshot) => {
               let keysMonths: string[] = [];
 
-              nestedSnapshot?.forEach((nestedKeySnapshot: any) => {
-                const nestedKey = nestedKeySnapshot.key;
+              nestedSnapshot.forEach((nestedKeySnapshot: DataSnapshot) => {
+                const nestedKey: string = nestedKeySnapshot.key || "";
                 keysMonths.push(nestedKey.slice(6));
               });
 
@@ -40,7 +48,7 @@ const useDatabaseListMonths = () => {
 
         const months = [...monthsCollection]
           .map((monthsInYear, idx) => {
-            return monthsInYear.map((month: any) => {
+            return monthsInYear.map((month: string) => {
               return keysYears[idx] + "-" + month;
             });
           })

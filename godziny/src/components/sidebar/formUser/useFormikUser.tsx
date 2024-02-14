@@ -1,17 +1,16 @@
-import { useAddUserMutation } from "../../../services/apiSliceUsers";
-import useValidationUserForm from "./useValidationFormUser";
+import { FormikHelpers } from "formik";
 import { v4 as UUID } from "uuid";
 import * as yup from "yup";
+import { useAddUserMutation, useUsersQuery } from "../../../services/apiSliceUsers";
 import { ModelUser } from "../../../sharedModels/modelUser";
-import { FormikHelpers } from "formik";
 import { capitalizeFirstLetter } from "../../../utils/utilsCapitalizeFirstLetter";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
+import useValidationUserForm from "./useValidationFormUser";
 
 const useFormikUser = () => {
   const [addUser, success] = useAddUserMutation();
   const { validationSchema } = useValidationUserForm();
-  const { listUsers } = useSelector((state: RootState) => state.listUsers);
+  const { data: listUsers } = useUsersQuery();
+
 
   const users = listUsers || [];
 

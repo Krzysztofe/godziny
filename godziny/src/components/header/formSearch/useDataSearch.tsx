@@ -1,13 +1,10 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
+import { useUsersQuery } from "../../../services/apiSliceUsers";
 import { ModelUser } from "../../../sharedModels/modelUser";
 
 const useDataSearch = () => {
-  const { listUsers: dataUsers } = useSelector(
-    (state: RootState) => state.listUsers
-  );
+  const { data: listUsers } = useUsersQuery();
 
-  const users = dataUsers ? dataUsers : [];
+  const users = listUsers ? listUsers : [];
 
   const names = users?.map(({ userName }: ModelUser) => {
     return userName;

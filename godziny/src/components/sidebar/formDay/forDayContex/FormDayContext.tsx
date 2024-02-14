@@ -10,13 +10,15 @@ import FormHoursError from "../formHoursError/FormHoursError";
 import useDataFormDay from "./useDataFormDay";
 import useFormikDay from "./useFormikDay";
 import "./_formDayContext.scss";
-
+import useMonthQuery from "../../../../hooks/useMonthQuery";
 
 const FormDayContext = () => {
   const { dataInputsText, dataInputsSelect } = useDataFormDay();
   const { initialValues, validation, onSubmit, success } = useFormikDay();
-  const { month } = useSelector((state: RootState) => state.monthPanel);
-  const { searchedName } = useSelector((state: RootState) => state.filterDays);
+  // const { month } = useSelector((state: RootState) => state.monthPanel);
+  const { data: month } = useMonthQuery();
+
+  const { searchedName } = useSelector((state: RootState) => state.searchName);
 
   const isSearching =
     searchedName && searchedName !== "Szukaj"
@@ -24,7 +26,6 @@ const FormDayContext = () => {
       : "";
 
   const isAllHours = month?.calcHours?.allHours === 0 ? "_formDayContext" : "";
-
 
   if (!month || month?.id === "") return null;
 

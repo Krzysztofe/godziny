@@ -1,10 +1,12 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
-import { ModelUser } from "../../../sharedModels/modelUser";
-import { useDeleteUserMutation } from "../../../services/apiSliceUsers";
+import {
+  useDeleteUserMutation,
+  useUsersQuery,
+} from "../../../../services/apiSliceUsers";
+import { ModelUser } from "../../../../sharedModels/modelUser";
 
 const useDeleteUserAsync = (userName: string) => {
-  const { listUsers } = useSelector((state: RootState) => state.listUsers);
+  const { data: listUsers } = useUsersQuery();
+
   const [deleteUser, success] = useDeleteUserMutation();
 
   const deleteUserAsync = async () => {

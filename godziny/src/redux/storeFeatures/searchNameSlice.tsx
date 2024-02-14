@@ -8,8 +8,8 @@ const initialState: ModelInitialState = {
   searchedName: "",
 };
 
-export const filterDaysSlice = createSlice({
-  name: "filterDays",
+export const searchNameSlice = createSlice({
+  name: "searchName",
   initialState,
   reducers: {
     getSearchedName: (state, action: PayloadAction<string>) => {
@@ -18,5 +18,5 @@ export const filterDaysSlice = createSlice({
   },
 });
 
-export const { getSearchedName } = filterDaysSlice.actions;
-export default filterDaysSlice.reducer;
+export const { getSearchedName } = searchNameSlice.actions;
+export default searchNameSlice.reducer;

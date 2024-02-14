@@ -30,12 +30,9 @@ export const listMonthsSlice = createSlice({
     setCollapseIndex: (state, action: PayloadAction<number | null>) => {
       state.openCollapseIndex = action.payload;
     },
-    getID: (state, action: PayloadAction<any>) => {
-      state.UID = action.payload;
-    },
   },
 });
 
-export const { getListMonths, getListMonthsError, setCollapseIndex, getID } =
+export const { getListMonths, getListMonthsError, setCollapseIndex } =
   listMonthsSlice.actions;
 export default listMonthsSlice.reducer;

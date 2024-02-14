@@ -1,22 +1,24 @@
 import { useSelector } from "react-redux";
 import IndexContainer from "../../../components/indexContainer/IndexContainer";
-import useReduxMonthData from "../../../hooks/updateReduxDatabase/useReduxMonthData";
-import { RootState } from "../../../redux/store";
-import MonthPanelEmpty from "../monthPanelEmpty/MonthPanelEmpty";
 import RequestError from "../../../components/requestStates/RequestError";
 import RequestLoading from "../../../components/requestStates/RequestLoading";
-import MonthPanelContent from "../monthPanelContent/MonthPanelContent";
+import useMonthQuery from "../../../hooks/useMonthQuery";
+import { RootState } from "../../../redux/store";
+import { useUsersQuery } from "../../../services/apiSliceUsers";
 import { requestContainer } from "../../../utils/utilsRequestContainer";
+import MonthPanelContent from "../monthPanelContent/MonthPanelContent";
+import MonthPanelEmpty from "../monthPanelEmpty/MonthPanelEmpty";
 
 const IndexMonthPanel = () => {
-  useReduxMonthData();
+  const {
+    data: month,
+    error: monthErrorGet,
+    isLoading: monthIsLoading,
+  } = useMonthQuery();
 
-  const { month, monthErrorGet, monthIsLoading } = useSelector(
-    (state: RootState) => state.monthPanel
-  );
-  const { listUsersError, listUsersIsLoading } = useSelector(
-    (state: RootState) => state.listUsers
-  );
+  const { error: listUsersError, isLoading: listUsersIsLoading } =
+    useUsersQuery();
+
   const { listMonthsError } = useSelector(
     (state: RootState) => state.listMonths
   );

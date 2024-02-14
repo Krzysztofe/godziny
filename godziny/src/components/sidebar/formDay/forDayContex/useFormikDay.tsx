@@ -1,10 +1,10 @@
-import { useSelector } from "react-redux";
 import { v4 as UUID } from "uuid";
 import * as yup from "yup";
 import { dateInNext_14_Days } from "../../../../data/dataCurrentDates";
+import useMonthQuery from "../../../../hooks/useMonthQuery";
 import useURLValues from "../../../../hooks/useURLValues";
-import { RootState } from "../../../../redux/store";
 import { useAddDayMutation } from "../../../../services/apiSliceMonths";
+import { useUsersQuery } from "../../../../services/apiSliceUsers";
 import { ModelUser } from "../../../../sharedModels/modelUser";
 import { validationFormDayDate } from "../formDateError/utilsFormDateError";
 import { validationSchema } from "./validationFormDay";
@@ -20,8 +20,9 @@ export type ModelInitialValuesFormikDay = {
 
 const useFormikDay = () => {
   const [addDay, success] = useAddDayMutation();
-  const { month } = useSelector((state: RootState) => state.monthPanel);
-  const { listUsers } = useSelector((state: RootState) => state.listUsers);
+  const { data: month } = useMonthQuery();
+  const { data: listUsers } = useUsersQuery();
+
   const { yearFromURL, monthFromURL } = useURLValues();
 
   const initialValues = {

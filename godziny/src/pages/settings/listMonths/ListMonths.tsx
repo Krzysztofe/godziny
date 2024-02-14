@@ -13,14 +13,14 @@ const ListMonths = () => {
   return (
     <>
       {databaseMonthsDatesToString?.map(
-        (monthDateToString: string, idx: number) => {
+        (monthDateToString: string, monthIdx: number) => {
           return (
             <ListGroup.Item
               key={monthDateToString}
               className={dataStylesListItem}
             >
-              <MonthItemContext.Provider value={idx}>
-                <CollapseFormHours/>
+              <MonthItemContext.Provider value={monthIdx}>
+                <CollapseFormHours />
               </MonthItemContext.Provider>
             </ListGroup.Item>
           );

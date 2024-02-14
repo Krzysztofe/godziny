@@ -1,5 +1,4 @@
 import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListMonths";
-import useReduxListUsers from "../../../hooks/updateReduxDatabase/useReduxListUsers";
 import Nav from "../../sidebar/Nav/Nav";
 import ButtonLogout from "../buttonLogout/ButtonLogout";
 import FormSearchContext from "../formSearch/formSearchContext/FormSearchContext";
@@ -7,7 +6,6 @@ import HeaderName from "../headerName/HeaderName";
 import "./_header.scss";
 
 const Header = () => {
-  useReduxListUsers();
   useReduxListMonths();
 
   return (

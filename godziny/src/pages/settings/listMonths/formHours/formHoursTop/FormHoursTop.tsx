@@ -3,8 +3,6 @@ import InputsText from "../../../../../components/inputs/inputsText/InputsText";
 import { RootState } from "../../../../../redux/store";
 import "./_formHoursTop.scss";
 
-const FormHoursTop = () => {
-  const { calcHours } = useSelector((state: RootState) => state.calcHours);
 
   const dataInputsText = [
     {
@@ -15,6 +13,9 @@ const FormHoursTop = () => {
     },
   ];
 
+
+const FormHoursTop = () => {
+  const { calcHours } = useSelector((state: RootState) => state.calcHours);
 
   return (
     <>

@@ -1,19 +1,29 @@
 import { ModelColumn } from "../../../../sharedModels/modelColumn";
 import { ModelDay } from "../../../../sharedModels/modelDay";
+import { DropResult } from "react-beautiful-dnd";
 
-const findSourceColumnIdx = (columns: ModelColumn[], source: any) => {
-  return columns?.findIndex((column: ModelColumn) => {
-    return column.id === source.droppableId;
-  });
+const findSourceColumnIdx = (
+  columns: ModelColumn[],
+  source: { droppableId: string }
+) => {
+  return columns.findIndex(
+    (column: ModelColumn) => column.id === source.droppableId
+  );
 };
 
-const findDestinationColumnIdx = (columns: ModelColumn[], destination: any) => {
-  return columns?.findIndex((column: ModelColumn) => {
-    return column.id === destination.droppableId;
-  });
+const findDestinationColumnIdx = (
+  columns: ModelColumn[],
+  destination: { droppableId: string }
+) => {
+  return columns.findIndex(
+    (column: ModelColumn) => column.id === destination.droppableId
+  );
 };
 
-const findDeletedDay = (newSourceDays: ModelDay[], source: any) => {
+const findDeletedDay = (
+  newSourceDays: ModelDay[],
+  source: { index: number }
+) => {
   const [deletedDay] = newSourceDays.splice(source.index, 1);
   return deletedDay;
 };
@@ -30,15 +40,15 @@ const updateColumnDays = (
 
 const moveItemFromColumn = (
   columns: ModelColumn[],
-  source: any,
-  destination: any,
+  source: { droppableId: string; index: number },
+  destination: { droppableId: string; index: number },
   setColumns: React.Dispatch<React.SetStateAction<ModelColumn[]>>
 ) => {
   const sourceColumnIdx = findSourceColumnIdx(columns, source);
   const destinationColumnIdx = findDestinationColumnIdx(columns, destination);
   const newSourceDays = columns && [...columns[sourceColumnIdx].days];
   const newDestinationDays =
-    source.droppableId !== destination.dropableId
+    source.droppableId !== destination.droppableId
       ? [...columns[destinationColumnIdx].days]
       : newSourceDays;
 
@@ -53,8 +63,8 @@ const moveItemFromColumn = (
 
 const moveItemInColumn = (
   columns: ModelColumn[],
-  source: any,
-  destination: any,
+  source: { droppableId: string; index: number },
+  destination: { droppableId: string; index: number },
   setColumns: React.Dispatch<React.SetStateAction<ModelColumn[]>>
 ) => {
   const destintionIdx = destination.index;
@@ -70,7 +80,7 @@ const moveItemInColumn = (
 };
 
 export const handleDragDrop = (
-  results: any,
+  results: DropResult,
   columns: ModelColumn[],
   setColumns: React.Dispatch<React.SetStateAction<ModelColumn[]>>
 ) => {
@@ -78,8 +88,10 @@ export const handleDragDrop = (
 
   if (!destination) return;
   if (
-    source.draggableId === destination.droppableId &&
-    source.index !== destination.index
+    source &&
+    destination &&
+    source.droppableId === destination.droppableId &&
+    source.index === destination.index
   )
     return;
 

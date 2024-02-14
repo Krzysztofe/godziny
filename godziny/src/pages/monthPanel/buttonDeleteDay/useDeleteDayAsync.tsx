@@ -4,9 +4,12 @@ import useURLValues from "../../../hooks/useURLValues";
 import { deleteDayById, calculateUpdatedCalcHours } from "./utilsDeleteDay";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
+import useMonthQuery from "../../../hooks/useMonthQuery";
 
 const useDeleteDayAsync = (day: ModelDay, columnIndex: number) => {
-  const { month } = useSelector((state: RootState) => state.monthPanel);
+  // const { month } = useSelector((state: RootState) => state.monthPanel);
+   const { data: month } = useMonthQuery();
+ 
   const [deleteDay, success] = useDeleteDayMutation();
   const { yearFromURL, monthFromURL } = useURLValues();
   

@@ -5,6 +5,7 @@ import useURLValues from "../../../../hooks/useURLValues";
 import { useUpdateMonthMutation } from "../../../../services/apiSliceMonths";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/store";
+import useMonthQuery from "../../../../hooks/useMonthQuery";
 
 const useUpdateMonth = (
   columns: ModelColumn[],
@@ -12,7 +13,11 @@ const useUpdateMonth = (
 ) => {
   const { yearFromURL, monthFromURL } = useURLValues();
   const [updateMonth] = useUpdateMonthMutation();
-  const { month } = useSelector((state: RootState) => state.monthPanel);
+  // const { month } = useSelector((state: RootState) => state.monthPanel);
+
+  const { data: month } = useMonthQuery();
+
+
   const { submittedHours, acceptedHours, rejectedHours } =
     getHoursFromColumns(columns);
 

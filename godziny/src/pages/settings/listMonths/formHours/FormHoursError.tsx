@@ -8,11 +8,8 @@ type ModelFormValues = {
   allHours: number;
 };
 
-type Props = {
-  calcHours?: ModelCalcHours;
-};
 
-const FormHoursError = (props: Props) => {
+const FormHoursError = () => {
   const { values } = useFormikContext<ModelFormValues>();
   const { calcHours } = useSelector(
     (state: RootState) => state.calcHours

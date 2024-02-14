@@ -1,11 +1,10 @@
 import { ListGroup } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
 import { dataStylesListItem } from "../../../components/listContainer/stylesListContainer";
-import ButtonDeleteUser from "../buttonDeleteUser/ButtonDeleteUser";
+import { useUsersQuery } from "../../../services/apiSliceUsers";
+import ButtonDeleteUser from "./buttonDeleteUser/ButtonDeleteUser";
 
 const ListUsers = () => {
-  const { listUsers } = useSelector((state: RootState) => state.listUsers);
+  const { data: listUsers } = useUsersQuery();
 
   return (
     <>

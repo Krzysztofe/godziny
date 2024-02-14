@@ -1,9 +1,8 @@
 @import "../../../../../scss/mixins";
 
 ._formHoursTop__summary {
- 
-
-  @include sm { position: absolute;
+  @include sm {
+    position: absolute;
     left: 10%;
   }
 }

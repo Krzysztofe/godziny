@@ -1,10 +1,15 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import useURLValues from "../../hooks/useURLValues";
+import { useMonthDataQuery } from "../../services/apiSliceMonths";
+import useMonthQuery from "../../hooks/useMonthQuery";
 
 const HoursSummary = () => {
-  const { month } = useSelector((state: RootState) => state.monthPanel);
+  // const { month } = useSelector((state: RootState) => state.monthPanel);
 
+  const { data: month } = useMonthQuery();
 
+ 
 
   return (
     <div className="position-sticky top-0 z-3 fs-2 pt-4 py-md-4 bg-secondary">

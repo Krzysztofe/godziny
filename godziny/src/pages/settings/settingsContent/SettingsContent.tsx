@@ -1,15 +1,15 @@
 import { useSelector } from "react-redux";
+import BorderInline from "../../../components/BorderInline";
 import ListContainer from "../../../components/listContainer/ListContainer";
 import { RootState } from "../../../redux/store";
+import { useUsersQuery } from "../../../services/apiSliceUsers";
 import ListMonths from "../listMonths/ListMonths";
 import ListUsers from "../listUsers/ListUsers";
 import "./_settingsContent.scss";
-import BorderInline from "../../../components/BorderInline";
-
 
 const SettingsContent = () => {
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
-  const { listUsers } = useSelector((state: RootState) => state.listUsers);
+  const { data: listUsers } = useUsersQuery();
 
   return (
     <>

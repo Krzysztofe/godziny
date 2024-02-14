@@ -1,11 +1,11 @@
 import { useFormikContext } from "formik";
-import { useEffect, memo } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getSearchedName } from "../../../redux/storeFeatures/filterDaysSlice";
+import { getSearchedName } from "../../../redux/storeFeatures/searchNameSlice";
 
 const GetOnChangeValues = () => {
   const dispatch = useDispatch();
-  const { values } = useFormikContext<any>();
+  const { values } = useFormikContext<{ searchedName: string }>();
 
   useEffect(() => {
     dispatch(getSearchedName(values.searchedName));

@@ -1,10 +1,9 @@
 import * as yup from "yup";
+import { useUsersQuery } from "../../../services/apiSliceUsers";
 import { ModelUser } from "../../../sharedModels/modelUser";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
 
 const useValidationFormUser = () => {
-  const { listUsers } = useSelector((state: RootState) => state.listUsers);
+  const { data: listUsers } = useUsersQuery();
   const usersNames = listUsers?.map(({ userName }: ModelUser) => userName);
   const UsersColors = listUsers?.map(({ userColor }: ModelUser) => userColor);
 

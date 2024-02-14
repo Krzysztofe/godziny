@@ -8,11 +8,14 @@ import "./_columns.scss";
 import useUpdateColumns from "./hooks/useUpdateColumns";
 import useUpdateMonth from "./hooks/useUpdateMonth";
 import { handleDragDrop } from "./utils/utilsHandleDragDrop";
-import { playClickSound } from "./hooks/usePlaySound";
+import { playDragSound } from "./utils/utilsPlayDragSound";
+import useMonthQuery from "../../../hooks/useMonthQuery";
 const click = require("../../../asets/dragSound.wav");
 
 const Columns = () => {
-  const { month } = useSelector((state: RootState) => state.monthPanel);
+  // const { month } = useSelector((state: RootState) => state.monthPanel);
+   const { data: month } = useMonthQuery();
+   
   const [columns, setColumns] = useState<ModelColumn[]>([]);
   const [executeUpdateMonth, setExecuteUpdateMonth] = useState(false);
   const audioElem = useRef<HTMLAudioElement>(null);
@@ -22,7 +25,7 @@ const Columns = () => {
   const handleDragEnd = (e: DropResult) => {
     month && handleDragDrop(e, columns, setColumns);
     setExecuteUpdateMonth(prev => !prev);
-    playClickSound(e, audioElem);
+    playDragSound(e, audioElem);
   };
 
   return (

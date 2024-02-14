@@ -4,10 +4,13 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/store";
 import { validationFormDayDate } from "./utilsFormDateError";
 import "./_formDateError.scss";
+import useMonthQuery from "../../../../hooks/useMonthQuery";
 
 const FormDateError = () => {
   const { values } = useFormikContext<ModelDay>();
-  const { month } = useSelector((state: RootState) => state.monthPanel);
+  // const { month } = useSelector((state: RootState) => state.monthPanel);
+   const { data: month } = useMonthQuery();
+  
 
   const error =
     month && validationFormDayDate(month, values.userName, values.date);
