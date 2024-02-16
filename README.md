@@ -29,8 +29,10 @@ Live recording of the application presentation during the conclusion of the comp
 ## Demo <a href = "https://krzysztofe.github.io/godziny/"> here --></a>
 
 ## Desktop
-![eeee](https://github.com/Krzysztofe/godziny/assets/96065197/2d76af0e-c3d9-4cdf-9b9a-eb0bdecc945d)
 
+ <div align="center">
+  <img src="https://github.com/Krzysztofe/godziny/assets/96065197/2d76af0e-c3d9-4cdf-9b9a-eb0bdecc945d" alt="html5" width="504" height="300"/> 
+</div>
 ## Mobile
  <div align="center">
 <img src="https://github.com/Krzysztofe/godziny/assets/96065197/037d656d-59f6-4a97-a8c8-0da13b37e4fd" width="300" alt="Mobile Screenshot">
