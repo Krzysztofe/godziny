@@ -14,6 +14,7 @@ const IndexSidebar = () => {
   const { isPath: isSettings } = useIsPath(["ustawienia"]);
   const { dataMonthPanel, dataSettings } = useDataSidebar();
 
+
   useEffect(() => {
     dispatch(setCollapseIndex(null));
   }, [pathname, dispatch]);

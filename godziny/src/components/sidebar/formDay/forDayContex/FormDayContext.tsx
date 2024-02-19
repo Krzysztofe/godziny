@@ -11,9 +11,9 @@ import FormHoursError from "../formHoursError/FormHoursError";
 import "./_formDayContext.scss";
 import useDataFormDay from "./useDataFormDay";
 import useFormikDay from "./useFormikDay";
-import { memo } from "react";
 
-const FormDayContext = memo(() => {
+
+const FormDayContext = () => {
   const { dataInputsText, dataInputsSelect } = useDataFormDay();
   const { initialValues, validation, onSubmit, success } = useFormikDay();
   const { data: month } = useMonthQuery();
@@ -35,7 +35,9 @@ const FormDayContext = memo(() => {
       validationSchema={validation}
       onSubmit={onSubmit}
     >
-      <Form className={` ${isSearching} ${isAllHours} mt-4 position-relative`}>
+      <Form
+        className={` ${isSearching} ${isAllHours} mt-4 position-relative _formDayContext--width`}
+      >
         <InputsSelect inputsData={dataInputsSelect} padding={"py-2 ps-2"} />
         <div className="position-relative _formDayContext__inputTetx">
           <InputsText inputsData={dataInputsText} />
@@ -49,6 +51,6 @@ const FormDayContext = memo(() => {
       </Form>
     </Formik>
   );
-});
+};
 
 export default FormDayContext;

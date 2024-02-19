@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import "./_buttonForm.scss";
 import useBtnContent from "../../hooks/useBtnContent";
 import "./_buttonForm.scss";
-
+import { memo } from "react";
 
 type Props = {
   isLoading: boolean;
@@ -10,7 +10,7 @@ type Props = {
   styles?: string;
 };
 
-const ButtonForm = (props: Props) => {
+const ButtonForm = memo((props: Props) => {
   const buttonText = props.text ? <div>{props.text}</div> : <div>Zapisz</div>;
   const { btnContent } = useBtnContent(props?.isLoading, buttonText);
 
@@ -25,6 +25,6 @@ const ButtonForm = (props: Props) => {
       <div className="_buttonForm__content _d-center">{btnContent}</div>
     </Button>
   );
-};
+});
 
 export default ButtonForm;

@@ -23,6 +23,7 @@ export const monthsApiSlice = createApi({
   }),
   tagTypes: ["months"],
   endpoints: builder => ({
+    
     // queries
 
     monthData: builder.query<ModelMonth, { year: string; month: string }>({

@@ -2,7 +2,11 @@
 @import "../../../../scss/variables";
 
 ._formDayContext {
-  position: relative;
+  &--width {
+    max-width: 200px;
+    margin: auto;
+      overflow: hidden;
+  }
   &::before {
     content: "";
     position: absolute;
