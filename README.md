@@ -28,6 +28,16 @@ Live recording of the application presentation during the conclusion of the comp
 ## Production version for users tests deployed on home.pl <a href = "https://godziny.ozzip.pl/"> here --></a>
 ## Demo <a href = "https://krzysztofe.github.io/godziny/"> here --></a>
 
+## Desktop
+
+ <div align="center">
+  <img src="https://github.com/Krzysztofe/godziny/assets/96065197/2d76af0e-c3d9-4cdf-9b9a-eb0bdecc945d" alt="html5" width="504" height="300"/> 
+</div>
+
+## Mobile
+ <div align="center">
+<img src="https://github.com/Krzysztofe/godziny/assets/96065197/037d656d-59f6-4a97-a8c8-0da13b37e4fd" width="300" alt="Mobile Screenshot">
+</div>
 
 ## Features
 
@@ -56,6 +66,7 @@ Live recording of the application presentation during the conclusion of the comp
 * Formik / Yup 
 * Lazy loading
 * Router
+* RegExp
 * Million.js
 
 * React hooks: <br/> useState, useEffect, useRef, <br/> useDispatch, useSelector, useContext,<br/> useNavigate, useParams, useLocation, <br/> useAuthState, useFormikContext, custom hooks
@@ -68,26 +79,14 @@ react-bootstrap, react-icons
 
 
 
-## Desktop
- <div align="center">
-<img src="https://github.com/Krzysztofe/godziny/assets/96065197/ad5cd548-dc55-4bb8-81ed-6a4b737f0166" width="500" alt="Desktop Screenshot" margin="20">
- </div>
 
-
-## Mobile
- <div align="center">
-<img src="https://github.com/Krzysztofe/godziny/assets/96065197/037d656d-59f6-4a97-a8c8-0da13b37e4fd" width="300" alt="Mobile Screenshot">
-
-
-
-</div>
 
 
 
  ## Comments
 * The Firebase Config keys are not hidden in the .env file to allow access for setting up the project locally.
  
-* The data structure written in JSON and and stored in the Firebase Realtime Database follows a pattern where each year contains multiple months, and each month holds detailed information. For example:
+* The data structure written in JSON and and stored in the Firebase Realtime Database follows a pattern where each year contains multiple months, and each month holds detailed information with hours calculations and lists of days in three columns. For example:
 
 ![Zrzut ekranu (277)](https://github.com/Krzysztofe/godziny/assets/96065197/5c8be24d-f17e-4fb1-8bbb-888da3dbb2d8)
 
