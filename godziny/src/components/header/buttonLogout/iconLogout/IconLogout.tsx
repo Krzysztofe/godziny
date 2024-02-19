@@ -1,8 +1,9 @@
 import { FaUserCircle } from "react-icons/fa";
 import "./_iconLogout.scss";
 import useIsPath from "../../../../hooks/useIsPath";
+import { memo } from "react";
 
-const IconLogout = () => {
+const IconLogout = memo(() => {
   const { isPath } = useIsPath(["202"]);
 
   return (
@@ -11,6 +12,6 @@ const IconLogout = () => {
       <span className={`ms-1 ${isPath ? "_iconLogout" : ""}`}>Wyloguj</span>
     </div>
   );
-};
+});
 
 export default IconLogout;

@@ -2,32 +2,24 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { URL_MONTHS_DATA } from "../data/URL";
 import { ModelMonth } from "../sharedModels/modelMonth";
 import { ModelCalcHours } from "../sharedModels/modelCalcHours";
-import firebase from "firebase/app";
 import "firebase/auth";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { auth } from "../data/firebaseConfig";
 
 const createUrl = (year: string, month: string, suffix = "") =>
-  `/${year}/month_${month}${suffix}.json`;
+  `/${year}/${month}${suffix}.json`;
 
 export const monthsApiSlice = createApi({
   reducerPath: "monthsApi",
   baseQuery: fetchBaseQuery({
     baseUrl: URL_MONTHS_DATA,
-    prepareHeaders: (headers, { getState }) => {
-      // Access the Redux state to get the user's UID
-
-      // const state = getState();
-      // const user = state?.firebase?.auth;
-
-      // If the user is authenticated, include the Firebase Authentication token in the headers
-      // if (user && user.uid) {
-      //   headers.set("Authorization", `Bearer ${user.uid}`);
-      // }
-//  headers.set("Authorization", `Bearer O10NKxvgyJVMbWDu8uFfbKmdyFv1`);
-      return headers;
-    },
+    // prepareHeaders: async (headers, { getState }) => {
+    //   if (!auth.currentUser) {
+    //     throw new Error("User is not signed in.");
+    //   }
+    //   const token = await auth.currentUser.getIdToken();
+    //   headers.set("Authorization", `Bearer ${token}`);
+    //   return headers;
+    // },
   }),
   tagTypes: ["months"],
   endpoints: builder => ({

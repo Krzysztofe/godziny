@@ -22,7 +22,6 @@ const useFormikDay = () => {
   const [addDay, success] = useAddDayMutation();
   const { data: month } = useMonthQuery();
   const { data: listUsers } = useUsersQuery();
-
   const { yearFromURL, monthFromURL } = useURLValues();
 
   const initialValues = {

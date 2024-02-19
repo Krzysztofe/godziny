@@ -30,6 +30,7 @@ export const listMonthsSlice = createSlice({
     setCollapseIndex: (state, action: PayloadAction<number | null>) => {
       state.openCollapseIndex = action.payload;
     },
+  
   },
 });
 

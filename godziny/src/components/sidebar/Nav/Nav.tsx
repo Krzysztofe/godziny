@@ -3,12 +3,13 @@ import useDataNav from "./useDataNav";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../../data/firebaseConfig";
 import useIsPath from "../../../hooks/useIsPath";
+import { memo } from "react";
 
 type Props = {
   styles?: string;
 };
 
-const Nav = (props: Props) => {
+const Nav = memo((props: Props) => {
   const { dataSidebarNavItems } = useDataNav();
   const [user] = useAuthState(auth);
   const { isPath } = useIsPath(["202", "ustawienia"]);
@@ -31,6 +32,6 @@ const Nav = (props: Props) => {
       </ListGroup>
     </nav>
   );
-};
+});
 
 export default Nav;

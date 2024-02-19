@@ -13,13 +13,13 @@ const CollapseContainer = (props: Props) => {
   const [isOpen, setOpen] = useState(false);
 
   return (
-    <>
+    <div className="_collapse">
       <Button
         onClick={() => setOpen(prev => !prev)}
         aria-expanded={isOpen}
         aria-controls="example-collapse-text"
         size="sm"
-        className={`text-center d-block bg-primary py-2 pe-3 text-white w-100 position-relative _collapseContainer  _fs-primary _fw-semiBold _radius
+        className={`text-center d-block bg-primary py-2 pe-3 text-white w-100 position-relative _collapse__button  _fs-primary _fw-semiBold _radius
         ${isOpen ? "rounded-bottom-0" : "_radius"}`}
       >
         {props.title}
@@ -30,7 +30,7 @@ const CollapseContainer = (props: Props) => {
           {props.children}
         </div>
       </Collapse>
-    </>
+    </div>
   );
 };
 

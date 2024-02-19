@@ -5,6 +5,7 @@ import ListItemNoData from "../../listContainer/ListItemNoData";
 import ListMonthsItems from "./ListMonthsItems";
 import "./_listMonthsInCollapse.scss";
 
+
 const ListMonthsInCollapse = () => {
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
 

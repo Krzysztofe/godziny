@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
-import "./_counterHeader.scss";
 import useMonthQuery from "../../../hooks/useMonthQuery";
+import "./_counterHeader.scss";
 
 type Props = {
   counter: number | undefined;
@@ -10,9 +8,7 @@ type Props = {
 };
 
 const CounterHeader = (props: Props) => {
-  // const { month } = useSelector((state: RootState) => state.monthPanel);
   const { data: month } = useMonthQuery();
-
   const [counter, setCounter] = useState<number[]>(
     props.counter ? [props.counter] : [0]
   );

@@ -2,8 +2,9 @@ import "./_headerName.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../../data/firebaseConfig";
 import useIsPath from "../../../hooks/useIsPath";
+import { memo } from "react";
 
-const HeaderName = () => {
+const HeaderName = memo(() => {
   const [user] = useAuthState(auth);
   const { isPath } = useIsPath(["ustawienia", "202"]);
 
@@ -15,6 +16,6 @@ const HeaderName = () => {
       OZZ Inicjatywa Pracownicza
     </div>
   );
-};
+});
 
 export default HeaderName;

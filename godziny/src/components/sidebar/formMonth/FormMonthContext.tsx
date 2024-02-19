@@ -1,15 +1,12 @@
 import { Form, Formik } from "formik";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getMonthSuccess } from "../../../redux/storeFeatures/requestSuccessSlice";
+import {
+  currMonthDigits,
+  currYearDigits,
+} from "../../../data/dataCurrentDates";
 import ButtonForm from "../../buttonForm/ButtonForm";
 import InputsText from "../../inputs/inputsText/InputsText";
-import useFormikMonth from "./useFormikMonth";
 import Toast from "../../toast/Toast";
-import {
-  currYearDigits,
-  currMonthDigits,
-} from "../../../data/dataCurrentDates";
+import useFormikMonth from "./useFormikMonth";
 
 export const dataInputsText = [
   {
@@ -22,12 +19,7 @@ export const dataInputsText = [
 ];
 
 const FormMonthContext = () => {
-  const dispatch = useDispatch();
   const { initialValues, validation, onSubmit, success } = useFormikMonth();
-
-  // useEffect(() => {
-  //   dispatch(getMonthSuccess(success.isSuccess));
-  // }, [success.isSuccess, dispatch]);
 
   return (
     <Formik

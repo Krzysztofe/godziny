@@ -7,8 +7,9 @@ import "./_formSearchContext.scss";
 import useIsPath from "../../../../hooks/useIsPath";
 import { auth } from "../../../../data/firebaseConfig";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { memo } from "react";
 
-const FormSearchContext = () => {
+const FormSearchContext = memo(() => {
   const { dataInputsSelect } = useDataSearch();
   const { initialValues, onSubmit } = useFormikSearch();
   const [user] = useAuthState(auth);
@@ -17,6 +18,7 @@ const FormSearchContext = () => {
   if (!user || !isPath) return null;
 
   return (
+    
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form className={`_formSearchContext`}>
         <div className="_formSearchContext__select ms-3 m-md-auto">
@@ -30,6 +32,6 @@ const FormSearchContext = () => {
       </Form>
     </Formik>
   );
-};
+});
 
 export default FormSearchContext;

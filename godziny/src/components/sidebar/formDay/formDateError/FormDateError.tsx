@@ -1,14 +1,11 @@
 import { useFormikContext } from "formik";
-import { ModelDay } from "../../../../sharedModels/modelDay";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../redux/store";
-import { validationFormDayDate } from "./utilsFormDateError";
-import "./_formDateError.scss";
 import useMonthQuery from "../../../../hooks/useMonthQuery";
+import { ModelDay } from "../../../../sharedModels/modelDay";
+import "./_formDateError.scss";
+import { validationFormDayDate } from "./utilsFormDateError";
 
 const FormDateError = () => {
   const { values } = useFormikContext<ModelDay>();
-  // const { month } = useSelector((state: RootState) => state.monthPanel);
    const { data: month } = useMonthQuery();
   
 

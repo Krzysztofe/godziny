@@ -1,5 +1,6 @@
 import { Form, Formik } from "formik";
 import { useSelector } from "react-redux";
+import useMonthQuery from "../../../../hooks/useMonthQuery";
 import { RootState } from "../../../../redux/store";
 import ButtonForm from "../../../buttonForm/ButtonForm";
 import InputsSelect from "../../../inputs/inputsSelect/InputsSelect";
@@ -7,15 +8,14 @@ import InputsText from "../../../inputs/inputsText/InputsText";
 import Toast from "../../../toast/Toast";
 import FormDateError from "../formDateError/FormDateError";
 import FormHoursError from "../formHoursError/FormHoursError";
+import "./_formDayContext.scss";
 import useDataFormDay from "./useDataFormDay";
 import useFormikDay from "./useFormikDay";
-import "./_formDayContext.scss";
-import useMonthQuery from "../../../../hooks/useMonthQuery";
+import { memo } from "react";
 
-const FormDayContext = () => {
+const FormDayContext = memo(() => {
   const { dataInputsText, dataInputsSelect } = useDataFormDay();
   const { initialValues, validation, onSubmit, success } = useFormikDay();
-  // const { month } = useSelector((state: RootState) => state.monthPanel);
   const { data: month } = useMonthQuery();
 
   const { searchedName } = useSelector((state: RootState) => state.searchName);
@@ -49,6 +49,6 @@ const FormDayContext = () => {
       </Form>
     </Formik>
   );
-};
+});
 
 export default FormDayContext;

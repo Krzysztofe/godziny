@@ -30,8 +30,10 @@ const useFormikMonth = () => {
     const year = values.monthDate.slice(0, 4);
     const month = values.monthDate.slice(-2);
     const monthBody: ModelMonth = {
+    // const monthBody: any = {
       ...monthPattern,
       id: values.monthDate,
+      // id: Date.now(),
     };
 
     await updateMonth({ year, month, monthBody });

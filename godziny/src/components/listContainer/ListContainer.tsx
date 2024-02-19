@@ -18,7 +18,7 @@ const ListContainer = (props: Props) => {
         {props.header}: {headerCounter}
       </h3>
 
-      <ListGroup className="border-0 p-0">
+      <ListGroup>
         <ListItemNoData noData={noData} />
         {props.children}
       </ListGroup>

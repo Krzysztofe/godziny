@@ -1,7 +1,8 @@
-._collapseContainer {
-  transition: border-radius 420ms;
+._collapse {
+  max-width: 200px;
+  margin: auto;
   overflow: hidden;
-  &__wrapper {
-    overflow: hidden;
+  &__button {
+    transition: border-radius 420ms;
   }
 }

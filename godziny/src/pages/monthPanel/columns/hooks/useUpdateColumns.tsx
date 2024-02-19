@@ -1,17 +1,12 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../redux/store";
-import { addDaysToColumns } from "../utils/utilsAddDaysToColumns";
-import { ModelColumn } from "../../../../sharedModels/modelColumn";
 import useMonthQuery from "../../../../hooks/useMonthQuery";
+import { ModelColumn } from "../../../../sharedModels/modelColumn";
+import { addDaysToColumns } from "../utils/utilsAddDaysToColumns";
 
 const useUpdateColumns = (
   setColumns: React.Dispatch<React.SetStateAction<ModelColumn[]>>
 ) => {
-  // const { month } = useSelector((state: RootState) => state.monthPanel);
-   const { data: month } = useMonthQuery();
-   
-
+  const { data: month } = useMonthQuery();
   const columnsWithDays = month && addDaysToColumns(month?.columns);
 
   useEffect(() => {

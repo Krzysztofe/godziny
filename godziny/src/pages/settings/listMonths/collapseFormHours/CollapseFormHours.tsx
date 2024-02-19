@@ -18,7 +18,7 @@ const CollapseFormHours = () => {
 
   const isOpen = monthIdx === openCollapseIndex;
 
-  const handleTogle = (idx: number) => {
+  const handleTogle = (idx: number, isOpen: boolean) => {
     dispatch(setCollapseIndex(isOpen ? null : idx));
   };
 
@@ -28,7 +28,7 @@ const CollapseFormHours = () => {
         <MonthTitle />
         <Button
           onClick={() => {
-            handleTogle(monthIdx);
+            handleTogle(monthIdx, isOpen);
           }}
           aria-expanded={isOpen}
           aria-controls="example-collapse-text"

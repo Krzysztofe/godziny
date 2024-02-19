@@ -11,6 +11,7 @@ const useDeleteMonthAsync = (monthIdx: number) => {
   const dispatch = useDispatch();
   const { monthDate } = useMonthDate(monthIdx);
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
+  
   const [deleteMonth, success] = useDeleteMonthMutation();
 
   const deleteMonthAsync = async () => {

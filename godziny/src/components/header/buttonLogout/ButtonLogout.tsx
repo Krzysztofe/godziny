@@ -6,8 +6,9 @@ import useIsPath from "../../../hooks/useIsPath";
 import AlertErrors from "../../AlertErrors";
 import IconLogout from "./iconLogout/IconLogout";
 import useLogout from "./useLogout";
+import { memo } from "react";
 
-const ButtonLogout = () => {
+const ButtonLogout = memo(() => {
   const { isLoading, logout } = useLogout();
   const { btnContent } = useBtnContent(isLoading, <IconLogout />);
   const [user] = useAuthState(auth);
@@ -27,6 +28,6 @@ const ButtonLogout = () => {
       </Button>
     </>
   );
-};
+});
 
 export default ButtonLogout;

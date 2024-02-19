@@ -32,6 +32,7 @@ const FormHoursTop = () => {
       </div>
     </>
   );
+  return null
 };
 
 export default FormHoursTop;

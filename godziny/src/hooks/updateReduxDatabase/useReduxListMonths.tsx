@@ -8,12 +8,12 @@ import useDatabaseListMonths from "../../services/useDatabaseListMonths";
 
 const useReduxListMonths = () => {
   const dispatch = useDispatch();
-  const { databaseListMonths, error } = useDatabaseListMonths();
+  const { listMonths, error } = useDatabaseListMonths();
 
   useEffect(() => {
-    dispatch(getListMonths(databaseListMonths));
+    dispatch(getListMonths(listMonths));
     dispatch(getListMonthsError(error));
-  }, [databaseListMonths, dispatch]);
+  }, [listMonths, dispatch]);
 };
 
 export default useReduxListMonths;

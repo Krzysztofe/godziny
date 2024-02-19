@@ -10,7 +10,7 @@ import { database } from "../data/firebaseConfig";
 const useDatabaseListMonths = () => {
   const reference: DatabaseReference = ref(database);
   const [error, setError] = useState<string>("");
-  const [databaseListMonths, setDatabaseListMonths] = useState<string[]>([]);
+  const [listMonths, setListMonths] = useState<string[]>([]);
 
   useEffect(() => {
     const unsubscribe = onValue(
@@ -34,7 +34,7 @@ const useDatabaseListMonths = () => {
 
               nestedSnapshot.forEach((nestedKeySnapshot: DataSnapshot) => {
                 const nestedKey: string = nestedKeySnapshot.key || "";
-                keysMonths.push(nestedKey.slice(6));
+                keysMonths.push(nestedKey);
               });
 
               monthsCollection.push(keysMonths);
@@ -55,10 +55,9 @@ const useDatabaseListMonths = () => {
           .flat()
           .reverse();
 
-        setDatabaseListMonths(months);
+        setListMonths(months);
       },
       error => {
-        console.log("dtugi");
         setError("Błąd. Odśwież stronę");
       }
     );
@@ -69,7 +68,7 @@ const useDatabaseListMonths = () => {
   }, []);
 
   return {
-    databaseListMonths,
+    listMonths,
     error,
   };
 };

@@ -12,12 +12,21 @@ const ListUsers = () => {
         return (
           <ListGroup.Item
             key={user.userName}
-            className={`${dataStylesListItem} d-flex`}
+            className={`${dataStylesListItem} d-flex _overflow-hidden position-relative`}
             style={{
-              borderLeft: `8px solid ${user.userColor}`,
               color: user.userColor,
             }}
           >
+            <div
+              style={{
+                width: "10px",
+                height: "100%",
+                backgroundColor: `${user.userColor}`,
+                position: "absolute",
+                top: "0",
+                left: "0",
+              }}
+            ></div>
             <div className="ms-2">{user.userName}</div>
             <ButtonDeleteUser user={user} />
           </ListGroup.Item>

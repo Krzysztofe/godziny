@@ -1,15 +1,12 @@
 import { useFormikContext } from "formik";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../redux/store";
+import useMonthQuery from "../../../../hooks/useMonthQuery";
 import { ModelDay } from "../../../../sharedModels/modelDay";
 import "./_formHoursError.scss";
-import useMonthQuery from "../../../../hooks/useMonthQuery";
 
 const FormHoursError = () => {
   const { values } = useFormikContext<ModelDay>();
-  // const { month } = useSelector((state: RootState) => state.monthPanel);
-   const { data: month } = useMonthQuery();
-   
+  const { data: month } = useMonthQuery();
+
   const currentHours = month?.calcHours?.currentHours || 0;
 
   return (

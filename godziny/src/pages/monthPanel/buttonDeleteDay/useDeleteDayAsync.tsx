@@ -1,18 +1,13 @@
+import useMonthQuery from "../../../hooks/useMonthQuery";
+import useURLValues from "../../../hooks/useURLValues";
 import { useDeleteDayMutation } from "../../../services/apiSliceMonths";
 import { ModelDay } from "../../../sharedModels/modelDay";
-import useURLValues from "../../../hooks/useURLValues";
-import { deleteDayById, calculateUpdatedCalcHours } from "./utilsDeleteDay";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
-import useMonthQuery from "../../../hooks/useMonthQuery";
+import { calculateUpdatedCalcHours, deleteDayById } from "./utilsDeleteDay";
 
 const useDeleteDayAsync = (day: ModelDay, columnIndex: number) => {
-  // const { month } = useSelector((state: RootState) => state.monthPanel);
-   const { data: month } = useMonthQuery();
- 
+  const { data: month } = useMonthQuery();
   const [deleteDay, success] = useDeleteDayMutation();
   const { yearFromURL, monthFromURL } = useURLValues();
-  
 
   const deleteDayAsync = async () => {
     const subtractedHours = day?.hours;

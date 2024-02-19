@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
+import useMonthQuery from "../../../hooks/useMonthQuery";
 import { ModelColumn } from "../../../sharedModels/modelColumn";
 import Column from "../column/Column";
 import "./_columns.scss";
@@ -9,13 +8,10 @@ import useUpdateColumns from "./hooks/useUpdateColumns";
 import useUpdateMonth from "./hooks/useUpdateMonth";
 import { handleDragDrop } from "./utils/utilsHandleDragDrop";
 import { playDragSound } from "./utils/utilsPlayDragSound";
-import useMonthQuery from "../../../hooks/useMonthQuery";
 const click = require("../../../asets/dragSound.wav");
 
 const Columns = () => {
-  // const { month } = useSelector((state: RootState) => state.monthPanel);
-   const { data: month } = useMonthQuery();
-   
+  const { data: month } = useMonthQuery();
   const [columns, setColumns] = useState<ModelColumn[]>([]);
   const [executeUpdateMonth, setExecuteUpdateMonth] = useState(false);
   const audioElem = useRef<HTMLAudioElement>(null);

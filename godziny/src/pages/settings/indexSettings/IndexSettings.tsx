@@ -14,6 +14,7 @@ const IndexSettings = () => {
   const { listMonthsError } = useSelector(
     (state: RootState) => state.listMonths
   );
+
   const { updateMonthError } = useSelector(
     (state: RootState) => state.monthPanel
   );

@@ -5,7 +5,7 @@ import {
   getCalcHours,
   getCalcHoursError,
   getCalcHoursIsLoading,
-} from "../../redux/storeFeatures/calcHursSlice";
+} from "../../redux/storeFeatures/calcHoursSlice";
 
 const useReduxCalcHours = (yearValue: string, monthValue: string) => {
   const dispatch = useDispatch();
@@ -17,8 +17,9 @@ const useReduxCalcHours = (yearValue: string, monthValue: string) => {
     year: yearValue ?? "",
     month: monthValue ?? "",
   });
-  
+
   useEffect(() => {
+    
     dispatch(getCalcHours(calcHours));
     dispatch(getCalcHoursError(error));
     dispatch(getCalcHoursIsLoading(isLoading));

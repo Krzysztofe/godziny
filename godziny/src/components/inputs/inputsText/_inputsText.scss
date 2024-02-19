@@ -1,6 +1,7 @@
 @import "../../../scss/mixins";
 
 ._inputsColor {
+  background-color: rgb(224, 204, 225) !important;
   height: 35.7px !important;
 
   @include lg {

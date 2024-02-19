@@ -1,11 +1,9 @@
 import { useEffect } from "react";
-import { ModelColumn } from "../../../../sharedModels/modelColumn";
-import { getHoursFromColumns } from "../utils/utilsGetHoursFromColumns";
+import useMonthQuery from "../../../../hooks/useMonthQuery";
 import useURLValues from "../../../../hooks/useURLValues";
 import { useUpdateMonthMutation } from "../../../../services/apiSliceMonths";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../redux/store";
-import useMonthQuery from "../../../../hooks/useMonthQuery";
+import { ModelColumn } from "../../../../sharedModels/modelColumn";
+import { getHoursFromColumns } from "../utils/utilsGetHoursFromColumns";
 
 const useUpdateMonth = (
   columns: ModelColumn[],
@@ -13,8 +11,6 @@ const useUpdateMonth = (
 ) => {
   const { yearFromURL, monthFromURL } = useURLValues();
   const [updateMonth] = useUpdateMonthMutation();
-  // const { month } = useSelector((state: RootState) => state.monthPanel);
-
   const { data: month } = useMonthQuery();
 
 
