@@ -70,6 +70,9 @@ Live recording of the application presentation during the conclusion of the comp
 * Million.js
 
 * React hooks: <br/> useState, useEffect, useRef, <br/> useDispatch, useSelector, useContext,<br/> useNavigate, useParams, useLocation, <br/> useAuthState, useFormikContext, custom hooks
+
+* Memoization: <br/> memo, useMemo 
+
 * Libraries: <br/>
 react-router, react-router-dom, react-router-hash-link, history, <br/>
 react-firebase-hooks, react-beautiful-dnd, <br/>
