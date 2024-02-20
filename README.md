@@ -84,7 +84,7 @@ react-redux, @reduxjs/toolkit, <br/>
 formik, yup, <br/>
 react-bootstrap, react-icons
 
-
+* Firebase config in singleton pattern
 
 
 
