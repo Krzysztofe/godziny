@@ -4,7 +4,6 @@ import listMonthsSlice from "./storeFeatures/listMonthsSlice";
 import alertSlice from "./storeFeatures/alertSlice";
 import searchNameSlice from "./storeFeatures/searchNameSlice";
 import calcHursSlice from "./storeFeatures/calcHoursSlice";
-import requestSuccessSlice from "./storeFeatures/requestSuccessSlice";
 import { usersApiSlice } from "../services/apiSliceUsers";
 import { monthsApiSlice } from "../services/apiSliceMonths";
 
@@ -14,7 +13,6 @@ export const store = configureStore({
     listMonths: listMonthsSlice,
     alert: alertSlice,
     calcHours: calcHursSlice,
-    requestSuccess: requestSuccessSlice,
     searchName: searchNameSlice,
     [monthsApiSlice.reducerPath]: monthsApiSlice.reducer,
     [usersApiSlice.reducerPath]: usersApiSlice.reducer,

@@ -1,6 +1,6 @@
 import { Suspense, lazy } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../data/firebaseConfig";
+import FirebaseSingleton from "../data/firebaseConfig";
 import LoadingPage from "../pages/loadingPage/LoadingPage";
 import "../scss/App.scss";
 import AppRoutes from "./AppRoutes";
@@ -12,14 +12,16 @@ const IndexSidebar = lazy(
 );
 
 function App() {
-  const [user] = useAuthState(auth);
+  const firebaseInstance = FirebaseSingleton.getInstance();
+  const auth = firebaseInstance.auth;
+  
+  const [user] = useAuthState(auth!);
   const { isPath } = useIsPath(["ustawienia", "202"]);
-
 
   return (
     <Suspense fallback={<LoadingPage />}>
       <Header />
-      {user && (isPath) && <IndexSidebar />}
+      {user && isPath && <IndexSidebar />}
       <AppRoutes />
     </Suspense>
   );

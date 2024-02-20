@@ -6,7 +6,7 @@ import {
   currMonthDigits,
   currYearDigits,
 } from "../../../data/dataCurrentDates";
-import { auth } from "../../../data/firebaseConfig";
+import FirebaseSingleton from "../../../data/firebaseConfig";
 import { printAlert } from "../../../redux/storeFeatures/alertSlice";
 
 type InitialValues = {
@@ -16,6 +16,8 @@ type InitialValues = {
 const useFormikLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const firebaseInstance = FirebaseSingleton.getInstance();
+  const auth = firebaseInstance.auth;
   const [isLoading, setIsLoading] = useState(false);
 
   const initialValues = { password: "wwwwww" };
@@ -23,7 +25,7 @@ const useFormikLogin = () => {
   const onSubmit = async (values: InitialValues) => {
     setIsLoading(true);
     try {
-      await signInWithEmailAndPassword(auth, "ww@wp.pl", values.password);
+      await signInWithEmailAndPassword(auth!, "ww@wp.pl", values.password);
       navigate(`/${currYearDigits}-${currMonthDigits}`);
     } catch (error: any) {
       dispatch(printAlert(error.message));

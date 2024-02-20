@@ -1,11 +1,13 @@
 import "./_headerName.scss";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../../data/firebaseConfig";
+import FirebaseSingleton from "../../../data/firebaseConfig";
 import useIsPath from "../../../hooks/useIsPath";
 import { memo } from "react";
 
 const HeaderName = memo(() => {
-  const [user] = useAuthState(auth);
+  const firebaseInstance = FirebaseSingleton.getInstance();
+  const auth = firebaseInstance.auth;
+  const [user] = useAuthState(auth!);
   const { isPath } = useIsPath(["ustawienia", "202"]);
 
   const printTitle =

@@ -5,10 +5,13 @@ import {
   DatabaseReference,
 } from "firebase/database";
 import { useEffect, useState } from "react";
-import { database } from "../data/firebaseConfig";
+import FirebaseSingleton from "../data/firebaseConfig";
 
 const useDatabaseListMonths = () => {
-  const reference: DatabaseReference = ref(database);
+  const firebaseInstance = FirebaseSingleton.getInstance();
+  const database = firebaseInstance.database;
+
+  const reference: DatabaseReference = ref(database!);
   const [error, setError] = useState<string>("");
   const [listMonths, setListMonths] = useState<string[]>([]);
 
@@ -24,7 +27,7 @@ const useDatabaseListMonths = () => {
           keysYears.push(firstLevelKey);
 
           const nestedKeysRef: DatabaseReference = ref(
-            database,
+            database!,
             `${firstLevelKey}`
           );
           onValue(

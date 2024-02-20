@@ -3,7 +3,7 @@ import { URL_MONTHS_DATA } from "../data/URL";
 import { ModelMonth } from "../sharedModels/modelMonth";
 import { ModelCalcHours } from "../sharedModels/modelCalcHours";
 import "firebase/auth";
-import { auth } from "../data/firebaseConfig";
+// import { auth } from "../data/firebaseConfig";
 
 const createUrl = (year: string, month: string, suffix = "") =>
   `/${year}/${month}${suffix}.json`;

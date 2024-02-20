@@ -1,7 +1,7 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import useDataNav from "./useDataNav";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../../data/firebaseConfig";
+import FirebaseSingleton from "../../../data/firebaseConfig";
 import useIsPath from "../../../hooks/useIsPath";
 import { memo } from "react";
 
@@ -10,8 +10,10 @@ type Props = {
 };
 
 const Nav = memo((props: Props) => {
+  const firebaseInstance = FirebaseSingleton.getInstance();
+  const auth = firebaseInstance.auth;
   const { dataSidebarNavItems } = useDataNav();
-  const [user] = useAuthState(auth);
+  const [user] = useAuthState(auth!);
   const { isPath } = useIsPath(["202", "ustawienia"]);
 
   if (!user || !isPath) return null;

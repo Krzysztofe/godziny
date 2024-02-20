@@ -5,14 +5,16 @@ import useDataSearch from "../useDataSearch";
 import useFormikSearch from "../useFormikSearch";
 import "./_formSearchContext.scss";
 import useIsPath from "../../../../hooks/useIsPath";
-import { auth } from "../../../../data/firebaseConfig";
+import FirebaseSingleton from "../../../../data/firebaseConfig";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { memo } from "react";
 
 const FormSearchContext = memo(() => {
+  const firebaseInstance = FirebaseSingleton.getInstance();
+  const auth = firebaseInstance.auth;
   const { dataInputsSelect } = useDataSearch();
   const { initialValues, onSubmit } = useFormikSearch();
-  const [user] = useAuthState(auth);
+  const [user] = useAuthState(auth!);
   const { isPath } = useIsPath(["202"]);
 
   if (!user || !isPath) return null;

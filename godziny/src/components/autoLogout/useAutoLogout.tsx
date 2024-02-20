@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { auth } from "../../data/firebaseConfig";
+import FirebaseSingleton from "../../data/firebaseConfig";
 
 const useAutoLogout = () => {
+  const firebaseInstance = FirebaseSingleton.getInstance();
+  const auth = firebaseInstance.auth;
   const [secondsRemaining, setSecondsRemaining] = useState(61);
 
   let expireTime = 0;
@@ -11,7 +13,7 @@ const useAutoLogout = () => {
     setSecondsRemaining(remaining);
 
     if (expireTime < Date.now()) {
-      auth.signOut();
+      auth?.signOut();
     }
   };
 

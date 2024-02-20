@@ -1,9 +1,6 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getDatabase } from "firebase/database";
-
-
-
+import { FirebaseApp, initializeApp } from "firebase/app";
+import { Auth, getAuth } from "firebase/auth";
+import { Database, getDatabase } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB63Mmz9Gv6J2G3hjyNCNN4I6hh29vQG-c",
@@ -17,7 +14,28 @@ const firebaseConfig = {
   measurementId: "G-ZHWC8RSWPQ",
 };
 
-export const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const database = getDatabase(app);
+class FirebaseSingleton {
+  app: FirebaseApp | null = null;
+  auth: Auth | null = null;
+  database: Database | null = null;
+  static instance: FirebaseSingleton | null = null;
 
+  constructor() {
+    this.initializeApp();
+  }
+
+  initializeApp() {
+    this.app = initializeApp(firebaseConfig);
+    this.auth = getAuth(this.app);
+    this.database = getDatabase(this.app);
+  }
+
+  static getInstance() {
+    if (!FirebaseSingleton.instance) {
+      FirebaseSingleton.instance = new FirebaseSingleton();
+    }
+    return FirebaseSingleton.instance;
+  }
+}
+
+export default FirebaseSingleton;
