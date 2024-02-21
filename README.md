@@ -32,6 +32,10 @@ Live recording of the application presentation during the conclusion of the comp
 
  <div align="center">
   <img src="https://github.com/Krzysztofe/godziny/assets/96065197/2d76af0e-c3d9-4cdf-9b9a-eb0bdecc945d" alt="html5" width="504" height="300"/> 
+</div> <br/>
+
+ <div align="center">
+  <img src="https://github.com/Krzysztofe/godziny/assets/96065197/04c9c0d2-a4b9-43d4-a07e-3036b6edd5ee" alt="html5" width="250" height="100" margin = "30"/> 
 </div>
 
 ## Mobile
@@ -80,7 +84,7 @@ react-redux, @reduxjs/toolkit, <br/>
 formik, yup, <br/>
 react-bootstrap, react-icons
 
-
+* Firebase config in singleton pattern
 
 
 
