@@ -20,7 +20,7 @@ class FirebaseSingleton {
   database: Database | null = null;
   static instance: FirebaseSingleton | null = null;
 
-  constructor() {
+  private constructor() {
     this.initializeApp();
   }
 
