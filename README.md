@@ -103,7 +103,7 @@ react-bootstrap, react-icons
 
 
 
-* To optimize data retrieval from the database and at the same have access to a list of dates of all saved months in database, a snapshot from the Realtime Database is utilized. This snapshot relies on a WebSocket connection, which, when functioning correctly, results in an HTTP 101 response code. The snapshot listener retrieves keys from the database, encompassing only data of recorded years and months. Subsequently, these keys are transferred to an array, forming a list of months printed in settings panel. This approach restricts HTTP requests to the database to all years and months, without fetching the rest of the data recorded for each month.
+* To optimize data retrieval from the database and at the same have access to a list of dates of all saved months in database, a snapshot from the Realtime Database is utilized. This snapshot relies on a WebSocket connection, which results in an HTTP 101 response code. The snapshot listener retrieves keys from the database, encompassing only data of recorded years and months. Subsequently, these keys are transferred to an array, forming a list of months printed in settings panel. This approach restricts HTTP requests to the database only to keys of recorded years and months, without fetching the rest of the data recorded for each year and month.
 
 
 * To achieve global access to variables and functions, Redux Toolkit was implemented. However, to avoid prop drilling within components in lists iterated by the map() method, local Context was utilized.
