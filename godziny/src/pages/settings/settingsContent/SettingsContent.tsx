@@ -7,6 +7,7 @@ import ListMonths from "../listMonths/ListMonths";
 import ListUsers from "../listUsers/ListUsers";
 import "./_settingsContent.scss";
 import useDatabaseListMonths from "../../../services/useDatabaseListMonths";
+import HeaderList from "../../../components/HeaderList";
 
 const SettingsContent = () => {
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
@@ -17,11 +18,12 @@ const SettingsContent = () => {
     <>
       <div className="_settingsContent pb-4">
         <BorderInline />
-        <ListContainer header={"Zapisane miesiące"} listContent={listMonths}>
+        <HeaderList header={"Zapisane miesiące"} listContent={listMonths} />
+        <ListContainer listContent={listMonths}>
           <ListMonths />
         </ListContainer>
-
-        <ListContainer header={"Zapisani użytkownicy"} listContent={listUsers}>
+        <HeaderList header={"Zapisani użytkownicy"} listContent={listUsers} />
+        <ListContainer listContent={listUsers}>
           <ListUsers />
         </ListContainer>
       </div>

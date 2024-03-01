@@ -6,13 +6,9 @@ import FormSearchContext from "../formSearch/formSearchContext/FormSearchContext
 import HeaderName from "../headerName/HeaderName";
 import "./_header.scss";
 
-
-
 const Header = () => {
   useReduxListMonths();
   useUsersQuery();
-
-
 
   return (
     <header className="w-100 d-flex align-items-center border-bottom fs-3 position-relative _header">
@@ -24,6 +20,6 @@ const Header = () => {
       </div>
     </header>
   );
-}
+};
 
 export default Header;

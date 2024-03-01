@@ -14,7 +14,7 @@ const FormLoginContext = () => {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form
-        className={`border p-5 rounded-1 _bg-opacity-white _formLoginContext _d-center _anim-dropDown`}
+        className={`border p-5 rounded-1 _bg-opacity-white _formLoginContext _d-center `}
       >
         <div>
           <div className="text-center fs-2 fw-medium mb-4 ">Podaj hasło</div>
