@@ -14,7 +14,6 @@ const useDatabaseListMonths = () => {
   const reference: DatabaseReference = ref(database!);
   const [error, setError] = useState<string>("");
   const [listMonths, setListMonths] = useState<string[]>([]);
- console.log("ee", listMonths);
 
   useEffect(() => {
     const unsubscribe = onValue(
@@ -22,7 +21,6 @@ const useDatabaseListMonths = () => {
       (snapshot: DataSnapshot) => {
         let keysYears: string[] = [];
         let monthsCollection: string[][] = [];
-          console.log("ee", snapshot);
 
         snapshot.forEach((firstLevelSnapshot: DataSnapshot) => {
           const firstLevelKey: string = firstLevelSnapshot.key || "";

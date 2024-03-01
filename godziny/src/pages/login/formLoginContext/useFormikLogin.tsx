@@ -62,9 +62,9 @@ const useFormikLogin = () => {
   const firebaseInstance = FirebaseSingleton.getInstance();
   const auth = firebaseInstance.auth;
   const [isLoading, setIsLoading] = useState(false);
-  const email = "danfoss999@wp.pl";
+  const email = "ww@wp.pl";
 
-  const initialValues = { password: "997kazik" };
+  const initialValues = { password: "wwwwww" };
 
   const onSubmit = async (values: InitialValues) => {
     setIsLoading(true);

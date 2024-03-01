@@ -57,6 +57,7 @@ const InputsText = (props: Props) => {
                 value={values[value as keyof typeof values]}
                 onChange={e => setFieldValue(value, e.target.value)}
                 onBlur={handleBlur}
+                autoComplete="new-password"
                 min={min}
                 max={max}
                 placeholder={placeholder}
