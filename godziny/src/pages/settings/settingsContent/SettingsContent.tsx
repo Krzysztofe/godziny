@@ -6,7 +6,7 @@ import { useUsersQuery } from "../../../services/apiSliceUsers";
 import ListMonths from "../listMonths/ListMonths";
 import ListUsers from "../listUsers/ListUsers";
 import "./_settingsContent.scss";
-import useDatabaseListMonths from "../../../services/useDatabaseListMonths";
+
 import HeaderList from "../../../components/HeaderList";
 
 const SettingsContent = () => {

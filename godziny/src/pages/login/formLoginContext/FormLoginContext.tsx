@@ -3,6 +3,7 @@ import ButtonForm from "../../../components/buttonForm/ButtonForm";
 import InputsText from "../../../components/inputs/inputsText/InputsText";
 import "./_formLoginContext.scss";
 import useFormikLogin from "./useFormikLogin";
+import InputAccessability from "./InputAccessability";
 
 const dataInputsText = [
   { value: "password", type: "password", isErrorPrint: true },
@@ -17,9 +18,9 @@ const FormLoginContext = () => {
         className={`border p-5 rounded-1 _bg-opacity-white _formLoginContext _d-center `}
       >
         <div>
+          <InputAccessability />
           <div className="text-center fs-2 fw-medium mb-4 ">Podaj hasło</div>
           <InputsText inputsData={dataInputsText} />
-
           <ButtonForm
             isLoading={isLoading}
             text={"Zaloguj"}
