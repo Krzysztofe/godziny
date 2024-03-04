@@ -6,12 +6,26 @@
 
 - The application have only a login function as it is intended for a predetermined number of council members, ranging from 5 to 20 individuals.
 - After logging in, the user is redirected to the URL corresponding to the current month.
+
+
 - Next, the user need to submit the basic month structure in settings panel.
 - Then, the user provides the number of all hours available for utilization in the given month for all presidium of a council.
+
+   <div align="center">
+  <img src="https://github.com/Krzysztofe/godziny/assets/96065197/eeb6f205-209c-4bfe-a7c6-c072f8776c0f" alt="html5" width="450" height="200" /> 
+</div> <br/>
+
 - Subsequently in month panel, the users can fill in the details form about the days on which will use the union hours. The data for each day will be saved on a tile within the respective "submited hours" column.
+
 - Once the hours are approved or rejected by the management of the workplace, the users can move the tile to the appropriate column.
 - If necessary, the user can delete tiles from a column.
 - The total hours, submited hours, remaining hours available for all uses are calculated in real-time.
+
+
+   <div align="center">
+  <img src="https://github.com/Krzysztofe/godziny/assets/96065197/c84fe56f-b378-4ef6-8792-678872fde26a" alt="html5" width="450" height="200" /> 
+</div> <br/>
+
 - If multiple months are created, the user can view the records specific to a particular month.
 - To record hours for a specific month, the user must submit their name and specify their color whch represent color of the tile in the settings panel. Then user's name will automatically appear in the select input field within the form for specifying the number of hours in mnthpanel.
 - In the settings panel, users and months can also be deleted.
