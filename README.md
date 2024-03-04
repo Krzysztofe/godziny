@@ -28,8 +28,16 @@
 </div> <br/>
 
 - If multiple months are created, the user can view the records specific to a particular month.
-- To record hours for a specific month, the user must submit their name and specify their color whch represent color of the tile in the settings panel. Then user's name will automatically appear in the select input field within the form for specifying the number of hours in mnthpanel.
 - In the settings panel, users and months can also be deleted.
+
+
+
+   <div align="center">
+  <img src="https://github.com/Krzysztofe/godziny/assets/96065197/92e03c91-e86d-4bb7-a8f6-958551a993c5" alt="html5" width="450" height="200" /> 
+</div> <br/>
+
+- To record hours for a specific month, the user must submit their name and specify their color whch represent color of the tile in the settings panel. Then user's name will automatically appear in the select input field within the form for specifying the number of hours in mnthpanel.
+
 
   ##
 
