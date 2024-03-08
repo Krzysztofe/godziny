@@ -17,7 +17,6 @@ const FormDayContext = () => {
   const { dataInputsText, dataInputsSelect } = useDataFormDay();
   const { initialValues, validation, onSubmit, success } = useFormikDay();
   const { data: month } = useMonthQuery();
-
   const { searchedName } = useSelector((state: RootState) => state.searchName);
 
   const isSearching =

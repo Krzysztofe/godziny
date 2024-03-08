@@ -4,14 +4,12 @@ type ModelInitialState = {
   listMonths: string[] | undefined | null;
   listMonthsError: string | null;
   openCollapseIndex: number | null;
-  UID: string;
 };
 
 const initialState: ModelInitialState = {
   listMonths: null,
   listMonthsError: null,
   openCollapseIndex: null,
-  UID: "",
 };
 
 export const listMonthsSlice = createSlice({
@@ -30,7 +28,6 @@ export const listMonthsSlice = createSlice({
     setCollapseIndex: (state, action: PayloadAction<number | null>) => {
       state.openCollapseIndex = action.payload;
     },
-  
   },
 });
 

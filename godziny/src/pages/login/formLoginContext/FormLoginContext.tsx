@@ -15,7 +15,7 @@ const FormLoginContext = () => {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form
-        className={`border p-5 rounded-1 _bg-opacity-white _formLoginContext _d-center `}
+        className={`border p-5 rounded-1 _bg-opacity-white _formLoginContext _d-center _anim-dropDown`}
       >
         <div>
           <InputAccessability />
