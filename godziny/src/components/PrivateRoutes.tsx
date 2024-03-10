@@ -1,12 +1,8 @@
-import { useAuthState } from "react-firebase-hooks/auth";
 import { Navigate, Outlet } from "react-router-dom";
-import FirebaseSingleton from "../data/firebaseConfig";
+import useFirebaseConfig from "../hooks/useFirebaseConfig";
 
 const PrivateRoutes = () => {
-  const firebaseInstance = FirebaseSingleton.getInstance();
-  const auth = firebaseInstance.auth;
-  
-  const [user] = useAuthState(auth!);
+  const { user } = useFirebaseConfig();
 
   return user ? <Outlet /> : <Navigate to="/" />;
 };

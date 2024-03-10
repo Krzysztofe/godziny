@@ -10,11 +10,13 @@ type Props = {
   inputsValues: string[];
 };
 
+const maxiHoursDivided = 3.2;
+
 const InputsRange = (props: Props) => {
   const { values, handleBlur, setFieldValue } =
     useFormikContext<ModelFormValues>();
 
-  const gradientValue = values.allHours / 3.2;
+  const gradientValue = values.allHours / maxiHoursDivided;
   const gradientBackground: string = `linear-gradient(to right,  rgb(110, 110, 110)${gradientValue}%, rgb(239, 239, 239) ${gradientValue}%)`;
 
   return (

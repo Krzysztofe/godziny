@@ -1,19 +1,16 @@
+import { memo } from "react";
 import Button from "react-bootstrap/Button";
-import { useAuthState } from "react-firebase-hooks/auth";
-import FirebaseSingleton from "../../../data/firebaseConfig";
 import useBtnContent from "../../../hooks/useBtnContent";
+import useFirebaseConfig from "../../../hooks/useFirebaseConfig";
 import useIsPath from "../../../hooks/useIsPath";
 import AlertErrors from "../../AlertErrors";
 import IconLogout from "./iconLogout/IconLogout";
 import useLogout from "./useLogout";
-import { memo } from "react";
 
 const ButtonLogout = memo(() => {
-  const firebaseInstance = FirebaseSingleton.getInstance();
-  const auth = firebaseInstance.auth;
   const { isLoading, logout } = useLogout();
   const { btnContent } = useBtnContent(isLoading, <IconLogout />);
-  const [user] = useAuthState(auth!);
+  const { user } = useFirebaseConfig();
   const { isPath } = useIsPath(["ustawienia", "202"]);
 
   if (!user || !isPath) return null;

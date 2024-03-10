@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import FirebaseSingleton from "../../data/firebaseConfig";
+import useFirebaseConfig from "../../hooks/useFirebaseConfig";
+
+const dataRemainingSeconds = 61;
 
 const useAutoLogout = () => {
-  const firebaseInstance = FirebaseSingleton.getInstance();
-  const auth = firebaseInstance.auth;
-  const [secondsRemaining, setSecondsRemaining] = useState(61);
+  const { auth } = useFirebaseConfig();
+  const [secondsRemaining, setSecondsRemaining] =
+    useState(dataRemainingSeconds);
 
   let expireTime = 0;
 

@@ -1,12 +1,11 @@
 import { useState } from "react";
-import FirebaseSingleton from "../../../data/firebaseConfig";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import useFirebaseConfig from "../../../hooks/useFirebaseConfig";
 import { printAlert } from "../../../redux/storeFeatures/alertSlice";
 
 const useLogout = () => {
-  const firebaseInstance = FirebaseSingleton.getInstance();
-  const auth = firebaseInstance.auth;
+  const { auth } = useFirebaseConfig();
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();

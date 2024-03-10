@@ -1,14 +1,14 @@
 import {
-  onValue,
-  ref,
   DataSnapshot,
   DatabaseReference,
+  onValue,
+  ref,
 } from "firebase/database";
 import { useEffect, useState } from "react";
-import FirebaseSingleton from "../data/firebaseConfig";
+import useFirebaseConfig from "../hooks/useFirebaseConfig";
 
 const useDatabaseListMonths = () => {
-  const firebaseInstance = FirebaseSingleton.getInstance();
+  const { firebaseInstance } = useFirebaseConfig();
   const database = firebaseInstance.database;
 
   const reference: DatabaseReference = ref(database!);

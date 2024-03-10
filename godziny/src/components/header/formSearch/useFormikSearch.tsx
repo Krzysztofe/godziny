@@ -1,5 +1,3 @@
-
-
 const useFormikSearch = () => {
   const initialValues = {
     searchedName: "",
