@@ -5,19 +5,22 @@ import useIsPath from "../../../../hooks/useIsPath";
 import InputsSelect from "../../../inputs/inputsSelect/InputsSelect";
 import GetOnChangeValues from "../GetOnChangeValues";
 import useDataSearch from "../useDataSearch";
-import useFormikSearch from "../useFormikSearch";
 import "./_formSearchContext.scss";
 
 const FormSearchContext = memo(() => {
   const { user } = useFirebaseConfig();
   const { dataInputsSelect } = useDataSearch();
-  const { initialValues, onSubmit } = useFormikSearch();
   const { isPath } = useIsPath(["202"]);
 
   if (!user || !isPath) return null;
 
   return (
-    <Formik initialValues={initialValues} onSubmit={onSubmit}>
+    <Formik
+      initialValues={{
+        searchedName: "",
+      }}
+      onSubmit={() => {}}
+    >
       <Form className={`_formSearchContext`}>
         <div className="_formSearchContext__select ms-3 m-md-auto">
           <InputsSelect
