@@ -17,8 +17,6 @@ const ButtonDeleteDay = () => {
   );
   const { btnContent } = useBtnContent(success.isLoading, <IconTrash />);
 
-  if (!day) return null;
-
   return (
     <>
       {alert}

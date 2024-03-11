@@ -47,7 +47,7 @@ const InputsText = (props: Props) => {
           return (
             <Form.Group key={value} className=" mt-2 position-relative">
               <LabelContext.Provider value={{ value, labelCover }}>
-                <InputsTextLabel />
+                {labelCover && <InputsTextLabel />}
               </LabelContext.Provider>
 
               <Form.Control

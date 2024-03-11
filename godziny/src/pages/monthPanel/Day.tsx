@@ -41,7 +41,7 @@ const Day = () => {
                 opacity: snapshot.isDragging ? 0.6 : 1,
               }}
             >
-              <DayDetails />
+              {day && <DayDetails />}
               <ButtonDeleteDay />
             </div>
           </div>

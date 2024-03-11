@@ -5,7 +5,6 @@ import ListItemNoData from "../../listContainer/ListItemNoData";
 import ListMonthsItems from "./ListMonthsItems";
 import "./_listMonthsInCollapse.scss";
 
-
 const ListMonthsInCollapse = () => {
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
 
@@ -13,7 +12,7 @@ const ListMonthsInCollapse = () => {
 
   return (
     <ListGroup className="_scrolHidden _ListMonthsInCollapse _fs-primary py-1 ">
-      <ListItemNoData noData={noData} styles={"_noDataStyles"} />
+      {noData && <ListItemNoData styles={"_noDataStyles"} />}
       <ListMonthsItems />
     </ListGroup>
   );

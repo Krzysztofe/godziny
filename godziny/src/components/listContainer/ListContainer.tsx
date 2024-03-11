@@ -12,7 +12,7 @@ const ListContainer = (props: Props) => {
 
   return (
     <ListGroup>
-      <ListItemNoData noData={noData} />
+      {noData && <ListItemNoData/>}
       {props.children}
     </ListGroup>
   );

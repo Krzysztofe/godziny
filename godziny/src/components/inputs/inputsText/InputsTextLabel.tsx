@@ -3,10 +3,9 @@ import InputsCover from "./labelCover/InputsCover";
 import { useContext } from "react";
 import { LabelContext } from "./InputsText";
 
-const InputsTextLabel = () => {
-  const { labelCover, value } = useContext(LabelContext);
 
-  if (labelCover === undefined) return null;
+const InputsTextLabel = () => {
+  const { value } = useContext(LabelContext);
 
   return (
     <Form.Label htmlFor={value} className="position-absolute w-100">
