@@ -94,7 +94,6 @@ Live recording of the application presentation during the conclusion of the comp
 * Lazy loading
 * Router
 * RegExp
-* Million.js
 
 * React hooks: <br/> useState, useEffect, useRef, <br/> useDispatch, useSelector, useContext,<br/> useNavigate, useParams, useLocation, <br/> useAuthState, useFormikContext, custom hooks
 
