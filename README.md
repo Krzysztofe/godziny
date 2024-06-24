@@ -48,7 +48,7 @@ Live recording of the application presentation during the conclusion of the comp
 ![Zrzut ekranu (208)](https://github.com/Krzysztofe/godziny/assets/96065197/7e2aa8bb-a065-4f4f-bc3d-a3da0b506897)
 
   ##
-## Production version for users deployed on home server <a href = "https://godziny.ozzip.pl/"> here --></a>
+## Production version for users deployed on home.pl server <a href = "https://godziny.ozzip.pl/"> here --></a>
 ## Demo <a href = "https://krzysztofe.github.io/godziny/"> here --></a>
 
 ## Desktop
