@@ -17,6 +17,7 @@ const ButtonDeleteUser = (props: Props) => {
     deleteUserAsync,
     `Usunąć użytkownika ?`
   );
+  
   const { btnContent } = useBtnContent(success.isLoading, <IconTrash />);
 
   const getUserName = (name: string) => setUserName(name);

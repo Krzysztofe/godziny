@@ -5,6 +5,8 @@ type Props = {
 };
 
 const ButtonAlertAccept = (props: Props) => {
+
+
   return (
     <Button
       id="noButton"

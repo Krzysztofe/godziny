@@ -1,5 +1,4 @@
 import { FormikHelpers } from "formik";
-import { v4 as UUID } from "uuid";
 import * as yup from "yup";
 import { useAddUserMutation, useUsersQuery } from "../../../services/apiSliceUsers";
 import { ModelUser } from "../../../sharedModels/modelUser";
@@ -30,14 +29,9 @@ const useFormikUser = () => {
     const userValues = {
       ...values,
       userName: capitalizeFirstLetter(values.userName),
-      id: UUID(),
     };
 
-    const sortedUsers = [...users, userValues].sort((a, b) =>
-      a.userName.localeCompare(b.userName)
-    );
-
-    await addUser(sortedUsers);
+    await addUser(userValues);
     resetForm();
   };
 

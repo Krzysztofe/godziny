@@ -10,12 +10,13 @@ const useDeleteUserAsync = (userName: string) => {
   const [deleteUser, success] = useDeleteUserMutation();
 
   const deleteUserAsync = async () => {
-    if (userName) {
-      const userBodyPUTRequest = listUsers?.filter(
-        (user: ModelUser) => user?.userName !== userName
-      );
-      userBodyPUTRequest && (await deleteUser(userBodyPUTRequest));
-    }
+    if (!userName || !listUsers) return;
+
+    const userToDelete = listUsers.find(
+      (user: ModelUser) => user.userName === userName
+    );
+
+    if (userToDelete) await deleteUser(userToDelete.id);
   };
 
   return { deleteUserAsync, success };

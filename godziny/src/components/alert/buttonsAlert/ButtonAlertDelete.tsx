@@ -5,6 +5,8 @@ type Props = {
 };
 
 const ButtonAlertDelete = (props: Props) => {
+
+
   return (
     <>
       <Button id="noButton" className="_radius bg-dark border-0 px-4 px-sm-5">
