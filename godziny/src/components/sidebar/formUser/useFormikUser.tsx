@@ -8,13 +8,9 @@ import useValidationUserForm from "./useValidationFormUser";
 const useFormikUser = () => {
   const [addUser, success] = useAddUserMutation();
   const { validationSchema } = useValidationUserForm();
-  const { data: listUsers } = useUsersQuery();
 
-
-  const users = listUsers || [];
 
   const initialValues = {
-    id: "",
     userName: "",
     userColor: "#e0cce1",
   };
@@ -22,8 +18,8 @@ const useFormikUser = () => {
   const validation = validationSchema as yup.ObjectSchema<typeof initialValues>;
   
   const onSubmit = async (
-    values: ModelUser,
-    { resetForm }: FormikHelpers<ModelUser>
+    values: Omit<ModelUser, "id">,
+    { resetForm }: FormikHelpers<Omit<ModelUser, "id">>,
   ) => {
     
     const userValues = {
@@ -31,11 +27,13 @@ const useFormikUser = () => {
       userName: capitalizeFirstLetter(values.userName),
     };
 
-    await addUser(userValues);
+    await addUser(userValues);   
     resetForm();
   };
 
-  return { initialValues, validation, onSubmit, success };
+ const error = success.isError
+
+  return { initialValues, validation, onSubmit, success, error };
 };
 
 export default useFormikUser;

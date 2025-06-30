@@ -27,7 +27,7 @@ export const usersApiSlice = createApi({
     //   invalidatesTags: ["users"],
     // }),
 
-    addUser: builder.mutation<void, ModelUser>({
+    addUser: builder.mutation<void, Omit<ModelUser, "id">>({
       query: (user) => ({
         url: "/users",
         method: "POST",
