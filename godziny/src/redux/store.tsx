@@ -6,6 +6,7 @@ import searchNameSlice from "./storeFeatures/searchNameSlice";
 import calcHursSlice from "./storeFeatures/calcHoursSlice";
 import { usersApiSlice } from "../services/apiSliceUsers";
 import { monthsApiSlice } from "../services/apiSliceMonths";
+import { loginApiSlice } from "../services/apiSliceLogin";
 
 export const store = configureStore({
   reducer: {
@@ -16,11 +17,13 @@ export const store = configureStore({
     searchName: searchNameSlice,
     [monthsApiSlice.reducerPath]: monthsApiSlice.reducer,
     [usersApiSlice.reducerPath]: usersApiSlice.reducer,
+    [loginApiSlice.reducerPath]: loginApiSlice.reducer,
   },
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       monthsApiSlice.middleware,
-      usersApiSlice.middleware
+      usersApiSlice.middleware,
+      loginApiSlice.middleware
     ),
 });
 export type RootState = ReturnType<typeof store.getState>;

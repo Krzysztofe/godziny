@@ -6,7 +6,8 @@ import useFormikLogin from "./useFormikLogin";
 import InputAccessability from "./InputAccessability";
 
 const dataInputsText = [
-  { value: "password", type: "password", isErrorPrint: true },
+  { value: "adminEmail", type: "email", isErrorPrint: true },
+  { value: "adminPassword", type: "password", isErrorPrint: true },
 ];
 
 const FormLoginContext = () => {
@@ -19,7 +20,7 @@ const FormLoginContext = () => {
       >
         <div>
           <InputAccessability />
-          <div className="text-center fs-2 fw-medium mb-4 ">Podaj hasło</div>
+          <div className="text-center fs-2 fw-medium mb-4 ">Zaloguj się</div>
           <InputsText inputsData={dataInputsText} />
           <ButtonForm
             isLoading={isLoading}

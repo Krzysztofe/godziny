@@ -6,32 +6,36 @@ import {
   currMonthDigits,
   currYearDigits,
 } from "../../../data/dataCurrentDates";
-import FirebaseSingleton from "../../../data/firebaseConfig";
 import { printAlert } from "../../../redux/storeFeatures/alertSlice";
-import useFirebaseConfig from "../../../hooks/useFirebaseConfig";
+import { useLoginAdminMutation } from "../../../services/apiSliceLogin";
 
 type InitialValues = {
-  password: string;
+  adminPassword: string;
+  adminEmail: string;
 };
 
 const useFormikLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { auth } = useFirebaseConfig();
   const [isLoading, setIsLoading] = useState(false);
-  const email = "ww@wp.pl";
+  const [loginAdmin, success] = useLoginAdminMutation();
 
-  const initialValues = { password: "wwwwww" };
+  const initialValues = { adminPassword: "password", adminEmail: "aaax@wp.pl" };
 
   const onSubmit = async (values: InitialValues) => {
     setIsLoading(true);
+  
     try {
-      if (email) {
-        await signInWithEmailAndPassword(auth!, email, values.password);
-        navigate(`/${currYearDigits}-${currMonthDigits}`);
-      }
+      const response = await loginAdmin(values).unwrap(); 
+      console.log("Login success:", response);
+  
+      localStorage.setItem("token", response.token);
+  
+      // dispatch(printAlert({ message: "Login successful", type: "success" }));
+      navigate(`/${currYearDigits}-${currMonthDigits}`);
     } catch (error: any) {
-      dispatch(printAlert(error.message));
+      console.error("Login failed:", error);
+      // dispatch(printAlert({ message: "Login failed", type: "error" }));
     } finally {
       setIsLoading(false);
     }

@@ -1,5 +1,5 @@
 export interface ModelUser {
-  id: string;
+  _id: string;
   userName: string;
   userColor: string;
 }

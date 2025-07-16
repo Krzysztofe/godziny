@@ -1,5 +1,4 @@
 import { Suspense, lazy } from "react";
-import useFirebaseConfig from "../hooks/useFirebaseConfig";
 import useIsPath from "../hooks/useIsPath";
 import LoadingPage from "../pages/loadingPage/LoadingPage";
 import "../scss/App.scss";
@@ -11,13 +10,12 @@ const IndexSidebar = lazy(
 );
 
 function App() {
-  const { user } = useFirebaseConfig();
   const { isPath } = useIsPath(["ustawienia", "202"]);
 
   return (
     <Suspense fallback={<LoadingPage />}>
       <Header />
-      {user && isPath && <IndexSidebar />}
+      {isPath && <IndexSidebar />}
       <AppRoutes />
     </Suspense>
   );

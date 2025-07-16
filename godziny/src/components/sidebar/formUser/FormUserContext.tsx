@@ -39,12 +39,12 @@ const FormUserContext = () => {
             <Toast isSuccess={success.isSuccess} />
             <ButtonForm isLoading={success.isLoading} />
           </div>
+          {error && (
+            <div className="text-danger position-absolute d-block mt-0 fs-5 ps-2">
+              Błąd zapisu. Ponów próbę
+            </div>
+          )}
         </Form>
-        {error && (
-          <div className="text-danger position-absolute d-block mt-0 fs-5 ps-2">
-            Błąd zapisu. Ponów próbę 
-          </div>
-        )}
       </>
     </Formik>
   );

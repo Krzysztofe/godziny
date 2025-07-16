@@ -1,6 +1,6 @@
 import { FormikHelpers } from "formik";
 import * as yup from "yup";
-import { useAddUserMutation, useUsersQuery } from "../../../services/apiSliceUsers";
+import { useAddUserMutation } from "../../../services/apiSliceUsers";
 import { ModelUser } from "../../../sharedModels/modelUser";
 import { capitalizeFirstLetter } from "../../../utils/utilsCapitalizeFirstLetter";
 import useValidationUserForm from "./useValidationFormUser";
@@ -18,8 +18,8 @@ const useFormikUser = () => {
   const validation = validationSchema as yup.ObjectSchema<typeof initialValues>;
   
   const onSubmit = async (
-    values: Omit<ModelUser, "id">,
-    { resetForm }: FormikHelpers<Omit<ModelUser, "id">>,
+    values: Omit<ModelUser, "_id">,
+    { resetForm }: FormikHelpers<Omit<ModelUser, "_id">>,
   ) => {
     
     const userValues = {

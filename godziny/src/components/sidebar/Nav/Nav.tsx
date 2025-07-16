@@ -1,6 +1,5 @@
 import { memo } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
-import useFirebaseConfig from "../../../hooks/useFirebaseConfig";
 import useIsPath from "../../../hooks/useIsPath";
 import useDataNav from "./useDataNav";
 
@@ -9,11 +8,10 @@ type Props = {
 };
 
 const Nav = memo((props: Props) => {
-  const { user } = useFirebaseConfig();
   const { dataSidebarNavItems } = useDataNav();
   const { isPath } = useIsPath(["202", "ustawienia"]);
 
-  if (!user || !isPath) return null;
+  if (!isPath) return null;
 
   return (
     <nav>

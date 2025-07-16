@@ -1,10 +1,9 @@
 import { Navigate, Outlet } from "react-router-dom";
-import useFirebaseConfig from "../hooks/useFirebaseConfig";
 
 const PrivateRoutes = () => {
-  const { user } = useFirebaseConfig();
+  const jwt = localStorage.getItem("token");
 
-  return user ? <Outlet /> : <Navigate to="/" />;
+  return jwt ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default PrivateRoutes;
