@@ -3,25 +3,42 @@ import { URL_MONTHS_DATA } from "../data/URL";
 import { ModelMonth } from "../sharedModels/modelMonth";
 import { ModelCalcHours } from "../sharedModels/modelCalcHours";
 
+const baseQueryWithAuth = fetchBaseQuery({
+  baseUrl: URL_MONTHS_DATA,
+  prepareHeaders: (headers) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      headers.set("Authorization", `Bearer ${token}`);
+    }
+    return headers;
+  },
+});
+
 const createUrl = (year: string, month: string, suffix = "") =>
-  `/${year}/${month}${suffix}.json`;
+  `/${year}/${month}/${suffix}`;
 
 export const monthsApiSlice = createApi({
   reducerPath: "monthsApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: URL_MONTHS_DATA,
-  }),
+  baseQuery: baseQueryWithAuth,
   tagTypes: ["months"],
-  endpoints: builder => ({
-
+  endpoints: (builder) => ({
     // queries
 
-    monthData: builder.query<ModelMonth, { year: string; month: string }>({
+    allMonths: builder.query<
+      { _id: string; year: number; month: string }[],
+      void
+    >({
+      query: () => "/",
+      providesTags: ["months"],
+    }),
+
+    monthData: builder.query<any, { year: string; month: string }>({
       query: ({ year, month }) => createUrl(year, month),
       providesTags: ["months"],
     }),
+
     calcHours: builder.query<ModelCalcHours, { year: string; month: string }>({
-      query: ({ year, month }) => createUrl(year, month, "/calcHours"),
+      query: ({ year, month }) => createUrl(year, month, "allHours"),
       providesTags: ["months"],
     }),
 
@@ -38,6 +55,19 @@ export const monthsApiSlice = createApi({
       }),
       invalidatesTags: ["months"],
     }),
+
+
+  //   addDay: builder.mutation<
+  //   void,
+  //   { year: string; month: string; monthBody: ModelMonth }
+  // >({
+  //   query: ({ year, month, monthBody }) => ({
+  //     url: createUrl(year, month),
+  //     method: "PUT",
+  //     body: monthBody,
+  //   }),
+  //   invalidatesTags: ["months"],
+  // }),
 
     addDay: builder.mutation<
       void,
@@ -88,6 +118,7 @@ export const monthsApiSlice = createApi({
 });
 
 export const {
+  useAllMonthsQuery,
   useMonthDataQuery,
   useCalcHoursQuery,
   useAddDayMutation,

@@ -4,7 +4,7 @@ import useFirebaseConfig from "../../hooks/useFirebaseConfig";
 const dataRemainingSeconds = 61;
 
 const useAutoLogout = () => {
-  const { auth } = useFirebaseConfig();
+
   const [secondsRemaining, setSecondsRemaining] =
     useState(dataRemainingSeconds);
 
@@ -15,7 +15,8 @@ const useAutoLogout = () => {
     setSecondsRemaining(remaining);
 
     if (expireTime < Date.now()) {
-      auth?.signOut();
+      // auth?.signOut();
+      localStorage.removeItem("token");
     }
   };
 

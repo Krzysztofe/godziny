@@ -10,11 +10,12 @@ import { useContext } from "react";
 import { MonthItemContext } from "../ListMonths";
 
 const FormHoursContainer = () => {
-  const monthIdx = useContext(MonthItemContext);
+  const {monthIdx, year, month} = useContext(MonthItemContext);
   const { monthDate } = useMonthDate(monthIdx);
-  const yearValue = monthDate?.slice(0, 4) ?? "";
-  const monthValue = monthDate?.slice(5) ?? "";
-  useReduxCalcHours(yearValue, monthValue);
+
+
+
+  useReduxCalcHours(year.toString(), month.toString());
   const { calcHoursIsLoading, calcHoursError } = useSelector(
     (state: RootState) => state.calcHours
   );

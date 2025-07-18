@@ -10,7 +10,7 @@ import { useContext } from "react";
 import { MonthItemContext } from "../ListMonths";
 
 const ButtonDeleteMonth = () => {
-  const monthIdx = useContext(MonthItemContext);
+  const {monthIdx} = useContext(MonthItemContext);
   const { deleteMonthAsync, success } = useDeleteMonthAsync(monthIdx);
   const { btnContent } = useBtnContent(success.isLoading, <IconTrash />);
   const { monthDate } = useMonthDate(monthIdx);

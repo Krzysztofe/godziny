@@ -15,7 +15,7 @@ export const dataInputsText = [
     type: "month",
     isErrorPrint: true,
     min: `${currYearDigits}-${currMonthDigits}`,
-    max: "2025-12",
+    max: "2026-12",
   },
 ];
 

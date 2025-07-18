@@ -10,11 +10,11 @@ const CollapseContent = () => {
   const { openCollapseIndex } = useSelector(
     (state: RootState) => state.listMonths
   );
-  // const { listMonths } = useDatabaseListMonths();
+  const { listMonths } = useDatabaseListMonths();
 
   const monthIdx = useContext(MonthItemContext);
 
-  const isOpen = monthIdx === openCollapseIndex;
+  const isOpen = monthIdx.monthIdx === openCollapseIndex;
 
   return (
     <Collapse in={isOpen}>

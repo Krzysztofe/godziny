@@ -26,10 +26,9 @@ const useFormikLogin = () => {
     setIsLoading(true);
   
     try {
-      const response = await loginAdmin(values).unwrap(); 
-      console.log("Login success:", response);
+      const resp = await loginAdmin(values).unwrap(); 
   
-      localStorage.setItem("token", response.token);
+      localStorage.setItem("token", resp.token);
   
       // dispatch(printAlert({ message: "Login successful", type: "success" }));
       navigate(`/${currYearDigits}-${currMonthDigits}`);

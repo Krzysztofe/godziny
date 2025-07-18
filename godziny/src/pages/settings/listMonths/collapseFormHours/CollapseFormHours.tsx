@@ -14,7 +14,7 @@ const CollapseFormHours = () => {
   const { openCollapseIndex } = useSelector(
     (state: RootState) => state.listMonths
   );
-  const monthIdx = useContext(MonthItemContext);
+  const {monthIdx} = useContext(MonthItemContext);
 
   const isOpen = monthIdx === openCollapseIndex;
 

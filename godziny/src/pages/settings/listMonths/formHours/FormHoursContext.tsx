@@ -8,17 +8,29 @@ import useFormikHours from "./useFormikHours";
 import { useContext } from "react";
 import { MonthItemContext } from "../ListMonths";
 
+
 const FormHoursContext = () => {
-  const monthIdx = useContext(MonthItemContext);
+  
+  const {monthIdx, monthLabel, month, year} = useContext(MonthItemContext);
   const { monthDate } = useMonthDate(monthIdx);
   const yearValue = monthDate?.slice(0, 4) ?? "";
   const monthValue = monthDate?.slice(5) ?? "";
+
   const { initialValues, onSubmit, success } = useFormikHours(
-    yearValue,
-    monthValue
+    year.toString(),
+    month.toString()
   );
 
+
+  
+  console.log('monthDate',monthLabel)
+  console.log('',yearValue)
+  console.log('',monthValue)
+
+  console.log('',initialValues)
+
   return (
+  
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       <Form className="py-2 pe-2">
         <FormHoursTop />

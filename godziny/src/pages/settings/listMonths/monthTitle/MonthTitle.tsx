@@ -9,22 +9,19 @@ import { useContext } from "react";
 import { MonthItemContext } from "../ListMonths";
 
 const MonthTitle = () => {
-  const { listMonths } = useSelector((state: RootState) => state.listMonths);
-  const { databaseMonthsDatesToString } = useMonthDates();
-  const monthIdx = useContext(MonthItemContext);
+  // const { listMonths } = useSelector((state: RootState) => state.listMonths);
+  // const { databaseMonthsDatesToString } = useMonthDates();
+  const {monthLabel, monthIdx} = useContext(MonthItemContext);
 
-  const title =
-    databaseMonthsDatesToString &&
-    capitalizeFirstLetter(databaseMonthsDatesToString[monthIdx]);
 
   return (
     <div className="_monthTitle _fs-primary">
       <Link
-        to={`/${listMonths?.[monthIdx]}`}
+        to={`/${monthLabel}`}
         className="text-decoration-none _fw-regular text-dark _align-center"
       >
         <IconArrowLeft />
-        <div className="_text-noWrap">{title}</div>
+        <div className="_text-noWrap">{monthLabel}</div>
       </Link>
     </div>
   );

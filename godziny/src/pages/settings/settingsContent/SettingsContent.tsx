@@ -7,10 +7,16 @@ import ListMonths from "../listMonths/ListMonths";
 import ListUsers from "../listUsers/ListUsers";
 import "./_settingsContent.scss";
 
+
 import HeaderList from "../../../components/HeaderList";
+import { useAllMonthsQuery } from "../../../services/apiSliceMonths";
 
 const SettingsContent = () => {
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
+
+  const { data: months, isLoading, error } = useAllMonthsQuery();
+
+
 
   const { data: listUsers } = useUsersQuery();
 

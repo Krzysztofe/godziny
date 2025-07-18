@@ -1,23 +1,22 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import useFirebaseConfig from "../../../hooks/useFirebaseConfig";
 import { printAlert } from "../../../redux/storeFeatures/alertSlice";
 
+
 const useLogout = () => {
-  const { auth } = useFirebaseConfig();
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const logout = async () => {
+  const logout = () => {
     setIsLoading(true);
 
     try {
-      await auth?.signOut();
+      localStorage.removeItem("token");
       navigate("/");
     } catch (error: any) {
-      dispatch(printAlert(error.message));
+      dispatch(printAlert("Logout failed"));
     } finally {
       setIsLoading(false);
     }
