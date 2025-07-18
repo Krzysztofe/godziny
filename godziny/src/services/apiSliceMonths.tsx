@@ -44,6 +44,18 @@ export const monthsApiSlice = createApi({
 
     // mutations
 
+    postMonth: builder.mutation<
+      void,
+      { year: string; month: string; monthBody: any }
+    >({
+      query: ({ year, month, monthBody }) => ({
+        url: "/",
+        method: "POST",
+        body: monthBody,
+      }),
+      invalidatesTags: ["months"],
+    }),
+
     updateMonth: builder.mutation<
       void,
       { year: string; month: string; monthBody: ModelMonth }
@@ -55,19 +67,6 @@ export const monthsApiSlice = createApi({
       }),
       invalidatesTags: ["months"],
     }),
-
-
-  //   addDay: builder.mutation<
-  //   void,
-  //   { year: string; month: string; monthBody: ModelMonth }
-  // >({
-  //   query: ({ year, month, monthBody }) => ({
-  //     url: createUrl(year, month),
-  //     method: "PUT",
-  //     body: monthBody,
-  //   }),
-  //   invalidatesTags: ["months"],
-  // }),
 
     addDay: builder.mutation<
       void,
@@ -87,15 +86,15 @@ export const monthsApiSlice = createApi({
     >({
       query: ({ year, month, monthBody }) => ({
         url: createUrl(year, month),
-        method: "PUT",
+        method: "DELETE",
         body: monthBody,
       }),
       invalidatesTags: ["months"],
     }),
 
-    deleteMonth: builder.mutation<ModelMonth, { year: string; month: string }>({
-      query: ({ year, month }) => ({
-        url: createUrl(year, month),
+    deleteMonth: builder.mutation<void, string>({
+      query: (monthId) => ({
+        url: `/${monthId}`,
         method: "DELETE",
       }),
       invalidatesTags: ["months"],
@@ -103,14 +102,11 @@ export const monthsApiSlice = createApi({
 
     // allHours mutations
 
-    addAllHours: builder.mutation<
-      void,
-      { year: string; month: string; calcHours: ModelCalcHours }
-    >({
-      query: ({ year, month, calcHours }) => ({
-        url: createUrl(year, month, `/calcHours`),
-        method: "PUT",
-        body: calcHours,
+    patchAllHours: builder.mutation<void, { id: string; allHours: number }>({
+      query: ({ id, allHours }) => ({
+        url: `/${id}`,
+        method: "PATCH",
+        body: { allHours },
       }),
       invalidatesTags: ["months"],
     }),
@@ -122,8 +118,9 @@ export const {
   useMonthDataQuery,
   useCalcHoursQuery,
   useAddDayMutation,
+  usePostMonthMutation,
   useUpdateMonthMutation,
   useDeleteDayMutation,
   useDeleteMonthMutation,
-  useAddAllHoursMutation,
+  usePatchAllHoursMutation,
 } = monthsApiSlice;

@@ -10,6 +10,7 @@ type ContextType = {
   monthLabel: string;
   year: number;
   month: number
+  id:string
 };
 export const MonthItemContext = createContext<ContextType>({} as ContextType);
 
@@ -42,14 +43,14 @@ const ListMonths = () => {
     };
   });
 
-  console.log("transformed", transformed);
+
 
   return (
     <>
       {transformed?.map((month, monthIdx) => (
         <ListGroup.Item key={month._id} className={dataStylesListItem}>
           <MonthItemContext.Provider
-            value={{ monthIdx, monthLabel: month.monthLabel, year: month.year, month: month.month }}
+            value={{ monthIdx, monthLabel: month.monthLabel, year: month.year, month: month.month, id: month._id }}
           >
             <CollapseFormHours />
           </MonthItemContext.Provider>

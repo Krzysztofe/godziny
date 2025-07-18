@@ -15,7 +15,7 @@ const publicRoutes = [
 ];
 
 const privateRoutes = [
-  // { path: "/:month", element: <IndexMonthPanel /> },
+  { path: "/:month", element: <IndexMonthPanel /> },
   { path: "/ustawienia", element: <IndexSettings /> },
 ];
 

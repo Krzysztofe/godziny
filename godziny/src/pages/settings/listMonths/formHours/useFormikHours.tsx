@@ -1,17 +1,18 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/store";
-import { useAddAllHoursMutation } from "../../../../services/apiSliceMonths";
+import { usePatchAllHoursMutation } from "../../../../services/apiSliceMonths";
+import { useContext } from "react";
+import { MonthItemContext } from "../ListMonths";
 
 type ModelFormValues = {
   allHours: number;
 };
 
-const useFormikHours = (
-  yearValue: string,
-  monthValue: string
-) => {
-  const [addAllHours, success] = useAddAllHoursMutation();
-  const {calcHours} = useSelector((state:RootState) => state.calcHours);
+const useFormikHours = () => {
+  const [patchAllHours, success] = usePatchAllHoursMutation();
+  const { calcHours } = useSelector((state: RootState) => state.calcHours);
+
+  const { id } = useContext(MonthItemContext);
 
   const initialValues = { allHours: 0 };
 
@@ -24,22 +25,7 @@ const useFormikHours = (
         return;
     }
 
-    calcHours &&
-      values.allHours &&
-      yearValue &&
-      monthValue &&
-      (await addAllHours({
-        year: yearValue,
-        month: monthValue,
-        calcHours: {
-          ...calcHours,
-          allHours: +values.allHours,
-          currentHours:
-            +values.allHours -
-            calcHours.acceptedHours -
-            calcHours.submittedHours,
-        },
-      }));
+    await patchAllHours({ id, allHours: values.allHours });
   };
 
   return { initialValues, onSubmit, success };

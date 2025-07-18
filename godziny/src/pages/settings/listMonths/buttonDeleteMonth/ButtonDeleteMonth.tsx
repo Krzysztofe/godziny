@@ -10,8 +10,8 @@ import { useContext } from "react";
 import { MonthItemContext } from "../ListMonths";
 
 const ButtonDeleteMonth = () => {
-  const {monthIdx} = useContext(MonthItemContext);
-  const { deleteMonthAsync, success } = useDeleteMonthAsync(monthIdx);
+  const {monthIdx, id} = useContext(MonthItemContext);
+  const { deleteMonthAsync, success } = useDeleteMonthAsync(id);
   const { btnContent } = useBtnContent(success.isLoading, <IconTrash />);
   const { monthDate } = useMonthDate(monthIdx);
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
@@ -20,6 +20,7 @@ const ButtonDeleteMonth = () => {
     deleteMonthAsync,
     "Usunąć miesiąc?"
   );
+
 
   const print = listMonths && monthDate === listMonths[monthIdx];
 

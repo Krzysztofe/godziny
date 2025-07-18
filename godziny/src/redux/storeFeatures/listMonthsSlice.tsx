@@ -22,15 +22,23 @@ export const listMonthsSlice = createSlice({
     ) => {
       state.listMonths = action.payload;
     },
-    getListMonthsError: (state, action: PayloadAction<string | null>) => {
+    getListMonthsError: (state, action: PayloadAction<any | null>) => {
       state.listMonthsError = action.payload;
     },
     setCollapseIndex: (state, action: PayloadAction<number | null>) => {
       state.openCollapseIndex = action.payload;
     },
+    addMonthToList: (state, action: PayloadAction<string>) => {
+      if (!state.listMonths) {
+        state.listMonths = [];
+      }
+      if (!state.listMonths.includes(action.payload)) {
+        state.listMonths.push(action.payload);
+      }
+    },
   },
 });
 
-export const { getListMonths, getListMonthsError, setCollapseIndex } =
+export const { getListMonths, getListMonthsError, setCollapseIndex, addMonthToList } =
   listMonthsSlice.actions;
 export default listMonthsSlice.reducer;

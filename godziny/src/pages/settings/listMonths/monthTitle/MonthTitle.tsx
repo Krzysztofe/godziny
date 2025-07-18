@@ -11,7 +11,7 @@ import { MonthItemContext } from "../ListMonths";
 const MonthTitle = () => {
   // const { listMonths } = useSelector((state: RootState) => state.listMonths);
   // const { databaseMonthsDatesToString } = useMonthDates();
-  const {monthLabel, monthIdx} = useContext(MonthItemContext);
+  const {monthLabel} = useContext(MonthItemContext);
 
 
   return (

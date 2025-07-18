@@ -2,23 +2,31 @@ import {
   currMonthDigits,
   currYearDigits,
 } from "../../../data/dataCurrentDates";
-import { useUpdateMonthMutation } from "../../../services/apiSliceMonths";
+import { usePostMonthMutation } from "../../../services/apiSliceMonths";
 import * as yup from "yup";
 import { ModelMonth } from "../../../sharedModels/modelMonth";
 import { monthPattern } from "./dataFormMonth";
 import useValidationMonthForm from "./useValidationMonthForm";
 import { useDispatch } from "react-redux";
-import { setCollapseIndex } from "../../../redux/storeFeatures/listMonthsSlice";
+import { getListMonths, setCollapseIndex,addMonthToList } from "../../../redux/storeFeatures/listMonthsSlice";
 import { getUpdateMonthError } from "../../../redux/storeFeatures/monthPanelSlice";
 import { useEffect } from "react";
+import { parse } from "path";
 
-interface ModelInitialValues {
+
+type ModelInitialValues = {
   monthDate: string;
-}
+};
+
+type ModelBody = {
+  year: number;
+  month: number;
+  allHours: number;
+};
 
 const useFormikMonth = () => {
   const dispatch = useDispatch();
-  const [updateMonth, success] = useUpdateMonthMutation();
+  const [postMonth, success] = usePostMonthMutation();
   const { validationSchema } = useValidationMonthForm();
 
   const initialValues = { monthDate: `${currYearDigits}-${currMonthDigits}` };
@@ -29,15 +37,17 @@ const useFormikMonth = () => {
     dispatch(setCollapseIndex(null));
     const year = values.monthDate.slice(0, 4);
     const month = values.monthDate.slice(-2);
-    const monthBody: ModelMonth = {
-    // const monthBody: any = {
-      ...monthPattern,
-      id: values.monthDate,
-      // id: Date.now(),
+    const monthBody: ModelBody = {
+      year: parseInt(year),
+      month: parseInt(month),
+      allHours: 0,
     };
 
-    await updateMonth({ year, month, monthBody });
+    await postMonth({ year, month, monthBody });
+    dispatch(addMonthToList(`${year}-${month}`));
   };
+
+
 
   useEffect(() => {
     dispatch(getUpdateMonthError(success.isError));
