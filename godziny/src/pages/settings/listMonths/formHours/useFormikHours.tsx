@@ -25,8 +25,13 @@ const useFormikHours = () => {
         return;
     }
 
-    await patchAllHours({ id, allHours: values.allHours });
-  };
+    await patchAllHours({
+      id,
+      body: {
+        allHours: values.allHours,
+        currentHours: values.allHours,
+      },
+    })  };
 
   return { initialValues, onSubmit, success };
 };

@@ -102,11 +102,11 @@ export const monthsApiSlice = createApi({
 
     // allHours mutations
 
-    patchAllHours: builder.mutation<void, { id: string; allHours: number }>({
-      query: ({ id, allHours }) => ({
+    patchAllHours: builder.mutation<void, { id: string; body: any  }>({
+      query: ({ id, body }) => ({
         url: `/${id}`,
         method: "PATCH",
-        body: { allHours },
+        body:  body ,
       }),
       invalidatesTags: ["months"],
     }),

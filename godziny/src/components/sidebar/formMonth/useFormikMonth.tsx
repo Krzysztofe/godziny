@@ -22,6 +22,7 @@ type ModelBody = {
   year: number;
   month: number;
   allHours: number;
+  currentHours: number
 };
 
 const useFormikMonth = () => {
@@ -41,6 +42,7 @@ const useFormikMonth = () => {
       year: parseInt(year),
       month: parseInt(month),
       allHours: 0,
+      currentHours:0
     };
 
     await postMonth({ year, month, monthBody });

@@ -19,6 +19,8 @@ const IndexMonthPanel = () => {
   const { error: listUsersError, isLoading: listUsersIsLoading } =
     useUsersQuery();
 
+    console.log('',month)
+
   const { listMonthsError } = useSelector(
     (state: RootState) => state.listMonths
   );

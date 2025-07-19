@@ -1,23 +1,17 @@
-import { useSelector } from "react-redux";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import useMonthDates from "../../../../hooks/useMonthDates";
-import { RootState } from "../../../../redux/store";
-import { capitalizeFirstLetter } from "../../../../utils/utilsCapitalizeFirstLetter";
+import { MonthItemContext } from "../ListMonths";
 import IconArrowLeft from "./IconArrowLeft";
 import "./_monthTitle.scss";
-import { useContext } from "react";
-import { MonthItemContext } from "../ListMonths";
 
 const MonthTitle = () => {
-  // const { listMonths } = useSelector((state: RootState) => state.listMonths);
-  // const { databaseMonthsDatesToString } = useMonthDates();
-  const {monthLabel} = useContext(MonthItemContext);
+  const {monthLabel, year, month} = useContext(MonthItemContext);
 
 
   return (
     <div className="_monthTitle _fs-primary">
       <Link
-        to={`/${monthLabel}`}
+        to={`/${year}-${month}`}
         className="text-decoration-none _fw-regular text-dark _align-center"
       >
         <IconArrowLeft />
