@@ -12,7 +12,6 @@ import "./_formDayContext.scss";
 import useDataFormDay from "./useDataFormDay";
 import useFormikDay from "./useFormikDay";
 
-
 const FormDayContext = () => {
   const { dataInputsText, dataInputsSelect } = useDataFormDay();
   const { initialValues, validation, onSubmit, success } = useFormikDay();
@@ -26,7 +25,7 @@ const FormDayContext = () => {
 
   const isAllHours = month?.calcHours?.allHours === 0 ? "_formDayContext" : "";
 
-  if (!month || month?.id === "") return null;
+  if (!month) return null;
 
   return (
     <Formik

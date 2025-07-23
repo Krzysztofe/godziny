@@ -9,7 +9,8 @@ import "./_column.scss";
 import { createContext } from "react";
 
 type ContextType = {
-  day: ModelDay;
+  // day: ModelDay;
+  day: any;
   columnIdx: number;
   dayIdx: number;
 };
@@ -23,6 +24,8 @@ type Props = {
 
 const Column = (props: Props) => {
   const { searchedName } = useSelector((state: RootState) => state.searchName);
+
+// console.log('props.column',props.column)
 
   const isDraging = (stapshot: boolean) => {
     return stapshot ? "_isDragging" : "_noDragging";
@@ -45,7 +48,7 @@ const Column = (props: Props) => {
               )} ${isSearching}`}
             >
               {Array.isArray(props.column.days)
-                ? props.column.days.map((day: ModelDay, idx: number) => {
+                ? props.column?.days.map((day: ModelDay, idx: number) => {
                     return (
                       <DayItemContext.Provider
                         key={UUID()}

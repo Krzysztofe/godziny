@@ -4,6 +4,7 @@ export const addDaysToColumns = (columns: ModelColumn[]) => {
   if (!Array.isArray(columns)) {
     return [];
   }
+  
   return columns?.map((column) => {
     if (!column?.hasOwnProperty("days")) {
       return { ...column, days: [] };

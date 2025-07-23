@@ -20,10 +20,7 @@ const findDestinationColumnIdx = (
   );
 };
 
-const findDeletedDay = (
-  newSourceDays: ModelDay[],
-  source: { index: number }
-) => {
+const findDeletedDay = (newSourceDays: any[], source: { index: number }) => {
   const [deletedDay] = newSourceDays.splice(source.index, 1);
   return deletedDay;
 };
@@ -44,6 +41,8 @@ const moveItemFromColumn = (
   destination: { droppableId: string; index: number },
   setColumns: React.Dispatch<React.SetStateAction<ModelColumn[]>>
 ) => {
+
+
   const sourceColumnIdx = findSourceColumnIdx(columns, source);
   const destinationColumnIdx = findDestinationColumnIdx(columns, destination);
   const newSourceDays = columns && [...columns[sourceColumnIdx].days];
@@ -59,6 +58,8 @@ const moveItemFromColumn = (
   setColumns(
     updateColumnDays(newColumns, destinationColumnIdx, newDestinationDays)
   );
+console.log('up', updateColumnDays(newColumns, destinationColumnIdx, newDestinationDays))
+
 };
 
 const moveItemInColumn = (
@@ -85,6 +86,8 @@ export const handleDragDrop = (
   setColumns: React.Dispatch<React.SetStateAction<ModelColumn[]>>
 ) => {
   const { source, destination } = results;
+
+  console.log('columnshand',columns)
 
   if (!destination) return;
   if (

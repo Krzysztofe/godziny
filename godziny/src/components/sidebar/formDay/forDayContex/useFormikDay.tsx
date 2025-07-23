@@ -1,4 +1,3 @@
-import { v4 as UUID } from "uuid";
 import * as yup from "yup";
 import { dateInNext_14_Days } from "../../../../data/dataCurrentDates";
 import useMonthQuery from "../../../../hooks/useMonthQuery";
@@ -8,10 +7,10 @@ import { useUsersQuery } from "../../../../services/apiSliceUsers";
 import { ModelUser } from "../../../../sharedModels/modelUser";
 import { validationFormDayDate } from "../formDateError/utilsFormDateError";
 import { validationSchema } from "./validationFormDay";
-import { useMemo } from "react";
+
+
 
 export type ModelInitialValuesFormikDay = {
-  id: string;
   date: string;
   hours: string;
   userName: string;
@@ -26,7 +25,6 @@ const useFormikDay = () => {
   const { yearFromURL, monthFromURL } = useURLValues();
 
   const initialValues = {
-    id: "",
     date: dateInNext_14_Days,
     hours: "",
     userName: "",
@@ -57,37 +55,23 @@ const useFormikDay = () => {
         return user.userName === values.userName;
       })?.userColor;
 
-    const valuesToDatabase = {
-      ...values,
-      id: UUID(),
-      hours: +values.hours,
-      userColor: userColor || "",
-    };
+    const { date, hours, place, userName } = values;
+
+  
 
     month &&
       (await addDay({
         year: yearFromURL,
         month: monthFromURL,
         monthBody: {
-          ...month,
-          calcHours: {
-            ...month?.calcHours,
-            currentHours: month.calcHours.currentHours - valuesToDatabase.hours,
-            submittedHours:
-              month.calcHours.submittedHours + valuesToDatabase.hours,
-          },
-
-          columns: [
-            {
-              ...month.columns[0],
-              days: month.columns[0].days
-                ? [...month.columns[0].days, valuesToDatabase]
-                : [valuesToDatabase],
-            },
-            ...month.columns.slice(1),
-          ],
+          date,
+          hours,
+          place,
+          userColor,
+          userName,
         },
       }));
+      
   };
 
   return { initialValues, validation, onSubmit, success };

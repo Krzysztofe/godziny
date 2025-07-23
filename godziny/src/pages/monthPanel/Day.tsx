@@ -18,9 +18,11 @@ const Day = () => {
     printDay = "d-none";
   }
 
+// console.log('day',day?._id)
+
   return (
     <Draggable
-      draggableId={day && day?.id}
+      draggableId={day && day?._id}
       index={dayIdx}
       isDragDisabled={false}
     >

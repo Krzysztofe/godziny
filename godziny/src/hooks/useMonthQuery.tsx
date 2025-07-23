@@ -10,6 +10,7 @@ const useMonthQuery = () => {
     month,
   });
 
+
   return { data, error, isLoading };
 };
 

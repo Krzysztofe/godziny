@@ -22,6 +22,7 @@ export const monthsApiSlice = createApi({
   baseQuery: baseQueryWithAuth,
   tagTypes: ["months"],
   endpoints: (builder) => ({
+
     // queries
 
     allMonths: builder.query<
@@ -58,11 +59,11 @@ export const monthsApiSlice = createApi({
 
     updateMonth: builder.mutation<
       void,
-      { year: string; month: string; monthBody: ModelMonth }
+      { year: string; month: string; monthBody: any }
     >({
       query: ({ year, month, monthBody }) => ({
-        url: createUrl(year, month),
-        method: "PUT",
+        url: `month${createUrl(year, month)}`,
+        method: "PATCH",
         body: monthBody,
       }),
       invalidatesTags: ["months"],
@@ -70,11 +71,11 @@ export const monthsApiSlice = createApi({
 
     addDay: builder.mutation<
       void,
-      { year: string; month: string; monthBody: ModelMonth }
+      { year: string; month: string; monthBody: any }
     >({
       query: ({ year, month, monthBody }) => ({
         url: createUrl(year, month),
-        method: "PUT",
+        method: "PATCH",
         body: monthBody,
       }),
       invalidatesTags: ["months"],

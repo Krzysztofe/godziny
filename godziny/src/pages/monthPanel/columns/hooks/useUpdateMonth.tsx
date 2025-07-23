@@ -13,22 +13,48 @@ const useUpdateMonth = (
   const [updateMonth] = useUpdateMonthMutation();
   const { data: month } = useMonthQuery();
 
-
   const { submittedHours, acceptedHours, rejectedHours } =
     getHoursFromColumns(columns);
 
+  // console.log('columns',columns)
+
+  // console.log('cccc',{
+  //   year: yearFromURL,
+  //   month: monthFromURL,
+  //   monthBody: {
+  //     columns: columns,
+  //     hours: {
+  //       ...month?.hours,
+  //       currentHours:
+  //         month?.hours?.allHours -
+  //         submittedHours -
+  //         acceptedHours -
+  //         rejectedHours +
+  //         rejectedHours,
+  //       submittedHours,
+  //       acceptedHours,
+  //       rejectedHours,
+  //     },
+  //   },
+  // })
+
   useEffect(() => {
+    const columnsBody = {
+      submitted: columns[0]?.days,
+      accepted: columns[1]?.days,
+      rejected: columns[2]?.days,
+    };
+
     if (columns.length > 0 && month) {
       updateMonth({
         year: yearFromURL,
         month: monthFromURL,
         monthBody: {
-          ...month,
-          columns: columns,
-          calcHours: {
-            ...month?.calcHours,
+          columns: columnsBody,
+          hours: {
+            ...month?.hours,
             currentHours:
-              month?.calcHours?.allHours -
+              month?.hours?.allHours -
               submittedHours -
               acceptedHours -
               rejectedHours +
@@ -39,6 +65,9 @@ const useUpdateMonth = (
           },
         },
       });
+
+    
+      
     }
   }, [executeUpdateMonth]);
 };

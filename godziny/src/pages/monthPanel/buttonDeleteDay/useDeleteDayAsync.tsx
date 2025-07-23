@@ -24,7 +24,7 @@ const useDeleteDayAsync = (day: ModelDay, columnIndex: number) => {
             +columnIndex,
             subtractedHours
           ),
-          columns: deleteDayById({ ...month }, day?.id).columns,
+          // columns: deleteDayById({ ...month }, day?.id).columns,
         },
       }));
   };
