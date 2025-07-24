@@ -3,20 +3,20 @@ import useMonthQuery from "../../../hooks/useMonthQuery";
 const useDataCoumnsHeader = () => {
   const { data: month } = useMonthQuery();
 
-  const { calcHours } = month || {};
+  const { hours } = month || {};
 
   const dataColumnsHeader = [
     {
       headerText: "Złożone:",
-      counter: calcHours?.submittedHours,
+      counter: hours?.submittedHours,
     },
     {
       headerText: "Przyznane:",
-      counter: calcHours?.acceptedHours,
+      counter: hours?.acceptedHours,
     },
     {
       headerText: "Odrzucone:",
-      counter: calcHours?.rejectedHours,
+      counter: hours?.rejectedHours,
     },
   ];
 

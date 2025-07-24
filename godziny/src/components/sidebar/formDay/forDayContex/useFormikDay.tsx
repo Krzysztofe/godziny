@@ -7,6 +7,7 @@ import { useUsersQuery } from "../../../../services/apiSliceUsers";
 import { ModelUser } from "../../../../sharedModels/modelUser";
 import { validationFormDayDate } from "../formDateError/utilsFormDateError";
 import { validationSchema } from "./validationFormDay";
+import { v4 as UUID } from "uuid";
 
 export type ModelInitialValuesFormikDay = {
   date: string;
@@ -57,17 +58,21 @@ const useFormikDay = () => {
 
     const { date, hours, place, userName } = values;
 
+    const calcHours = {
+      ...month?.hours,
+      currentHours: month.hours.currentHours - parseInt(hours),
+      submittedHours: month.hours.submittedHours + parseInt(hours),
+    };
+
+  
+
     month &&
       (await addDay({
         year: yearFromURL,
         month: monthFromURL,
         monthBody: {
-          date,
-          hours,
-          place,
-          userColor,
-          userName,
-          monthId: month._id,
+          day: { date, hours, place, userColor, userName, monthId: month._id },
+          calcHours,
         },
       }));
   };

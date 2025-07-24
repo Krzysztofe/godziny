@@ -10,9 +10,16 @@ const useDeleteDayAsync = (day: any, columnIndex: number) => {
   const { yearFromURL, monthFromURL } = useURLValues();
 
   const deleteDayAsync = async () => {
-    const subtractedHours = day?.hours;
+    if (!month) return;
 
     const columnType = ["submitted", "accepted", "rejected"][columnIndex];
+    const dayHours = columnType === "rejected" ? 0 : day?.hours;
+
+    const calcHours = {
+      ...month.hours,
+      currentHours: month.hours.currentHours + dayHours,
+      [columnType + "Hours"]: month.hours[columnType + "Hours"] - day?.hours,
+    };
 
     month &&
       (await deleteDay({
@@ -21,12 +28,7 @@ const useDeleteDayAsync = (day: any, columnIndex: number) => {
         monthBody: {
           dayId: day._id,
           columnType,
-          // calcHours: calculateUpdatedCalcHours(
-          //   month,
-          //   +columnIndex,
-          //   subtractedHours
-          // ),
-          // columns: deleteDayById({ ...month }, day?.id).columns,
+          calcHours,
         },
       }));
   };
