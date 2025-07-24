@@ -16,9 +16,6 @@ const useDeleteUserAsync = (userName: string) => {
       (user: ModelUser) => user.userName === userName
     );
 
-    console.log('',listUsers)
-    console.log('',userToDelete)
-
     if (userToDelete) await deleteUser(userToDelete._id);
   };
 

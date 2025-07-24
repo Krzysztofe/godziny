@@ -5,13 +5,15 @@ import IconArrowLeft from "./IconArrowLeft";
 import "./_monthTitle.scss";
 
 const MonthTitle = () => {
-  const {monthLabel, year, month} = useContext(MonthItemContext);
+  const { monthLabel, year, month } = useContext(MonthItemContext);
+
+  const monthLink = month < 10 ? "0" + month : month;
 
 
   return (
     <div className="_monthTitle _fs-primary">
       <Link
-        to={`/${year}-${month}`}
+        to={`/${year}-${monthLink}`}
         className="text-decoration-none _fw-regular text-dark _align-center"
       >
         <IconArrowLeft />

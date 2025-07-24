@@ -18,6 +18,8 @@ const ListMonthsItems = () => {
       : "text-primary";
   };
 
+
+
   return (
     <>
       {databaseMonthsDatesToString?.map((month: string, idx: number) => {
