@@ -7,7 +7,7 @@ const FormHoursError = () => {
   const { values } = useFormikContext<ModelDay>();
   const { data: month } = useMonthQuery();
 
-  const currentHours = month?.calcHours?.currentHours || 0;
+  const currentHours = month?.hours?.currentHours || 0;
 
   return (
     <div className="text-danger d-block mt-0 fs-5 ps-2  _formHoursError">
