@@ -19,12 +19,10 @@ const useReduxCalcHours = (yearValue: string, monthValue: string) => {
   });
 
 
-  console.log('calcHours',calcHours)
+  console.log('calcHoursxxx',calcHours)
 
   useEffect(() => {  
-
-    console.log('calcHours',calcHours)
-    dispatch(getCalcHours(calcHours));
+    dispatch(getCalcHours(calcHours?.hours));
     dispatch(getCalcHoursError(error));
     dispatch(getCalcHoursIsLoading(isLoading));
   }, [calcHours, error, isLoading, dispatch]);

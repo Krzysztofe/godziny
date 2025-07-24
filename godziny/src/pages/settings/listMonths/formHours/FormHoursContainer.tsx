@@ -16,9 +16,12 @@ const FormHoursContainer = () => {
 
 
   useReduxCalcHours(year.toString(), month.toString());
+
   const { calcHoursIsLoading, calcHoursError } = useSelector(
     (state: RootState) => state.calcHours
   );
+
+
 
   let content;
 
@@ -31,6 +34,7 @@ const FormHoursContainer = () => {
   }
 
   return <> {content} </>;
+
 };
 
 export default FormHoursContainer;

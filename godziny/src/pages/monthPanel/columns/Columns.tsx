@@ -40,8 +40,6 @@ const Columns = () => {
   }, [month]);
 
 
-  // console.log("columns", columns);
-  // console.log("ttt", ttt);
 
   useUpdateMonth(columns, executeUpdateMonth);
 

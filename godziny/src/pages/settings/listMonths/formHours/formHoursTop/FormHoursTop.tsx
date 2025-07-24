@@ -17,7 +17,6 @@ import "./_formHoursTop.scss";
 const FormHoursTop = () => {
   const { calcHours } = useSelector((state: RootState) => state.calcHours);
 
-
   return (
     <>
       <div className="_d-between align-items-center fs-4 mb-3 position-relative">

@@ -14,6 +14,8 @@ const baseQueryWithAuth = fetchBaseQuery({
   },
 });
 
+// calcHours.hours;
+
 const createUrl = (year: string, month: string, suffix = "") =>
   `/${year}/${month}/${suffix}`;
 
@@ -38,7 +40,7 @@ export const monthsApiSlice = createApi({
       providesTags: ["months"],
     }),
 
-    calcHours: builder.query<ModelCalcHours, { year: string; month: string }>({
+    calcHours: builder.query<any, { year: string; month: string }>({
       query: ({ year, month }) => createUrl(year, month, "allHours"),
       providesTags: ["months"],
     }),
