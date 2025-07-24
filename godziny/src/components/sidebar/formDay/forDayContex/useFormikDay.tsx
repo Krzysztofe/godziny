@@ -8,14 +8,13 @@ import { ModelUser } from "../../../../sharedModels/modelUser";
 import { validationFormDayDate } from "../formDateError/utilsFormDateError";
 import { validationSchema } from "./validationFormDay";
 
-
-
 export type ModelInitialValuesFormikDay = {
   date: string;
   hours: string;
   userName: string;
   place: string;
   userColor: string;
+  monthId: string;
 };
 
 const useFormikDay = () => {
@@ -30,6 +29,7 @@ const useFormikDay = () => {
     userName: "",
     place: "",
     userColor: "",
+    monthId: "",
   };
 
   const validation = validationSchema as yup.ObjectSchema<typeof initialValues>;
@@ -44,8 +44,8 @@ const useFormikDay = () => {
 
     if (
       month &&
-      (month?.calcHours?.currentHours - +values.hours < 0 ||
-        month?.calcHours?.currentHours === 0)
+      (month?.hours?.currentHours - +values.hours < 0 ||
+        month?.hours?.currentHours === 0)
     )
       return;
 
@@ -57,8 +57,6 @@ const useFormikDay = () => {
 
     const { date, hours, place, userName } = values;
 
-  
-
     month &&
       (await addDay({
         year: yearFromURL,
@@ -69,9 +67,9 @@ const useFormikDay = () => {
           place,
           userColor,
           userName,
+          monthId: month._id,
         },
       }));
-      
   };
 
   return { initialValues, validation, onSubmit, success };

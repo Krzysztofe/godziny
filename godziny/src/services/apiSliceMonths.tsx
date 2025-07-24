@@ -83,7 +83,7 @@ export const monthsApiSlice = createApi({
 
     deleteDay: builder.mutation<
       void,
-      { year: string; month: string; colIdx: number; monthBody: ModelMonth }
+      { year: string; month: string;  monthBody: any }
     >({
       query: ({ year, month, monthBody }) => ({
         url: createUrl(year, month),

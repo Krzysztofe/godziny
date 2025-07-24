@@ -9,6 +9,7 @@ import useDeleteDayAsync from "./useDeleteDayAsync";
 
 const ButtonDeleteDay = () => {
   const { day, columnIdx } = useContext(DayItemContext);
+
   const { deleteDayAsync, success } = useDeleteDayAsync(day, columnIdx);
 
   const { handleAlert, alert } = useAlertDelete(

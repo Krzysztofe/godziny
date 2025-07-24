@@ -25,8 +25,6 @@ type Props = {
 const Column = (props: Props) => {
   const { searchedName } = useSelector((state: RootState) => state.searchName);
 
-// console.log('props.column',props.column)
-
   const isDraging = (stapshot: boolean) => {
     return stapshot ? "_isDragging" : "_noDragging";
   };
