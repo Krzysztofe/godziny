@@ -109,7 +109,7 @@ formik, yup, <br/>
 react-bootstrap, react-icons
 
 
-## Backend Features <a href = "https://github.com/Krzysztofe/godziny-server"> here --></a>
+## Backend Features <a href = "https://github.com/Krzysztofe/godziny-server">server here --></a>
 * Auth
 * Password hashing
 * Input validations
