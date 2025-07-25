@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgodziny=self.webpackChunkgodziny||[]).push([[311],{9311:function(e,t,n){n.r(t);var o=n(7689),u=n(184);t.default=function(){return localStorage.getItem("token")?(0,u.jsx)(o.j3,{}):(0,u.jsx)(o.Fg,{to:"/"})}}}]);
+//# sourceMappingURL=311.1a1ac7af.chunk.js.map
