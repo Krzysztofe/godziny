@@ -91,7 +91,6 @@ Live recording of the application presentation during the conclusion of the comp
 * Redux Toolkit
 * Context
 * RTK Query: GET, POST, PUT, DELETE
-* Firebase: Authentication, Realtime Database 
 * Formik / Yup 
 * Lazy loading
 * Router
