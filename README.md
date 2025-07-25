@@ -102,7 +102,7 @@ Live recording of the application presentation during the conclusion of the comp
 
 * Libraries: <br/>
 react-router, react-router-dom, react-router-hash-link, history, <br/>
-react-firebase-hooks, react-beautiful-dnd, <br/>
+react-beautiful-dnd, <br/>
 react-redux, @reduxjs/toolkit, <br/>
 formik, yup, <br/>
 react-bootstrap, react-icons
