@@ -66,10 +66,10 @@ Live recording of the application presentation during the conclusion of the comp
 <img src="https://github.com/Krzysztofe/godziny/assets/96065197/037d656d-59f6-4a97-a8c8-0da13b37e4fd" width="300" alt="Mobile Screenshot">
 </div>
 
-## Features
+## Frontend Features
 
 * Comunication with database
-* Login form 
+* Auth 
 * Drag and drop
 * Forms / validations 
 * Dynamic routing
@@ -82,20 +82,20 @@ Live recording of the application presentation during the conclusion of the comp
 * Protected routes
 
 
-## Technologies
+## Frontend Technologies
 
 * SCSS, Bootstrap
 * React, TypeScript
 * Redux Toolkit
 * Context
-* RTK Query: GET, PUT, DELETE
+* RTK Query: GET, POST, PUT, DELETE
 * Firebase: Authentication, Realtime Database 
 * Formik / Yup 
 * Lazy loading
 * Router
 * RegExp
 
-* React hooks: <br/> useState, useEffect, useRef, <br/> useDispatch, useSelector, useContext,<br/> useNavigate, useParams, useLocation, <br/> useAuthState, useFormikContext, custom hooks
+* React hooks: <br/> useState, useEffect, useRef, <br/> useDispatch, useSelector, useContext,<br/> useNavigate, useParams, useLocation, <br/> useFormikContext, custom hooks
 
 * Memoization: <br/> memo, useMemo 
 
@@ -106,11 +106,26 @@ react-redux, @reduxjs/toolkit, <br/>
 formik, yup, <br/>
 react-bootstrap, react-icons
 
-* Firebase config in singleton pattern
 
+## Backend Features
+* Auth
+* Password hashing (bcrypt)
+* Validations
+* Database integration: MongoDB Atlas / Mongoose
+* Request/response: GET, POST, PUT, DELETE
+* Environment variable support
+* MVC architecture
 
+## Frontend Technologies
 
-
+* JWT
+* Express
+* REST api endpoints
+* CORS configuration
+* HTTP headers helmet security
+  
+* Libraries: <br/>
+bcryptjs, body-parser, compression, helmet, jsonwebtoken, mongoose, nodemon, yup
 
  ## Comments
 * The Firebase Config keys are not hidden in the .env file to allow access for setting up the project locally.
