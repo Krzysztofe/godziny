@@ -23,7 +23,7 @@ const FormDayContext = () => {
       ? "_formDayContext__isSearching"
       : "";
 
-  const isAllHours = month?.calcHours?.allHours === 0 ? "_formDayContext" : "";
+  const isAllHours = month?.hours?.allHours === 0 ? "_formDayContext" : "";
 
   if (!month) return null;
 

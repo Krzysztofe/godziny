@@ -19,7 +19,6 @@ const IndexMonthPanel = () => {
   const { error: listUsersError, isLoading: listUsersIsLoading } =
     useUsersQuery();
 
-
   const { listMonthsError } = useSelector(
     (state: RootState) => state.listMonths
   );
@@ -30,7 +29,7 @@ const IndexMonthPanel = () => {
     content = <RequestLoading styles={requestContainer} />;
   } else if (monthErrorGet || listUsersError || listMonthsError) {
     content = <RequestError styles={requestContainer} />;
-  } else if (!month || month?.id === "") {
+  } else if (!month) {
     content = <MonthPanelEmpty />;
   } else {
     content = <MonthPanelContent />;
@@ -40,4 +39,3 @@ const IndexMonthPanel = () => {
 };
 
 export default IndexMonthPanel;
-

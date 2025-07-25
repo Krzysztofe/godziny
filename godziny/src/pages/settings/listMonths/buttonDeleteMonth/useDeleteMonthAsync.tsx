@@ -11,21 +11,17 @@ const useDeleteMonthAsync = (monthIdx: string) => {
   const dispatch = useDispatch();
   // const { monthDate } = useMonthDate(monthIdx);
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
-  
+
   const [deleteMonth, success] = useDeleteMonthMutation();
 
   const deleteMonthAsync = async () => {
-    // if (monthDate && listMonths?.includes(monthDate)) {
-    //   dispatch(setCollapseIndex(null));
-    //   const year = monthDate.slice(0, 4);
-    //   const month = monthDate.slice(-2);
-      await deleteMonth(monthIdx);
-    
+  
+
+    await deleteMonth(monthIdx);
   };
   // useEffect(() => {
   //   dispatch(getUpdateMonthError(success.isError));
   // }, [success.isError]);
-
 
   return { deleteMonthAsync, success };
 };

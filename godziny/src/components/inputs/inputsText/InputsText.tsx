@@ -62,8 +62,9 @@ const InputsText = (props: Props) => {
                 max={max}
                 placeholder={placeholder}
                 size="sm"
-                className={`text-light-emphasis bg-secondary-light _radius w-100 text-capitalize _cursor-pointer _fs-primary
+                className={`text-light-emphasis bg-secondary-light _radius w-100 _cursor-pointer _fs-primary
                    ${type === "color" ? "_inputsColor p-0" : "py-2"} ${styles}
+                    ${value === "userName" && "text-capitalize" }
                 `}
               />
 

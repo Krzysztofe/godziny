@@ -3,7 +3,6 @@ import { RootState } from "../../../../redux/store";
 import { usePatchAllHoursMutation } from "../../../../services/apiSliceMonths";
 import { useContext } from "react";
 import { MonthItemContext } from "../ListMonths";
-import useMonthQuery from "../../../../hooks/useMonthQuery";
 
 type ModelFormValues = {
   allHours: number;
@@ -24,11 +23,17 @@ const useFormikHours = () => {
       if (submittedHours + acceptedHours > +values?.allHours) return;
     }
 
+    const currentHours =
+      calcHours.submittedHours === 0 && calcHours.acceptedHours === 0
+        ? values.allHours
+        : values.allHours - calcHours.submittedHours - calcHours.acceptedHours;
+
+
     await patchAllHours({
       id,
       body: {
         allHours: values.allHours,
-        currentHours: values.allHours,
+        currentHours,
       },
     });
   };

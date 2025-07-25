@@ -24,17 +24,16 @@ const useFormikLogin = () => {
 
   const onSubmit = async (values: InitialValues) => {
     setIsLoading(true);
-  
+
     try {
-      const resp = await loginAdmin(values).unwrap(); 
-  
+      const resp = await loginAdmin(values).unwrap();
+
       localStorage.setItem("token", resp.token);
-  
-      // dispatch(printAlert({ message: "Login successful", type: "success" }));
+
       navigate(`/${currYearDigits}-${currMonthDigits}`);
     } catch (error: any) {
       console.error("Login failed:", error);
-      // dispatch(printAlert({ message: "Login failed", type: "error" }));
+      dispatch(printAlert("Złe hasło lub login"));
     } finally {
       setIsLoading(false);
     }

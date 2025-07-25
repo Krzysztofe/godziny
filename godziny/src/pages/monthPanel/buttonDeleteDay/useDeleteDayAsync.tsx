@@ -2,7 +2,6 @@ import useMonthQuery from "../../../hooks/useMonthQuery";
 import useURLValues from "../../../hooks/useURLValues";
 import { useDeleteDayMutation } from "../../../services/apiSliceMonths";
 import { ModelDay } from "../../../sharedModels/modelDay";
-import { calculateUpdatedCalcHours, deleteDayById } from "./utilsDeleteDay";
 
 const useDeleteDayAsync = (day: any, columnIndex: number) => {
   const { data: month } = useMonthQuery();

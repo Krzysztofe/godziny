@@ -6,8 +6,16 @@ import useFormikLogin from "./useFormikLogin";
 import InputAccessability from "./InputAccessability";
 
 const dataInputsText = [
-  { value: "adminEmail", type: "email", isErrorPrint: true },
-  { value: "adminPassword", type: "password", isErrorPrint: true },
+  {
+    value: "adminEmail",
+    type: "email",
+    placeholder: "Email",
+  },
+  {
+    value: "adminPassword",
+    type: "password",
+    placeholder: "Hasło",
+  },
 ];
 
 const FormLoginContext = () => {

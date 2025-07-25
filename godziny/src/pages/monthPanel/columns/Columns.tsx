@@ -4,7 +4,6 @@ import useMonthQuery from "../../../hooks/useMonthQuery";
 import { ModelColumn } from "../../../sharedModels/modelColumn";
 import Column from "../column/Column";
 import "./_columns.scss";
-import useUpdateColumns from "./hooks/useUpdateColumns";
 import useUpdateMonth from "./hooks/useUpdateMonth";
 import { handleDragDrop } from "./utils/utilsHandleDragDrop";
 import { playDragSound } from "./utils/utilsPlayDragSound";
