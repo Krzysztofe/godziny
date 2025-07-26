@@ -1,6 +1,8 @@
-# Godziny
+# Godziny - React/TS, Express, Mongoose
 
-"Godziny" is commercial project designed for the presidium of a trade union's workers council to plan the so-called union hours. In Poland, the presidium of the trade union's council is entitled to use hours for union activities. Once the number of hours for the month is determined, the members of the presidium provide the employer with data on the number of hours taken on specific days of the month. Subsequently, the employer can either accept or reject the request for union hours.
+"Godziny" is full-stack commercial project designed for the presidium of a trade union's workers council to plan the so-called union hours. In Poland, the presidium of the trade union's council is entitled to use hours for union activities. Once the number of hours for the month is determined, the members of the presidium provide the employer with data on the number of hours taken on specific days of the month. Subsequently, the employer can either accept or reject the request for union hours.
+## Server <a href = "https://github.com/Krzysztofe/godziny-server"> here --></a>
+
 
 ## Application functionality
 
@@ -66,10 +68,10 @@ Live recording of the application presentation during the conclusion of the comp
 <img src="https://github.com/Krzysztofe/godziny/assets/96065197/037d656d-59f6-4a97-a8c8-0da13b37e4fd" width="300" alt="Mobile Screenshot">
 </div>
 
-## Features
+## Frontend Features
 
 * Comunication with database
-* Login form 
+* Auth 
 * Drag and drop
 * Forms / validations 
 * Dynamic routing
@@ -82,47 +84,61 @@ Live recording of the application presentation during the conclusion of the comp
 * Protected routes
 
 
-## Technologies
+## Frontend Technologies
 
 * SCSS, Bootstrap
 * React, TypeScript
 * Redux Toolkit
 * Context
-* RTK Query: GET, PUT, DELETE
-* Firebase: Authentication, Realtime Database 
+* RTK Query: GET, POST, PUT, DELETE
 * Formik / Yup 
 * Lazy loading
 * Router
 * RegExp
 
-* React hooks: <br/> useState, useEffect, useRef, <br/> useDispatch, useSelector, useContext,<br/> useNavigate, useParams, useLocation, <br/> useAuthState, useFormikContext, custom hooks
+* React hooks: <br/> useState, useEffect, useRef, <br/> useDispatch, useSelector, useContext,<br/> useNavigate, useParams, useLocation, <br/> useFormikContext, custom hooks
 
 * Memoization: <br/> memo, useMemo 
 
 * Libraries: <br/>
 react-router, react-router-dom, react-router-hash-link, history, <br/>
-react-firebase-hooks, react-beautiful-dnd, <br/>
+react-beautiful-dnd, <br/>
 react-redux, @reduxjs/toolkit, <br/>
 formik, yup, <br/>
 react-bootstrap, react-icons
 
-* Firebase config in singleton pattern
 
+## Backend Features <a href = "https://github.com/Krzysztofe/godziny-server">server here --></a>
+* Auth
+* Password hashing
+* Input validations
+* Database integration: MongoDB Atlas / Mongoose ODM
+* RESTful API - GET, POST, PUT, DELETE endpoints
+* Environment configuration
+* MVC architecture
 
+## Backend Technologies
 
+* Express
+* JWT
+* bcryptjs
+* CORS configuration
+* HTTP headers helmet security
+  
+* Libraries: <br/>
+bcryptjs, body-parser, compression, helmet, jsonwebtoken, mongoose, nodemon, yup
 
+* Database: <br/>
+ MongoDB Atlas / Mongoose ODM
 
  ## Comments
-* The Firebase Config keys are not hidden in the .env file to allow access for setting up the project locally.
+* URLs are not hidden in the .env file to allow access for setting up the project locally.
  
 * The data structure written in JSON and and stored in the Firebase Realtime Database follows a pattern where each year contains multiple months, and each month holds detailed information with hours calculations and lists of days in three columns. For example:
 
  <div>
 <img src="https://github.com/Krzysztofe/godziny/assets/96065197/0145c37f-077a-4544-9895-ce43a7f8b285" width=350" height="200" alt="Mobile Screenshot">
 </div>
-
-
-
 
 
 * To optimize data retrieval from the database and at the same have access to a list of dates of all saved months in database, a snapshot from the Realtime Database is utilized. This snapshot relies on a WebSocket connection, which results in an HTTP 101 response code. The snapshot listener retrieves keys from the database, encompassing only data of recorded years and months. Subsequently, these keys are transferred to an array, forming a list of months printed in settings panel. This approach restricts HTTP requests to the database only to keys of recorded years and months, without fetching the rest of the data recorded for each year and month.
