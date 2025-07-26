@@ -134,18 +134,16 @@ bcryptjs, body-parser, compression, helmet, jsonwebtoken, mongoose, nodemon, yup
  ## Comments
 * URLs are not hidden in the .env file to allow access for setting up the project locally.
  
+* To achieve global access to variables and functions, Redux Toolkit was implemented. However, to avoid prop drilling within components in lists iterated by the map() method, local Context was utilized.
+
+* On the mobile version of aplication, the drag and drop functionality is not well supported on touch events. It works in the following way: when you press on a tile with information about a day, a black border appears around the tile and its background becomes transparent. To make a change, you need to release your finger and then touch the tile again to drag it to the desired column.
+
 * The structure of the month data stored in MongoDB Atlas is as follows:
 
  <div>
 <img src="https://github.com/user-attachments/assets/5846c847-6fd8-4253-a0ab-a8d9508b5614" width=450" height="400" alt="Screenshot">
 </div>
 
-
-
-
-* To achieve global access to variables and functions, Redux Toolkit was implemented. However, to avoid prop drilling within components in lists iterated by the map() method, local Context was utilized.
-
-* On the mobile version of aplication, the drag and drop functionality is not well supported on touch events. It works in the following way: when you press on a tile with information about a day, a black border appears around the tile and its background becomes transparent. To make a change, you need to release your finger and then touch the tile again to drag it to the desired column.
 
 ## Prerequisites
 * Before getting started, make sure you have the Node.js and npm or yarn
