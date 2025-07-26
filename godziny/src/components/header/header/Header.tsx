@@ -8,7 +8,7 @@ import "./_header.scss";
 const Header = () => {
   const { isPath: isSearch } = useIsPath(["202"]);
   const { isPath: isLogout } = useIsPath(["202", "ustawienia"]);
-  
+
 
   return (
     <header className="w-100 d-flex align-items-center border-bottom fs-3 position-relative _header">

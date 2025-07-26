@@ -4,6 +4,7 @@ import Collapse from "react-bootstrap/Collapse";
 import CollapseArrow from "./collapseArrow/CollapseArrow";
 import "./_collapseContainer.scss";
 
+
 type Props = {
   children: ReactNode;
   title: string;

@@ -1,26 +1,21 @@
+import { useContext } from "react";
 import { useSelector } from "react-redux";
 import RequestError from "../../../../components/requestStates/RequestError";
 import RequestLoading from "../../../../components/requestStates/RequestLoading";
 import useReduxCalcHours from "../../../../hooks/updateReduxDatabase/useReduxCalcHours";
 import { RootState } from "../../../../redux/store";
-import useMonthDate from "../useMonthDate";
+import { MonthItemContext } from "../ListMonths";
 import FormHoursContext from "./FormHoursContext";
 import { requestContainer } from "./utilsRequestContainer.scss/utilsRequestContainer";
-import { useContext } from "react";
-import { MonthItemContext } from "../ListMonths";
 
 const FormHoursContainer = () => {
-  const {monthIdx, year, month} = useContext(MonthItemContext);
-  const { monthDate } = useMonthDate(monthIdx);
-
-
+  const { year, month} = useContext(MonthItemContext);
 
   useReduxCalcHours(year.toString(), month.toString());
 
   const { calcHoursIsLoading, calcHoursError } = useSelector(
     (state: RootState) => state.calcHours
   );
-
 
 
   let content;

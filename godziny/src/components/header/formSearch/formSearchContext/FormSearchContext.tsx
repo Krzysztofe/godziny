@@ -4,8 +4,13 @@ import InputsSelect from "../../../inputs/inputsSelect/InputsSelect";
 import GetOnChangeValues from "../GetOnChangeValues";
 import useDataSearch from "../useDataSearch";
 import "./_formSearchContext.scss";
+import { useUsersQuery } from "../../../../services/apiSliceUsers";
+
 
 const FormSearchContext = memo(() => {
+
+  useUsersQuery();
+
 
   const { dataInputsSelect } = useDataSearch();
 

@@ -6,20 +6,19 @@ import {
 } from "../../redux/storeFeatures/listMonthsSlice";
 import { useAllMonthsQuery } from "../../services/apiSliceMonths";
 
-
 const useReduxListMonths = () => {
   const dispatch = useDispatch();
 
-   const { data: months, error } = useAllMonthsQuery();
+  const { data: months, error } = useAllMonthsQuery();
 
-   const monthsLabels = months?.map(item => `${item.year}-${String(item.month).padStart(2, '0')}`)
-
-
+  const monthsLabels = months?.map(
+    (item) => `${item.year}-${String(item.month).padStart(2, "0")}`
+  );
 
   useEffect(() => {
     dispatch(getListMonths(monthsLabels));
     dispatch(getListMonthsError(error));
-  }, [months, dispatch]);
+  }, [months?.length, dispatch]);
 };
 
 export default useReduxListMonths;

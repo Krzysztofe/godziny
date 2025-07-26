@@ -9,13 +9,14 @@ import { requestContainer } from "../../../utils/utilsRequestContainer";
 import MonthPanelContent from "../monthPanelContent/MonthPanelContent";
 import MonthPanelEmpty from "../monthPanelEmpty/MonthPanelEmpty";
 
+
 const IndexMonthPanel = () => {
   const {
     data: month,
     error: monthErrorGet,
     isLoading: monthIsLoading,
   } = useMonthQuery();
-
+  
   const { error: listUsersError, isLoading: listUsersIsLoading } =
     useUsersQuery();
 
