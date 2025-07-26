@@ -6,20 +6,23 @@ import { setCollapseIndex } from "../../../redux/storeFeatures/listMonthsSlice";
 import Nav from "../Nav/Nav";
 import "./_indexSidebar.scss";
 import useDataSidebar from "./useDataSidebar";
-import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListMonths";
 
 const IndexSidebar = () => {
   const dispatch = useDispatch();
-  useReduxListMonths();
   const { pathname } = useLocation();
   const { isPath: isMonthPanel } = useIsPath(["202"]);
   const { isPath: isSettings } = useIsPath(["ustawienia"]);
   const { dataMonthPanel, dataSettings } = useDataSidebar();
 
+  const jwt = localStorage.getItem("token");
+
   useEffect(() => {
+    if (!jwt) return;
     dispatch(setCollapseIndex(null));
   }, [pathname, dispatch]);
 
+  if (!jwt) return null;
+ 
   return (
     <div className="_sidebar p-md-0">
       <div className="_sidebar__wrapper _scrolHidden p-md-3 p-lg-4">

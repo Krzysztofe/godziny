@@ -8,7 +8,6 @@ import { useAllMonthsQuery } from "../../services/apiSliceMonths";
 
 const useReduxListMonths = () => {
   const dispatch = useDispatch();
-
   const { data: months, error } = useAllMonthsQuery();
 
   const monthsLabels = months?.map(
@@ -18,7 +17,7 @@ const useReduxListMonths = () => {
   useEffect(() => {
     dispatch(getListMonths(monthsLabels));
     dispatch(getListMonthsError(error));
-  }, [months?.length, dispatch]);
+  }, [months, dispatch]);
 };
 
 export default useReduxListMonths;

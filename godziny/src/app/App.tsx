@@ -4,20 +4,18 @@ import LoadingPage from "../pages/loadingPage/LoadingPage";
 import "../scss/App.scss";
 import AppRoutes from "./AppRoutes";
 
-
 const Header = lazy(() => import("../components/header/header/Header"));
 const IndexSidebar = lazy(
   () => import("../components/sidebar/indexSidebar/IndexSidebar")
 );
 
 function App() {
+  const { isPath } = useIsPath(["ustawienia", "202"]);
 
-
-  const jwt = localStorage.getItem("token");
   return (
     <Suspense fallback={<LoadingPage />}>
       <Header />
-      {jwt && <IndexSidebar />}
+      {isPath && <IndexSidebar />}
       <AppRoutes />
     </Suspense>
   );

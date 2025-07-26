@@ -1,3 +1,4 @@
+import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListMonths";
 import useMonthURLToString from "../../../hooks/useMonthURLToString";
 import CollapseContainer from "../../collapseContainer/CollapseContainer";
 import FormDayContext from "../formDay/forDayContex/FormDayContext";
@@ -5,9 +6,12 @@ import FormMonthContext from "../formMonth/FormMonthContext";
 import FormUserContext from "../formUser/FormUserContext";
 import ListMonthsInCollapse from "../listMonthsInCollapse/ListMonthsInCollapse";
 
+
 const useDataSidebar = () => {
   const { monthURLStringFormat } = useMonthURLToString();
+  useReduxListMonths()
 
+  console.log('ssss',)
   const monthStringCapitalize =
     monthURLStringFormat[0]?.toUpperCase() + monthURLStringFormat.slice(1);
 
