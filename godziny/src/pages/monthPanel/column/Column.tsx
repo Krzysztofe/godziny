@@ -1,12 +1,11 @@
+import { createContext } from "react";
 import { Droppable } from "react-beautiful-dnd";
-import { v4 as UUID } from "uuid";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
 import { ModelColumn } from "../../../sharedModels/modelColumn";
 import { ModelDay } from "../../../sharedModels/modelDay";
 import Day from "../Day";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
 import "./_column.scss";
-import { createContext } from "react";
 
 type ContextType = {
   day: ModelDay;
@@ -48,7 +47,7 @@ const Column = (props: Props) => {
                 ? props.column?.days.map((day: ModelDay, idx: number) => {
                     return (
                       <DayItemContext.Provider
-                        key={UUID()}
+                        key={day._id}
                         value={{ day, columnIdx: props.columnIdx, dayIdx: idx }}
                       >
                         <Day />
