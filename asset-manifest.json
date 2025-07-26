@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/godziny/static/css/main.a8d3264e.css",
-    "main.js": "/godziny/static/js/main.b66004dc.js",
+    "main.js": "/godziny/static/js/main.418ca409.js",
     "static/css/234.ca552dd1.chunk.css": "/godziny/static/css/234.ca552dd1.chunk.css",
     "static/js/234.86f56071.chunk.js": "/godziny/static/js/234.86f56071.chunk.js",
     "static/css/505.62665dae.chunk.css": "/godziny/static/css/505.62665dae.chunk.css",
@@ -23,7 +23,7 @@
     "static/media/dragSound.wav": "/godziny/static/media/dragSound.91940e3f5c0dacec1c6c.wav",
     "index.html": "/godziny/index.html",
     "main.a8d3264e.css.map": "/godziny/static/css/main.a8d3264e.css.map",
-    "main.b66004dc.js.map": "/godziny/static/js/main.b66004dc.js.map",
+    "main.418ca409.js.map": "/godziny/static/js/main.418ca409.js.map",
     "234.ca552dd1.chunk.css.map": "/godziny/static/css/234.ca552dd1.chunk.css.map",
     "234.86f56071.chunk.js.map": "/godziny/static/js/234.86f56071.chunk.js.map",
     "505.62665dae.chunk.css.map": "/godziny/static/css/505.62665dae.chunk.css.map",
@@ -45,6 +45,6 @@
   },
   "entrypoints": [
     "static/css/main.a8d3264e.css",
-    "static/js/main.b66004dc.js"
+    "static/js/main.418ca409.js"
   ]
 }
