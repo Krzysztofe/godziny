@@ -4,13 +4,11 @@ import { RootState } from "../../../../redux/store";
 import FormHoursContainer from "../formHours/FormHoursContainer";
 import { useContext } from "react";
 import { MonthItemContext } from "../ListMonths";
-import useDatabaseListMonths from "../../../../services/useDatabaseListMonths";
 
 const CollapseContent = () => {
   const { openCollapseIndex } = useSelector(
     (state: RootState) => state.listMonths
   );
-  const { listMonths } = useDatabaseListMonths();
 
   const monthIdx = useContext(MonthItemContext);
 

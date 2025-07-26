@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import useFirebaseConfig from "../../hooks/useFirebaseConfig";
+import { useNavigate } from "react-router-dom";
 
 const dataRemainingSeconds = 61;
 
 const useAutoLogout = () => {
+  const navigate = useNavigate();
 
   const [secondsRemaining, setSecondsRemaining] =
     useState(dataRemainingSeconds);
@@ -15,8 +16,8 @@ const useAutoLogout = () => {
     setSecondsRemaining(remaining);
 
     if (expireTime < Date.now()) {
-      // auth?.signOut();
       localStorage.removeItem("token");
+      navigate("/")
     }
   };
 
