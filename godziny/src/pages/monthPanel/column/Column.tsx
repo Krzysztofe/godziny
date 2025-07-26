@@ -9,8 +9,7 @@ import "./_column.scss";
 import { createContext } from "react";
 
 type ContextType = {
-  // day: ModelDay;
-  day: any;
+  day: ModelDay;
   columnIdx: number;
   dayIdx: number;
 };

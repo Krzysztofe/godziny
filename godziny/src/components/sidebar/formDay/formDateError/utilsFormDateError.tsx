@@ -1,19 +1,19 @@
-import { ModelColumn } from "../../../../sharedModels/modelColumn";
 import { ModelMonth } from "../../../../sharedModels/modelMonth";
+import { ModelDay } from "../../../../sharedModels/modelDay";
 
 export const findDayInColumn = (
-  monthColumn: any | undefined,
+  monthColumn: ModelDay[] | undefined,
   findName: string,
   findDate: string
 ) => {
-  return monthColumn?.find((day: any) => {
+  return monthColumn?.find((day) => {
     const { userName, date } = day || {};
     return (userName || "") === findName && date === findDate;
   });
 };
 
 export const validationFormDayDate = (
-  month: any | undefined,
+  month: ModelMonth | undefined,
   findName: string,
   findDate: string
 ) => {

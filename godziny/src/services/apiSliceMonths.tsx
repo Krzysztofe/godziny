@@ -1,7 +1,37 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { URL_MONTHS_DATA } from "../data/URL";
-import { ModelMonth } from "../sharedModels/modelMonth";
 import { ModelCalcHours } from "../sharedModels/modelCalcHours";
+import { ModelColumns } from "../sharedModels/modelColumns";
+import { ModelFormDay } from "../sharedModels/modelDay";
+import { ModelMonth } from "../sharedModels/modelMonth";
+
+type ModelBody = {
+  year: number;
+  month: number;
+  allHours: number;
+  currentHours: number;
+};
+
+type ModelUpdateMonth = {
+  columns: ModelColumns;
+  hours: ModelCalcHours;
+};
+
+type ModelAddDay = {
+  day: ModelFormDay;
+  calcHours: ModelCalcHours;
+};
+
+type ModelDeleteDay = {
+  dayId: string;
+  columnType: string;
+  calcHours: ModelCalcHours;
+};
+
+type ModelPathAllHours = {
+  allHours: number;
+  currentHours: number;
+};
 
 const baseQueryWithAuth = fetchBaseQuery({
   baseUrl: URL_MONTHS_DATA,
@@ -14,8 +44,6 @@ const baseQueryWithAuth = fetchBaseQuery({
   },
 });
 
-// calcHours.hours;
-
 const createUrl = (year: string, month: string, suffix = "") =>
   `/${year}/${month}/${suffix}`;
 
@@ -24,7 +52,6 @@ export const monthsApiSlice = createApi({
   baseQuery: baseQueryWithAuth,
   tagTypes: ["months"],
   endpoints: (builder) => ({
-
     // queries
 
     allMonths: builder.query<
@@ -35,23 +62,20 @@ export const monthsApiSlice = createApi({
       providesTags: ["months"],
     }),
 
-    monthData: builder.query<any, { year: string; month: string }>({
+    monthData: builder.query<ModelMonth, { year: string; month: string }>({
       query: ({ year, month }) => createUrl(year, month),
       providesTags: ["months"],
     }),
 
-    calcHours: builder.query<any, { year: string; month: string }>({
+    calcHours: builder.query<ModelCalcHours, { year: string; month: string }>({
       query: ({ year, month }) => createUrl(year, month, "allHours"),
       providesTags: ["months"],
     }),
 
     // mutations
 
-    postMonth: builder.mutation<
-      void,
-      { year: string; month: string; monthBody: any }
-    >({
-      query: ({ year, month, monthBody }) => ({
+    postMonth: builder.mutation<void, { monthBody: ModelBody }>({
+      query: ({ monthBody }) => ({
         url: "/",
         method: "POST",
         body: monthBody,
@@ -61,7 +85,7 @@ export const monthsApiSlice = createApi({
 
     updateMonth: builder.mutation<
       void,
-      { year: string; month: string; monthBody: any }
+      { year: string; month: string; monthBody: ModelUpdateMonth }
     >({
       query: ({ year, month, monthBody }) => ({
         url: `month${createUrl(year, month)}`,
@@ -73,7 +97,7 @@ export const monthsApiSlice = createApi({
 
     addDay: builder.mutation<
       void,
-      { year: string; month: string; monthBody: any }
+      { year: string; month: string; monthBody: ModelAddDay }
     >({
       query: ({ year, month, monthBody }) => ({
         url: createUrl(year, month),
@@ -85,7 +109,7 @@ export const monthsApiSlice = createApi({
 
     deleteDay: builder.mutation<
       void,
-      { year: string; month: string;  monthBody: any }
+      { year: string; month: string; monthBody: ModelDeleteDay }
     >({
       query: ({ year, month, monthBody }) => ({
         url: createUrl(year, month),
@@ -105,11 +129,14 @@ export const monthsApiSlice = createApi({
 
     // allHours mutations
 
-    patchAllHours: builder.mutation<void, { id: string; body: any  }>({
+    patchAllHours: builder.mutation<
+      void,
+      { id: string; body: ModelPathAllHours }
+    >({
       query: ({ id, body }) => ({
         url: `/${id}`,
         method: "PATCH",
-        body:  body ,
+        body: body,
       }),
       invalidatesTags: ["months"],
     }),

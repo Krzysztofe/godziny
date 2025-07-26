@@ -16,14 +16,6 @@ export const loginApiSlice = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: URL_LOGIN_DATA }),
   tagTypes: ["login"],
   endpoints: (builder) => ({
-    // queries
-
-    users: builder.query<ModelUser[], void>({
-      query: () => "/login",
-      providesTags: ["login"],
-    }),
-
-    // mutations
 
     loginAdmin: builder.mutation<LoginResponse, ModelAdmin>({
       query: (admin) => ({
@@ -36,4 +28,4 @@ export const loginApiSlice = createApi({
   }),
 });
 
-export const { useUsersQuery, useLoginAdminMutation } = loginApiSlice;
+export const { useLoginAdminMutation } = loginApiSlice;

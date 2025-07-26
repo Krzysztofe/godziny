@@ -17,7 +17,7 @@ const CounterHeader = (props: Props) => {
   useEffect(() => {
     setCounter(props.counter ? [props.counter] : [0]);
     didMountRef.current = false;
-  }, [month?.id]);
+  }, [month?._id]);
 
   useEffect(() => {
     if (didMountRef.current && props.counter !== undefined) {
@@ -25,7 +25,7 @@ const CounterHeader = (props: Props) => {
     } else {
       didMountRef.current = true;
     }
-  }, [props.counter, month?.id]);
+  }, [props.counter, month?._id]);
 
   return (
     <div className="_counterHeader">

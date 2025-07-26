@@ -20,7 +20,10 @@ const findDestinationColumnIdx = (
   );
 };
 
-const findDeletedDay = (newSourceDays: any[], source: { index: number }) => {
+const findDeletedDay = (
+  newSourceDays: ModelDay[],
+  source: { index: number }
+) => {
   const [deletedDay] = newSourceDays.splice(source.index, 1);
   return deletedDay;
 };

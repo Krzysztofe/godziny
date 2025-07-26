@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import useMonthQuery from "../../../../hooks/useMonthQuery";
 import useURLValues from "../../../../hooks/useURLValues";
 import { useUpdateMonthMutation } from "../../../../services/apiSliceMonths";
-import { ModelColumn } from "../../../../sharedModels/modelColumn";
+import { ModelColumns } from "../../../../sharedModels/modelColumns";
 import { getHoursFromColumns } from "../utils/utilsGetHoursFromColumns";
 
 const useUpdateMonth = (
-  columns: ModelColumn[],
+  columns: any,
   executeUpdateMonth: boolean
 ) => {
   const { yearFromURL, monthFromURL } = useURLValues();
@@ -22,6 +22,8 @@ const useUpdateMonth = (
       accepted: columns[1]?.days,
       rejected: columns[2]?.days,
     };
+
+    console.log("", columnsBody);
 
     if (columns.length > 0 && month) {
       updateMonth({

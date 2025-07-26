@@ -23,14 +23,14 @@ export const usersApiSlice = createApi({
     
     // queries
     users: builder.query<ModelUser[], void>({
-      query: () => "/users",
+      query: () => "/",
       providesTags: ["users"],
     }),
 
     // mutations
     addUser: builder.mutation<void, Omit<ModelUser, "_id">>({
       query: (user) => ({
-        url: "/users",
+        url: "/",
         method: "POST",
         body: user,
       }),
@@ -39,7 +39,7 @@ export const usersApiSlice = createApi({
 
     deleteUser: builder.mutation<void, string>({
       query: (userId) => ({
-        url: `/users/${userId}`,
+        url: `/${userId}`,
         method: "DELETE",
       }),
       invalidatesTags: ["users"],

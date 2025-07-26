@@ -5,7 +5,6 @@ import {
 import { usePostMonthMutation } from "../../../services/apiSliceMonths";
 import * as yup from "yup";
 import { ModelMonth } from "../../../sharedModels/modelMonth";
-import { monthPattern } from "./dataFormMonth";
 import useValidationMonthForm from "./useValidationMonthForm";
 import { useDispatch } from "react-redux";
 import { getListMonths, setCollapseIndex,addMonthToList } from "../../../redux/storeFeatures/listMonthsSlice";
@@ -45,7 +44,7 @@ const useFormikMonth = () => {
       currentHours:0
     };
 
-    await postMonth({ year, month, monthBody });
+    await postMonth({ monthBody });
     dispatch(addMonthToList(`${year}-${month}`));
   };
 

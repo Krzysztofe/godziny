@@ -17,9 +17,10 @@ const useFormikHours = () => {
   const initialValues = { allHours: 0 };
 
   const onSubmit = async (values: ModelFormValues) => {
+    if (!calcHours) return;
     const { acceptedHours, submittedHours } = calcHours;
 
-    if (calcHours.hours) {
+    if (calcHours) {
       if (submittedHours + acceptedHours > +values?.allHours) return;
     }
 

@@ -58,20 +58,28 @@ const useFormikDay = () => {
 
     const { date, hours, place, userName } = values;
 
+    const newHours = parseInt(hours);
+
+    if (!month?.hours) return;
+
     const calcHours = {
       ...month?.hours,
       currentHours: month.hours.currentHours - parseInt(hours),
       submittedHours: month.hours.submittedHours + parseInt(hours),
     };
 
-  
-
-    month &&
+    userColor &&
       (await addDay({
         year: yearFromURL,
         month: monthFromURL,
         monthBody: {
-          day: { date, hours, place, userColor, userName, monthId: month._id },
+          day: {
+            date,
+            hours: newHours,
+            place,
+            userColor,
+            userName,
+          },
           calcHours,
         },
       }));

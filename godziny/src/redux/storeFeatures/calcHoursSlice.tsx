@@ -4,7 +4,7 @@ import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
 import { SerializedError } from "@reduxjs/toolkit";
 
 type ModelInitialState = {
-  calcHours: any | null | undefined;
+  calcHours: ModelCalcHours | null | undefined;
   calcHoursError: FetchBaseQueryError | SerializedError | undefined;
   calcHoursIsLoading: boolean;
 };
@@ -21,7 +21,7 @@ export const calcHoursSlice = createSlice({
   reducers: {
     getCalcHours: (
       state,
-      action: PayloadAction<any | null | undefined>
+      action: PayloadAction<ModelCalcHours | null | undefined>
     ) => {
       state.calcHours = action.payload;
     },
