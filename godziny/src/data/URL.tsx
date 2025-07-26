@@ -4,4 +4,4 @@
 
 export const URL_LOGIN_DATA = "https://godziny-server.vercel.app/auth";
 export const URL_USERS_DATA = "https://godziny-server.vercel.app/hours";
-export const URL_MONTHS_DATA = "https://godziny-server.vercel.app/calendar";
+export const URL_MONTHS_DATA = "https://godziny-server.vercel.app/months";
