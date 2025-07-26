@@ -134,14 +134,13 @@ bcryptjs, body-parser, compression, helmet, jsonwebtoken, mongoose, nodemon, yup
  ## Comments
 * URLs are not hidden in the .env file to allow access for setting up the project locally.
  
-* The data structure written in JSON and and stored in the Firebase Realtime Database follows a pattern where each year contains multiple months, and each month holds detailed information with hours calculations and lists of days in three columns. For example:
+* The structure of the month data stored in MongoDB Atlas is as follows:
 
  <div>
-<img src="https://github.com/Krzysztofe/godziny/assets/96065197/0145c37f-077a-4544-9895-ce43a7f8b285" width=350" height="200" alt="Mobile Screenshot">
+<img src="https://github.com/user-attachments/assets/5846c847-6fd8-4253-a0ab-a8d9508b5614" width=450" height="400" alt="Screenshot">
 </div>
 
 
-* To optimize data retrieval from the database and at the same have access to a list of dates of all saved months in database, a snapshot from the Realtime Database is utilized. This snapshot relies on a WebSocket connection, which results in an HTTP 101 response code. The snapshot listener retrieves keys from the database, encompassing only data of recorded years and months. Subsequently, these keys are transferred to an array, forming a list of months printed in settings panel. This approach restricts HTTP requests to the database only to keys of recorded years and months, without fetching the rest of the data recorded for each year and month.
 
 
 * To achieve global access to variables and functions, Redux Toolkit was implemented. However, to avoid prop drilling within components in lists iterated by the map() method, local Context was utilized.
