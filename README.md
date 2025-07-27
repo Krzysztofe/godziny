@@ -111,7 +111,7 @@ react-bootstrap, react-icons
 ## Backend Features <a href = "https://github.com/Krzysztofe/godziny-server">server here --></a>
 * Auth
 * Password hashing
-* Input validations
+* Input validations (yup, custom validations)
 * Database integration: MongoDB Atlas / Mongoose ODM
 * RESTful API - GET, POST, PUT, DELETE endpoints
 * Environment configuration
