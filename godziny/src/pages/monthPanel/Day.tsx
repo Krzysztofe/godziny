@@ -18,7 +18,6 @@ const Day = () => {
     printDay = "d-none";
   }
 
-// console.log('day',day?._id)
 
   return (
     <Draggable

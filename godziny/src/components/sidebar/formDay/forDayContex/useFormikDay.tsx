@@ -63,8 +63,8 @@ const useFormikDay = () => {
 
     const calcHours = {
       ...month?.hours,
-      currentHours: month.hours.currentHours - parseInt("-9"),
-      submittedHours: month.hours.submittedHours + parseInt("-9"),
+      currentHours: month.hours.currentHours - parseInt(hours),
+      submittedHours: month.hours.submittedHours + parseInt(hours),
     };
 
     userColor &&
