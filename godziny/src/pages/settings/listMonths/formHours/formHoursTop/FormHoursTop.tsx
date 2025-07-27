@@ -3,16 +3,16 @@ import InputsText from "../../../../../components/inputs/inputsText/InputsText";
 import { RootState } from "../../../../../redux/store";
 import "./_formHoursTop.scss";
 
-
-  const dataInputsText = [
-    {
-      value: "allHours",
-      type: "number",
-      isErrorPrint: false,
-      styles: "ps-1 pt-0 pb-0 pl-0 fs-4 mt-0 _fw-semiBold",
-    },
-  ];
-
+const dataInputsText = [
+  {
+    value: "allHours",
+    type: "number",
+    isErrorPrint: false,
+    styles: "ps-1 pt-0 pb-0 pl-0 fs-4 mt-0 _fw-semiBold",
+    min: "0",
+    max: "320",
+  },
+];
 
 const FormHoursTop = () => {
   const { calcHours } = useSelector((state: RootState) => state.calcHours);
@@ -32,7 +32,7 @@ const FormHoursTop = () => {
       </div>
     </>
   );
-  return null
+  return null;
 };
 
 export default FormHoursTop;

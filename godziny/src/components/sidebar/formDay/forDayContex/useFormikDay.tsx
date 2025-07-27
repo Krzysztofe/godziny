@@ -73,11 +73,11 @@ const useFormikDay = () => {
         month: monthFromURL,
         monthBody: {
           day: {
-            date: "2025-08-10",
-            hours: -9,
-            place: "iiii",
-            userColor: "pluw",
-            userName: "uu",
+            date,
+            hours: newHours,
+            place,
+            userColor,
+            userName,
           },
           calcHours,
         },
