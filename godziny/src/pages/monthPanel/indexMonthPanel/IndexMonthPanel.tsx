@@ -8,7 +8,6 @@ import { useUsersQuery } from "../../../services/apiSliceUsers";
 import { requestContainer } from "../../../utils/utilsRequestContainer";
 import MonthPanelContent from "../monthPanelContent/MonthPanelContent";
 import MonthPanelEmpty from "../monthPanelEmpty/MonthPanelEmpty";
-import useReduxListMonths from "./../../../hooks/updateReduxDatabase/useReduxListMonths";
 
 const IndexMonthPanel = () => {
   const {
@@ -19,7 +18,7 @@ const IndexMonthPanel = () => {
 
   const { error: listUsersError, isLoading: listUsersIsLoading } =
     useUsersQuery();
-  useReduxListMonths();
+ 
 
   const { listMonthsError } = useSelector(
     (state: RootState) => state.listMonths

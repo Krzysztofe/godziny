@@ -1,4 +1,3 @@
-import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListMonths";
 import useIsPath from "../../../hooks/useIsPath";
 import Nav from "../../sidebar/Nav/Nav";
 import ButtonLogout from "../buttonLogout/ButtonLogout";
