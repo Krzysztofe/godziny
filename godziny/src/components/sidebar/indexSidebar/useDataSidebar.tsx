@@ -9,9 +9,8 @@ import ListMonthsInCollapse from "../listMonthsInCollapse/ListMonthsInCollapse";
 
 const useDataSidebar = () => {
   const { monthURLStringFormat } = useMonthURLToString();
-  useReduxListMonths()
+  
 
-  console.log('ssss',)
   const monthStringCapitalize =
     monthURLStringFormat[0]?.toUpperCase() + monthURLStringFormat.slice(1);
 

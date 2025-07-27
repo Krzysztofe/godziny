@@ -8,7 +8,6 @@ import { ModelUser } from "../../../../sharedModels/modelUser";
 import { validationFormDayDate } from "../formDateError/utilsFormDateError";
 import { validationSchema } from "./validationFormDay";
 
-
 export type ModelInitialValuesFormikDay = {
   date: string;
   hours: string;
@@ -64,8 +63,8 @@ const useFormikDay = () => {
 
     const calcHours = {
       ...month?.hours,
-      currentHours: month.hours.currentHours - parseInt(hours),
-      submittedHours: month.hours.submittedHours + parseInt(hours),
+      currentHours: month.hours.currentHours - parseInt("-9"),
+      submittedHours: month.hours.submittedHours + parseInt("-9"),
     };
 
     userColor &&
@@ -74,11 +73,11 @@ const useFormikDay = () => {
         month: monthFromURL,
         monthBody: {
           day: {
-            date,
-            hours: newHours,
-            place,
-            userColor,
-            userName,
+            date: "2025-08-10",
+            hours: -9,
+            place: "iiii",
+            userColor: "pluw",
+            userName: "uu",
           },
           calcHours,
         },

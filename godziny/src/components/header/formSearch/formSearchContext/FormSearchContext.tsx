@@ -6,14 +6,10 @@ import useDataSearch from "../useDataSearch";
 import "./_formSearchContext.scss";
 import { useUsersQuery } from "../../../../services/apiSliceUsers";
 
-
 const FormSearchContext = memo(() => {
-
   useUsersQuery();
 
-
   const { dataInputsSelect } = useDataSearch();
-
 
   return (
     <Formik

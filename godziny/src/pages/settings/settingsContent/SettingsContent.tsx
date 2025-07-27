@@ -14,9 +14,7 @@ import { useAllMonthsQuery } from "../../../services/apiSliceMonths";
 const SettingsContent = () => {
   const { listMonths } = useSelector((state: RootState) => state.listMonths);
 
-  const { data: months, isLoading, error } = useAllMonthsQuery();
-
-
+  const { data: months } = useAllMonthsQuery();
 
   const { data: listUsers } = useUsersQuery();
 
@@ -25,7 +23,7 @@ const SettingsContent = () => {
       <div className="_settingsContent pb-4">
         <BorderInline />
         <HeaderList header={"Zapisane miesiące"} listContent={listMonths} />
-        <ListContainer listContent={listMonths}>
+        <ListContainer listContent={months}>
           <ListMonths />
         </ListContainer>
         <HeaderList header={"Zapisani użytkownicy"} listContent={listUsers} />

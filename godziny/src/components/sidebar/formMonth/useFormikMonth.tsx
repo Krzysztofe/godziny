@@ -1,16 +1,14 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import * as yup from "yup";
 import {
   currMonthDigits,
   currYearDigits,
 } from "../../../data/dataCurrentDates";
-import { usePostMonthMutation } from "../../../services/apiSliceMonths";
-import * as yup from "yup";
-import { ModelMonth } from "../../../sharedModels/modelMonth";
-import useValidationMonthForm from "./useValidationMonthForm";
-import { useDispatch } from "react-redux";
-import { getListMonths, setCollapseIndex,addMonthToList } from "../../../redux/storeFeatures/listMonthsSlice";
+import { addMonthToList, setCollapseIndex } from "../../../redux/storeFeatures/listMonthsSlice";
 import { getUpdateMonthError } from "../../../redux/storeFeatures/monthPanelSlice";
-import { useEffect } from "react";
-import { parse } from "path";
+import { usePostMonthMutation } from "../../../services/apiSliceMonths";
+import useValidationMonthForm from "./useValidationMonthForm";
 
 
 type ModelInitialValues = {

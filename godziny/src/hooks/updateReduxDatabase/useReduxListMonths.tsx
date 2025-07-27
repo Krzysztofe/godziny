@@ -8,16 +8,24 @@ import { useAllMonthsQuery } from "../../services/apiSliceMonths";
 
 const useReduxListMonths = () => {
   const dispatch = useDispatch();
-  const { data: months, error } = useAllMonthsQuery();
+  const jwt = localStorage.getItem("token");
 
-  const monthsLabels = months?.map(
-    (item) => `${item.year}-${String(item.month).padStart(2, "0")}`
-  );
+  const { data: months, error } = useAllMonthsQuery(undefined, {
+    skip: !jwt,
+  });
 
   useEffect(() => {
+    if (!jwt || !months) return;
+
+    const monthsLabels = months.map(
+      (item) => `${item.year}-${String(item.month).padStart(2, "0")}`
+    );
+
     dispatch(getListMonths(monthsLabels));
     dispatch(getListMonthsError(error));
-  }, [months, dispatch]);
+  }, [months]);
 };
 
 export default useReduxListMonths;
+
+

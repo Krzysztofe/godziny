@@ -4,6 +4,8 @@ import LoadingPage from "../pages/loadingPage/LoadingPage";
 import "../scss/App.scss";
 import AppRoutes from "./AppRoutes";
 
+
+
 const Header = lazy(() => import("../components/header/header/Header"));
 const IndexSidebar = lazy(
   () => import("../components/sidebar/indexSidebar/IndexSidebar")
@@ -11,6 +13,7 @@ const IndexSidebar = lazy(
 
 function App() {
   const { isPath } = useIsPath(["ustawienia", "202"]);
+
 
   return (
     <Suspense fallback={<LoadingPage />}>

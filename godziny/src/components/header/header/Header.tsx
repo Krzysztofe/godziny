@@ -1,9 +1,11 @@
+import useReduxListMonths from "../../../hooks/updateReduxDatabase/useReduxListMonths";
 import useIsPath from "../../../hooks/useIsPath";
 import Nav from "../../sidebar/Nav/Nav";
 import ButtonLogout from "../buttonLogout/ButtonLogout";
 import FormSearchContext from "../formSearch/formSearchContext/FormSearchContext";
 import HeaderName from "../headerName/HeaderName";
 import "./_header.scss";
+
 
 const Header = () => {
   const { isPath: isSearch } = useIsPath(["202"]);
