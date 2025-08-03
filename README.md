@@ -154,6 +154,7 @@ bcryptjs, body-parser, compression, helmet, jsonwebtoken, mongoose, nodemon, yup
 * Build the Docker image: **docker-compose build**
 * Start the app: **docker-compose up**
 * The app will be available at: http://localhost:3000/godziny
+* Application is connected to a production <a href = "https://github.com/Krzysztofe/godziny-server">express server --></a> with CORS enabled for all origins (*), allowing requests from any frontend URL.
 * Docker Structure: 
   - **Dockerfile** – defines how to build the image using Node.js
   - **docker-compose.yaml** – configures services and port mapping
@@ -167,4 +168,5 @@ bcryptjs, body-parser, compression, helmet, jsonwebtoken, mongoose, nodemon, yup
 * Install dependencies: **npm install** or **yarn install**
 * Start the development server: **cd .\godziny\godziny\ npm start** or **yarn start**
 * The app will be available at: http://localhost:3000/godziny
+* * Application is connected to a production <a href = "https://github.com/Krzysztofe/godziny-server">express server --></a> with CORS enabled for all origins (*), allowing requests from any frontend URL.
 
