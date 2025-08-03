@@ -149,7 +149,7 @@ bcryptjs, body-parser, compression, helmet, jsonwebtoken, mongoose, nodemon, yup
 ### Option 1: Using Docker
 * Make sure you have Docker and Docker Compose installed. 
 * Clone this repository to your local machine
-* Navigate to the project root: **cd .\godziny**
+* Navigate to the project root: **cd .\godziny\godziny**
 * Stop any previously running containers (optional, but prevents conflicts): **docker-compose down -v**
 * Build the Docker image: **docker-compose build**
 * Start the app: **docker-compose up**
@@ -164,7 +164,7 @@ bcryptjs, body-parser, compression, helmet, jsonwebtoken, mongoose, nodemon, yup
 
 * Make sure you have Node.js v22.14.0 (or compatible) installed
 * Clone this repository to your local machine
-* Navigate to the project root directory: **cd .\godziny**
+* Navigate to the project root directory: **cd .\godziny\godziny** 
 * Install dependencies: **npm install** or **yarn install**
 * Start the development server: **cd .\godziny\godziny\ npm start** or **yarn start**
 * The app will be available at: http://localhost:3000/godziny
