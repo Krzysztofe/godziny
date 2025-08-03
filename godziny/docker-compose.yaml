@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  godziny:
+    build: .
+    container_name: godziny-app
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+
+# docker-compose down -v
+# docker-compose build
+# docker-compose up

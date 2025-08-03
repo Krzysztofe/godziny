@@ -31,7 +31,7 @@ const useFormikLogin = () => {
 
       navigate(`/${currYearDigits}-${currMonthDigits}`);
     } catch (error: any) {
-      dispatch(printAlert("Błędne hasło lub login"));
+      dispatch(printAlert("Błędne hasło lub błędny login"));
     } finally {
       setIsLoading(false);
     }
