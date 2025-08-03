@@ -146,7 +146,7 @@ bcryptjs, body-parser, compression, helmet, jsonwebtoken, mongoose, nodemon, yup
 
 ## Running the project locally
 
-## Option 1: Using Docker
+### Option 1: Using Docker
 * Make sure you have Docker and Docker Compose installed. 
 * Clone this repository to your local machine
 * Navigate to the project root: **cd .\godziny**
@@ -160,7 +160,7 @@ bcryptjs, body-parser, compression, helmet, jsonwebtoken, mongoose, nodemon, yup
   - **docker-compose.yaml** – configures services and port mapping
   - **.dockerignore (optional)** – prevents unnecessary files from being included in the image
 
-## Option 2: Without Docker (manual setup with Node.js)
+### Option 2: Without Docker (manual setup with Node.js)
 
 * Make sure you have Node.js v22.14.0 (or compatible) installed
 * Clone this repository to your local machine
