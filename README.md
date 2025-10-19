@@ -51,7 +51,7 @@ Live recording of the application presentation during the conclusion of the comp
 
   ##
 ## Production version for users frontend deployed on home.pl, backend on vercel <a href = "https://godziny.ozzip.pl/"> here --></a>
-## Demo <a href = "https://krzysztofe.github.io/godziny/"> here --></a>
+## Demo <a href = "https://krzysztofe.github.io/godziny/"> here --></a>, # Production <a href = "https://godziny.ozzip.pl/"> here --></a>
 
 ## Desktop
 
