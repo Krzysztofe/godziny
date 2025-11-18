@@ -1,4 +1,4 @@
-# Godziny - React/TS, Express, Mongoose
+# Godziny - React/TS, Express, Mongoose, Docker
 
 "Godziny" is full-stack commercial project designed for the presidium of a trade union's workers council to plan the so-called union hours. In Poland, the presidium of the trade union's council is entitled to use hours for union activities. Once the number of hours for the month is determined, the members of the presidium provide the employer with data on the number of hours taken on specific days of the month. Subsequently, the employer can either accept or reject the request for union hours.
 ## Server <a href = "https://github.com/Krzysztofe/godziny-server"> here --></a>
@@ -50,8 +50,8 @@ Live recording of the application presentation during the conclusion of the comp
 ![Zrzut ekranu (208)](https://github.com/Krzysztofe/godziny/assets/96065197/7e2aa8bb-a065-4f4f-bc3d-a3da0b506897)
 
   ##
-## Production version for users frontend deployed on home.pl backend on vercel <a href = "https://godziny.ozzip.pl/"> here --></a>
-## Demo <a href = "https://krzysztofe.github.io/godziny/"> here --></a>
+## Production version for users frontend deployed on home.pl, backend on vercel <a href = "https://godziny.ozzip.pl/"> here --></a>
+## Demo <a href = "https://krzysztofe.github.io/godziny/"> here --></a>, Production <a href = "https://godziny.ozzip.pl/"> here --></a>
 
 ## Desktop
 
@@ -134,7 +134,7 @@ bcryptjs, body-parser, compression, helmet, jsonwebtoken, mongoose, nodemon, yup
  ## Comments
 * URLs are not hidden in the .env file to allow access for setting up the project locally.
  
-* To achieve global access to variables and functions, Redux Toolkit was implemented. However, to avoid prop drilling within components in lists iterated by the map() method, local Context was utilized.
+* To achieve global access to variables and functions, Redux Toolkit was implemented. However, to avoid prop drilling within particular components (in lists iterated by the map() method...), local Context was utilized.
 
 * On the mobile version of aplication, the drag and drop functionality is not well supported on touch events. It works in the following way: when you press on a tile with information about a day, a black border appears around the tile and its background becomes transparent. To make a change, you need to release your finger and then touch the tile again to drag it to the desired column.
 
@@ -144,13 +144,29 @@ bcryptjs, body-parser, compression, helmet, jsonwebtoken, mongoose, nodemon, yup
 <img src="https://github.com/user-attachments/assets/5846c847-6fd8-4253-a0ab-a8d9508b5614" width=450" height="400" alt="Screenshot">
 </div>
 
+## Running the project locally
 
-## Prerequisites
-* Before getting started, make sure you have the Node.js and npm or yarn
-* Node version: **Node.js v18.16.1**
+### Option 1: Using Docker
+* Make sure you have Docker and Docker Compose installed. 
 * Clone this repository to your local machine
-* Navigate to the project directory: **cd .\godziny**
-* Install the project dependencies by running **npm install** or **yarn install**
+* Navigate to the project root: **cd .\godziny\godziny**
+* Stop any previously running containers (optional, but prevents conflicts): **docker-compose down -v**
+* Build the Docker image: **docker-compose build**
+* Start the app: **docker-compose up**
+* The app will be available at: http://localhost:3000/godziny
+* Application is connected to a production <a href = "https://github.com/Krzysztofe/godziny-server">express server --></a> with CORS enabled for all origins (*), allowing requests from any frontend URL.
+* Docker Structure: 
+  - **Dockerfile** – defines how to build the image using Node.js
+  - **docker-compose.yaml** – configures services and port mapping
+  - **.dockerignore (optional)** – prevents unnecessary files from being included in the image
+
+### Option 2: Without Docker (manual setup with Node.js)
+
+* Make sure you have Node.js v22.14.0 (or compatible) installed
+* Clone this repository to your local machine
+* Navigate to the project root directory: **cd .\godziny\godziny** 
+* Install dependencies: **npm install** or **yarn install**
 * Start the development server: **cd .\godziny\godziny\ npm start** or **yarn start**
-* Open your browser and visit your localhost:3000 to see the running application.
+* The app will be available at: http://localhost:3000/godziny
+* Application is connected to a production <a href = "https://github.com/Krzysztofe/godziny-server">express server --></a> with CORS enabled for all origins (*), allowing requests from any frontend URL.
 
